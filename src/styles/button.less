@@ -1,0 +1,126 @@
+@import "~ant-design-vue/lib/style/themes/default";
+@import "~ant-design-vue/es/button/style/mixin";
+
+// warning button style
+@btn-warning-color: #fff;
+@btn-warning-bg: @warning-color;
+@btn-warning-disabled-border-color: #f3d19e;
+@btn-warning-disabled-bg-color: #f3d19e;
+
+// success button style
+@btn-success-color: #fff;
+@btn-success-bg: @success-color;
+@btn-success-disabled-border-color: #b3e19d;
+@btn-success-disabled-bg-color: #b3e19d;
+
+// info button style
+@btn-info-color: #fff;
+@btn-info-bg: #909399;
+@btn-info-disabled-border-color: #c8c9cc;
+@btn-info-disabled-bg-color: #c8c9cc;
+
+// primary button style
+@btn-primary-disabled-border-color: #a0cfff;
+@btn-primary-disabled-bg-color: #a0cfff;
+
+// danger button style
+@btn-danger-disabled-border-color: #fab6b6;
+@btn-danger-disabled-bg-color: #fab6b6;
+
+// set button margin
+.ant-btn+.ant-btn {
+  margin-left: 10px;
+}
+
+.button-variant(@color; @background) {
+  .button-color(@color; @background; @background);
+
+  text-shadow: @btn-text-shadow;
+  box-shadow: @btn-primary-shadow;
+
+  &:hover,
+  &:focus {
+    .button-color(@color; ~`colorPalette('@{background}', 5) `; ~`colorPalette('@{background}', 5) `);
+  }
+
+  &:active,
+  &.active {
+    .button-color(@color; ~`colorPalette('@{background}', 7) `; ~`colorPalette('@{background}', 7) `);
+  }
+
+  .button-disabled();
+}
+
+.ant-btn-warning,
+.ant-btn-success,
+.ant-btn-info {
+
+  .ant-btn-group {
+    &:not(:first-child):not(:last-child) {
+      border-right-color: @gold-5;
+      border-left-color: @gold-5;
+
+      &:disabled {
+        border-color: @btn-default-border;
+      }
+    }
+
+    &:first-child {
+      &:not(:last-child) {
+        border-right-color: @gold-5;
+
+        &[disabled] {
+          border-right-color: @btn-default-border;
+        }
+      }
+    }
+  }
+
+  .ant-btn-group &:last-child:not(:first-child),
+  .ant-btn-group & + & {
+    border-left-color: @gold-5;
+
+    &[disabled] {
+      border-left-color: @btn-default-border;
+    }
+  }
+}
+
+.ant-btn-success {
+  .button-variant(@btn-success-color; @btn-success-bg);
+  &:not(.ant-btn-link)[disabled] {
+    color: #fff;
+    background-color: @btn-success-disabled-bg-color;
+    border-color: @btn-success-disabled-border-color;
+  }
+}
+.ant-btn-info {
+  .button-variant(@btn-info-color; @btn-info-bg);
+  &:not(.ant-btn-link)[disabled] {
+    color: #fff;
+    background-color: @btn-info-disabled-bg-color;
+    border-color: @btn-info-disabled-border-color;
+  }
+}
+.ant-btn-warning {
+  .button-variant(@btn-warning-color; @btn-warning-bg);
+  &:not(.ant-btn-link)[disabled] {
+    color: #fff;
+    background-color: @btn-warning-disabled-bg-color;
+    border-color: @btn-warning-disabled-border-color;
+  }
+}
+.ant-btn-primary {
+  &:not(.ant-btn-link)[disabled] {
+    color: #fff;
+    background-color: @btn-primary-disabled-bg-color;
+    border-color: @btn-primary-disabled-border-color;
+  }
+}
+.ant-btn-danger {
+  &:not(.ant-btn-link)[disabled] {
+    color: #fff;
+    background-color: @btn-danger-disabled-bg-color;
+    border-color: @btn-danger-disabled-border-color;
+  }
+}
