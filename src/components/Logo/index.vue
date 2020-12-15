@@ -50,7 +50,7 @@ export default defineComponent({
   padding-left: 18px;
   cursor: pointer;
   height: @topSilderHeight;
-  max-width: 200px;
+  width: 100%;
   img {
     width: 37px;
     height: 37px;

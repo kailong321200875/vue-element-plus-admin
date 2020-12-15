@@ -357,65 +357,65 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
   //     }
   //   ]
   // },
-  // {
-  //   path: '/level',
-  //   component: Layout,
-  //   redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //   name: 'Level',
-  //   meta: {
-  //     title: '多级菜单缓存',
-  //     icon: 'nested'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       name: 'Menu1Demo',
-  //       component: getParentLayout('Menu1Demo'),
-  //       redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //       meta: {
-  //         title: 'Menu1'
-  //       },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           name: 'Menu11Demo',
-  //           component: getParentLayout('Menu11Demo'),
-  //           redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //           meta: {
-  //             title: 'Menu1-1',
-  //             alwaysShow: true
-  //           },
-  //           children: [
-  //             {
-  //               path: 'menu1-1-1',
-  //               name: 'Menu111Demo',
-  //               component: () => import('_p/index/views/level/Menu111.vue'),
-  //               meta: {
-  //                 title: 'Menu1-1-1'
-  //               }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           name: 'Menu12Demo',
-  //           component: () => import('_p/index/views/level/Menu12.vue'),
-  //           meta: {
-  //             title: 'Menu1-2'
-  //           }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       name: 'Menu2Demo',
-  //       component: () => import('_p/index/views/level/Menu2.vue'),
-  //       meta: {
-  //         title: 'Menu2'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/level',
+    component: Layout,
+    redirect: '/level/menu1/menu1-1/menu1-1-1',
+    name: 'Level',
+    meta: {
+      title: '多级菜单缓存',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'menu1',
+        name: 'Menu1Demo',
+        component: getParentLayout('Menu1Demo'),
+        redirect: '/level/menu1/menu1-1/menu1-1-1',
+        meta: {
+          title: 'Menu1'
+        },
+        children: [
+          {
+            path: 'menu1-1',
+            name: 'Menu11Demo',
+            component: getParentLayout('Menu11Demo'),
+            redirect: '/level/menu1/menu1-1/menu1-1-1',
+            meta: {
+              title: 'Menu1-1',
+              alwaysShow: true
+            },
+            children: [
+              {
+                path: 'menu1-1-1',
+                name: 'Menu111Demo',
+                component: () => import('_p/index/views/level/Menu111.vue'),
+                meta: {
+                  title: 'Menu1-1-1'
+                }
+              }
+            ]
+          },
+          {
+            path: 'menu1-2',
+            name: 'Menu12Demo',
+            component: () => import('_p/index/views/level/Menu12.vue'),
+            meta: {
+              title: 'Menu1-2'
+            }
+          }
+        ]
+      },
+      {
+        path: 'menu2',
+        name: 'Menu2Demo',
+        component: () => import('_p/index/views/level/Menu2.vue'),
+        meta: {
+          title: 'Menu2'
+        }
+      }
+    ]
+  },
   // {
   //   path: '/example-demo',
   //   component: Layout,

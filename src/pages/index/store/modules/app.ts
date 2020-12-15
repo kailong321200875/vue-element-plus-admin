@@ -14,7 +14,7 @@ export interface AppState {
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
 class App extends VuexModule implements AppState {
   public collapsed = false // 菜单栏是否栏缩收
-  public showLogo = true // 是否显示logo
+  public showLogo = false // 是否显示logo
   public showTags = true // 是否显示标签栏
   public showNavbar = true // 是否显示navbar
   public fixedTags = true // 是否固定标签栏

@@ -1,21 +1,27 @@
 <template>
-  <div :class="{'has-logo':show_logo}">
-    <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu
-        :default-active="activeMenu"
-        :collapse="collapsed"
-        :unique-opened="false"
-        mode="vertical"
-      >
-        <sider-item
-          v-for="route in routers"
-          :key="route.path"
-          :item="route"
-          :base-path="route.path"
-        />
-      </el-menu>
-    </el-scrollbar>
-  </div>
+  <!-- <div :class="{'has-logo': showLogo}" class="sidebar-container"> -->
+  <!-- <el-scrollbar class="menu-wrap"> -->
+  <el-menu
+    :default-active="activeMenu"
+    :collapse="collapsed"
+    :unique-opened="false"
+    :background-color="variables.menuBg"
+    :text-color="variables.menuText"
+    :active-text-color="variables.menuActiveText"
+    mode="vertical"
+    class="sidebar-container"
+    :class="{'sidebar__wrap--collapsed': collapsed}"
+    @select="selectMenu"
+  >
+    <sider-item
+      v-for="route in routers"
+      :key="route.path"
+      :item="route"
+      :base-path="route.path"
+    />
+  </el-menu>
+  <!-- </el-scrollbar> -->
+  <!-- </div> -->
 </template>
 
 <script lang="ts">
@@ -25,9 +31,8 @@ import { permissionStore } from '_p/index/store/modules/permission'
 import { appStore } from '_p/index/store/modules/app'
 import type { RouteRecordRaw, RouteLocationNormalizedLoaded } from 'vue-router'
 import SiderItem from './SiderItem.vue'
-// import variables from '@/styles/variables.less'
-import config from '_p/index/config'
-const { show_logo } = config
+import variables from '@/styles/variables.less'
+import { isExternal } from '@/utils/validate'
 
 export default defineComponent({
   components: { SiderItem },
@@ -45,12 +50,23 @@ export default defineComponent({
       return path
     })
     const collapsed = computed(() => appStore.collapsed)
+    const showLogo = computed(() => appStore.showLogo)
+
+    function selectMenu(path: string) {
+      if (isExternal(path)) {
+        window.open(path)
+      } else {
+        push(path)
+      }
+    }
 
     return {
       routers,
       activeMenu,
       collapsed,
-      show_logo
+      showLogo,
+      variables,
+      selectMenu
     }
   }
 })
@@ -59,12 +75,24 @@ export default defineComponent({
 <style lang="less" scoped>
 .sidebar-container {
   height: 100%;
+  background: @menuBg;
+  @{deep}(.svg-icon) {
+    margin-right: 16px;
+  }
 }
 .has-logo {
   height: calc(~"100% - @{topSilderHeight}");
 }
-.menu-wrap {
-  height: 100%;
-  overflow: hidden;
-}
+// .menu-wrap {
+//   height: 100%;
+//   overflow: hidden;
+//   @{deep}(.el-scrollbar__wrap) {
+//     overflow-x: hidden;
+//     overflow-y: auto;
+//   }
+//   @{deep}(.el-menu) {
+//     border-right: none;
+//     width: 100%;
+//   }
+// }
 </style>

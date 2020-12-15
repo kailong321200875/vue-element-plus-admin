@@ -1,14 +1,24 @@
 // Silder
+@menuText: #bfcbd9;
+@menuActiveText: #409EFF;
+@menuActiveBg: #2d8cf0;
+
+@menuBg: #001529;
+
+@subMenuBg: #1f2d3d;
+@subMenuHover: #1f2d3d;
+@subMenuActiveText: #fff;
+
+@menuWidth: 200px;
+@menuMinWidth: 64px;
+
 @menuLightActiveText: #1890ff;
 @menuLightActiveBg: #e6f7ff;
 
 @menuDarkActiveText: #fff;
 @menuDarkActiveBg: #1890ff;
 
-@menuBg: #001529;
 @menuLightBg: #fff;
-
-@menuWidth: 200px;
 
 // topSilder
 @topSilderHeight: 50px;
@@ -27,3 +37,15 @@
 
 // deep
 @deep: ~'::v-deep';
+
+// the :export directive is the magic sauce for webpack
+:export {
+  menuText: @menuText;
+  menuActiveText: @menuActiveText;
+  menuActiveBg: @menuActiveBg;
+  menuBg: @menuBg;
+  subMenuBg: @subMenuBg;
+  subMenuHover: @subMenuHover;
+  menuWidth: @menuWidth;
+  menuMinWidth: @menuMinWidth;
+}
