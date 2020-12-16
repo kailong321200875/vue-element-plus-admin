@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <i v-if="icon.includes('el-icon')" :class="[icon, 'sub-el-icon', 'anticon']" />
-    <svg-icon v-else :icon-class="icon" class="anticon" />
-    <slot name="title">
-      <span class="anticon-item">{{ title }}</span>
-    </slot>
-  </div>
+  <i v-if="icon.includes('el-icon')" :class="[icon, 'sub-el-icon', 'anticon']" />
+  <svg-icon v-else :icon-class="icon" class="anticon" />
+  <slot name="title">
+    <span class="anticon-item">{{ title }}</span>
+  </slot>
 </template>
 
 <script lang="ts">

@@ -22,5 +22,6 @@ html,body {
 }
 #app {
   .size;
+  background: @appBg;
 }
 </style>

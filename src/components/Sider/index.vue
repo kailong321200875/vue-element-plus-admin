@@ -1,27 +1,25 @@
 <template>
-  <!-- <div :class="{'has-logo': showLogo}" class="sidebar-container"> -->
-  <!-- <el-scrollbar class="menu-wrap"> -->
-  <el-menu
-    :default-active="activeMenu"
-    :collapse="collapsed"
-    :unique-opened="false"
-    :background-color="variables.menuBg"
-    :text-color="variables.menuText"
-    :active-text-color="variables.menuActiveText"
-    mode="vertical"
-    class="sidebar-container"
-    :class="{'sidebar__wrap--collapsed': collapsed}"
-    @select="selectMenu"
-  >
-    <sider-item
-      v-for="route in routers"
-      :key="route.path"
-      :item="route"
-      :base-path="route.path"
-    />
-  </el-menu>
-  <!-- </el-scrollbar> -->
-  <!-- </div> -->
+  <div :class="{'has-logo': showLogo}" class="sidebar-container">
+    <el-scrollbar>
+      <el-menu
+        :default-active="activeMenu"
+        :collapse="collapsed"
+        :unique-opened="false"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :active-text-color="variables.menuActiveText"
+        mode="vertical"
+        @select="selectMenu"
+      >
+        <sider-item
+          v-for="route in routers"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        />
+      </el-menu>
+    </el-scrollbar>
+  </div>
 </template>
 
 <script lang="ts">
@@ -83,16 +81,16 @@ export default defineComponent({
 .has-logo {
   height: calc(~"100% - @{topSilderHeight}");
 }
-// .menu-wrap {
-//   height: 100%;
-//   overflow: hidden;
-//   @{deep}(.el-scrollbar__wrap) {
-//     overflow-x: hidden;
-//     overflow-y: auto;
-//   }
-//   @{deep}(.el-menu) {
-//     border-right: none;
-//     width: 100%;
-//   }
-// }
+@{deep}(.el-scrollbar) {
+  width: 100%;
+  height: 100%;
+  .el-scrollbar__wrap {
+    overflow: scroll;
+    overflow-x: hidden;
+    .el-menu {
+      width: 100% !important;
+      border: none;
+    }
+  }
+}
 </style>

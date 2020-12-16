@@ -55,9 +55,7 @@ export default defineComponent({
 
     onMounted(() => {
       // 设置异步，不然图例一开始的宽度不正确。
-      setTimeout(() => {
-        initChart()
-      }, 10)
+      initChart()
       __resizeHandler = debounce(() => {
         if (chart) {
           chart.resize()

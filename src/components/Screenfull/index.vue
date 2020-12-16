@@ -1,12 +1,9 @@
 <template>
-  <a-tooltip placement="bottom">
-    <template #title>
-      <span>{{ isFullscreen ? '退出全屏' : '全屏' }}</span>
-    </template>
-    <div style="height: 100%;">
-      <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" @click="click" />
+  <el-tooltip placement="bottom" :content="isFullscreen ? '退出全屏' : '全屏'">
+    <div style="height: 100%;" class="screenfull-svg" @click="click">
+      <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" />
     </div>
-  </a-tooltip>
+  </el-tooltip>
 </template>
 
 <script lang="ts">

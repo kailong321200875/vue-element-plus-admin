@@ -16,6 +16,70 @@
     <div class="chart__wrap">
       <echart :options="lineEchatOptions" :height="'300px'" />
     </div>
+    <panel-group />
+    <el-row :gutter="20">
+      <el-col :span="10">
+        <div class="chart__wrap">
+          <echart :options="pieEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+      <el-col :span="14">
+        <div class="chart__wrap">
+          <echart :options="barEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+    </el-row>
+    <div class="chart__wrap">
+      <echart :options="lineEchatOptions" :height="'300px'" />
+    </div>
+    <panel-group />
+    <el-row :gutter="20">
+      <el-col :span="10">
+        <div class="chart__wrap">
+          <echart :options="pieEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+      <el-col :span="14">
+        <div class="chart__wrap">
+          <echart :options="barEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+    </el-row>
+    <div class="chart__wrap">
+      <echart :options="lineEchatOptions" :height="'300px'" />
+    </div>
+    <panel-group />
+    <el-row :gutter="20">
+      <el-col :span="10">
+        <div class="chart__wrap">
+          <echart :options="pieEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+      <el-col :span="14">
+        <div class="chart__wrap">
+          <echart :options="barEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+    </el-row>
+    <div class="chart__wrap">
+      <echart :options="lineEchatOptions" :height="'300px'" />
+    </div>
+    <panel-group />
+    <el-row :gutter="20">
+      <el-col :span="10">
+        <div class="chart__wrap">
+          <echart :options="pieEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+      <el-col :span="14">
+        <div class="chart__wrap">
+          <echart :options="barEchatOptions" :height="'300px'" />
+        </div>
+      </el-col>
+    </el-row>
+    <div class="chart__wrap">
+      <echart :options="lineEchatOptions" :height="'300px'" />
+    </div>
   </div>
 </template>
 
@@ -46,7 +110,6 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .chart__wrap {
-  width: 100%;
   margin-bottom: 20px;
   border-radius: 5px;
   background-color: @contentBg;

@@ -20,14 +20,14 @@ export default defineComponent({
 
     function handleScroll(e: any): void {
       const eventDelta: number = e.wheelDelta || -e.deltaY * 40
-      const $scrollWrapper: any = (unref(scrollContainer) as any).$.wrap
+      const $scrollWrapper: any = (unref(scrollContainer) as any).wrap
       $scrollWrapper.scrollLeft = $scrollWrapper.scrollLeft + eventDelta / 4
     }
 
     function moveToTarget(currentTag: any) {
       const $container: any = (unref(scrollContainer) as any).$el
       const $containerWidth: number = $container.offsetWidth
-      const $scrollWrapper: any = (unref(scrollContainer) as any).$.wrap
+      const $scrollWrapper: any = (unref(scrollContainer) as any).wrap
       const tagList = (unref(scrollContainer) as any).$parent.$parent.tagRefs
 
       let firstTag: any = null
@@ -79,7 +79,7 @@ export default defineComponent({
     }
 
     function moveTo(to: number) {
-      const $scrollWrapper: any = (unref(scrollContainer) as any).$.wrap
+      const $scrollWrapper: any = (unref(scrollContainer) as any).wrap
       nextTick(() => {
         const { start } = useScrollTo({
           el: $scrollWrapper,
@@ -101,11 +101,13 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .scroll-container {
   white-space: nowrap;
   position: relative;
-  overflow: hidden;
   width: 100%;
+  @{deep}(.el-scrollbar__wrap) {
+    overflow: hidden;
+  }
 }
 </style>

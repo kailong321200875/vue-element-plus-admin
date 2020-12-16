@@ -19,6 +19,7 @@ class TagsView extends VuexModule implements TagsViewState {
   @Mutation
   private ADD_VISITED_VIEW(view: RouteLocationNormalizedLoaded): void {
     if (this.visitedViews.some((v: RouteLocationNormalizedLoaded) => v.path === view.path)) return
+    if (view.meta?.noTagsView) return
     this.visitedViews.push(
       Object.assign({}, view, {
         title: view.meta.title || 'no-name'

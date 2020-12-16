@@ -1,13 +1,20 @@
 <template>
   <div style="padding: 20px; background: #fff;display: flex;align-items: center;">
     <div style="min-width: 200px;">多层级缓存-页面2：</div>
-    <el-input />
+    <el-input v-model="value" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 export default defineComponent({
-  name: 'Menu2Demo'
+  name: 'Menu2Demo',
+  setup() {
+    const value = ref<string>('')
+
+    return {
+      value
+    }
+  }
 })
 </script>

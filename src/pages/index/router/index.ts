@@ -59,7 +59,8 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
     name: 'Login',
     meta: {
       hidden: true,
-      title: '登录'
+      title: '登录',
+      noTagsView: true
     }
   },
   {

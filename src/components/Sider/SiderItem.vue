@@ -2,9 +2,9 @@
   <template v-if="!item.meta?.hidden">
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow">
       <el-menu-item :index="resolvePath(onlyOneChild.path)">
-        <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" :title="onlyOneChild.meta.title" />
+        <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
         <template #title>
-          {{ onlyOneChild.meta.title }}
+          <span class="anticon-item">{{ onlyOneChild.meta.title }}</span>
         </template>
       </el-menu-item>
     </template>
@@ -30,10 +30,9 @@ import type { RouteRecordRaw } from 'vue-router'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item.vue'
-import AppLink from './Link.vue'
 export default defineComponent({
   name: 'SiderItem',
-  components: { Item, AppLink },
+  components: { Item },
   props: {
     // route object
     item: {
