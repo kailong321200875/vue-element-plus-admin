@@ -16,31 +16,40 @@
       <el-scrollbar
         class="main__wrap--content"
         :class="{
-          'main__wrap--navFixed': fixedNavbar
+          'main__wrap--fixed--all': fixedHeader && showNavbar && showTags,
+          'main__wrap--fixed--nav': fixedHeader && showNavbar && !showTags,
+          'main__wrap--fixed--tags': fixedHeader && !showNavbar && showTags
         }"
       >
         <div
-          v-if="showNavbar"
-          class="navbar__wrap"
+          class="header__wrap"
           :class="{
-            'navbar__wrap--fixed': fixedNavbar,
-            'navbar__wrap--collapsed': fixedNavbar && collapsed
+            'header__wrap--fixed': fixedHeader,
+            'header__wrap--collapsed': fixedHeader && collapsed
           }"
         >
-          <hamburger
-            v-if="showHamburger"
-            :collapsed="collapsed"
-            class="hover-container"
-            @toggleClick="setCollapsed"
-          />
-          <breadcrumb v-if="showBreadcrumb" />
-          <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
-            <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
-            <user-info v-if="showUserInfo" class="hover-container user-container" />
+          <div
+            v-if="showNavbar"
+            class="navbar__wrap"
+          >
+            <hamburger
+              v-if="showHamburger"
+              :collapsed="collapsed"
+              class="hover-container"
+              @toggleClick="setCollapsed"
+            />
+            <breadcrumb v-if="showBreadcrumb" />
+            <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
+              <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
+              <user-info v-if="showUserInfo" class="hover-container user-container" />
+            </div>
           </div>
-        </div>
-        <div v-if="showTags" class="tags__wrap">
-          <tags-view />
+          <div
+            v-if="showTags"
+            class="tags__wrap"
+          >
+            <tags-view />
+          </div>
         </div>
         <app-main />
       </el-scrollbar>
@@ -101,7 +110,9 @@ export default defineComponent({
     const showScreenfull = computed(() => appStore.showScreenfull)
     const showUserInfo = computed(() => appStore.showUserInfo)
     const showNavbar = computed(() => appStore.showNavbar)
-    const fixedNavbar = computed(() => appStore.fixedNavbar)
+    // const fixedNavbar = computed(() => appStore.fixedNavbar)
+    // const fixedTags = computed(() => appStore.fixedTags)
+    const fixedHeader = computed(() => appStore.fixedHeader)
 
     const classObj = computed(() => {
       const obj = {}
@@ -128,7 +139,9 @@ export default defineComponent({
       showScreenfull,
       showUserInfo,
       showNavbar,
-      fixedNavbar,
+      fixedHeader,
+      // fixedNavbar,
+      // fixedTags,
       setCollapsed,
       toggleClick
     }
@@ -137,7 +150,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.app__wrap--Classic {
+.app__wrap {
   position: relative;
   height: 100%;
   width: 100%;
@@ -163,58 +176,47 @@ export default defineComponent({
     left: @menuWidth;
     transition: all 0.2s;
     z-index: 1;
-    .navbar__wrap {
-      display: flex;
-      align-items: center;
-      height: @navbarHeight;
-      padding: 0 20px 0 15px;
-      position: relative;
-      background: @contentBg;
+    .header__wrap {
       transition: all 0.2s;
-      &:after {
-        content: "";
-        width: 100%;
-        height: 1px;
-        border-top: 1px solid #d8dce5;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-      }
-      @{deep}(.hover-container) {
-        transition: background 0.2s;
-        height: 100%;
-        line-height: @navbarHeight + 5px;
-        padding: 0 5px;
-        &:hover {
-          background: #f6f6f6;
-        }
-      }
-      .navbar__wrap--right {
+      .navbar__wrap {
         display: flex;
         align-items: center;
         height: @navbarHeight;
-        position: absolute;
-        top: 0;
-        right: 20px;
-        @{deep}(.screenfull-container),
-        @{deep}(.user-container) {
-          line-height: @navbarHeight !important;
+        padding: 0 20px 0 15px;
+        position: relative;
+        background: @contentBg;
+        &:after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #d8dce5;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+        @{deep}(.hover-container) {
+          transition: background 0.2s;
+          height: 100%;
+          line-height: @navbarHeight + 5px;
+          padding: 0 5px;
+          &:hover {
+            background: #f6f6f6;
+          }
+        }
+        .navbar__wrap--right {
+          display: flex;
+          align-items: center;
+          height: @navbarHeight;
+          position: absolute;
+          top: 0;
+          right: 20px;
+          @{deep}(.screenfull-container),
+          @{deep}(.user-container) {
+            line-height: @navbarHeight !important;
+          }
         }
       }
     }
-    // 固定顶部操作栏
-    .navbar__wrap--fixed {
-      position: fixed;
-      width: calc(~"100% - @{menuWidth} - 35px");
-      top: 0;
-      left: @menuWidth;
-      z-index: 200;
-    }
-    .navbar__wrap--collapsed {
-      width: calc(~"100% - @{menuMinWidth} - 35px");
-      left: @menuMinWidth;
-    }
-    // 固定顶部操作栏
 
     // content样式
     .main__wrap--content {
@@ -223,15 +225,38 @@ export default defineComponent({
         overflow-x: hidden;
       }
     }
-    .main__wrap--navFixed {
-      padding-top: @navbarHeight;
-      height: calc(~"100% - @{navbarHeight}");
-    }
     // content样式
   }
   .main__wrap--collapsed {
     width: calc(~"100% - @{menuMinWidth}");
     left: @menuMinWidth;
+  }
+}
+
+// 经典模式
+.app__wrap--Classic {
+  .main__wrap--fixed--all {
+    margin-top: @navbarHeight + @tagsViewHeight !important;
+    height: calc(~"100% - @{navbarHeight} - @{tagsViewHeight}") !important;
+  }
+  .main__wrap--fixed--nav {
+    margin-top: @navbarHeight !important;
+    height: calc(~"100% - @{navbarHeight}") !important;
+  }
+  .main__wrap--fixed--tags {
+    margin-top: @tagsViewHeight !important;
+    height: calc(~"100% - @{tagsViewHeight}") !important;
+  }
+  .header__wrap--fixed {
+    position: fixed !important;
+    width: calc(~"100% - @{menuWidth}") !important;
+    top: 0 !important;
+    left: @menuWidth !important;
+    z-index: 200;
+  }
+  .header__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}") !important;
+    left: @menuMinWidth !important;
   }
 }
 

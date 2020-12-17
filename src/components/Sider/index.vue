@@ -5,9 +5,6 @@
         :default-active="activeMenu"
         :collapse="collapsed"
         :unique-opened="false"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText"
         mode="vertical"
         @select="selectMenu"
       >
@@ -73,7 +70,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .sidebar-container {
   height: 100%;
-  background: @menuBg;
   @{deep}(.svg-icon) {
     margin-right: 16px;
   }
@@ -88,7 +84,7 @@ export default defineComponent({
     overflow: scroll;
     overflow-x: hidden;
     .el-menu {
-      width: 100% !important;
+      width: 100%;
       border: none;
     }
   }

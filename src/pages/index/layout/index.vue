@@ -5,18 +5,18 @@
 </template>
 
 <script lang="ts">
-import Classic from './modules/Classic.vue'
-import Top from './modules/Top.vue'
-import LeftTop from './modules/LeftTop.vue'
+// import Classic from './modules/Classic.vue'
+// import Top from './modules/Top.vue'
+// import LeftTop from './modules/LeftTop.vue'
 import Test from './modules/Test.vue'
 import { defineComponent, ref } from 'vue'
 import config from '_p/index/config'
 export default defineComponent({
   name: 'Layout',
   components: {
-    Classic,
-    Top,
-    LeftTop,
+    // Classic,
+    // Top,
+    // LeftTop,
     Test
   },
   setup() {

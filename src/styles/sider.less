@@ -1,0 +1,108 @@
+.app__wrap--Classic {
+  .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
+  }
+  .sidebar-container {
+    background: @menuBg;
+    .el-menu {
+      background-color: @menuBg !important;
+      .el-menu-item,
+      .el-submenu__title {
+        color: @menuText !important;
+        background-color: @menuBg !important;
+        i {
+          color: @menuText !important;
+        }
+      }
+      
+      .is-active {
+        color: @menuActiveText !important;
+        background-color: @subMenuHover !important;
+        &>.el-submenu__title {
+          color: @menuActiveText !important;
+        }
+      }
+      .is-opened {
+        .el-menu-item {
+          background-color: @subMenuBg !important;
+        }
+      }
+      
+      .nest-menu {
+        background-color: @subMenuBg !important;
+        .el-submenu>.el-submenu__title {
+          background-color: @subMenuBg !important;
+        }
+        .is-active {
+          background-color: @subMenuHover !important;
+        }
+      }
+      // menu hover
+      .submenu-title-noDropdown,
+      .el-submenu__title {
+        &:hover {
+          background-color: @menuBg !important;
+          color: @subMenuActiveText !important;
+        }
+      }
+      .el-menu-item:hover {
+        color: @subMenuActiveText !important;
+        background-color: @subMenuHover !important;
+      }
+    }
+    .el-menu--collapse {
+      &>div>.el-submenu {
+        i {
+          display: none;
+        }
+      }
+      .is-active {
+        &>.el-submenu__title {
+          background-color: @subMenuHover !important;
+        }
+      }
+    }
+  }
+}
+
+.nest-popper-menu {
+  background: @menuBg;
+  .el-menu {
+    background-color: @menuBg !important;
+      
+    .el-menu-item,
+    .el-submenu__title {
+      color: @menuText !important;
+      background-color: @menuBg !important;
+      i {
+        color: @menuText !important;
+      }
+    }
+      
+    .is-active {
+      color: @menuActiveText !important;
+      background-color: @subMenuHover !important;
+      &>.el-submenu__title {
+        color: @menuActiveText !important;
+      }
+    }
+      
+    .nest-menu {
+      .is-active {
+        background-color: @subMenuHover !important;
+      }
+    }
+    // menu hover
+    .submenu-title-noDropdown,
+    .el-submenu__title {
+      &:hover {
+        background-color: @menuBg !important;
+        color: @subMenuActiveText !important;
+      }
+    }
+    .el-menu-item:hover {
+      color: @subMenuActiveText !important;
+      background-color: @subMenuHover !important;
+    }
+  }
+}

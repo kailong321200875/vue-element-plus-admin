@@ -1,7 +1,7 @@
 <template>
-  <template v-if="!item.meta?.hidden">
+  <div v-if="!item.meta?.hidden">
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow">
-      <el-menu-item :index="resolvePath(onlyOneChild.path)">
+      <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
         <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
         <template #title>
           <span class="anticon-item">{{ onlyOneChild.meta.title }}</span>
@@ -9,7 +9,7 @@
       </el-menu-item>
     </template>
 
-    <el-submenu v-else :index="resolvePath(item.path)">
+    <el-submenu v-else popper-class="nest-popper-menu" :index="resolvePath(item.path)">
       <template #title>
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
@@ -19,9 +19,10 @@
         :is-nest="true"
         :item="child"
         :base-path="resolvePath(child.path)"
+        class="nest-menu"
       />
     </el-submenu>
-  </template>
+  </div>
 </template>
 
 <script lang="ts">

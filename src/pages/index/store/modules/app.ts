@@ -6,8 +6,9 @@ export interface AppState {
   showTags: boolean
   showLogo: boolean
   showNavbar: boolean
-  fixedTags: boolean
-  fixedNavbar: boolean
+  fixedHeader: boolean
+  // fixedTags: boolean
+  // fixedNavbar: boolean
   layout: string
   showBreadcrumb: boolean
   showHamburger: boolean
@@ -21,8 +22,9 @@ class App extends VuexModule implements AppState {
   public showLogo = true // 是否显示logo
   public showTags = true // 是否显示标签栏
   public showNavbar = true // 是否显示navbar
-  public fixedTags = true // 是否固定标签栏
-  public fixedNavbar = true // 是否固定navbar
+  // public fixedTags = true // 是否固定标签栏
+  // public fixedNavbar = true // 是否固定navbar
+  public fixedHeader = true // 是否固定header
   public layout = 'Classic' // layout布局
   public showBreadcrumb = true // 是否显示面包屑
   public showHamburger = true // 是否显示侧边栏缩收按钮
@@ -45,13 +47,17 @@ class App extends VuexModule implements AppState {
   private SET_NAVBAR(showNavbar: boolean): void {
     this.showNavbar = showNavbar
   }
+  // @Mutation
+  // private SET_FIXEDTAGS(fixedTags: boolean): void {
+  //   this.fixedTags = fixedTags
+  // }
+  // @Mutation
+  // private SET_FIXEDNAVBAR(fixedNavbar: boolean): void {
+  //   this.fixedNavbar = fixedNavbar
+  // }
   @Mutation
-  private SET_FIXEDTAGS(fixedTags: boolean): void {
-    this.fixedTags = fixedTags
-  }
-  @Mutation
-  private SET_FIXEDNAVBAR(fixedNavbar: boolean): void {
-    this.fixedNavbar = fixedNavbar
+  private SET_FIXEDHEADER(fixedHeader: boolean): void {
+    this.fixedHeader = fixedHeader
   }
   @Mutation
   private SET_LAYOUT(layout: 'Classic' | 'LeftTop' | 'Top' | 'Test'): void {
@@ -91,13 +97,17 @@ class App extends VuexModule implements AppState {
     this.SET_NAVBAR(showNavbar)
   }
   @Action
-  public SetFixedTags(fixedTags: boolean): void {
-    this.SET_FIXEDTAGS(fixedTags)
+  public SetFixedHeader(fixedHeader: boolean): void {
+    this.SET_FIXEDHEADER(fixedHeader)
   }
-  @Action
-  public SetFixedNavbar(fixedNavbar: boolean): void {
-    this.SET_FIXEDNAVBAR(fixedNavbar)
-  }
+  // @Action
+  // public SetFixedTags(fixedTags: boolean): void {
+  //   this.SET_FIXEDTAGS(fixedTags)
+  // }
+  // @Action
+  // public SetFixedNavbar(fixedNavbar: boolean): void {
+  //   this.SET_FIXEDNAVBAR(fixedNavbar)
+  // }
   @Action
   public SetLayout(layout: 'Classic' | 'LeftTop' | 'Top' | 'Test'): void {
     this.SET_LAYOUT(layout)

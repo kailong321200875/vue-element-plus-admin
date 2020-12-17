@@ -24,9 +24,17 @@
     <div class="setting__title">顶部菜单主题</div>
 
     <div class="setting__title">界面功能</div>
-    <div class="setting__item">
+    <!-- <div class="setting__item">
       <span>固定顶部操作栏</span>
       <el-switch v-model="fixedNavbar" @change="setFixedNavbar" />
+    </div>
+    <div class="setting__item">
+      <span>固定标签页</span>
+      <el-switch v-model="fixedTags" @change="setFixedTags" />
+    </div> -->
+    <div class="setting__item">
+      <span>固定Header</span>
+      <el-switch v-model="fixedHeader" @change="setFixedHeader" />
     </div>
 
     <div class="setting__title">界面显示</div>
@@ -73,9 +81,19 @@ export default defineComponent({
       appStore.SetLayout(mode)
     }
 
-    const fixedNavbar = ref<boolean>(appStore.fixedNavbar)
-    function setFixedNavbar(fixedNavbar: boolean) {
-      appStore.SetFixedNavbar(fixedNavbar)
+    // const fixedNavbar = ref<boolean>(appStore.fixedNavbar)
+    // function setFixedNavbar(fixedNavbar: boolean) {
+    //   appStore.SetFixedNavbar(fixedNavbar)
+    // }
+
+    // const fixedTags = ref<boolean>(appStore.fixedTags)
+    // function setFixedTags(fixedTags: boolean) {
+    //   appStore.SetFixedTags(fixedTags)
+    // }
+
+    const fixedHeader = ref<boolean>(appStore.fixedHeader)
+    function setFixedHeader(fixedHeader: boolean) {
+      appStore.SetFixedHeader(fixedHeader)
     }
 
     const navbar = ref<boolean>(appStore.showNavbar)
@@ -115,7 +133,9 @@ export default defineComponent({
 
     return {
       layout, setLayout,
-      fixedNavbar, setFixedNavbar,
+      // fixedNavbar, setFixedNavbar,
+      // fixedTags, setFixedTags,
+      fixedHeader, setFixedHeader,
       navbar, setNavbar,
       hamburger, setHamburger,
       breadcrumb, setBreadcrumb,
