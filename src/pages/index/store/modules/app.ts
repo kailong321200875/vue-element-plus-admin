@@ -2,18 +2,19 @@ import store from '../index'
 import { VuexModule, getModule, Module, Mutation, Action } from 'vuex-module-decorators'
 
 export interface AppState {
-  collapsed: boolean
-  showTags: boolean
-  showLogo: boolean
-  showNavbar: boolean
-  fixedHeader: boolean
-  // fixedTags: boolean
-  // fixedNavbar: boolean
-  layout: string
-  showBreadcrumb: boolean
-  showHamburger: boolean
-  showScreenfull: boolean
-  showUserInfo: boolean
+  collapsed: Boolean
+  showTags: Boolean
+  showLogo: Boolean
+  showNavbar: Boolean
+  fixedHeader: Boolean
+  // fixedTags: Boolean
+  // fixedNavbar: Boolean
+  layout: String
+  showBreadcrumb: Boolean
+  showHamburger: Boolean
+  showScreenfull: Boolean
+  showUserInfo: Boolean
+  title: String
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
@@ -30,6 +31,7 @@ class App extends VuexModule implements AppState {
   public showHamburger = true // 是否显示侧边栏缩收按钮
   public showScreenfull = true // 是否全屏按钮
   public showUserInfo = true // 是否显示用户头像
+  public title = 'vue-antdv-admin' // 标题
 
   @Mutation
   private SET_COLLAPSED(collapsed: boolean): void {
@@ -79,6 +81,10 @@ class App extends VuexModule implements AppState {
   private SET_USERINFO(showUserInfo: boolean): void {
     this.showUserInfo = showUserInfo
   }
+  @Mutation
+  private SET_TITLE(title: string): void {
+    this.title = title
+  }
 
   @Action
   public SetCollapsed(collapsed: boolean): void {
@@ -127,6 +133,10 @@ class App extends VuexModule implements AppState {
   @Action
   public SetUserInfo(showUserInfo: boolean): void {
     this.SET_USERINFO(showUserInfo)
+  }
+  @Action
+  public SetTitle(title: string): void {
+    this.SET_TITLE(title)
   }
 }
 

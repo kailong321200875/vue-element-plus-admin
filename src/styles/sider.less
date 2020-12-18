@@ -1,4 +1,5 @@
-.app__wrap--Classic {
+.app__wrap--Classic,
+.app__wrap--LeftTop {
   .horizontal-collapse-transition {
     transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
   }
@@ -14,17 +15,32 @@
           color: @menuText !important;
         }
       }
+      .is-opened {
+        .el-menu-item,
+        .el-submenu {
+          background-color: @subMenuBg !important;
+        }
+        .is-active {
+          color: @menuActiveText !important;
+          background-color: @subMenuHover !important;
+          &>.el-submenu__title {
+            color: @menuActiveText !important;
+          }
+        }
+        .is-opened,
+        .el-menu {
+          background-color: @subMenuBg !important;
+          .el-submenu__title {
+            background-color: @subMenuBg !important;
+          }
+        }
+      }
       
       .is-active {
         color: @menuActiveText !important;
         background-color: @subMenuHover !important;
         &>.el-submenu__title {
           color: @menuActiveText !important;
-        }
-      }
-      .is-opened {
-        .el-menu-item {
-          background-color: @subMenuBg !important;
         }
       }
       
@@ -47,7 +63,7 @@
       }
       .el-menu-item:hover {
         color: @subMenuActiveText !important;
-        background-color: @subMenuHover !important;
+        // background-color: @subMenuHover !important;
       }
     }
     .el-menu--collapse {
@@ -103,6 +119,94 @@
     .el-menu-item:hover {
       color: @subMenuActiveText !important;
       background-color: @subMenuHover !important;
+    }
+  }
+}
+
+.app__wrap--Top {
+  .sidebar-container {
+    background: @topMenuBg;
+    .el-menu {
+      background-color: @topMenuBg !important;
+      .el-menu-item,
+      .el-submenu__title {
+        color: @topMenuText !important;
+        background-color: @topMenuBg !important;
+        i {
+          color: @topMenuText !important;
+        }
+      }
+      
+      .is-active {
+        color: @topMenuActiveText !important;
+        &>.el-submenu__title {
+          color: @topMenuActiveText !important;
+        }
+      }
+      .is-opened {
+        .el-menu-item {
+          background-color: @subMenuBg !important;
+        }
+      }
+      
+      .nest-menu {
+        background-color: @subMenuBg !important;
+        .el-submenu>.el-submenu__title {
+          background-color: @subMenuBg !important;
+        }
+        .is-active {
+          background-color: @subMenuHover !important;
+        }
+      }
+      // menu hover
+      .submenu-title-noDropdown,
+      .el-submenu__title {
+        &:hover {
+          color: @topSMenuActiveText !important;
+        }
+      }
+      .el-menu-item:hover {
+        color: @topMenuActiveText !important;
+      }
+    }
+  }
+}
+
+.top-popper-menu {
+  background: @topMenuBg;
+  .el-menu {
+    background-color: @topMenuBg !important;
+      
+    .el-menu-item,
+    .el-submenu__title {
+      color: @topMenuText !important;
+      background-color: @topMenuBg !important;
+    }
+      
+    .is-active {
+      color: @topMenuActiveText !important;
+      // background-color: @subMenuHover !important;
+      &>.el-submenu__title {
+        color: @topMenuActiveText !important;
+      }
+    }
+      
+    .nest-menu {
+      .is-active {
+        // background-color: @subMenuHover !important;
+      }
+    }
+    // menu hover
+    .submenu-title-noDropdown,
+    .el-submenu__title {
+      &:hover {
+        background-color: @topMenuBg !important;
+        color: @topSMenuHover !important;
+      }
+    }
+    .el-menu-item:hover {
+      color: @topSMenuHover !important;
+      // background-color: @subMenuHover !important;
     }
   }
 }

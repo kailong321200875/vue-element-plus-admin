@@ -158,7 +158,7 @@ export default defineComponent({
       })
     }
 
-    async function closeAllTags(view: RouteLocationNormalizedLoaded) {
+    async function closeAllTags() {
       const views: any = await tagsViewStore.delAllViews()
       // console.log(affixTags.value.some(tag => tag.path === view.path))
       // if (affixTags.value.some(tag => tag.path === view.path)) {
@@ -300,9 +300,9 @@ export default defineComponent({
         margin-right: 23px;
       }
       &.active {
-        background-color: #304156;
+        background-color: @tagActiveBg;
         color: #fff;
-        border-color: #304156;
+        border-color: @tagActiveBg;
         &::before {
           content: '';
           background: #fff;
@@ -322,9 +322,7 @@ export default defineComponent({
         line-height: 16px;
         transition: all .3s cubic-bezier(.645, .045, .355, 1);
         transform-origin: 100% 50%;
-        margin-left: 5px;
         &:before {
-          transform: scale(.6);
           display: inline-block;
         }
         &:hover {

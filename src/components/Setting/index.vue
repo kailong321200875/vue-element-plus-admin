@@ -38,15 +38,15 @@
     </div>
 
     <div class="setting__title">界面显示</div>
-    <div class="setting__item">
+    <div v-if="layout !== 'Top'" class="setting__item">
       <span>顶部操作栏</span>
       <el-switch v-model="navbar" @change="setNavbar" />
     </div>
-    <div class="setting__item">
+    <div v-if="layout !== 'Top'" class="setting__item">
       <span>侧边栏缩收</span>
       <el-switch v-model="hamburger" @change="setHamburger" />
     </div>
-    <div class="setting__item">
+    <div v-if="layout !== 'Top'" class="setting__item">
       <span>面包屑</span>
       <el-switch v-model="breadcrumb" @change="setBreadcrumb" />
     </div>
@@ -79,6 +79,7 @@ export default defineComponent({
     function setLayout(mode: 'Classic' | 'LeftTop' | 'Top' | 'Test') {
       if (mode === layout.value) return
       appStore.SetLayout(mode)
+      appStore.SetCollapsed(false)
     }
 
     // const fixedNavbar = ref<boolean>(appStore.fixedNavbar)

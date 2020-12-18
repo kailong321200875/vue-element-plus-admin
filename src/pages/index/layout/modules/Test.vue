@@ -1,12 +1,39 @@
 <template>
   <div :class="classObj" class="app__wrap">
-    <div class="sidebar__wrap" :class="{'sidebar__wrap--collapsed': collapsed}">
+    <!-- Classic -->
+    <div
+      v-if="layout === 'Classic' || layout === 'LeftTop'"
+      class="sidebar__wrap"
+      :class="{'sidebar__wrap--collapsed': collapsed}"
+    >
       <logo
-        v-if="showLogo"
+        v-if="showLogo && layout === 'Classic'"
         :collapsed="collapsed"
       />
-      <sider />
+      <sider :layout="layout" mode="vertical" />
     </div>
+    <!-- Classic -->
+
+    <!-- Top -->
+    <div v-if="layout !== 'Classic'" class="sidebar__wrap--Top">
+      <div>
+        <logo
+          v-if="showLogo"
+          :collapsed="collapsed"
+        />
+      </div>
+      <div v-if="layout === 'Top'" class="sidebar__item--Top">
+        <sider :layout="layout" mode="horizontal" />
+      </div>
+      <div>
+        <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
+          <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
+          <user-info v-if="showUserInfo" class="hover-container user-container" />
+        </div>
+      </div>
+    </div>
+    <!-- Top -->
+
     <div
       class="main__wrap"
       :class="{
@@ -29,7 +56,7 @@
           }"
         >
           <div
-            v-if="showNavbar"
+            v-if="showNavbar && layout !== 'Top'"
             class="navbar__wrap"
           >
             <hamburger
@@ -102,6 +129,7 @@ export default defineComponent({
   },
   setup() {
     const drawer = ref<boolean>(false)
+    const layout = computed(() => appStore.layout)
     const collapsed = computed(() => appStore.collapsed)
     const showLogo = computed(() => appStore.showLogo)
     const showTags = computed(() => appStore.showTags)
@@ -116,7 +144,7 @@ export default defineComponent({
 
     const classObj = computed(() => {
       const obj = {}
-      obj[`app__wrap--${appStore.layout}`] = true
+      obj[`app__wrap--${layout.value}`] = true
       return obj
     })
 
@@ -131,6 +159,7 @@ export default defineComponent({
     return {
       drawer,
       classObj,
+      layout,
       collapsed,
       showLogo,
       showTags,
@@ -199,6 +228,7 @@ export default defineComponent({
           height: 100%;
           line-height: @navbarHeight + 5px;
           padding: 0 5px;
+          text-align: center;
           &:hover {
             background: #f6f6f6;
           }
@@ -257,6 +287,87 @@ export default defineComponent({
   .header__wrap--collapsed {
     width: calc(~"100% - @{menuMinWidth}") !important;
     left: @menuMinWidth !important;
+  }
+}
+
+// 顶部模式
+.app__wrap--Top,
+.app__wrap--LeftTop {
+  .sidebar__wrap--Top {
+    height: @topSiderHeight;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: @topMenuBg;
+    position: relative;
+    &:after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      border-top: 1px solid #d8dce5;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    .sidebar__item--Top(2) {
+      flex: 1;
+      margin: 0 50px;
+    }
+    .navbar__wrap--right {
+      display: flex;
+      align-items: center;
+      height: @topSiderHeight;
+      @{deep}(.hover-container) {
+        transition: background 0.2s;
+        height: 100%;
+        line-height: @topSiderHeight;
+        padding: 0 5px;
+        text-align: center;
+        &:hover {
+          background: #f6f6f6;
+        }
+      }
+    }
+  }
+  .header__wrap--fixed {
+    position: fixed !important;
+    width: 100% !important;
+    top: @topSiderHeight !important;
+    left: 0 !important;
+    z-index: 200;
+  }
+  .main__wrap {
+    width: 100%;
+    left: 0;
+    height: calc(~"100% - @{topSiderHeight}");
+    top: @topSiderHeight;
+  }
+  .main__wrap--fixed--all,
+  .main__wrap--fixed--tags {
+    margin-top: @navbarHeight !important;
+    height: calc(~"100% - @{navbarHeight}") !important;
+  }
+}
+
+.app__wrap--LeftTop {
+  .sidebar__wrap {
+    top: @topSiderHeight;
+    left: 0;
+    height: calc(~"100% - @{topSiderHeight}");
+  }
+  .header__wrap {
+    
+  }
+  .main__wrap {
+    width: calc(~"100% - @{menuWidth}");
+    left: @menuWidth;
+    height: calc(~"100% - @{topSiderHeight}");
+    top: @topSiderHeight;
+  }
+  .main__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}");
+    left: @menuMinWidth;
   }
 }
 

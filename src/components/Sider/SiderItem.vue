@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item.meta?.hidden">
+  <template v-if="!item.meta?.hidden">
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow">
       <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
         <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
@@ -9,7 +9,13 @@
       </el-menu-item>
     </template>
 
-    <el-submenu v-else popper-class="nest-popper-menu" :index="resolvePath(item.path)">
+    <el-submenu
+      v-else
+      :popper-class="layout !== 'Top'
+        ? 'nest-popper-menu'
+        : 'top-popper-menu'"
+      :index="resolvePath(item.path)"
+    >
       <template #title>
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
       </template>
@@ -18,11 +24,11 @@
         :key="child.path"
         :is-nest="true"
         :item="child"
+        :layout="layout"
         :base-path="resolvePath(child.path)"
-        class="nest-menu"
       />
     </el-submenu>
-  </div>
+  </template>
 </template>
 
 <script lang="ts">
@@ -47,6 +53,10 @@ export default defineComponent({
     basePath: {
       type: String as PropType<string>,
       default: ''
+    },
+    layout: {
+      type: String as PropType<string>,
+      default: 'Classic'
     }
   },
   setup(props) {
