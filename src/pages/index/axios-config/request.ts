@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
-import { message } from 'ant-design-vue'
+import { ElMessage } from 'element-plus'
 
 import qs from 'qs'
 
-import config from '../config'
+import config from './config'
 
 const { result_code, base_url } = config
 
@@ -37,12 +37,12 @@ service.interceptors.response.use(
     if (response.data.code === result_code) {
       return response.data
     } else {
-      message.error(response.data.message)
+      ElMessage.error(response.data.message)
     }
   },
   (error: AxiosError) => {
     console.log('err' + error) // for debug
-    message.error(error.message)
+    ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )

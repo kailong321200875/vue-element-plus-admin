@@ -61,7 +61,7 @@ import { defineComponent, ref, unref, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { permissionStore } from '_p/index/store/modules/permission'
-import config from '_p/index/config'
+import { appStore } from '_p/index/store/modules/app'
 import wsCache from '@/cache'
 
 interface FormModule {
@@ -106,7 +106,7 @@ export default defineComponent({
               permissionStore.addRouters.forEach(async(route: RouteRecordRaw) => {
                 await addRoute(route.name!, route) // 动态添加可访问路由表
               })
-              wsCache.set(config.user_info, form)
+              wsCache.set(appStore.userInfo, form)
               permissionStore.SetIsAddRouters(true)
               push({ path: redirect.value || '/' })
             })

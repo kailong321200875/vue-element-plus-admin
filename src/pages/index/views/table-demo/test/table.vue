@@ -10,7 +10,7 @@
           @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
           @pressEnter="handleSearch(selectedKeys, confirm, column.dataIndex)"
         />
-        <a-button
+        <el-button
           type="primary"
           size="small"
           style="width: 90px; margin-right: 8px"
@@ -18,10 +18,10 @@
         >
           <template #icon><SearchOutlined /></template>
           Search
-        </a-button>
-        <a-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
+        </el-button>
+        <el-button size="small" style="width: 90px" @click="handleReset(clearFilters)">
           Reset
-        </a-button>
+        </el-button>
       </div>
     </template>
     <template #filterIcon="filtered">

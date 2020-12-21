@@ -1,8 +1,20 @@
 <template>
   <div>
-    <a-alert message="抽取于 Element 的图片预览组件进行改造，实现函数式调用组件，无需基于图片进行点击预览。" style="margin-bottom: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="抽取于 Element 的图片预览组件进行改造，实现函数式调用组件，无需基于图片进行点击预览。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
 
-    <a-alert message="有底图预览" style="margin-bottom: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="有底图预览。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
     <div class="img-wrap">
       <div
         v-for="(item, $index) in imgList"
@@ -14,18 +26,30 @@
       </div>
     </div>
 
-    <a-alert message="无底图预览" style="margin-bottom: 20px; margin-top: 20px;" />
-    <a-button type="primary" @click="showNoImg">点击预览</a-button>
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="无底图预览。"
+      type="info"
+      style="margin-bottom: 20px; margin-top: 20px;"
+    />
+    <el-button type="primary" @click="showNoImg">点击预览</el-button>
 
-    <a-alert message="点击事件，包含图片点击事件以及关闭事件。" style="margin-bottom: 20px; margin-top: 20px;" />
-    <a-button type="primary" @click="showImg">点击预览</a-button>
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="点击事件，包含图片点击事件以及关闭事件。。"
+      type="info"
+      style="margin-bottom: 20px; margin-top: 20px;"
+    />
+    <el-button type="primary" @click="showImg">点击预览</el-button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { createImgPreview } from '_c/Preview/functional'
-import { message } from 'ant-design-vue'
+import { ElMessage } from 'element-plus'
 export default defineComponent({
   // name: 'PreviewDemo',
   setup() {
@@ -59,10 +83,10 @@ export default defineComponent({
         show: true,
         index: 0,
         onSelect: (i: number) => {
-          message.info('当前点击的图片索引：' + i)
+          ElMessage.info('当前点击的图片索引：' + i)
         },
         onClose: (i: number) => {
-          message.info('关闭之后的图片索引：' + i)
+          ElMessage.info('关闭之后的图片索引：' + i)
         }
       })
     }

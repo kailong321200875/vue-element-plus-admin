@@ -1,128 +1,291 @@
 <template>
-  <a-layout>
-    <a-layout-header :class="'ant-layout-header--' + theme">
-      <logo
-        v-if="show_logo"
-        :theme="theme"
-      />
-      <silder
-        :theme="theme"
-        mode="horizontal"
-        class="header-silder--wrap"
-      />
-      <div class="right-menu">
-        <screenfull class="right-menu-item hover-effect screenfull-item" />
-
-        <user-info class="right-menu-item hover-effect" />
+  <div :class="classObj" class="app__wrap">
+    <!-- Top -->
+    <div class="sidebar__wrap--Top">
+      <div>
+        <logo
+          v-if="showLogo"
+          :collapsed="collapsed"
+        />
       </div>
-    </a-layout-header>
-    <a-layout-content :class="{'layout-content-has-tags':has_tags}">
-      <scrollbar class="main-wrap">
-        <tags-view :class="{'has-tags':has_tags}" />
-        <app-main class="top-module--wrap" />
-      </scrollbar>
-    </a-layout-content>
-  </a-layout>
+      <div class="sidebar__item--Top">
+        <sider :layout="layout" mode="horizontal" />
+      </div>
+      <div>
+        <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
+          <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
+          <user-info v-if="showUserInfo" class="hover-container user-container" />
+        </div>
+      </div>
+    </div>
+    <!-- Top -->
+
+    <div
+      class="main__wrap"
+      :class="{
+        'main__wrap--collapsed': collapsed
+      }"
+    >
+      <el-scrollbar
+        class="main__wrap--content"
+        :class="{
+          'main__wrap--fixed--all': fixedHeader && showNavbar && showTags,
+          'main__wrap--fixed--nav': fixedHeader && showNavbar && !showTags,
+          'main__wrap--fixed--tags': fixedHeader && !showNavbar && showTags
+        }"
+      >
+        <div
+          class="header__wrap"
+          :class="{
+            'header__wrap--fixed': fixedHeader,
+            'header__wrap--collapsed': fixedHeader && collapsed
+          }"
+        >
+          <!-- <div
+            v-if="showNavbar && layout !== 'Top'"
+            class="navbar__wrap"
+          >
+            <hamburger
+              v-if="showHamburger"
+              :collapsed="collapsed"
+              class="hover-container"
+              @toggleClick="setCollapsed"
+            />
+            <breadcrumb v-if="showBreadcrumb" />
+            <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
+              <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
+              <user-info v-if="showUserInfo" class="hover-container user-container" />
+            </div>
+          </div> -->
+          <div
+            v-if="showTags"
+            class="tags__wrap"
+          >
+            <tags-view />
+          </div>
+        </div>
+        <app-main />
+      </el-scrollbar>
+    </div>
+
+    <!-- setting -->
+    <setting />
+    <!-- setting -->
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import Logo from '../components/Logo.vue'
-import Silder from '../components/Silder'
-import UserInfo from '../components/UserInfo.vue'
-import TagsView from '../components/TagsView.vue'
+import { defineComponent, computed } from 'vue'
+import { appStore } from '_p/index/store/modules/app'
+
 import AppMain from '../components/AppMain.vue'
+import TagsView from '_c/TagsView/index.vue'
+import Logo from '_c/Logo/index.vue'
+import Sider from '_c/Sider/index.vue'
+// import Hamburger from '_c/Hamburger/index.vue'
+// import Breadcrumb from '_c/Breadcrumb/index.vue'
 import Screenfull from '_c/Screenfull/index.vue'
-import Scrollbar from '_c/Scrollbar/index.vue'
-import config from '_p/index/config'
-const { show_logo, has_tags, theme } = config
+import UserInfo from '_c/UserInfo/index.vue'
+
+import Setting from '_c/Setting/index.vue'
 export default defineComponent({
   name: 'Top',
   components: {
-    Logo,
-    Silder,
-    UserInfo,
-    TagsView,
-    AppMain,
+    Sider,
+    // Hamburger,
+    // Breadcrumb,
     Screenfull,
-    Scrollbar
-  },
-  props: {
-    theme: {
-      type: String as PropType<'light' | 'dark'>,
-      default: theme
-    }
+    UserInfo,
+    AppMain,
+    TagsView,
+    Logo,
+    Setting
   },
   setup() {
+    const layout = computed(() => appStore.layout)
+    const collapsed = computed(() => appStore.collapsed)
+    const showLogo = computed(() => appStore.showLogo)
+    const showTags = computed(() => appStore.showTags)
+    const showBreadcrumb = computed(() => appStore.showBreadcrumb)
+    const showHamburger = computed(() => appStore.showHamburger)
+    const showScreenfull = computed(() => appStore.showScreenfull)
+    const showUserInfo = computed(() => appStore.showUserInfo)
+    const showNavbar = computed(() => appStore.showNavbar)
+    // const fixedNavbar = computed(() => appStore.fixedNavbar)
+    // const fixedTags = computed(() => appStore.fixedTags)
+    const fixedHeader = computed(() => appStore.fixedHeader)
+
+    const classObj = computed(() => {
+      const obj = {}
+      obj[`app__wrap--${layout.value}`] = true
+      return obj
+    })
+
+    function setCollapsed(collapsed: boolean): void {
+      appStore.SetCollapsed(collapsed)
+    }
+
     return {
-      show_logo,
-      has_tags
+      classObj,
+      layout,
+      collapsed,
+      showLogo,
+      showTags,
+      showBreadcrumb,
+      showHamburger,
+      showScreenfull,
+      showUserInfo,
+      showNavbar,
+      fixedHeader,
+      // fixedNavbar,
+      // fixedTags,
+      setCollapsed
     }
   }
 })
 </script>
 
 <style lang="less" scoped>
-@{deep}(.ant-layout-header) {
-  height: @topSilderHeight;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: fixed;
+.app__wrap {
+  position: relative;
+  height: 100%;
   width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 20;
-  &--light {
-    background: @menuLightBg;
+  .sidebar__wrap {
+    position: fixed;
+    width: @menuWidth;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: width 0.2s;
   }
-  &--dark {
-    background: @menuBg;
-    .screenfull-item,
-    .name-item {
-      color: #fff;
+  .sidebar__wrap--collapsed {
+    width: @menuMinWidth;
+    @{deep}(.anticon-item) {
+      display: none;
     }
   }
-  .header-silder--wrap {
-    flex: 1;
-    margin: 0 50px;
-    height: 100% !important;
-    .ant-menu-horizontal {
-      height: @topSilderHeight;
-      line-height: @topSilderHeight;
-      border-bottom: 0;
+  .main__wrap {
+    position: absolute;
+    width: calc(~"100% - @{menuWidth}");
+    height: 100%;
+    top: 0;
+    left: @menuWidth;
+    transition: all 0.2s;
+    z-index: 1;
+    .header__wrap {
+      transition: all 0.2s;
+      .navbar__wrap {
+        display: flex;
+        align-items: center;
+        height: @navbarHeight;
+        padding: 0 20px 0 15px;
+        position: relative;
+        background: @contentBg;
+        &:after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #d8dce5;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+        @{deep}(.hover-container) {
+          transition: background 0.2s;
+          height: 100%;
+          line-height: @navbarHeight + 5px;
+          padding: 0 5px;
+          text-align: center;
+          &:hover {
+            background: #f6f6f6;
+          }
+        }
+        .navbar__wrap--right {
+          display: flex;
+          align-items: center;
+          height: @navbarHeight;
+          position: absolute;
+          top: 0;
+          right: 20px;
+          @{deep}(.screenfull-container),
+          @{deep}(.user-container) {
+            line-height: @navbarHeight !important;
+          }
+        }
+      }
     }
-    .ant-menu-light {
-      height: calc(~"@{topSilderHeight} - 4px");
-      line-height: calc(~"@{topSilderHeight} - 4px");
+
+    // content样式
+    .main__wrap--content {
+      height: 100%;
+      @{deep}(.el-scrollbar__wrap) {
+        overflow-x: hidden;
+      }
     }
+    // content样式
   }
-  .right-menu {
+  .main__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}");
+    left: @menuMinWidth;
+  }
+}
+
+// 顶部模式
+.app__wrap--Top {
+  .sidebar__wrap--Top {
+    height: @topSiderHeight;
     display: flex;
-    .screenfull-item {
-      line-height: @topSilderHeight;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: @topMenuBg;
+    position: relative;
+    &:after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      border-top: 1px solid #d8dce5;
+      position: absolute;
+      bottom: 0;
+      left: 0;
     }
-    .avatar-container {
-      margin-right: 0;
+    .sidebar__item--Top {
+      flex: 1;
+      margin: 0 50px;
+    }
+    .navbar__wrap--right {
+      display: flex;
+      align-items: center;
+      height: @topSiderHeight;
+      @{deep}(.hover-container) {
+        transition: background 0.2s;
+        height: 100%;
+        line-height: @topSiderHeight;
+        padding: 0 5px;
+        text-align: center;
+        &:hover {
+          background: #f6f6f6;
+        }
+      }
     }
   }
-}
-.ant-layout-content {
-  margin-top: @topSilderHeight;
-  height: calc(~"100vh - @{topSilderHeight}");
-  .main-wrap {
-    background-color: @contentBg;
+  .header__wrap--fixed {
+    position: fixed !important;
+    width: 100% !important;
+    top: @topSiderHeight !important;
+    left: 0 !important;
+    z-index: 200;
   }
-}
-.layout-content-has-tags {
-  margin-top: @topSilderHeight + @tagsViewHeight;
-  height: calc(~"100vh - @{topSilderHeight} - @{tagsViewHeight}");
-}
-.has-tags {
-  position: fixed;
-  top: @topSilderHeight;
-  left: 0;
-  width: 100%;
-  z-index: 20;
+  .main__wrap {
+    width: 100%;
+    left: 0;
+    height: calc(~"100% - @{topSiderHeight}");
+    top: @topSiderHeight;
+  }
+  .main__wrap--fixed--all,
+  .main__wrap--fixed--tags {
+    margin-top: @navbarHeight !important;
+    height: calc(~"100% - @{navbarHeight}") !important;
+  }
 }
 </style>

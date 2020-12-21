@@ -15,6 +15,8 @@ export interface AppState {
   showScreenfull: Boolean
   showUserInfo: Boolean
   title: String
+  logoTitle: String
+  userInfo: String
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
@@ -31,7 +33,9 @@ class App extends VuexModule implements AppState {
   public showHamburger = true // 是否显示侧边栏缩收按钮
   public showScreenfull = true // 是否全屏按钮
   public showUserInfo = true // 是否显示用户头像
-  public title = 'vue-antdv-admin' // 标题
+  public title = 'vue-element-plus-admin' // 标题
+  public logoTitle = 'vue-ElPlus-admin' // logo标题
+  public userInfo = 'userInfo' // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
 
   @Mutation
   private SET_COLLAPSED(collapsed: boolean): void {
@@ -85,6 +89,10 @@ class App extends VuexModule implements AppState {
   private SET_TITLE(title: string): void {
     this.title = title
   }
+  @Mutation
+  private SET_LOGOTITLE(logoTitle: string): void {
+    this.logoTitle = logoTitle
+  }
 
   @Action
   public SetCollapsed(collapsed: boolean): void {
@@ -137,6 +145,10 @@ class App extends VuexModule implements AppState {
   @Action
   public SetTitle(title: string): void {
     this.SET_TITLE(title)
+  }
+  @Action
+  public SetLogoTitle(logoTitle: string): void {
+    this.SET_LOGOTITLE(logoTitle)
   }
 }
 

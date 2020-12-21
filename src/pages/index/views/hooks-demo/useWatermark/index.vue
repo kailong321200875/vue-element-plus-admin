@@ -1,9 +1,15 @@
 <template>
   <div>
-    <a-alert message="useWatermark，为整个系统提供水印功能。" style="margin-bottom: 20px;" />
-    <a-button type="primary" @click="setWatermark('vue-antdv-admin')">创建水印</a-button>
-    <a-button type="danger" @click="clear">清除水印</a-button>
-    <a-button type="warning" @click="setWatermark('vue-antdv-admin-new')">重置水印</a-button>
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="useWatermark，为整个系统提供水印功能。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
+    <el-button type="primary" @click="setWatermark('vue-antdv-admin')">创建水印</el-button>
+    <el-button type="danger" @click="clear">清除水印</el-button>
+    <el-button type="warning" @click="setWatermark('vue-antdv-admin-new')">重置水印</el-button>
   </div>
 </template>
 

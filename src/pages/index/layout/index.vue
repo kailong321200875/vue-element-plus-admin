@@ -1,29 +1,26 @@
 <template>
   <div class="app-wrapper">
-    <component :is="component" />
+    <component :is="layout" />
   </div>
 </template>
 
 <script lang="ts">
-// import Classic from './modules/Classic.vue'
-// import Top from './modules/Top.vue'
-// import LeftTop from './modules/LeftTop.vue'
-import Test from './modules/Test.vue'
-import { defineComponent, ref } from 'vue'
-import config from '_p/index/config'
+import { defineComponent, computed } from 'vue'
+import Classic from './modules/Classic.vue'
+import Top from './modules/Top.vue'
+import LeftTop from './modules/LeftTop.vue'
+import { appStore } from '_p/index/store/modules/app'
 export default defineComponent({
   name: 'Layout',
   components: {
-    // Classic,
-    // Top,
-    // LeftTop,
-    Test
+    Classic,
+    Top,
+    LeftTop
   },
   setup() {
-    const { layout } = config
-    const component = ref<string>(layout)
+    const layout = computed(() => appStore.layout)
     return {
-      component
+      layout
     }
   }
 })

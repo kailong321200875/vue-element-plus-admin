@@ -1,5 +1,5 @@
 import { PropType } from 'vue'
-import { message } from 'ant-design-vue'
+import { ElMessage } from 'element-plus'
 import { oneOf } from '@/utils'
 
 import { Config } from './types'
@@ -18,19 +18,19 @@ export const editorProps = {
         customAlert: (s: string, t: string) => {
           switch (t) {
           case 'success':
-            message.success(s)
+            ElMessage.success(s)
             break
           case 'info':
-            message.info(s)
+            ElMessage.info(s)
             break
           case 'warning':
-            message.warning(s)
+            ElMessage.warning(s)
             break
           case 'error':
-            message.error(s)
+            ElMessage.error(s)
             break
           default:
-            message.info(s)
+            ElMessage.info(s)
             break
           }
         },

@@ -19,7 +19,7 @@ export default defineComponent({
   },
   setup(props) {
     const show = ref<boolean>(true)
-    const title = computed(() => appStore.title)
+    const title = computed(() => appStore.logoTitle)
     const layout = computed(() => appStore.layout)
     watch(
       () => props.collapsed,

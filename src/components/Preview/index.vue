@@ -10,7 +10,7 @@
       <div class="image-viewer__mask" />
       <!-- CLOSE -->
       <span class="image-viewer__btn image-viewer__close" @click="hide">
-        <CloseCircleOutlined class="iconfont" />
+        <i class="el-icon-circle-close iconfont" />
       </span>
       <!-- ARROW -->
       <template v-if="!isSingle">
@@ -19,14 +19,14 @@
           :class="{ 'is-disabled': !infinite && isFirst }"
           @click="prev"
         >
-          <LeftOutlined class="iconfont" />
+          <i class="el-icon-arrow-left iconfont" />
         </span>
         <span
           class="image-viewer__btn image-viewer__next"
           :class="{ 'is-disabled': !infinite && isLast }"
           @click="next"
         >
-          <RightOutlined class="iconfont" />
+          <i class="el-icon-arrow-right iconfont" />
         </span>
       </template>
       <!-- ACTIONS -->
@@ -63,15 +63,11 @@ import { isFirefox } from '@/utils/is'
 import { on, off } from '@/utils/dom-utils'
 import throttle from 'lodash-es/throttle'
 import SvgIcon from '_c/SvgIcon/index.vue'
-import { CloseCircleOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons-vue'
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel'
 export default defineComponent({
   name: 'Preview',
   components: {
-    SvgIcon,
-    CloseCircleOutlined,
-    LeftOutlined,
-    RightOutlined
+    SvgIcon
   },
   props: previewProps,
   setup(props) {

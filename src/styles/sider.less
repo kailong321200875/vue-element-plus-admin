@@ -35,24 +35,6 @@
           }
         }
       }
-      
-      .is-active {
-        color: @menuActiveText !important;
-        background-color: @subMenuHover !important;
-        &>.el-submenu__title {
-          color: @menuActiveText !important;
-        }
-      }
-      
-      .nest-menu {
-        background-color: @subMenuBg !important;
-        .el-submenu>.el-submenu__title {
-          background-color: @subMenuBg !important;
-        }
-        .is-active {
-          background-color: @subMenuHover !important;
-        }
-      }
       // menu hover
       .submenu-title-noDropdown,
       .el-submenu__title {
@@ -65,6 +47,28 @@
         color: @subMenuActiveText !important;
         // background-color: @subMenuHover !important;
       }
+      .is-active {
+        color: @menuActiveText !important;
+        background-color: @subMenuHover !important;
+        &:hover {
+          color: @subMenuActiveText !important;
+          background-color: @subMenuHover !important;
+        }
+        &>.el-submenu__title {
+          color: @menuActiveText !important;
+        }
+      }
+      
+      // .nest-menu {
+      //   background-color: @subMenuBg !important;
+      //   .el-submenu>.el-submenu__title {
+      //     background-color: @subMenuBg !important;
+      //   }
+      //   .is-active {
+      //     background-color: @subMenuHover !important;
+      //   }
+      // }
+      
     }
     .el-menu--collapse {
       &>div>.el-submenu {
@@ -103,11 +107,11 @@
       }
     }
       
-    .nest-menu {
-      .is-active {
-        background-color: @subMenuHover !important;
-      }
-    }
+    // .nest-menu {
+    //   .is-active {
+    //     background-color: @subMenuHover !important;
+    //   }
+    // }
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
@@ -149,15 +153,15 @@
         }
       }
       
-      .nest-menu {
-        background-color: @subMenuBg !important;
-        .el-submenu>.el-submenu__title {
-          background-color: @subMenuBg !important;
-        }
-        .is-active {
-          background-color: @subMenuHover !important;
-        }
-      }
+      // .nest-menu {
+      //   background-color: @subMenuBg !important;
+      //   .el-submenu>.el-submenu__title {
+      //     background-color: @subMenuBg !important;
+      //   }
+      //   .is-active {
+      //     background-color: @subMenuHover !important;
+      //   }
+      // }
       // menu hover
       .submenu-title-noDropdown,
       .el-submenu__title {
@@ -191,11 +195,11 @@
       }
     }
       
-    .nest-menu {
-      .is-active {
-        // background-color: @subMenuHover !important;
-      }
-    }
+    // .nest-menu {
+    //   .is-active {
+    //     // background-color: @subMenuHover !important;
+    //   }
+    // }
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {

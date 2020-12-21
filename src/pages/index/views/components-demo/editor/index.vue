@@ -1,6 +1,12 @@
 <template>
   <div>
-    <a-alert message="基于 wangeditor 封装的 富文本 组件。" style="margin-bottom: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="基于 wangeditor 封装的 富文本 组件。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
     <editor v-model:value="html" />
   </div>
 </template>

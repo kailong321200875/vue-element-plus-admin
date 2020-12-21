@@ -1,6 +1,12 @@
 <template>
   <div>
-    <a-alert message="基于 vditor 封装的 Markdown编辑器 组件。" style="margin-bottom: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="基于 vditor 封装的 Markdown编辑器 组件。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
     <markdown v-model:value="html" />
   </div>
 </template>

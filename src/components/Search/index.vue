@@ -1,96 +1,86 @@
 <template>
   <div :class="{ search__col: layout === 'right' }">
-    <a-row :gutter="20">
-      <a-col :span="layout === 'right' ? 22 : 24">
-        <a-form
+    <el-row :gutter="20">
+      <el-col :span="layout === 'right' ? 22 : 24">
+        <el-form
           ref="ruleForm"
-          layout="inline"
+          inline
           :model="formInline"
           :rules="rules"
-          :label-col="labelCol"
-          :wrapper-col="wrapperCol"
-          :label-align="labelAlign"
-          :hide-required-mark="hideRequiredMark"
+          :label-width="labelWidth"
+          :label-position="labelPosition"
+          :hide-required-asterisk="hideRequiredAsterisk"
           @submit.prevent
         >
-          <a-form-item
+          <el-form-item
             v-for="(item, $index) in data"
             :key="$index"
             :label="item.label"
-            :name="item.field"
+            :prop="item.field"
             :rules="item.rules"
           >
-            <template v-if="item.type === 'switch'">
-              <a-switch
-                v-model:checked="formInline[item.field]"
-                :size="item.size"
-                :checked-children="item.checkedChildren"
-                :un-checked-children="item.unCheckedChildren"
+            <template v-if="item.itemType === 'switch'">
+              <el-switch
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
 
-            <template v-if="item.type === 'input'">
-              <a-input
-                v-model:value="formInline[item.field]"
-                :size="item.size"
-                :maxlength="item.maxlength"
-                :placeholder="item.placeholder"
-                :addon-before="item.addonBefore"
-                :addon-after="item.addonAfter"
-                :allow-clear="item.allowClear"
+            <template v-if="item.itemType === 'input'">
+              <el-input
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
 
-            <template v-if="item.type === 'select'">
-              <a-select
-                v-model:value="formInline[item.field]"
-                :size="item.size"
-                :placeholder="item.placeholder"
-                :allow-clear="item.allowClear"
-                style="min-width: 201px;"
+            <template v-if="item.itemType === 'select'">
+              <el-select
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               >
-                <a-select-option
+                <el-option
                   v-for="v in item.options"
                   :key="item.optionValue ? v[item.optionValue] : v.value"
                   :value="item.optionValue ? v[item.optionValue] : v.value"
-                >
-                  {{ item.optionLabel ? v[item.optionLabel] : v.title }}
-                </a-select-option>
-              </a-select>
+                  :label="item.optionLabel ? v[item.optionLabel] : v.title"
+                />
+              </el-select>
             </template>
 
-            <template v-if="item.type === 'radio'">
-              <a-radio-group
-                v-model:value="formInline[item.field]"
-                :size="item.size"
+            <template v-if="item.itemType === 'radio'">
+              <el-radio-group
+                v-model="formInline[item.field]"
                 @change="((val) => {changeVal(val, item)})"
               >
                 <template v-if="item.radioType === 'radio'">
-                  <a-radio
+                  <el-radio
                     v-for="v in item.options"
                     :key="item.optionValue ? v[item.optionValue] : v.value"
-                    :value="item.optionValue ? v[item.optionValue] : v.value"
+                    v-bind="{...bindValue(item)}"
+                    :label="item.optionValue ? v[item.optionValue] : v.value"
                   >
                     {{ item.optionLabel ? v[item.optionLabel] : v.label }}
-                  </a-radio>
+                  </el-radio>
                 </template>
                 <template v-else-if="item.radioType === 'button'">
-                  <a-radio-button
+                  <el-radio-button
                     v-for="v in item.options"
                     :key="item.optionValue ? v[item.optionValue] : v.value"
-                    :value="item.optionValue ? v[item.optionValue] : v.value"
+                    v-bind="{...bindValue(item)}"
+                    :label="item.optionValue ? v[item.optionValue] : v.value"
                   >
                     {{ item.optionLabel ? v[item.optionLabel] : v.label }}
-                  </a-radio-button>
+                  </el-radio-button>
                 </template>
-              </a-radio-group>
+              </el-radio-group>
             </template>
 
-            <template v-if="item.type === 'treeSelect'">
-              <a-tree-select
+            <!-- element近期会新增treeSelect组件，所以不打算在自己维护一套。等待ing -->
+            <!-- <template v-if="item.itemType === 'treeSelect'">
+              <el-tree-select
                 v-model:value="formInline[item.field]"
                 :size="item.size"
                 :dropdown-style="item.dropdownStyle"
@@ -106,161 +96,102 @@
                 <template #title="{ title }">
                   <span>{{ title }}</span>
                 </template>
-              </a-tree-select>
-            </template>
+              </el-tree-select>
+            </template> -->
 
-            <template v-if="item.type === 'datePicker'">
-              <a-date-picker
-                v-model:value="formInline[item.field]"
-                :format="item.format"
-                :mode="item.mode"
-                :value-format="item.valueFormat"
-                :placeholder="item.placeholder"
-                :size="item.size"
-                :allow-clear="item.allowClear"
-                :disabled-date="item.disabledDate"
-                :disabled-time="item.disabledDateTime"
-                :show-time="item.showTime"
+            <template v-if="item.itemType === 'timePicker'">
+              <el-time-picker
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
 
-            <template v-if="item.type === 'monthPicker'">
-              <a-month-picker
-                v-model:value="formInline[item.field]"
-                :format="item.format"
-                :mode="item.mode"
-                :value-format="item.valueFormat"
-                :placeholder="item.placeholder"
-                :size="item.size"
-                :allow-clear="item.allowClear"
-                :disabled-date="item.disabledDate"
-                :disabled-time="item.disabledDateTime"
-                :show-time="item.showTime"
+            <template v-if="item.itemType === 'timeSelect'">
+              <el-time-select
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
 
-            <template v-if="item.type === 'rangePicker'">
-              <a-range-picker
-                v-model:value="formInline[item.field]"
-                :format="item.format"
-                :mode="item.mode"
-                :value-format="item.valueFormat"
-                :placeholder="item.placeholder"
-                :size="item.size"
-                :allow-clear="item.allowClear"
-                :disabled-date="item.disabledDate"
-                :disabled-time="item.disabledDateTime"
-                :show-time="item.showTime"
-                :ranges="item.ranges"
+            <template v-if="item.itemType === 'datePicker' || item.itemType === 'dateTimePicker'">
+              <el-date-picker
+                v-model="formInline[item.field]"
+                v-bind="{...bindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
-
-            <template v-if="item.type === 'weekPicker'">
-              <a-week-picker
-                v-model:value="formInline[item.field]"
-                :format="item.format"
-                :mode="item.mode"
-                :value-format="item.valueFormat"
-                :placeholder="item.placeholder"
-                :size="item.size"
-                :allow-clear="item.allowClear"
-                :disabled-date="item.disabledDate"
-                :disabled-time="item.disabledDateTime"
-                :show-time="item.showTime"
-                @change="((val) => {changeVal(val, item)})"
-              />
-            </template>
-          </a-form-item>
-          <a-form-item v-if="data.length > 0 && layout === 'classic'">
-            <a-button
+          </el-form-item>
+          <el-form-item v-if="data.length > 0 && layout === 'classic'">
+            <el-button
               type="primary"
+              icon="el-icon-search"
               @click="submitForm"
             >
-              <template #icon>
-                <SearchOutlined />
-              </template>
               查询
-            </a-button>
-            <a-button
+            </el-button>
+            <el-button
               v-if="showReset"
+              icon="el-icon-refresh-right"
               @click="resetForm"
             >
-              <template #icon>
-                <ReloadOutlined />
-              </template>
               重置
-            </a-button>
-          </a-form-item>
-        </a-form>
-      </a-col>
-      <a-col :span="layout === 'right' ? 2 : 24">
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="layout === 'right' ? 2 : 24">
         <div
           v-if="data.length > 0 && (layout === 'bottom' || layout === 'right')"
           class="search__bottom"
           :class="{ 'search__bottom--col': layout === 'right' }"
         >
           <div class="search__bottom--button">
-            <a-button
+            <el-button
               type="primary"
+              icon="el-icon-search"
               @click="submitForm"
             >
-              <template #icon>
-                <SearchOutlined />
-              </template>
               查询
-            </a-button>
+            </el-button>
           </div>
           <div class="search__bottom--button">
-            <a-button
+            <el-button
               v-if="showReset"
               :style="{
                 'margin-left': layout !== 'right' ? '15px' : '0',
                 'margin-top': layout === 'right' ? '27px' : '0'
               }"
+              icon="el-icon-refresh-right"
               @click="resetForm"
             >
-              <template #icon>
-                <ReloadOutlined />
-              </template>
               重置
-            </a-button>
+            </el-button>
           </div>
         </div>
-      </a-col>
-    </a-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, watch, ref, unref } from 'vue'
-import { SearchOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import { deepClone } from '@/utils'
 export default defineComponent({
   name: 'Search',
-  components: {
-    SearchOutlined,
-    ReloadOutlined
-  },
   props: {
-    // label 标签布局，同 <Col> 组件，设置 span offset 值，如 {span: 3, offset: 12} 或 sm: {span: 3, offset: 12}
-    labelCol: {
-      type: Object as PropType<{ span: number }>,
-      default: () => {}
+    // 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 auto。
+    labelWidth: {
+      type: String as PropType<string>,
+      default: ''
     },
-    // 需要为输入控件设置布局样式时，使用该属性，用法同 labelCol
-    wrapperCol: {
-      type: Object as PropType<{ span: number }>,
-      default: () => {}
-    },
-    // label 标签的文本对齐方式
-    labelAlign: {
-      type: String as PropType<'left' | 'right'>,
+    labelPosition: {
+      type: String as PropType<'right' | 'left' | 'top'>,
       default: 'right'
     },
     // 隐藏所有表单项的必选标记
-    hideRequiredMark: {
+    hideRequiredAsterisk: {
       type: Boolean as PropType<boolean>,
       default: true
     },
@@ -305,6 +236,17 @@ export default defineComponent({
       }
     )
 
+    function bindValue(item: any) {
+      const delArr: string[] = ['label', 'itemType', 'value', 'field']
+      const obj = deepClone(item)
+      for (const key in obj) {
+        if (delArr.indexOf(key) !== -1) {
+          delete obj[key]
+        }
+      }
+      return obj
+    }
+
     function initForm(data: any): void {
       for (const v of data) {
         formInline.value[v.field] = formInline.value[v.field] || v.value
@@ -315,10 +257,15 @@ export default defineComponent({
       const form = unref(ruleForm) as any
       if (!form) return
       try {
-        const data = await form.validate()
-        if (data) {
-          emit('search-submit', data)
-        }
+        form.validate((valid: boolean) => {
+          if (valid) {
+            console.log(valid)
+            emit('search-submit', unref(formInline))
+          } else {
+            console.log('error submit!!')
+            return false
+          }
+        })
       } catch (err) {
         console.log(err)
       }
@@ -328,19 +275,20 @@ export default defineComponent({
       const form = unref(ruleForm) as any
       if (!form) return
       await form.resetFields()
-      emit('reset-submit', formInline.value)
+      emit('reset-submit', unref(formInline))
     }
 
     function changeVal(val: any, item: any): void {
       if (item.onChange) {
         emit('change', {
           field: item.field,
-          value: formInline.value[item.field]
+          value: unref(formInline.value[item.field])
         })
       }
     }
 
     return {
+      bindValue,
       ruleForm,
       formInline,
       submitForm,

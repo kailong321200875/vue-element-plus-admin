@@ -1,46 +1,78 @@
 <template>
   <div>
-    <com-table :columns="columns" :data-source="data" :scroll="{ x: 1500, y: 300 }">
-      <template #action>
-        <a>action</a>
-      </template>
-    </com-table>
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 固定表头"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
+    <com-table
+      v-loading="loading"
+      :columns="columns"
+      :data="tableData"
+      height="250"
+      border
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import ComTable from '_c/Table'
+import { defineComponent, ref } from 'vue'
+import ComTable from '_c/Table/index.vue'
 
 const columns = [
-  { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-  { title: 'Age', width: 100, dataIndex: 'age', key: 'age', fixed: 'left' },
-  { title: 'Column 1', dataIndex: 'address', key: '1', width: 6000 },
-  { title: 'Column 2', dataIndex: 'address', key: '2', width: 150 },
-  { title: 'Column 3', dataIndex: 'address', key: '3', width: 150 },
-  { title: 'Column 4', dataIndex: 'address', key: '4', width: 150 },
-  { title: 'Column 5', dataIndex: 'address', key: '5', width: 150 },
-  { title: 'Column 6', dataIndex: 'address', key: '6', width: 150 },
-  { title: 'Column 7', dataIndex: 'address', key: '7', width: 150 },
-  { title: 'Column 8', dataIndex: 'address', key: '8' },
   {
-    title: 'Action',
-    key: 'operation',
-    fixed: 'right',
-    width: 100,
-    slots: { customRender: 'action' }
+    key: 'date',
+    label: '日期'
+  },
+  {
+    key: 'name',
+    label: '姓名'
+  },
+  {
+    key: 'address',
+    label: '地址'
   }
 ]
 
-const data: any[] = []
-for (let i = 0; i < 100; i++) {
-  data.push({
-    key: i,
-    name: `Edrward ${i}`,
-    age: 32,
-    address: `London Park no. ${i}`
-  })
-}
+const tableData = [
+  {
+    date: '2016-05-02',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1518 弄'
+  }, {
+    date: '2016-05-04',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1517 弄'
+  }, {
+    date: '2016-05-01',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1519 弄'
+  }, {
+    date: '2016-05-03',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1516 弄'
+  },
+  {
+    date: '2016-05-02',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1518 弄'
+  },
+  {
+    date: '2016-05-04',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1517 弄'
+  }, {
+    date: '2016-05-01',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1519 弄'
+  }, {
+    date: '2016-05-03',
+    name: '王小虎',
+    address: '上海市普陀区金沙江路 1516 弄'
+  }
+]
 
 export default defineComponent({
   // name: 'FixedHeader',
@@ -48,9 +80,15 @@ export default defineComponent({
     ComTable
   },
   setup() {
+    const loading = ref<boolean>(true)
+    setTimeout(() => {
+      loading.value = false
+    }, 2000)
+
     return {
       columns,
-      data
+      tableData,
+      loading
     }
   }
 })

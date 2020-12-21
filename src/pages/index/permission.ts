@@ -4,9 +4,7 @@ import NProgress from 'nprogress' // 引入进度条
 
 import 'nprogress/nprogress.css' // 进度条样式
 
-import config from './config'
-
-const { user_info, title } = config
+import { appStore } from '_p/index/store/modules/app'
 
 import wsCache from '@/cache'
 
@@ -20,7 +18,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const whiteList: string[] = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
-  if (wsCache.get(user_info)) {
+  if (wsCache.get(appStore.userInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
@@ -55,6 +53,6 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to) => {
-  document.title = getPageTitle(to.meta.title, title)
+  document.title = getPageTitle(to.meta.title, appStore.title)
   NProgress.done() // 结束进度条
 })

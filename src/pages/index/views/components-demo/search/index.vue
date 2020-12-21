@@ -1,7 +1,19 @@
 <template>
   <div>
-    <a-alert message="封装 antdv 的 Form 组件，实现查询、重置等功能，并提供了三种布局风格。" style="margin-bottom: 20px;" />
-    <a-alert message="经典风格" style="margin-bottom: 20px;margin-top: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="封装 Element 的 Form 组件，实现查询、重置等功能，并提供了三种布局风格。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="经典风格。"
+      type="info"
+      style="margin-bottom: 20px;margin-top: 20px;"
+    />
     <div class="searh">
       <search
         :data="classicData"
@@ -13,7 +25,13 @@
       </div>
     </div>
 
-    <a-alert message="底部操作按钮风格" style="margin-bottom: 20px;margin-top: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="底部操作按钮风格。"
+      type="info"
+      style="margin-bottom: 20px;margin-top: 20px;"
+    />
     <div class="searh">
       <search
         layout="bottom"
@@ -26,7 +44,13 @@
       </div>
     </div>
 
-    <a-alert message="右侧操作按钮风格" style="margin-bottom: 20px;margin-top: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="右侧操作按钮风格。"
+      type="info"
+      style="margin-bottom: 20px;margin-top: 20px;"
+    />
     <div class="searh">
       <search
         layout="right"

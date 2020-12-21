@@ -1,6 +1,12 @@
 <template>
   <div>
-    <a-alert message="基于 vue-count-to 进行改造，支持所有 vue-count-to 参数。" style="margin-bottom: 20px;" />
+    <el-alert
+      effect="dark"
+      :closable="false"
+      title="基于 vue-count-to 进行改造，支持所有 vue-count-to 参数。"
+      type="info"
+      style="margin-bottom: 20px;"
+    />
 
     <div class="count-to">
       <count-to
@@ -17,44 +23,44 @@
       />
     </div>
     <div class="action">
-      <a-row :gutter="20">
-        <a-col :span="8">
+      <el-row :gutter="20">
+        <el-col :span="8">
           <div class="action__item">
-            <span>startVal：</span><a-input-number v-model:value="startVal" :min="0" />
+            <span>startVal：</span><el-input-number v-model="startVal" :min="0" />
           </div>
-        </a-col>
-        <a-col :span="8">
+        </el-col>
+        <el-col :span="8">
           <div class="action__item">
-            <span>endVal：</span><a-input-number v-model:value="endVal" :min="1" />
+            <span>endVal：</span><el-input-number v-model="endVal" :min="1" />
           </div>
-        </a-col>
-        <a-col :span="8">
+        </el-col>
+        <el-col :span="8">
           <div class="action__item">
-            <span>duration：</span><a-input-number v-model:value="duration" :min="1000" />
+            <span>duration：</span><el-input-number v-model="duration" :min="1000" />
           </div>
-        </a-col>
-        <a-col :span="8">
+        </el-col>
+        <el-col :span="8">
           <div class="action__item">
-            <span>separator：</span><a-input v-model:value="separator" />
+            <span>separator：</span><el-input v-model="separator" />
           </div>
-        </a-col>
-        <a-col :span="8">
+        </el-col>
+        <el-col :span="8">
           <div class="action__item">
-            <span>prefix：</span><a-input v-model:value="prefix" />
+            <span>prefix：</span><el-input v-model="prefix" />
           </div>
-        </a-col>
-        <a-col :span="8">
+        </el-col>
+        <el-col :span="8">
           <div class="action__item">
-            <span>suffix：</span><a-input v-model:value="suffix" />
+            <span>suffix：</span><el-input v-model="suffix" />
           </div>
-        </a-col>
-        <a-col :span="24">
+        </el-col>
+        <el-col :span="24">
           <div style="text-align: center;margin-top: 20px;">
-            <a-button type="primary" @click="start">start</a-button>
-            <a-button style="margin-left: 10px;" @click="pauseResume">pause/resume</a-button>
+            <el-button type="primary" @click="start">start</el-button>
+            <el-button style="margin-left: 10px;" @click="pauseResume">pause/resume</el-button>
           </div>
-        </a-col>
-      </a-row>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -121,10 +127,11 @@ export default defineComponent({
     align-items: center;
     margin-bottom: 10px;
     &>span {
-      width: 100px;
+      display: inline-block;
+      width: 120px;
       text-align: center;
     }
-    @{deep}(.ant-input-number) {
+    @{deep}(.el-input-number) {
       width: 100%;
     }
   }

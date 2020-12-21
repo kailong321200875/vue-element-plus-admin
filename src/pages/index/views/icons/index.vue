@@ -5,15 +5,12 @@
       :key="item"
       v-clipboard="generateIconCode(item)"
     >
-      <a-tooltip placement="top">
-        <template #title>
-          {{ generateIconCode(item) }}
-        </template>
+      <el-tooltip placement="top" :content="generateIconCode(item)">
         <div class="icon-item">
           <svg-icon :icon-class="item" class-name="disabled" />
           <span>{{ item }}</span>
         </div>
-      </a-tooltip>
+      </el-tooltip>
     </div>
   </div>
 </template>

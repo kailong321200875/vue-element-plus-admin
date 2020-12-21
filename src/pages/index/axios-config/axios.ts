@@ -1,6 +1,6 @@
 import request from './request'
 
-import config from '../config'
+import config from './config'
 
 import { AxiosPromise, ResponseType } from 'axios'
 

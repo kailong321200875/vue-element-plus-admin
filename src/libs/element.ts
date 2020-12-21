@@ -92,6 +92,12 @@ import {
   ElNotification
 } from 'element-plus'
 
+import locale from 'element-plus/lib/locale'
+import lang from 'element-plus/lib/locale/lang/zh-cn'
+
+// 设置语言
+locale.use(lang)
+
 const components = [
   ElAlert,
   ElAside,

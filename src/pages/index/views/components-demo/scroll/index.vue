@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a-alert message="抽取于 Element 的 Scrollbar 组件进行改造统一美化各个浏览器滚动条，保持一致性。" style="margin-bottom: 20px;" />
+    <el-alert message="抽取于 Element 的 Scrollbar 组件进行改造统一美化各个浏览器滚动条，保持一致性。" style="margin-bottom: 20px;" />
 
-    <a-alert message="横向滚动，外围容器需要设置固定宽度。" style="margin-bottom: 20px;" />
+    <el-alert message="横向滚动，外围容器需要设置固定宽度。" style="margin-bottom: 20px;" />
     <div class="deom__wrap deom__wrap--horizontal">
       <scrollbar>
         <ul class="deom-ul__wrap">
@@ -11,7 +11,7 @@
       </scrollbar>
     </div>
 
-    <a-alert message="纵向滚动，外围容器需要设置固定高度。" style="margin-bottom: 20px;margin-top: 20px;" />
+    <el-alert message="纵向滚动，外围容器需要设置固定高度。" style="margin-bottom: 20px;margin-top: 20px;" />
     <div class="deom__wrap deom__wrap--vertical">
       <scrollbar>
         <ul class="deom-ul__wrap">

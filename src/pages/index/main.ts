@@ -47,7 +47,7 @@ setupSvgIcon(app) // 全局注册svgIcon组件
 
 setupGlobCom(app) // 注册全局公用组件
 
-// setupDirectives(app) // 注册全局自定义指令
+setupDirectives(app) // 注册全局自定义指令
 
 // mockXHR() // mock注册
 
