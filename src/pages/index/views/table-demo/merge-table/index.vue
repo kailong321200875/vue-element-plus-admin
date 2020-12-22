@@ -3,7 +3,7 @@
     <el-alert
       effect="dark"
       :closable="false"
-      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 表尾合计行"
+      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 合并行或列"
       type="info"
       style="margin-bottom: 20px;"
     />
@@ -11,18 +11,16 @@
       v-loading="loading"
       :columns="columns"
       :data="tableData"
+      :span-method="arraySpanMethod"
       border
-      show-summary
     />
 
     <com-table
       v-loading="loading"
       :columns="columns1"
       :data="tableData"
+      :span-method="objectSpanMethod"
       border
-      height="200"
-      :summary-method="getSummaries"
-      show-summary
       style="margin-top: 20px;"
     />
   </div>
@@ -116,7 +114,7 @@ const tableData = [
 ]
 
 export default defineComponent({
-  // name: 'TotalTable',
+  // name: 'MergeTable',
   components: {
     ComTable
   },
@@ -126,38 +124,37 @@ export default defineComponent({
       loading.value = false
     }, 1000)
 
-    function getSummaries(param: any) {
-      const { columns, data } = param
-      const sums: any[] = []
-      columns.forEach((column: any, index: number) => {
-        if (index === 0) {
-          sums[index] = '总价'
-          return
+    function arraySpanMethod({ rowIndex, columnIndex }: any) {
+      if (rowIndex % 2 === 0) {
+        if (columnIndex === 0) {
+          return [1, 2]
+        } else if (columnIndex === 1) {
+          return [0, 0]
         }
-        const values = data.map((item: any) => Number(item[column.property]))
-        if (!values.every((value: number) => isNaN(value))) {
-          sums[index] = values.reduce((prev: number, curr: number) => {
-            const value = Number(curr)
-            if (!isNaN(value)) {
-              return prev + curr
-            } else {
-              return prev
-            }
-          }, 0)
-          sums[index] += ' 元'
-        } else {
-          sums[index] = 'N/A'
-        }
-      })
+      }
+    }
 
-      return sums
+    function objectSpanMethod({ rowIndex, columnIndex }: any) {
+      if (columnIndex === 0) {
+        if (rowIndex % 2 === 0) {
+          return {
+            rowspan: 2,
+            colspan: 1
+          }
+        } else {
+          return {
+            rowspan: 0,
+            colspan: 0
+          }
+        }
+      }
     }
 
     return {
       columns, columns1,
       tableData,
       loading,
-      getSummaries
+      arraySpanMethod, objectSpanMethod
     }
   }
 })

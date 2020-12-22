@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
-import { ElMessage } from 'element-plus'
+import { Message } from '_c/Message'
 
 import qs from 'qs'
 
@@ -19,6 +19,7 @@ const service: AxiosInstance = axios.create({
 // request拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
+    console.log(config)
     if (config.method === 'post' && config.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
       config.data = qs.stringify(config.data)
     }
@@ -37,12 +38,12 @@ service.interceptors.response.use(
     if (response.data.code === result_code) {
       return response.data
     } else {
-      ElMessage.error(response.data.message)
+      Message.error(response.data.message)
     }
   },
   (error: AxiosError) => {
     console.log('err' + error) // for debug
-    ElMessage.error(error.message)
+    Message.error(error.message)
     return Promise.reject(error)
   }
 )

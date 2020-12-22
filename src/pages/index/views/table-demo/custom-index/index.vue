@@ -3,16 +3,14 @@
     <el-alert
       effect="dark"
       :closable="false"
-      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 排序"
+      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 自定义索引"
       type="info"
       style="margin-bottom: 20px;"
     />
     <com-table
-      ref="multipleTable"
       v-loading="loading"
       :columns="columns"
       :data="tableData"
-      :default-sort="{prop: 'date', order: 'descending'}"
     />
   </div>
 </template>
@@ -20,23 +18,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import ComTable from '_c/Table/index.vue'
-
-const columns = [
-  {
-    key: 'date',
-    label: '日期',
-    sortable: true
-  },
-  {
-    key: 'name',
-    label: '姓名',
-    sortable: true
-  },
-  {
-    key: 'address',
-    label: '地址'
-  }
-]
 
 const tableData = [
   {
@@ -59,7 +40,7 @@ const tableData = [
 ]
 
 export default defineComponent({
-  // name: 'SortTable',
+  // name: 'CustomIndex',
   components: {
     ComTable
   },
@@ -68,6 +49,28 @@ export default defineComponent({
     setTimeout(() => {
       loading.value = false
     }, 1000)
+
+    const columns = ref<any[]>([
+      {
+        key: 'index',
+        type: 'index',
+        index: (index: number) => {
+          return index * 2
+        }
+      },
+      {
+        key: 'date',
+        label: '日期'
+      },
+      {
+        key: 'name',
+        label: '姓名'
+      },
+      {
+        key: 'address',
+        label: '地址'
+      }
+    ])
 
     return {
       columns,

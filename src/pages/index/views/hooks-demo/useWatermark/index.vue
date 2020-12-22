@@ -7,9 +7,9 @@
       type="info"
       style="margin-bottom: 20px;"
     />
-    <el-button type="primary" @click="setWatermark('vue-antdv-admin')">创建水印</el-button>
+    <el-button type="primary" @click="setWatermark('vue-element-plus-admin')">创建水印</el-button>
     <el-button type="danger" @click="clear">清除水印</el-button>
-    <el-button type="warning" @click="setWatermark('vue-antdv-admin-new')">重置水印</el-button>
+    <el-button type="warning" @click="setWatermark('vue-element-plus-admin-new')">重置水印</el-button>
   </div>
 </template>
 

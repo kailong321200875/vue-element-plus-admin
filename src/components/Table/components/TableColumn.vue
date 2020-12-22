@@ -1,5 +1,5 @@
 <template>
-  <el-table-column v-bind="{...bindValue(child)}" :prop="child.key">
+  <el-table-column v-bind="{...getItemBindValue(child)}" :prop="child.key">
     <template v-for="item in child.children">
       <!-- 树型数据 -->
       <template v-if="item.children && item.children.length">
@@ -12,7 +12,7 @@
       <template v-else>
         <el-table-column
           :key="item[item.key]"
-          v-bind="{...bindValue(item)}"
+          v-bind="{...getItemBindValue(item)}"
           :prop="item.key"
         >
           <!-- 表头插槽 -->
@@ -20,25 +20,25 @@
             <table-slot
               v-if="item.slots && item.slots.header"
               :slot-name="item.slots.header"
-              :row="scope.row"
               :column="item"
               :index="scope.$index"
             />
           </template>
+
           <!-- 表格内容插槽自定义 -->
-          <template #default="scope">
+          <template v-if="item.slots && item.slots.default" #default="scope">
             <table-slot
-              v-if="item.slots && item.slots.default"
               :slot-name="item.slots.default"
               :row="scope.row"
               :column="item"
               :index="scope.$index"
             />
-            <!-- 不需要插槽 -->
-            <div v-else style="display: inline-block;">
-              {{ scope.row[item.key] }}
-            </div>
           </template>
+
+          <!-- 不需要插槽 -->
+          <!-- <span v-if="!item.slots || !item.slots.default">
+            {{ scope.row[item.key] }}
+          </span> -->
         </el-table-column>
       </template>
     </template>
@@ -62,7 +62,7 @@ export default defineComponent({
     }
   },
   setup() {
-    function bindValue(item: any) {
+    function getItemBindValue(item: any) {
       const delArr: string[] = ['children']
       const obj = deepClone(item)
       for (const key in obj) {
@@ -74,7 +74,7 @@ export default defineComponent({
     }
 
     return {
-      bindValue
+      getItemBindValue
     }
   }
 })

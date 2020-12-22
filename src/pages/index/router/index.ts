@@ -124,6 +124,22 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'button',
+        component: () => import('_p/index/views/components-demo/button/index.vue'),
+        name: 'ButtonDemo',
+        meta: {
+          title: '按钮'
+        }
+      },
+      {
+        path: 'message',
+        component: () => import('_p/index/views/components-demo/message/index.vue'),
+        name: 'MessageDemo',
+        meta: {
+          title: '消息提示'
+        }
+      },
+      {
         path: 'count-to',
         component: () => import('_p/index/views/components-demo/count-to/index.vue'),
         name: 'CountToDemo',
@@ -182,6 +198,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'BasicTable',
         meta: {
           title: '基础表格'
+        }
+      },
+      {
+        path: 'page-table',
+        component: () => import('_p/index/views/table-demo/page-table/index.vue'),
+        name: 'PageTable',
+        meta: {
+          title: '分页表格'
         }
       },
       {
@@ -312,6 +336,22 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           title: '表尾合计行'
         }
       },
+      {
+        path: 'merge-table',
+        component: () => import('_p/index/views/table-demo/merge-table/index.vue'),
+        name: 'MergeTable',
+        meta: {
+          title: '合并行或列'
+        }
+      },
+      {
+        path: 'custom-index',
+        component: () => import('_p/index/views/table-demo/custom-index/index.vue'),
+        name: 'CustomIndex',
+        meta: {
+          title: '自定义索引'
+        }
+      }
     ]
   },
   {
@@ -440,26 +480,26 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       }
     ]
   },
-  // {
-  //   path: '/example-demo',
-  //   component: Layout,
-  //   name: 'ExampleDemo',
-  //   meta: {
-  //     alwaysShow: true,
-  //     icon: 'example',
-  //     title: '综合实例'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'example',
-  //       component: () => import('_p/index/views/example-demo/example/index.vue'),
-  //       name: 'Example',
-  //       meta: {
-  //         title: '列表综合实例'
-  //       }
-  //     }
-  //   ]
-  // }
+  {
+    path: '/example-demo',
+    component: Layout,
+    name: 'ExampleDemo',
+    meta: {
+      alwaysShow: true,
+      icon: 'example',
+      title: '综合实例'
+    },
+    children: [
+      {
+        path: 'example',
+        component: () => import('_p/index/views/example-demo/example/index.vue'),
+        name: 'Example',
+        meta: {
+          title: '列表综合实例'
+        }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

@@ -1,6 +1,6 @@
 import Clipboard from 'clipboard'
 import { Directive, DirectiveBinding } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message } from '_c/Message'
 
 if (!Clipboard) {
   throw new Error('you should npm install `clipboard` --save at first ')
@@ -47,7 +47,7 @@ function createdClipboard(el: HTMLElement | any, arg: string | undefined, value:
       if (callback) {
         callback(e)
       } else {
-        ElMessage.success('复制成功')
+        Message.success('复制成功')
       }
     })
     clipboard.on('error', e => {
@@ -55,7 +55,7 @@ function createdClipboard(el: HTMLElement | any, arg: string | undefined, value:
       if (callback) {
         callback(e)
       } else {
-        ElMessage.success('复制失败')
+        Message.success('复制失败')
       }
     })
     el._v_clipboard = clipboard

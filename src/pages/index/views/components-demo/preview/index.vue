@@ -49,7 +49,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { createImgPreview } from '_c/Preview/functional'
-import { ElMessage } from 'element-plus'
+import { Message } from '_c/Message'
 export default defineComponent({
   // name: 'PreviewDemo',
   setup() {
@@ -83,10 +83,10 @@ export default defineComponent({
         show: true,
         index: 0,
         onSelect: (i: number) => {
-          ElMessage.info('当前点击的图片索引：' + i)
+          Message.info('当前点击的图片索引：' + i)
         },
         onClose: (i: number) => {
-          ElMessage.info('关闭之后的图片索引：' + i)
+          Message.info('关闭之后的图片索引：' + i)
         }
       })
     }

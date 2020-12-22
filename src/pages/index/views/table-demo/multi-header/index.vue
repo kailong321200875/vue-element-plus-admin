@@ -142,7 +142,7 @@ export default defineComponent({
     const loading = ref<boolean>(true)
     setTimeout(() => {
       loading.value = false
-    }, 2000)
+    }, 1000)
 
     function deleteRow(index: number) {
       tableData.value.splice(index, 1)

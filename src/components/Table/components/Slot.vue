@@ -22,7 +22,7 @@ export default defineComponent({
   },
   render(props: any) {
     const _this: any = inject('tableRoot')
-    return h('div', _this.slots[props.slotName]({
+    return h('span', _this.slots[props.slotName]({
       row: props.row,
       column: props.column,
       index: props.index

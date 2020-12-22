@@ -22,7 +22,7 @@
             <template v-if="item.itemType === 'switch'">
               <el-switch
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
@@ -30,7 +30,7 @@
             <template v-if="item.itemType === 'input'">
               <el-input
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
@@ -38,7 +38,7 @@
             <template v-if="item.itemType === 'select'">
               <el-select
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               >
                 <el-option
@@ -59,7 +59,7 @@
                   <el-radio
                     v-for="v in item.options"
                     :key="item.optionValue ? v[item.optionValue] : v.value"
-                    v-bind="{...bindValue(item)}"
+                    v-bind="{...getItemBindValue(item)}"
                     :label="item.optionValue ? v[item.optionValue] : v.value"
                   >
                     {{ item.optionLabel ? v[item.optionLabel] : v.label }}
@@ -69,7 +69,7 @@
                   <el-radio-button
                     v-for="v in item.options"
                     :key="item.optionValue ? v[item.optionValue] : v.value"
-                    v-bind="{...bindValue(item)}"
+                    v-bind="{...getItemBindValue(item)}"
                     :label="item.optionValue ? v[item.optionValue] : v.value"
                   >
                     {{ item.optionLabel ? v[item.optionLabel] : v.label }}
@@ -102,7 +102,7 @@
             <template v-if="item.itemType === 'timePicker'">
               <el-time-picker
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
@@ -110,7 +110,7 @@
             <template v-if="item.itemType === 'timeSelect'">
               <el-time-select
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
@@ -118,7 +118,7 @@
             <template v-if="item.itemType === 'datePicker' || item.itemType === 'dateTimePicker'">
               <el-date-picker
                 v-model="formInline[item.field]"
-                v-bind="{...bindValue(item)}"
+                v-bind="{...getItemBindValue(item)}"
                 @change="((val) => {changeVal(val, item)})"
               />
             </template>
@@ -236,7 +236,7 @@ export default defineComponent({
       }
     )
 
-    function bindValue(item: any) {
+    function getItemBindValue(item: any) {
       const delArr: string[] = ['label', 'itemType', 'value', 'field']
       const obj = deepClone(item)
       for (const key in obj) {
@@ -288,7 +288,7 @@ export default defineComponent({
     }
 
     return {
-      bindValue,
+      getItemBindValue,
       ruleForm,
       formInline,
       submitForm,

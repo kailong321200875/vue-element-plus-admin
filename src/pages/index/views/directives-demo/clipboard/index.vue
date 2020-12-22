@@ -40,17 +40,17 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { Message } from '_c/Message'
 export default defineComponent({
   // name: 'Clipboard'
   setup() {
     const inputVal1 = ref<string>('')
     const inputVal2 = ref<string>('')
     function clipboardSuccess(val: any) {
-      ElMessage.success('我是自定义成功回调：' + val.text)
+      Message.success('我是自定义成功回调：' + val.text)
     }
     function clipboardError() {
-      ElMessage.error('我是自定义失败回调')
+      Message.error('我是自定义失败回调')
     }
     return {
       inputVal1, inputVal2,

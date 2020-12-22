@@ -145,7 +145,7 @@ export default defineComponent({
     const loading = ref<boolean>(true)
     setTimeout(() => {
       loading.value = false
-    }, 2000)
+    }, 1000)
 
     function load(tree: any, treeNode: any, resolve: Function) {
       setTimeout(() => {

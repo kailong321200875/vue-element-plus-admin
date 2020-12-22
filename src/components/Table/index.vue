@@ -1,60 +1,81 @@
 <template>
-  <el-table ref="elTable" v-bind="getBindValue">
-    <!-- 多选 -->
-    <el-table-column
-      v-if="selection"
-      type="selection"
-      width="55"
-    />
-    <template v-for="item in columns">
-      <!-- 树型数据 -->
-      <template v-if="item.children && item.children.length">
-        <table-column
-          :key="item[item.key]"
-          :child="item"
-        />
-      </template>
+  <div>
+    <el-table ref="elTable" :border="true" v-bind="getBindValue" @header-dragend="headerDragend">
+      <!-- 多选 -->
+      <el-table-column
+        v-if="selection"
+        type="selection"
+        width="55"
+      />
+      <template v-for="item in columns">
+        <!-- 自定义索引 -->
+        <template v-if="item.type === 'index'">
+          <el-table-column
+            :key="item[item.key]"
+            v-bind="{...getItemBindValue(item)}"
+            type="index"
+            :index="item.index"
+          />
+        </template>
 
-      <template v-else>
-        <el-table-column
-          :key="item[item.key]"
-          v-bind="{...bindValue(item)}"
-          :prop="item.key"
-        >
-          <!-- 表头插槽 -->
-          <template v-if="item.slots && item.slots.header" #header="scope">
-            <table-slot
-              v-if="item.slots && item.slots.header"
-              :slot-name="item.slots.header"
-              :row="scope.row"
-              :column="item"
-              :index="scope.$index"
-            />
-          </template>
+        <!-- 树型数据 -->
+        <template v-else-if="item.children && item.children.length">
+          <table-column
+            :key="item[item.key]"
+            :child="item"
+          />
+        </template>
 
-          <!-- 表格内容插槽自定义 -->
-          <template #default="scope">
-            <table-slot
-              v-if="item.slots && item.slots.default"
-              :slot-name="item.slots.default"
-              :row="scope.row"
-              :column="item"
-              :index="scope.$index"
-            />
+        <template v-else>
+          <el-table-column
+            :key="item[item.key]"
+            v-bind="{...getItemBindValue(item)}"
+            :prop="item.key"
+          >
+            <!-- 表头插槽 -->
+            <template v-if="item.slots && item.slots.header" #header="scope">
+              <table-slot
+                v-if="item.slots && item.slots.header"
+                :slot-name="item.slots.header"
+                :column="item"
+                :index="scope.$index"
+              />
+            </template>
+
+            <!-- 表格内容插槽自定义 -->
+            <template v-if="item.slots && item.slots.default" #default="scope">
+              <table-slot
+                v-if="item.slots && item.slots.default"
+                :slot-name="item.slots.default"
+                :row="scope.row"
+                :column="item"
+                :index="scope.$index"
+              />
+            </template>
             <!-- 不需要插槽 -->
-            <div v-else style="display: inline-block;">
+            <!-- <span v-if="!item.slots || !item.slots.default">
               {{ scope.row[item.key] }}
-            </div>
-          </template>
-        </el-table-column>
+            </span> -->
+          </el-table-column>
+        </template>
       </template>
-    </template>
-  </el-table>
+    </el-table>
+
+    <div v-if="pagination" class="pagination__wrap">
+      <el-pagination
+        :style="paginationStyle"
+        :page-sizes="[10, 20, 30, 40, 50, 100]"
+        layout="total, sizes, prev, pager, next, jumper"
+        v-bind="getPaginationBindValue"
+      />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, computed, provide, getCurrentInstance, ref, unref } from 'vue'
 import { deepClone } from '@/utils'
+import { isObject } from '@/utils/is'
 import TableColumn from './components/TableColumn.vue'
 import TableSlot from './components/Slot.vue'
 export default defineComponent({
@@ -70,6 +91,10 @@ export default defineComponent({
     },
     selection: {
       type: Boolean as PropType<boolean>,
+      default: false
+    },
+    pagination: {
+      type: [Boolean, Object] as PropType<boolean | object>,
       default: false
     }
   },
@@ -88,7 +113,7 @@ export default defineComponent({
       return bindValue
     })
 
-    function bindValue(item: any) {
+    function getItemBindValue(item: any) {
       const delArr: string[] = []
       const obj = deepClone(item)
       for (const key in obj) {
@@ -99,15 +124,45 @@ export default defineComponent({
       return obj
     }
 
+    const getPaginationBindValue = computed((): any => {
+      const PaginationBindValue = props.pagination && isObject(props.pagination)
+        ? { ...(props.pagination as any) }
+        : {}
+      return PaginationBindValue
+    })
+
+    const paginationStyle = computed(() => {
+      return {
+        textAlign: props.pagination && (props.pagination as any).position || 'right'
+      }
+    })
+
+    function headerDragend(newWidth: number, oldWidth: number, column: any, event: any) {
+      // 不懂为啥无法自动计算宽度，只能手动去计算了。。失望ing，到时候看看能不能优化吧。
+      const htmlArr = document.getElementsByClassName(column.id)
+      for (const v of htmlArr) {
+        if (v.firstElementChild) {
+          (v.firstElementChild as any).style.width = newWidth + 'px'
+        }
+      }
+    }
+
     return {
       elTable,
-      getBindValue, bindValue,
+      getBindValue, getItemBindValue,
       slots,
-      getTableRef
+      getTableRef,
+      getPaginationBindValue, paginationStyle,
+      headerDragend
     }
   }
 })
 </script>
 
-<style>
+<style lang="less" scoped>
+.pagination__wrap {
+  margin-top: 15px;
+  background: #fff;
+  padding: 10px;
+}
 </style>

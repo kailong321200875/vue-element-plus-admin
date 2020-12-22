@@ -3,16 +3,20 @@
     <el-alert
       effect="dark"
       :closable="false"
-      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 排序"
+      title="基于 Element 的 Table 组件进行二次封装，实现数据驱动，支持所有 Table 参数 -- 分页表格"
       type="info"
       style="margin-bottom: 20px;"
     />
     <com-table
-      ref="multipleTable"
       v-loading="loading"
       :columns="columns"
       :data="tableData"
-      :default-sort="{prop: 'date', order: 'descending'}"
+      :pagination="{
+        currentPage: 1,
+        total: 400,
+        onSizeChange: handleSizeChange,
+        onCurrentChange: handleCurrentChange
+      }"
     />
   </div>
 </template>
@@ -24,13 +28,11 @@ import ComTable from '_c/Table/index.vue'
 const columns = [
   {
     key: 'date',
-    label: '日期',
-    sortable: true
+    label: '日期'
   },
   {
     key: 'name',
-    label: '姓名',
-    sortable: true
+    label: '姓名'
   },
   {
     key: 'address',
@@ -59,7 +61,7 @@ const tableData = [
 ]
 
 export default defineComponent({
-  // name: 'SortTable',
+  // name: 'PageTable',
   components: {
     ComTable
   },
@@ -69,10 +71,19 @@ export default defineComponent({
       loading.value = false
     }, 1000)
 
+    function handleSizeChange(val: number) {
+      console.log(val)
+    }
+
+    function handleCurrentChange(val: number) {
+      console.log(val)
+    }
+
     return {
       columns,
       tableData,
-      loading
+      loading,
+      handleSizeChange, handleCurrentChange
     }
   }
 })
