@@ -1,7 +1,25 @@
 <template>
   <div>
+    <div class="search__example--wrap">
+      <search
+        :data="searchData"
+        @search-submit="searchSubmit"
+        @reset-submit="resetSubmit"
+      />
+    </div>
+
+    <div class="button__example--wrap">
+      <el-button type="primary" icon="el-icon-circle-plus-outline" @click="open(false)">新增</el-button>
+      <el-button
+        type="danger"
+        icon="el-icon-delete"
+        @click="dels"
+      >删除</el-button>
+    </div>
+
     <com-table
       v-loading="loading"
+      selection
       :columns="columns"
       :data="tableData"
       :pagination="{
@@ -10,17 +28,55 @@
         onSizeChange: handleSizeChange,
         onCurrentChange: handleCurrentChange
       }"
-    />
+      @selection-change="handleSelectionChange"
+    >
+      <template #importance="scope">
+        <el-tag
+          :type="scope.row.importance === 3
+            ? 'success'
+            : (scope.row.importance === 2
+              ? 'warning'
+              : 'danger')"
+        >{{ scope.row.importance === 3
+          ? '重要'
+          : (scope.row.importance === 2
+            ? '良好'
+            : '一般') }}
+        </el-tag>
+      </template>
+      <template #action="scope">
+        <el-button type="primary" size="mini" @click="open(scope.row)">编辑</el-button>
+        <el-button type="danger" size="mini" @click="dels(scope.row)">删除</el-button>
+      </template>
+    </com-table>
+
+    <com-dialog v-model="dialogVisible" :title="title">
+      <ifno-write :info="info" @close="close" @success="success" />
+    </com-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import ComTable from '_c/Table/index.vue'
 import Search from '_c/Search/index.vue'
-import { useExample } from '@/hooks/useExample'
+import IfnoWrite from './components/IfnoWrite.vue'
 
-import api from '_p/index/api'
+import { useExample } from '@/hooks/useExample'
+import { Message } from '_c/Message'
+
+import { getExampleListApi, delsExampApi } from './api'
+
+const searchData = [
+  {
+    label: '标题',
+    value: '',
+    itemType: 'input',
+    field: 'title',
+    placeholder: '请输入标题',
+    clearable: true
+  }
+]
 
 const columns = [
   {
@@ -38,11 +94,22 @@ const columns = [
   },
   {
     key: 'importance',
-    label: '重要性'
+    label: '重要性',
+    slots: {
+      default: 'importance'
+    }
   },
   {
     key: 'pageviews',
     label: '阅读数'
+  },
+  {
+    key: 'action',
+    label: '操作',
+    width: '150px',
+    slots: {
+      default: 'action'
+    }
   }
 ]
 
@@ -50,17 +117,33 @@ export default defineComponent({
   // name: 'Example',
   components: {
     ComTable,
-    Search
+    Search,
+    IfnoWrite
   },
   setup() {
-    const { defalutParams, tableData, loading, total, currentChange, sizeChange } = useExample()
+    const info = ref<any>(null)
 
-    async function getExampleList() {
+    const {
+      defalutParams,
+      tableData,
+      loading,
+      total,
+      dialogVisible,
+      title,
+      currentChange,
+      sizeChange,
+      handleSelectionChange,
+      selectionData,
+      delData
+    } = useExample()
+
+    // 请求数据
+    async function getExampleList(data?: any): Promise<void> {
       try {
-        const res = await api.example.getExampleList({
-          params: defalutParams
+        const res = await getExampleListApi({
+          params: Object.assign(defalutParams, data || {})
         })
-        if (res) {
+        if (res.code === '0000') {
           total.value = res.data.total
           tableData.value = res.data.list
         }
@@ -69,28 +152,93 @@ export default defineComponent({
       }
     }
 
+    // 查询
+    function searchSubmit(data: any) {
+      // 该方法重置了一些默认参数
+      currentChange(1)
+      getExampleList(data)
+    }
+
+    // 重置
+    function resetSubmit(data: any) {
+      // 该方法重置了一些默认参数
+      currentChange(1)
+      getExampleList(data)
+    }
+
+    // 展示多少条
     function handleSizeChange(val: number) {
       // 该方法重置了一些默认参数
       sizeChange(val)
       getExampleList()
     }
 
+    // 展示第几页
     function handleCurrentChange(val: number) {
       // 该方法重置了一些默认参数
       currentChange(val)
       getExampleList()
     }
 
+    // 删除多选
+    function dels(item?: any) {
+      delData(async() => {
+        let ids: string[]
+        if (item.id) {
+          ids = [item.id]
+        } else {
+          ids = selectionData.value.map((v: any) => {
+            return v.id
+          })
+        }
+        const res = await delsExampApi({
+          data: { ids }
+        })
+        if (res.code === '0000') {
+          Message.success('删除成功！')
+          getExampleList()
+        }
+      }, { hiddenVerify: item.id })
+    }
+
+    // 打开弹窗
+    function open(row: any) {
+      title.value = row ? '编辑' : '新增'
+      info.value = row || null
+      dialogVisible.value = true
+    }
+
+    // 弹窗关闭
+    function close() {
+      dialogVisible.value = false
+    }
+
+    // 成功之后的回调
+    function success(type: string) {
+      if (type === 'add') {
+        currentChange(1)
+      }
+      close()
+      getExampleList()
+    }
+
     getExampleList()
 
     return {
+      info, open,
+      searchData, searchSubmit, resetSubmit,
       columns,
       defalutParams,
       loading,
       tableData,
       total,
+      title,
+      dialogVisible,
       handleSizeChange,
-      handleCurrentChange
+      handleCurrentChange,
+      handleSelectionChange,
+      dels,
+      close, success
     }
   }
 })

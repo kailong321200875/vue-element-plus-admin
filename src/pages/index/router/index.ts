@@ -170,6 +170,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'markdown编辑器'
         }
+      },
+      {
+        path: 'dialog',
+        component: () => import('_p/index/views/components-demo/dialog/index.vue'),
+        name: 'DialogDemo',
+        meta: {
+          title: '弹窗'
+        }
       }
     ]
   },

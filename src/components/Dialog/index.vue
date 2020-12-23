@@ -1,0 +1,45 @@
+<template>
+  <el-dialog
+    v-bind="getBindValue"
+    destroy-on-close
+    :close-on-click-modal="false"
+    top="10vh"
+  >
+    <template v-if="slots.title" #title>
+      <slot name="title" />
+    </template>
+
+    <!-- 弹窗内容 -->
+    <el-scrollbar class="com-dialog__content">
+      <slot />
+    </el-scrollbar>
+
+    <template v-if="slots.footer" #footer>
+      <slot name="footer" />
+    </template>
+  </el-dialog>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
+export default defineComponent({
+  name: 'Dialog',
+  setup(props, { slots, attrs }) {
+    const getBindValue = computed((): any => {
+      const bindValue = { ...attrs, ...props }
+      return bindValue
+    })
+
+    return {
+      getBindValue,
+      slots
+    }
+  }
+})
+</script>
+
+<style lang="less" scoped>
+.com-dialog__content {
+  height: 600px;
+}
+</style>

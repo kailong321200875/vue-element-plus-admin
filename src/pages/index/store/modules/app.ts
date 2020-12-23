@@ -28,7 +28,7 @@ class App extends VuexModule implements AppState {
   // public fixedTags = true // 是否固定标签栏
   // public fixedNavbar = true // 是否固定navbar
   public fixedHeader = true // 是否固定header
-  public layout = 'Top' // layout布局
+  public layout = 'Classic' // layout布局
   public showBreadcrumb = true // 是否显示面包屑
   public showHamburger = true // 是否显示侧边栏缩收按钮
   public showScreenfull = true // 是否全屏按钮

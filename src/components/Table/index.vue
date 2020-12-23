@@ -5,7 +5,8 @@
       <el-table-column
         v-if="selection"
         type="selection"
-        width="55"
+        :reserve-selection="reserveSelection"
+        width="40"
       />
       <template v-for="item in columns">
         <!-- 自定义索引 -->
@@ -85,16 +86,24 @@ export default defineComponent({
     TableColumn
   },
   props: {
+    // 表头
     columns: {
       type: Array as PropType<any[]>,
       default: () => []
     },
+    // 是否多选
     selection: {
       type: Boolean as PropType<boolean>,
       default: false
     },
+    // 是否展示分页
     pagination: {
       type: [Boolean, Object] as PropType<boolean | object>,
+      default: false
+    },
+    // 仅对 type=selection 的列有效，类型为 Boolean，为 true 则会在数据更新之后保留之前选中的数据（需指定 row-key）
+    reserveSelection: {
+      type: Boolean as PropType<boolean>,
       default: false
     }
   },
@@ -137,7 +146,7 @@ export default defineComponent({
       }
     })
 
-    function headerDragend(newWidth: number, oldWidth: number, column: any, event: any) {
+    function headerDragend(newWidth: number, oldWidth: number, column: any) {
       // 不懂为啥无法自动计算宽度，只能手动去计算了。。失望ing，到时候看看能不能优化吧。
       const htmlArr = document.getElementsByClassName(column.id)
       for (const v of htmlArr) {

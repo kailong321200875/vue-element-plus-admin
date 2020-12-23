@@ -11,7 +11,7 @@ export const editorProps = {
     default: () => {
       return {
         height: 500,
-        zIndex: 500,
+        zIndex: 0,
         placeholder: '请输入文本',
         focus: false,
         onchangeTimeout: 500,
