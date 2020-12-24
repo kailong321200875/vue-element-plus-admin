@@ -33,7 +33,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import ComTable from '_c/Table/index.vue'
 
 const columns = [
   {
@@ -138,9 +137,6 @@ const tableData1 = [
 
 export default defineComponent({
   // name: 'TreeAndLoad',
-  components: {
-    ComTable
-  },
   setup() {
     const loading = ref<boolean>(true)
     setTimeout(() => {

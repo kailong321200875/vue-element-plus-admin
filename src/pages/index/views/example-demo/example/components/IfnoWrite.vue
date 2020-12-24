@@ -48,7 +48,7 @@
         </el-col>
         <el-col :span="24">
           <el-form-item prop="content" label="内容">
-            <editor v-model:value="form.content" />
+            <editor ref="editorRef" :value="form.content" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -87,6 +87,7 @@ export default defineComponent({
   emits: ['close', 'success'],
   setup(props, { emit }) {
     const formRef = ref<HTMLElement | null>(null)
+    const editorRef = ref<HTMLElement | null>(null)
     const subLoading = ref<boolean>(false)
 
     const form = reactive<InfoWriteParams>({
@@ -136,6 +137,8 @@ export default defineComponent({
     // 新增或者编辑
     function setListData() {
       const formRefWrap = unref(formRef as any)
+      const editorRefWrap = unref(editorRef as any)
+      form.content = editorRefWrap.getHtml()
       try {
         subLoading.value = true
         formRefWrap.validate(async(valid: boolean) => {
@@ -166,7 +169,7 @@ export default defineComponent({
     }
 
     return {
-      formRef,
+      formRef, editorRef,
       subLoading,
       form,
       rules,

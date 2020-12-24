@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue'
-import ComTable from '_c/Table/index.vue'
 
 const tableData = [
   {
@@ -57,9 +56,6 @@ const tableData = [
 
 export default defineComponent({
   // name: 'ScreenTable',
-  components: {
-    ComTable
-  },
   setup() {
     const filterTable = ref<HTMLElement | null>(null)
 

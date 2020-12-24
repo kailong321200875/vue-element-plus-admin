@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="search__example--wrap">
-      <search
+      <com-search
         :data="searchData"
         @search-submit="searchSubmit"
         @reset-submit="resetSubmit"
@@ -58,8 +58,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import ComTable from '_c/Table/index.vue'
-import Search from '_c/Search/index.vue'
 import IfnoWrite from './components/IfnoWrite.vue'
 
 import { useExample } from '@/hooks/useExample'
@@ -116,8 +114,6 @@ const columns = [
 export default defineComponent({
   // name: 'Example',
   components: {
-    ComTable,
-    Search,
     IfnoWrite
   },
   setup() {

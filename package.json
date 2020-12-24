@@ -33,7 +33,7 @@
     "vue": "3.0.4",
     "vue-router": "4.0.0-rc.6",
     "vuex": "4.0.0-rc.2",
-    "wangeditor": "^4.5.2",
+    "wangeditor": "4.5.4",
     "web-storage-cache": "^1.1.1"
   },
   "devDependencies": {

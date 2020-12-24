@@ -14,7 +14,7 @@ export const editorProps = {
         zIndex: 0,
         placeholder: '请输入文本',
         focus: false,
-        onchangeTimeout: 500,
+        onchangeTimeout: 1000,
         customAlert: (s: string, t: string) => {
           switch (t) {
           case 'success':

@@ -48,7 +48,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import { createImgPreview } from '_c/Preview/functional'
+import { createImgPreview } from '_c/Preview'
 import { Message } from '_c/Message'
 export default defineComponent({
   // name: 'PreviewDemo',

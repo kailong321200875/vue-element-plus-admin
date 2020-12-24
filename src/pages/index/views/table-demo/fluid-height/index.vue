@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import ComTable from '_c/Table/index.vue'
 
 const columns = [
   {
@@ -70,9 +69,6 @@ const columns = [
 ]
 export default defineComponent({
   // name: 'FluidHeight',
-  components: {
-    ComTable
-  },
   setup() {
     const tableData = ref<any[]>([
       {

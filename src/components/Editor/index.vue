@@ -11,7 +11,7 @@ import 'highlight.js/styles/monokai-sublime.css'
 export default defineComponent({
   name: 'Editor',
   props: editorProps,
-  emits: ['change', 'focus', 'blur', 'update:value'],
+  emits: ['change', 'focus', 'blur', 'update:modelValue'],
   setup(props, { emit }) {
     const editorRef = ref<HTMLElement | null>(null)
     const editor = ref<E | null>(null)
@@ -101,8 +101,8 @@ export default defineComponent({
       // 配置 onchange 回调函数
       editor.config.onchange = (html: string) => {
         const text = editor.txt.text()
-        emitFun(editor, html, 'change')
-        emit('update:value', props.valueType === 'html' ? html : text)
+        emitFun(editor, props.valueType === 'html' ? html : text, 'change')
+        // emit('update:modelValue', props.valueType === 'html' ? html : text)
       }
       // 配置触发 onchange 的时间频率，默认为 200ms
       editor.config.onchangeTimeout = onchangeTimeout
@@ -121,8 +121,21 @@ export default defineComponent({
       emit(type, props.valueType === 'html' ? html : text)
     }
 
+    function getHtml() {
+      if (editor.value) {
+        return unref(editor.value as any).txt.html()
+      }
+    }
+
+    function getText() {
+      if (editor.value) {
+        return unref(editor.value as any).txt.text()
+      }
+    }
+
     return {
-      editorRef
+      editorRef,
+      getHtml, getText
     }
   }
 })

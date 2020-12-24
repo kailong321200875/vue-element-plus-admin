@@ -10550,10 +10550,10 @@ vuex@4.0.0-rc.2:
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.0-rc.2.tgz#3681c84eb6f5171b039edaa17cc78105e20724f3"
   integrity sha512-HCPzYGea1xL7fMpDoMiHKujC1Bi/HM9LS5ML0Kv55zQtZJvOl0Lq7eWvJoen+SI4Lf7p9V5AqcVsoLPXNBywjg==
 
-wangeditor@^4.5.2:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/wangeditor/-/wangeditor-4.5.3.tgz#a646a222ecd3ec81fef845efbfb57ece864ecc2c"
-  integrity sha512-fxByLI/RPtvc23dSz8P9I9cywDwCugoFKn/xq/wi6fuTlrI7SMUBSGM655U4stwkK3oRljPRt0kWYGeR3ScyuQ==
+wangeditor@4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/wangeditor/-/wangeditor-4.5.4.tgz#cce6f73b96fdb9ce1f19a1e972e1fd0aef9192a6"
+  integrity sha512-HqqyPzpf03E2VO7qtOz2nUCr7GT75/+9agvQnG5Ybiwu9FcwGkVipn9BdVxydBxfAeRGCXXWs6+v3Z9dJ0H2fg==
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@babel/runtime-corejs3" "^7.11.2"

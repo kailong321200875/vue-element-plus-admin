@@ -19,7 +19,6 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import ComTable from '_c/Table/index.vue'
 
 const columns = [
   {
@@ -76,9 +75,6 @@ const tableData = [
 
 export default defineComponent({
   // name: 'FixedHeader',
-  components: {
-    ComTable
-  },
   setup() {
     const loading = ref<boolean>(true)
     setTimeout(() => {

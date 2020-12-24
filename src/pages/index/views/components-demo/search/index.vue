@@ -15,7 +15,7 @@
       style="margin-bottom: 20px;margin-top: 20px;"
     />
     <div class="searh">
-      <search
+      <com-search
         :data="classicData"
         @search-submit="searchSubmit1"
         @reset-submit="resetSubmit1"
@@ -33,7 +33,7 @@
       style="margin-bottom: 20px;margin-top: 20px;"
     />
     <div class="searh">
-      <search
+      <com-search
         layout="bottom"
         :data="classicData"
         @search-submit="searchSubmit2"
@@ -52,7 +52,7 @@
       style="margin-bottom: 20px;margin-top: 20px;"
     />
     <div class="searh">
-      <search
+      <com-search
         layout="right"
         :data="classicData"
         @search-submit="searchSubmit3"
@@ -67,13 +67,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import Search from '_c/Search/index.vue'
 import { classicData } from './classic-data'
 export default defineComponent({
   // name: 'SearchDemo',
-  components: {
-    Search
-  },
   setup() {
     const formData1 = ref<{[key: string]: any} | null>(null)
     const formData2 = ref<{[key: string]: any} | null>(null)
