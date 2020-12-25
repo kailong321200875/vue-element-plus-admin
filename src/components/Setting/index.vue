@@ -35,14 +35,6 @@
       <div class="setting__title">顶部菜单主题</div> -->
 
       <!-- <div class="setting__title">界面功能</div> -->
-      <!-- <div class="setting__item">
-        <span>固定顶部操作栏</span>
-        <el-switch v-model="fixedNavbar" @change="setFixedNavbar" />
-      </div>
-      <div class="setting__item">
-        <span>固定标签页</span>
-        <el-switch v-model="fixedTags" @change="setFixedTags" />
-      </div> -->
 
       <div class="setting__title">界面显示</div>
       <div class="setting__item">
@@ -116,16 +108,6 @@ export default defineComponent({
       appStore.SetCollapsed(false)
     }
 
-    // const fixedNavbar = ref<boolean>(appStore.fixedNavbar)
-    // function setFixedNavbar(fixedNavbar: boolean) {
-    //   appStore.SetFixedNavbar(fixedNavbar)
-    // }
-
-    // const fixedTags = ref<boolean>(appStore.fixedTags)
-    // function setFixedTags(fixedTags: boolean) {
-    //   appStore.SetFixedTags(fixedTags)
-    // }
-
     const fixedHeader = ref<boolean>(appStore.fixedHeader)
     function setFixedHeader(fixedHeader: boolean) {
       appStore.SetFixedHeader(fixedHeader)
@@ -179,8 +161,6 @@ export default defineComponent({
     return {
       drawer, toggleClick,
       layout, setLayout,
-      // fixedNavbar, setFixedNavbar,
-      // fixedTags, setFixedTags,
       fixedHeader, setFixedHeader,
       navbar, setNavbar,
       hamburger, setHamburger,

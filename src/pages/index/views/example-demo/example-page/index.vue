@@ -49,17 +49,13 @@
         <el-button type="danger" size="mini" @click="dels(scope.row)">删除</el-button>
       </template>
     </com-table>
-
-    <com-dialog v-model="dialogVisible" :title="title">
-      <ifno-write :info="info" @close="close" @success="success" />
-    </com-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import IfnoWrite from './components/IfnoWrite.vue'
-
+import { defineComponent, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+import vueBus from '@/vue-bus'
 import { useExample } from '@/hooks/useExample'
 import { Message } from '_c/Message'
 
@@ -112,20 +108,15 @@ const columns = [
 ]
 
 export default defineComponent({
-  // name: 'Example',
-  components: {
-    IfnoWrite
-  },
+  name: 'ExamplePage',
   setup() {
-    const info = ref<any>(null)
+    const { push } = useRouter()
 
     const {
       defalutParams,
       tableData,
       loading,
       total,
-      dialogVisible,
-      title,
       currentChange,
       sizeChange,
       handleSelectionChange,
@@ -197,44 +188,38 @@ export default defineComponent({
       }, { hiddenVerify: item.id })
     }
 
-    // 打开弹窗
+    // 打开新页面
     function open(row: any) {
-      title.value = row ? '编辑' : '新增'
-      info.value = row || null
-      dialogVisible.value = true
-    }
-
-    // 弹窗关闭
-    function close() {
-      dialogVisible.value = false
-    }
-
-    // 成功之后的回调
-    function success(type: string) {
-      if (type === 'add') {
-        currentChange(1)
-      }
-      close()
-      getExampleList()
+      push(row ? `/example-demo/example-edit?id=${row.id}` : `/example-demo/example-add`)
     }
 
     getExampleList()
 
+    onMounted(() => {
+      vueBus.$on('success', (type: string) => {
+        if (type === 'add') {
+          currentChange(1)
+        }
+        getExampleList()
+      })
+    })
+
+    onUnmounted(() => {
+      vueBus.$off('success')
+    })
+
     return {
-      info, open,
+      open,
       searchData, searchSubmit, resetSubmit,
       columns,
       defalutParams,
       loading,
       tableData,
       total,
-      title,
-      dialogVisible,
       handleSizeChange,
       handleCurrentChange,
       handleSelectionChange,
-      dels,
-      close, success
+      dels
     }
   }
 })

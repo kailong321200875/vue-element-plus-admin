@@ -24,6 +24,8 @@ const Layout = () => import('../layout/index.vue')
     affix: true               如果设置为true，则会一直固定在tag项中(默认 false)
     noTagsView: true           如果设置为true，则不会出现在tag中(默认 false)
     activeMenu: '/dashboard'  显示高亮的路由路径
+    followAuth: '/dashboard'  跟随哪个路由进行权限过滤
+    showMainRoute: true       设置为true即使hidden为true，也依然可以进行路由跳转(默认 false)
   }
 **/
 
@@ -177,6 +179,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'DialogDemo',
         meta: {
           title: '弹窗'
+        }
+      },
+      {
+        path: 'more',
+        component: () => import('_p/index/views/components-demo/more/index.vue'),
+        name: 'MoreDemo',
+        meta: {
+          title: '显示更多'
         }
       }
     ]
@@ -499,11 +509,45 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     },
     children: [
       {
-        path: 'example',
-        component: () => import('_p/index/views/example-demo/example/index.vue'),
-        name: 'Example',
+        path: 'example-dialog',
+        component: () => import('_p/index/views/example-demo/example-dialog/index.vue'),
+        name: 'ExampleDialog',
         meta: {
-          title: '列表综合实例'
+          title: '列表综合实例-弹窗'
+        }
+      },
+      {
+        path: 'example-page',
+        component: () => import('_p/index/views/example-demo/example-page/index.vue'),
+        name: 'ExamplePage',
+        meta: {
+          title: '列表综合实例-页面'
+        }
+      },
+      {
+        path: 'example-add',
+        component: () => import('_p/index/views/example-demo/example-page/example-add.vue'),
+        name: 'ExampleAdd',
+        meta: {
+          title: '列表综合实例-新增',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
+        }
+      },
+      {
+        path: 'example-edit',
+        component: () => import('_p/index/views/example-demo/example-page/example-edit.vue'),
+        name: 'ExampleEdit',
+        meta: {
+          title: '列表综合实例-编辑',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
         }
       }
     ]

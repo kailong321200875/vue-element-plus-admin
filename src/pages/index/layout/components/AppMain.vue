@@ -26,7 +26,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .app-main {
-  overflow: hidden;
+  // overflow: hidden;
   padding: 20px;
 }
 </style>

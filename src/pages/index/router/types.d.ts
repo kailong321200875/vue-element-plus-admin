@@ -10,6 +10,8 @@ export interface RouteMeta {
   activeMenu?: string
   parent?: string
   noTagsView?: boolean
+  followAuth?: string
+  showMainRoute?: boolean
 }
 
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
