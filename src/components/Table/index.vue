@@ -12,7 +12,7 @@
         <!-- 自定义索引 -->
         <template v-if="item.type === 'index'">
           <el-table-column
-            :key="item[item.key]"
+            :key="item[item.field]"
             v-bind="{...getItemBindValue(item)}"
             type="index"
             :index="item.index"
@@ -22,16 +22,16 @@
         <!-- 树型数据 -->
         <template v-else-if="item.children && item.children.length">
           <table-column
-            :key="item[item.key]"
+            :key="item[item.field]"
             :child="item"
           />
         </template>
 
         <template v-else>
           <el-table-column
-            :key="item[item.key]"
+            :key="item[item.field]"
             v-bind="{...getItemBindValue(item)}"
-            :prop="item.key"
+            :prop="item.field"
           >
             <!-- 表头插槽 -->
             <template v-if="item.slots && item.slots.header" #header="scope">
@@ -55,7 +55,7 @@
             </template>
             <!-- 不需要插槽 -->
             <!-- <span v-if="!item.slots || !item.slots.default">
-              {{ scope.row[item.key] }}
+              {{ scope.row[item.field] }}
             </span> -->
           </el-table-column>
         </template>

@@ -22,17 +22,17 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期',
     sortable: true
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名',
     sortable: true
   },
   {
-    key: 'address',
+    field: 'address',
     label: '地址'
   }
 ]

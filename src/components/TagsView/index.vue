@@ -297,7 +297,7 @@ export default defineComponent({
       font-size: 12px;
       margin-left: 5px;
       &:last-of-type {
-        margin-right: 23px;
+        margin-right: 10px;
       }
       &.active {
         background-color: @tagActiveBg;

@@ -39,15 +39,15 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名'
   },
   {
-    key: 'action',
+    field: 'action',
     slots: {
       header: 'actionHeader',
       default: 'action'

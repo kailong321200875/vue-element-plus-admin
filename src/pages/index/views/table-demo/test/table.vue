@@ -1,20 +1,20 @@
 <template>
   <a-table :data-source="data" :columns="columns">
-    <template #filterDropdown="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }">
+    <template #filterDropdown="{ setSelectedfields, selectedfields, confirm, clearFilters, column }">
       <div style="padding: 8px">
         <a-input
           :ref="c => (searchInput = c)"
           :placeholder="`Search ${column.dataIndex}`"
-          :value="selectedKeys[0]"
+          :value="selectedfields[0]"
           style="width: 188px; margin-bottom: 8px; display: block;"
-          @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
-          @pressEnter="handleSearch(selectedKeys, confirm, column.dataIndex)"
+          @change="e => setSelectedfields(e.target.value ? [e.target.value] : [])"
+          @pressEnter="handleSearch(selectedfields, confirm, column.dataIndex)"
         />
         <el-button
           type="primary"
           size="small"
           style="width: 90px; margin-right: 8px"
-          @click="handleSearch(selectedKeys, confirm, column.dataIndex)"
+          @click="handleSearch(selectedfields, confirm, column.dataIndex)"
         >
           <template #icon><SearchOutlined /></template>
           Search
@@ -51,25 +51,25 @@
 import { SearchOutlined } from '@ant-design/icons-vue';
 const data = [
   {
-    key: '1',
+    field: '1',
     name: 'John Brown',
     age: 32,
     address: 'New York No. 1 Lake Park',
   },
   {
-    key: '2',
+    field: '2',
     name: 'Joe Black',
     age: 42,
     address: 'London No. 1 Lake Park',
   },
   {
-    key: '3',
+    field: '3',
     name: 'Jim Green',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
   },
   {
-    key: '4',
+    field: '4',
     name: 'Jim Red',
     age: 32,
     address: 'London No. 2 Lake Park',
@@ -90,7 +90,7 @@ export default {
         {
           title: 'Name',
           dataIndex: 'name',
-          key: 'name',
+          field: 'name',
           slots: {
             filterDropdown: 'filterDropdown',
             filterIcon: 'filterIcon',
@@ -113,7 +113,7 @@ export default {
         {
           title: 'Age',
           dataIndex: 'age',
-          key: 'age',
+          field: 'age',
           slots: {
             filterDropdown: 'filterDropdown',
             filterIcon: 'filterIcon',
@@ -135,7 +135,7 @@ export default {
         {
           title: 'Address',
           dataIndex: 'address',
-          key: 'address',
+          field: 'address',
           slots: {
             filterDropdown: 'filterDropdown',
             filterIcon: 'filterIcon',
@@ -158,10 +158,10 @@ export default {
     };
   },
   methods: {
-    handleSearch(selectedKeys, confirm, dataIndex) {
+    handleSearch(selectedfields, confirm, dataIndex) {
       confirm();
-      console.log(selectedKeys[0]);
-      this.searchText = selectedKeys[0];
+      console.log(selectedfields[0]);
+      this.searchText = selectedfields[0];
       this.searchedColumn = dataIndex;
       this.$forceUpdate();
     },

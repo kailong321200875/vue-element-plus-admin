@@ -78,31 +78,31 @@ const searchData = [
 
 const columns = [
   {
-    key: 'title',
+    field: 'title',
     label: '标题',
     showOverflowTooltip: true
   },
   {
-    key: 'author',
+    field: 'author',
     label: '作者'
   },
   {
-    key: 'display_time',
+    field: 'display_time',
     label: '创建时间'
   },
   {
-    key: 'importance',
+    field: 'importance',
     label: '重要性',
     slots: {
       default: 'importance'
     }
   },
   {
-    key: 'pageviews',
+    field: 'pageviews',
     label: '阅读数'
   },
   {
-    key: 'action',
+    field: 'action',
     label: '操作',
     width: '150px',
     slots: {

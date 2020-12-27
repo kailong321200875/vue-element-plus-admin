@@ -11,7 +11,7 @@
       v-loading="loading"
       :columns="columns"
       :data="tableData"
-      row-key="id"
+      row-field="id"
       border
       default-expand-all
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
@@ -21,7 +21,7 @@
       v-loading="loading"
       :columns="columns1"
       :data="tableData1"
-      row-key="id"
+      row-field="id"
       border
       lazy
       :load="load"
@@ -36,32 +36,32 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期',
     sortable: true
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名',
     sortable: true
   },
   {
-    key: 'address',
+    field: 'address',
     label: '地址'
   }
 ]
 
 const columns1 = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名'
   },
   {
-    key: 'address',
+    field: 'address',
     label: '地址'
   }
 ]

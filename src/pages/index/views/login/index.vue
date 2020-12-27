@@ -96,11 +96,11 @@ export default defineComponent({
       passWord: [{ required: true, message: '请输入密码' }]
     })
     async function login(): Promise<void> {
-      const form = unref(loginForm) as any
-      if (!form) return
+      const formWrap = unref(loginForm) as any
+      if (!formWrap) return
       loading.value = true
       try {
-        form.validate((valid: boolean) => {
+        formWrap.validate((valid: boolean) => {
           if (valid) {
             permissionStore.GenerateRoutes().then(() => {
               permissionStore.addRouters.forEach(async(route: RouteRecordRaw) => {

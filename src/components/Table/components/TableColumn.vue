@@ -4,16 +4,16 @@
       <!-- 树型数据 -->
       <template v-if="item.children && item.children.length">
         <table-column
-          :key="item[item.key]"
+          :key="item[item.field]"
           :child="item"
         />
       </template>
 
       <template v-else>
         <el-table-column
-          :key="item[item.key]"
+          :key="item[item.field]"
           v-bind="{...getItemBindValue(item)}"
-          :prop="item.key"
+          :prop="item.field"
         >
           <!-- 表头插槽 -->
           <template v-if="item.slots && item.slots.header" #header="scope">
@@ -37,7 +37,7 @@
 
           <!-- 不需要插槽 -->
           <!-- <span v-if="!item.slots || !item.slots.default">
-            {{ scope.row[item.key] }}
+            {{ scope.row[item.field] }}
           </span> -->
         </el-table-column>
       </template>

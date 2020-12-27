@@ -27,7 +27,7 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期',
     fixed: true,
     width: '150'
@@ -36,7 +36,7 @@ const columns = [
     label: '配送信息',
     children: [
       {
-        key: 'name',
+        field: 'name',
         label: '姓名',
         width: '120'
       },
@@ -44,24 +44,24 @@ const columns = [
         label: '地址',
         children: [
           {
-            key: 'province',
+            field: 'province',
             label: '省份',
             width: '120'
           },
           {
-            key: 'city',
+            field: 'city',
             label: '市区',
             width: '120'
           },
           {
-            key: 'address',
+            field: 'address',
             label: '地址',
             slots: {
               default: 'address'
             }
           },
           {
-            key: 'zip',
+            field: 'zip',
             label: '邮编',
             width: '120'
           }
@@ -70,7 +70,7 @@ const columns = [
     ]
   },
   {
-    key: 'action',
+    field: 'action',
     label: '操作',
     width: '100',
     slots: {

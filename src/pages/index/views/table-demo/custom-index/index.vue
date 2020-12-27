@@ -48,22 +48,22 @@ export default defineComponent({
 
     const columns = ref<any[]>([
       {
-        key: 'index',
+        field: 'index',
         type: 'index',
         index: (index: number) => {
           return index * 2
         }
       },
       {
-        key: 'date',
+        field: 'date',
         label: '日期'
       },
       {
-        key: 'name',
+        field: 'name',
         label: '姓名'
       },
       {
-        key: 'address',
+        field: 'address',
         label: '地址'
       }
     ])

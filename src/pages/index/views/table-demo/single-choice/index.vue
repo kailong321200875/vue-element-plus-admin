@@ -28,15 +28,15 @@ import { defineComponent, ref, unref } from 'vue'
 
 const columns = [
   {
-    key: 'date',
+    field: 'date',
     label: '日期'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名'
   },
   {
-    key: 'address',
+    field: 'address',
     label: '地址'
   }
 ]

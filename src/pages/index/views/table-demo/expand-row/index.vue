@@ -47,22 +47,22 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'id',
+    field: 'id',
     type: 'expand',
     slots: {
       default: 'id'
     }
   },
   {
-    key: 'id',
+    field: 'id',
     label: '商品ID'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '商品名称'
   },
   {
-    key: 'desc',
+    field: 'desc',
     label: '描述'
   }
 ]

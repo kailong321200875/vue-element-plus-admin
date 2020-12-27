@@ -188,6 +188,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: '显示更多'
         }
+      },
+      {
+        path: 'detail',
+        component: () => import('_p/index/views/components-demo/detail/index.vue'),
+        name: 'DetailDemo',
+        meta: {
+          title: '详情组件'
+        }
       }
     ]
   },

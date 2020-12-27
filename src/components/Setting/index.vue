@@ -78,6 +78,11 @@
       </div>
 
       <div class="setting__item">
+        <span>灰色模式</span>
+        <el-switch v-model="greyMode" @change="setGreyMode" />
+      </div>
+
+      <div class="setting__item">
         <span>页面标题</span>
         <el-input v-model="title" size="mini" @change="setTitle" />
       </div>
@@ -86,6 +91,7 @@
         <span>LOGO标题</span>
         <el-input v-model="logoTitle" size="mini" @change="setLogoTitle" />
       </div>
+
     </div>
   </el-drawer>
 </template>
@@ -158,6 +164,11 @@ export default defineComponent({
       appStore.SetLogoTitle(logoTitle)
     }
 
+    const greyMode = ref<boolean>(appStore.greyMode)
+    function setGreyMode(greyMode: boolean) {
+      appStore.SetGreyMode(greyMode)
+    }
+
     return {
       drawer, toggleClick,
       layout, setLayout,
@@ -170,7 +181,8 @@ export default defineComponent({
       tagsView, setTagsView,
       logo, setLogo,
       title, setTitle,
-      logoTitle, setLogoTitle
+      logoTitle, setLogoTitle,
+      greyMode, setGreyMode
     }
   }
 })
@@ -199,7 +211,7 @@ export default defineComponent({
 // 项目配置
 .setting__content {
   background: @appBg;
-  padding: 0 20px;
+  padding: 0 20px 20px 20px;
   .setting__title {
     text-align: center;
     padding-top: 20px;

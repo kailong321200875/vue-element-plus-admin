@@ -33,25 +33,25 @@ import { defineComponent, ref } from 'vue'
 
 const columns = [
   {
-    key: 'id',
+    field: 'id',
     label: 'ID'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名'
   },
   {
-    key: 'amount1',
+    field: 'amount1',
     label: '数值1',
     sortable: true
   },
   {
-    key: 'amount2',
+    field: 'amount2',
     label: '数值2',
     sortable: true
   },
   {
-    key: 'amount3',
+    field: 'amount3',
     label: '数值4',
     sortable: true
   }
@@ -59,23 +59,23 @@ const columns = [
 
 const columns1 = [
   {
-    key: 'id',
+    field: 'id',
     label: 'ID'
   },
   {
-    key: 'name',
+    field: 'name',
     label: '姓名'
   },
   {
-    key: 'amount1',
+    field: 'amount1',
     label: '数值1（元）'
   },
   {
-    key: 'amount2',
+    field: 'amount2',
     label: '数值2（元）'
   },
   {
-    key: 'amount3',
+    field: 'amount3',
     label: '数值4（元）'
   }
 ]

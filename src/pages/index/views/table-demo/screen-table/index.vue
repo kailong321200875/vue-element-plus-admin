@@ -12,7 +12,7 @@
     <com-table
       ref="filterTable"
       v-loading="loading"
-      row-key="date"
+      row-field="date"
       :columns="columns"
       :data="tableData"
       :default-sort="{prop: 'date', order: 'descending'}"
@@ -66,25 +66,25 @@ export default defineComponent({
 
     const columns = ref<any[]>([
       {
-        key: 'date',
+        field: 'date',
         label: '日期',
         sortable: true,
         width: '180',
-        columnKey: 'date',
+        columnfield: 'date',
         filters: [{ text: '2016-05-01', value: '2016-05-01' }, { text: '2016-05-02', value: '2016-05-02' }, { text: '2016-05-03', value: '2016-05-03' }, { text: '2016-05-04', value: '2016-05-04' }],
         filterMethod: filterHandler
       },
       {
-        key: 'name',
+        field: 'name',
         label: '姓名',
         sortable: true
       },
       {
-        key: 'address',
+        field: 'address',
         label: '地址'
       },
       {
-        key: 'tag',
+        field: 'tag',
         label: '标签',
         filters: [{ text: '家', value: '家' }, { text: '公司', value: '公司' }],
         filterMethod: filterTag,
