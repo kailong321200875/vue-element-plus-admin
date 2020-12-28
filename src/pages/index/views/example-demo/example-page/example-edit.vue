@@ -1,17 +1,17 @@
 <template>
-  <ifno-write :id="id" @success="success" />
+  <info-write :id="id" @success="success" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import IfnoWrite from './components/IfnoWrite.vue'
+import InfoWrite from './components/InfoWrite.vue'
 import vueBus from '@/vue-bus'
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
   // name: 'ExampleEdit',
   components: {
-    IfnoWrite
+    InfoWrite
   },
   setup() {
     const { query } = useRoute()

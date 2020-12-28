@@ -9,7 +9,7 @@
     </div>
 
     <div class="button__example--wrap">
-      <el-button type="primary" icon="el-icon-circle-plus-outline" @click="open(false)">新增</el-button>
+      <el-button type="primary" icon="el-icon-circle-plus-outline" @click="open(false, 'InfoWrite')">新增</el-button>
       <el-button
         type="danger"
         icon="el-icon-delete"
@@ -45,20 +45,32 @@
         </el-tag>
       </template>
       <template #action="scope">
-        <el-button type="primary" size="mini" @click="open(scope.row)">编辑</el-button>
+        <el-button type="primary" size="mini" @click="open(scope.row, 'InfoWrite')">编辑</el-button>
+        <el-button type="success" size="mini" @click="open(scope.row, 'Detail')">查看</el-button>
         <el-button type="danger" size="mini" @click="dels(scope.row)">删除</el-button>
       </template>
     </com-table>
 
     <com-dialog v-model="dialogVisible" :title="title">
-      <ifno-write :info="info" @close="close" @success="success" />
+      <info-write
+        v-if="comName === 'InfoWrite'"
+        :info="info"
+        @close="toggleVisible"
+        @success="success"
+      />
+      <detail
+        v-if="comName === 'Detail'"
+        :info="info"
+        @close="toggleVisible"
+      />
     </com-dialog>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import IfnoWrite from './components/IfnoWrite.vue'
+import InfoWrite from './components/InfoWrite.vue'
+import Detail from './components/Detail.vue'
 
 import { useExample } from '@/hooks/useExample'
 import { Message } from '_c/Message'
@@ -104,7 +116,7 @@ const columns = [
   {
     field: 'action',
     label: '操作',
-    width: '150px',
+    width: '220px',
     slots: {
       default: 'action'
     }
@@ -114,7 +126,8 @@ const columns = [
 export default defineComponent({
   // name: 'ExampleDialog',
   components: {
-    IfnoWrite
+    InfoWrite,
+    Detail
   },
   setup() {
     const info = ref<any>(null)
@@ -130,7 +143,9 @@ export default defineComponent({
       sizeChange,
       handleSelectionChange,
       selectionData,
-      delData
+      delData,
+      comName,
+      toggleVisible
     } = useExample()
 
     // 请求数据
@@ -198,15 +213,11 @@ export default defineComponent({
     }
 
     // 打开弹窗
-    function open(row: any) {
-      title.value = row ? '编辑' : '新增'
+    function open(row: any, component: string) {
+      comName.value = component
+      title.value = !row ? '新增' : (component === 'Detail' ? '详情' : '编辑')
       info.value = row || null
-      dialogVisible.value = true
-    }
-
-    // 弹窗关闭
-    function close() {
-      dialogVisible.value = false
+      toggleVisible(true)
     }
 
     // 成功之后的回调
@@ -234,7 +245,9 @@ export default defineComponent({
       handleCurrentChange,
       handleSelectionChange,
       dels,
-      close, success
+      close, success,
+      comName,
+      toggleVisible
     }
   }
 })

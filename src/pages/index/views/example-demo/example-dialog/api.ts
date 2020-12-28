@@ -13,7 +13,7 @@ export const delsExampApi = ({ data }: PropsData): any => {
   return fetch({ url: '/example/delete', method: 'post', data })
 }
 
-export const saveExampApi = ({ data }: PropsData): any => {
+export const setExampApi = ({ data }: PropsData): any => {
   return fetch({ url: '/example/save', method: 'post', data })
 }
 

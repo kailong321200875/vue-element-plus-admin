@@ -37,7 +37,7 @@
                 <template v-else>{{ item.label }}</template>
               </div>
               <div class="content__item--message" :style="messageStyleObj">
-                <slot v-if="item.slots && item.slots.default" :name="item.slots.default" :row="item" />
+                <slot v-if="item.slots && item.slots.default" :name="item.slots.default" :row="data" />
                 <template v-else>{{ data[item.field] }}</template>
               </div>
             </div>
@@ -195,12 +195,15 @@ export default defineComponent({
       height: 100%;
     }
     .content__item--label {
+      font-size: 14px;
       padding: 8px 16px;
     }
     .content__item--message {
       flex: 1;
+      font-size: 14px;
       padding: 8px 16px;
       line-height: 20px;
+      color: #606266;
     }
   }
 }

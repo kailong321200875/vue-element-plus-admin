@@ -46,6 +46,7 @@
       </template>
       <template #action="scope">
         <el-button type="primary" size="mini" @click="open(scope.row)">编辑</el-button>
+        <el-button type="success" size="mini" @click="open(scope.row, 'Detail')">查看</el-button>
         <el-button type="danger" size="mini" @click="dels(scope.row)">删除</el-button>
       </template>
     </com-table>
@@ -100,7 +101,7 @@ const columns = [
   {
     field: 'action',
     label: '操作',
-    width: '150px',
+    width: '220px',
     slots: {
       default: 'action'
     }
@@ -189,8 +190,12 @@ export default defineComponent({
     }
 
     // 打开新页面
-    function open(row: any) {
-      push(row ? `/example-demo/example-edit?id=${row.id}` : `/example-demo/example-add`)
+    function open(row: any, component?: string) {
+      push(!row
+        ? `/example-demo/example-add`
+        : (component
+          ? `/example-demo/example-detail?id=${row.id}`
+          : `/example-demo/example-edit?id=${row.id}`))
     }
 
     getExampleList()

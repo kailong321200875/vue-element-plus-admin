@@ -39,6 +39,9 @@ export function useExample() {
   // 弹窗标题
   const title = ref<string>('')
 
+  // 组件名称
+  const comName = ref<string>('')
+
   // 表格展示条目改变时候重置基本参数
   function sizeChange(val: number) {
     loading.value = true
@@ -72,6 +75,11 @@ export function useExample() {
     selectionData.value = selection
   }
 
+  // 改变弹窗dialogVisible
+  function toggleVisible(val = false) {
+    dialogVisible.value = val
+  }
+
   return {
     defalutParams,
     tableData,
@@ -80,9 +88,11 @@ export function useExample() {
     total,
     dialogVisible,
     title,
+    comName,
     sizeChange,
     currentChange,
     delData,
-    handleSelectionChange
+    handleSelectionChange,
+    toggleVisible
   }
 }

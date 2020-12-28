@@ -557,6 +557,19 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           showMainRoute: true,
           activeMenu: '/example-demo/example-page'
         }
+      },
+      {
+        path: 'example-detail',
+        component: () => import('_p/index/views/example-demo/example-page/example-detail.vue'),
+        name: 'ExampleDetail',
+        meta: {
+          title: '列表综合实例-详情',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
+        }
       }
     ]
   }

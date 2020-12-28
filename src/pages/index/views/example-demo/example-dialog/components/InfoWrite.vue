@@ -62,12 +62,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref, unref, PropType } from 'vue'
-import { useRouter } from 'vue-router'
 import Editor from '_c/Editor/index.vue'
 import { Message } from '_c/Message'
 import { formatTime } from '@/utils'
 import { InfoWriteParams, InfoWriteRules } from './types'
-import { saveExampApi, getExampDetApi } from '../api'
+import { setExampApi, getExampDetApi } from '../api'
 
 const requiredRule = {
   required: true,
@@ -80,15 +79,13 @@ export default defineComponent({
     Editor
   },
   props: {
-    id: {
-      type: String as PropType<string>,
-      default: () => ''
+    info: {
+      type: Object as PropType<any>,
+      default: () => null
     }
   },
   emits: ['close', 'success'],
   setup(props, { emit }) {
-    const { push } = useRouter()
-
     const formRef = ref<HTMLElement | null>(null)
     const editorRef = ref<HTMLElement | null>(null)
     const subLoading = ref<boolean>(false)
@@ -113,8 +110,8 @@ export default defineComponent({
     })
 
     async function getDet() {
-      if (props.id) {
-        const id = props.id
+      if (props.info) {
+        const id = (props.info as any).id
         try {
           const res = await getExampDetApi({
             params: {
@@ -148,7 +145,7 @@ export default defineComponent({
           if (valid) {
             const formData = unref(form)
             formData.display_time = formatTime(formData.display_time, 'yyyy-MM-dd HH:mm:ss')
-            const res = await saveExampApi({
+            const res = await setExampApi({
               data: formData
             })
             if (res.code === '0000') {
@@ -168,7 +165,7 @@ export default defineComponent({
     }
 
     function close() {
-      push('/example-demo/example-page')
+      emit('close')
     }
 
     return {

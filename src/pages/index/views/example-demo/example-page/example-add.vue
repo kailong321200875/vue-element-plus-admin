@@ -1,16 +1,16 @@
 <template>
-  <ifno-write @success="success" />
+  <info-write @success="success" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import IfnoWrite from './components/IfnoWrite.vue'
+import InfoWrite from './components/InfoWrite.vue'
 import vueBus from '@/vue-bus'
 
 export default defineComponent({
   // name: 'ExampleAdd',
   components: {
-    IfnoWrite
+    InfoWrite
   },
   setup() {
     // 成功之后的回调

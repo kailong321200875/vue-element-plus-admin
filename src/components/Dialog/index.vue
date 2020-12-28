@@ -40,6 +40,9 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .com-dialog__content {
-  height: 600px;
+  @{deep}(.el-scrollbar__wrap ) {
+		max-height: 600px; // 最大高度
+		overflow-x: hidden; // 隐藏横向滚动栏
+	}
 }
 </style>
