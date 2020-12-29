@@ -1,0 +1,199 @@
+.app__wrap {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .sidebar__wrap {
+    position: fixed;
+    width: @menuWidth;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transition: width 0.2s;
+  }
+  .sidebar__wrap--collapsed {
+    width: @menuMinWidth;
+    @{deep}(.anticon-item) {
+      display: none;
+    }
+  }
+  .main__wrap {
+    position: absolute;
+    width: calc(~"100% - @{menuWidth}");
+    height: 100%;
+    top: 0;
+    left: @menuWidth;
+    transition: all 0.2s;
+    z-index: 1;
+    .header__wrap {
+      transition: all 0.2s;
+      .navbar__wrap {
+        display: flex;
+        align-items: center;
+        height: @navbarHeight;
+        padding: 0 20px 0 15px;
+        position: relative;
+        background: @contentBg;
+        &:after {
+          content: "";
+          width: 100%;
+          height: 1px;
+          border-top: 1px solid #d8dce5;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+        @{deep}(.hover-container) {
+          transition: background 0.2s;
+          height: 100%;
+          line-height: @navbarHeight + 5px;
+          padding: 0 5px;
+          text-align: center;
+          &:hover {
+            background: #f6f6f6;
+          }
+        }
+        .navbar__wrap--right {
+          display: flex;
+          align-items: center;
+          height: @navbarHeight;
+          position: absolute;
+          top: 0;
+          right: 20px;
+          @{deep}(.screenfull-container),
+          @{deep}(.user-container) {
+            line-height: @navbarHeight !important;
+          }
+        }
+      }
+    }
+
+    // content样式
+    .main__wrap--content {
+      height: 100%;
+      @{deep}(.el-scrollbar__wrap) {
+        overflow-x: hidden;
+      }
+    }
+    // content样式
+  }
+  .main__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}");
+    left: @menuMinWidth;
+  }
+}
+
+// LeftTop模式
+// 经典模式
+.app__wrap--LeftTop,
+.app__wrap--Classic {
+  .main__wrap--fixed--all {
+    margin-top: @navbarHeight + @tagsViewHeight !important;
+    height: calc(~"100% - @{navbarHeight} - @{tagsViewHeight}") !important;
+  }
+  .main__wrap--fixed--nav {
+    margin-top: @navbarHeight !important;
+    height: calc(~"100% - @{navbarHeight}") !important;
+  }
+  .main__wrap--fixed--tags {
+    margin-top: @tagsViewHeight !important;
+    height: calc(~"100% - @{tagsViewHeight}") !important;
+  }
+  .header__wrap--fixed {
+    position: fixed !important;
+    width: calc(~"100% - @{menuWidth}") !important;
+    top: @topSiderHeight !important;
+    left: @menuWidth !important;
+    z-index: 200;
+  }
+  .header__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}") !important;
+    left: @menuMinWidth !important;
+  }
+}
+.app__wrap--Classic {
+  .header__wrap--fixed {
+    top: 0 !important;
+  }
+}
+
+.app__wrap--LeftTop,
+.app__wrap--Top {
+  .sidebar__wrap--Top {
+    height: @topSiderHeight;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: @topMenuBg;
+    position: relative;
+    &:after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      border-top: 1px solid #d8dce5;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    .sidebar__item--Top {
+      flex: 1;
+      margin: 0 50px;
+    }
+    .navbar__wrap--right {
+      display: flex;
+      align-items: center;
+      height: @topSiderHeight;
+      @{deep}(.hover-container) {
+        transition: background 0.2s;
+        height: 100%;
+        line-height: @topSiderHeight;
+        padding: 0 5px;
+        text-align: center;
+        &:hover {
+          background: #f6f6f6;
+        }
+      }
+    }
+  }
+}
+
+// 顶部模式
+.app__wrap--Top {
+  .header__wrap--fixed {
+    position: fixed !important;
+    width: 100% !important;
+    top: @topSiderHeight !important;
+    left: 0 !important;
+    z-index: 200;
+  }
+  .main__wrap {
+    width: 100%;
+    left: 0;
+    height: calc(~"100% - @{topSiderHeight}");
+    top: @topSiderHeight;
+  }
+  .main__wrap--fixed--all,
+  .main__wrap--fixed--tags {
+    margin-top: @navbarHeight !important;
+    height: calc(~"100% - @{navbarHeight}") !important;
+  }
+}
+
+// 左侧顶部
+.app__wrap--LeftTop {
+  .sidebar__wrap {
+    top: @topSiderHeight;
+    left: 0;
+    height: calc(~"100% - @{topSiderHeight}");
+  }
+  .main__wrap {
+    width: calc(~"100% - @{menuWidth}");
+    left: @menuWidth;
+    height: calc(~"100% - @{topSiderHeight}");
+    top: @topSiderHeight;
+  }
+  .main__wrap--collapsed {
+    width: calc(~"100% - @{menuMinWidth}");
+    left: @menuMinWidth;
+  }
+}

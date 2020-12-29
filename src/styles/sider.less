@@ -6,7 +6,7 @@
   .sidebar-container {
     background: @menuBg;
     .el-menu {
-      background-color: @menuBg !important;
+      // background-color: @menuBg !important;
       .el-menu-item,
       .el-submenu__title {
         color: @menuText !important;
@@ -15,7 +15,7 @@
           color: @menuText !important;
         }
       }
-      .is-opened {
+      .el-submenu {
         .el-menu-item,
         .el-submenu {
           background-color: @subMenuBg !important;
@@ -58,17 +58,6 @@
           color: @menuActiveText !important;
         }
       }
-      
-      // .nest-menu {
-      //   background-color: @subMenuBg !important;
-      //   .el-submenu>.el-submenu__title {
-      //     background-color: @subMenuBg !important;
-      //   }
-      //   .is-active {
-      //     background-color: @subMenuHover !important;
-      //   }
-      // }
-      
     }
     .el-menu--collapse {
       &>div>.el-submenu {
@@ -106,12 +95,7 @@
         color: @menuActiveText !important;
       }
     }
-      
-    // .nest-menu {
-    //   .is-active {
-    //     background-color: @subMenuHover !important;
-    //   }
-    // }
+
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {
@@ -122,7 +106,7 @@
     }
     .el-menu-item:hover {
       color: @subMenuActiveText !important;
-      background-color: @subMenuHover !important;
+      // background-color: @subMenuHover !important;
     }
   }
 }
@@ -152,16 +136,7 @@
           background-color: @subMenuBg !important;
         }
       }
-      
-      // .nest-menu {
-      //   background-color: @subMenuBg !important;
-      //   .el-submenu>.el-submenu__title {
-      //     background-color: @subMenuBg !important;
-      //   }
-      //   .is-active {
-      //     background-color: @subMenuHover !important;
-      //   }
-      // }
+
       // menu hover
       .submenu-title-noDropdown,
       .el-submenu__title {
@@ -194,12 +169,7 @@
         color: @topMenuActiveText !important;
       }
     }
-      
-    // .nest-menu {
-    //   .is-active {
-    //     // background-color: @subMenuHover !important;
-    //   }
-    // }
+
     // menu hover
     .submenu-title-noDropdown,
     .el-submenu__title {

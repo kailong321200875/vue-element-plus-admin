@@ -9,7 +9,6 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import screenfull from 'screenfull'
-// import { message } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'Screenfull',
