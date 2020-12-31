@@ -16,6 +16,7 @@ export interface AppState {
   logoTitle: String
   userInfo: String
   greyMode: Boolean
+  showBackTop: Boolean
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
@@ -34,6 +35,7 @@ class App extends VuexModule implements AppState {
   public logoTitle = 'vue-ElPlus-admin' // logo标题
   public userInfo = 'userInfo' // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   public greyMode = false // 是否开始灰色模式，用于特殊悼念日
+  public showBackTop = true // 是否显示回到顶部
 
   @Mutation
   private SET_COLLAPSED(collapsed: boolean): void {
@@ -87,6 +89,10 @@ class App extends VuexModule implements AppState {
   private SET_GREYMODE(greyMode: boolean): void {
     this.greyMode = greyMode
   }
+  @Mutation
+  private SET_SHOWBACKTOP(showBackTop: boolean): void {
+    this.showBackTop = showBackTop
+  }
 
   @Action
   public SetCollapsed(collapsed: boolean): void {
@@ -139,6 +145,10 @@ class App extends VuexModule implements AppState {
   @Action
   public SetGreyMode(greyMode: boolean): void {
     this.SET_GREYMODE(greyMode)
+  }
+  @Action
+  public SetShowBackTop(showBackTop: boolean): void {
+    this.SET_SHOWBACKTOP(showBackTop)
   }
 }
 

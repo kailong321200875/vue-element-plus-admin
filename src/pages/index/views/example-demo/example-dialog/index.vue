@@ -225,7 +225,7 @@ export default defineComponent({
       if (type === 'add') {
         currentChange(1)
       }
-      close()
+      toggleVisible()
       getExampleList()
     }
 

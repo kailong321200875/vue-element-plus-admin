@@ -19,7 +19,6 @@ const service: AxiosInstance = axios.create({
 // request拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log(config)
     if (config.method === 'post' && config.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
       config.data = qs.stringify(config.data)
     }

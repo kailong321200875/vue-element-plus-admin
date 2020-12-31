@@ -510,6 +510,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     path: '/example-demo',
     component: Layout,
     name: 'ExampleDemo',
+    redirect: '/example-demo/example-dialog',
     meta: {
       alwaysShow: true,
       icon: 'example',

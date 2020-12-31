@@ -62,7 +62,7 @@ export default defineComponent({
         }
       }, 100);
       (window as any).addEventListener('resize', __resizeHandler)
-      sidebarElm = document.getElementsByClassName('sidebar-container-wrap')[0]
+      sidebarElm = document.getElementsByClassName('sidebar__wrap')[0]
       sidebarElm && sidebarElm.addEventListener('transitionend', sidebarResizeHandler)
     })
 

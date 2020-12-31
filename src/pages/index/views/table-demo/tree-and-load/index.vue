@@ -11,7 +11,7 @@
       v-loading="loading"
       :columns="columns"
       :data="tableData"
-      row-field="id"
+      row-key="id"
       border
       default-expand-all
       :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
@@ -21,7 +21,7 @@
       v-loading="loading"
       :columns="columns1"
       :data="tableData1"
-      row-field="id"
+      row-key="id"
       border
       lazy
       :load="load"

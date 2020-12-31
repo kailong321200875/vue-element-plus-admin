@@ -71,6 +71,12 @@
     <!-- setting -->
     <setting />
     <!-- setting -->
+
+    <el-backtop
+      v-if="showBackTop"
+      target=".main__wrap--content .el-scrollbar__wrap"
+      :bottom="100"
+    />
   </div>
 </template>
 
@@ -114,6 +120,7 @@ export default defineComponent({
     // const fixedNavbar = computed(() => appStore.fixedNavbar)
     // const fixedTags = computed(() => appStore.fixedTags)
     const fixedHeader = computed(() => appStore.fixedHeader)
+    const showBackTop = computed(() => appStore.showBackTop)
 
     const classObj = computed(() => {
       const obj = {}
@@ -139,7 +146,8 @@ export default defineComponent({
       fixedHeader,
       // fixedNavbar,
       // fixedTags,
-      setCollapsed
+      setCollapsed,
+      showBackTop
     }
   }
 })

@@ -11,7 +11,9 @@
 
     <!-- 弹窗内容 -->
     <el-scrollbar class="com-dialog__content">
-      <slot />
+      <div class="content__wrap">
+        <slot />
+      </div>
     </el-scrollbar>
 
     <template v-if="slots.footer" #footer>
@@ -40,6 +42,9 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .com-dialog__content {
+  .content__wrap {
+    padding-right: 10px;
+  }
   @{deep}(.el-scrollbar__wrap ) {
 		max-height: 600px; // 最大高度
 		overflow-x: hidden; // 隐藏横向滚动栏

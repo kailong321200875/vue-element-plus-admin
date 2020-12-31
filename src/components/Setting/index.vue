@@ -83,6 +83,11 @@
       </div>
 
       <div class="setting__item">
+        <span>回到顶部</span>
+        <el-switch v-model="showBackTop" @change="setShowBackTop" />
+      </div>
+
+      <div class="setting__item">
         <span>页面标题</span>
         <el-input v-model="title" size="mini" @change="setTitle" />
       </div>
@@ -169,6 +174,11 @@ export default defineComponent({
       appStore.SetGreyMode(greyMode)
     }
 
+    const showBackTop = ref<boolean>(appStore.showBackTop)
+    function setShowBackTop(showBackTop: boolean) {
+      appStore.SetShowBackTop(showBackTop)
+    }
+
     return {
       drawer, toggleClick,
       layout, setLayout,
@@ -182,7 +192,8 @@ export default defineComponent({
       logo, setLogo,
       title, setTitle,
       logoTitle, setLogoTitle,
-      greyMode, setGreyMode
+      greyMode, setGreyMode,
+      showBackTop, setShowBackTop
     }
   }
 })

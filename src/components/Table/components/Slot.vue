@@ -25,7 +25,7 @@ export default defineComponent({
     return h('span', _this.slots[props.slotName]({
       row: props.row,
       column: props.column,
-      index: props.index
+      $index: props.index
     }))
   }
 })
