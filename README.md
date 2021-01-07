@@ -2,12 +2,10 @@
 
 [vue-element-admin 3.0](https://github.com/kailong321200875/vue-element-admin-webpack)是一个基于[vue3](https://github.com/vuejs/vue-next)、[typeScript](https://github.com/microsoft/TypeScript)、[vue-cli4](https://github.com/vuejs/vue-cli)、[element-plus](https://github.com/element-plus/element-plus)的后台解决方案，借鉴了[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)和[vue-vben-admin](https://github.com/anncwb/vue-vben-admin)的写法和优点。内置了动态路由，权限验证，典型的业务模型，丰富的功能组件，并且提供了多页配置，开箱即用，可以用来作为项目的启动模版。它可以帮助你快速搭建企业级中后台产品原型，也可以作为一个示例，用于学习。
 
-::: tip 建议
 本项目的定位是后台集成方案，不太适合当基础模板来进行二次开发。因为本项目集成了很多你可能用不到的功能，会造成不少的代码冗余。如果你的项目不关注这方面的问题，也可以直接基于它进行二次开发。
 <!-- 如果需要二次开发，推荐使用[vue-element-admin 2.0](http://192.168.169.57:9000/scm/git/hzt-webdocs.git)中的精简版分支 `vue-admin-template` 进行开发。 -->
-:::
 
-(在线预览地址)[http://8.133.179.48:4000/dist-pro/#/login]
+[在线预览地址](http://8.133.179.48:4000/dist-pro/#/login)
 
 ## 功能
 
@@ -85,9 +83,7 @@
 
 你需要在本地安装[node](https://nodejs.org/en/)和[git](https://git-scm.com/)。本项目技术栈基于[ES2015+](https://es6.ruanyifeng.com/)、[vue](https://www.vue3js.cn/docs/zh/)、[vuex](https://next.vuex.vuejs.org/)、[vue-router](https://next.router.vuejs.org/)、[vue-cli](https://github.com/vuejs/vue-cli)、[axios](https://github.com/axios/axios)和[element-plus](https://github.com/element-plus/element-plus)，所有的请求数据都使用[Mock.js](https://github.com/nuysoft/Mock)进行模拟，提前了解和学习这些知识会对使用本项目有很大的帮助。
 
-::: warning 注意
-本项目不支持低版本浏览器(如 ie)，后续会考虑支持IE11。
-:::
+注意：本项目不支持低版本浏览器(如 ie)，后续会考虑支持IE11。
 
 ## 目录结构
 
