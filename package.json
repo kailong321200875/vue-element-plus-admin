@@ -83,7 +83,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,vue}": [
-      "vue-cli-service lint"
+      "eslint --fix",
+      "git add"
     ]
   },
   "husky": {
