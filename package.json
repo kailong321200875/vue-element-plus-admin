@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "ls-lint": "npx ls-lint",
     "lint": "vue-cli-service lint",
     "build-dev:index": "cross-env PROJECT_NAME=index vue-cli-service build --mode development",
     "build-pro:index": "cross-env PROJECT_NAME=index vue-cli-service build",
@@ -90,10 +89,13 @@
     "template",
     "element-plus"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint"
+    ]
   }
 }
