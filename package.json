@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "ls-lint": "npx ls-lint",
     "lint": "vue-cli-service lint",
     "build-dev:index": "cross-env PROJECT_NAME=index vue-cli-service build --mode development",
     "build-pro:index": "cross-env PROJECT_NAME=index vue-cli-service build",
@@ -40,6 +41,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@ls-lint/ls-lint": "^1.9.2",
     "@types/clipboard": "^2.0.1",
     "@types/echarts": "^4.9.1",
     "@types/lodash-es": "^4.17.3",
@@ -81,12 +83,13 @@
     "vue-cli-plugin-element-plus": "^0.0.8",
     "vuex-module-decorators": "^1.0.1"
   },
-  "lint-staged": {
-    "src/**/*.{js,ts,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
+  "keywords": [
+    "vue",
+    "typescript",
+    "admin",
+    "template",
+    "element-plus"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",

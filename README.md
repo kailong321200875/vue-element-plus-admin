@@ -7,6 +7,8 @@
 <!-- 如果需要二次开发，推荐使用[vue-element-admin 2.0](http://192.168.169.57:9000/scm/git/hzt-webdocs.git)中的精简版分支 `vue-admin-template` 进行开发。 -->
 :::
 
+(在线预览地址)[http://8.133.179.48:4000/dist-pro/#/login]
+
 ## 功能
 
 ``` sh

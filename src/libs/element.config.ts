@@ -14,5 +14,5 @@ const elementConfig: ConfigElement = {
    */
   zIndex: 2000
 }
-const haha = ''
+
 export default elementConfig
