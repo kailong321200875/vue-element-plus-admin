@@ -12,7 +12,8 @@
     "build:dev": "vue-cli-service build --mode development",
     "build:pro": "vue-cli-service build",
     "build:test": "vue-cli-service build --mode test",
-    "serve:index": "cross-env PROJECT_NAME=index vue-cli-service serve"
+    "serve:index": "cross-env PROJECT_NAME=index vue-cli-service serve",
+    "clean": "npx rimraf node_modules"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -37,6 +38,8 @@
     "web-storage-cache": "^1.1.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@types/clipboard": "^2.0.1",
     "@types/echarts": "^4.9.1",
     "@types/lodash-es": "^4.17.3",
@@ -64,7 +67,7 @@
     "eslint-config-prettier": "^6.14.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.0-0",
-    "image-webpack-loader": "^7.0.1",
+    "husky": "^4.3.6",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "path": "^0.12.7",
@@ -77,5 +80,17 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue-cli-plugin-element-plus": "^0.0.8",
     "vuex-module-decorators": "^1.0.1"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

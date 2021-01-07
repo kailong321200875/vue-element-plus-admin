@@ -23,8 +23,6 @@ import './permission' // 路由守卫
 
 import { setupElement } from '@/libs/element' // element UI
 
-import { setupSvgIcon } from '@/assets/icons' // svg图标
-
 import { setupGlobCom } from '@/components' // 全局公用组件
 
 import { setupDirectives } from '@/directives' // 自定义指令
@@ -42,8 +40,6 @@ setupRouter(app) // 引入路由
 setupStore(app) // 引入状态管理
 
 setupElement(app) // 引入element组件
-
-setupSvgIcon(app) // 全局注册svgIcon组件
 
 setupGlobCom(app) // 注册全局公用组件
 

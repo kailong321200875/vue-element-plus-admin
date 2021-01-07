@@ -79,14 +79,14 @@ const vueConfig = {
       .end()
 
     // 图片压缩
-    config.module
-      .rule('images')
-      .use('image-webpack-loader')
-      .loader('image-webpack-loader')
-      .options({
-        bypassOnDebug: true
-      })
-      .end()
+    // config.module
+    //   .rule('images')
+    //   .use('image-webpack-loader')
+    //   .loader('image-webpack-loader')
+    //   .options({
+    //     bypassOnDebug: true
+    //   })
+    //   .end()
 
     // 生产环境
     config.when(process.env.NODE_ENV === 'production', config => {

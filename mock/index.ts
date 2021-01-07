@@ -21,6 +21,7 @@ export function mockXHR() {
         this.custom.xhr.responseType = this.responseType
       }
     }
+    /* eslint-disable */
     this.proxy_send(...arguments)
   }
 

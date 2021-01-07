@@ -15,4 +15,4 @@ const elementConfig: ConfigElement = {
   zIndex: 2000
 }
 
-export default elementConfig
+export default elementConfig 

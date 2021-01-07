@@ -2,7 +2,7 @@
   <el-dropdown class="avatar-container" trigger="hover">
     <div>
       <div class="avatar-wrapper">
-        <img :src="require('@/assets/img/avatar.gif')" class="user-avatar">
+        <img :src="require('@/assets/img/avatar.png')" class="user-avatar">
         <span class="name-item">管理员</span>
       </div>
     </div>

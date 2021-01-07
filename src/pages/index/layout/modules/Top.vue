@@ -72,11 +72,7 @@
     <setting />
     <!-- setting -->
 
-    <el-backtop
-      v-if="showBackTop"
-      target=".main__wrap--content .el-scrollbar__wrap"
-      :bottom="100"
-    />
+    <backtop v-if="showBackTop" />
   </div>
 </template>
 
@@ -94,6 +90,7 @@ import Screenfull from '_c/Screenfull/index.vue'
 import UserInfo from '_c/UserInfo/index.vue'
 
 import Setting from '_c/Setting/index.vue'
+import Backtop from '_c/Backtop/index.vue'
 export default defineComponent({
   name: 'Top',
   components: {
@@ -105,7 +102,8 @@ export default defineComponent({
     AppMain,
     TagsView,
     Logo,
-    Setting
+    Setting,
+    Backtop
   },
   setup() {
     const layout = computed(() => appStore.layout)

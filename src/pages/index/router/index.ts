@@ -90,7 +90,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
     meta: {},
     children: [
       {
-        path: 'http://192.168.169.57/ue/2019/doc/vue-standard/dist/',
+        path: 'http://8.133.179.48:4000/dist-doc/',
         meta: { title: '文档', icon: 'documentation' }
       }
     ]
