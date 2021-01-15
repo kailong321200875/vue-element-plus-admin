@@ -2,9 +2,13 @@ import Mock from 'mockjs'
 import { param2Obj } from '@/utils'
 
 import example from './example'
+import user from './user'
+import role from './role'
 
 const mocks: any[] = [
-  ...example
+  ...example,
+  ...user,
+  ...role
 ]
 
 // for front mock

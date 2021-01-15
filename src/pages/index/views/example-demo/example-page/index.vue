@@ -131,7 +131,7 @@ export default defineComponent({
         const res = await getExampleListApi({
           params: Object.assign(defalutParams, data || {})
         })
-        if (res.code === '0000') {
+        if (res) {
           total.value = res.data.total
           tableData.value = res.data.list
         }
@@ -182,7 +182,7 @@ export default defineComponent({
         const res = await delsExampApi({
           data: { ids }
         })
-        if (res.code === '0000') {
+        if (res) {
           Message.success('删除成功！')
           getExampleList()
         }

@@ -121,7 +121,7 @@ export default defineComponent({
               id: id
             }
           })
-          if (res.code === '0000') {
+          if (res) {
             for (const key in form) {
               if (key === 'importance') {
                 form[key] = res.data[key].toString()
@@ -151,7 +151,7 @@ export default defineComponent({
             const res = await setExampApi({
               data: formData
             })
-            if (res.code === '0000') {
+            if (res) {
               Message.success(form.id ? '编辑成功' : '新增成功')
               emit('success', form.id ? 'edit' : 'add')
             }

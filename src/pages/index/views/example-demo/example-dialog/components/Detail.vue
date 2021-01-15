@@ -82,7 +82,7 @@ export default defineComponent({
               id: id
             }
           })
-          if (res.code === '0000') {
+          if (res.code) {
             for (const key in form) {
               if (key === 'importance') {
                 form[key] = res.data[key].toString()

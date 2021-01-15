@@ -14,7 +14,7 @@
           <el-form-item prop="userName">
             <el-input
               v-model="form.userName"
-              placeholder="请输入账号"
+              placeholder="请输入账号 admin or test"
               class="form--input"
             >
               <template #prefix>
@@ -30,7 +30,7 @@
               show-password
               :minlength="3"
               :maxlength="18"
-              placeholder="请输入密码"
+              placeholder="请输入密码 admin or test"
               class="form--input"
             >
               <template #prefix>
@@ -63,6 +63,9 @@ import type { RouteRecordRaw } from 'vue-router'
 import { permissionStore } from '_p/index/store/modules/permission'
 import { appStore } from '_p/index/store/modules/app'
 import wsCache from '@/cache'
+import { ElNotification } from 'element-plus'
+
+import { loginApi, getRoleDetApi } from './api'
 
 interface FormModule {
   userName: string,
@@ -88,8 +91,8 @@ export default defineComponent({
       immediate: true
     })
     const form = reactive<FormModule>({
-      userName: 'admin',
-      passWord: 'admin'
+      userName: '',
+      passWord: ''
     })
     const rules = reactive<RulesModule>({
       userName: [{ required: true, message: '请输入账号' }],
@@ -100,16 +103,28 @@ export default defineComponent({
       if (!formWrap) return
       loading.value = true
       try {
-        formWrap.validate((valid: boolean) => {
+        formWrap.validate(async(valid: boolean) => {
           if (valid) {
-            permissionStore.GenerateRoutes().then(() => {
-              permissionStore.addRouters.forEach(async(route: RouteRecordRaw) => {
-                await addRoute(route.name!, route) // 动态添加可访问路由表
+            // 模拟登录接口之后返回角色信息
+            const res = await loginApi({ data: form })
+            if (res) {
+              // 获取权限信息
+              const role = await getRoleDetApi({
+                params: {
+                  id: res.data.roleId
+                }
               })
-              wsCache.set(appStore.userInfo, form)
-              permissionStore.SetIsAddRouters(true)
-              push({ path: redirect.value || '/' })
-            })
+              if (role) {
+                wsCache.set(appStore.userInfo, Object.assign(form, role.data))
+                permissionStore.GenerateRoutes().then(() => {
+                  permissionStore.addRouters.forEach(async(route: RouteRecordRaw) => {
+                    await addRoute(route.name!, route) // 动态添加可访问路由表
+                  })
+                  permissionStore.SetIsAddRouters(true)
+                  push({ path: redirect.value || '/' })
+                })
+              }
+            }
           } else {
             console.log('error submit!!')
             return false
@@ -121,6 +136,13 @@ export default defineComponent({
         loading.value = false
       }
     }
+
+    ElNotification({
+      title: '提示',
+      message: '账号 admin 为 前端 控制路由权限，账号 test 为 后端 控制路由权限。密码与账号相同',
+      duration: 60000
+    })
+
     return {
       loginForm,
       loading, redirect, form, rules,

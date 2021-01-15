@@ -62,7 +62,7 @@
         <template #title="scope">
           <span class="is-required-item">{{ scope.row.label }}</span>
         </template>
-        <template #titleDefault>
+        <template #titleContent>
           <el-form-item prop="title">
             <el-input v-model="form.title" placeholder="请输入标题" />
           </el-form-item>
@@ -71,7 +71,7 @@
         <template #author="scope">
           <span class="is-required-item">{{ scope.row.label }}</span>
         </template>
-        <template #authorDefault>
+        <template #authorContent>
           <el-form-item prop="author">
             <el-input v-model="form.author" placeholder="请输入作者" />
           </el-form-item>
@@ -80,7 +80,7 @@
         <template #time="scope">
           <span class="is-required-item">{{ scope.row.label }}</span>
         </template>
-        <template #timeDefault>
+        <template #timeContent>
           <el-form-item prop="display_time">
             <el-date-picker
               v-model="form.display_time"
@@ -94,7 +94,7 @@
         <template #importance="scope">
           <span class="is-required-item">{{ scope.row.label }}</span>
         </template>
-        <template #importanceDefault>
+        <template #importanceContent>
           <el-form-item prop="importance">
             <el-select v-model="form.importance" placeholder="请选择重要性" style="width: 100%;">
               <el-option label="重要" value="3" />
@@ -107,7 +107,7 @@
         <template #pageviews="scope">
           <span class="is-required-item">{{ scope.row.label }}</span>
         </template>
-        <template #pageviewsDefault>
+        <template #pageviewsContent>
           <el-form-item prop="pageviews">
             <el-input-number
               v-model="form.pageviews"
@@ -172,43 +172,23 @@ const fromSchema: any[] = [
   {
     field: 'title',
     label: '标题',
-    span: 24,
-    slots: {
-      title: 'title',
-      default: 'titleDefault'
-    }
+    span: 24
   },
   {
     field: 'author',
-    label: '作者',
-    slots: {
-      title: 'author',
-      default: 'authorDefault'
-    }
+    label: '作者'
   },
   {
     field: 'display_time',
-    label: '创建时间',
-    slots: {
-      title: 'time',
-      default: 'timeDefault'
-    }
+    label: '创建时间'
   },
   {
     field: 'importance',
-    label: '重要性',
-    slots: {
-      title: 'importance',
-      default: 'importanceDefault'
-    }
+    label: '重要性'
   },
   {
     field: 'pageviews',
-    label: '阅读数',
-    slots: {
-      title: 'pageviews',
-      default: 'pageviewsDefault'
-    }
+    label: '阅读数'
   }
 ]
 

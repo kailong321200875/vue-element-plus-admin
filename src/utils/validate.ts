@@ -10,7 +10,7 @@ export function isEmail(path: any): boolean {
 
 // 验证手机
 export function isPhone(tel: any): boolean {
-  return /^[1][3,4,5,7,8][0-9]{9}$/.test(tel)
+  return /^[1][3,4,5,6,7,8,9][0-9]{9}$/.test(tel)
 }
 
 // 验证身份证号

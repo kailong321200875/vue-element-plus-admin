@@ -259,7 +259,6 @@ export default defineComponent({
       try {
         form.validate((valid: boolean) => {
           if (valid) {
-            console.log(valid)
             emit('search-submit', unref(formInline))
           } else {
             console.log('error submit!!')

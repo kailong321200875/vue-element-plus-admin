@@ -26,6 +26,7 @@ const Layout = () => import('../layout/index.vue')
     activeMenu: '/dashboard'  显示高亮的路由路径
     followAuth: '/dashboard'  跟随哪个路由进行权限过滤
     showMainRoute: true       设置为true即使hidden为true，也依然可以进行路由跳转(默认 false)
+    followRoute: '/dashboard' 为路由设置跟随其他路由的权限
   }
 **/
 
@@ -570,6 +571,35 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           hidden: true,
           showMainRoute: true,
           activeMenu: '/example-demo/example-page'
+        }
+      }
+    ]
+  },
+  {
+    path: '/role-demo',
+    component: Layout,
+    redirect: '/role-demo/user',
+    name: 'RoleDemo',
+    meta: {
+      title: '权限管理',
+      icon: 'user',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('_p/index/views/role-demo/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理'
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('_p/index/views/role-demo/role/index.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理'
         }
       }
     ]

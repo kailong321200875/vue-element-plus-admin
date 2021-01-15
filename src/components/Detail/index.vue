@@ -33,12 +33,14 @@
               :class="{'detail__content--flex': !vertical}"
             >
               <div class="content__item--label" :style="labelStyleObj">
-                <slot v-if="item.slots && item.slots.title" :name="item.slots.title" :row="item" />
-                <template v-else>{{ item.label }}</template>
+                <slot :name="item.field" :row="item">
+                  {{ item.label }}
+                </slot>
               </div>
               <div class="content__item--message" :style="messageStyleObj">
-                <slot v-if="item.slots && item.slots.default" :name="item.slots.default" :row="data" />
-                <template v-else>{{ data[item.field] }}</template>
+                <slot :name="`${item.field}Content`" :row="data">
+                  {{ data[item.field] }}
+                </slot>
               </div>
             </div>
           </el-col>

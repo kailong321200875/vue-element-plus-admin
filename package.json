@@ -20,7 +20,7 @@
     "clipboard": "^2.0.6",
     "core-js": "^3.6.5",
     "echarts": "^4.9.0",
-    "element-plus": "1.0.1-beta.14",
+    "element-plus": "1.0.1-beta.26",
     "highlight.js": "^10.4.0",
     "lodash-es": "^4.17.15",
     "mitt": "^2.1.0",
@@ -93,10 +93,5 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint"
-    ]
   }
 }

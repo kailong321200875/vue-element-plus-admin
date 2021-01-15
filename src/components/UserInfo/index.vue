@@ -25,12 +25,14 @@ import { resetRouter } from '_p/index/router'
 import wsCache from '@/cache'
 import { useRouter } from 'vue-router'
 import { tagsViewStore } from '_p/index/store/modules/tagsView'
+import { appStore } from '_p/index/store/modules/app'
 export default defineComponent({
   name: 'UserInfo',
   setup() {
     const { replace, push } = useRouter()
     async function loginOut(): Promise<void> {
-      wsCache.clear()
+      // wsCache.clear()
+      wsCache.delete(appStore.userInfo)
       await resetRouter() // 重置静态路由表
       await tagsViewStore.delAllViews() // 删除所有的tags标签页
       replace('/login')

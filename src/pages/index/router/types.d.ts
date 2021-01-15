@@ -12,6 +12,7 @@ export interface RouteMeta {
   noTagsView?: boolean
   followAuth?: string
   showMainRoute?: boolean
+  followRoute?: string
 }
 
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {

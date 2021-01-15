@@ -34,11 +34,6 @@
               :index="scope.$index"
             />
           </template>
-
-          <!-- 不需要插槽 -->
-          <!-- <span v-if="!item.slots || !item.slots.default">
-            {{ scope.row[item.field] }}
-          </span> -->
         </el-table-column>
       </template>
     </template>
