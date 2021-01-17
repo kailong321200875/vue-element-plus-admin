@@ -18,6 +18,7 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const whiteList: string[] = ['/login'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
+  NProgress.start()
   if (wsCache.get(appStore.userInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })

@@ -1,4 +1,5 @@
-export const checkedRoleNodes = [{
+export const checkedRoleNodes = [
+  {
     path: '/components-demo',
     component: '#',
     redirect: '/components-demo/echarts',
@@ -8,7 +9,8 @@ export const checkedRoleNodes = [{
       icon: 'component',
       alwaysShow: true
     },
-    children: [{
+    children: [
+      {
         path: 'echarts',
         component: 'pages/index/views/components-demo/echarts/index.vue',
         name: 'EchartsDemo',
@@ -281,14 +283,16 @@ export const checkedRoleNodes = [{
       icon: 'clipboard',
       alwaysShow: true
     },
-    children: [{
-      path: 'clipboard',
-      component: 'pages/index/views/directives-demo/clipboard/index.vue',
-      name: 'ClipboardDemo',
-      meta: {
-        title: 'Clipboard'
+    children: [
+      {
+        path: 'clipboard',
+        component: 'pages/index/views/directives-demo/clipboard/index.vue',
+        name: 'ClipboardDemo',
+        meta: {
+          title: 'Clipboard'
+        }
       }
-    }]
+    ]
   },
   {
     path: '/hooks-demo',
@@ -300,7 +304,8 @@ export const checkedRoleNodes = [{
       icon: 'international',
       alwaysShow: true
     },
-    children: [{
+    children: [
+      {
         path: 'watermark',
         component: 'pages/index/views/hooks-demo/useWatermark/index.vue',
         name: 'UseWatermarkDemo',
@@ -326,15 +331,17 @@ export const checkedRoleNodes = [{
       title: '图标',
       icon: 'icon'
     },
-    children: [{
-      path: 'index',
-      component: 'pages/index/views/icons/index.vue',
-      name: 'Icons',
-      meta: {
-        title: '图标',
-        icon: 'icon'
+    children: [
+      {
+        path: 'index',
+        component: 'pages/index/views/icons/index.vue',
+        name: 'Icons',
+        meta: {
+          title: '图标',
+          icon: 'icon'
+        }
       }
-    }]
+    ]
   },
   {
     path: '/level',
@@ -345,7 +352,8 @@ export const checkedRoleNodes = [{
       title: '多级菜单缓存',
       icon: 'nested'
     },
-    children: [{
+    children: [
+      {
         path: 'menu1',
         name: 'Menu1Demo',
         component: '##Menu1Demo',
@@ -353,7 +361,8 @@ export const checkedRoleNodes = [{
         meta: {
           title: 'Menu1'
         },
-        children: [{
+        children: [
+          {
             path: 'menu1-1',
             name: 'Menu11Demo',
             component: '##Menu11Demo',
@@ -362,14 +371,16 @@ export const checkedRoleNodes = [{
               title: 'Menu1-1',
               alwaysShow: true
             },
-            children: [{
-              path: 'menu1-1-1',
-              name: 'Menu111Demo',
-              component: 'pages/index/views/level/Menu111.vue',
-              meta: {
-                title: 'Menu1-1-1'
+            children: [
+              {
+                path: 'menu1-1-1',
+                name: 'Menu111Demo',
+                component: 'pages/index/views/level/Menu111.vue',
+                meta: {
+                  title: 'Menu1-1-1'
+                }
               }
-            }]
+            ]
           },
           {
             path: 'menu1-2',
@@ -401,7 +412,8 @@ export const checkedRoleNodes = [{
       icon: 'example',
       title: '综合实例'
     },
-    children: [{
+    children: [
+      {
         path: 'example-dialog',
         component: 'pages/index/views/example-demo/example-dialog/index.vue',
         name: 'ExampleDialog',
@@ -468,7 +480,8 @@ export const checkedRoleNodes = [{
       icon: 'user',
       alwaysShow: true
     },
-    children: [{
+    children: [
+      {
         path: 'user',
         component: 'pages/index/views/role-demo/user/index.vue',
         name: 'User',

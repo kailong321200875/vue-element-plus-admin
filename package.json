@@ -58,6 +58,7 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "babel-eslint": "^10.1.0",
     "babel-plugin-component": "^1.1.1",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-import": "^1.13.1",
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",

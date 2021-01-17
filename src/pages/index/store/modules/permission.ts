@@ -1,4 +1,3 @@
-// import path from 'path'
 import { asyncRouterMap, constantRouterMap } from '_p/index/router'
 import { deepClone } from '@/utils'
 import store from '../index'
@@ -128,16 +127,14 @@ function getFilterRoutes(routes: any[]): any[] {
       name: route.name,
       redirect: route.redirect
     }
-    data.meta = Object.assign({}, route.meta || {}, { title: route.title })
+    data.meta = Object.assign({}, route.meta || {}, { title: route.title || route.meta.title })
     if (route.component) {
       // 动态加载路由文件，可根据实际情况进行自定义逻辑
       data.component = route.component === '#'
         ? Layout
         : (route.component.includes('##')
           ? getParentLayout(route.component.split('##')[1])
-          : () => new Promise((resolve) => {
-            resolve(import(`${route.component}`))
-          }))
+          : () => import(`@/${route.component}`))
     }
     // recursive child routes
     if (route.children) {

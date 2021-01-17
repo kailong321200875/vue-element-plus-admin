@@ -14,10 +14,5 @@ module.exports = {
         'styleLibraryName': 'theme-chalk'
       }
     ]
-  ],
-  'env': {
-    'development': {
-      'plugins': ['dynamic-import-node']
-    }
-  }
+  ]
 }

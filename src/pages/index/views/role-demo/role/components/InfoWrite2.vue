@@ -81,8 +81,6 @@
 <script lang="ts">
 import { setRoleApi, getRoleDetApi } from '../api'
 import { defineComponent, PropType, ref, reactive, nextTick, unref } from 'vue'
-import { AppRouteRecordRaw } from '_p/index/router/types'
-import { isExternal } from '@/utils/validate'
 import { Message } from '_c/Message'
 
 const requiredRule = {
