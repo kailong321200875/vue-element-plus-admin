@@ -134,7 +134,8 @@ function getFilterRoutes(routes: any[]): any[] {
         ? Layout
         : (route.component.includes('##')
           ? getParentLayout(route.component.split('##')[1])
-          : () => import(`@/${route.component}`))
+          // 必须加'.vue'后缀，而不能直接把'.vue'后缀写在component中。否则会报出警告。。
+          : () => import('@/' + route.component + '.vue'))
     }
     // recursive child routes
     if (route.children) {

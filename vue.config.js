@@ -37,6 +37,8 @@ glob.sync('./src/pages/**/main.ts').forEach((entry) => {
 
 projectName ? entryPages[projectName] = pages[projectName] : entryPages = pages
 
+const Timestamp = new Date().getTime()
+
 const vueConfig = {
   pages: entryPages,
   publicPath: './',
@@ -165,14 +167,21 @@ const vueConfig = {
       })
     })
   },
-  configureWebpack: () => {
-    process.env.NODE_ENV === 'development' ? 'source-map' : undefined
+  configureWebpack: {
+    output: {
+      filename: `js/[name].[hash].${Timestamp}.js`,
+      chunkFilename: `js/[name].[hash].${Timestamp}.js`
+    }
   },
   css: {
     loaderOptions: {
       less: {
         javascriptEnabled: true
       }
+    },
+    extract: {
+      filename: `css/[name].[hash].${Timestamp}.css`,
+      chunkFilename: `css/[name].[hash].${Timestamp}.css`
     }
   },
   // 跨域代理
