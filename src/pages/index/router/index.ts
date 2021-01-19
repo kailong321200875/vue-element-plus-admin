@@ -197,6 +197,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: '详情组件'
         }
+      },
+      {
+        path: 'qrcode',
+        component: () => import('_p/index/views/components-demo/qrcode/index.vue'),
+        name: 'QrcodeDemo',
+        meta: {
+          title: '二维码组件'
+        }
       }
     ]
   },

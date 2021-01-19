@@ -1,5 +1,5 @@
 <template>
-  <div class="login-wrap">
+  <div class="login-wrap" @keydown.enter="login">
     <div class="login-con">
       <el-card class="box-card">
         <template #header>

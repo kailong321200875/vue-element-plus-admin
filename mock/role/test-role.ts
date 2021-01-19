@@ -97,6 +97,14 @@ export const checkedRoleNodes = [
         meta: {
           title: '详情组件'
         }
+      },
+      {
+        path: 'qrcode',
+        component: 'pages/index/views/components-demo/qrcode/index',
+        name: 'QrcodeDemo',
+        meta: {
+          title: '二维码组件'
+        }
       }
     ]
   },
