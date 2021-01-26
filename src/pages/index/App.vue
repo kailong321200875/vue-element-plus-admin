@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { appStore } from '_p/index/store/modules/app'
+import { appStore } from '_@/store/modules/app'
 export default defineComponent({
   name: 'App',
   setup() {

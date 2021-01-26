@@ -57,7 +57,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   },
   {
     path: '/login',
-    component: () => import('_p/index/views/login/index.vue'),
+    component: () => import('_v/login/index.vue'),
     name: 'Login',
     meta: {
       hidden: true,
@@ -74,7 +74,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('_p/index/views/dashboard/index.vue'),
+        component: () => import('_v/dashboard/index.vue'),
         name: 'Dashboard',
         meta: {
           title: '首页',
@@ -95,6 +95,23 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
         meta: { title: '文档', icon: 'documentation' }
       }
     ]
+  },
+  {
+    path: '/guide',
+    component: Layout,
+    name: 'Guide',
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('_v/guide/index.vue'),
+        name: 'GuideDemo',
+        meta: {
+          title: '引导页',
+          icon: 'guide'
+        }
+      }
+    ]
   }
 ]
 
@@ -112,7 +129,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'echarts',
-        component: () => import('_p/index/views/components-demo/echarts/index.vue'),
+        component: () => import('_v/components-demo/echarts/index.vue'),
         name: 'EchartsDemo',
         meta: {
           title: '图表'
@@ -120,7 +137,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'preview',
-        component: () => import('_p/index/views/components-demo/preview/index.vue'),
+        component: () => import('_v/components-demo/preview/index.vue'),
         name: 'PreviewDemo',
         meta: {
           title: '图片预览'
@@ -128,7 +145,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'button',
-        component: () => import('_p/index/views/components-demo/button/index.vue'),
+        component: () => import('_v/components-demo/button/index.vue'),
         name: 'ButtonDemo',
         meta: {
           title: '按钮'
@@ -136,7 +153,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'message',
-        component: () => import('_p/index/views/components-demo/message/index.vue'),
+        component: () => import('_v/components-demo/message/index.vue'),
         name: 'MessageDemo',
         meta: {
           title: '消息提示'
@@ -144,7 +161,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'count-to',
-        component: () => import('_p/index/views/components-demo/count-to/index.vue'),
+        component: () => import('_v/components-demo/count-to/index.vue'),
         name: 'CountToDemo',
         meta: {
           title: '数字动画'
@@ -152,7 +169,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'search',
-        component: () => import('_p/index/views/components-demo/search/index.vue'),
+        component: () => import('_v/components-demo/search/index.vue'),
         name: 'SearchDemo',
         meta: {
           title: '查询'
@@ -160,7 +177,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'editor',
-        component: () => import('_p/index/views/components-demo/editor/index.vue'),
+        component: () => import('_v/components-demo/editor/index.vue'),
         name: 'EditorDemo',
         meta: {
           title: '富文本编辑器'
@@ -168,7 +185,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'markdown',
-        component: () => import('_p/index/views/components-demo/markdown/index.vue'),
+        component: () => import('_v/components-demo/markdown/index.vue'),
         name: 'MarkdownDemo',
         meta: {
           title: 'markdown编辑器'
@@ -176,7 +193,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'dialog',
-        component: () => import('_p/index/views/components-demo/dialog/index.vue'),
+        component: () => import('_v/components-demo/dialog/index.vue'),
         name: 'DialogDemo',
         meta: {
           title: '弹窗'
@@ -184,7 +201,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'more',
-        component: () => import('_p/index/views/components-demo/more/index.vue'),
+        component: () => import('_v/components-demo/more/index.vue'),
         name: 'MoreDemo',
         meta: {
           title: '显示更多'
@@ -192,7 +209,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'detail',
-        component: () => import('_p/index/views/components-demo/detail/index.vue'),
+        component: () => import('_v/components-demo/detail/index.vue'),
         name: 'DetailDemo',
         meta: {
           title: '详情组件'
@@ -200,10 +217,26 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'qrcode',
-        component: () => import('_p/index/views/components-demo/qrcode/index.vue'),
+        component: () => import('_v/components-demo/qrcode/index.vue'),
         name: 'QrcodeDemo',
         meta: {
           title: '二维码组件'
+        }
+      },
+      {
+        path: 'avatars',
+        component: () => import('_v/components-demo/avatars/index.vue'),
+        name: 'AvatarsDemo',
+        meta: {
+          title: '头像组'
+        }
+      },
+      {
+        path: 'highlight',
+        component: () => import('_v/components-demo/highlight/index.vue'),
+        name: 'HighlightDemo',
+        meta: {
+          title: '文字高亮'
         }
       }
     ]
@@ -211,7 +244,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/table-demo',
     component: Layout,
-    redirect: '/table-demo/basic-usage',
+    redirect: '/table-demo/basic-table',
     name: 'TableDemo',
     meta: {
       title: '表格',
@@ -219,17 +252,9 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       alwaysShow: true
     },
     children: [
-      // {
-      //   path: 'test',
-      //   component: () => import('_p/index/views/table-demo/test'),
-      //   name: 'test',
-      //   meta: {
-      //     title: 'test'
-      //   }
-      // },
       {
         path: 'basic-table',
-        component: () => import('_p/index/views/table-demo/basic-table/index.vue'),
+        component: () => import('_v/table-demo/basic-table/index.vue'),
         name: 'BasicTable',
         meta: {
           title: '基础表格'
@@ -237,7 +262,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'page-table',
-        component: () => import('_p/index/views/table-demo/page-table/index.vue'),
+        component: () => import('_v/table-demo/page-table/index.vue'),
         name: 'PageTable',
         meta: {
           title: '分页表格'
@@ -245,7 +270,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'stripe-table',
-        component: () => import('_p/index/views/table-demo/stripe-table/index.vue'),
+        component: () => import('_v/table-demo/stripe-table/index.vue'),
         name: 'StripeTable',
         meta: {
           title: '带斑马纹表格'
@@ -253,7 +278,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'border-table',
-        component: () => import('_p/index/views/table-demo/border-table/index.vue'),
+        component: () => import('_v/table-demo/border-table/index.vue'),
         name: 'BorderTable',
         meta: {
           title: '带边框表格'
@@ -261,7 +286,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'state-table',
-        component: () => import('_p/index/views/table-demo/state-table/index.vue'),
+        component: () => import('_v/table-demo/state-table/index.vue'),
         name: 'StateTable',
         meta: {
           title: '带状态表格'
@@ -269,7 +294,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'fixed-header',
-        component: () => import('_p/index/views/table-demo/fixed-header/index.vue'),
+        component: () => import('_v/table-demo/fixed-header/index.vue'),
         name: 'FixedHeader',
         meta: {
           title: '固定表头'
@@ -277,7 +302,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'fixed-column',
-        component: () => import('_p/index/views/table-demo/fixed-column/index.vue'),
+        component: () => import('_v/table-demo/fixed-column/index.vue'),
         name: 'FixedColumn',
         meta: {
           title: '固定列'
@@ -285,7 +310,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'fixed-column-header',
-        component: () => import('_p/index/views/table-demo/fixed-column-header/index.vue'),
+        component: () => import('_v/table-demo/fixed-column-header/index.vue'),
         name: 'FixedColumnHeader',
         meta: {
           title: '固定列和表头'
@@ -293,7 +318,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'fluid-height',
-        component: () => import('_p/index/views/table-demo/fluid-height/index.vue'),
+        component: () => import('_v/table-demo/fluid-height/index.vue'),
         name: 'FluidHeight',
         meta: {
           title: '流体高度'
@@ -301,7 +326,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'multi-header',
-        component: () => import('_p/index/views/table-demo/multi-header/index.vue'),
+        component: () => import('_v/table-demo/multi-header/index.vue'),
         name: 'MultiHeader',
         meta: {
           title: '多级表头'
@@ -309,7 +334,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'single-choice',
-        component: () => import('_p/index/views/table-demo/single-choice/index.vue'),
+        component: () => import('_v/table-demo/single-choice/index.vue'),
         name: 'SingleChoice',
         meta: {
           title: '单选'
@@ -317,7 +342,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'multiple-choice',
-        component: () => import('_p/index/views/table-demo/multiple-choice/index.vue'),
+        component: () => import('_v/table-demo/multiple-choice/index.vue'),
         name: 'MultipleChoice',
         meta: {
           title: '多选'
@@ -325,7 +350,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'sort-table',
-        component: () => import('_p/index/views/table-demo/sort-table/index.vue'),
+        component: () => import('_v/table-demo/sort-table/index.vue'),
         name: 'SortTable',
         meta: {
           title: '排序'
@@ -333,7 +358,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'screen-table',
-        component: () => import('_p/index/views/table-demo/screen-table/index.vue'),
+        component: () => import('_v/table-demo/screen-table/index.vue'),
         name: 'ScreenTable',
         meta: {
           title: '筛选'
@@ -341,7 +366,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'expand-row',
-        component: () => import('_p/index/views/table-demo/expand-row/index.vue'),
+        component: () => import('_v/table-demo/expand-row/index.vue'),
         name: 'ExpandRow',
         meta: {
           title: '展开行'
@@ -349,7 +374,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'tree-and-load',
-        component: () => import('_p/index/views/table-demo/tree-and-load/index.vue'),
+        component: () => import('_v/table-demo/tree-and-load/index.vue'),
         name: 'TreeAndLoad',
         meta: {
           title: '树形数据与懒加载'
@@ -357,7 +382,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'custom-header',
-        component: () => import('_p/index/views/table-demo/custom-header/index.vue'),
+        component: () => import('_v/table-demo/custom-header/index.vue'),
         name: 'CustomHeader',
         meta: {
           title: '自定义表头'
@@ -365,7 +390,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'total-table',
-        component: () => import('_p/index/views/table-demo/total-table/index.vue'),
+        component: () => import('_v/table-demo/total-table/index.vue'),
         name: 'TotalTable',
         meta: {
           title: '表尾合计行'
@@ -373,7 +398,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'merge-table',
-        component: () => import('_p/index/views/table-demo/merge-table/index.vue'),
+        component: () => import('_v/table-demo/merge-table/index.vue'),
         name: 'MergeTable',
         meta: {
           title: '合并行或列'
@@ -381,7 +406,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'custom-index',
-        component: () => import('_p/index/views/table-demo/custom-index/index.vue'),
+        component: () => import('_v/table-demo/custom-index/index.vue'),
         name: 'CustomIndex',
         meta: {
           title: '自定义索引'
@@ -402,7 +427,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'clipboard',
-        component: () => import('_p/index/views/directives-demo/clipboard/index.vue'),
+        component: () => import('_v/directives-demo/clipboard/index.vue'),
         name: 'ClipboardDemo',
         meta: {
           title: 'Clipboard'
@@ -423,7 +448,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'watermark',
-        component: () => import('_p/index/views/hooks-demo/useWatermark/index.vue'),
+        component: () => import('_v/hooks-demo/useWatermark/index.vue'),
         name: 'UseWatermarkDemo',
         meta: {
           title: 'UseWaterMark'
@@ -431,7 +456,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'useScrollTo',
-        component: () => import('_p/index/views/hooks-demo/useScrollTo/index.vue'),
+        component: () => import('_v/hooks-demo/useScrollTo/index.vue'),
         name: 'UseScrollToDemo',
         meta: {
           title: 'UseScrollTo'
@@ -447,7 +472,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'index',
-        component: () => import('_p/index/views/icons/index.vue'),
+        component: () => import('_v/icons/index.vue'),
         name: 'Icons',
         meta: {
           title: '图标',
@@ -488,7 +513,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
               {
                 path: 'menu1-1-1',
                 name: 'Menu111Demo',
-                component: () => import('_p/index/views/level/Menu111.vue'),
+                component: () => import('_v/level/Menu111.vue'),
                 meta: {
                   title: 'Menu1-1-1'
                 }
@@ -498,7 +523,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           {
             path: 'menu1-2',
             name: 'Menu12Demo',
-            component: () => import('_p/index/views/level/Menu12.vue'),
+            component: () => import('_v/level/Menu12.vue'),
             meta: {
               title: 'Menu1-2'
             }
@@ -508,7 +533,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       {
         path: 'menu2',
         name: 'Menu2Demo',
-        component: () => import('_p/index/views/level/Menu2.vue'),
+        component: () => import('_v/level/Menu2.vue'),
         meta: {
           title: 'Menu2'
         }
@@ -528,7 +553,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'example-dialog',
-        component: () => import('_p/index/views/example-demo/example-dialog/index.vue'),
+        component: () => import('_v/example-demo/example-dialog/index.vue'),
         name: 'ExampleDialog',
         meta: {
           title: '列表综合实例-弹窗'
@@ -536,7 +561,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'example-page',
-        component: () => import('_p/index/views/example-demo/example-page/index.vue'),
+        component: () => import('_v/example-demo/example-page/index.vue'),
         name: 'ExamplePage',
         meta: {
           title: '列表综合实例-页面'
@@ -544,7 +569,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'example-add',
-        component: () => import('_p/index/views/example-demo/example-page/example-add.vue'),
+        component: () => import('_v/example-demo/example-page/example-add.vue'),
         name: 'ExampleAdd',
         meta: {
           title: '列表综合实例-新增',
@@ -557,7 +582,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'example-edit',
-        component: () => import('_p/index/views/example-demo/example-page/example-edit.vue'),
+        component: () => import('_v/example-demo/example-page/example-edit.vue'),
         name: 'ExampleEdit',
         meta: {
           title: '列表综合实例-编辑',
@@ -570,7 +595,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'example-detail',
-        component: () => import('_p/index/views/example-demo/example-page/example-detail.vue'),
+        component: () => import('_v/example-demo/example-page/example-detail.vue'),
         name: 'ExampleDetail',
         meta: {
           title: '列表综合实例-详情',
@@ -596,7 +621,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     children: [
       {
         path: 'user',
-        component: () => import('_p/index/views/role-demo/user/index.vue'),
+        component: () => import('_v/role-demo/user/index.vue'),
         name: 'User',
         meta: {
           title: '用户管理'
@@ -604,7 +629,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'role',
-        component: () => import('_p/index/views/role-demo/role/index.vue'),
+        component: () => import('_v/role-demo/role/index.vue'),
         name: 'Role',
         meta: {
           title: '角色管理'

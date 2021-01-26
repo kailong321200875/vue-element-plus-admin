@@ -1,6 +1,6 @@
 <template>
   <el-dropdown class="avatar-container" trigger="hover">
-    <div>
+    <div id="user-container">
       <div class="avatar-wrapper">
         <img :src="require('@/assets/img/avatar.png')" class="user-avatar">
         <span class="name-item">管理员</span>
@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { resetRouter } from '_p/index/router'
+import { resetRouter } from '_@/router'
 import wsCache from '@/cache'
 import { useRouter } from 'vue-router'
-import { tagsViewStore } from '_p/index/store/modules/tagsView'
-import { appStore } from '_p/index/store/modules/app'
+import { tagsViewStore } from '_@/store/modules/tagsView'
+import { appStore } from '_@/store/modules/app'
 export default defineComponent({
   name: 'UserInfo',
   setup() {

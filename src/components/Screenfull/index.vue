@@ -1,6 +1,6 @@
 <template>
   <el-tooltip placement="bottom" :content="isFullscreen ? '退出全屏' : '全屏'">
-    <div style="height: 100%;" class="screenfull-svg" @click="click">
+    <div id="screenfull-container" style="height: 100%;" class="screenfull-svg" @click="click">
       <svg-icon :icon-class="isFullscreen?'exit-fullscreen':'fullscreen'" />
     </div>
   </el-tooltip>

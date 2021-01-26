@@ -50,6 +50,14 @@ export const checkedNodes = [{
     'path': '/components-demo/qrcode',
     'title': '二维码组件',
     'name': 'QrcodeDemo'
+  }, {
+    'path': '/components-demo/avatars',
+    'title': '头像组',
+    'name': 'AvatarsDemo'
+  }, {
+    'path': '/components-demo/highlight',
+    'title': '文字高亮',
+    'name': 'HighlightDemo'
   }]
 }, {
   'path': '/components-demo/echarts',
@@ -99,6 +107,14 @@ export const checkedNodes = [{
   'path': '/components-demo/qrcode',
   'title': '二维码组件',
   'name': 'QrcodeDemo'
+}, {
+  'path': '/components-demo/avatars',
+  'title': '头像组',
+  'name': 'AvatarsDemo'
+}, {
+  'path': '/components-demo/highlight',
+  'title': '文字高亮',
+  'name': 'HighlightDemo'
 }, {
   'path': '/table-demo',
   'title': '表格',
@@ -415,7 +431,7 @@ export const checkedNodes = [{
 export const checkedkeys = ['/components-demo', '/components-demo/echarts', '/components-demo/preview',
   '/components-demo/button', '/components-demo/message', '/components-demo/count-to', '/components-demo/search',
   '/components-demo/editor', '/components-demo/markdown', '/components-demo/dialog', '/components-demo/more',
-  '/components-demo/detail', '/components-demo/qrcode', '/table-demo', '/table-demo/basic-table', '/table-demo/page-table',
+  '/components-demo/detail', '/components-demo/qrcode', '/components-demo/avatars', '/table-demo', '/table-demo/basic-table', '/table-demo/page-table',
   '/table-demo/stripe-table', '/table-demo/border-table', '/table-demo/state-table', '/table-demo/fixed-header',
   '/table-demo/fixed-column', '/table-demo/fixed-column-header', '/table-demo/fluid-height',
   '/table-demo/multi-header', '/table-demo/single-choice', '/table-demo/multiple-choice', '/table-demo/sort-table',

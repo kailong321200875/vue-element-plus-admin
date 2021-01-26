@@ -60,8 +60,8 @@
 import { defineComponent, ref, unref, reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { permissionStore } from '_p/index/store/modules/permission'
-import { appStore } from '_p/index/store/modules/app'
+import { permissionStore } from '_@/store/modules/permission'
+import { appStore } from '_@/store/modules/app'
 import wsCache from '@/cache'
 import { ElNotification } from 'element-plus'
 

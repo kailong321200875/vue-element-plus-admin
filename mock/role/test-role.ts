@@ -105,6 +105,22 @@ export const checkedRoleNodes = [
         meta: {
           title: '二维码组件'
         }
+      },
+      {
+        path: 'avatars',
+        component: 'pages/index/views/components-demo/avatars/index',
+        name: 'AvatarsDemo',
+        meta: {
+          title: '头像组'
+        }
+      },
+      {
+        path: 'highlight',
+        component: 'pages/index/views/components-demo/highlight/index',
+        name: 'HighlightDemo',
+        meta: {
+          title: '文字高亮'
+        }
       }
     ]
   },

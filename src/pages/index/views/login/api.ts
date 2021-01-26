@@ -1,4 +1,4 @@
-import { fetch } from '_p/index/axios-config/axios'
+import { fetch } from '_@/axios-config/axios'
 
 interface PropsData {
   params?: any

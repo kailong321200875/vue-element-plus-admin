@@ -22,7 +22,7 @@
         class="detail__content"
         :style="contentStyleObj"
       >
-        <el-row>
+        <el-row type="flex">
           <el-col
             v-for="(item, $index) in schema"
             :key="$index"
@@ -192,6 +192,9 @@ export default defineComponent({
     }
   }
   .detail__content {
+    @{deep}(.el-row) {
+      flex-wrap: wrap;
+    }
     .detail__content--flex {
       display: flex;
       height: 100%;

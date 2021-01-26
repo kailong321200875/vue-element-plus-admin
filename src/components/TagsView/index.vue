@@ -41,8 +41,8 @@
 import ScrollPane from './ScrollPane.vue'
 import path from 'path'
 import { defineComponent, ref, unref, computed, watch, onMounted, nextTick } from 'vue'
-import { tagsViewStore } from '_p/index/store/modules/tagsView'
-import { permissionStore } from '_p/index/store/modules/permission'
+import { tagsViewStore } from '_@/store/modules/tagsView'
+import { permissionStore } from '_@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 

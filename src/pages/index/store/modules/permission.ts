@@ -1,17 +1,17 @@
-import { asyncRouterMap, constantRouterMap } from '_p/index/router'
+import { asyncRouterMap, constantRouterMap } from '_@/router'
 import { deepClone } from '@/utils'
 import store from '../index'
 import { VuexModule, getModule, Module, Mutation, Action } from 'vuex-module-decorators'
-import { AppRouteRecordRaw } from '_p/index/router/types'
+import { AppRouteRecordRaw } from '_@/router/types'
 import wsCache from '@/cache'
 import { isExternal } from '@/utils/validate'
 import path from 'path'
-import { getParentLayout } from '_p/index/router/utils'
+import { getParentLayout } from '_@/router/utils'
 
-import { appStore } from '_p/index/store/modules/app'
+import { appStore } from '_@/store/modules/app'
 
 /* Layout */
-const Layout = () => import('_p/index/layout/index.vue')
+const Layout = () => import('_@/layout/index.vue')
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[]

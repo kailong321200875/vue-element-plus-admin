@@ -29,6 +29,12 @@
       "_c/*": [
         "src/components/*"
       ],
+      "_@/*": [
+        "src/pages/index/*"
+      ],
+      "_v/*": [
+        "src/pages/index/views/*"
+      ],
       "_p/*": [
         "src/pages/*"
       ]

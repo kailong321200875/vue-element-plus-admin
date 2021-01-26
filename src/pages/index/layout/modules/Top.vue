@@ -8,7 +8,7 @@
           :collapsed="collapsed"
         />
       </div>
-      <div class="sidebar__item--Top">
+      <div id="sidebar__wrap" class="sidebar__item--Top">
         <sider :layout="layout" mode="horizontal" />
       </div>
       <div>
@@ -59,6 +59,7 @@
           </div> -->
           <div
             v-if="showTags"
+            id="tag-container"
             class="tags__wrap"
           >
             <tags-view />
@@ -78,7 +79,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { appStore } from '_p/index/store/modules/app'
+import { appStore } from '_@/store/modules/app'
 
 import AppMain from '../components/AppMain.vue'
 import TagsView from '_c/TagsView/index.vue'

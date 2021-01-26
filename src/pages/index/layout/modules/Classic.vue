@@ -2,6 +2,7 @@
   <div :class="classObj" class="app__wrap">
     <!-- Classic -->
     <div
+      id="sidebar__wrap"
       class="sidebar__wrap"
       :class="{'sidebar__wrap--collapsed': collapsed}"
     >
@@ -39,11 +40,12 @@
           >
             <hamburger
               v-if="showHamburger"
+              id="hamburger-container"
               :collapsed="collapsed"
               class="hover-container"
               @toggleClick="setCollapsed"
             />
-            <breadcrumb v-if="showBreadcrumb" />
+            <breadcrumb v-if="showBreadcrumb" id="breadcrumb-container" />
             <div v-if="showScreenfull || showUserInfo" class="navbar__wrap--right">
               <screenfull v-if="showScreenfull" class="hover-container screenfull-container" />
               <user-info v-if="showUserInfo" class="hover-container user-container" />
@@ -51,6 +53,7 @@
           </div>
           <div
             v-if="showTags"
+            id="tag-container"
             class="tags__wrap"
           >
             <tags-view />
@@ -70,7 +73,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
-import { appStore } from '_p/index/store/modules/app'
+import { appStore } from '_@/store/modules/app'
 
 import AppMain from '../components/AppMain.vue'
 import TagsView from '_c/TagsView/index.vue'

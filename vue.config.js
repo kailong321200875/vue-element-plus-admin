@@ -37,8 +37,6 @@ glob.sync('./src/pages/**/main.ts').forEach((entry) => {
 
 projectName ? entryPages[projectName] = pages[projectName] : entryPages = pages
 
-const Timestamp = new Date().getTime()
-
 const vueConfig = {
   pages: entryPages,
   publicPath: './',
@@ -59,7 +57,8 @@ const vueConfig = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('_c', resolve('src/components'))
-      .set('_p', resolve('src/pages'))
+      .set('_@', resolve('src/pages/index'))
+      .set('_v', resolve('src/pages/index/views'))
       // .set('_pd1', resolve('src/pages/demo1'))
       // .set('_pd1v', resolve('src/pages/demo1/views'))
 
@@ -168,20 +167,13 @@ const vueConfig = {
     })
   },
   configureWebpack: {
-    output: {
-      filename: `js/[name].[hash].${Timestamp}.js`,
-      chunkFilename: `js/[name].[hash].${Timestamp}.js`
-    }
+    
   },
   css: {
     loaderOptions: {
       less: {
         javascriptEnabled: true
       }
-    },
-    extract: {
-      filename: `css/[name].[hash].${Timestamp}.css`,
-      chunkFilename: `css/[name].[hash].${Timestamp}.css`
     }
   },
   // 跨域代理

@@ -1,6 +1,6 @@
 import { computed, ref, unref, ComponentInternalInstance, getCurrentInstance } from 'vue'
 
-import { tagsViewStore, PAGE_LAYOUT_KEY } from '_p/index/store/modules/tagsView'
+import { tagsViewStore, PAGE_LAYOUT_KEY } from '_@/store/modules/tagsView'
 
 import { useRouter } from 'vue-router'
 
