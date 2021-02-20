@@ -7,6 +7,10 @@
 
 [在线预览地址](http://8.133.179.48:4000/dist-pro/#/login)
 
+基础模版 - template分支
+
+单页模版 - single-page分支
+
 ## 功能
 
 ``` sh
