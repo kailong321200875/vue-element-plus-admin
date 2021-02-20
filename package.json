@@ -1,18 +1,14 @@
 {
-  "name": "vue-element-plus-admin-webpack",
-  "version": "0.0.4",
+  "name": "vue-element-plus-admin",
+  "version": "0.0.5",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint",
-    "build-dev:index": "cross-env PROJECT_NAME=index vue-cli-service build --mode development",
-    "build-pro:index": "cross-env PROJECT_NAME=index vue-cli-service build",
-    "build-test:index": "cross-env PROJECT_NAME=index vue-cli-service build --mode test",
     "build:all": "npm run build:dev && npm run build:pro && npm run build:test",
     "build:dev": "vue-cli-service build --mode development",
     "build:pro": "vue-cli-service build",
     "build:test": "vue-cli-service build --mode test",
-    "serve:index": "cross-env PROJECT_NAME=index vue-cli-service serve",
     "clean": "npx rimraf node_modules"
   },
   "dependencies": {
@@ -20,7 +16,7 @@
     "clipboard": "^2.0.6",
     "core-js": "^3.6.5",
     "echarts": "^4.9.0",
-    "element-plus": "1.0.2-beta.29",
+    "element-plus": "1.0.2-beta.32",
     "highlight.js": "^10.4.0",
     "intro.js": "^3.2.1",
     "lodash-es": "^4.17.15",
