@@ -17,6 +17,8 @@ export interface PermissionState {
   routers: AppRouteRecordRaw[]
   addRouters: AppRouteRecordRaw[]
   isAddRouters: boolean
+  activeTab: string
+  menuTabRouters: AppRouteRecordRaw[]
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'permission' })
@@ -24,6 +26,8 @@ class Permission extends VuexModule implements PermissionState {
   public routers = [] as any[]
   public addRouters = [] as any[]
   public isAddRouters = false
+  public menuTabRouters = [] as any[]
+  public activeTab = ''
 
   @Mutation
   private SET_ROUTERS(routers: AppRouteRecordRaw[]): void {
@@ -43,6 +47,14 @@ class Permission extends VuexModule implements PermissionState {
   @Mutation
   private SET_ISADDROUTERS(state: boolean): void {
     this.isAddRouters = state
+  }
+  @Mutation
+  private SET_MENUTABROUTERS(routers: AppRouteRecordRaw[]): void {
+    this.menuTabRouters = routers
+  }
+  @Mutation
+  private SET_ACTIVETAB(activeTab: string): void {
+    this.activeTab = activeTab
   }
 
   @Action
@@ -65,6 +77,14 @@ class Permission extends VuexModule implements PermissionState {
   @Action
   public SetIsAddRouters(state: boolean): void {
     this.SET_ISADDROUTERS(state)
+  }
+  @Action
+  public SetMenuTabRouters(routers: AppRouteRecordRaw[]): void {
+    this.SET_MENUTABROUTERS(routers)
+  }
+  @Action
+  public SetAcitveTab(activeTab: string): void {
+    this.SET_ACTIVETAB(activeTab)
   }
 }
 

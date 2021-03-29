@@ -1,7 +1,7 @@
 <template>
   <template v-if="!item.meta?.hidden">
     <template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.meta?.alwaysShow">
-      <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown': !isNest}">
+      <el-menu-item :index="resolvePath(onlyOneChild.path, showMenuTab ? `${activeTab === '/dashboard' ? '' : activeTab}/${basePath}` : '')" :class="{'submenu-title-noDropdown': !isNest}">
         <item v-if="onlyOneChild.meta" :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)" />
         <template #title>
           <span class="anticon-item">{{ onlyOneChild.meta.title }}</span>
@@ -14,7 +14,7 @@
       :popper-class="layout !== 'Top'
         ? 'nest-popper-menu'
         : 'top-popper-menu'"
-      :index="resolvePath(item.path)"
+      :index="resolvePath(item.path, showMenuTab ? `${activeTab === '/dashboard' ? '' : activeTab}/${basePath}` : '')"
     >
       <template #title>
         <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title" />
@@ -32,11 +32,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue'
+import { defineComponent, PropType, ref, computed } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item.vue'
+import { permissionStore } from '_@/store/modules/permission'
+import { appStore } from '_@/store/modules/app'
 export default defineComponent({
   name: 'SiderItem',
   components: { Item },
@@ -61,6 +63,9 @@ export default defineComponent({
   },
   setup(props) {
     const onlyOneChild = ref<any>(null)
+
+    const activeTab = computed(() => permissionStore.activeTab)
+    const showMenuTab = computed(() => appStore.showMenuTab)
 
     function hasOneShowingChild(children: RouteRecordRaw[] = [], parent: RouteRecordRaw): boolean {
       const showingChildren: RouteRecordRaw[] = children.filter((item: RouteRecordRaw) => {
@@ -87,14 +92,16 @@ export default defineComponent({
       return false
     }
 
-    function resolvePath(routePath: string): string {
+    function resolvePath(routePath: string, otherPath: string): string {
       if (isExternal(routePath)) {
         return routePath
       }
-      return path.resolve(props.basePath, routePath)
+      return path.resolve(otherPath || props.basePath, routePath)
     }
     return {
       onlyOneChild,
+      activeTab,
+      showMenuTab,
       hasOneShowingChild,
       resolvePath
     }

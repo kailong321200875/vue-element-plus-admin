@@ -81,17 +81,17 @@
 import { defineComponent, computed } from 'vue'
 import { appStore } from '_@/store/modules/app'
 
-import AppMain from '../components/AppMain.vue'
-import TagsView from '_c/TagsView/index.vue'
-import Logo from '_c/Logo/index.vue'
-import Sider from '_c/Sider/index.vue'
-// import Hamburger from '_c/Hamburger/index.vue'
-// import Breadcrumb from '_c/Breadcrumb/index.vue'
-import Screenfull from '_c/Screenfull/index.vue'
-import UserInfo from '_c/UserInfo/index.vue'
+import AppMain from '../components/AppMain/index.vue'
+import TagsView from '../components/TagsView/index.vue'
+import Logo from '../components/Logo/index.vue'
+import Sider from '../components/Sider/index.vue'
+// import Hamburger from '../components/Hamburger/index.vue'
+// import Breadcrumb from '../components/Breadcrumb/index.vue'
+import Screenfull from '../components/Screenfull/index.vue'
+import UserInfo from '../components/UserInfo/index.vue'
 
-import Setting from '_c/Setting/index.vue'
-import Backtop from '_c/Backtop/index.vue'
+import Setting from '../components/Setting/index.vue'
+import Backtop from '../components/Backtop/index.vue'
 export default defineComponent({
   name: 'Top',
   components: {

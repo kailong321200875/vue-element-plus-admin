@@ -12,7 +12,7 @@
         @select="selectMenu"
       >
         <sider-item
-          v-for="route in routers"
+          v-for="route in showMenuTab ? menuTabRouters : routers"
           :key="route.path"
           :item="route"
           :layout="layout"
@@ -62,7 +62,12 @@ export default defineComponent({
     const collapsed = computed(() => appStore.collapsed)
     const showLogo = computed(() => appStore.showLogo)
 
+    const showMenuTab = computed(() => appStore.showMenuTab)
+    const menuTabRouters = computed(() => permissionStore.menuTabRouters)
+    const activeTab = computed(() => permissionStore.activeTab)
+
     function selectMenu(path: string) {
+      if (currentRoute.value.fullPath === path) return
       if (isExternal(path)) {
         window.open(path)
       } else {
@@ -75,6 +80,9 @@ export default defineComponent({
       activeMenu,
       collapsed,
       showLogo,
+      showMenuTab,
+      menuTabRouters,
+      activeTab,
       variables,
       selectMenu
     }

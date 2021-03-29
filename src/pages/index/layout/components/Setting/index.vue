@@ -37,6 +37,11 @@
       <!-- <div class="setting__title">界面功能</div> -->
 
       <div class="setting__title">界面显示</div>
+      <div v-if="layout !== 'Top'" class="setting__item">
+        <span>固定一级菜单</span>
+        <el-switch v-model="showMenuTab" @change="setShowMenuTab" />
+      </div>
+
       <div class="setting__item">
         <span>固定Header</span>
         <el-switch v-model="fixedHeader" @change="setFixedHeader" />
@@ -117,6 +122,7 @@ export default defineComponent({
       if (mode === layout.value) return
       appStore.SetLayout(mode)
       appStore.SetCollapsed(false)
+      mode === 'Top' && appStore.SetShowMenuTab(false)
     }
 
     const fixedHeader = ref<boolean>(appStore.fixedHeader)
@@ -179,6 +185,11 @@ export default defineComponent({
       appStore.SetShowBackTop(showBackTop)
     }
 
+    const showMenuTab = ref<boolean>(appStore.showMenuTab)
+    function setShowMenuTab(showMenuTab: boolean) {
+      appStore.SetShowMenuTab(showMenuTab)
+    }
+
     return {
       drawer, toggleClick,
       layout, setLayout,
@@ -193,7 +204,8 @@ export default defineComponent({
       title, setTitle,
       logoTitle, setLogoTitle,
       greyMode, setGreyMode,
-      showBackTop, setShowBackTop
+      showBackTop, setShowBackTop,
+      showMenuTab, setShowMenuTab
     }
   }
 })

@@ -36,23 +36,23 @@ export default defineComponent({
     const levelList = ref<RouteRecordRaw[]>([])
 
     function getBreadcrumb() {
-      let matched: any[] = currentRoute.value.matched.filter((item: RouteLocationMatched) => item.meta && item.meta.title)
-      const first = matched[0]
+      const matched: any[] = currentRoute.value.matched.filter((item: RouteLocationMatched) => item.meta && item.meta.title)
+      // const first = matched[0]
 
-      if (!isDashboard(first)) {
-        matched = [{ path: '/dashboard', meta: { title: '首页', icon: 'dashboard' }}].concat(matched)
-      }
+      // if (!isDashboard(first)) {
+      //   matched = [{ path: '/dashboard', meta: { title: '首页', icon: 'dashboard' }}].concat(matched)
+      // }
 
       levelList.value = matched.filter((item: RouteLocationMatched) => item.meta && item.meta.title && item.meta.breadcrumb !== false)
     }
 
-    function isDashboard(route: RouteLocationMatched) {
-      const name = route && route.name
-      if (!name) {
-        return false
-      }
-      return (name as any).trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
-    }
+    // function isDashboard(route: RouteLocationMatched) {
+    //   const name = route && route.name
+    //   if (!name) {
+    //     return false
+    //   }
+    //   return (name as any).trim().toLocaleLowerCase() === 'Dashboard'.toLocaleLowerCase()
+    // }
 
     function pathCompile(path: string): string {
       const { params } = currentRoute.value

@@ -7,6 +7,7 @@ export interface IScssVariables {
   subMenuHover: string
   menuWidth: string
   menuMinWidth: string
+  
 }
 
 export const variables: IScssVariables

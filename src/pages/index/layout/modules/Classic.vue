@@ -1,10 +1,13 @@
 <template>
   <div :class="classObj" class="app__wrap">
     <!-- Classic -->
+    <div v-if="showMenuTab" class="menu__tab">
+      <menu-tab />
+    </div>
     <div
       id="sidebar__wrap"
       class="sidebar__wrap"
-      :class="{'sidebar__wrap--collapsed': collapsed}"
+      :class="{'sidebar__wrap--collapsed': collapsed, 'sidebar__wrap--tab': showMenuTab}"
     >
       <logo
         v-if="showLogo && layout === 'Classic'"
@@ -16,7 +19,9 @@
     <div
       class="main__wrap"
       :class="{
-        'main__wrap--collapsed': collapsed
+        'main__wrap--collapsed': collapsed,
+        'main__wrap--tab': showMenuTab,
+        'main__wrap--tab--collapsed': showMenuTab && collapsed
       }"
     >
       <el-scrollbar
@@ -31,7 +36,10 @@
           class="header__wrap"
           :class="{
             'header__wrap--fixed': fixedHeader,
-            'header__wrap--collapsed': fixedHeader && collapsed
+            'header__wrap--tab--fixed': fixedHeader && showMenuTab,
+            'header__wrap--collapsed': fixedHeader && collapsed,
+            'header__wrap--tab': showMenuTab,
+            'header__wrap--tab--collapsed': showMenuTab && collapsed
           }"
         >
           <div
@@ -75,17 +83,18 @@
 import { defineComponent, computed } from 'vue'
 import { appStore } from '_@/store/modules/app'
 
-import AppMain from '../components/AppMain.vue'
-import TagsView from '_c/TagsView/index.vue'
-import Logo from '_c/Logo/index.vue'
-import Sider from '_c/Sider/index.vue'
-import Hamburger from '_c/Hamburger/index.vue'
-import Breadcrumb from '_c/Breadcrumb/index.vue'
-import Screenfull from '_c/Screenfull/index.vue'
-import UserInfo from '_c/UserInfo/index.vue'
+import AppMain from '../components/AppMain/index.vue'
+import TagsView from '../components/TagsView/index.vue'
+import Logo from '../components/Logo/index.vue'
+import Sider from '../components/Sider/index.vue'
+import Hamburger from '../components/Hamburger/index.vue'
+import Breadcrumb from '../components/Breadcrumb/index.vue'
+import Screenfull from '../components/Screenfull/index.vue'
+import UserInfo from '../components/UserInfo/index.vue'
+import MenuTab from '../components/MenuTab/index.vue'
 
-import Setting from '_c/Setting/index.vue'
-import Backtop from '_c/Backtop/index.vue'
+import Setting from '../components/Setting/index.vue'
+import Backtop from '../components/Backtop/index.vue'
 export default defineComponent({
   name: 'Classic',
   components: {
@@ -98,7 +107,8 @@ export default defineComponent({
     TagsView,
     Logo,
     Setting,
-    Backtop
+    Backtop,
+    MenuTab
   },
   setup() {
     const layout = computed(() => appStore.layout)
@@ -114,6 +124,7 @@ export default defineComponent({
     // const fixedTags = computed(() => appStore.fixedTags)
     const fixedHeader = computed(() => appStore.fixedHeader)
     const showBackTop = computed(() => appStore.showBackTop)
+    const showMenuTab = computed(() => appStore.showMenuTab)
 
     const classObj = computed(() => {
       const obj = {}
@@ -140,7 +151,8 @@ export default defineComponent({
       // fixedNavbar,
       // fixedTags,
       setCollapsed,
-      showBackTop
+      showBackTop,
+      showMenuTab
     }
   }
 })

@@ -17,6 +17,7 @@ export interface AppState {
   userInfo: String
   greyMode: Boolean
   showBackTop: Boolean
+  showMenuTab: Boolean
 }
 
 @Module({ dynamic: true, namespaced: true, store, name: 'app' })
@@ -36,6 +37,7 @@ class App extends VuexModule implements AppState {
   public userInfo = 'userInfo' // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   public greyMode = false // 是否开始灰色模式，用于特殊悼念日
   public showBackTop = true // 是否显示回到顶部
+  public showMenuTab = false // 是否固定一级菜单
 
   @Mutation
   private SET_COLLAPSED(collapsed: boolean): void {
@@ -93,6 +95,10 @@ class App extends VuexModule implements AppState {
   private SET_SHOWBACKTOP(showBackTop: boolean): void {
     this.showBackTop = showBackTop
   }
+  @Mutation
+  private SET_SHOWMENUTAB(showMenuTab: boolean): void {
+    this.showMenuTab = showMenuTab
+  }
 
   @Action
   public SetCollapsed(collapsed: boolean): void {
@@ -149,6 +155,10 @@ class App extends VuexModule implements AppState {
   @Action
   public SetShowBackTop(showBackTop: boolean): void {
     this.SET_SHOWBACKTOP(showBackTop)
+  }
+  @Action
+  public SetShowMenuTab(showMenuTab: boolean): void {
+    this.SET_SHOWMENUTAB(showMenuTab)
   }
 }
 
