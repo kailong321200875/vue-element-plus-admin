@@ -1,61 +1,16 @@
 {
   "compilerOptions": {
     "target": "esnext",
+    "useDefineForClassFields": true,
     "module": "esnext",
+    "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strictFunctionTypes": false,
-    "allowJs": true,
     "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "node"
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "_c/*": [
-        "src/components/*"
-      ],
-      "_@/*": [
-        "src/pages/index/*"
-      ],
-      "_v/*": [
-        "src/pages/index/views/*"
-      ],
-      "_p/*": [
-        "src/pages/*"
-      ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.js"
-  ]
+  "types": ["element-plus/global"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "components.d.ts"]
 }
