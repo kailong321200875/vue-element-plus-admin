@@ -34,7 +34,7 @@ export function isTel(tel: any): boolean {
 }
 
 // 验证数字
-export function isNum(num: any): boolean {
+export function isNumber(num: any): boolean {
   return /^[0-9]*$/.test(num)
 }
 
@@ -81,4 +81,26 @@ export const isFirefox = function () {
 // 是否是字符串
 export function isString(val: unknown): val is string {
   return is(val, 'String')
+}
+
+export const isWindow = (val: any): val is Window => {
+  return typeof window !== 'undefined' && is(val, 'Window')
+}
+
+export const isDef = <T = unknown>(val?: T): val is T => {
+  return typeof val !== 'undefined'
+}
+
+export const isUnDef = <T = unknown>(val?: T): val is T => {
+  return !isDef(val)
+}
+
+export const isFunction = (val: unknown): val is Function => typeof val === 'function'
+
+export const isClient = () => {
+  return typeof window !== 'undefined'
+}
+
+export const isElement = (val: unknown): val is Element => {
+  return isObject(val) && !!val.tagName
 }

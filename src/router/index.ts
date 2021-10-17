@@ -2,10 +2,12 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import { AppRouteRecordRaw } from './types'
 import type { App } from 'vue'
-// import { getParentLayout } from './utils'
+import { getParentLayout } from './utils'
 
 /* Layout */
 const Layout = () => import('../layout/index.vue')
+
+// const ParentView = () => import('_c/ParentView/index.vue')
 
 /**
 * redirect: noredirect        当设置 noredirect 的时候该路由在面包屑导航中不可被点击
@@ -84,163 +86,163 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/external-link',
+    component: Layout,
+    meta: {},
+    children: [
+      {
+        path: 'http://8.133.179.48:4000/dist-doc/',
+        meta: { title: '文档', icon: 'documentation' }
+      }
+    ]
+  },
+  {
+    path: '/guide',
+    component: Layout,
+    name: 'Guide',
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('_v/guide/index.vue'),
+        name: 'GuideDemo',
+        meta: {
+          title: '引导页',
+          icon: 'guide'
+        }
+      }
+    ]
   }
-  // {
-  //   path: '/external-link',
-  //   component: Layout,
-  //   meta: {},
-  //   children: [
-  //     {
-  //       path: 'http://8.133.179.48:4000/dist-doc/',
-  //       meta: { title: '文档', icon: 'documentation' }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/guide',
-  //   component: Layout,
-  //   name: 'Guide',
-  //   meta: {},
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('_v/guide/index.vue'),
-  //       name: 'GuideDemo',
-  //       meta: {
-  //         title: '引导页',
-  //         icon: 'guide'
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 export const asyncRouterMap: AppRouteRecordRaw[] = [
-  // {
-  //   path: '/components-demo',
-  //   component: Layout,
-  //   redirect: '/components-demo/echarts',
-  //   name: 'ComponentsDemo',
-  //   meta: {
-  //     title: '功能组件',
-  //     icon: 'component',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'echarts',
-  //       component: () => import('_v/components-demo/echarts/index.vue'),
-  //       name: 'EchartsDemo',
-  //       meta: {
-  //         title: '图表'
-  //       }
-  //     },
-  //     {
-  //       path: 'preview',
-  //       component: () => import('_v/components-demo/preview/index.vue'),
-  //       name: 'PreviewDemo',
-  //       meta: {
-  //         title: '图片预览'
-  //       }
-  //     },
-  //     {
-  //       path: 'button',
-  //       component: () => import('_v/components-demo/button/index.vue'),
-  //       name: 'ButtonDemo',
-  //       meta: {
-  //         title: '按钮'
-  //       }
-  //     },
-  //     {
-  //       path: 'message',
-  //       component: () => import('_v/components-demo/message/index.vue'),
-  //       name: 'MessageDemo',
-  //       meta: {
-  //         title: '消息提示'
-  //       }
-  //     },
-  //     {
-  //       path: 'count-to',
-  //       component: () => import('_v/components-demo/count-to/index.vue'),
-  //       name: 'CountToDemo',
-  //       meta: {
-  //         title: '数字动画'
-  //       }
-  //     },
-  //     {
-  //       path: 'search',
-  //       component: () => import('_v/components-demo/search/index.vue'),
-  //       name: 'SearchDemo',
-  //       meta: {
-  //         title: '查询'
-  //       }
-  //     },
-  //     {
-  //       path: 'editor',
-  //       component: () => import('_v/components-demo/editor/index.vue'),
-  //       name: 'EditorDemo',
-  //       meta: {
-  //         title: '富文本编辑器'
-  //       }
-  //     },
-  //     {
-  //       path: 'markdown',
-  //       component: () => import('_v/components-demo/markdown/index.vue'),
-  //       name: 'MarkdownDemo',
-  //       meta: {
-  //         title: 'markdown编辑器'
-  //       }
-  //     },
-  //     {
-  //       path: 'dialog',
-  //       component: () => import('_v/components-demo/dialog/index.vue'),
-  //       name: 'DialogDemo',
-  //       meta: {
-  //         title: '弹窗'
-  //       }
-  //     },
-  //     {
-  //       path: 'more',
-  //       component: () => import('_v/components-demo/more/index.vue'),
-  //       name: 'MoreDemo',
-  //       meta: {
-  //         title: '显示更多'
-  //       }
-  //     },
-  //     {
-  //       path: 'detail',
-  //       component: () => import('_v/components-demo/detail/index.vue'),
-  //       name: 'DetailDemo',
-  //       meta: {
-  //         title: '详情组件'
-  //       }
-  //     },
-  //     {
-  //       path: 'qrcode',
-  //       component: () => import('_v/components-demo/qrcode/index.vue'),
-  //       name: 'QrcodeDemo',
-  //       meta: {
-  //         title: '二维码组件'
-  //       }
-  //     },
-  //     {
-  //       path: 'avatars',
-  //       component: () => import('_v/components-demo/avatars/index.vue'),
-  //       name: 'AvatarsDemo',
-  //       meta: {
-  //         title: '头像组'
-  //       }
-  //     },
-  //     {
-  //       path: 'highlight',
-  //       component: () => import('_v/components-demo/highlight/index.vue'),
-  //       name: 'HighlightDemo',
-  //       meta: {
-  //         title: '文字高亮'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/components-demo',
+    component: Layout,
+    redirect: '/components-demo/echarts',
+    name: 'ComponentsDemo',
+    meta: {
+      title: '功能组件',
+      icon: 'component',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'echarts',
+        component: () => import('_v/components-demo/echarts/index.vue'),
+        name: 'EchartsDemo',
+        meta: {
+          title: '图表'
+        }
+      },
+      {
+        path: 'preview',
+        component: () => import('_v/components-demo/preview/index.vue'),
+        name: 'PreviewDemo',
+        meta: {
+          title: '图片预览'
+        }
+      }
+      // {
+      //   path: 'button',
+      //   component: () => import('_v/components-demo/button/index.vue'),
+      //   name: 'ButtonDemo',
+      //   meta: {
+      //     title: '按钮'
+      //   }
+      // },
+      // {
+      //   path: 'message',
+      //   component: () => import('_v/components-demo/message/index.vue'),
+      //   name: 'MessageDemo',
+      //   meta: {
+      //     title: '消息提示'
+      //   }
+      // },
+      // {
+      //   path: 'count-to',
+      //   component: () => import('_v/components-demo/count-to/index.vue'),
+      //   name: 'CountToDemo',
+      //   meta: {
+      //     title: '数字动画'
+      //   }
+      // },
+      // {
+      //   path: 'search',
+      //   component: () => import('_v/components-demo/search/index.vue'),
+      //   name: 'SearchDemo',
+      //   meta: {
+      //     title: '查询'
+      //   }
+      // },
+      // {
+      //   path: 'editor',
+      //   component: () => import('_v/components-demo/editor/index.vue'),
+      //   name: 'EditorDemo',
+      //   meta: {
+      //     title: '富文本编辑器'
+      //   }
+      // },
+      // {
+      //   path: 'markdown',
+      //   component: () => import('_v/components-demo/markdown/index.vue'),
+      //   name: 'MarkdownDemo',
+      //   meta: {
+      //     title: 'markdown编辑器'
+      //   }
+      // },
+      // {
+      //   path: 'dialog',
+      //   component: () => import('_v/components-demo/dialog/index.vue'),
+      //   name: 'DialogDemo',
+      //   meta: {
+      //     title: '弹窗'
+      //   }
+      // },
+      // {
+      //   path: 'more',
+      //   component: () => import('_v/components-demo/more/index.vue'),
+      //   name: 'MoreDemo',
+      //   meta: {
+      //     title: '显示更多'
+      //   }
+      // },
+      // {
+      //   path: 'detail',
+      //   component: () => import('_v/components-demo/detail/index.vue'),
+      //   name: 'DetailDemo',
+      //   meta: {
+      //     title: '详情组件'
+      //   }
+      // },
+      // {
+      //   path: 'qrcode',
+      //   component: () => import('_v/components-demo/qrcode/index.vue'),
+      //   name: 'QrcodeDemo',
+      //   meta: {
+      //     title: '二维码组件'
+      //   }
+      // },
+      // {
+      //   path: 'avatars',
+      //   component: () => import('_v/components-demo/avatars/index.vue'),
+      //   name: 'AvatarsDemo',
+      //   meta: {
+      //     title: '头像组'
+      //   }
+      // },
+      // {
+      //   path: 'highlight',
+      //   component: () => import('_v/components-demo/highlight/index.vue'),
+      //   name: 'HighlightDemo',
+      //   meta: {
+      //     title: '文字高亮'
+      //   }
+      // }
+    ]
+  },
   // {
   //   path: '/table-demo',
   //   component: Layout,
@@ -481,65 +483,65 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
   //     }
   //   ]
   // },
-  // {
-  //   path: '/level',
-  //   component: Layout,
-  //   redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //   name: 'Level',
-  //   meta: {
-  //     title: '多级菜单缓存',
-  //     icon: 'nested'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'menu1',
-  //       name: 'Menu1Demo',
-  //       component: getParentLayout('Menu1Demo'),
-  //       redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //       meta: {
-  //         title: 'Menu1'
-  //       },
-  //       children: [
-  //         {
-  //           path: 'menu1-1',
-  //           name: 'Menu11Demo',
-  //           component: getParentLayout('Menu11Demo'),
-  //           redirect: '/level/menu1/menu1-1/menu1-1-1',
-  //           meta: {
-  //             title: 'Menu1-1',
-  //             alwaysShow: true
-  //           },
-  //           children: [
-  //             {
-  //               path: 'menu1-1-1',
-  //               name: 'Menu111Demo',
-  //               component: () => import('_v/level/Menu111.vue'),
-  //               meta: {
-  //                 title: 'Menu1-1-1'
-  //               }
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           path: 'menu1-2',
-  //           name: 'Menu12Demo',
-  //           component: () => import('_v/level/Menu12.vue'),
-  //           meta: {
-  //             title: 'Menu1-2'
-  //           }
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'menu2',
-  //       name: 'Menu2Demo',
-  //       component: () => import('_v/level/Menu2.vue'),
-  //       meta: {
-  //         title: 'Menu2'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/level',
+    component: Layout,
+    redirect: '/level/menu1/menu1-1/menu1-1-1',
+    name: 'Level',
+    meta: {
+      title: '多级菜单缓存',
+      icon: 'nested'
+    },
+    children: [
+      {
+        path: 'menu1',
+        name: 'Menu1Demo',
+        component: getParentLayout('Menu1Demo'),
+        redirect: '/level/menu1/menu1-1/menu1-1-1',
+        meta: {
+          title: 'Menu1'
+        },
+        children: [
+          {
+            path: 'menu1-1',
+            name: 'Menu11Demo',
+            component: getParentLayout('Menu11Demo'),
+            redirect: '/level/menu1/menu1-1/menu1-1-1',
+            meta: {
+              title: 'Menu1-1',
+              alwaysShow: true
+            },
+            children: [
+              {
+                path: 'menu1-1-1',
+                name: 'Menu111Demo',
+                component: () => import('_v/level/Menu111.vue'),
+                meta: {
+                  title: 'Menu1-1-1'
+                }
+              }
+            ]
+          },
+          {
+            path: 'menu1-2',
+            name: 'Menu12Demo',
+            component: () => import('_v/level/Menu12.vue'),
+            meta: {
+              title: 'Menu1-2'
+            }
+          }
+        ]
+      },
+      {
+        path: 'menu2',
+        name: 'Menu2Demo',
+        component: () => import('_v/level/Menu2.vue'),
+        meta: {
+          title: 'Menu2'
+        }
+      }
+    ]
+  }
   // {
   //   path: '/example-demo',
   //   component: Layout,

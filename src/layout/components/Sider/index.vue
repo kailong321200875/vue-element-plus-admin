@@ -48,9 +48,7 @@ defineProps({
 })
 
 const { currentRoute, push } = useRouter()
-const routers = computed(() => {
-  return permissionStore.getRouters
-})
+const routers = computed(() => permissionStore.getRouters)
 const activeMenu = computed(() => {
   const { meta, path } = currentRoute.value
   // if set path, the sidebar will highlight the path you set

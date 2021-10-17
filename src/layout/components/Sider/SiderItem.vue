@@ -36,7 +36,7 @@
       <template #title>
         <item v-if="siderItem.meta" :icon="siderItem?.meta?.icon" :title="siderItem.meta.title" />
       </template>
-      <sider-item
+      <sider-item-com
         v-for="child in siderItem.children"
         :key="child.path"
         :is-nest="true"
@@ -51,7 +51,6 @@
 <script setup lang="ts" name="SiderItemCom">
 import { PropType, ref, computed } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
-import path from 'path-browserify'
 import { isExternal } from '@/utils/validate'
 import Item from './Item.vue'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -78,7 +77,6 @@ const props = defineProps({
     default: 'Classic'
   }
 })
-
 const onlyOneChild = ref<any>(null)
 
 const activeTab = computed(() => permissionStore.getActiveTab)
@@ -114,7 +112,10 @@ function resolvePath(routePath: string, otherPath?: string): string {
   if (isExternal(routePath)) {
     return routePath
   }
-  return path.resolve(otherPath || props.basePath, routePath)
+  return (
+    ((otherPath || props.basePath) === '/' ? '' : otherPath || props.basePath) +
+    (routePath ? '/' + routePath : '')
+  )
 }
 </script>
 
