@@ -15,7 +15,9 @@ const emit = defineEmits(['mounted', 'callback'])
 
 defineExpose({
   pauseResume,
-  reset
+  reset,
+  start,
+  pause
 })
 
 const state = reactive<{

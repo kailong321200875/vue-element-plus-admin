@@ -144,71 +144,47 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: '图片预览'
         }
-      }
-      // {
-      //   path: 'button',
-      //   component: () => import('_v/components-demo/button/index.vue'),
-      //   name: 'ButtonDemo',
-      //   meta: {
-      //     title: '按钮'
-      //   }
-      // },
-      // {
-      //   path: 'message',
-      //   component: () => import('_v/components-demo/message/index.vue'),
-      //   name: 'MessageDemo',
-      //   meta: {
-      //     title: '消息提示'
-      //   }
-      // },
-      // {
-      //   path: 'count-to',
-      //   component: () => import('_v/components-demo/count-to/index.vue'),
-      //   name: 'CountToDemo',
-      //   meta: {
-      //     title: '数字动画'
-      //   }
-      // },
-      // {
-      //   path: 'search',
-      //   component: () => import('_v/components-demo/search/index.vue'),
-      //   name: 'SearchDemo',
-      //   meta: {
-      //     title: '查询'
-      //   }
-      // },
-      // {
-      //   path: 'editor',
-      //   component: () => import('_v/components-demo/editor/index.vue'),
-      //   name: 'EditorDemo',
-      //   meta: {
-      //     title: '富文本编辑器'
-      //   }
-      // },
-      // {
-      //   path: 'markdown',
-      //   component: () => import('_v/components-demo/markdown/index.vue'),
-      //   name: 'MarkdownDemo',
-      //   meta: {
-      //     title: 'markdown编辑器'
-      //   }
-      // },
-      // {
-      //   path: 'dialog',
-      //   component: () => import('_v/components-demo/dialog/index.vue'),
-      //   name: 'DialogDemo',
-      //   meta: {
-      //     title: '弹窗'
-      //   }
-      // },
-      // {
-      //   path: 'more',
-      //   component: () => import('_v/components-demo/more/index.vue'),
-      //   name: 'MoreDemo',
-      //   meta: {
-      //     title: '显示更多'
-      //   }
-      // },
+      },
+      {
+        path: 'message',
+        component: () => import('_v/components-demo/message/index.vue'),
+        name: 'MessageDemo',
+        meta: {
+          title: '消息提示'
+        }
+      },
+      {
+        path: 'count-to',
+        component: () => import('_v/components-demo/count-to/index.vue'),
+        name: 'CountToDemo',
+        meta: {
+          title: '数字动画'
+        }
+      },
+      {
+        path: 'search',
+        component: () => import('_v/components-demo/search/index.vue'),
+        name: 'SearchDemo',
+        meta: {
+          title: '查询'
+        }
+      },
+      {
+        path: 'editor',
+        component: () => import('_v/components-demo/editor/index.vue'),
+        name: 'EditorDemo',
+        meta: {
+          title: '富文本编辑器'
+        }
+      },
+      {
+        path: 'dialog',
+        component: () => import('_v/components-demo/dialog/index.vue'),
+        name: 'DialogDemo',
+        meta: {
+          title: '弹窗'
+        }
+      },
       // {
       //   path: 'detail',
       //   component: () => import('_v/components-demo/detail/index.vue'),
@@ -217,14 +193,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       //     title: '详情组件'
       //   }
       // },
-      // {
-      //   path: 'qrcode',
-      //   component: () => import('_v/components-demo/qrcode/index.vue'),
-      //   name: 'QrcodeDemo',
-      //   meta: {
-      //     title: '二维码组件'
-      //   }
-      // },
+      {
+        path: 'qrcode',
+        component: () => import('_v/components-demo/qrcode/index.vue'),
+        name: 'QrcodeDemo',
+        meta: {
+          title: '二维码'
+        }
+      }
       // {
       //   path: 'avatars',
       //   component: () => import('_v/components-demo/avatars/index.vue'),

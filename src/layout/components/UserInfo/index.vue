@@ -27,7 +27,7 @@ const tagsViewStore = useTagsViewStore()
 import { useCache } from '@/hooks/web/useCache'
 const { wsCache } = useCache()
 // @ts-ignore
-import avatarImg from '@/assets/img/avatar.gif'
+import avatarImg from '@/assets/img/avatar.png'
 
 const { replace, push } = useRouter()
 async function loginOut(): Promise<void> {
