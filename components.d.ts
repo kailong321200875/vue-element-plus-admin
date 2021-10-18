@@ -4,15 +4,15 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    404: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Error/404.vue')['default']
-    CountTo: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/CountTo/index.vue')['default']
-    Dialog: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Dialog/index.vue')['default']
-    Echart: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Echart/index.vue')['default']
-    Editor: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Editor/index.vue')['default']
+    404: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Error/404.vue')['default']
+    Aa: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/aa.vue')['default']
+    CountTo: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/CountTo/index.vue')['default']
+    Dialog: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Dialog/index.vue')['default']
+    Echart: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Echart/index.vue')['default']
+    Editor: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Editor/index.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
@@ -41,14 +41,14 @@ declare module 'vue' {
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     ElTimeSelect: typeof import('element-plus/es')['ElTimeSelect']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
-    HelloWorld: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/HelloWorld.vue')['default']
-    ParentView: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/ParentView/index.vue')['default']
-    Preview: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Preview/index.vue')['default']
-    Qrcode: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Qrcode/index.vue')['default']
-    Redirect: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Redirect/index.vue')['default']
-    Search: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/Search/index.vue')['default']
-    SvgIcon: typeof import('C:/Users/Saber/Documents/HBuilderProjects/vue-element-plus-admin/src/components/SvgIcon/index.vue')['default']
+    Highlight: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Highlight/index.vue')['default']
+    ParentView: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/ParentView/index.vue')['default']
+    Preview: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Preview/index.vue')['default']
+    Qrcode: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Qrcode/index.vue')['default']
+    Redirect: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Redirect/index.vue')['default']
+    Search: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/Search/index.vue')['default']
+    SvgIcon: typeof import('E:/HBuilderProjects/element-plus-admin/src/components/SvgIcon/index.vue')['default']
   }
 }
 
-export { }
+export {}

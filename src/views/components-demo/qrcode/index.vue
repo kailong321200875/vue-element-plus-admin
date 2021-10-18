@@ -79,11 +79,12 @@ function disabledClick() {
 
 <style lang="less" scoped>
 .el-col {
-  text-align: center;
   margin-bottom: 20px;
+  text-align: center;
+
   .title-item {
-    font-weight: bold;
     margin-bottom: 10px;
+    font-weight: bold;
   }
 }
 </style>

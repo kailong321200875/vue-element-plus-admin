@@ -238,28 +238,31 @@ function canvasRoundRect(ctx: CanvasRenderingContext2D) {
 
 <style lang="less" scoped>
 .qrcode__wrap {
-  display: inline-block;
   position: relative;
+  display: inline-block;
+
   .disabled__wrap {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.95);
     top: 0;
     left: 0;
     display: flex;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.95);
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+
     & > div {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       font-weight: bold;
+      transform: translate(-50%, -50%);
+
       i {
-        font-size: 30px;
         margin-bottom: 10px;
+        font-size: 30px;
       }
     }
   }

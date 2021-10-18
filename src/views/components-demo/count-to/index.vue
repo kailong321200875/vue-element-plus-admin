@@ -49,7 +49,7 @@
           <div class="action__item"> <span>suffix：</span><el-input v-model="suffix" /> </div>
         </el-col>
         <el-col :span="24">
-          <div style="text-align: center; margin-top: 20px">
+          <div style="margin-top: 20px; text-align: center">
             <el-button type="primary" @click="start">start</el-button>
             <el-button style="margin-left: 10px" @click="pauseResume">pause/resume</el-button>
           </div>
@@ -83,26 +83,31 @@ function pauseResume(): void {
 
 <style lang="less" scoped>
 .count-to {
-  text-align: center;
   margin-top: 40px;
+  text-align: center;
+
   &__item {
     font-size: 80px;
-    color: #f6416c;
     font-weight: bold;
+    color: #f6416c;
   }
 }
+
 .action {
   margin-top: 20px;
+
   &__item {
-    padding: 0 15px;
     display: flex;
-    align-items: center;
+    padding: 0 15px;
     margin-bottom: 10px;
+    align-items: center;
+
     & > span {
       display: inline-block;
       width: 120px;
       text-align: center;
     }
+
     :deep(.el-input-number) {
       width: 100%;
     }

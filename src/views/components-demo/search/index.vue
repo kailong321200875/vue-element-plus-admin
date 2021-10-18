@@ -12,7 +12,7 @@
       :closable="false"
       title="经典风格。"
       type="info"
-      style="margin-bottom: 20px; margin-top: 20px"
+      style="margin-top: 20px; margin-bottom: 20px"
     />
     <div class="searh">
       <com-search :data="classicData" @search-submit="searchSubmit1" @reset-submit="resetSubmit1" />
@@ -24,7 +24,7 @@
       :closable="false"
       title="底部操作按钮风格。"
       type="info"
-      style="margin-bottom: 20px; margin-top: 20px"
+      style="margin-top: 20px; margin-bottom: 20px"
     />
     <div class="searh">
       <com-search
@@ -41,7 +41,7 @@
       :closable="false"
       title="右侧操作按钮风格。"
       type="info"
-      style="margin-bottom: 20px; margin-top: 20px"
+      style="margin-top: 20px; margin-bottom: 20px"
     />
     <div class="searh">
       <com-search
@@ -89,7 +89,7 @@ function resetSubmit3(data: any): void {
 
 <style lang="less" scoped>
 .searh {
-  background: #fff;
   padding: 20px;
+  background: #fff;
 }
 </style>

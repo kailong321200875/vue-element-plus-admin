@@ -306,32 +306,38 @@ function changeVal(val: any, item: any): void {
   .ant-form-item {
     min-height: 60px;
   }
+
   .ant-form-item-with-help {
     margin-bottom: 0;
   }
 }
+
 .search__bottom {
-  text-align: center;
   padding-bottom: 20px;
+  text-align: center;
+
   .search__bottom--button {
     display: inline-block;
   }
 }
+
 .search__bottom--col {
+  position: relative;
   padding-bottom: 0;
   margin-top: 5px;
-  position: relative;
+
   .search__bottom--button {
     display: inline-block;
   }
 }
+
 .search__bottom--col::before {
-  content: '';
-  width: 1px;
-  height: 100%;
-  border-left: 1px solid #d9d9d9;
   position: absolute;
   top: 0;
   left: 0;
+  width: 1px;
+  height: 100%;
+  border-left: 1px solid #d9d9d9;
+  content: '';
 }
 </style>

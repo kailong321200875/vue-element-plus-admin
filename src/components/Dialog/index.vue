@@ -167,24 +167,29 @@ if (props.draggable) {
   color: #909399;
   cursor: pointer;
   transition: color 0.2s;
+
   &:hover {
     color: #409eff;
   }
 }
+
 .com-dialog__content {
   .content__wrap {
     padding-right: 10px;
   }
+
   :deep(.el-scrollbar__wrap) {
     max-height: 600px; // 最大高度
     overflow-x: hidden; // 隐藏横向滚动栏
   }
 }
+
 .com-dialog__content--fullscreen {
   :deep(.el-scrollbar__wrap) {
     height: calc(~'100vh - 46px - 60px'); // 最大高度
   }
 }
+
 .com-dialog__content--footer {
   :deep(.el-scrollbar__wrap) {
     max-height: calc(~'100vh - 46px - 60px - 70px'); // 最大高度

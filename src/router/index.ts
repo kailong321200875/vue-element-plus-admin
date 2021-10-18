@@ -200,7 +200,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: '二维码'
         }
-      }
+      },
       // {
       //   path: 'avatars',
       //   component: () => import('_v/components-demo/avatars/index.vue'),
@@ -209,14 +209,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       //     title: '头像组'
       //   }
       // },
-      // {
-      //   path: 'highlight',
-      //   component: () => import('_v/components-demo/highlight/index.vue'),
-      //   name: 'HighlightDemo',
-      //   meta: {
-      //     title: '文字高亮'
-      //   }
-      // }
+      {
+        path: 'highlight',
+        component: () => import('_v/components-demo/highlight/index.vue'),
+        name: 'HighlightDemo',
+        meta: {
+          title: '文字高亮'
+        }
+      }
     ]
   },
   // {
