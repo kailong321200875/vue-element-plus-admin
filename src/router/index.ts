@@ -185,14 +185,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           title: '弹窗'
         }
       },
-      // {
-      //   path: 'detail',
-      //   component: () => import('_v/components-demo/detail/index.vue'),
-      //   name: 'DetailDemo',
-      //   meta: {
-      //     title: '详情组件'
-      //   }
-      // },
+      {
+        path: 'detail',
+        component: () => import('_v/components-demo/detail/index.vue'),
+        name: 'DetailDemo',
+        meta: {
+          title: '详情'
+        }
+      },
       {
         path: 'qrcode',
         component: () => import('_v/components-demo/qrcode/index.vue'),
@@ -201,14 +201,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           title: '二维码'
         }
       },
-      // {
-      //   path: 'avatars',
-      //   component: () => import('_v/components-demo/avatars/index.vue'),
-      //   name: 'AvatarsDemo',
-      //   meta: {
-      //     title: '头像组'
-      //   }
-      // },
+      {
+        path: 'avatars',
+        component: () => import('_v/components-demo/avatars/index.vue'),
+        name: 'AvatarsDemo',
+        meta: {
+          title: '头像组'
+        }
+      },
       {
         path: 'highlight',
         component: () => import('_v/components-demo/highlight/index.vue'),
