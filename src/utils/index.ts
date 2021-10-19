@@ -129,7 +129,7 @@ export function exportFile(response: AxiosResponse) {
       ? response.headers['content-disposition'].split(';')[1].split('=')[1]
       : 'test'
   )
-  const blob = new Blob([response.data], {
+  const blob = new Blob([response.data as Blob], {
     type: response.headers['content-type']
   })
   if (typeof (window.navigator as any).msSaveBlob !== 'undefined') {
