@@ -65,7 +65,7 @@ import { ref, reactive, computed, watch, nextTick, unref } from 'vue'
 import { previewProps } from './props'
 import { isFirefox } from '@/utils/validate'
 import { on, off } from '@/utils/dom-utils'
-import throttle from 'lodash-es/throttle'
+import { throttle } from 'lodash-es'
 import SvgIcon from '_c/SvgIcon/index.vue'
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel'
 

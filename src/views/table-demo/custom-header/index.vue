@@ -21,9 +21,9 @@
       </template>
       <template #action="scope">
         <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)"
-          >Delete</el-button
-        >
+        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">
+          Delete
+        </el-button>
       </template>
     </com-table>
   </div>

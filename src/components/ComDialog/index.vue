@@ -41,7 +41,7 @@
   </el-dialog>
 </template>
 
-<script setup lang="ts" name="Dialog">
+<script setup lang="ts" name="ComDialog">
 import { ref, computed, PropType, nextTick, unref, useAttrs, useSlots } from 'vue'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 

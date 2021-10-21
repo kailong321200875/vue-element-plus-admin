@@ -245,228 +245,199 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: '基础表格'
         }
+      },
+      {
+        path: 'page-table',
+        component: () => import('_v/table-demo/page-table/index.vue'),
+        name: 'PageTable',
+        meta: {
+          title: '分页表格'
+        }
+      },
+      {
+        path: 'stripe-table',
+        component: () => import('_v/table-demo/stripe-table/index.vue'),
+        name: 'StripeTable',
+        meta: {
+          title: '带斑马纹表格'
+        }
+      },
+      {
+        path: 'border-table',
+        component: () => import('_v/table-demo/border-table/index.vue'),
+        name: 'BorderTable',
+        meta: {
+          title: '带边框表格'
+        }
+      },
+      {
+        path: 'state-table',
+        component: () => import('_v/table-demo/state-table/index.vue'),
+        name: 'StateTable',
+        meta: {
+          title: '带状态表格'
+        }
+      },
+      {
+        path: 'fixed-header',
+        component: () => import('_v/table-demo/fixed-header/index.vue'),
+        name: 'FixedHeader',
+        meta: {
+          title: '固定表头'
+        }
+      },
+      {
+        path: 'fixed-column',
+        component: () => import('_v/table-demo/fixed-column/index.vue'),
+        name: 'FixedColumn',
+        meta: {
+          title: '固定列'
+        }
+      },
+      {
+        path: 'fixed-column-header',
+        component: () => import('_v/table-demo/fixed-column-header/index.vue'),
+        name: 'FixedColumnHeader',
+        meta: {
+          title: '固定列和表头'
+        }
+      },
+      {
+        path: 'fluid-height',
+        component: () => import('_v/table-demo/fluid-height/index.vue'),
+        name: 'FluidHeight',
+        meta: {
+          title: '流体高度'
+        }
+      },
+      {
+        path: 'multi-header',
+        component: () => import('_v/table-demo/multi-header/index.vue'),
+        name: 'MultiHeader',
+        meta: {
+          title: '多级表头'
+        }
+      },
+      {
+        path: 'single-choice',
+        component: () => import('_v/table-demo/single-choice/index.vue'),
+        name: 'SingleChoice',
+        meta: {
+          title: '单选'
+        }
+      },
+      {
+        path: 'multiple-choice',
+        component: () => import('_v/table-demo/multiple-choice/index.vue'),
+        name: 'MultipleChoice',
+        meta: {
+          title: '多选'
+        }
+      },
+      {
+        path: 'sort-table',
+        component: () => import('_v/table-demo/sort-table/index.vue'),
+        name: 'SortTable',
+        meta: {
+          title: '排序'
+        }
+      },
+      {
+        path: 'screen-table',
+        component: () => import('_v/table-demo/screen-table/index.vue'),
+        name: 'ScreenTable',
+        meta: {
+          title: '筛选'
+        }
+      },
+      {
+        path: 'expand-row',
+        component: () => import('_v/table-demo/expand-row/index.vue'),
+        name: 'ExpandRow',
+        meta: {
+          title: '展开行'
+        }
+      },
+      {
+        path: 'tree-and-load',
+        component: () => import('_v/table-demo/tree-and-load/index.vue'),
+        name: 'TreeAndLoad',
+        meta: {
+          title: '树形数据与懒加载'
+        }
+      },
+      {
+        path: 'custom-header',
+        component: () => import('_v/table-demo/custom-header/index.vue'),
+        name: 'CustomHeader',
+        meta: {
+          title: '自定义表头'
+        }
+      },
+      {
+        path: 'total-table',
+        component: () => import('_v/table-demo/total-table/index.vue'),
+        name: 'TotalTable',
+        meta: {
+          title: '表尾合计行'
+        }
+      },
+      {
+        path: 'merge-table',
+        component: () => import('_v/table-demo/merge-table/index.vue'),
+        name: 'MergeTable',
+        meta: {
+          title: '合并行或列'
+        }
+      },
+      {
+        path: 'custom-index',
+        component: () => import('_v/table-demo/custom-index/index.vue'),
+        name: 'CustomIndex',
+        meta: {
+          title: '自定义索引'
+        }
       }
-      // {
-      //   path: 'page-table',
-      //   component: () => import('_v/table-demo/page-table/index.vue'),
-      //   name: 'PageTable',
-      //   meta: {
-      //     title: '分页表格'
-      //   }
-      // },
-      // {
-      //   path: 'stripe-table',
-      //   component: () => import('_v/table-demo/stripe-table/index.vue'),
-      //   name: 'StripeTable',
-      //   meta: {
-      //     title: '带斑马纹表格'
-      //   }
-      // },
-      // {
-      //   path: 'border-table',
-      //   component: () => import('_v/table-demo/border-table/index.vue'),
-      //   name: 'BorderTable',
-      //   meta: {
-      //     title: '带边框表格'
-      //   }
-      // },
-      // {
-      //   path: 'state-table',
-      //   component: () => import('_v/table-demo/state-table/index.vue'),
-      //   name: 'StateTable',
-      //   meta: {
-      //     title: '带状态表格'
-      //   }
-      // },
-      // {
-      //   path: 'fixed-header',
-      //   component: () => import('_v/table-demo/fixed-header/index.vue'),
-      //   name: 'FixedHeader',
-      //   meta: {
-      //     title: '固定表头'
-      //   }
-      // },
-      // {
-      //   path: 'fixed-column',
-      //   component: () => import('_v/table-demo/fixed-column/index.vue'),
-      //   name: 'FixedColumn',
-      //   meta: {
-      //     title: '固定列'
-      //   }
-      // },
-      // {
-      //   path: 'fixed-column-header',
-      //   component: () => import('_v/table-demo/fixed-column-header/index.vue'),
-      //   name: 'FixedColumnHeader',
-      //   meta: {
-      //     title: '固定列和表头'
-      //   }
-      // },
-      // {
-      //   path: 'fluid-height',
-      //   component: () => import('_v/table-demo/fluid-height/index.vue'),
-      //   name: 'FluidHeight',
-      //   meta: {
-      //     title: '流体高度'
-      //   }
-      // },
-      // {
-      //   path: 'multi-header',
-      //   component: () => import('_v/table-demo/multi-header/index.vue'),
-      //   name: 'MultiHeader',
-      //   meta: {
-      //     title: '多级表头'
-      //   }
-      // },
-      // {
-      //   path: 'single-choice',
-      //   component: () => import('_v/table-demo/single-choice/index.vue'),
-      //   name: 'SingleChoice',
-      //   meta: {
-      //     title: '单选'
-      //   }
-      // },
-      // {
-      //   path: 'multiple-choice',
-      //   component: () => import('_v/table-demo/multiple-choice/index.vue'),
-      //   name: 'MultipleChoice',
-      //   meta: {
-      //     title: '多选'
-      //   }
-      // },
-      // {
-      //   path: 'sort-table',
-      //   component: () => import('_v/table-demo/sort-table/index.vue'),
-      //   name: 'SortTable',
-      //   meta: {
-      //     title: '排序'
-      //   }
-      // },
-      // {
-      //   path: 'screen-table',
-      //   component: () => import('_v/table-demo/screen-table/index.vue'),
-      //   name: 'ScreenTable',
-      //   meta: {
-      //     title: '筛选'
-      //   }
-      // },
-      // {
-      //   path: 'expand-row',
-      //   component: () => import('_v/table-demo/expand-row/index.vue'),
-      //   name: 'ExpandRow',
-      //   meta: {
-      //     title: '展开行'
-      //   }
-      // },
-      // {
-      //   path: 'tree-and-load',
-      //   component: () => import('_v/table-demo/tree-and-load/index.vue'),
-      //   name: 'TreeAndLoad',
-      //   meta: {
-      //     title: '树形数据与懒加载'
-      //   }
-      // },
-      // {
-      //   path: 'custom-header',
-      //   component: () => import('_v/table-demo/custom-header/index.vue'),
-      //   name: 'CustomHeader',
-      //   meta: {
-      //     title: '自定义表头'
-      //   }
-      // },
-      // {
-      //   path: 'total-table',
-      //   component: () => import('_v/table-demo/total-table/index.vue'),
-      //   name: 'TotalTable',
-      //   meta: {
-      //     title: '表尾合计行'
-      //   }
-      // },
-      // {
-      //   path: 'merge-table',
-      //   component: () => import('_v/table-demo/merge-table/index.vue'),
-      //   name: 'MergeTable',
-      //   meta: {
-      //     title: '合并行或列'
-      //   }
-      // },
-      // {
-      //   path: 'custom-index',
-      //   component: () => import('_v/table-demo/custom-index/index.vue'),
-      //   name: 'CustomIndex',
-      //   meta: {
-      //     title: '自定义索引'
-      //   }
-      // }
     ]
   },
-  // {
-  //   path: '/directives-demo',
-  //   component: Layout,
-  //   redirect: '/directives-demo/clipboard',
-  //   name: 'DirectivesDemo',
-  //   meta: {
-  //     title: '自定义指令',
-  //     icon: 'clipboard',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'clipboard',
-  //       component: () => import('_v/directives-demo/clipboard/index.vue'),
-  //       name: 'ClipboardDemo',
-  //       meta: {
-  //         title: 'Clipboard'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/hooks-demo',
-  //   component: Layout,
-  //   redirect: '/hooks-demo/watermark',
-  //   name: 'HooksDemo',
-  //   meta: {
-  //     title: 'Hooks',
-  //     icon: 'international',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'watermark',
-  //       component: () => import('_v/hooks-demo/useWatermark/index.vue'),
-  //       name: 'UseWatermarkDemo',
-  //       meta: {
-  //         title: 'UseWaterMark'
-  //       }
-  //     },
-  //     {
-  //       path: 'useScrollTo',
-  //       component: () => import('_v/hooks-demo/useScrollTo/index.vue'),
-  //       name: 'UseScrollToDemo',
-  //       meta: {
-  //         title: 'UseScrollTo'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/icon',
-  //   component: Layout,
-  //   name: 'IconsDemo',
-  //   meta: {},
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('_v/icons/index.vue'),
-  //       name: 'Icons',
-  //       meta: {
-  //         title: '图标',
-  //         icon: 'icon'
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/directives-demo',
+    component: Layout,
+    redirect: '/directives-demo/clipboard',
+    name: 'DirectivesDemo',
+    meta: {
+      title: '自定义指令',
+      icon: 'clipboard',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'clipboard',
+        component: () => import('_v/directives-demo/clipboard/index.vue'),
+        name: 'ClipboardDemo',
+        meta: {
+          title: 'Clipboard'
+        }
+      }
+    ]
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    name: 'IconsDemo',
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('_v/icons/index.vue'),
+        name: 'Icons',
+        meta: {
+          title: '图标',
+          icon: 'icon'
+        }
+      }
+    ]
+  },
   {
     path: '/level',
     component: Layout,

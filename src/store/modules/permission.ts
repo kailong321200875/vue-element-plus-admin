@@ -12,7 +12,7 @@ import { store } from '../index'
 import { useAppStoreWithOut } from '@/store/modules/app'
 const appStore = useAppStoreWithOut()
 
-const modules = import.meta.glob('../views/*/*.vue')
+const modules = import.meta.glob('./src/views/*/*.vue')
 
 /* Layout */
 const Layout = () => import('@/layout/index.vue')

@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Detail">
+<script setup lang="ts" name="ComDetail">
 import { PropType, ref, computed } from 'vue'
 import { SchemaConfig } from './types'
 
@@ -65,11 +65,15 @@ const props = defineProps({
   // 需要展示的数据
   data: {
     type: Object as PropType<IObj>,
+    default: () => {
+      return {}
+    },
     required: true
   },
   // 布局展示的数据
   schema: {
     type: Array as PropType<SchemaConfig[]>,
+    default: () => [],
     required: true
   },
   // 是否标题和内容各占一行 垂直布局

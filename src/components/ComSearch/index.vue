@@ -187,7 +187,7 @@
   </div>
 </template>
 
-<script setup lang="ts" name="Search">
+<script setup lang="ts" name="ComSearch">
 import { PropType, watch, ref, unref } from 'vue'
 import { deepClone } from '@/utils'
 

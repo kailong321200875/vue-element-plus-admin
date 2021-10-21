@@ -4,7 +4,7 @@ export default defineComponent({
   name: 'Slot',
   props: {
     row: {
-      type: Object as PropType<object>,
+      type: Object as PropType<IObj>,
       default: () => null
     },
     index: {
@@ -12,7 +12,7 @@ export default defineComponent({
       default: null
     },
     column: {
-      type: Object as PropType<object>,
+      type: Object as PropType<IObj>,
       default: () => null
     },
     slotName: {
@@ -20,7 +20,7 @@ export default defineComponent({
       default: ''
     }
   },
-  render(props: any) {
+  render(props) {
     const _this: any = inject('tableRoot')
     return h(
       'span',
