@@ -51,6 +51,7 @@ declare module 'vue' {
     ElTimePicker: typeof import('element-plus/es')['ElTimePicker']
     ElTimeSelect: typeof import('element-plus/es')['ElTimeSelect']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
+    ElTree: typeof import('element-plus/es')['ElTree']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     ParentView: typeof import('./src/components/ParentView/index.vue')['default']
     Preview: typeof import('./src/components/Preview/index.vue')['default']

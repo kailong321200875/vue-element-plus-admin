@@ -50,18 +50,13 @@ export const checkedNodes = [
         name: 'DialogDemo'
       },
       {
-        path: '/components-demo/more',
-        title: '显示更多',
-        name: 'MoreDemo'
-      },
-      {
         path: '/components-demo/detail',
-        title: '详情组件',
+        title: '详情',
         name: 'DetailDemo'
       },
       {
         path: '/components-demo/qrcode',
-        title: '二维码组件',
+        title: '二维码',
         name: 'QrcodeDemo'
       },
       {
@@ -78,31 +73,6 @@ export const checkedNodes = [
         path: '/components-demo/watermark',
         name: 'WatermarkDemo',
         title: '水印'
-      },
-      {
-        path: '/components-demo/timer',
-        name: 'TimerDemo',
-        title: '计时器'
-      },
-      {
-        path: '/components-demo/marquee',
-        name: 'MarqueeDemo',
-        title: '无缝滚动'
-      },
-      {
-        path: '/components-demo/water-fall',
-        name: 'WaterFallDemo',
-        title: '瀑布流'
-      },
-      {
-        path: '/components-demo/tree-select',
-        name: 'TreeSelectDemo',
-        title: '瀑布流'
-      },
-      {
-        path: '/components-demo/ellipsis',
-        name: 'Ellipsis',
-        title: '省略号'
       }
     ]
   },
@@ -152,18 +122,13 @@ export const checkedNodes = [
     name: 'DialogDemo'
   },
   {
-    path: '/components-demo/more',
-    title: '显示更多',
-    name: 'MoreDemo'
-  },
-  {
     path: '/components-demo/detail',
-    title: '详情组件',
+    title: '详情',
     name: 'DetailDemo'
   },
   {
     path: '/components-demo/qrcode',
-    title: '二维码组件',
+    title: '二维码',
     name: 'QrcodeDemo'
   },
   {
@@ -180,31 +145,6 @@ export const checkedNodes = [
     path: '/components-demo/watermark',
     name: 'WatermarkDemo',
     title: '水印'
-  },
-  {
-    path: '/components-demo/timer',
-    name: 'TimerDemo',
-    title: '计时器'
-  },
-  {
-    path: '/components-demo/marquee',
-    name: 'MarqueeDemo',
-    title: '无缝滚动'
-  },
-  {
-    path: '/components-demo/water-fall',
-    name: 'WaterFallDemo',
-    title: '瀑布流'
-  },
-  {
-    path: '/components-demo/tree-select',
-    name: 'TreeSelectDemo',
-    title: '瀑布流'
-  },
-  {
-    path: '/components-demo/ellipsis',
-    name: 'Ellipsis',
-    title: '瀑布流'
   },
   {
     path: '/table-demo',
@@ -431,33 +371,6 @@ export const checkedNodes = [
     name: 'ClipboardDemo'
   },
   {
-    path: '/hooks-demo',
-    title: 'Hooks',
-    name: 'HooksDemo',
-    children: [
-      {
-        path: '/hooks-demo/watermark',
-        title: 'UseWaterMark',
-        name: 'UseWatermarkDemo'
-      },
-      {
-        path: '/hooks-demo/useScrollTo',
-        title: 'UseScrollTo',
-        name: 'UseScrollToDemo'
-      }
-    ]
-  },
-  {
-    path: '/hooks-demo/watermark',
-    title: 'UseWaterMark',
-    name: 'UseWatermarkDemo'
-  },
-  {
-    path: '/hooks-demo/useScrollTo',
-    title: 'UseScrollTo',
-    name: 'UseScrollToDemo'
-  },
-  {
     path: '/icon/index',
     title: '图标',
     name: 'Icons'
@@ -563,6 +476,21 @@ export const checkedNodes = [
         path: '/example-demo/example-page',
         title: '列表综合实例-页面',
         name: 'ExamplePage'
+      },
+      {
+        path: '/example-demo/example-add',
+        title: '列表综合实例-新增',
+        name: 'ExampleAdd'
+      },
+      {
+        path: '/example-demo/example-edit',
+        title: '列表综合实例-编辑',
+        name: 'ExampleEdit'
+      },
+      {
+        path: '/example-demo/example-detail',
+        title: '列表综合实例-详情',
+        name: 'ExampleDetail'
       }
     ]
   },
@@ -575,6 +503,21 @@ export const checkedNodes = [
     path: '/example-demo/example-page',
     title: '列表综合实例-页面',
     name: 'ExamplePage'
+  },
+  {
+    path: '/example-demo/example-add',
+    title: '列表综合实例-新增',
+    name: 'ExampleAdd'
+  },
+  {
+    path: '/example-demo/example-edit',
+    title: '列表综合实例-编辑',
+    name: 'ExampleEdit'
+  },
+  {
+    path: '/example-demo/example-detail',
+    title: '列表综合实例-详情',
+    name: 'ExampleDetail'
   },
   {
     path: '/role-demo',
@@ -621,11 +564,6 @@ export const checkedkeys = [
   '/components-demo/qrcode',
   '/components-demo/avatars',
   '/components-demo/watermark',
-  '/components-demo/timer',
-  '/components-demo/marquee',
-  '/components-demo/water-fall',
-  '/components-demo/tree-select',
-  '/components-demo/ellipsis',
   '/table-demo',
   '/table-demo/basic-table',
   '/table-demo/page-table',
@@ -649,9 +587,6 @@ export const checkedkeys = [
   '/table-demo/custom-index',
   '/directives-demo',
   '/directives-demo/clipboard',
-  '/hooks-demo',
-  '/hooks-demo/watermark',
-  '/hooks-demo/useScrollTo',
   '/icon/index',
   '/level',
   '/level/menu1',
@@ -662,6 +597,9 @@ export const checkedkeys = [
   '/example-demo',
   '/example-demo/example-dialog',
   '/example-demo/example-page',
+  '/example-demo/example-add',
+  '/example-demo/example-edit',
+  '/example-demo/example-detail',
   '/role-demo',
   '/role-demo/user',
   '/role-demo/role'

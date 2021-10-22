@@ -157,7 +157,7 @@ export function useWork(option?: InitOption) {
   }
 
   // 删除多选
-  function dels(item: IObj, single: boolean, callback: Fn) {
+  function dels(item: IObj, single?: boolean, callback?: Fn) {
     delData(
       async () => {
         let ids: Nullable<IObj[]> = null
@@ -190,7 +190,7 @@ export function useWork(option?: InitOption) {
   }
 
   // 打开弹窗
-  function open(row: IObj, component: string, options: DilogOption) {
+  function open(row: Nullable<IObj>, component: string, options?: DilogOption) {
     comName.value = component
     dialogTitle.value =
       (options && options.title) || (!row ? '新增' : component === 'Detail' ? '详情' : '编辑')

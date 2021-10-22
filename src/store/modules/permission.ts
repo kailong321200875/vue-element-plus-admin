@@ -12,7 +12,8 @@ import { store } from '../index'
 import { useAppStoreWithOut } from '@/store/modules/app'
 const appStore = useAppStoreWithOut()
 
-const modules = import.meta.glob('./src/views/*/*.vue')
+const modules = import.meta.glob('../../views/**/*.vue')
+console.log(modules)
 
 /* Layout */
 const Layout = () => import('@/layout/index.vue')
@@ -100,6 +101,7 @@ function generateRoutesFn(routes: AppRouteRecordRaw[], basePath = '/'): AppRoute
   for (const route of routes) {
     // skip some route
     if (route.meta && route.meta.hidden && !route.meta.showMainRoute) {
+      console.log(route)
       continue
     }
 
@@ -162,7 +164,7 @@ function getFilterRoutes(routes: AppRouteRecordRaw[]): AppRouteRecordRaw[] {
           ? Layout
           : (route.component as any).includes('##')
           ? getParentLayout((route.component as any).split('##')[1])
-          : modules[`@/${route.component}.vue`]
+          : modules[`../../${route.component}.vue`]
       ) as any
     }
     // recursive child routes

@@ -71,7 +71,7 @@ export const checkedRoleNodes = [
         component: 'views/components-demo/detail/index',
         name: 'DetailDemo',
         meta: {
-          title: '详情组件'
+          title: '详情'
         }
       },
       {
@@ -79,7 +79,7 @@ export const checkedRoleNodes = [
         component: 'views/components-demo/qrcode/index',
         name: 'QrcodeDemo',
         meta: {
-          title: '二维码组件'
+          title: '二维码'
         }
       },
       {
@@ -104,46 +104,6 @@ export const checkedRoleNodes = [
         name: 'WatermarkDemo',
         meta: {
           title: '水印'
-        }
-      },
-      {
-        path: 'timer',
-        component: 'views/components-demo/timer/index',
-        name: 'TimerDemo',
-        meta: {
-          title: '计时器'
-        }
-      },
-      {
-        path: 'marquee',
-        component: 'views/components-demo/marquee/index',
-        name: 'MarqueeDemo',
-        meta: {
-          title: '无缝滚动'
-        }
-      },
-      {
-        path: 'water-fall',
-        component: 'views/components-demo/water-fall/index',
-        name: 'WaterFallDemo',
-        meta: {
-          title: '瀑布流'
-        }
-      },
-      {
-        path: 'tree-select',
-        component: 'views/components-demo/tree-select/index',
-        name: 'TreeSelectDemo',
-        meta: {
-          title: '下拉树'
-        }
-      },
-      {
-        path: 'ellipsis',
-        component: 'views/components-demo/ellipsis/index',
-        name: 'Ellipsis',
-        meta: {
-          title: '省略号'
         }
       }
     ]

@@ -33,6 +33,7 @@
     "highlight.js": "^11.3.1",
     "intro.js": "^4.2.2",
     "lodash-es": "^4.17.21",
+    "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "path-browserify": "^1.0.1",

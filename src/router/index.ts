@@ -496,104 +496,104 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/example-demo',
+    component: Layout,
+    name: 'ExampleDemo',
+    redirect: '/example-demo/example-dialog',
+    meta: {
+      alwaysShow: true,
+      icon: 'example',
+      title: '综合实例'
+    },
+    children: [
+      {
+        path: 'example-dialog',
+        component: () => import('_v/example-demo/example-dialog/index.vue'),
+        name: 'ExampleDialog',
+        meta: {
+          title: '列表综合实例-弹窗'
+        }
+      },
+      {
+        path: 'example-page',
+        component: () => import('_v/example-demo/example-page/index.vue'),
+        name: 'ExamplePage',
+        meta: {
+          title: '列表综合实例-页面'
+        }
+      },
+      {
+        path: 'example-add',
+        component: () => import('_v/example-demo/example-page/example-add.vue'),
+        name: 'ExampleAdd',
+        meta: {
+          title: '列表综合实例-新增',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
+        }
+      },
+      {
+        path: 'example-edit',
+        component: () => import('_v/example-demo/example-page/example-edit.vue'),
+        name: 'ExampleEdit',
+        meta: {
+          title: '列表综合实例-编辑',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
+        }
+      },
+      {
+        path: 'example-detail',
+        component: () => import('_v/example-demo/example-page/example-detail.vue'),
+        name: 'ExampleDetail',
+        meta: {
+          title: '列表综合实例-详情',
+          noTagsView: true,
+          noCache: true,
+          hidden: true,
+          showMainRoute: true,
+          activeMenu: '/example-demo/example-page'
+        }
+      }
+    ]
+  },
+  {
+    path: '/role-demo',
+    component: Layout,
+    redirect: '/role-demo/user',
+    name: 'RoleDemo',
+    meta: {
+      title: '权限管理',
+      icon: 'user',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('_v/role-demo/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: '用户管理'
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('_v/role-demo/role/index.vue'),
+        name: 'Role',
+        meta: {
+          title: '角色管理'
+        }
+      }
+    ]
   }
-  // {
-  //   path: '/example-demo',
-  //   component: Layout,
-  //   name: 'ExampleDemo',
-  //   redirect: '/example-demo/example-dialog',
-  //   meta: {
-  //     alwaysShow: true,
-  //     icon: 'example',
-  //     title: '综合实例'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'example-dialog',
-  //       component: () => import('_v/example-demo/example-dialog/index.vue'),
-  //       name: 'ExampleDialog',
-  //       meta: {
-  //         title: '列表综合实例-弹窗'
-  //       }
-  //     },
-  //     {
-  //       path: 'example-page',
-  //       component: () => import('_v/example-demo/example-page/index.vue'),
-  //       name: 'ExamplePage',
-  //       meta: {
-  //         title: '列表综合实例-页面'
-  //       }
-  //     },
-  //     {
-  //       path: 'example-add',
-  //       component: () => import('_v/example-demo/example-page/example-add.vue'),
-  //       name: 'ExampleAdd',
-  //       meta: {
-  //         title: '列表综合实例-新增',
-  //         noTagsView: true,
-  //         noCache: true,
-  //         hidden: true,
-  //         showMainRoute: true,
-  //         activeMenu: '/example-demo/example-page'
-  //       }
-  //     },
-  //     {
-  //       path: 'example-edit',
-  //       component: () => import('_v/example-demo/example-page/example-edit.vue'),
-  //       name: 'ExampleEdit',
-  //       meta: {
-  //         title: '列表综合实例-编辑',
-  //         noTagsView: true,
-  //         noCache: true,
-  //         hidden: true,
-  //         showMainRoute: true,
-  //         activeMenu: '/example-demo/example-page'
-  //       }
-  //     },
-  //     {
-  //       path: 'example-detail',
-  //       component: () => import('_v/example-demo/example-page/example-detail.vue'),
-  //       name: 'ExampleDetail',
-  //       meta: {
-  //         title: '列表综合实例-详情',
-  //         noTagsView: true,
-  //         noCache: true,
-  //         hidden: true,
-  //         showMainRoute: true,
-  //         activeMenu: '/example-demo/example-page'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/role-demo',
-  //   component: Layout,
-  //   redirect: '/role-demo/user',
-  //   name: 'RoleDemo',
-  //   meta: {
-  //     title: '权限管理',
-  //     icon: 'user',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'user',
-  //       component: () => import('_v/role-demo/user/index.vue'),
-  //       name: 'User',
-  //       meta: {
-  //         title: '用户管理'
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('_v/role-demo/role/index.vue'),
-  //       name: 'Role',
-  //       meta: {
-  //         title: '角色管理'
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 const router = createRouter({

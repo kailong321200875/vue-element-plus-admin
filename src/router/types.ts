@@ -17,5 +17,6 @@ export interface RouteMeta {
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   meta: RouteMeta
+  title?: string
   children?: AppRouteRecordRaw[]
 }
