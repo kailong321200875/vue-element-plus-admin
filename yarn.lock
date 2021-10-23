@@ -775,10 +775,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@popperjs/core@^2.10.1":
+"@popperjs/core@^2.10.2":
   version "2.10.2"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
-  integrity sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==
+  resolved "https://registry.npmmirror.com/@popperjs/core/download/@popperjs/core-2.10.2.tgz?cache=0&sync_timestamp=1633001441229&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40popperjs%2Fcore%2Fdownload%2F%40popperjs%2Fcore-2.10.2.tgz#0798c03351f0dea1a5a4cabddf26a55a7cbee590"
+  integrity sha1-B5jAM1Hw3qGlpMq93yalWny+5ZA=
 
 "@rollup/pluginutils@^4.1.0", "@rollup/pluginutils@^4.1.1":
   version "4.1.1"
@@ -2561,13 +2561,13 @@ electron-to-chromium@^1.3.857:
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.864.tgz#6a993bcc196a2b8b3df84d28d5d4dd912393885f"
   integrity sha512-v4rbad8GO6/yVI92WOeU9Wgxc4NA0n4f6P1FvZTY+jyY7JHEhw3bduYu60v3Q1h81Cg6eo4ApZrFPuycwd5hGw==
 
-element-plus@1.1.0-beta.21:
-  version "1.1.0-beta.21"
-  resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-1.1.0-beta.21.tgz#4b0232b908d1defee81ef94913c9479342d9d7e6"
-  integrity sha512-QaAX909KgFufXkIKAwXrdHRmv1e+jIyc1SlN90mg9HBE09MnInGUXy0qdYZhVoMgBFyStMkiSIz7XLG8m0ac8A==
+element-plus@1.1.0-beta.24:
+  version "1.1.0-beta.24"
+  resolved "https://registry.npmmirror.com/element-plus/download/element-plus-1.1.0-beta.24.tgz?cache=0&sync_timestamp=1634700108430&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Felement-plus%2Fdownload%2Felement-plus-1.1.0-beta.24.tgz#858b05932ebc0be15419d3974d15be2a4f4b696c"
+  integrity sha1-hYsFky68C+FUGdOXTRW+Kk9LaWw=
   dependencies:
     "@element-plus/icons" "^0.0.11"
-    "@popperjs/core" "^2.10.1"
+    "@popperjs/core" "^2.10.2"
     "@vueuse/core" "~6.1.0"
     async-validator "^4.0.3"
     dayjs "^1.10.7"
@@ -7098,8 +7098,8 @@ universalify@^2.0.0:
 
 unplugin-element-plus@^0.1.3:
   version "0.1.3"
-  resolved "https://registry.yarnpkg.com/unplugin-element-plus/-/unplugin-element-plus-0.1.3.tgz#3fefadef8a2a965ff3a2846beae6ae651f194fee"
-  integrity sha512-6GO1tuDIXcoYFkbL26Mrd84oUOgAHShcwn/xma5bwmBN2O0N0s13RbBDsK53vm4hxRKIVuFSSr659BkpmXWm2w==
+  resolved "https://registry.npmmirror.com/unplugin-element-plus/download/unplugin-element-plus-0.1.3.tgz#3fefadef8a2a965ff3a2846beae6ae651f194fee"
+  integrity sha1-P++t74oqll/zooRr6uauZR8ZT+4=
   dependencies:
     "@rollup/pluginutils" "^4.1.1"
     es-module-lexer "^0.9.3"

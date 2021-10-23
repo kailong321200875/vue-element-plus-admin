@@ -24,38 +24,38 @@ function handleScroll(e: any): void {
 }
 
 function moveToTarget(currentTag: any) {
-  const $container: any = (unref(scrollContainer) as any).$el
-  const $containerWidth: number = $container.offsetWidth
-  const $scrollWrapper: any = (unref(scrollContainer) as any).wrap
-  const tagList = (unref(scrollContainer) as any).$parent.$parent.tagRefs
+  nextTick(() => {
+    const $container: any = (unref(scrollContainer) as any).$el
+    const $containerWidth: number = $container.offsetWidth
+    const $scrollWrapper: any = (unref(scrollContainer) as any).wrap
+    const tagList = unref((unref(scrollContainer) as any).$parent.$parent.tagRefs)
 
-  let firstTag: any = null
-  let lastTag: any = null
+    let firstTag: any = null
+    let lastTag: any = null
 
-  // find first tag and last tag
-  if (tagList.length > 0) {
-    firstTag = tagList[0]
-    lastTag = tagList[tagList.length - 1]
-  }
+    // find first tag and last tag
+    if (tagList.length > 0) {
+      firstTag = tagList[0]
+      lastTag = tagList[tagList.length - 1]
+    }
 
-  if (firstTag === currentTag) {
-    $scrollWrapper.scrollLeft = 0
-  } else if (lastTag === currentTag) {
-    $scrollWrapper.scrollLeft = $scrollWrapper.scrollWidth - $containerWidth
-  } else {
-    // find preTag and nextTag
-    const currentIndex: number = tagList.findIndex((item: any) => item === currentTag)
-    const prevTag = tagList[currentIndex - 1]
-    const nextTag = tagList[currentIndex + 1]
-    // the tag's offsetLeft after of nextTag
-    const afterNextTagOffsetLeft =
-      nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagAndTagSpacing
+    if (firstTag === currentTag) {
+      $scrollWrapper.scrollLeft = 0
+    } else if (lastTag === currentTag) {
+      $scrollWrapper.scrollLeft = $scrollWrapper.scrollWidth - $containerWidth
+    } else {
+      // find preTag and nextTag
+      const currentIndex: number = tagList.findIndex((item: any) => item === currentTag)
+      const prevTag = tagList[currentIndex - 1]
+      const nextTag = tagList[currentIndex + 1]
+      // the tag's offsetLeft after of nextTag
+      const afterNextTagOffsetLeft =
+        nextTag.$el.offsetLeft + nextTag.$el.offsetWidth + tagAndTagSpacing
 
-    // the tag's offsetLeft before of prevTag
-    const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - tagAndTagSpacing
+      // the tag's offsetLeft before of prevTag
+      const beforePrevTagOffsetLeft = prevTag.$el.offsetLeft - tagAndTagSpacing
 
-    if (afterNextTagOffsetLeft > $scrollWrapper.scrollLeft + $containerWidth) {
-      nextTick(() => {
+      if (afterNextTagOffsetLeft > $scrollWrapper.scrollLeft + $containerWidth) {
         const { start } = useScrollTo({
           el: $scrollWrapper,
           position: 'scrollLeft',
@@ -63,9 +63,7 @@ function moveToTarget(currentTag: any) {
           duration: 500
         })
         start()
-      })
-    } else if (beforePrevTagOffsetLeft < $scrollWrapper.scrollLeft) {
-      nextTick(() => {
+      } else if (beforePrevTagOffsetLeft < $scrollWrapper.scrollLeft) {
         const { start } = useScrollTo({
           el: $scrollWrapper,
           position: 'scrollLeft',
@@ -73,9 +71,9 @@ function moveToTarget(currentTag: any) {
           duration: 500
         })
         start()
-      })
+      }
     }
-  }
+  })
 }
 
 function moveTo(to: number) {

@@ -1,4 +1,5 @@
-import { requestAnimationFrame } from '@/utils/animation'
+// import { requestAnimationFrame } from '@/utils/animation'
+import { ref, unref } from 'vue'
 
 export interface ScrollToParams {
   el: HTMLElement
@@ -27,20 +28,20 @@ export function useScrollTo({
   duration = 500,
   callback
 }: ScrollToParams) {
-  let isActiveRef = false
+  const isActiveRef = ref(false)
   const start = el[position]
   const change = to - start
   const increment = 20
   let currentTime = 0
 
-  const animateScroll = function () {
-    if (!isActiveRef) {
+  function animateScroll() {
+    if (!unref(isActiveRef)) {
       return
     }
     currentTime += increment
     const val = easeInOutQuad(currentTime, start, change, duration)
     move(el, position, val)
-    if (currentTime < duration && isActiveRef) {
+    if (currentTime < duration && unref(isActiveRef)) {
       requestAnimationFrame(animateScroll)
     } else {
       if (callback) {
@@ -48,13 +49,14 @@ export function useScrollTo({
       }
     }
   }
-  const run = () => {
-    isActiveRef = true
+
+  function run() {
+    isActiveRef.value = true
     animateScroll()
   }
 
-  const stop = () => {
-    isActiveRef = false
+  function stop() {
+    isActiveRef.value = false
   }
 
   return { start: run, stop }

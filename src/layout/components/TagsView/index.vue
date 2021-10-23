@@ -259,6 +259,10 @@ watch(
     }
   }
 )
+
+defineExpose({
+  tagRefs
+})
 </script>
 
 <style lang="less" scoped>
