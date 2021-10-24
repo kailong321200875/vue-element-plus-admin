@@ -23,7 +23,7 @@ module.exports = {
     'font-family-no-missing-generic-family-keyword': null,
     'declaration-colon-space-after': 'always-single-line',
     'declaration-colon-space-before': 'never',
-    'declaration-block-trailing-semicolon': 'always',
+    'declaration-block-trailing-semicolon': null,
     'rule-empty-line-before': [
       'always',
       {

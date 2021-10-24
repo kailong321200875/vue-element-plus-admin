@@ -1,10 +1,12 @@
 {
   "name": "vue-element-plus-admin",
-  "version": "1.0.0",
-  "description": "一套基于vue3、element-plus、typesScript、vite2的后台集成方案",
+  "version": "2.0.0",
+  "description": "一套基于vue3、element-plus、typesScript4、vite2的后台集成方案",
   "author": "Archer <502431556@qq.com>",
   "private": false,
   "scripts": {
+    "i:all": "npm run i && npm run docs:i",
+    "i": "yarn install",
     "dev": "vite --mode base",
     "build:pro": "vue-tsc --noEmit && vite build --mode pro",
     "build:dev": "vue-tsc --noEmit && vite build --mode dev",
@@ -83,7 +85,6 @@
     "vite": "^2.6.10",
     "vite-plugin-commonjs-externals": "^0.1.1",
     "vite-plugin-eslint": "^1.3.0",
-    "vite-plugin-style-import": "^1.2.1",
     "vite-plugin-svg-icons": "^1.0.5",
     "vite-plugin-vue-setup-extend": "^0.1.0",
     "vue-eslint-parser": "^7.11.0",

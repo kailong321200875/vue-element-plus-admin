@@ -6,7 +6,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import eslintPlugin from 'vite-plugin-eslint'
-// import styleImport from 'vite-plugin-style-import'
 import ElementPlus from 'unplugin-element-plus/vite'
 import viteSvgIcons from 'vite-plugin-svg-icons'
 import commonjsExternals from 'vite-plugin-commonjs-externals'
@@ -17,18 +16,11 @@ function pathResolve(dir: string) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // base: '/dist-pro/',
   plugins: [
     vue(),
     vueJsx(),
     vueSetupExtend(),
-    // styleImport({
-    //   libs: [{
-    //     libraryName: 'element-plus',
-    //     resolveStyle: (name) => {
-    //       return `element-plus/es/components/${name.split('el-')[1]}/style/css`
-    //     }
-    //   }]
-    // }),
     ElementPlus({
       useSource: false
     }),

@@ -3,3 +3,4 @@
 public/*
 /dist*
 /src/env.d.ts
+/docs/**/*

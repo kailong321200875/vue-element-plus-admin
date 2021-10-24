@@ -1,0 +1,16 @@
+{
+  "name": "vue-standard",
+  "version": "1.0.0",
+  "description": "'vue规范文档'",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}

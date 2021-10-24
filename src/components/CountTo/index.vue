@@ -7,7 +7,6 @@
 import { reactive, computed, watch, onMounted, unref, toRef } from 'vue'
 import { countToProps } from './props'
 import { isNumber } from '@/utils/validate'
-import { requestAnimationFrame, cancelAnimationFrame } from '@/utils/animation'
 
 const props = defineProps(countToProps)
 

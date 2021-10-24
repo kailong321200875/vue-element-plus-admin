@@ -13,7 +13,6 @@ import { useAppStoreWithOut } from '@/store/modules/app'
 const appStore = useAppStoreWithOut()
 
 const modules = import.meta.glob('../../views/**/*.vue')
-console.log(modules)
 
 /* Layout */
 const Layout = () => import('@/layout/index.vue')
