@@ -6,7 +6,7 @@
 
 vue-element-plus-admin 是一套基于 vue3 & typeScript4 & vite2 的后台集成方案，内置了动态路由，权限验证，典型的业务模型，丰富的功能组件，开箱即用，可以用来作为项目的启动模版。它可以帮助你快速搭建企业级中后台产品原型，也可以作为一个示例，用于学习。
 
-vue-element-plus-admin的定位是后台集成方案，不太适合当基础模板来进行二次开发。因为集成了很多你可能用不到的功能，会造成不少的代码冗余。如果你的项目不关注这方面的问题，也可以直接基于它进行二次开发。
+vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模板来进行二次开发。因为集成了很多你可能用不到的功能，会造成不少的代码冗余。如果你的项目不关注这方面的问题，也可以直接基于它进行二次开发。
 
 [在线预览地址](http://8.133.179.48:4000/dist-pro/#/login)
 
@@ -61,12 +61,12 @@ vue-element-plus-admin的定位是后台集成方案，不太适合当基础模�
 
 ## 浏览器支持
 
-由于 Vue 3 不再支持 IE11，vue-element-plus-admin 也不支持 IE。
+由于 Vue 3 不再支持 IE11，vue-element-plus-admin 也不支持 IE
 
 | [<img src="https://cdn.jsdelivr.net/npm/@browser-logos/edge/edge_48x48.png" alt="Edge" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
 | --- | --- | --- | --- |
 | Edge ≥ 79 | Firefox ≥ 78 | Chrome ≥ 64 | Safari ≥ 12 |
 
-## IDE推荐设置
+## IDE 推荐设置
 
 - [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
