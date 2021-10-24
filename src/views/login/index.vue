@@ -5,7 +5,6 @@ import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useAppStore } from '@/store/modules/app'
 import { ElNotification } from 'element-plus'
-import { loginApi, getRoleDetApi } from './api'
 import { useCache } from '@/hooks/web/useCache'
 const { wsCache } = useCache()
 
@@ -50,25 +49,14 @@ export default defineComponent({
           try {
             loading.value = true
             // 模拟登录接口之后返回角色信息
-            const res: IObj = await loginApi({ data: form })
-            if (res) {
-              // 获取权限信息
-              const role = await getRoleDetApi({
-                params: {
-                  id: res.data.roleId
-                }
+            wsCache.set(appStore.getUserInfo, form)
+            permissionStore.generateRoutes().then(() => {
+              permissionStore.getAddRouters.forEach(async (route) => {
+                await addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
               })
-              if (role) {
-                wsCache.set(appStore.getUserInfo, Object.assign(form, role.data))
-                permissionStore.generateRoutes().then(() => {
-                  permissionStore.getAddRouters.forEach(async (route) => {
-                    await addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
-                  })
-                  permissionStore.setIsAddRouters(true)
-                  push({ path: redirect.value || '/' })
-                })
-              }
-            }
+              permissionStore.setIsAddRouters(true)
+              push({ path: redirect.value || '/' })
+            })
           } finally {
             loading.value = false
           }

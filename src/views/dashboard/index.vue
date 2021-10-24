@@ -1,6 +1,5 @@
 <template>
   <div>
-    <panel-group />
     <el-row :gutter="20">
       <el-col :span="10">
         <div class="chart__wrap">
@@ -22,7 +21,6 @@
 <script setup lang="ts" name="Dashboard">
 import { lineOptions, pieOptions, barOptions } from './echart-data'
 import Echart from '_c/Echart/index.vue'
-import PanelGroup from './components/PanelGroup.vue'
 </script>
 
 <style lang="less" scoped>
