@@ -8,3 +8,5 @@
 /src/types/env.d.ts
 /dist*
 /src/main.ts
+/src/auto-imports.d.ts
+/src/components.d.ts
