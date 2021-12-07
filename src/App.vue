@@ -5,7 +5,11 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <div>sss</div>
+  <div v:bg="blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600">
+    sssss
+  </div>
+  <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
 </template>
 

@@ -1,0 +1,10 @@
+/build/
+/config/
+/dist/
+/*.js
+/*.d.ts
+/test/unit/coverage/
+/node_modules/*
+/src/types/env.d.ts
+/dist*
+/src/main.ts

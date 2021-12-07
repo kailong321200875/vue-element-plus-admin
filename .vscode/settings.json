@@ -1,0 +1,12 @@
+{
+  "cSpell.words": [
+    "Windi",
+    "Windicss"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "volar.tsPlugin": true,
+  "prettier.enable": false,
+    "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
