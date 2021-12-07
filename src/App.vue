@@ -6,20 +6,23 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>sss</div>
-  <div v:bg="blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600">
-    sssss
-  </div>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <div v:bg="blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600"> sssss </div>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <div>sss</div>
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
 </template>
 
-<style>
+<style scoped>
 #app {
+  margin-top: 60px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  text-align: center;
+}
+
+div {
+  color: #2c3e50;
 }
 </style>

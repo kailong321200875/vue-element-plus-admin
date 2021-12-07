@@ -64,7 +64,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: '@import "./src/styles/variables.less";',
+          // additionalData: '@import "./src/styles/variables.less";',
           javascriptEnabled: true
         }
       }
