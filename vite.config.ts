@@ -62,7 +62,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       VueI18n({
         runtimeOnly: true,
         compositionOnly: true,
-        include: [pathResolve(__dirname, 'src/locales/**')],
+        include: [pathResolve(__dirname, 'src/locales/**')]
       })
     ],
 
