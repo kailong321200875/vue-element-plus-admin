@@ -9,6 +9,7 @@ import VueJsx from '@vitejs/plugin-vue-jsx'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import VueI18n from '@intlify/vite-plugin-vue-i18n'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -38,14 +39,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         imports: [
           'vue',
           'vue-router',
-          // 'vue-i18n',
+          'vue-i18n',
           '@vueuse/core'
         ],
-        dts: 'src/auto-imports.d.ts'
+        dts: 'src/types/auto-imports.d.ts'
       }),
       Components({
         // allow auto load markdown components under `./src/components/`
-        dirs: ['src/components', 'src/layout'],
+        dirs: ['src/components'],
         extensions: ['vue', 'md'],
         // allow auto import and register components used in markdown
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
@@ -53,11 +54,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         resolvers: [
           [ElementPlusResolver()]
         ],
-        dts: 'src/components.d.ts'
+        dts: 'src/types/components.d.ts'
       }),
       EslintPlugin({
-        cache: false,
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+      }),
+      VueI18n({
+        runtimeOnly: true,
+        compositionOnly: true,
+        include: [pathResolve(__dirname, 'src/locales/**')],
       })
     ],
 

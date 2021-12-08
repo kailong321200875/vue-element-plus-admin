@@ -1,8 +1,14 @@
 import { createApp } from 'vue'
+
 import App from './App.vue'
 
-import 'virtual:windi.css'
+const app = createApp(App)
 
-import 'virtual:windi-devtools'
+// 引入windi css
+import '@/plugins/windicss'
 
-createApp(App).mount('#app')
+// 引入多语言
+import { setupI18n } from '@/plugins/i18n'
+setupI18n(app)
+
+app.mount('#app')

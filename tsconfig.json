@@ -22,9 +22,8 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "types": ["vite/client", "@intlify/vite-plugin-vue-i18n/client"]
   },
-  "types": ["element-plus/global", "vite/client"],
-  "typeRoots": ["./node_modules/@types/", "./types"],
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "components.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

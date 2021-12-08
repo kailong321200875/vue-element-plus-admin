@@ -3,6 +3,6 @@ node_modules
 dist
 dist-ssr
 *.local
-/src/components.d.ts
-/src/auto-imports.d.ts
+/src/types/components.d.ts
+/src/types/auto-imports.d.ts
 /dist*
