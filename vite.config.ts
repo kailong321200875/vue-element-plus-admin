@@ -10,6 +10,8 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -44,15 +46,21 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         ],
         dts: 'src/types/auto-imports.d.ts'
       }),
+      Icons({
+        compiler: 'vue3',
+        autoInstall: true
+      }),
       Components({
-        // allow auto load markdown components under `./src/components/`
         dirs: ['src/components'],
         extensions: ['vue', 'md'],
-        // allow auto import and register components used in markdown
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         // custom resolvers
         resolvers: [
-          [ElementPlusResolver()]
+          ElementPlusResolver(),
+          IconsResolver({
+            prefix: false,
+            enabledCollections : ['ep']
+          })
         ],
         dts: 'src/types/components.d.ts'
       }),
@@ -69,7 +77,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          // additionalData: '@import "./src/styles/variables.less";',
+          additionalData: '@import "./src/styles/variables.less";',
           javascriptEnabled: true
         }
       }
@@ -115,7 +123,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     optimizeDeps: {
       include: [
         'vue',
-        'vue-router'
+        'vue-router',
+        'element-plus'
       ]
     }
   }

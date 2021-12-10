@@ -1,12 +1,15 @@
 <template>
   <div>sss</div>
   <div v:bg="blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600"> sssss </div>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <div>sss</div>
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
   <div>{{ t('test.about') }}</div>
   <div>{{ t('test2.go') }}</div>
   <button @click="change">切换语言</button>
+  <el-icon><ep-add-location /></el-icon>
+  <el-button size="mini">ss</el-button>
+  <el-radio v-model="radio1" label="1">Option 1</el-radio>
+  <el-radio v-model="radio1" label="2">Option 2</el-radio>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +18,13 @@
 import HelloWorld from './components/HelloWorld.vue'
 const { t, availableLocales, locale } = useI18n()
 
+const rootStyle = document.documentElement.style
+console.log(rootStyle)
+const radio1 = ref('')
+
 function change() {
+  const color = useCssVar('--el-color-primary', document.documentElement)
+  color.value = '#df8543'
   const locales = availableLocales
   locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
 }

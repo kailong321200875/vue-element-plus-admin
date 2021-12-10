@@ -23,7 +23,8 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": ["vite/client", "@intlify/vite-plugin-vue-i18n/client"]
+    "types": ["@intlify/vite-plugin-vue-i18n/client", "vite/client", "element-plus/global.d.ts"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
 }

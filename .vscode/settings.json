@@ -1,12 +1,11 @@
 {
-  "cSpell.words": [
-    "Windi",
-    "Windicss"
-  ],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "volar.tsPlugin": true,
   "prettier.enable": false,
-    "editor.codeActionsOnSave": {
+  "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "johnsoncodehk.volar"
+  },
+  "i18n-ally.localesPaths": ["src/locales", "src/plugins/i18n"]
 }

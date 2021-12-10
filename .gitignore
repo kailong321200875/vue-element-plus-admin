@@ -3,6 +3,5 @@ node_modules
 dist
 dist-ssr
 *.local
-/src/types/components.d.ts
-/src/types/auto-imports.d.ts
 /dist*
+pnpm-debug

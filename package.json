@@ -1,6 +1,9 @@
 {
-  "name": "new-element-plus-admin",
-  "version": "0.0.0",
+  "name": "butterfly-admin",
+  "version": "3.0.0",
+  "description": "一套基于vue、element-plus、typesScript、vite的后台集成方案",
+  "author": "Archer <502431556@qq.com>",
+  "private": false,
   "scripts": {
     "i": "pnpm install",
     "dev": "vite --mode base",
@@ -23,13 +26,16 @@
   },
   "dependencies": {
     "@vueuse/core": "^7.1.2",
+    "element-plus": "^1.2.0-beta.5",
     "vue": "^3.2.24",
     "vue-i18n": "9.1.9",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vue-types": "^4.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@iconify-json/ep": "^1.0.1",
     "@intlify/vite-plugin-vue-i18n": "^3.2.1",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
@@ -56,14 +62,20 @@
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-order": "^5.0.0",
-    "typescript": "^4.4.3",
+    "typescript": "4.5.2",
     "unplugin-auto-import": "^0.5.1",
+    "unplugin-icons": "^0.12.23",
     "unplugin-vue-components": "^0.17.6",
     "vite": "2.6.14",
     "vite-plugin-eslint": "^1.3.0",
     "vite-plugin-vue-setup-extend": "^0.1.0",
     "vite-plugin-windicss": "^1.5.4",
     "vue-tsc": "^0.3.0",
-    "windicss": "^3.2.1"
-  }
+    "windicss": "^3.2.1",
+    "windicss-analysis": "^0.3.5"
+  },
+  "engines": {
+    "node": ">= 16.0.0"
+  },
+  "license": "MIT"
 }

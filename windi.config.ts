@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite-plugin-windicss'
+import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
   extract: {
@@ -6,7 +6,16 @@ export default defineConfig({
     exclude: ['node_modules', '.git']
   },
   darkMode: 'class',
-  attributify: {
-    prefix: 'v:'
+  attributify: false,
+  theme: {
+    extend: {
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px'
+      }
+    }
   }
 })
