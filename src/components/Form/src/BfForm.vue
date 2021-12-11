@@ -1,6 +1,12 @@
-<script lang="ts" setup>
+<script lang="tsx" setup>
+// import { ref } from 'vue'
+// import { ElCol, ElRow } from 'element-plus'
 // import { propTypes } from '@/utils/propTypes'
-// import { array } from 'vue-types'
+import { array } from 'vue-types'
+
+defineProps({
+  schema: array<BfFormSchema>()
+})
 </script>
 
 <template>
