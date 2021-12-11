@@ -3,15 +3,14 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
-import Components from 'unplugin-vue-components/vite'
-import AutoImport from 'unplugin-auto-import/vite'
+// import Components from 'unplugin-vue-components/vite'
+// import AutoImport from 'unplugin-auto-import/vite'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import EslintPlugin from 'vite-plugin-eslint'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
+import StyleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -36,41 +35,44 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Vue(),
       VueJsx(),
       WindiCSS(),
-      VueSetupExtend(),
-      AutoImport({
-        imports: [
-          'vue',
-          'vue-router',
-          'vue-i18n',
-          '@vueuse/core'
-        ],
-        dts: 'src/types/auto-imports.d.ts'
+      StyleImport({
+        resolves: [ElementPlusResolve()]
       }),
+      // AutoImport({
+      //   imports: [
+      //     'vue',
+      //     'vue-router',
+      //     'vue-i18n',
+      //     '@vueuse/core'
+      //   ],
+      //   dts: 'src/types/auto-imports.d.ts'
+      // }),
       Icons({
         compiler: 'vue3',
         autoInstall: true
       }),
-      Components({
-        dirs: ['src/components'],
-        extensions: ['vue', 'md'],
-        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        // custom resolvers
-        resolvers: [
-          ElementPlusResolver(),
-          IconsResolver({
-            prefix: false,
-            enabledCollections : ['ep']
-          })
-        ],
-        dts: 'src/types/components.d.ts'
-      }),
+      // Components({
+      //   dirs: ['src/components'],
+      //   extensions: ['vue', 'md'],
+      //   include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      //   // custom resolvers
+      //   resolvers: [
+      //     ElementPlusResolver(),
+      //     IconsResolver({
+      //       prefix: false,
+      //       enabledCollections : ['ep']
+      //     })
+      //   ],
+      //   dts: 'src/types/components.d.ts'
+      // }),
       EslintPlugin({
+        cache: false,
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
       }),
       VueI18n({
         runtimeOnly: true,
         compositionOnly: true,
-        include: [pathResolve(__dirname, 'src/locales/**')]
+        include: [resolve(__dirname, 'src/locales/**')]
       })
     ],
 
@@ -124,7 +126,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       include: [
         'vue',
         'vue-router',
-        'element-plus'
+        'vue-types'
       ]
     }
   }
