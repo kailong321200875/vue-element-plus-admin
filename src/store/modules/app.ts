@@ -99,52 +99,52 @@ export const useAppStore = defineStore({
     }
   },
   actions: {
-    setCollapsed(collapsed: boolean): void {
+    setCollapsed(collapsed: boolean) {
       this.collapsed = collapsed
     },
-    setShowLogo(showLogo: boolean): void {
+    setShowLogo(showLogo: boolean) {
       this.showLogo = showLogo
     },
-    setShowTags(showTags: boolean): void {
+    setShowTags(showTags: boolean) {
       this.showTags = showTags
     },
-    setShowNavbar(showNavbar: boolean): void {
+    setShowNavbar(showNavbar: boolean) {
       this.showNavbar = showNavbar
     },
-    setFixedHeader(fixedHeader: boolean): void {
+    setFixedHeader(fixedHeader: boolean) {
       this.fixedHeader = fixedHeader
     },
-    setLayout(layout: LayoutType): void {
+    setLayout(layout: LayoutType) {
       this.layout = layout
     },
-    setBreadcrumb(showBreadcrumb: boolean): void {
+    setBreadcrumb(showBreadcrumb: boolean) {
       this.showBreadcrumb = showBreadcrumb
     },
-    setHamburger(showHamburger: boolean): void {
+    setHamburger(showHamburger: boolean) {
       this.showHamburger = showHamburger
     },
-    setScreenfull(showScreenfull: boolean): void {
+    setScreenfull(showScreenfull: boolean) {
       this.showScreenfull = showScreenfull
     },
-    setUserInfo(showUserInfo: boolean): void {
+    setUserInfo(showUserInfo: boolean) {
       this.showUserInfo = showUserInfo
     },
-    setTitle(title: string): void {
+    setTitle(title: string) {
       this.title = title
     },
-    setLogoTitle(logoTitle: string): void {
+    setLogoTitle(logoTitle: string) {
       this.logoTitle = logoTitle
     },
-    setGreyMode(greyMode: boolean): void {
+    setGreyMode(greyMode: boolean) {
       this.greyMode = greyMode
     },
-    setShowBackTop(showBackTop: boolean): void {
+    setShowBackTop(showBackTop: boolean) {
       this.showBackTop = showBackTop
     },
-    setShowMenuTab(showMenuTab: boolean): void {
+    setShowMenuTab(showMenuTab: boolean) {
       this.showMenuTab = showMenuTab
     },
-    setRequestTime(requestTime: boolean): void {
+    setRequestTime(requestTime: boolean) {
       this.requestTime = requestTime
     }
   }
