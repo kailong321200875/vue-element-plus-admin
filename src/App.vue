@@ -4,12 +4,10 @@ import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
 import { BfFrom, BfFormExpose } from '@/components/Form'
-const formRef = ref<InstanceType<typeof BfFrom> & BfFormExpose>()
+const formRef = ref<ComponentRef<typeof BfFrom> & BfFormExpose>()
 
 onMounted(() => {
   const form = unref(formRef.value)
-  console.log(form?.count)
-  form?.sayHello()
   console.log(form?.$el)
 
   const schema: BfFormSchema = [

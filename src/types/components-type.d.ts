@@ -19,8 +19,6 @@ declare global {
     | 'Transfer'
     | 'Divider'
 
-  declare type FormComponentSize = 'large' | 'medium' | 'small' | 'mini'
-
   declare type ColProps = {
     span?: number
     xs?: number
@@ -74,6 +72,7 @@ declare global {
   declare type RadioProps = {
     border?: boolean
     name?: string
+    disabled?: boolean
     onChange?: ChangeEvent
   }
 
@@ -81,6 +80,7 @@ declare global {
     border?: boolean
     name?: string
     indeterminate?: boolean
+    disabled?: boolean
     checked?: boolean
     onChange?: ChangeEvent
   }
@@ -92,6 +92,7 @@ declare global {
     showWordLimit?: boolean
     placeholder?: string
     clearable?: boolean
+    disabled?: boolean
     showPassword?: boolean
     prefixIcon?: string | Component
     suffixIcon?: string | Component
@@ -122,6 +123,7 @@ declare global {
     placeholder?: string
     clearable?: boolean
     valueKey?: string
+    disabled?: boolean
     icon?: string | Component
     debounce?: number
     placement?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end'
@@ -152,20 +154,20 @@ declare global {
     step?: number
     stepStrictly?: boolean
     precision?: number
-    size?: FormComponentSize
     controls?: boolean
     controlsPosition?: 'top' | 'right'
     name?: string
     label?: string
+    disabled?: boolean
     placeholder?: string
   }
 
   declare type SelectProps = {
     multiple?: boolean
     valueKey?: string
-    size?: FormComponentSize
     clearable?: boolean
     collapseTags?: boolean
+    disabled?: boolean
     multipleLimit?: number
     name?: string
     autocomplete?: string
@@ -206,7 +208,168 @@ declare global {
         }
   }
 
-  declare type CascaderProps = {}
+  declare type CascaderProps = {
+    props?: {
+      expandTrigger?: 'click' | 'hover'
+      multiple?: boolean
+      checkStrictly?: boolean
+      emitPath?: boolean
+      lazy?: boolean
+      lazyLoad?: (node: Recordable, resolve: Fn) => void
+      value?: string
+      label?: string
+      children?: string
+      disabled?: string
+      leaf?: string
+    }
+    placeholder?: string
+    disabled?: boolean
+    clearable?: boolean
+    showAllLevels?: boolean
+    collapseTags?: boolean
+    separator?: string
+    filterable?: boolean
+    filterMethod?: (node: Recordable, keyword: string | number) => boolean
+    debounce?: number
+    beforeFilter?: (value: string) => boolean | PromiseRejectedResult
+    popperClass?: string
+    popperAppendToBody?: boolean
+    onChange?: ChangeEvent
+    onExpandChange?: (parents: Recordable) => viod
+    onBlur?: BlurOrFocusEvent
+    onFocus?: BlurOrFocusEvent
+    onVisiblechange?: (val: boolean) => void
+    onRemoveTag?: (data: Recordable) => viod
+    slots?: {
+      default?: boolean
+      empty?: boolean
+    }
+  }
+
+  declare type SwitchProps = {
+    disabled?: boolean
+    loading?: boolean
+    width?: number
+    inlinePrompt?: boolean
+    activeIcon?: string | Component
+    inactiveIcon?: string | Component
+    activeText?: string
+    inactiveText?: string
+    activeValue?: boolean | string | number
+    inactiveValue?: boolean | string | number
+    activeColor?: string
+    inactiveColor?: string
+    borderColor?: string
+    string?: string
+    beforeChange?: () => boolean | PromiseRejectedResult
+    onChange?: ChangeEvent
+  }
+
+  declare type SliderProps = {
+    min?: number
+    max?: number
+    disabled?: boolean
+    step?: number
+    showInput?: boolean
+    showInputControls?: boolean
+    showStops?: boolean
+    showTooltip?: boolean
+    formatTooltip?: (value: number) => string
+    range?: boolean
+    vertical?: boolean
+    height?: string
+    label?: string
+    debounce?: number
+    tooltipClass?: string
+    marks?: Recordable
+    onChange?: ChangeEvent
+  }
+
+  declare type TimePickerProps = {
+    readonly?: boolean
+    disabled?: boolean
+    editable?: boolean
+    clearable?: boolean
+    placeholder?: string
+    startPlaceholder?: string
+    endPlaceholder?: string
+    isRange?: boolean
+    arrowControl?: boolean
+    align?: 'left' | 'center' | 'right'
+    popperClass?: string
+    rangeSeparator?: string
+    format?: string
+    defaultValue?: Date | string
+    name?: string
+    prefixIcon?: string | Component
+    clearIcon?: string | Component
+    disabledHours?: Fn
+    disabledMinutes?: Fn
+    disabledSeconds?: Fn
+    onChange?: ChangeEvent
+    onBlur?: BlurOrFocusEvent
+    onFocus?: BlurOrFocusEvent
+  }
+
+  declare type DatePickerProps = {
+    readonly?: boolean
+    disabled?: boolean
+    editable?: boolean
+    clearable?: boolean
+    placeholder?: string
+    startPlaceholder?: string
+    endPlaceholder?: string
+    type?:
+      | 'year'
+      | 'month'
+      | 'date'
+      | 'dates'
+      | 'datetime'
+      | 'week'
+      | 'datetimerange'
+      | 'daterange'
+      | 'monthrange'
+    format?: string
+    popperClass?: string
+    rangeSeparator?: string
+    defaultValue?: Date
+    defaultTime?: Date[]
+    valueFormat?: string
+    name?: string
+    unlinkPanels?: boolean
+    prefixIcon?: string | Component
+    clearIcon?: string | Component
+    disabledDate?: (date: Date) => boolean
+    shortcuts?: Recordable
+    onChange?: ChangeEvent
+    onBlur?: BlurOrFocusEvent
+    onFocus?: BlurOrFocusEvent
+    onCalendarChange?: (dates: [Date, Date]) => void
+    slots?: {
+      default?: boolean
+      rangeSeparator?: boolean
+    }
+  }
+
+  declare type RateProps = {
+    max?: number
+    disabled?: boolean
+    allowHalf?: boolean
+    lowThreshold?: number
+    highThreshold?: number
+    colors?: [string, string, string] | Recordable
+    voidColor?: string
+    disabledVoidColor?: string
+    icons?: [string, string, string] | Recordable
+    voidIcon?: string | Component
+    disabledVoidIcon?: string | Component
+    showText?: boolean
+    showScore?: boolean
+    textColor?: string
+    texts?: string[]
+    scoreTemplate?: string
+    onChange?: ChangeEvent
+  }
 
   declare type FormSchema = {
     field: string
@@ -220,6 +383,11 @@ declare global {
       | InputNumberProps
       | SelectProps
       | CascaderProps
+      | SwitchProps
+      | SliderProps
+      | TimePickerProps
+      | DatePickerProps
+      | RateProps
     // formItemProps?: ElFormItem
     component?: ComponentName
     value?: FormValueTypes

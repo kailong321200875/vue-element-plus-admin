@@ -11,3 +11,5 @@ declare type ElememtPlusSzie = 'medium' | 'small' | 'mini'
 declare type ElementPlusInfoType = 'success' | 'info' | 'warning' | 'danger'
 
 declare type Recordable<T = any> = Record<string, T>
+
+declare type ComponentRef<T> = InstanceType<T>
