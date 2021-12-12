@@ -1,4 +1,4 @@
-import type { Component } from 'vue'
+import type { Component, RendererNode, VNode, CSSProperties } from 'vue'
 
 declare global {
   // BfForm types start
@@ -18,6 +18,7 @@ declare global {
     | 'ColorPicker'
     | 'Transfer'
     | 'Divider'
+    | 'TimeSelect'
 
   declare type ColProps = {
     span?: number
@@ -67,7 +68,11 @@ declare global {
 
   declare type BlurOrFocusEvent = (e: Event) => viod
 
-  declare type ChangeEvent = (data: { value: FormValueTypes; model: Recordable }) => viod
+  declare type ChangeEvent = (data: {
+    value: FormValueTypes
+    field: string
+    model: Recordable
+  }) => viod
 
   declare type RadioProps = {
     border?: boolean
@@ -371,10 +376,74 @@ declare global {
     onChange?: ChangeEvent
   }
 
+  declare type ColorPickerProps = {
+    disabled?: boolean
+    showAlpha?: boolean
+    colorFormat?: 'hsl' | 'hsv' | 'hex' | 'rgb'
+    popperClass?: string | Component
+    predefine?: Recordable
+    onChange?: ChangeEvent
+    onActiveChange?: (color: string) => void
+  }
+
+  declare type TransferProps = {
+    data?: {
+      key?: string | number
+      label?: string
+      disabled?: boolean
+    }[]
+    filterable?: boolean
+    filterPlaceholder?: string
+    filterMethod?: Fn
+    targetOrder?: 'original' | 'push' | 'unshift'
+    titles?: [string, string]
+    buttonTexts?: [string, string]
+    renderContent?: (h: RendererNode, option: Recordable) => VNode | VNode[] | string
+    format?: {
+      noChecked?: string
+      hasChecked?: string
+    }
+    props?: {
+      key?: string
+      label?: string
+      disabled?: string
+    }
+    leftDefaultChecked?: Recordable
+    rightDefaultChecked?: Recordable
+    slots?: {
+      leftFooter?: boolean
+      rightFooter?: boolean
+    }
+    onChange?: ChangeEvent
+    onLeftCheckChange?: (arr: string[] | number[]) => void
+    onRightCheckChange?: (arr: string[] | number[]) => void
+  }
+
+  declare type DividerProps = {
+    direction?: 'horizontal' | 'vertical'
+    borderStyle?: CSSProperties
+    contentPosition?: 'left' | 'right' | 'center'
+  }
+
   declare type FormSchema = {
+    /**
+     * @field form model key
+     */
     field: string
+
+    /**
+     * @label form-item label
+     */
     label?: string
+
+    /**
+     * @colProps ElCol props
+     */
     colProps?: ColProps
+
+    /**
+     * @componentProps El Components props
+     */
     componentProps?:
       | RadioProps
       | CheckboxProps
@@ -388,11 +457,34 @@ declare global {
       | TimePickerProps
       | DatePickerProps
       | RateProps
+      | ColorPickerProps
+      | TransferProps
+      | DividerProps
     // formItemProps?: ElFormItem
+
+    /**
+     * @component Component
+     */
     component?: ComponentName
+
+    /**
+     * @value form model value
+     */
     value?: FormValueTypes
+
+    /**
+     * @options Component options
+     */
     options?: FormOptions[]
+
+    /**
+     * @optionsField option alias
+     */
     optionsField?: FormOptionsAlias
+
+    /**
+     * @hidden form-item hidden
+     */
     hidden?: boolean
   }
 
