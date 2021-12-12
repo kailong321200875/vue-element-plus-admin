@@ -19,6 +19,7 @@ declare global {
     | 'Transfer'
     | 'Divider'
     | 'TimeSelect'
+    | 'SelectV2'
 
   declare type ColProps = {
     span?: number
@@ -40,16 +41,14 @@ declare global {
     validator?: (rule: any, value: FormValueTypes, callback: Fn) => void | boolean
   }
 
-  declare type FormItem = {
-    prop?: string
-    label?: string
+  declare type FormItemProps = {
     labelWidth?: string | number
     required?: boolean
     rules?: FormRules | FormRules[]
     error?: string
     showMessage?: boolean
     inlineMessage?: boolean
-    size?: ElememtPlusSzie
+    style?: CSSProperties
   }
 
   declare type FormOptions = {
@@ -425,6 +424,53 @@ declare global {
     contentPosition?: 'left' | 'right' | 'center'
   }
 
+  declare type TimeSelectProps = {
+    disabled?: boolean
+    editable?: boolean
+    clearable?: boolean
+    placeholder?: string
+    name?: string
+    prefixIcon?: string | Component
+    clearIcon?: string | Component
+    start?: string
+    end?: string
+    step?: string
+    minTime?: string
+    maxTime?: string
+  }
+
+  declare type SelectV2Props = {
+    multiple?: boolean
+    disabled?: boolean
+    valueKey?: string
+    clearable?: boolean
+    collapsetags?: boolean
+    multiplelimit?: number
+    name?: string
+    autocomplete?: string
+    placeholder?: string
+    filterable?: boolean
+    allowCreate?: boolean
+    noDataText?: string
+    popperClass?: string
+    popperAppendToBody?: boolean
+    popperOptions?: Recordable
+    automaticDropdown?: boolean
+    clearIcon?: string | Component
+    height?: number
+    scrollbarAlwaysOn?: boolean
+    onChange?: ChangeEvent
+    onVisibleChange?: (val: boolean) => void
+    onRemoveTag?: (val: string | number) => void
+    onClear?: () => void
+    onBlur?: BlurOrFocusEvent
+    onFocus?: BlurOrFocusEvent
+    slots?: {
+      default?: boolean
+      empty?: boolean
+    }
+  }
+
   declare type FormSchema = {
     /**
      * @field form model key
@@ -460,7 +506,13 @@ declare global {
       | ColorPickerProps
       | TransferProps
       | DividerProps
-    // formItemProps?: ElFormItem
+      | TimeSelectProps
+      | SelectV2Props
+
+    /**
+     * @formItemProps form-item props
+     */
+    formItemProps?: FormItemProps
 
     /**
      * @component Component
