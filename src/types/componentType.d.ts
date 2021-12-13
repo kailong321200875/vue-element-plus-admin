@@ -472,24 +472,9 @@ declare global {
   }
 
   declare type FormSchema = {
-    /**
-     * @field form model key
-     */
     field: string
-
-    /**
-     * @label form-item label
-     */
     label?: string
-
-    /**
-     * @colProps ElCol props
-     */
     colProps?: ColProps
-
-    /**
-     * @componentProps El Components props
-     */
     componentProps?:
       | RadioProps
       | CheckboxProps
@@ -508,38 +493,14 @@ declare global {
       | DividerProps
       | TimeSelectProps
       | SelectV2Props
-
-    /**
-     * @formItemProps form-item props
-     */
     formItemProps?: FormItemProps
-
-    /**
-     * @component Component
-     */
     component?: ComponentName
-
-    /**
-     * @value form model value
-     */
     value?: FormValueTypes
-
-    /**
-     * @options Component options
-     */
     options?: FormOptions[]
-
-    /**
-     * @optionsField option alias
-     */
     optionsField?: FormOptionsAlias
-
-    /**
-     * @hidden form-item hidden
-     */
     hidden?: boolean
   }
 
-  // BfForm types end
-  declare type BfFormSchema = FormSchema[]
+  // VForm types end
+  declare type VFormSchema = FormSchema[]
 }

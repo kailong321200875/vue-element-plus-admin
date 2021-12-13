@@ -1,8 +1,8 @@
 export default {
-  test: {
-    about: 'About'
-  },
-  test2: {
-    go: 'Go'
+  common: {
+    inputText: 'Please input',
+    selectText: 'Please select',
+    startTimeText: 'Start time',
+    endTimeText: 'End time'
   }
 }

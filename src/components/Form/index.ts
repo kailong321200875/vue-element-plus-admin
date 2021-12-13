@@ -1,8 +1,8 @@
-import BfFrom from './src/BfForm.vue'
+import VFrom from './src/VForm.vue'
 
-export interface BfFormExpose {
+export interface VFormExpose {
   count: number
   sayHello: () => void
 }
 
-export { BfFrom }
+export { VFrom }

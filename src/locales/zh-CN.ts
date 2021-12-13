@@ -1,8 +1,8 @@
 export default {
-  test: {
-    about: '关于'
-  },
-  test2: {
-    go: '去'
+  common: {
+    inputText: '请输入',
+    selectText: '请选择',
+    startTimeText: '开始时间',
+    endTimeText: '结束时间'
   }
 }

@@ -15,8 +15,6 @@ const propTypes = createTypes({
   integer: undefined
 }) as PropTypes
 
-console.log(propTypes.array)
-
 // 需要自定义扩展的类型
 // see: https://dwightjack.github.io/vue-types/advanced/extending-vue-types.html#the-extend-method
 propTypes.extend([
