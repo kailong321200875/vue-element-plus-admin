@@ -7,10 +7,9 @@ const app = createApp(App)
 import { setupI18n } from '@/plugins/i18n'
 // 引入状态管理
 import { setupStore } from '@/store'
-;(async () => {
-  await setupI18n(app)
 
-  setupStore(app)
+setupI18n(app)
 
-  app.mount('#app')
-})()
+setupStore(app)
+
+app.mount('#app')
