@@ -1,4 +1,5 @@
 import type { Component, RendererNode, VNode, CSSProperties } from 'vue'
+import type { RuleItem } from 'async-validator'
 
 declare global {
   // BfForm types start
@@ -33,18 +34,18 @@ declare global {
 
   declare type FormValueTypes = string | number | string[] | number[] | boolean | undefined
 
-  declare type FormRules = {
-    required?: boolean
-    message?: string
-    type?: string
-    trigger?: 'blur' | 'change' | ['change', 'blur']
-    validator?: (rule: any, value: FormValueTypes, callback: Fn) => void | boolean
+  declare interface FormItemRule extends RuleItem {
+    trigger?: string
   }
+
+  declare type FormRulesMap<T extends string = string> = Partial<
+    Record<T, FormItemRule | FormItemRule[]>
+  >
 
   declare type FormItemProps = {
     labelWidth?: string | number
     required?: boolean
-    rules?: FormRules | FormRules[]
+    rules?: FormRulesMap
     error?: string
     showMessage?: boolean
     inlineMessage?: boolean
@@ -471,7 +472,7 @@ declare global {
     }
   }
 
-  declare type FormSchema = {
+  declare type VFormSchema = {
     field: string
     label?: string
     colProps?: ColProps
@@ -502,5 +503,4 @@ declare global {
   }
 
   // VForm types end
-  declare type VFormSchema = FormSchema[]
 }
