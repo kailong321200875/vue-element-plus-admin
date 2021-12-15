@@ -5,10 +5,12 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
 import { VFrom, VFormExpose } from '@/components/Form'
 const formRef = ref<ComponentRef<typeof VFrom> & VFormExpose>()
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
 
 onMounted(() => {
   const form = unref(formRef.value)
-  console.log(form?.$el)
+  console.log(form)
 })
 const schema = reactive<VFormSchema[]>([
   {
@@ -33,5 +35,6 @@ const schema = reactive<VFormSchema[]>([
     <!-- <VFrom :is-col="false" :schema="schema" /> -->
     <!-- <Component :is="VFrom" /> -->
     <!-- <RouterView class="app" /> -->
+    <div>{{ t('common.inputText') }}</div>
   </ElConfigProvider>
 </template>

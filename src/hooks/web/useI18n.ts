@@ -29,7 +29,6 @@ export function useI18n(namespace?: string): {
       return getKey(namespace, key)
     }
   }
-  console.log(i18n)
 
   if (!i18n) {
     return normalFn
@@ -48,4 +47,4 @@ export function useI18n(namespace?: string): {
   }
 }
 
-// export const t = (key: string) => key
+export const t = (key: string) => key

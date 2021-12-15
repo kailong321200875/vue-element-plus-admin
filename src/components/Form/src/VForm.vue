@@ -66,16 +66,20 @@ export default defineComponent({
                   typeof defineComponent
                 >
                 return (
-                  <Com
-                    v-model={test.value}
-                    {...(autoSetPlaceholder && setTextPlaceholder(item))}
-                  ></Com>
+                  <Com v-model={test.value} {...(autoSetPlaceholder && setTextPlaceholder(item))}>
+                    {item.options ? renderOptions() : null}
+                  </Com>
                 )
               }}
             </ElFormItem>
           )
         })
-      // return <div>{schema[0]?.field}</div>
+    }
+
+    // 渲染options
+    function renderOptions() {
+      // const optionsMap = ['Radio', 'Checkbox', 'Select']
+      return <div>2222</div>
     }
 
     // 过滤传入Form组件的属性
