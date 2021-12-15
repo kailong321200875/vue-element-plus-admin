@@ -4,7 +4,7 @@ import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { COMPONENT_MAP } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
-import { setTextPlaceholder } from './helper'
+import { setTextPlaceholder, setGridProp } from './helper'
 
 export default defineComponent({
   name: 'VForm',
@@ -43,37 +43,51 @@ export default defineComponent({
     // 渲染包裹标签，是否使用栅格布局
     function renderWrap() {
       const content = isCol ? (
-        <ElRow gutter={20}>
-          <ElCol>{renderFormItem()}</ElCol>
-        </ElRow>
+        <ElRow gutter={20}>{renderFormItemWrap()}</ElRow>
       ) : (
-        renderFormItem()
+        renderFormItemWrap()
       )
-      console.log(content)
       return content
     }
 
-    // 渲染formItem
-    function renderFormItem() {
-      // hidden属性表示隐藏
+    // 是否要渲染el-col
+    function renderFormItemWrap() {
+      // hidden属性表示隐藏，不做渲染
       return schema
         .filter((v) => !v.hidden)
         .map((item) => {
-          return (
-            <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
-              {() => {
-                const Com = COMPONENT_MAP[item.component as string] as ReturnType<
-                  typeof defineComponent
-                >
-                return (
-                  <Com v-model={test.value} {...(autoSetPlaceholder && setTextPlaceholder(item))}>
-                    {item.options ? renderOptions() : null}
-                  </Com>
-                )
-              }}
-            </ElFormItem>
+          // 如果是 Divider 组件，需要自己占用一行
+          const isDivider = item.component === 'Divider'
+          const Com = COMPONENT_MAP['Divider'] as ReturnType<typeof defineComponent>
+          return isDivider ? (
+            <Com {...{ contentPosition: 'left', ...item.componentProps }}>
+              {item?.componentProps?.text}
+            </Com>
+          ) : isCol ? (
+            // 如果需要栅格，需要包裹 ElCol
+            <ElCol {...setGridProp(item.colProps)}>{renderFormItem(item)}</ElCol>
+          ) : (
+            renderFormItem(item)
           )
         })
+    }
+
+    // 渲染formItem
+    function renderFormItem(item: VFormSchema) {
+      return (
+        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
+          {() => {
+            const Com = COMPONENT_MAP[item.component as string] as ReturnType<
+              typeof defineComponent
+            >
+            return (
+              <Com vModel={test.value} {...(autoSetPlaceholder && setTextPlaceholder(item))}>
+                {item.options ? renderOptions() : null}
+              </Com>
+            )
+          }}
+        </ElFormItem>
+      )
     }
 
     // 渲染options

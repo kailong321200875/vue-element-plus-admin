@@ -11,6 +11,7 @@ interface PlaceholderMoel {
 /**
  *
  * @param schema 对应组件数据
+ * @returns 返回提示信息对象
  * @description 用于自动设置placeholder
  */
 export function setTextPlaceholder(schema: VFormSchema): PlaceholderMoel {
@@ -41,4 +42,24 @@ export function setTextPlaceholder(schema: VFormSchema): PlaceholderMoel {
     }
   }
   return {}
+}
+
+/**
+ *
+ * @param col 内置栅格
+ * @returns 返回栅格属性
+ * @description 合并传入进来的栅格属性
+ */
+export function setGridProp(col: ColProps = {}): ColProps {
+  const colProps: ColProps = {
+    ...{
+      xs: 24,
+      sm: 12,
+      md: 12,
+      lg: 12,
+      xl: 8
+    },
+    ...col
+  }
+  return colProps
 }

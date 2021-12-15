@@ -15,15 +15,17 @@ onMounted(() => {
 const schema = reactive<VFormSchema[]>([
   {
     field: 'field1',
+    component: 'Divider',
+    componentProps: {
+      text: 'input示例'
+    }
+  },
+  {
+    field: 'field2',
     label: '字段1',
     component: 'Input'
   }
 ])
-// setTimeout(() => {
-//   schema.push({
-//     field: '2'
-//   })
-// }, 3000)
 </script>
 
 <template>
