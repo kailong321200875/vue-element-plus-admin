@@ -112,6 +112,7 @@ export default defineComponent({
     return () => (
       <ElForm ref={formRef} {...getFormBindValue()}>
         {{
+          // 如果需要自定义，就什么都不渲染，而是提供默认插槽
           default: () => (isCustom ? getSlot(slots, 'default') : renderWrap())
         }}
       </ElForm>
