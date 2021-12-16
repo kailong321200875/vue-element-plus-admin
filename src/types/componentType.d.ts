@@ -58,6 +58,7 @@ declare global {
     disabled?: boolean
     key?: string | number
     children?: FormOptions[]
+    options?: FormOptions[]
     [key: string]: any
   }
 
@@ -76,6 +77,7 @@ declare global {
     value?: FormValueTypes
     options?: FormOptions[]
     optionsField?: FormOptionsAlias
+    optionsSlot?: boolean
     hidden?: boolean
   }
 

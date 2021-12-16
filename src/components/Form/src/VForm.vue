@@ -1,7 +1,7 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, watch } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
-import { COMPONENT_MAP } from './componentMap'
+import { PropType, defineComponent, ref, computed, unref } from 'vue'
+import { ElForm, ElFormItem, ElRow, ElCol, ElOption, ElOptionGroup } from 'element-plus'
+import { componentMap } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
 import { setTextPlaceholder, setGridProp, setComponentProps, setItemComponentSlots } from './helper'
@@ -33,14 +33,6 @@ export default defineComponent({
     const formRef = ref<ComponentRef<typeof ElForm>>()
     const getProps = computed(() => props)
     const { schema, isCol, isCustom, autoSetPlaceholder } = unref(getProps)
-    const test = ref('')
-
-    watch(
-      () => test.value,
-      (val) => {
-        console.log(val)
-      }
-    )
 
     // 渲染包裹标签，是否使用栅格布局
     function renderWrap() {
@@ -60,11 +52,9 @@ export default defineComponent({
         .map((item) => {
           // 如果是 Divider 组件，需要自己占用一行
           const isDivider = item.component === 'Divider'
-          const Com = COMPONENT_MAP['Divider'] as ReturnType<typeof defineComponent>
+          const Com = componentMap['Divider'] as ReturnType<typeof defineComponent>
           return isDivider ? (
-            <Com {...{ contentPosition: 'left', ...item.componentProps }}>
-              {item?.componentProps?.text}
-            </Com>
+            <Com {...{ contentPosition: 'left', ...item.componentProps }}>{item?.label}</Com>
           ) : isCol ? (
             // 如果需要栅格，需要包裹 ElCol
             <ElCol {...setGridProp(item.colProps)}>{renderFormItem(item)}</ElCol>
@@ -79,17 +69,14 @@ export default defineComponent({
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
           {() => {
-            const Com = COMPONENT_MAP[item.component as string] as ReturnType<
-              typeof defineComponent
-            >
+            const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
             return (
               <Com
-                vModel={test.value}
                 {...(autoSetPlaceholder && setTextPlaceholder(item))}
                 {...setComponentProps(item.componentProps)}
               >
                 {{
-                  default: () => (item.options ? renderOptions() : null),
+                  default: () => (item.options ? renderOptions(item) : null),
                   ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
                 }}
               </Com>
@@ -100,9 +87,53 @@ export default defineComponent({
     }
 
     // 渲染options
-    function renderOptions() {
-      // const optionsMap = ['Radio', 'Checkbox', 'Select']
-      return <div>2222</div>
+    function renderOptions(item: VFormSchema) {
+      switch (item.component) {
+        case 'Select':
+          return renderSelectOptions(item)
+        default:
+          break
+      }
+    }
+
+    // 渲染 select options
+    function renderSelectOptions(item: VFormSchema) {
+      // 如果有别名，就取别名
+      const labelAlias = item.optionsField?.labelField
+      return item.options?.map((option) => {
+        if (option?.options?.length) {
+          return (
+            <ElOptionGroup label={labelAlias ? option[labelAlias] : option['label']}>
+              {() => {
+                return option?.options?.map((v) => {
+                  return renderSelectOptionItem(item, v)
+                })
+              }}
+            </ElOptionGroup>
+          )
+        } else {
+          return renderSelectOptionItem(item, option)
+        }
+      })
+    }
+
+    // 渲染 select option item
+    function renderSelectOptionItem(item: VFormSchema, option: FormOptions) {
+      // 如果有别名，就取别名
+      const labelAlias = item.optionsField?.labelField
+      const valueAlias = item.optionsField?.valueField
+      return (
+        <ElOption
+          label={labelAlias ? option[labelAlias] : option['label']}
+          value={valueAlias ? option[valueAlias] : option['value']}
+        >
+          {{
+            default: () =>
+              // option 插槽名规则，{field}-option
+              item.optionsSlot ? getSlot(slots, `${item.field}-option`, option) : null
+          }}
+        </ElOption>
+      )
     }
 
     // 过滤传入Form组件的属性
@@ -129,5 +160,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="less" scoped></style>

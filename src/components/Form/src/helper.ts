@@ -110,8 +110,8 @@ export function setItemComponentSlots(
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       // 由于组件有可能重复，需要有一个唯一的前缀
-      slotObj[key] = () => {
-        return getSlot(slots, `${field}-${key}`)
+      slotObj[key] = (data: Recordable) => {
+        return getSlot(slots, `${field}-${key}`, data)
       }
     }
   }

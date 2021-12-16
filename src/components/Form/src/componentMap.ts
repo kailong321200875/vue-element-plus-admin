@@ -19,7 +19,7 @@ import {
   ElDivider
 } from 'element-plus'
 
-const COMPONENT_MAP: Recordable<Component, ComponentName> = {
+const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadioGroup,
   Checkbox: ElCheckboxGroup,
   Input: ElInput,
@@ -39,4 +39,4 @@ const COMPONENT_MAP: Recordable<Component, ComponentName> = {
   SelectV2: ElSelectV2
 }
 
-export { COMPONENT_MAP }
+export { componentMap }
