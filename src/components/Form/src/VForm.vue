@@ -4,7 +4,7 @@ import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { COMPONENT_MAP } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
-import { setTextPlaceholder, setGridProp } from './helper'
+import { setTextPlaceholder, setGridProp, setComponentProps, setItemComponentSlots } from './helper'
 
 export default defineComponent({
   name: 'VForm',
@@ -12,7 +12,7 @@ export default defineComponent({
     // 生成Form的布局结构数组
     schema: {
       type: Array as PropType<VFormSchema[]>,
-      require: true,
+      required: true,
       default: () => []
     },
     // 是否需要栅格布局
@@ -25,7 +25,9 @@ export default defineComponent({
     // 是否自动设置placeholder
     autoSetPlaceholder: propTypes.bool.def(true),
     // 是否自定义内容
-    isCustom: propTypes.bool.def(false)
+    isCustom: propTypes.bool.def(false),
+    // 表单label宽度
+    labelWidth: propTypes.oneOfType([String, Number]).def(130)
   },
   setup(props, { slots }) {
     const formRef = ref<ComponentRef<typeof ElForm>>()
@@ -81,8 +83,15 @@ export default defineComponent({
               typeof defineComponent
             >
             return (
-              <Com vModel={test.value} {...(autoSetPlaceholder && setTextPlaceholder(item))}>
-                {item.options ? renderOptions() : null}
+              <Com
+                vModel={test.value}
+                {...(autoSetPlaceholder && setTextPlaceholder(item))}
+                {...setComponentProps(item.componentProps)}
+              >
+                {{
+                  default: () => (item.options ? renderOptions() : null),
+                  ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
+                }}
               </Com>
             )
           }}

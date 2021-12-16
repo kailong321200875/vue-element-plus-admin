@@ -1,42 +1,86 @@
 <script setup lang="ts">
-import { ref, onMounted, unref, reactive } from 'vue'
-import { ElConfigProvider } from 'element-plus'
+import { reactive } from 'vue'
+import { ElConfigProvider, ElIcon } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
-import { VFrom, VFormExpose } from '@/components/Form'
-const formRef = ref<ComponentRef<typeof VFrom> & VFormExpose>()
-import { useI18n } from '@/hooks/web/useI18n'
-const { t } = useI18n()
+import { VFrom } from '@/components/Form'
+import Calendar from '~icons/ep/calendar'
 
-onMounted(() => {
-  const form = unref(formRef.value)
-  console.log(form)
-})
 const schema = reactive<VFormSchema[]>([
   {
     field: 'field1',
     component: 'Divider',
     componentProps: {
-      text: 'input示例'
+      text: 'Input'
     }
   },
   {
     field: 'field2',
-    label: '字段1',
+    label: 'default',
     component: 'Input'
+  },
+  {
+    field: 'field3',
+    label: 'input-icon1',
+    component: 'Input',
+    componentProps: {
+      suffixIcon: Calendar,
+      prefixIcon: Calendar
+    }
+  },
+  {
+    field: 'field4',
+    label: 'input-icon2',
+    component: 'Input',
+    componentProps: {
+      slots: {
+        suffix: true,
+        prefix: true
+      }
+    }
+  },
+  {
+    field: 'field5',
+    label: 'input-mixed',
+    component: 'Input',
+    componentProps: {
+      slots: {
+        prepend: true,
+        append: true
+      }
+    }
+  },
+  {
+    field: 'field6',
+    label: 'textarea',
+    component: 'Input',
+    componentProps: {
+      type: 'textarea',
+      rows: 1
+    }
+  },
+  {
+    field: 'field7',
+    component: 'Divider',
+    componentProps: {
+      text: 'Autocomplete'
+    }
   }
 ])
 </script>
 
 <template>
   <ElConfigProvider :locale="zhCn">
-    <!-- <VFrom ref="formRef" is-custom>
-      <template #default> hahahah </template>
-    </VFrom> -->
-    <VFrom :schema="schema" />
-    <!-- <VFrom :is-col="false" :schema="schema" /> -->
-    <!-- <Component :is="VFrom" /> -->
-    <!-- <RouterView class="app" /> -->
-    <div>{{ t('common.inputText') }}</div>
+    <VFrom :schema="schema">
+      <template #field4-prefix>
+        <ElIcon class="el-input__icon"><Calendar /></ElIcon>
+      </template>
+      <template #field4-suffix>
+        <ElIcon class="el-input__icon"><Calendar /></ElIcon>
+      </template>
+
+      <template #field5-prepend> Http:// </template>
+      <template #field5-append> .com </template>
+    </VFrom>
   </ElConfigProvider>
 </template>
