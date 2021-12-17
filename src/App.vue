@@ -39,6 +39,27 @@ onMounted(() => {
   restaurants.value = loadAll()
 })
 
+const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+const options = ref<FormOptions[]>(
+  Array.from({ length: 1000 }).map((_, idx) => ({
+    value: `Option ${idx + 1}`,
+    label: `${initials[idx % 10]}${idx}`
+  }))
+)
+const options2 = ref<FormOptions[]>(
+  Array.from({ length: 10 }).map((_, idx) => {
+    const label = idx + 1
+    return {
+      value: `Group ${label}`,
+      label: `Group ${label}`,
+      options: Array.from({ length: 10 }).map((_, idx) => ({
+        value: `Option ${idx + 1 + 10 * label}`,
+        label: `${initials[idx % 10]}${idx + 1 + 10 * label}`
+      }))
+    }
+  })
+)
+
 const schema = reactive<VFormSchema[]>([
   {
     field: 'field1',
@@ -238,6 +259,45 @@ const schema = reactive<VFormSchema[]>([
       }
     ],
     optionsSlot: true
+  },
+  {
+    field: 'field17',
+    label: `${t('formDemo.selectV2')}`,
+    component: 'Divider'
+  },
+  {
+    field: 'field18',
+    label: t('formDemo.default'),
+    component: 'SelectV2',
+    options: options.value
+  },
+  {
+    field: 'field18',
+    label: t('formDemo.slot'),
+    component: 'SelectV2',
+    options: options.value,
+    componentProps: {
+      slots: {
+        default: true
+      }
+    }
+  },
+  {
+    field: 'field19',
+    label: t('formDemo.group'),
+    component: 'SelectV2',
+    options: options2.value
+  },
+  {
+    field: 'field20',
+    label: `${t('formDemo.group')}${t('formDemo.slot')}`,
+    component: 'SelectV2',
+    options: options2.value,
+    componentProps: {
+      slots: {
+        default: true
+      }
+    }
   }
 ])
 </script>
@@ -260,18 +320,32 @@ const schema = reactive<VFormSchema[]>([
         <span class="link">{{ item.link }}</span>
       </template>
 
-      <template #field14-option="item">
+      <template #field14-option="{ item }">
         <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">{{
-          item.value
-        }}</span>
+        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+          {{ item.value }}
+        </span>
       </template>
 
-      <template #field16-option="item">
+      <template #field16-option="{ item }">
         <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">{{
-          item.value
-        }}</span>
+        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+          {{ item.value }}
+        </span>
+      </template>
+
+      <template #field18-default="{ item }">
+        <span style="float: left">{{ item.label }}</span>
+        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+          {{ item.value }}
+        </span>
+      </template>
+
+      <template #field20-default="{ item }">
+        <span style="float: left">{{ item.label }}</span>
+        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+          {{ item.value }}
+        </span>
       </template>
     </VFrom>
   </ElConfigProvider>

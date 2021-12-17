@@ -16,6 +16,7 @@ export default {
     position: 'Position',
     autocomplete: 'Autocomplete',
     select: 'Select',
-    group: 'Select Group'
+    group: 'Select Group',
+    selectV2: 'SelectV2'
   }
 }

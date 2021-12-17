@@ -1,10 +1,11 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol, ElOption, ElOptionGroup } from 'element-plus'
+import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
 import { setTextPlaceholder, setGridProp, setComponentProps, setItemComponentSlots } from './helper'
+import { useRenderSelect } from './components/useRenderSelect'
 
 export default defineComponent({
   name: 'VForm',
@@ -74,9 +75,12 @@ export default defineComponent({
               <Com
                 {...(autoSetPlaceholder && setTextPlaceholder(item))}
                 {...setComponentProps(item.componentProps)}
+                // 单独给SelectV2做判断
+                options={item.component === 'SelectV2' ? item.options || [] : undefined}
               >
                 {{
-                  default: () => (item.options ? renderOptions(item) : null),
+                  default: () =>
+                    item.options && item.component !== 'SelectV2' ? renderOptions(item) : undefined,
                   ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
                 }}
               </Com>
@@ -90,50 +94,11 @@ export default defineComponent({
     function renderOptions(item: VFormSchema) {
       switch (item.component) {
         case 'Select':
+          const { renderSelectOptions } = useRenderSelect(slots)
           return renderSelectOptions(item)
         default:
           break
       }
-    }
-
-    // 渲染 select options
-    function renderSelectOptions(item: VFormSchema) {
-      // 如果有别名，就取别名
-      const labelAlias = item.optionsField?.labelField
-      return item.options?.map((option) => {
-        if (option?.options?.length) {
-          return (
-            <ElOptionGroup label={labelAlias ? option[labelAlias] : option['label']}>
-              {() => {
-                return option?.options?.map((v) => {
-                  return renderSelectOptionItem(item, v)
-                })
-              }}
-            </ElOptionGroup>
-          )
-        } else {
-          return renderSelectOptionItem(item, option)
-        }
-      })
-    }
-
-    // 渲染 select option item
-    function renderSelectOptionItem(item: VFormSchema, option: FormOptions) {
-      // 如果有别名，就取别名
-      const labelAlias = item.optionsField?.labelField
-      const valueAlias = item.optionsField?.valueField
-      return (
-        <ElOption
-          label={labelAlias ? option[labelAlias] : option['label']}
-          value={valueAlias ? option[valueAlias] : option['value']}
-        >
-          {{
-            default: () =>
-              // option 插槽名规则，{field}-option
-              item.optionsSlot ? getSlot(slots, `${item.field}-option`, option) : null
-          }}
-        </ElOption>
-      )
     }
 
     // 过滤传入Form组件的属性

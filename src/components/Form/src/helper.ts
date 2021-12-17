@@ -117,3 +117,5 @@ export function setItemComponentSlots(
   }
   return slotObj
 }
+
+export function setModel() {}
