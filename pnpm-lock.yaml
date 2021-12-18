@@ -5,6 +5,7 @@ specifiers:
   '@commitlint/config-conventional': ^15.0.0
   '@iconify/json': ^1.1.441
   '@intlify/vite-plugin-vue-i18n': ^3.2.1
+  '@types/lodash-es': ^4.17.5
   '@types/node': ^16.11.12
   '@typescript-eslint/eslint-plugin': ^5.6.0
   '@typescript-eslint/parser': ^5.6.0
@@ -24,7 +25,6 @@ specifiers:
   less: ^4.1.2
   lint-staged: ^12.1.2
   lodash-es: ^4.17.21
-  normalize.css: ^8.0.1
   pinia: ^2.0.6
   postcss: ^8.4.4
   postcss-html: ^1.3.0
@@ -55,7 +55,6 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/7.1.2_vue@3.2.24
   element-plus: registry.npmmirror.com/element-plus/1.2.0-beta.6_vue@3.2.24
   lodash-es: registry.nlark.com/lodash-es/4.17.21
-  normalize.css: registry.nlark.com/normalize.css/8.0.1
   pinia: registry.npmmirror.com/pinia/2.0.6_typescript@4.5.2+vue@3.2.24
   vue: registry.npmmirror.com/vue/3.2.24
   vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.24
@@ -67,6 +66,7 @@ devDependencies:
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/15.0.0
   '@iconify/json': registry.npmmirror.com/@iconify/json/1.1.441
   '@intlify/vite-plugin-vue-i18n': registry.npmmirror.com/@intlify/vite-plugin-vue-i18n/3.2.1_vite@2.6.14+vue-i18n@9.1.9
+  '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.5
   '@types/node': registry.npmmirror.com/@types/node/16.11.12
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.6.0_16d83f5c41c3abb1061a82b07c18e4f3
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.6.0_eslint@8.4.1+typescript@4.5.2
@@ -3349,17 +3349,6 @@ packages:
     version: 0.2.0
     dev: true
 
-  registry.nlark.com/normalize.css/8.0.1:
-    resolution:
-      {
-        integrity: sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/normalize.css/download/normalize.css-8.0.1.tgz
-      }
-    name: normalize.css
-    version: 8.0.1
-    dev: false
-
   registry.nlark.com/nth-check/2.0.1:
     resolution:
       {
@@ -4335,7 +4324,7 @@ packages:
       {
         integrity: sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/semver/download/semver-5.7.1.tgz
+        tarball: https://registry.nlark.com/semver/download/semver-5.7.1.tgz?cache=0&sync_timestamp=1631500167672&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-5.7.1.tgz
       }
     name: semver
     version: 5.7.1
@@ -4347,7 +4336,7 @@ packages:
       {
         integrity: sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz
+        tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz?cache=0&sync_timestamp=1631500167672&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-6.3.0.tgz
       }
     name: semver
     version: 6.3.0
@@ -6119,16 +6108,16 @@ packages:
       '@iconify/types': registry.npmmirror.com/@iconify/types/1.0.12
     dev: true
 
-  registry.npmmirror.com/@intlify/bundle-utils/2.1.0_vue-i18n@9.1.9:
+  registry.npmmirror.com/@intlify/bundle-utils/2.2.0_vue-i18n@9.1.9:
     resolution:
       {
-        integrity: sha512-ogvmAjbSq0su4ijQbwqRfb0yimizZSK+HHV0SF3XCHSCtL+PDdRIDkkeNpNdPxNmdahORHXknC06Umehz4nTnQ==,
+        integrity: sha512-qVuN7+c84UB6rlLHSued2J9R86LG1rHg6ZibCghGMyPXnW0nOuIfkUFf1F7tXIqfMXjIPeJzlbpmzjWTI2z9Kw==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/bundle-utils/download/@intlify/bundle-utils-2.1.0.tgz
+        tarball: https://registry.npmmirror.com/@intlify/bundle-utils/download/@intlify/bundle-utils-2.2.0.tgz
       }
-    id: registry.npmmirror.com/@intlify/bundle-utils/2.1.0
+    id: registry.npmmirror.com/@intlify/bundle-utils/2.2.0
     name: '@intlify/bundle-utils'
-    version: 2.1.0
+    version: 2.2.0
     engines: { node: '>= 12' }
     peerDependencies:
       petite-vue-i18n: '*'
@@ -6284,7 +6273,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/2.1.0_vue-i18n@9.1.9
+      '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/2.2.0_vue-i18n@9.1.9
       '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.23
       '@rollup/pluginutils': registry.nlark.com/@rollup/pluginutils/4.1.1
       debug: registry.npmmirror.com/debug/4.3.3
@@ -6343,6 +6332,30 @@ packages:
       }
     name: '@types/json-schema'
     version: 7.0.9
+    dev: true
+
+  registry.npmmirror.com/@types/lodash-es/4.17.5:
+    resolution:
+      {
+        integrity: sha1-HD/dFoSdhK6kOJCxxg2jeftQE1M=,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/@types/lodash-es/download/@types/lodash-es-4.17.5.tgz
+      }
+    name: '@types/lodash-es'
+    version: 4.17.5
+    dependencies:
+      '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.178
+    dev: true
+
+  registry.npmmirror.com/@types/lodash/4.14.178:
+    resolution:
+      {
+        integrity: sha512-0d5Wd09ItQWH1qFbEyQ7oTQ3GZrMfth5JkbN3EvTKLXcHLRDSXeLnlvlOn0wvxVIwK5o2M8JzP/OWz7T3NRsbw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/@types/lodash/download/@types/lodash-4.14.178.tgz
+      }
+    name: '@types/lodash'
+    version: 4.14.178
     dev: true
 
   registry.npmmirror.com/@types/minimatch/3.0.5:
@@ -6974,7 +6987,7 @@ packages:
       {
         integrity: sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/acorn/download/acorn-7.4.1.tgz?cache=0&sync_timestamp=1637225943828&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Facorn%2Fdownload%2Facorn-7.4.1.tgz
+        tarball: https://registry.npmmirror.com/acorn/download/acorn-7.4.1.tgz
       }
     name: acorn
     version: 7.4.1
@@ -6987,7 +7000,7 @@ packages:
       {
         integrity: sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/acorn/download/acorn-8.6.0.tgz?cache=0&sync_timestamp=1637225943828&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Facorn%2Fdownload%2Facorn-8.6.0.tgz
+        tarball: https://registry.npmmirror.com/acorn/download/acorn-8.6.0.tgz
       }
     name: acorn
     version: 8.6.0
@@ -7925,7 +7938,7 @@ packages:
       {
         integrity: sha1-MOvR73wv3/AcOk8VEESvJfqwUj4=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-1.3.0.tgz?cache=0&sync_timestamp=1636378941796&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-1.3.0.tgz
+        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-1.3.0.tgz
       }
     name: eslint-visitor-keys
     version: 1.3.0
@@ -7937,7 +7950,7 @@ packages:
       {
         integrity: sha1-9lMoJZMFknOSyTjtROsKXJsr0wM=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-2.1.0.tgz?cache=0&sync_timestamp=1636378941796&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-2.1.0.tgz
+        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-2.1.0.tgz
       }
     name: eslint-visitor-keys
     version: 2.1.0

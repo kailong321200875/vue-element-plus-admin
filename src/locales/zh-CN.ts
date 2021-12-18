@@ -17,6 +17,9 @@ export default {
     autocomplete: '自动补全',
     select: '选择器',
     group: '选项分组',
-    selectV2: '虚拟列表选择器'
+    selectV2: '虚拟列表选择器',
+    cascader: '级联选择器',
+    switch: '开关',
+    rate: '评分'
   }
 }

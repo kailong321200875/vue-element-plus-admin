@@ -1,7 +1,6 @@
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
-import { shallowRef } from 'vue'
-import { isFunction } from '@/utils/is'
+import { unref } from 'vue'
 import { Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 
@@ -71,27 +70,35 @@ export function setGridProp(col: ColProps = {}): ColProps {
   return colProps
 }
 
-type ComponentPropsModel = {
-  clearable: boolean
-} & Recordable
-
 /**
  *
  * @param props 传入的组件属性
  * @returns 默认添加 clearable 属性
  */
-export function setComponentProps(props: Recordable = {}): ComponentPropsModel {
-  for (const key in props) {
-    // 如果传入的是组件，需要让其失去响应式，避免不必要的性能开销
-    // 这样判断好像还不太合理。后续看看没有更合理的判断方法
-    if (props[key]?.render && isFunction(props[key]?.render)) {
-      props[key] = shallowRef(props[key]?.render())
-    }
-  }
-  const componentProps: ComponentPropsModel = {
+export function setComponentProps(props: Recordable = {}): Recordable {
+  const propsObj = unref(props)
+  // for (const key in propsObj) {
+  //   // 如果传入的是组件，需要让其失去响应式，避免不必要的性能开销
+  //   // 这样判断好像还不太合理。后续看看没有更合理的判断方法
+  //   if (propsObj[key]?.render && isFunction(propsObj[key]?.render)) {
+  //     propsObj[key] = shallowRef(propsObj[key]?.render())
+  //   }
+  //   // if (key === 'icon') {
+  //   //   propsObj[key] = [...propsObj[key]]
+  //   // }
+  // }
+  const componentProps: Recordable = {
     clearable: true,
-    ...props
+    ...propsObj
   }
+  // componentProps.icons
+  //   ? (componentProps.icons = (componentProps.icons as Recordable[]).map((v) => {
+  //       return shallowRef(v?.render()?.value)
+  //     }))
+  //   : undefined
+  // 需要删除额外的属性
+  delete componentProps?.slots
+  console.log(componentProps)
   return componentProps
 }
 
@@ -118,4 +125,21 @@ export function setItemComponentSlots(
   return slotObj
 }
 
-export function setModel() {}
+/**
+ *
+ * @param schema Form表单结构化数组
+ * @param formModel FormMoel
+ * @description 生成对应的formModel
+ */
+export function setModel(schema: VFormSchema[], formModel: Recordable) {
+  schema.map((v) => {
+    // 如果是hidden，就删除对应的值
+    if (v.hidden) {
+      delete formModel[v.field]
+    } else {
+      const hasField = Reflect.has(formModel, v.field)
+      // 如果先前已经有值存在，则不进行重新赋值，而是采用现有的值
+      formModel[v.field] = hasField ? formModel[v.field] : v.value !== void 0 ? v.value : ''
+    }
+  })
+}

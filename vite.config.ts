@@ -36,7 +36,14 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       VueJsx(),
       WindiCSS(),
       StyleImport({
-        resolves: [ElementPlusResolve()]
+        resolves: [ElementPlusResolve()],
+        libs: [{
+          libraryName: 'element-plus',
+          esModule: true,
+          resolveStyle: (name) => {
+            return `element-plus/es/components/${name.substring(3)}/style/css`
+          }
+        }]
       }),
       // AutoImport({
       //   imports: [

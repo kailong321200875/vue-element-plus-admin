@@ -5,6 +5,11 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
 import { VFrom } from '@/components/Form'
 import Calendar from '~icons/ep/calendar'
+import Check from '~icons/ep/check'
+import Close from '~icons/ep/close'
+import ChatRound from '~icons/ep/chatRound'
+import ChatLineRound from '~icons/ep/chatLineRound'
+import ChatDotRound from '~icons/ep/chatDotRound'
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 
@@ -59,6 +64,257 @@ const options2 = ref<FormOptions[]>(
     }
   })
 )
+
+const options3: FormOptions[] = [
+  {
+    value: 'guide',
+    label: 'Guide',
+    children: [
+      {
+        value: 'disciplines',
+        label: 'Disciplines',
+        children: [
+          {
+            value: 'consistency',
+            label: 'Consistency'
+          },
+          {
+            value: 'feedback',
+            label: 'Feedback'
+          },
+          {
+            value: 'efficiency',
+            label: 'Efficiency'
+          },
+          {
+            value: 'controllability',
+            label: 'Controllability'
+          }
+        ]
+      },
+      {
+        value: 'navigation',
+        label: 'Navigation',
+        children: [
+          {
+            value: 'side nav',
+            label: 'Side Navigation'
+          },
+          {
+            value: 'top nav',
+            label: 'Top Navigation'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    value: 'component',
+    label: 'Component',
+    children: [
+      {
+        value: 'basic',
+        label: 'Basic',
+        children: [
+          {
+            value: 'layout',
+            label: 'Layout'
+          },
+          {
+            value: 'color',
+            label: 'Color'
+          },
+          {
+            value: 'typography',
+            label: 'Typography'
+          },
+          {
+            value: 'icon',
+            label: 'Icon'
+          },
+          {
+            value: 'button',
+            label: 'Button'
+          }
+        ]
+      },
+      {
+        value: 'form',
+        label: 'Form',
+        children: [
+          {
+            value: 'radio',
+            label: 'Radio'
+          },
+          {
+            value: 'checkbox',
+            label: 'Checkbox'
+          },
+          {
+            value: 'input',
+            label: 'Input'
+          },
+          {
+            value: 'input-number',
+            label: 'InputNumber'
+          },
+          {
+            value: 'select',
+            label: 'Select'
+          },
+          {
+            value: 'cascader',
+            label: 'Cascader'
+          },
+          {
+            value: 'switch',
+            label: 'Switch'
+          },
+          {
+            value: 'slider',
+            label: 'Slider'
+          },
+          {
+            value: 'time-picker',
+            label: 'TimePicker'
+          },
+          {
+            value: 'date-picker',
+            label: 'DatePicker'
+          },
+          {
+            value: 'datetime-picker',
+            label: 'DateTimePicker'
+          },
+          {
+            value: 'upload',
+            label: 'Upload'
+          },
+          {
+            value: 'rate',
+            label: 'Rate'
+          },
+          {
+            value: 'form',
+            label: 'Form'
+          }
+        ]
+      },
+      {
+        value: 'data',
+        label: 'Data',
+        children: [
+          {
+            value: 'table',
+            label: 'Table'
+          },
+          {
+            value: 'tag',
+            label: 'Tag'
+          },
+          {
+            value: 'progress',
+            label: 'Progress'
+          },
+          {
+            value: 'tree',
+            label: 'Tree'
+          },
+          {
+            value: 'pagination',
+            label: 'Pagination'
+          },
+          {
+            value: 'badge',
+            label: 'Badge'
+          }
+        ]
+      },
+      {
+        value: 'notice',
+        label: 'Notice',
+        children: [
+          {
+            value: 'alert',
+            label: 'Alert'
+          },
+          {
+            value: 'loading',
+            label: 'Loading'
+          },
+          {
+            value: 'message',
+            label: 'Message'
+          },
+          {
+            value: 'message-box',
+            label: 'MessageBox'
+          },
+          {
+            value: 'notification',
+            label: 'Notification'
+          }
+        ]
+      },
+      {
+        value: 'navigation',
+        label: 'Navigation',
+        children: [
+          {
+            value: 'menu',
+            label: 'Menu'
+          },
+          {
+            value: 'tabs',
+            label: 'Tabs'
+          },
+          {
+            value: 'breadcrumb',
+            label: 'Breadcrumb'
+          },
+          {
+            value: 'dropdown',
+            label: 'Dropdown'
+          },
+          {
+            value: 'steps',
+            label: 'Steps'
+          }
+        ]
+      },
+      {
+        value: 'others',
+        label: 'Others',
+        children: [
+          {
+            value: 'dialog',
+            label: 'Dialog'
+          },
+          {
+            value: 'tooltip',
+            label: 'Tooltip'
+          },
+          {
+            value: 'popover',
+            label: 'Popover'
+          },
+          {
+            value: 'card',
+            label: 'Card'
+          },
+          {
+            value: 'carousel',
+            label: 'Carousel'
+          },
+          {
+            value: 'collapse',
+            label: 'Collapse'
+          }
+        ]
+      }
+    ]
+  }
+]
 
 const schema = reactive<VFormSchema[]>([
   {
@@ -140,30 +396,30 @@ const schema = reactive<VFormSchema[]>([
   {
     field: 'field10',
     component: 'Divider',
-    componentProps: {
-      text: t('formDemo.inputNumber')
-    }
+    label: t('formDemo.inputNumber')
   },
   {
     field: 'field11',
     label: t('formDemo.default'),
-    component: 'InputNumber'
+    component: 'InputNumber',
+    value: 0
   },
   {
-    field: 'field11',
+    field: 'field12',
     label: t('formDemo.position'),
     component: 'InputNumber',
     componentProps: {
       controlsPosition: 'right'
-    }
+    },
+    value: 0
   },
   {
-    field: 'field12',
+    field: 'field13',
     label: t('formDemo.select'),
     component: 'Divider'
   },
   {
-    field: 'field13',
+    field: 'field14',
     label: t('formDemo.default'),
     component: 'Select',
     options: [
@@ -178,7 +434,7 @@ const schema = reactive<VFormSchema[]>([
     ]
   },
   {
-    field: 'field14',
+    field: 'field15',
     label: t('formDemo.slot'),
     component: 'Select',
     options: [
@@ -194,7 +450,7 @@ const schema = reactive<VFormSchema[]>([
     optionsSlot: true
   },
   {
-    field: 'field15',
+    field: 'field16',
     label: t('formDemo.group'),
     component: 'Select',
     options: [
@@ -227,7 +483,7 @@ const schema = reactive<VFormSchema[]>([
     ]
   },
   {
-    field: 'field16',
+    field: 'field17',
     label: `${t('formDemo.group')}${t('formDemo.slot')}`,
     component: 'Select',
     options: [
@@ -261,18 +517,18 @@ const schema = reactive<VFormSchema[]>([
     optionsSlot: true
   },
   {
-    field: 'field17',
+    field: 'field18',
     label: `${t('formDemo.selectV2')}`,
     component: 'Divider'
   },
   {
-    field: 'field18',
+    field: 'field19',
     label: t('formDemo.default'),
     component: 'SelectV2',
     options: options.value
   },
   {
-    field: 'field18',
+    field: 'field20',
     label: t('formDemo.slot'),
     component: 'SelectV2',
     options: options.value,
@@ -283,13 +539,13 @@ const schema = reactive<VFormSchema[]>([
     }
   },
   {
-    field: 'field19',
+    field: 'field21',
     label: t('formDemo.group'),
     component: 'SelectV2',
     options: options2.value
   },
   {
-    field: 'field20',
+    field: 'field22',
     label: `${t('formDemo.group')}${t('formDemo.slot')}`,
     component: 'SelectV2',
     options: options2.value,
@@ -297,6 +553,70 @@ const schema = reactive<VFormSchema[]>([
       slots: {
         default: true
       }
+    }
+  },
+  {
+    field: 'field23',
+    label: t('formDemo.cascader'),
+    component: 'Divider'
+  },
+  {
+    field: 'field24',
+    label: t('formDemo.default'),
+    component: 'Cascader',
+    options: options3
+  },
+  {
+    field: 'field25',
+    label: t('formDemo.slot'),
+    component: 'Cascader',
+    options: options3,
+    componentProps: {
+      slots: {
+        default: true
+      }
+    }
+  },
+  {
+    field: 'field26',
+    label: t('formDemo.switch'),
+    component: 'Divider'
+  },
+  {
+    field: 'field27',
+    label: t('formDemo.default'),
+    component: 'Switch',
+    value: false
+  },
+  {
+    field: 'field28',
+    label: t('formDemo.icon'),
+    component: 'Switch',
+    value: false,
+    componentProps: {
+      activeIcon: Check,
+      inactiveIcon: Close
+    }
+  },
+  {
+    field: 'field29',
+    label: t('formDemo.rate'),
+    component: 'Divider'
+  },
+  {
+    field: 'field30',
+    label: t('formDemo.default'),
+    component: 'Rate',
+    value: null
+  },
+  {
+    field: 'field31',
+    label: t('formDemo.icon'),
+    component: 'Rate',
+    value: null,
+    componentProps: {
+      voidIcon: ChatRound,
+      icons: [ChatRound, ChatLineRound, ChatDotRound]
     }
   }
 ])
@@ -320,21 +640,14 @@ const schema = reactive<VFormSchema[]>([
         <span class="link">{{ item.link }}</span>
       </template>
 
-      <template #field14-option="{ item }">
+      <template #field15-option="{ item }">
         <span style="float: left">{{ item.label }}</span>
         <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
           {{ item.value }}
         </span>
       </template>
 
-      <template #field16-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field18-default="{ item }">
+      <template #field17-option="{ item }">
         <span style="float: left">{{ item.label }}</span>
         <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
           {{ item.value }}
@@ -346,6 +659,18 @@ const schema = reactive<VFormSchema[]>([
         <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
           {{ item.value }}
         </span>
+      </template>
+
+      <template #field22-default="{ item }">
+        <span style="float: left">{{ item.label }}</span>
+        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+          {{ item.value }}
+        </span>
+      </template>
+
+      <template #field25-default="{ node, data }">
+        <span>{{ data.label }}</span>
+        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
       </template>
     </VFrom>
   </ElConfigProvider>

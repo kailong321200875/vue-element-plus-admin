@@ -17,6 +17,9 @@ export default {
     autocomplete: 'Autocomplete',
     select: 'Select',
     group: 'Select Group',
-    selectV2: 'SelectV2'
+    selectV2: 'SelectV2',
+    cascader: 'Cascader',
+    switch: 'Switch',
+    rate: 'Rate'
   }
 }
