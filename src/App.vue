@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, markRaw } from 'vue'
 import { ElConfigProvider, ElIcon } from 'element-plus'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
@@ -332,8 +332,8 @@ const schema = reactive<VFormSchema[]>([
     label: `${t('formDemo.icon')}1`,
     component: 'Input',
     componentProps: {
-      suffixIcon: Calendar,
-      prefixIcon: Calendar
+      suffixIcon: markRaw(Calendar),
+      prefixIcon: markRaw(Calendar)
     }
   },
   {
@@ -594,8 +594,8 @@ const schema = reactive<VFormSchema[]>([
     component: 'Switch',
     value: false,
     componentProps: {
-      activeIcon: Check,
-      inactiveIcon: Close
+      activeIcon: markRaw(Check),
+      inactiveIcon: markRaw(Close)
     }
   },
   {
@@ -615,11 +615,18 @@ const schema = reactive<VFormSchema[]>([
     component: 'Rate',
     value: null,
     componentProps: {
-      voidIcon: ChatRound,
-      icons: [ChatRound, ChatLineRound, ChatDotRound]
+      voidIcon: markRaw(ChatRound),
+      icons: [markRaw(ChatRound), markRaw(ChatLineRound), markRaw(ChatDotRound)]
     }
   }
 ])
+
+setTimeout(() => {
+  if (schema[2].componentProps) {
+    schema[2].componentProps.placeholder = 'test'
+    console.log(schema[2])
+  }
+}, 3000)
 </script>
 
 <template>

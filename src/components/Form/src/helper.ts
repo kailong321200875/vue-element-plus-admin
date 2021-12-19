@@ -1,7 +1,6 @@
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
-import { unref } from 'vue'
-import { Slots } from 'vue'
+import type { Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 
 interface PlaceholderMoel {
@@ -76,29 +75,12 @@ export function setGridProp(col: ColProps = {}): ColProps {
  * @returns 默认添加 clearable 属性
  */
 export function setComponentProps(props: Recordable = {}): Recordable {
-  const propsObj = unref(props)
-  // for (const key in propsObj) {
-  //   // 如果传入的是组件，需要让其失去响应式，避免不必要的性能开销
-  //   // 这样判断好像还不太合理。后续看看没有更合理的判断方法
-  //   if (propsObj[key]?.render && isFunction(propsObj[key]?.render)) {
-  //     propsObj[key] = shallowRef(propsObj[key]?.render())
-  //   }
-  //   // if (key === 'icon') {
-  //   //   propsObj[key] = [...propsObj[key]]
-  //   // }
-  // }
   const componentProps: Recordable = {
     clearable: true,
-    ...propsObj
+    ...props
   }
-  // componentProps.icons
-  //   ? (componentProps.icons = (componentProps.icons as Recordable[]).map((v) => {
-  //       return shallowRef(v?.render()?.value)
-  //     }))
-  //   : undefined
   // 需要删除额外的属性
   delete componentProps?.slots
-  console.log(componentProps)
   return componentProps
 }
 
