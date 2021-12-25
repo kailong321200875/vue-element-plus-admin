@@ -20,6 +20,9 @@ export default {
     selectV2: '虚拟列表选择器',
     cascader: '级联选择器',
     switch: '开关',
-    rate: '评分'
+    rate: '评分',
+    colorPicker: '颜色选择器',
+    transfer: '穿梭框',
+    render: '渲染器'
   }
 }

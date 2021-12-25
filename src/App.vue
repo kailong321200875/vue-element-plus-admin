@@ -316,6 +316,22 @@ const options3: FormOptions[] = [
   }
 ]
 
+function generateData() {
+  const data: {
+    value: number
+    desc: string
+    disabled: boolean
+  }[] = []
+  for (let i = 1; i <= 15; i++) {
+    data.push({
+      value: i,
+      desc: `Option ${i}`,
+      disabled: i % 4 === 0
+    })
+  }
+  return data
+}
+
 const schema = reactive<VFormSchema[]>([
   {
     field: 'field1',
@@ -618,6 +634,82 @@ const schema = reactive<VFormSchema[]>([
       voidIcon: markRaw(ChatRound),
       icons: [markRaw(ChatRound), markRaw(ChatLineRound), markRaw(ChatDotRound)]
     }
+  },
+  {
+    field: 'field32',
+    label: t('formDemo.colorPicker'),
+    component: 'Divider'
+  },
+  {
+    field: 'field33',
+    label: t('formDemo.default'),
+    component: 'ColorPicker'
+  },
+  {
+    field: 'field34',
+    label: t('formDemo.transfer'),
+    component: 'Divider'
+  },
+  {
+    field: 'field35',
+    label: t('formDemo.default'),
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc',
+        disabled: 'disabled'
+      },
+      data: generateData()
+    },
+    value: [],
+    colProps: {
+      xl: 12
+    }
+  },
+  {
+    field: 'field36',
+    label: t('formDemo.slot'),
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc',
+        disabled: 'disabled'
+      },
+      leftDefaultChecked: [2, 3],
+      rightDefaultChecked: [1],
+      data: generateData(),
+      slots: {
+        default: true
+      }
+    },
+    value: [1],
+    colProps: {
+      xl: 12
+    }
+  },
+  {
+    field: 'field37',
+    label: `${t('formDemo.render')}`,
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc',
+        disabled: 'disabled'
+      },
+      leftDefaultChecked: [2, 3],
+      rightDefaultChecked: [1],
+      data: generateData(),
+      renderContent: (h: Fn, option: Recordable) => {
+        return h('span', null, `${option.value} - ${option.desc}`)
+      }
+    },
+    value: [1],
+    colProps: {
+      xl: 12
+    }
   }
 ])
 
@@ -678,6 +770,10 @@ setTimeout(() => {
       <template #field25-default="{ node, data }">
         <span>{{ data.label }}</span>
         <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+      </template>
+
+      <template #field36-default="{ option }">
+        <span>{{ option.value }} - {{ option.desc }}</span>
       </template>
     </VFrom>
   </ElConfigProvider>

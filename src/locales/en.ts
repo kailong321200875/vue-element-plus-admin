@@ -20,6 +20,9 @@ export default {
     selectV2: 'SelectV2',
     cascader: 'Cascader',
     switch: 'Switch',
-    rate: 'Rate'
+    rate: 'Rate',
+    colorPicker: 'ColorPicker',
+    transfer: 'Transfer',
+    render: 'Render'
   }
 }

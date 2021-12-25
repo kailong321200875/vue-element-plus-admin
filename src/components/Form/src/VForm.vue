@@ -12,7 +12,6 @@ import {
   setModel
 } from './helper'
 import { useRenderSelect } from './components/useRenderSelect'
-import { useRenderCascader } from './components/useRenderCascader'
 
 export default defineComponent({
   name: 'VForm',
@@ -90,7 +89,13 @@ export default defineComponent({
     // 渲染formItem
     function renderFormItem(item: VFormSchema) {
       // 单独给只有options属性的组件做判断
-      const notRenderOptions = ['SelectV2', 'Cascader']
+      const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
+      const slotsMap: Recordable = {
+        ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
+      }
+      if (item?.component !== 'SelectV2' && item.options) {
+        slotsMap.default = () => renderOptions(item)
+      }
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
           {() => {
@@ -99,20 +104,12 @@ export default defineComponent({
               <Com
                 vModel={formModel[item.field]}
                 {...(autoSetPlaceholder && setTextPlaceholder(item))}
-                {...setComponentProps(item.componentProps)}
-                options={
-                  notRenderOptions.includes(item?.component as string)
-                    ? item.options || []
-                    : undefined
-                }
+                {...setComponentProps(item)}
+                {...(notRenderOptions.includes(item?.component as string) && item.options
+                  ? { options: item.options || [] }
+                  : {})}
               >
-                {{
-                  default: (data: Recordable) =>
-                    item.options && item?.component !== 'SelectV2'
-                      ? renderOptions(item, data)
-                      : undefined,
-                  ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
-                }}
+                {{ ...slotsMap }}
               </Com>
             )
           }}
@@ -121,14 +118,11 @@ export default defineComponent({
     }
 
     // 渲染options
-    function renderOptions(item: VFormSchema, data: Recordable) {
+    function renderOptions(item: VFormSchema) {
       switch (item.component) {
         case 'Select':
           const { renderSelectOptions } = useRenderSelect(slots)
           return renderSelectOptions(item)
-        case 'Cascader':
-          const { useRenderCascaderOptions } = useRenderCascader(slots)
-          return useRenderCascaderOptions(item, data)
         default:
           break
       }

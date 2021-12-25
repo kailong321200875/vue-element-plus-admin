@@ -71,14 +71,17 @@ export function setGridProp(col: ColProps = {}): ColProps {
 
 /**
  *
- * @param props 传入的组件属性
+ * @param item 传入的组件属性
  * @returns 默认添加 clearable 属性
  */
-export function setComponentProps(props: Recordable = {}): Recordable {
-  const componentProps: Recordable = {
-    clearable: true,
-    ...props
-  }
+export function setComponentProps(item: VFormSchema): Recordable {
+  const notNeedClearable = ['ColorPicker']
+  const componentProps: Recordable = notNeedClearable.includes(item.component as string)
+    ? { ...item.componentProps }
+    : {
+        clearable: true,
+        ...item.componentProps
+      }
   // 需要删除额外的属性
   delete componentProps?.slots
   return componentProps
