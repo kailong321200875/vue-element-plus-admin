@@ -6128,8 +6128,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.23
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.23
+      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.25
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.25
       jsonc-eslint-parser: registry.npmmirror.com/jsonc-eslint-parser/1.4.1
       source-map: registry.nlark.com/source-map/0.6.1
       vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.24
@@ -6185,18 +6185,18 @@ packages:
       source-map: registry.nlark.com/source-map/0.6.1
     dev: false
 
-  registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.23:
+  registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.25:
     resolution:
       {
-        integrity: sha512-qmGN8k5yGGdZ5St8yg8U4Tg2K9Sc6h3BhWCdJKAqQVs5jnfZG+nMtsLVgnJUWkDvhjzyg7/rEOhHm2uJcu4vjw==,
+        integrity: sha512-/YMG6LmQLvD8uHCJvWLaK0t8exYbek3ya4BZZ99AcM5+JC/JRdLIK8WiVJnGpfrvleQArxvHed4GokS+oWZ5rQ==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/message-compiler/download/@intlify/message-compiler-9.2.0-beta.23.tgz
+        tarball: https://registry.npmmirror.com/@intlify/message-compiler/download/@intlify/message-compiler-9.2.0-beta.25.tgz
       }
     name: '@intlify/message-compiler'
-    version: 9.2.0-beta.23
+    version: 9.2.0-beta.25
     engines: { node: '>= 12' }
     dependencies:
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.23
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.25
       source-map: registry.nlark.com/source-map/0.6.1
     dev: true
 
@@ -6240,15 +6240,15 @@ packages:
     engines: { node: '>= 10' }
     dev: false
 
-  registry.npmmirror.com/@intlify/shared/9.2.0-beta.23:
+  registry.npmmirror.com/@intlify/shared/9.2.0-beta.25:
     resolution:
       {
-        integrity: sha512-3aELL2KTp1MWKGm2gIUKSagthgKzcK5hpQEFzOwkJ1SAthpTXR7BHeWGEaD+Lj+Pbiz3U8cspvp8s2lFWVbYxg==,
+        integrity: sha512-I2L05aWh0azr5KwQjLV7gMTN0SrdglgMAfpJniT53Pvvc8l+OTs8IEhdPCQwsbgOravpWt14O7m3deOzw3ln6w==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/shared/download/@intlify/shared-9.2.0-beta.23.tgz
+        tarball: https://registry.npmmirror.com/@intlify/shared/download/@intlify/shared-9.2.0-beta.25.tgz
       }
     name: '@intlify/shared'
-    version: 9.2.0-beta.23
+    version: 9.2.0-beta.25
     engines: { node: '>= 12' }
     dev: true
 
@@ -6274,7 +6274,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/2.2.0_vue-i18n@9.1.9
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.23
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.25
       '@rollup/pluginutils': registry.nlark.com/@rollup/pluginutils/4.1.1
       debug: registry.npmmirror.com/debug/4.3.3
       fast-glob: registry.nlark.com/fast-glob/3.2.7
@@ -8693,13 +8693,12 @@ packages:
   registry.npmmirror.com/lodash/4.17.21:
     resolution:
       {
-        integrity: sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=,
+        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
         registry: https://registry.npm.taobao.org/,
         tarball: https://registry.npmmirror.com/lodash/download/lodash-4.17.21.tgz
       }
     name: lodash
     version: 4.17.21
-    dev: false
 
   registry.npmmirror.com/log-update/4.0.0:
     resolution:
@@ -10291,7 +10290,7 @@ packages:
     version: 0.3.2
     dependencies:
       eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/1.3.0
-      lodash: registry.nlark.com/lodash/4.17.21
+      lodash: registry.npmmirror.com/lodash/4.17.21
       yaml: registry.npmmirror.com/yaml/1.10.2
     dev: true
 

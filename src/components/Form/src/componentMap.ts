@@ -22,6 +22,7 @@ import {
 const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadioGroup,
   Checkbox: ElCheckboxGroup,
+  CheckboxButton: ElCheckboxGroup,
   Input: ElInput,
   Autocomplete: ElAutocomplete,
   InputNumber: ElInputNumber,
@@ -36,7 +37,8 @@ const componentMap: Recordable<Component, ComponentName> = {
   Transfer: ElTransfer,
   Divider: ElDivider,
   TimeSelect: ElTimeSelect,
-  SelectV2: ElSelectV2
+  SelectV2: ElSelectV2,
+  RadioButton: ElRadioGroup
 }
 
 export { componentMap }

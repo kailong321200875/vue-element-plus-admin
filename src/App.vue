@@ -45,13 +45,13 @@ onMounted(() => {
 })
 
 const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-const options = ref<FormOptions[]>(
+const options = ref<ComponentOptions[]>(
   Array.from({ length: 1000 }).map((_, idx) => ({
     value: `Option ${idx + 1}`,
     label: `${initials[idx % 10]}${idx}`
   }))
 )
-const options2 = ref<FormOptions[]>(
+const options2 = ref<ComponentOptions[]>(
   Array.from({ length: 10 }).map((_, idx) => {
     const label = idx + 1
     return {
@@ -65,7 +65,7 @@ const options2 = ref<FormOptions[]>(
   })
 )
 
-const options3: FormOptions[] = [
+const options3: ComponentOptions[] = [
   {
     value: 'guide',
     label: 'Guide',
@@ -332,6 +332,20 @@ function generateData() {
   return data
 }
 
+const holidays = [
+  '2021-10-01',
+  '2021-10-02',
+  '2021-10-03',
+  '2021-10-04',
+  '2021-10-05',
+  '2021-10-06',
+  '2021-10-07'
+]
+
+function isHoliday({ dayjs }) {
+  return holidays.includes(dayjs.format('YYYY-MM-DD'))
+}
+
 const schema = reactive<VFormSchema[]>([
   {
     field: 'field1',
@@ -438,99 +452,107 @@ const schema = reactive<VFormSchema[]>([
     field: 'field14',
     label: t('formDemo.default'),
     component: 'Select',
-    options: [
-      {
-        label: '选项1',
-        value: '1'
-      },
-      {
-        label: '选项2',
-        value: '2'
-      }
-    ]
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ]
+    }
   },
   {
     field: 'field15',
     label: t('formDemo.slot'),
     component: 'Select',
-    options: [
-      {
-        label: '选项1',
-        value: '1'
-      },
-      {
-        label: '选项2',
-        value: '2'
-      }
-    ],
-    optionsSlot: true
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ],
+      optionsSlot: true
+    }
   },
   {
     field: 'field16',
-    label: t('formDemo.group'),
+    label: t('formDemo.selectGroup'),
     component: 'Select',
-    options: [
-      {
-        label: '选项1',
-        options: [
-          {
-            label: '选项1-1',
-            value: '1-1'
-          },
-          {
-            label: '选项1-2',
-            value: '1-2'
-          }
-        ]
-      },
-      {
-        label: '选项2',
-        options: [
-          {
-            label: '选项2-1',
-            value: '2-1'
-          },
-          {
-            label: '选项2-2',
-            value: '2-2'
-          }
-        ]
-      }
-    ]
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          options: [
+            {
+              label: 'option1-1',
+              value: '1-1'
+            },
+            {
+              label: 'option1-2',
+              value: '1-2'
+            }
+          ]
+        },
+        {
+          label: 'option2',
+          options: [
+            {
+              label: 'option2-1',
+              value: '2-1'
+            },
+            {
+              label: 'option2-2',
+              value: '2-2'
+            }
+          ]
+        }
+      ]
+    }
   },
   {
     field: 'field17',
-    label: `${t('formDemo.group')}${t('formDemo.slot')}`,
+    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
     component: 'Select',
-    options: [
-      {
-        label: '选项1',
-        options: [
-          {
-            label: '选项1-1',
-            value: '1-1'
-          },
-          {
-            label: '选项1-2',
-            value: '1-2'
-          }
-        ]
-      },
-      {
-        label: '选项2',
-        options: [
-          {
-            label: '选项2-1',
-            value: '2-1'
-          },
-          {
-            label: '选项2-2',
-            value: '2-2'
-          }
-        ]
-      }
-    ],
-    optionsSlot: true
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          options: [
+            {
+              label: 'option1-1',
+              value: '1-1'
+            },
+            {
+              label: 'option1-2',
+              value: '1-2'
+            }
+          ]
+        },
+        {
+          label: 'option2',
+          options: [
+            {
+              label: 'option2-1',
+              value: '2-1'
+            },
+            {
+              label: 'option2-2',
+              value: '2-2'
+            }
+          ]
+        }
+      ],
+      optionsSlot: true
+    }
   },
   {
     field: 'field18',
@@ -541,14 +563,16 @@ const schema = reactive<VFormSchema[]>([
     field: 'field19',
     label: t('formDemo.default'),
     component: 'SelectV2',
-    options: options.value
+    componentProps: {
+      options: options.value
+    }
   },
   {
     field: 'field20',
     label: t('formDemo.slot'),
     component: 'SelectV2',
-    options: options.value,
     componentProps: {
+      options: options.value,
       slots: {
         default: true
       }
@@ -556,16 +580,18 @@ const schema = reactive<VFormSchema[]>([
   },
   {
     field: 'field21',
-    label: t('formDemo.group'),
+    label: t('formDemo.selectGroup'),
     component: 'SelectV2',
-    options: options2.value
+    componentProps: {
+      options: options2.value
+    }
   },
   {
     field: 'field22',
-    label: `${t('formDemo.group')}${t('formDemo.slot')}`,
+    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
     component: 'SelectV2',
-    options: options2.value,
     componentProps: {
+      options: options2.value,
       slots: {
         default: true
       }
@@ -580,14 +606,16 @@ const schema = reactive<VFormSchema[]>([
     field: 'field24',
     label: t('formDemo.default'),
     component: 'Cascader',
-    options: options3
+    componentProps: {
+      options: options3
+    }
   },
   {
     field: 'field25',
     label: t('formDemo.slot'),
     component: 'Cascader',
-    options: options3,
     componentProps: {
+      options: options3,
       slots: {
         default: true
       }
@@ -710,15 +738,286 @@ const schema = reactive<VFormSchema[]>([
     colProps: {
       xl: 12
     }
+  },
+  {
+    field: 'field38',
+    label: t('formDemo.radio'),
+    component: 'Divider'
+  },
+  {
+    field: 'field39',
+    label: t('formDemo.default'),
+    component: 'Radio',
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field40',
+    label: t('formDemo.button'),
+    component: 'RadioButton',
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field41',
+    label: t('formDemo.checkbox'),
+    component: 'Divider'
+  },
+  {
+    field: 'field42',
+    label: t('formDemo.default'),
+    component: 'Checkbox',
+    value: [],
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        },
+        {
+          label: 'option-3',
+          value: '23'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field43',
+    label: t('formDemo.button'),
+    component: 'CheckboxButton',
+    value: [],
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        },
+        {
+          label: 'option-3',
+          value: '23'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field44',
+    component: 'Divider',
+    label: t('formDemo.slider')
+  },
+  {
+    field: 'field45',
+    component: 'Slider',
+    label: t('formDemo.default'),
+    value: 0
+  },
+  {
+    field: 'field46',
+    component: 'Divider',
+    label: t('formDemo.datePicker')
+  },
+  {
+    field: 'field47',
+    component: 'DatePicker',
+    label: t('formDemo.default'),
+    componentProps: {
+      type: 'date'
+    }
+  },
+  {
+    field: 'field48',
+    component: 'DatePicker',
+    label: t('formDemo.shortcuts'),
+    componentProps: {
+      type: 'date',
+      disabledDate: (time: Date) => {
+        return time.getTime() > Date.now()
+      },
+      shortcuts: [
+        {
+          text: t('formDemo.today'),
+          value: new Date()
+        },
+        {
+          text: t('formDemo.yesterday'),
+          value: () => {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            return date
+          }
+        },
+        {
+          text: t('formDemo.aWeekAgo'),
+          value: () => {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            return date
+          }
+        }
+      ]
+    }
+  },
+  {
+    field: 'field49',
+    component: 'DatePicker',
+    label: t('formDemo.week'),
+    componentProps: {
+      type: 'week',
+      format: `[${t('formDemo.week')}] ww`
+    }
+  },
+  {
+    field: 'field50',
+    component: 'DatePicker',
+    label: t('formDemo.year'),
+    componentProps: {
+      type: 'year'
+    }
+  },
+  {
+    field: 'field51',
+    component: 'DatePicker',
+    label: t('formDemo.month'),
+    componentProps: {
+      type: 'month'
+    }
+  },
+  {
+    field: 'field52',
+    component: 'DatePicker',
+    label: t('formDemo.dates'),
+    componentProps: {
+      type: 'dates'
+    }
+  },
+  {
+    field: 'field53',
+    component: 'DatePicker',
+    label: t('formDemo.daterange'),
+    componentProps: {
+      type: 'daterange'
+    }
+  },
+  {
+    field: 'field54',
+    component: 'DatePicker',
+    label: t('formDemo.monthrange'),
+    componentProps: {
+      type: 'monthrange'
+    }
+  },
+  {
+    field: 'field55',
+    component: 'DatePicker',
+    label: t('formDemo.slot'),
+    componentProps: {
+      type: 'date',
+      format: 'YYYY/MM/DD',
+      valueFormat: 'YYYY-MM-DD',
+      slots: {
+        default: true
+      }
+    }
+  },
+  {
+    field: 'field56',
+    component: 'Divider',
+    label: t('formDemo.dateTimePicker')
+  },
+  {
+    field: 'field57',
+    component: 'DatePicker',
+    label: t('formDemo.default'),
+    componentProps: {
+      type: 'datetime'
+    }
+  },
+  {
+    field: 'field58',
+    component: 'DatePicker',
+    label: t('formDemo.shortcuts'),
+    componentProps: {
+      type: 'datetime',
+      shortcuts: [
+        {
+          text: t('formDemo.today'),
+          value: new Date()
+        },
+        {
+          text: t('formDemo.yesterday'),
+          value: () => {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24)
+            return date
+          }
+        },
+        {
+          text: t('formDemo.aWeekAgo'),
+          value: () => {
+            const date = new Date()
+            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+            return date
+          }
+        }
+      ]
+    }
+  },
+  {
+    field: 'field59',
+    component: 'DatePicker',
+    label: t('formDemo.dateTimerange'),
+    componentProps: {
+      type: 'datetimerange'
+    }
+  },
+  {
+    field: 'field60',
+    component: 'Divider',
+    label: t('formDemo.timePicker')
+  },
+  {
+    field: 'field61',
+    component: 'TimePicker',
+    label: t('formDemo.default')
+  },
+  {
+    field: 'field62',
+    component: 'Divider',
+    label: t('formDemo.timeSelect')
+  },
+  {
+    field: 'field63',
+    component: 'TimeSelect',
+    label: t('formDemo.default')
   }
 ])
-
-setTimeout(() => {
-  if (schema[2].componentProps) {
-    schema[2].componentProps.placeholder = 'test'
-    console.log(schema[2])
-  }
-}, 3000)
 </script>
 
 <template>
@@ -775,6 +1074,51 @@ setTimeout(() => {
       <template #field36-default="{ option }">
         <span>{{ option.value }} - {{ option.desc }}</span>
       </template>
+
+      <template #field55-default="cell">
+        <div class="cell" :class="{ current: cell.isCurrent }">
+          <span class="text">{{ cell.text }}</span>
+          <span v-if="isHoliday(cell)" class="holiday"></span>
+        </div>
+      </template>
     </VFrom>
   </ElConfigProvider>
 </template>
+
+<style lang="less" scoped>
+.cell {
+  height: 30px;
+  padding: 3px 0;
+  box-sizing: border-box;
+
+  .text {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    line-height: 24px;
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.current {
+    .text {
+      color: #fff;
+      background: purple;
+    }
+  }
+
+  .holiday {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: red;
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+}
+</style>

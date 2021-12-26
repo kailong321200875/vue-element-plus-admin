@@ -12,6 +12,8 @@ import {
   setModel
 } from './helper'
 import { useRenderSelect } from './components/useRenderSelect'
+import { useRenderRadio } from './components/useRenderRadio'
+import { useRenderChcekbox } from './components/useRenderChcekbox'
 
 export default defineComponent({
   name: 'VForm',
@@ -93,7 +95,11 @@ export default defineComponent({
       const slotsMap: Recordable = {
         ...setItemComponentSlots(slots, item?.componentProps?.slots, item.field)
       }
-      if (item?.component !== 'SelectV2' && item.options) {
+      if (
+        item?.component !== 'SelectV2' &&
+        item?.component !== 'Cascader' &&
+        item?.componentProps?.options
+      ) {
         slotsMap.default = () => renderOptions(item)
       }
       return (
@@ -105,8 +111,9 @@ export default defineComponent({
                 vModel={formModel[item.field]}
                 {...(autoSetPlaceholder && setTextPlaceholder(item))}
                 {...setComponentProps(item)}
-                {...(notRenderOptions.includes(item?.component as string) && item.options
-                  ? { options: item.options || [] }
+                {...(notRenderOptions.includes(item?.component as string) &&
+                item?.componentProps?.options
+                  ? { options: item?.componentProps?.options || [] }
                   : {})}
               >
                 {{ ...slotsMap }}
@@ -123,6 +130,14 @@ export default defineComponent({
         case 'Select':
           const { renderSelectOptions } = useRenderSelect(slots)
           return renderSelectOptions(item)
+        case 'Radio':
+        case 'RadioButton':
+          const { renderRadioOptions } = useRenderRadio()
+          return renderRadioOptions(item)
+        case 'Checkbox':
+        case 'CheckboxButton':
+          const { renderChcekboxOptions } = useRenderChcekbox()
+          return renderChcekboxOptions(item)
         default:
           break
       }
@@ -142,7 +157,7 @@ export default defineComponent({
     }
 
     return () => (
-      <ElForm ref={formRef} {...getFormBindValue()} model={formModel}>
+      <ElForm ref={formRef} {...getFormBindValue()} model={formModel} class="v-form">
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
           default: () => (isCustom ? getSlot(slots, 'default') : renderWrap())

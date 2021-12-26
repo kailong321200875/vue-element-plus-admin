@@ -5,7 +5,9 @@ declare global {
   // BfForm types start
   declare type ComponentName =
     | 'Radio'
+    | 'RadioButton'
     | 'Checkbox'
+    | 'CheckboxButton'
     | 'Input'
     | 'Autocomplete'
     | 'InputNumber'
@@ -52,20 +54,25 @@ declare global {
     style?: CSSProperties
   }
 
-  declare type FormOptions = {
+  declare type ComponentOptions = {
     label?: string
     value?: FormValueTypes
     disabled?: boolean
     key?: string | number
-    children?: FormOptions[]
-    options?: FormOptions[]
-    [key: string]: any
-  }
+    children?: ComponentOptions[]
+    options?: ComponentOptions[]
+  } & Recordable
 
-  declare type FormOptionsAlias = {
+  declare type ComponentOptionsAlias = {
     labelField?: string
     valueField?: string
   }
+
+  declare type ComponentProps = {
+    optionsAlias?: ComponentOptionsAlias
+    options?: ComponentOptions[]
+    optionsSlot?: boolean
+  } & Recordable
 
   declare type VFormSchema = {
     // 唯一值
@@ -75,23 +82,15 @@ declare global {
     // col组件属性
     colProps?: ColProps
     // 表单组件属性，slots对应的是表单组件的插槽，规则：${field}-xxx，具体可以查看element-plus文档
-    componentProps?: { slots?: Recordable } & Recordable
+    componentProps?: { slots?: Recordable } & ComponentProps
     // formItem组件属性
     formItemProps?: FormItemProps
     // 渲染的组件
     component?: ComponentName
     // 初始值
     value?: FormValueTypes
-    // 下拉选项
-    options?: FormOptions[]
-    // 下拉选项别名
-    optionsField?: FormOptionsAlias
-    // 下拉选项插槽，规则：${field}-option
-    optionsSlot?: boolean
     // 是否隐藏
     hidden?: boolean
-    // 表单组件插槽，规则：${field}
-    slot?: boolean
   }
 
   // VForm types end
