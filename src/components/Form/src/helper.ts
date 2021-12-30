@@ -17,7 +17,7 @@ interface PlaceholderMoel {
  * @description 用于自动设置placeholder
  */
 export function setTextPlaceholder(schema: VFormSchema): PlaceholderMoel {
-  const textMap = ['Input', 'Autocomplete', 'InputNumber']
+  const textMap = ['Input', 'Autocomplete', 'InputNumber', 'InputPassword']
   const selectMap = ['Select', 'TimePicker', 'DatePicker', 'TimeSelect', 'TimeSelect']
   if (textMap.includes(schema?.component as string)) {
     return {
@@ -114,17 +114,20 @@ export function setItemComponentSlots(
  *
  * @param schema Form表单结构化数组
  * @param formModel FormMoel
+ * @returns FormMoel
  * @description 生成对应的formModel
  */
-export function setModel(schema: VFormSchema[], formModel: Recordable) {
+export function initModel(schema: VFormSchema[], formModel: Recordable) {
+  const model: Recordable = { ...formModel }
   schema.map((v) => {
     // 如果是hidden，就删除对应的值
     if (v.hidden) {
-      delete formModel[v.field]
+      delete model[v.field]
     } else {
-      const hasField = Reflect.has(formModel, v.field)
+      const hasField = Reflect.has(model, v.field)
       // 如果先前已经有值存在，则不进行重新赋值，而是采用现有的值
-      formModel[v.field] = hasField ? formModel[v.field] : v.value !== void 0 ? v.value : ''
+      model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : ''
     }
   })
+  return model
 }

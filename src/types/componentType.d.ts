@@ -23,6 +23,7 @@ declare global {
     | 'Divider'
     | 'TimeSelect'
     | 'SelectV2'
+    | 'InputPassword'
 
   declare type ColProps = {
     span?: number

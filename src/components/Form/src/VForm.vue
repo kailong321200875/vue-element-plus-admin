@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, reactive, watch } from 'vue'
+import { PropType, defineComponent, ref, computed, unref, watch } from 'vue'
 import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
@@ -9,7 +9,7 @@ import {
   setGridProp,
   setComponentProps,
   setItemComponentSlots,
-  setModel
+  initModel
 } from './helper'
 import { useRenderSelect } from './components/useRenderSelect'
 import { useRenderRadio } from './components/useRenderRadio'
@@ -44,13 +44,22 @@ export default defineComponent({
     const getProps = computed(() => props)
     const { schema, isCol, isCustom, autoSetPlaceholder } = unref(getProps)
     // 表单数据
-    const formModel = reactive<Recordable>({})
+    const formModel = ref<Recordable>({})
+    watch(
+      () => formModel.value,
+      (formModel: Recordable) => {
+        console.log(formModel)
+      },
+      {
+        deep: true
+      }
+    )
 
     // 监听表单结构化数组，重新生成formModel
     watch(
       () => schema,
       (schema) => {
-        setModel(schema, formModel)
+        formModel.value = initModel(schema, unref(formModel))
       },
       {
         immediate: true,
@@ -108,7 +117,7 @@ export default defineComponent({
             const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
             return (
               <Com
-                vModel={formModel[item.field]}
+                vModel={formModel.value[item.field]}
                 {...(autoSetPlaceholder && setTextPlaceholder(item))}
                 {...setComponentProps(item)}
                 {...(notRenderOptions.includes(item?.component as string) &&

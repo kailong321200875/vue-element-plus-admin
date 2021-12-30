@@ -26,7 +26,7 @@
     "types": [
       "@intlify/vite-plugin-vue-i18n/client",
       "vite/client",
-      "./node_modules/element-plus/global",
+      "element-plus/global",
       "unplugin-icons/types/vue"
     ],
     "typeRoots": ["./node_modules/@types/", "./src/types"]

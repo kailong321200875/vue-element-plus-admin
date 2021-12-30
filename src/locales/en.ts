@@ -42,6 +42,8 @@ export default {
     dateTimePicker: 'DateTimePicker',
     dateTimerange: 'Datetime Range',
     timePicker: 'Time Picker',
-    timeSelect: 'Time Select'
+    timeSelect: 'Time Select',
+    inputPassword: 'input Password',
+    passwordStrength: 'Password Strength'
   }
 }

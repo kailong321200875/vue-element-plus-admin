@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref, onMounted, markRaw } from 'vue'
 import { ElConfigProvider, ElIcon } from 'element-plus'
+import { VConfigGlobal } from '@/components/ConfigGlobal'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 // import en from 'element-plus/lib/locale/lang/en'
 import { VFrom } from '@/components/Form'
@@ -1016,73 +1017,93 @@ const schema = reactive<VFormSchema[]>([
     field: 'field63',
     component: 'TimeSelect',
     label: t('formDemo.default')
+  },
+  {
+    field: 'field64',
+    component: 'Divider',
+    label: t('formDemo.inputPassword')
+  },
+  {
+    field: 'field65',
+    component: 'InputPassword',
+    label: t('formDemo.default')
+  },
+  {
+    field: 'field66',
+    component: 'InputPassword',
+    label: t('formDemo.passwordStrength'),
+    componentProps: {
+      strength: true
+    }
   }
 ])
 </script>
 
 <template>
-  <ElConfigProvider :locale="zhCn">
-    <VFrom :schema="schema">
-      <template #field4-prefix>
-        <ElIcon class="el-input__icon"><Calendar /></ElIcon>
-      </template>
-      <template #field4-suffix>
-        <ElIcon class="el-input__icon"><Calendar /></ElIcon>
-      </template>
+  <VConfigGlobal>
+    <ElConfigProvider :locale="zhCn">
+      <VFrom :schema="schema">
+        <template #field4-prefix>
+          <ElIcon class="el-input__icon"><Calendar /></ElIcon>
+        </template>
+        <template #field4-suffix>
+          <ElIcon class="el-input__icon"><Calendar /></ElIcon>
+        </template>
 
-      <template #field5-prepend> Http:// </template>
-      <template #field5-append> .com </template>
+        <template #field5-prepend> Http:// </template>
+        <template #field5-append> .com </template>
 
-      <template #field9-default="{ item }">
-        <div class="value">{{ item.value }}</div>
-        <span class="link">{{ item.link }}</span>
-      </template>
+        <template #field9-default="{ item }">
+          <div class="value">{{ item.value }}</div>
+          <span class="link">{{ item.link }}</span>
+        </template>
 
-      <template #field15-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
+        <template #field15-option="{ item }">
+          <span style="float: left">{{ item.label }}</span>
+          <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+            {{ item.value }}
+          </span>
+        </template>
 
-      <template #field17-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
+        <template #field17-option="{ item }">
+          <span style="float: left">{{ item.label }}</span>
+          <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+            {{ item.value }}
+          </span>
+        </template>
 
-      <template #field20-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
+        <template #field20-default="{ item }">
+          <span style="float: left">{{ item.label }}</span>
+          <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+            {{ item.value }}
+          </span>
+        </template>
 
-      <template #field22-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
+        <template #field22-default="{ item }">
+          <span style="float: left">{{ item.label }}</span>
+          <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
+            {{ item.value }}
+          </span>
+        </template>
 
-      <template #field25-default="{ node, data }">
-        <span>{{ data.label }}</span>
-        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-      </template>
+        <template #field25-default="{ node, data }">
+          <span>{{ data.label }}</span>
+          <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
+        </template>
 
-      <template #field36-default="{ option }">
-        <span>{{ option.value }} - {{ option.desc }}</span>
-      </template>
+        <template #field36-default="{ option }">
+          <span>{{ option.value }} - {{ option.desc }}</span>
+        </template>
 
-      <template #field55-default="cell">
-        <div class="cell" :class="{ current: cell.isCurrent }">
-          <span class="text">{{ cell.text }}</span>
-          <span v-if="isHoliday(cell)" class="holiday"></span>
-        </div>
-      </template>
-    </VFrom>
-  </ElConfigProvider>
+        <template #field55-default="cell">
+          <div class="cell" :class="{ current: cell.isCurrent }">
+            <span class="text">{{ cell.text }}</span>
+            <span v-if="isHoliday(cell)" class="holiday"></span>
+          </div>
+        </template>
+      </VFrom>
+    </ElConfigProvider>
+  </VConfigGlobal>
 </template>
 
 <style lang="less" scoped>

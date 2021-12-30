@@ -3,11 +3,8 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import WindiCSS from 'vite-plugin-windicss'
-// import Components from 'unplugin-vue-components/vite'
-// import AutoImport from 'unplugin-auto-import/vite'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import EslintPlugin from 'vite-plugin-eslint'
-// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Icons from 'unplugin-icons/vite'
 import StyleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
@@ -23,12 +20,11 @@ function pathResolve(dir: string) {
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = null
   if (command === 'serve') {
-    env = loadEnv(process.argv[4], root)
+    env = loadEnv(process.argv[3], root)
   }
   else {
     env = loadEnv(mode, root)
   }
-
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
@@ -45,33 +41,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           }
         }]
       }),
-      // AutoImport({
-      //   imports: [
-      //     'vue',
-      //     'vue-router',
-      //     'vue-i18n',
-      //     '@vueuse/core'
-      //   ],
-      //   dts: 'src/types/auto-imports.d.ts'
-      // }),
       Icons({
         compiler: 'vue3',
         autoInstall: true
       }),
-      // Components({
-      //   dirs: ['src/components'],
-      //   extensions: ['vue', 'md'],
-      //   include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      //   // custom resolvers
-      //   resolvers: [
-      //     ElementPlusResolver(),
-      //     IconsResolver({
-      //       prefix: false,
-      //       enabledCollections : ['ep']
-      //     })
-      //   ],
-      //   dts: 'src/types/components.d.ts'
-      // }),
       EslintPlugin({
         cache: false,
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
@@ -86,12 +59,13 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: '@import "./src/styles/variables.less";',
+          additionalData: '@import "./src/styles/variables.module.less";',
           javascriptEnabled: true
         }
       }
     },
     resolve: {
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
       alias: [
         {
           find: 'vue-i18n',
@@ -105,7 +79,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     build: {
       minify: 'terser',
-      outDir: env.VITE_OUT_DIR,
+      outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true' ? 'inline' : false,
       brotliSize: false,
       terserOptions: {
@@ -131,6 +105,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           changeOrigin: true,
           rewrite: path => path.replace(/^\/fallback/, '')
         }
+      },
+      hmr: {
+        overlay: false
       }
     },
     optimizeDeps: {

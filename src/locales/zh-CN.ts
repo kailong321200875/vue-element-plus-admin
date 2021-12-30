@@ -42,6 +42,8 @@ export default {
     dateTimePicker: '日期时间选择器',
     dateTimerange: '日期时间范围',
     timePicker: '时间选择器',
-    timeSelect: '时间选择'
+    timeSelect: '时间选择',
+    inputPassword: '密码输入框',
+    passwordStrength: '密码强度'
   }
 }
