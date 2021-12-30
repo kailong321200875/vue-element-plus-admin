@@ -3,7 +3,8 @@ export default {
     inputText: '请输入',
     selectText: '请选择',
     startTimeText: '开始时间',
-    endTimeText: '结束时间'
+    endTimeText: '结束时间',
+    login: '登录'
   },
   formDemo: {
     input: '输入框',

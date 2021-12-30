@@ -1,11 +1,13 @@
 <script lang="tsx">
 import { provide, defineComponent } from 'vue'
-import { vConfigGlobalProps } from './props'
+import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
   name: 'VConfigGlobal',
   inheritAttrs: false,
-  props: vConfigGlobalProps,
+  props: {
+    size: propTypes.oneOf(['default', 'medium', 'small', 'mini']).def('default')
+  },
   setup(props, { slots }) {
     provide('configGlobal', props)
 

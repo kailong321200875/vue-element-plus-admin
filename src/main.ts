@@ -13,4 +13,10 @@ setupElementPlus(app)
 import { setupStore } from '@/store'
 setupStore(app)
 
-app.mount('#app')
+// 路由
+import router, { setupRouter } from './router'
+setupRouter(app)
+
+router.isReady().then(() => {
+  app.mount('#app')
+})

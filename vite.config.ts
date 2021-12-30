@@ -114,7 +114,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       include: [
         'vue',
         'vue-router',
-        'vue-types'
+        'vue-types',
+        'element-plus/lib/locale/lang/zh-cn',
+        'element-plus/lib/locale/lang/en'
       ]
     }
   }
