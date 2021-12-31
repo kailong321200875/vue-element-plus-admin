@@ -20,7 +20,7 @@ const emit = defineEmits(['update:modelValue'])
 
 // 生成class前缀
 const { getPrefixCls } = useDesign()
-const prefixCls = ref(getPrefixCls('inputpassword'))
+const prefixCls = ref(getPrefixCls('input-password'))
 
 // 设置input的type属性
 const textType = ref<'password' | 'text'>('password')
@@ -66,7 +66,7 @@ const getPasswordStrength = computed(() => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-inputpassword';
+@prefix-cls: ~'@{namespace}-input-password';
 
 .@{prefix-cls} {
   &__bar {

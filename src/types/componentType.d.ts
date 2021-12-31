@@ -25,7 +25,7 @@ declare global {
     | 'SelectV2'
     | 'InputPassword'
 
-  declare type ColProps = {
+  type ColProps = {
     span?: number
     xs?: number
     sm?: number
@@ -93,6 +93,11 @@ declare global {
     // 是否隐藏
     hidden?: boolean
   }
-
   // VForm types end
+
+  // VConfigGlobal types start
+  declare interface VConfigGlobalTypes {
+    size?: ElememtPlusSzie
+  }
+  // VConfigGlobal types end
 }

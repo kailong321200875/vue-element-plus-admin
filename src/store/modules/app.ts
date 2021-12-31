@@ -22,6 +22,9 @@ export interface AppState {
   showBackTop: boolean
   showMenuTab: boolean
   requestTime: boolean
+  isDark: boolean
+  size: ElememtPlusSzie
+  lang: string
 }
 
 export const useAppStore = defineStore({
@@ -43,7 +46,10 @@ export const useAppStore = defineStore({
     greyMode: false, // 是否开始灰色模式，用于特殊悼念日
     showBackTop: true, // 是否显示回到顶部
     showMenuTab: false, // 是否固定一级菜单
-    requestTime: false // 是否在接口调用时添加时间戳，避免IE缓存
+    requestTime: false, // 是否在接口调用时添加时间戳，避免IE缓存
+    isDark: false, // 是否是暗黑模式
+    size: 'default', // 组件尺寸
+    lang: 'zh-CN' // 语言
   }),
   getters: {
     getCollapsed(): boolean {
@@ -96,6 +102,15 @@ export const useAppStore = defineStore({
     },
     getRequestTime(): boolean {
       return this.requestTime
+    },
+    getIsDark(): boolean {
+      return this.isDark
+    },
+    getSize(): ElememtPlusSzie {
+      return this.size
+    },
+    getLang(): string {
+      return this.lang
     }
   },
   actions: {
@@ -146,6 +161,22 @@ export const useAppStore = defineStore({
     },
     setRequestTime(requestTime: boolean) {
       this.requestTime = requestTime
+    },
+    setIsDark(isDark: boolean) {
+      this.isDark = isDark
+      if (this.isDark) {
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.remove('light')
+      } else {
+        document.documentElement.classList.add('light')
+        document.documentElement.classList.remove('dark')
+      }
+    },
+    setSize(size: ElememtPlusSzie) {
+      this.size = size
+    },
+    setLang(lang: string) {
+      this.lang = lang
     }
   }
 })
