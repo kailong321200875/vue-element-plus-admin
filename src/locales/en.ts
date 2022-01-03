@@ -6,6 +6,11 @@ export default {
     endTimeText: 'End time',
     login: 'Login'
   },
+  size: {
+    default: 'Default',
+    large: 'Large',
+    small: 'Small'
+  },
   formDemo: {
     input: 'Input',
     inputNumber: 'InputNumber',

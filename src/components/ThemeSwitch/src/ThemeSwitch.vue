@@ -7,6 +7,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useIcon } from '@/hooks/web/useIcon'
 
 const Sun = useIcon({ icon: 'emojione-monotone:sun' })
+
 const CrescentMoon = useIcon({ icon: 'emojione-monotone:crescent-moon' })
 
 const appStore = useAppStore()
@@ -15,6 +16,7 @@ const appStore = useAppStore()
 const isDark = ref(appStore.getIsDark)
 
 const { getPrefixCls } = useDesign()
+
 const prefixCls = getPrefixCls('theme-switch')
 
 // 设置switch的背景颜色

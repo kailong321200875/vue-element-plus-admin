@@ -1,8 +1,8 @@
-import VFrom from './src/Form.vue'
+import Form from './src/Form.vue'
 
-export interface VFormExpose {
+export interface FormExpose {
   count: number
   sayHello: () => void
 }
 
-export { VFrom }
+export { Form }

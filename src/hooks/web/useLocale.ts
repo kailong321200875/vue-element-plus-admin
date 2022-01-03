@@ -22,7 +22,7 @@ export function useLocale() {
   async function changeLocale(locale: LocaleType) {
     const globalI18n = i18n.global
 
-    const langModule = (await import(`../../locales/${locale}.ts`)) as any
+    const langModule = await import(`../../locales/${locale}.ts`)
 
     globalI18n.setLocaleMessage(locale, langModule.default)
 

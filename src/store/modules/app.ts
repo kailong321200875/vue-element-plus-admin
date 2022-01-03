@@ -23,6 +23,7 @@ export interface AppState {
   requestTime: boolean
   isDark: boolean
   size: ElememtPlusSzie
+  sizeMap: ElememtPlusSzie[]
 }
 
 export const useAppStore = defineStore({
@@ -46,7 +47,8 @@ export const useAppStore = defineStore({
     showMenuTab: false, // 是否固定一级菜单
     requestTime: false, // 是否在接口调用时添加时间戳，避免IE缓存
     isDark: false, // 是否是暗黑模式
-    size: 'default' // 组件尺寸
+    size: 'default', // 组件尺寸
+    sizeMap: ['default', 'large', 'small']
   }),
   getters: {
     getCollapsed(): boolean {
@@ -105,6 +107,9 @@ export const useAppStore = defineStore({
     },
     getSize(): ElememtPlusSzie {
       return this.size
+    },
+    getSizeMap(): ElememtPlusSzie[] {
+      return this.sizeMap
     }
   },
   actions: {

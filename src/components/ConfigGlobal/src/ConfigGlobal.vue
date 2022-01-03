@@ -3,7 +3,7 @@ import { provide, defineComponent } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({
-  name: 'VConfigGlobal',
+  name: 'ConfigGlobal',
   inheritAttrs: false,
   props: {
     size: propTypes.oneOf(['default', 'medium', 'small', 'mini']).def('default')

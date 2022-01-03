@@ -12,14 +12,14 @@ export default defineConfig({
   darkMode: 'class',
   attributify: false,
   theme: {
-    extend: {
-      screens: {
-        sm: '768px',
-        md: '992px',
-        lg: '1200px',
-        xl: '1920px'
-      }
-    }
+    // extend: {
+    //   screens: {
+    //     sm: '768px',
+    //     md: '992px',
+    //     lg: '1200px',
+    //     xl: '1920px'
+    //   }
+    // }
     // height: {
     //   ...range(50).map((i) => `h-${i}px`)
     // },
@@ -29,5 +29,17 @@ export default defineConfig({
     //   // ...range(50).map((i) => `mb-${i}px`),
     //   // ...range(50).map((i) => `ml-${i}px`)
     // }
-  }
+  },
+  Plugin: [
+    require('@windicss/plugin-animations')({
+      settings: {
+        animatedSpeed: 1000,
+        heartBeatSpeed: 1000,
+        hingeSpeed: 2000,
+        bounceInSpeed: 750,
+        bounceOutSpeed: 750,
+        animationDelaySpeed: 1000
+      }
+    })
+  ]
 })

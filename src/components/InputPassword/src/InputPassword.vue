@@ -19,16 +19,19 @@ const emit = defineEmits(['update:modelValue'])
 
 // 生成class前缀
 const { getPrefixCls } = useDesign()
+
 const prefixCls = ref(getPrefixCls('input-password'))
 
 // 设置input的type属性
 const textType = ref<'password' | 'text'>('password')
+
 function changeTextType() {
   textType.value = unref(textType) === 'text' ? 'password' : 'text'
 }
 
 // 输入框的值
 const valueRef = ref('')
+
 // 监听
 watch(
   () => valueRef.value,
@@ -36,6 +39,7 @@ watch(
     emit('update:modelValue', val)
   }
 )
+
 // 获取密码强度
 const getPasswordStrength = computed(() => {
   const value = unref(valueRef)

@@ -6,6 +6,11 @@ export default {
     endTimeText: '结束时间',
     login: '登录'
   },
+  size: {
+    default: '默认',
+    large: '大',
+    small: '小'
+  },
   formDemo: {
     input: '输入框',
     inputNumber: '数字输入框',

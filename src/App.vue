@@ -10,18 +10,21 @@ const appStore = useAppStore()
 
 const localeStore = useLocaleStore()
 
-const local = computed(() => localeStore.locale)
+const locale = computed(() => localeStore.locale)
+
+const size = computed(() => appStore.size)
 
 function initDark() {
   const isDarkTheme = isDark()
   appStore.setIsDark(isDarkTheme)
 }
+
 initDark()
 </script>
 
 <template>
-  <ConfigGlobal>
-    <ElConfigProvider :locale="local.elLocale">
+  <ConfigGlobal :size="size">
+    <ElConfigProvider :locale="locale.elLocale" :size="size">
       <RouterView />
     </ElConfigProvider>
   </ConfigGlobal>

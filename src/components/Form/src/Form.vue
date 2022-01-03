@@ -16,7 +16,7 @@ import { useRenderRadio } from './components/useRenderRadio'
 import { useRenderChcekbox } from './components/useRenderChcekbox'
 
 export default defineComponent({
-  name: 'VForm',
+  name: 'Form',
   props: {
     // 生成Form的布局结构数组
     schema: {

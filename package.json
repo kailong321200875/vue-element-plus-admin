@@ -48,6 +48,7 @@
     "@typescript-eslint/parser": "^5.8.1",
     "@vitejs/plugin-vue": "^2.0.1",
     "@vitejs/plugin-vue-jsx": "^1.3.3",
+    "@windicss/plugin-animations": "^1.0.9",
     "async-validator": "^4.0.7",
     "autoprefixer": "^10.4.1",
     "commitizen": "^4.2.4",
