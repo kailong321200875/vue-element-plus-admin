@@ -18,7 +18,7 @@ import {
   ElAutocomplete,
   ElDivider
 } from 'element-plus'
-import { VInputPassword } from '@/components/InputPassword'
+import { InputPassword } from '@/components/InputPassword'
 
 const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadioGroup,
@@ -40,7 +40,7 @@ const componentMap: Recordable<Component, ComponentName> = {
   TimeSelect: ElTimeSelect,
   SelectV2: ElSelectV2,
   RadioButton: ElRadioGroup,
-  InputPassword: VInputPassword
+  InputPassword: InputPassword
 }
 
 export { componentMap }

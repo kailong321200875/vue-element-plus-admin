@@ -1,0 +1,19 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "errno": 1,
+    "code": "ELIFECYCLE",
+    "pkgid": "butterfly-admin@3.0.0",
+    "stage": "clean",
+    "script": "npx rimraf docs/node_modules && npx rimraf node_modules",
+    "pkgname": "butterfly-admin",
+    "err": {
+      "name": "pnpm",
+      "message": "butterfly-admin@3.0.0 clean: `npx rimraf docs/node_modules && npx rimraf node_modules`\nExit status 1",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: butterfly-admin@3.0.0 clean: `npx rimraf docs/node_modules && npx rimraf node_modules`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\Saber\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.24.4\\node_modules\\pnpm\\dist\\pnpm.cjs:103873:20)\n    at EventEmitter.emit (node:events:365:28)\n    at ChildProcess.<anonymous> (C:\\Users\\Saber\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.24.4\\node_modules\\pnpm\\dist\\pnpm.cjs:91802:18)\n    at ChildProcess.emit (node:events:365:28)\n    at maybeClose (node:internal/child_process:1067:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  }
+}

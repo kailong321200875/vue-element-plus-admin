@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref, unref, computed, watch } from 'vue'
-import { ElInput, ElIcon } from 'element-plus'
-import EyeInvisibleOutlinedE from '~icons/ant-design/eyeInvisibleOutlined'
-import EyeOutlined from '~icons/ant-design/eye-outlined'
+import { ElInput } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
-const { configGlobal } = useConfigGlobal()
 import { zxcvbn } from '@zxcvbn-ts/core'
 import type { ZxcvbnResult } from '@zxcvbn-ts/core'
 
@@ -15,6 +12,8 @@ defineProps({
   strength: propTypes.bool.def(false),
   modelValue: propTypes.string.def('')
 })
+
+const { configGlobal } = useConfigGlobal()
 
 const emit = defineEmits(['update:modelValue'])
 
@@ -43,16 +42,17 @@ const getPasswordStrength = computed(() => {
   const zxcvbnRef = zxcvbn(unref(valueRef)) as ZxcvbnResult
   return value ? zxcvbnRef.score : -1
 })
+
+const getIconName = computed(() =>
+  unref(textType) === 'password' ? 'ant-design:eye-invisible-outlined' : 'ant-design:eye-outlined'
+)
 </script>
 
 <template>
   <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
     <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
       <template #suffix>
-        <ElIcon class="el-input__icon el-input__clear">
-          <EyeInvisibleOutlinedE v-if="textType === 'password'" @click="changeTextType" />
-          <EyeOutlined v-else @click="changeTextType" />
-        </ElIcon>
+        <Icon class="el-input__icon" :icon="getIconName" @click="changeTextType" />
       </template>
     </ElInput>
     <div
@@ -69,6 +69,10 @@ const getPasswordStrength = computed(() => {
 @prefix-cls: ~'@{namespace}-input-password';
 
 .@{prefix-cls} {
+  :deep(.el-input__clear) {
+    margin-left: 5px;
+  }
+
   &__bar {
     background-color: var(--el-text-color-disabled-base);
     border-radius: var(--el-border-radius-base);

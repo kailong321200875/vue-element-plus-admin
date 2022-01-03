@@ -1,3 +1,3 @@
-import VLocaleDropdown from './src/VLocaleDropdown.vue'
+import LocaleDropdown from './src/LocaleDropdown.vue'
 
-export { VLocaleDropdown }
+export { LocaleDropdown }

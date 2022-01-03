@@ -23,14 +23,9 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "types": [
-      "@intlify/vite-plugin-vue-i18n/client",
-      "vite/client",
-      "element-plus/global",
-      "unplugin-icons/types/vue"
-    ],
+    "types": ["@intlify/vite-plugin-vue-i18n/client", "vite/client", "element-plus/global"],
     "typeRoots": ["./node_modules/@types/", "./src/types"]
   },
-  "include": ["src/**/*"],
+  "include": ["./src/**/*"],
   "exclude": ["dist", "node_modules"]
 }

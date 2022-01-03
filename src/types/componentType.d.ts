@@ -2,7 +2,7 @@ import type { CSSProperties } from 'vue'
 import type { RuleItem } from 'async-validator'
 
 declare global {
-  // BfForm types start
+  // Form types start
   declare type ComponentName =
     | 'Radio'
     | 'RadioButton'
@@ -75,7 +75,7 @@ declare global {
     optionsSlot?: boolean
   } & Recordable
 
-  declare type VFormSchema = {
+  declare type FormSchema = {
     // 唯一值
     field: string
     // 标题
@@ -93,11 +93,32 @@ declare global {
     // 是否隐藏
     hidden?: boolean
   }
-  // VForm types end
+  // Form types end
 
-  // VConfigGlobal types start
-  declare interface VConfigGlobalTypes {
+  // ConfigGlobal types start
+  declare interface ConfigGlobalTypes {
     size?: ElememtPlusSzie
   }
-  // VConfigGlobal types end
+  // ConfigGlobal types end
+
+  // Icon type start
+  declare interface IconTypes {
+    size?: number
+    color?: string
+    icon: string
+  }
+  // Icon type end
+
+  // LocaleDropdown type start
+  declare interface Language {
+    el: Recordable
+    name: string
+  }
+
+  declare interface LocaleDropdownType {
+    lang: LocaleType
+    name?: string
+    elLocale?: Language
+  }
+  // LocaleDropdown type end
 }

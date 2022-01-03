@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { VThemeSwitch } from '@/components/ThemeSwitch'
+import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { LocaleDropdown } from '@/components/LocaleDropdown'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useI18n } from '@/hooks/web/useI18n'
+import { ElCalendar } from 'element-plus'
+import { VFrom } from '@/components/Form'
+
 const { t } = useI18n()
 
 const { getPrefixCls } = useDesign()
@@ -10,7 +14,20 @@ const prefixCls = getPrefixCls('login')
 
 <template>
   <div :class="prefixCls" class="h-[calc(100%)] relative">
-    <VThemeSwitch />
+    <Icon icon="icon:icon" />
+    <Icon icon="ant-design:eye-outlined" />
+    <ThemeSwitch />
+    <LocaleDropdown />
+    <ElCalendar />
+    <VFrom
+      :schema="[
+        {
+          label: 'input',
+          field: 'field1',
+          component: 'InputPassword'
+        }
+      ]"
+    />
     {{ t('formDemo.default') }}
   </div>
 </template>

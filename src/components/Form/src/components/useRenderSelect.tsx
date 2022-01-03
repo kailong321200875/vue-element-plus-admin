@@ -4,7 +4,7 @@ import { Slots } from 'vue'
 
 export function useRenderSelect(slots: Slots) {
   // 渲染 select options
-  function renderSelectOptions(item: VFormSchema) {
+  function renderSelectOptions(item: FormSchema) {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
     return item?.componentProps?.options?.map((option) => {
@@ -25,7 +25,7 @@ export function useRenderSelect(slots: Slots) {
   }
 
   // 渲染 select option item
-  function renderSelectOptionItem(item: VFormSchema, option: ComponentOptions) {
+  function renderSelectOptionItem(item: FormSchema, option: ComponentOptions) {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
     const valueAlias = item?.componentProps?.optionsAlias?.valueField

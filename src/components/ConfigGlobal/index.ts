@@ -1,3 +1,3 @@
-import VConfigGlobal from './src/VConfigGlobal.vue'
+import ConfigGlobal from './src/ConfigGlobal.vue'
 
-export { VConfigGlobal }
+export { ConfigGlobal }

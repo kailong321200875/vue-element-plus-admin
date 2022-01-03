@@ -1,4 +1,4 @@
-import VFrom from './src/VForm.vue'
+import VFrom from './src/Form.vue'
 
 export interface VFormExpose {
   count: number

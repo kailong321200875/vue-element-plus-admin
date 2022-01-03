@@ -2,8 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 // import { getParentLayout } from './helper'
-import { useI18n } from '@/hooks/web/useI18n'
-const { t } = useI18n()
+import { t } from '@/hooks/web/useI18n'
 
 export const constantRouterMap: AppRouteRecordRaw[] = [
   {
@@ -20,7 +19,7 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  strict: false,
+  strict: true,
   routes: constantRouterMap as RouteRecordRaw[],
   scrollBehavior: () => ({ left: 0, top: 0 })
 })

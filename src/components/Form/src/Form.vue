@@ -20,7 +20,7 @@ export default defineComponent({
   props: {
     // 生成Form的布局结构数组
     schema: {
-      type: Array as PropType<VFormSchema[]>,
+      type: Array as PropType<FormSchema[]>,
       required: true,
       default: () => []
     },
@@ -98,7 +98,7 @@ export default defineComponent({
     }
 
     // 渲染formItem
-    function renderFormItem(item: VFormSchema) {
+    function renderFormItem(item: FormSchema) {
       // 单独给只有options属性的组件做判断
       const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
       const slotsMap: Recordable = {
@@ -134,7 +134,7 @@ export default defineComponent({
     }
 
     // 渲染options
-    function renderOptions(item: VFormSchema) {
+    function renderOptions(item: FormSchema) {
       switch (item.component) {
         case 'Select':
           const { renderSelectOptions } = useRenderSelect(slots)

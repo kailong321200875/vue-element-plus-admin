@@ -16,7 +16,7 @@ interface PlaceholderMoel {
  * @returns 返回提示信息对象
  * @description 用于自动设置placeholder
  */
-export function setTextPlaceholder(schema: VFormSchema): PlaceholderMoel {
+export function setTextPlaceholder(schema: FormSchema): PlaceholderMoel {
   const textMap = ['Input', 'Autocomplete', 'InputNumber', 'InputPassword']
   const selectMap = ['Select', 'TimePicker', 'DatePicker', 'TimeSelect', 'TimeSelect']
   if (textMap.includes(schema?.component as string)) {
@@ -74,7 +74,7 @@ export function setGridProp(col: ColProps = {}): ColProps {
  * @param item 传入的组件属性
  * @returns 默认添加 clearable 属性
  */
-export function setComponentProps(item: VFormSchema): Recordable {
+export function setComponentProps(item: FormSchema): Recordable {
   const notNeedClearable = ['ColorPicker']
   const componentProps: Recordable = notNeedClearable.includes(item.component as string)
     ? { ...item.componentProps }
@@ -117,7 +117,7 @@ export function setItemComponentSlots(
  * @returns FormMoel
  * @description 生成对应的formModel
  */
-export function initModel(schema: VFormSchema[], formModel: Recordable) {
+export function initModel(schema: FormSchema[], formModel: Recordable) {
   const model: Recordable = { ...formModel }
   schema.map((v) => {
     // 如果是hidden，就删除对应的值

@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import { computed, unref } from 'vue'
+import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
+import { useLocaleStore } from '@/store/modules/locale'
 import { ElConfigProvider } from 'element-plus'
-import { VConfigGlobal } from '@/components/ConfigGlobal'
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import en from 'element-plus/lib/locale/lang/en'
+import { ConfigGlobal } from '@/components/ConfigGlobal'
 import { isDark } from '@/utils/is'
 
 const appStore = useAppStore()
+
+const localeStore = useLocaleStore()
+
+const local = computed(() => localeStore.locale)
 
 function initDark() {
   const isDarkTheme = isDark()
   appStore.setIsDark(isDarkTheme)
 }
 initDark()
-
-const locale = computed(() => appStore.getLang)
-const setLocale = computed(() => (unref(locale) === 'zh-cn' ? zhCn : en))
 </script>
 
 <template>
-  <VConfigGlobal>
-    <ElConfigProvider :locale="setLocale">
+  <ConfigGlobal>
+    <ElConfigProvider :locale="local.elLocale">
       <RouterView />
     </ElConfigProvider>
-  </VConfigGlobal>
+  </ConfigGlobal>
 </template>
 
 <style lang="less">

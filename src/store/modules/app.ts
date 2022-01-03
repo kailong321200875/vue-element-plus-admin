@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-
 import { store } from '../index'
 
 export type LayoutType = 'Classic' | 'LeftTop' | 'Top' | 'Test'
@@ -24,7 +23,6 @@ export interface AppState {
   requestTime: boolean
   isDark: boolean
   size: ElememtPlusSzie
-  lang: string
 }
 
 export const useAppStore = defineStore({
@@ -48,8 +46,7 @@ export const useAppStore = defineStore({
     showMenuTab: false, // 是否固定一级菜单
     requestTime: false, // 是否在接口调用时添加时间戳，避免IE缓存
     isDark: false, // 是否是暗黑模式
-    size: 'default', // 组件尺寸
-    lang: 'zh-CN' // 语言
+    size: 'default' // 组件尺寸
   }),
   getters: {
     getCollapsed(): boolean {
@@ -108,9 +105,6 @@ export const useAppStore = defineStore({
     },
     getSize(): ElememtPlusSzie {
       return this.size
-    },
-    getLang(): string {
-      return this.lang
     }
   },
   actions: {
@@ -174,9 +168,6 @@ export const useAppStore = defineStore({
     },
     setSize(size: ElememtPlusSzie) {
       this.size = size
-    },
-    setLang(lang: string) {
-      this.lang = lang
     }
   }
 })

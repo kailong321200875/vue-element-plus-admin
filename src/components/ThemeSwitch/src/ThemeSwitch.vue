@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-import Sun from '~icons/emojione-monotone/sun'
-import CrescentMoon from '~icons/emojione-monotone/crescent-moon'
 import { ElSwitch } from 'element-plus'
 import { useCssVar } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
+import { useIcon } from '@/hooks/web/useIcon'
+
+const Sun = useIcon({ icon: 'emojione-monotone:sun' })
+const CrescentMoon = useIcon({ icon: 'emojione-monotone:crescent-moon' })
 
 const appStore = useAppStore()
 
