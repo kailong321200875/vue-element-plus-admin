@@ -56,7 +56,7 @@ const getIconName = computed(() =>
   <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
     <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
       <template #suffix>
-        <Icon class="el-input__icon" :icon="getIconName" @click="changeTextType" />
+        <Icon class="el-input__icon cursor-pointer" :icon="getIconName" @click="changeTextType" />
       </template>
     </ElInput>
     <div

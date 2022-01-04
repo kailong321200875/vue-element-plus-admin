@@ -11,6 +11,13 @@ export default {
     large: '大',
     small: '小'
   },
+  login: {
+    message1: '欢迎使用本系统',
+    message2: '开箱即用的中后台管理系统',
+    username: '用户名',
+    password: '密码',
+    login: '登录'
+  },
   formDemo: {
     input: '输入框',
     inputNumber: '数字输入框',

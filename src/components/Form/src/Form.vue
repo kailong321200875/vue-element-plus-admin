@@ -114,20 +114,26 @@ export default defineComponent({
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
           {() => {
-            const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
-            return (
-              <Com
-                vModel={formModel.value[item.field]}
-                {...(autoSetPlaceholder && setTextPlaceholder(item))}
-                {...setComponentProps(item)}
-                {...(notRenderOptions.includes(item?.component as string) &&
-                item?.componentProps?.options
-                  ? { options: item?.componentProps?.options || [] }
-                  : {})}
+            if (slots[item.field]) {
+              return getSlot(slots, item.field, { item })
+            } else {
+              const Com = componentMap[item.component as string] as ReturnType<
+                typeof defineComponent
               >
-                {{ ...slotsMap }}
-              </Com>
-            )
+              return (
+                <Com
+                  vModel={formModel.value[item.field]}
+                  {...(autoSetPlaceholder && setTextPlaceholder(item))}
+                  {...setComponentProps(item)}
+                  {...(notRenderOptions.includes(item?.component as string) &&
+                  item?.componentProps?.options
+                    ? { options: item?.componentProps?.options || [] }
+                    : {})}
+                >
+                  {{ ...slotsMap }}
+                </Com>
+              )
+            }
           }}
         </ElFormItem>
       )

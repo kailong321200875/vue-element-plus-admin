@@ -11,6 +11,13 @@ export default {
     large: 'Large',
     small: 'Small'
   },
+  login: {
+    message1: 'Welcome to the system',
+    message2: 'Backstage management system',
+    username: 'Username',
+    password: 'password',
+    login: 'Sign in'
+  },
   formDemo: {
     input: 'Input',
     inputNumber: 'InputNumber',
