@@ -9,7 +9,8 @@ import {
   setGridProp,
   setComponentProps,
   setItemComponentSlots,
-  initModel
+  initModel,
+  setFormItemSlots
 } from './helper'
 import { useRenderSelect } from './components/useRenderSelect'
 import { useRenderRadio } from './components/useRenderRadio'
@@ -113,14 +114,15 @@ export default defineComponent({
       }
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
-          {() => {
-            if (slots[item.field]) {
-              return getSlot(slots, item.field, { item })
-            } else {
+          {{
+            ...setFormItemSlots(slots, item.field),
+            default: () => {
               const Com = componentMap[item.component as string] as ReturnType<
                 typeof defineComponent
               >
-              return (
+              return slots[item.field] ? (
+                getSlot(slots, item.field, { item })
+              ) : (
                 <Com
                   vModel={formModel.value[item.field]}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}

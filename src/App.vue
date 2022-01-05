@@ -24,7 +24,13 @@ initDark()
 
 <template>
   <ConfigGlobal :size="size">
-    <ElConfigProvider :locale="locale.elLocale" :size="size">
+    <ElConfigProvider
+      :locale="locale.elLocale"
+      :size="size"
+      :button="{
+        autoInsertSpace: true
+      }"
+    >
       <RouterView />
     </ElConfigProvider>
   </ConfigGlobal>

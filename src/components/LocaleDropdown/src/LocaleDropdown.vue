@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, unref } from 'vue'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useCssVar } from '@vueuse/core'
@@ -7,16 +7,21 @@ import { useLocale } from '@/hooks/web/useLocale'
 
 const localeStore = useLocaleStore()
 
-const langMap = computed(() => localeStore.localeMap)
+const langMap = computed(() => localeStore.getLocaleMap)
+
+const currentLang = computed(() => localeStore.getLocale)
 
 const textColor = useCssVar('--el-text-color-primary', document.documentElement)
 
 function setLang(lang: LocaleType) {
+  if (lang === unref(currentLang).lang) return
   localeStore.setLocale({
     lang
   })
   const { changeLocale } = useLocale()
   changeLocale(lang)
+  // 需要重新加载页面让整个语言多初始化
+  window.location.reload()
 }
 </script>
 

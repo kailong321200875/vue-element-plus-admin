@@ -4,7 +4,8 @@ export default {
     selectText: '请选择',
     startTimeText: '开始时间',
     endTimeText: '结束时间',
-    login: '登录'
+    login: '登录',
+    required: '该项为必填项'
   },
   size: {
     default: '默认',
@@ -12,11 +13,14 @@ export default {
     small: '小'
   },
   login: {
-    message1: '欢迎使用本系统',
-    message2: '开箱即用的中后台管理系统',
+    welcome: '欢迎使用本系统',
+    message: '开箱即用的中后台管理系统',
     username: '用户名',
     password: '密码',
-    login: '登录'
+    login: '登录',
+    otherLogin: '其他登录方式',
+    remember: '记住我',
+    forgetPassword: '忘记密码'
   },
   formDemo: {
     input: '输入框',

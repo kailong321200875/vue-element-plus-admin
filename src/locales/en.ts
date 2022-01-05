@@ -4,7 +4,8 @@ export default {
     selectText: 'Please select',
     startTimeText: 'Start time',
     endTimeText: 'End time',
-    login: 'Login'
+    login: 'Login',
+    required: 'This is required'
   },
   size: {
     default: 'Default',
@@ -12,11 +13,14 @@ export default {
     small: 'Small'
   },
   login: {
-    message1: 'Welcome to the system',
-    message2: 'Backstage management system',
+    welcome: 'Welcome to the system',
+    message: 'Backstage management system',
     username: 'Username',
-    password: 'password',
-    login: 'Sign in'
+    password: 'Password',
+    login: 'Sign in',
+    otherLogin: 'Sign in with',
+    remember: 'Remember me',
+    forgetPassword: 'Forget password'
   },
   formDemo: {
     input: 'Input',

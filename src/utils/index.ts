@@ -16,3 +16,21 @@ export const withInstall = <T>(component: T, alias?: string) => {
   }
   return component as T & Plugin
 }
+
+/**
+ * @param str 需要转下划线的驼峰字符串
+ * @returns 字符串下划线
+ */
+export function humpToUnderline(str: string): string {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
+/**
+ * @param str 需要转驼峰的下划线字符串
+ * @returns 字符串驼峰
+ */
+export function underlineToHump(str: string): string {
+  return str.replace(/\-(\w)/g, function (_, letter: string) {
+    return letter.toUpperCase()
+  })
+}

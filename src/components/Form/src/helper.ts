@@ -1,7 +1,8 @@
 import { useI18n } from '@/hooks/web/useI18n'
-const { t } = useI18n()
 import type { Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
+
+const { t } = useI18n()
 
 interface PlaceholderMoel {
   placeholder?: string
@@ -130,4 +131,24 @@ export function initModel(schema: FormSchema[], formModel: Recordable) {
     }
   })
   return model
+}
+
+/**
+ * @param slots 插槽
+ * @param field 字段名
+ * @returns 返回FormIiem插槽
+ */
+export function setFormItemSlots(slots: Slots, field: string): Recordable {
+  const slotObj: Recordable = {}
+  if (slots[`${field}-error`]) {
+    slotObj['error'] = (data: Recordable) => {
+      return getSlot(slots, `${field}-error`, data)
+    }
+  }
+  if (slots[`${field}-label`]) {
+    slotObj['label'] = (data: Recordable) => {
+      return getSlot(slots, `${field}-label`, data)
+    }
+  }
+  return slotObj
 }

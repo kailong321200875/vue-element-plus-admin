@@ -16,6 +16,9 @@ import { setupGlobCom } from '@/components'
 // 引入element-plus
 import { setupElementPlus } from '@/plugins/elementPlus'
 
+// 引入全局样式
+import '@/styles/index.less'
+
 // 路由
 import { setupRouter } from './router'
 

@@ -120,7 +120,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'vue-types',
         'element-plus/lib/locale/lang/zh-cn',
         'element-plus/lib/locale/lang/en',
-        '@iconify/iconify'
+        '@iconify/iconify',
+        '@vueuse/core'
       ]
     }
   }

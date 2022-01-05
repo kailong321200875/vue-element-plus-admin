@@ -1,5 +1,4 @@
 import type { CSSProperties } from 'vue'
-import type { RuleItem } from 'async-validator'
 
 declare global {
   // Form types start
@@ -37,18 +36,18 @@ declare global {
 
   declare type FormValueTypes = string | number | string[] | number[] | boolean | undefined | null
 
-  declare interface FormItemRule extends RuleItem {
-    trigger?: string
-  }
+  // declare interface FormItemRule extends RuleItem {
+  //   trigger?: string
+  // }
 
-  declare type FormRulesMap<T extends string = string> = Partial<
-    Record<T, FormItemRule | FormItemRule[]>
-  >
+  // declare type FormRulesMap<T extends string = string> = Partial<
+  //   Record<T, FormItemRule | FormItemRule[]>
+  // >
 
   declare type FormItemProps = {
     labelWidth?: string | number
     required?: boolean
-    rules?: FormRulesMap
+    rules?: Recordable
     error?: string
     showMessage?: boolean
     inlineMessage?: boolean
