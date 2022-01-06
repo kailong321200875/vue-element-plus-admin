@@ -17,22 +17,28 @@ const prefixCls = getPrefixCls('login')
 </script>
 
 <template>
-  <div :class="prefixCls" class="h-[100%] relative overflow-hidden <xl:bg-v-dark">
+  <div :class="prefixCls" class="h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px">
     <div class="relative h-full flex mx-auto">
       <div
         :class="`${prefixCls}__left`"
         class="flex-1 bg-gray-500 bg-opacity-20 relative p-30px <xl:hidden"
       >
-        <div class="flex items-center text-white">
+        <div class="flex items-center relative text-white">
           <img src="@/assets/imgs/logo.png" alt="" class="w-48px h-48px mr-10px" />
           <span class="text-20px font-bold">{{ underlineToHump(appStore.getTitle) }}</span>
         </div>
         <div class="flex justify-center items-center h-[calc(100%-60px)]">
-          <div>
-            <img src="@/assets/svgs/login-box-bg.svg" alt="" class="w-350px" />
-            <div class="text-3xl text-white">{{ t('login.welcome') }}</div>
-            <div class="mt-5 font-normal text-white text-14px"> {{ t('login.message') }} </div>
-          </div>
+          <TransitionGroup
+            appear
+            tag="div"
+            enter-active-class="animate__animated animate__bounceInLeft"
+          >
+            <img src="@/assets/svgs/login-box-bg.svg" key="1" alt="" class="w-350px" />
+            <div class="text-3xl text-white" key="2">{{ t('login.welcome') }}</div>
+            <div class="mt-5 font-normal text-white text-14px" key="3">
+              {{ t('login.message') }}
+            </div>
+          </TransitionGroup>
         </div>
       </div>
       <div class="flex-1 @2xl:p-30px @xl:p-30px @md:p-30px <md:pt-30px dark:bg-v-dark relative">
@@ -44,15 +50,16 @@ const prefixCls = getPrefixCls('login')
 
           <div class="flex justify-end items-center space-x-10px">
             <ThemeSwitch />
-            <LocaleDropdown />
+            <LocaleDropdown class="<xl:!text-white dark:!text-white" />
           </div>
         </div>
-        <div
-          :class="`${prefixCls}__form`"
-          class="flex justify-center items-center <xl:(bg-white rounded-3xl) absolute top-[50%] left-[50%] w-[100%] @md:w-[calc(100%-60px)]"
-        >
-          <LoginForm class="p-20px" />
-        </div>
+        <Transition appear enter-active-class="animate__animated animate__bounceInRight">
+          <div
+            class="h-full flex items-center m-auto w-[100%] @2xl:max-w-500px @xl:max-w-500px @md:max-w-500px"
+          >
+            <LoginForm class="p-20px h-auto <xl:(bg-white rounded-3xl)" />
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
@@ -75,10 +82,6 @@ const prefixCls = getPrefixCls('login')
       background-repeat: no-repeat;
       content: '';
     }
-  }
-
-  &__form {
-    transform: translate(-50%, -50%);
   }
 }
 </style>

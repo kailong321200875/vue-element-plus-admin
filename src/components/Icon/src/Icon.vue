@@ -13,7 +13,7 @@ const props = defineProps({
   // icon name
   icon: propTypes.string,
   // icon color
-  color: propTypes.string,
+  color: propTypes.string.def('#888'),
   // icon size
   size: propTypes.number.def(16)
 })
@@ -66,12 +66,12 @@ watch(
 </script>
 
 <template>
-  <ElIcon :class="[prefixCls, $attrs.class]" :size="size" :color="color">
+  <ElIcon :class="prefixCls" :size="size" :color="color">
     <svg v-if="isLocal" aria-hidden="true">
       <use :xlink:href="symbolId" />
     </svg>
 
-    <span v-else ref="elRef" :style="getIconifyStyle">
+    <span v-else ref="elRef" :class="$attrs.class" :style="getIconifyStyle">
       <span class="iconify" :data-icon="symbolId"></span>
     </span>
   </ElIcon>

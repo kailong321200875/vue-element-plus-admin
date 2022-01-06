@@ -68,14 +68,7 @@ const remember = ref(false)
 </script>
 
 <template>
-  <Form
-    :schema="schema"
-    :rules="rules"
-    label-position="top"
-    hide-required-asterisk
-    size="large"
-    class="@2xl:max-w-500px @xl:max-w-400px"
-  >
+  <Form :schema="schema" :rules="rules" label-position="top" hide-required-asterisk size="large">
     <template #tool>
       <div class="flex justify-between items-center w-[100%]">
         <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />
@@ -89,11 +82,27 @@ const remember = ref(false)
 
     <template #otherIcon>
       <div class="flex justify-between w-[100%]">
-        <Icon icon="ant-design:github-filled" :size="iconSize" class="cursor-pointer" />
-        <Icon icon="ant-design:wechat-filled" :size="iconSize" class="cursor-pointer" />
-        <Icon icon="ant-design:alipay-circle-filled" :size="iconSize" class="cursor-pointer" />
-        <Icon icon="ant-design:weibo-circle-filled" :size="iconSize" class="cursor-pointer" />
+        <Icon icon="ant-design:github-filled" :size="iconSize" class="cursor-pointer anticon" />
+        <Icon icon="ant-design:wechat-filled" :size="iconSize" class="cursor-pointer anticon" />
+        <Icon
+          icon="ant-design:alipay-circle-filled"
+          :size="iconSize"
+          class="cursor-pointer anticon"
+        />
+        <Icon
+          icon="ant-design:weibo-circle-filled"
+          :size="iconSize"
+          class="cursor-pointer anticon"
+        />
       </div>
     </template>
   </Form>
 </template>
+
+<style lang="less" scoped>
+:deep(.anticon) {
+  &:hover {
+    color: var(--el-color-primary) !important;
+  }
+}
+</style>

@@ -33,17 +33,17 @@ export default defineConfig({
     //   // ...range(50).map((i) => `mb-${i}px`),
     //   // ...range(50).map((i) => `ml-${i}px`)
     // }
-  },
-  Plugin: [
-    require('@windicss/plugin-animations')({
-      settings: {
-        animatedSpeed: 1000,
-        heartBeatSpeed: 1000,
-        hingeSpeed: 2000,
-        bounceInSpeed: 750,
-        bounceOutSpeed: 750,
-        animationDelaySpeed: 1000
-      }
-    })
-  ]
+  }
+  // Plugin: [
+  //   require('@windicss/plugin-animations')({
+  //     settings: {
+  //       animatedSpeed: 1000,
+  //       heartBeatSpeed: 1000,
+  //       hingeSpeed: 2000,
+  //       bounceInSpeed: 750,
+  //       bounceOutSpeed: 750,
+  //       animationDelaySpeed: 1000
+  //     }
+  //   })
+  // ]
 })

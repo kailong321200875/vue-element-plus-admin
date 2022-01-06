@@ -6,9 +6,9 @@ import { useCssVar } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useIcon } from '@/hooks/web/useIcon'
 
-const Sun = useIcon({ icon: 'emojione-monotone:sun' })
+const Sun = useIcon({ icon: 'emojione-monotone:sun', color: '#fde047' })
 
-const CrescentMoon = useIcon({ icon: 'emojione-monotone:crescent-moon' })
+const CrescentMoon = useIcon({ icon: 'emojione-monotone:crescent-moon', color: '#fde047' })
 
 const appStore = useAppStore()
 
@@ -43,10 +43,4 @@ function themeChange(val: boolean) {
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-theme-switch';
-
-.@{prefix-cls} {
-  :deep(.el-icon) {
-    color: #fde047;
-  }
-}
 </style>

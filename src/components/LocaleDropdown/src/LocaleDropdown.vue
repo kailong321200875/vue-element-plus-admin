@@ -15,19 +15,24 @@ const textColor = useCssVar('--el-text-color-primary', document.documentElement)
 
 function setLang(lang: LocaleType) {
   if (lang === unref(currentLang).lang) return
+  // 需要重新加载页面让整个语言多初始化
+  window.location.reload()
   localeStore.setLocale({
     lang
   })
   const { changeLocale } = useLocale()
   changeLocale(lang)
-  // 需要重新加载页面让整个语言多初始化
-  window.location.reload()
 }
 </script>
 
 <template>
   <ElDropdown trigger="click" @command="setLang">
-    <Icon icon="ion:language-sharp" :color="textColor" class="cursor-pointer" />
+    <Icon
+      icon="ion:language-sharp"
+      :color="textColor"
+      class="cursor-pointer"
+      :class="$attrs.class"
+    />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in langMap" :key="item.lang" :command="item.lang">
