@@ -9,6 +9,7 @@ import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import StyleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
 import ViteSvgIcons from 'vite-plugin-svg-icons'
 import PurgeIcons from 'vite-plugin-purge-icons'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -22,8 +23,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = null
   if (command === 'serve') {
     env = loadEnv(process.argv[3], root)
-  }
-  else {
+  } else {
     env = loadEnv(mode, root)
   }
   return {
@@ -56,7 +56,18 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         symbolId: 'icon-[dir]-[name]',
         svgoOptions: true
       }),
-      PurgeIcons()
+      PurgeIcons(),
+      viteMockServe({
+        ignore: /^\_/,
+        mockPath: 'mock',
+        localEnabled: !(command === 'serve'),
+        prodEnabled: command !== 'serve',
+        injectCode: `
+          import { setupProdMockServer } from '../mock/_createProductionServer'
+
+          setupProdMockServer()
+          `
+      })
     ],
 
     css: {

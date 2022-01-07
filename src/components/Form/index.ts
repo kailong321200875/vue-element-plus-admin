@@ -1,8 +1,8 @@
 import Form from './src/Form.vue'
 
 export interface FormExpose {
-  count: number
-  sayHello: () => void
+  setValues: (data: FormSetValuesType[]) => void
+  formModel: Recordable
 }
 
 export { Form }

@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, watch } from 'vue'
+import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
 import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
@@ -39,9 +39,10 @@ export default defineComponent({
     // 表单label宽度
     labelWidth: propTypes.oneOfType([String, Number]).def(130)
   },
-  setup(props, { slots }) {
+  emits: ['register'],
+  setup(props, { slots, expose, emit }) {
     // element form 实例
-    const formRef = ref<ComponentRef<typeof ElForm>>()
+    const elFormRef = ref<ComponentRef<typeof ElForm>>()
     const getProps = computed(() => props)
     const { schema, isCol, isCustom, autoSetPlaceholder } = unref(getProps)
     // 表单数据
@@ -55,6 +56,25 @@ export default defineComponent({
         deep: true
       }
     )
+
+    onMounted(() => {
+      emit('register', elFormRef.value?.$parent, elFormRef.value)
+    })
+
+    // 对表单赋值
+    function setValues(data: FormSetValuesType[]) {
+      if (!data.length) return
+      const formData: Recordable = {}
+      for (const v of data) {
+        formData[v.field] = v.value
+      }
+      formModel.value = Object.assign(unref(formModel), formData)
+    }
+
+    expose({
+      setValues,
+      formModel
+    })
 
     // 监听表单结构化数组，重新生成formModel
     watch(
@@ -113,7 +133,7 @@ export default defineComponent({
         slotsMap.default = () => renderOptions(item)
       }
       return (
-        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label}>
+        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {{
             ...setFormItemSlots(slots, item.field),
             default: () => {
@@ -174,7 +194,7 @@ export default defineComponent({
     }
 
     return () => (
-      <ElForm ref={formRef} {...getFormBindValue()} model={formModel} class="v-form">
+      <ElForm ref={elFormRef} {...getFormBindValue()} model={formModel} class="v-form">
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
           default: () => (isCustom ? getSlot(slots, 'default') : renderWrap())

@@ -1,7 +1,6 @@
 import type { CSSProperties } from 'vue'
 
 declare global {
-  // Form types start
   declare type ComponentName =
     | 'Radio'
     | 'RadioButton'
@@ -24,7 +23,7 @@ declare global {
     | 'SelectV2'
     | 'InputPassword'
 
-  type ColProps = {
+  declare type ColProps = {
     span?: number
     xs?: number
     sm?: number
@@ -34,15 +33,7 @@ declare global {
     tag?: string
   }
 
-  declare type FormValueTypes = string | number | string[] | number[] | boolean | undefined | null
-
-  // declare interface FormItemRule extends RuleItem {
-  //   trigger?: string
-  // }
-
-  // declare type FormRulesMap<T extends string = string> = Partial<
-  //   Record<T, FormItemRule | FormItemRule[]>
-  // >
+  declare type FormValueType = string | number | string[] | number[] | boolean | undefined | null
 
   declare type FormItemProps = {
     labelWidth?: string | number
@@ -56,7 +47,7 @@ declare global {
 
   declare type ComponentOptions = {
     label?: string
-    value?: FormValueTypes
+    value?: FormValueType
     disabled?: boolean
     key?: string | number
     children?: ComponentOptions[]
@@ -88,36 +79,19 @@ declare global {
     // 渲染的组件
     component?: ComponentName
     // 初始值
-    value?: FormValueTypes
+    value?: FormValueType
     // 是否隐藏
     hidden?: boolean
   }
-  // Form types end
 
-  // ConfigGlobal types start
-  declare interface ConfigGlobalTypes {
-    size?: ElememtPlusSzie
-  }
-  // ConfigGlobal types end
-
-  // Icon type start
-  declare interface IconTypes {
-    size?: number
-    color?: string
-    icon: string
-  }
-  // Icon type end
-
-  // LocaleDropdown type start
-  declare interface Language {
-    el: Recordable
-    name: string
+  declare type FormSetValuesType = {
+    field: string
+    value: FormValueType
   }
 
-  declare interface LocaleDropdownType {
-    lang: LocaleType
-    name?: string
-    elLocale?: Language
+  declare type FormSetPropsType = {
+    field: string
+    path: string
+    value: any
   }
-  // LocaleDropdown type end
 }

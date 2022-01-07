@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, unref } from 'vue'
 import { Form } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { required } from '@/utils/formRules'
+import { useForm } from '@/hooks/web/useForm'
 
 const { t } = useI18n()
 
@@ -22,6 +23,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'username',
     label: t('login.username'),
+    value: 'admin',
     component: 'Input',
     colProps: {
       span: 24
@@ -30,6 +32,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'password',
     label: t('login.password'),
+    value: 'admin',
     component: 'InputPassword',
     colProps: {
       span: 24
@@ -71,10 +74,34 @@ const schema = reactive<FormSchema[]>([
 const iconSize = 30
 
 const remember = ref(false)
+
+const { register, elFormRef, methods } = useForm()
+
+const loading = ref(false)
+
+// 登录
+async function signIn() {
+  const formRef = unref(elFormRef)
+  const validate = await formRef?.validate()?.catch(() => {})
+  if (validate) {
+    loading.value = true
+    const { getFormData } = methods
+    const formData = await getFormData()
+    console.log(formData)
+    loading.value = false
+  }
+}
 </script>
 
 <template>
-  <Form :schema="schema" :rules="rules" label-position="top" hide-required-asterisk size="large">
+  <Form
+    :schema="schema"
+    :rules="rules"
+    label-position="top"
+    hide-required-asterisk
+    size="large"
+    @register="register"
+  >
     <template #title>
       <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.login') }}</h2>
     </template>
@@ -87,7 +114,7 @@ const remember = ref(false)
     </template>
 
     <template #login>
-      <ElButton type="primary" class="w-[100%]">{{ t('login.login') }}</ElButton>
+      <ElButton type="primary" class="w-[100%]" @click="signIn">{{ t('login.login') }}</ElButton>
     </template>
 
     <template #otherIcon>
