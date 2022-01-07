@@ -1,4 +1,4 @@
-import { i18n } from '@/plugins/i18n'
+import { i18n } from '@/plugins/vueI18n'
 
 type I18nGlobalTranslation = {
   (key: string): string

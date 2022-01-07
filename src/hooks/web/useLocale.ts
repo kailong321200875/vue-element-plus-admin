@@ -1,6 +1,6 @@
-import { i18n } from '@/plugins/i18n'
+import { i18n } from '@/plugins/vueI18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
-import { setHtmlPageLang } from '@/plugins/i18n/helper'
+import { setHtmlPageLang } from '@/plugins/vueI18n/helper'
 
 function setI18nLanguage(locale: LocaleType) {
   const localeStore = useLocaleStoreWithOut()

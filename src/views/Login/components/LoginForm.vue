@@ -14,6 +14,12 @@ const rules = {
 
 const schema = reactive<FormSchema[]>([
   {
+    field: 'title',
+    colProps: {
+      span: 24
+    }
+  },
+  {
     field: 'username',
     label: t('login.username'),
     component: 'Input',
@@ -69,6 +75,10 @@ const remember = ref(false)
 
 <template>
   <Form :schema="schema" :rules="rules" label-position="top" hide-required-asterisk size="large">
+    <template #title>
+      <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.login') }}</h2>
+    </template>
+
     <template #tool>
       <div class="flex justify-between items-center w-[100%]">
         <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />

@@ -1,17 +1,22 @@
-<script lang="tsx">
-import { provide, defineComponent } from 'vue'
+<script setup lang="ts">
+import { provide, computed } from 'vue'
 import { propTypes } from '@/utils/propTypes'
+import { ElConfigProvider } from 'element-plus'
+import { useLocaleStore } from '@/store/modules/locale'
 
-export default defineComponent({
-  name: 'ConfigGlobal',
-  inheritAttrs: false,
-  props: {
-    size: propTypes.oneOf(['default', 'medium', 'small', 'mini']).def('default')
-  },
-  setup(props, { slots }) {
-    provide('configGlobal', props)
+const localeStore = useLocaleStore()
 
-    return () => slots.default?.()
-  }
+const locale = computed(() => localeStore.locale)
+
+const props = defineProps({
+  size: propTypes.oneOf<ElememtPlusSzie[]>(['default', 'small', 'large']).def('default')
 })
+
+provide('configGlobal', props)
 </script>
+
+<template>
+  <ElConfigProvider :locale="locale.elLocale" :size="size">
+    <slot></slot>
+  </ElConfigProvider>
+</template>

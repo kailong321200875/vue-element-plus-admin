@@ -17,7 +17,10 @@ const prefixCls = getPrefixCls('login')
 </script>
 
 <template>
-  <div :class="prefixCls" class="h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px">
+  <div
+    :class="prefixCls"
+    class="h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px <xl:px-10px <md:px-10px"
+  >
     <div class="relative h-full flex mx-auto">
       <div
         :class="`${prefixCls}__left`"
@@ -55,9 +58,9 @@ const prefixCls = getPrefixCls('login')
         </div>
         <Transition appear enter-active-class="animate__animated animate__bounceInRight">
           <div
-            class="h-full flex items-center m-auto w-[100%] @2xl:max-w-500px @xl:max-w-500px @md:max-w-500px"
+            class="h-full flex items-center m-auto w-[100%] @2xl:max-w-500px @xl:max-w-500px @md:max-w-500px @lg:max-w-500px"
           >
-            <LoginForm class="p-20px h-auto <xl:(bg-white rounded-3xl)" />
+            <LoginForm class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)" />
           </div>
         </Transition>
       </div>

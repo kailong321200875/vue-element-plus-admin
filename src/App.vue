@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-import { useLocaleStore } from '@/store/modules/locale'
-import { ElConfigProvider } from 'element-plus'
 import { ConfigGlobal } from '@/components/ConfigGlobal'
 import { isDark } from '@/utils/is'
 
 const appStore = useAppStore()
-
-const localeStore = useLocaleStore()
-
-const locale = computed(() => localeStore.locale)
 
 const size = computed(() => appStore.size)
 
@@ -24,15 +18,7 @@ initDark()
 
 <template>
   <ConfigGlobal :size="size">
-    <ElConfigProvider
-      :locale="locale.elLocale"
-      :size="size"
-      :button="{
-        autoInsertSpace: true
-      }"
-    >
-      <RouterView />
-    </ElConfigProvider>
+    <RouterView />
   </ConfigGlobal>
 </template>
 
