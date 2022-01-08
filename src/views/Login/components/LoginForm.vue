@@ -5,6 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { required } from '@/utils/formRules'
 import { useForm } from '@/hooks/web/useForm'
+import { loginApi } from '../api'
 
 const { t } = useI18n()
 
@@ -87,7 +88,10 @@ async function signIn() {
     loading.value = true
     const { getFormData } = methods
     const formData = await getFormData()
-    console.log(formData)
+    const res = await loginApi({
+      data: formData
+    })
+    console.log(res)
     loading.value = false
   }
 }

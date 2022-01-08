@@ -44,7 +44,7 @@ const prefixCls = getPrefixCls('login')
           </TransitionGroup>
         </div>
       </div>
-      <div class="flex-1 @2xl:p-30px @xl:p-30px @md:p-30px <md:pt-30px dark:bg-v-dark relative">
+      <div class="flex-1 p-30px <sm:p-10px dark:bg-v-dark relative">
         <div class="flex justify-between items-center text-white @2xl:justify-end @xl:justify-end">
           <div class="flex items-center @2xl:hidden @xl:hidden">
             <img src="@/assets/imgs/logo.png" alt="" class="w-48px h-48px mr-10px" />

@@ -17,6 +17,7 @@ specifiers:
   '@zxcvbn-ts/core': ^1.2.0
   animate.css: ^4.1.1
   autoprefixer: ^10.4.1
+  axios: ^0.24.0
   commitizen: ^4.2.4
   element-plus: 1.3.0-beta.1
   eslint: ^8.6.0
@@ -35,6 +36,7 @@ specifiers:
   postcss-less: ^5.0.0
   prettier: ^2.5.1
   pretty-quick: ^3.1.3
+  qs: ^6.10.2
   rimraf: ^3.0.2
   stylelint: ^14.2.0
   stylelint-config-html: ^1.0.0
@@ -63,10 +65,12 @@ dependencies:
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/7.5.1_vue@3.2.26
   '@zxcvbn-ts/core': registry.npmmirror.com/@zxcvbn-ts/core/1.2.0
   animate.css: registry.npmmirror.com/animate.css/4.1.1
+  axios: registry.npmmirror.com/axios/0.24.0
   element-plus: registry.npmmirror.com/element-plus/1.3.0-beta.1_vue@3.2.26
   lodash-es: registry.nlark.com/lodash-es/4.17.21
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   pinia: registry.npmmirror.com/pinia/2.0.9_typescript@4.5.4+vue@3.2.26
+  qs: registry.npmmirror.com/qs/6.10.2
   vue: registry.npmmirror.com/vue/3.2.26
   vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.26
   vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.26
@@ -954,9 +958,8 @@ packages:
     name: call-bind
     version: 1.0.2
     dependencies:
-      function-bind: registry.nlark.com/function-bind/1.1.1
-      get-intrinsic: registry.nlark.com/get-intrinsic/1.1.1
-    dev: true
+      function-bind: registry.npmmirror.com/function-bind/1.1.1
+      get-intrinsic: registry.npmmirror.com/get-intrinsic/1.1.1
 
   registry.nlark.com/callsites/3.1.0:
     resolution:
@@ -1929,7 +1932,7 @@ packages:
       {
         integrity: sha1-0t5eA0JOcH3BDHQGjd7a5wh0Gyc=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/eslint-utils/download/eslint-utils-2.1.0.tgz
+        tarball: https://registry.nlark.com/eslint-utils/download/eslint-utils-2.1.0.tgz?cache=0&sync_timestamp=1631600361784&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-utils%2Fdownload%2Feslint-utils-2.1.0.tgz
       }
     name: eslint-utils
     version: 2.1.0
@@ -1943,7 +1946,7 @@ packages:
       {
         integrity: sha1-iuuvrOc0W7M1WdsKHxOh0tSMNnI=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/eslint-utils/download/eslint-utils-3.0.0.tgz
+        tarball: https://registry.nlark.com/eslint-utils/download/eslint-utils-3.0.0.tgz?cache=0&sync_timestamp=1631600361784&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-utils%2Fdownload%2Feslint-utils-3.0.0.tgz
       }
     id: registry.nlark.com/eslint-utils/3.0.0
     name: eslint-utils
@@ -2414,17 +2417,6 @@ packages:
     version: 1.0.0
     dev: true
 
-  registry.nlark.com/function-bind/1.1.1:
-    resolution:
-      {
-        integrity: sha1-pWiZ0+o8m6uHS7l3O3xe3pL0iV0=,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/function-bind/download/function-bind-1.1.1.tgz
-      }
-    name: function-bind
-    version: 1.1.1
-    dev: true
-
   registry.nlark.com/functional-red-black-tree/1.0.1:
     resolution:
       {
@@ -2458,21 +2450,6 @@ packages:
     name: get-caller-file
     version: 2.0.5
     engines: { node: 6.* || 8.* || >= 10.* }
-    dev: true
-
-  registry.nlark.com/get-intrinsic/1.1.1:
-    resolution:
-      {
-        integrity: sha1-FfWfN2+FXERpY5SPDSTNNje0q8Y=,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/get-intrinsic/download/get-intrinsic-1.1.1.tgz
-      }
-    name: get-intrinsic
-    version: 1.1.1
-    dependencies:
-      function-bind: registry.nlark.com/function-bind/1.1.1
-      has: registry.nlark.com/has/1.0.3
-      has-symbols: registry.nlark.com/has-symbols/1.0.2
     dev: true
 
   registry.nlark.com/get-stdin/8.0.0:
@@ -2705,7 +2682,6 @@ packages:
     name: has-symbols
     version: 1.0.2
     engines: { node: '>= 0.4' }
-    dev: true
 
   registry.nlark.com/has-tostringtag/1.0.0:
     resolution:
@@ -2791,8 +2767,7 @@ packages:
     version: 1.0.3
     engines: { node: '>= 0.4.0' }
     dependencies:
-      function-bind: registry.nlark.com/function-bind/1.1.1
-    dev: true
+      function-bind: registry.npmmirror.com/function-bind/1.1.1
 
   registry.nlark.com/hash-sum/2.0.0:
     resolution:
@@ -5306,7 +5281,7 @@ packages:
       {
         integrity: sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/semver/download/semver-5.7.1.tgz?cache=0&sync_timestamp=1631500167672&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-5.7.1.tgz
+        tarball: https://registry.nlark.com/semver/download/semver-5.7.1.tgz
       }
     name: semver
     version: 5.7.1
@@ -5318,7 +5293,7 @@ packages:
       {
         integrity: sha1-7gpkyK9ejO6mdoexM3YeG+y9HT0=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz?cache=0&sync_timestamp=1631500167672&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fsemver%2Fdownload%2Fsemver-6.3.0.tgz
+        tarball: https://registry.nlark.com/semver/download/semver-6.3.0.tgz
       }
     name: semver
     version: 6.3.0
@@ -5397,6 +5372,21 @@ packages:
     version: 3.0.0
     engines: { node: '>=8' }
     dev: true
+
+  registry.nlark.com/side-channel/1.0.4:
+    resolution:
+      {
+        integrity: sha1-785cj9wQTudRslxY1CkAEfpeos8=,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.nlark.com/side-channel/download/side-channel-1.0.4.tgz
+      }
+    name: side-channel
+    version: 1.0.4
+    dependencies:
+      call-bind: registry.nlark.com/call-bind/1.0.2
+      get-intrinsic: registry.npmmirror.com/get-intrinsic/1.1.1
+      object-inspect: registry.npmmirror.com/object-inspect/1.12.0
+    dev: false
 
   registry.nlark.com/slash/3.0.0:
     resolution:
@@ -8570,10 +8560,25 @@ packages:
     name: axios
     version: 0.21.4
     dependencies:
-      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.6_debug@4.3.3
+      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.6
     transitivePeerDependencies:
       - debug
     dev: true
+
+  registry.npmmirror.com/axios/0.24.0:
+    resolution:
+      {
+        integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/axios/download/axios-0.24.0.tgz
+      }
+    name: axios
+    version: 0.24.0
+    dependencies:
+      follow-redirects: registry.npmmirror.com/follow-redirects/1.14.6
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   registry.npmmirror.com/big.js/5.2.2:
     resolution:
@@ -9743,7 +9748,7 @@ packages:
       {
         integrity: sha1-MOvR73wv3/AcOk8VEESvJfqwUj4=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-1.3.0.tgz
+        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-1.3.0.tgz?cache=0&sync_timestamp=1636378650851&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-1.3.0.tgz
       }
     name: eslint-visitor-keys
     version: 1.3.0
@@ -9755,7 +9760,7 @@ packages:
       {
         integrity: sha1-9lMoJZMFknOSyTjtROsKXJsr0wM=,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-2.1.0.tgz
+        tarball: https://registry.npmmirror.com/eslint-visitor-keys/download/eslint-visitor-keys-2.1.0.tgz?cache=0&sync_timestamp=1636378650851&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Feslint-visitor-keys%2Fdownload%2Feslint-visitor-keys-2.1.0.tgz
       }
     name: eslint-visitor-keys
     version: 2.1.0
@@ -10091,14 +10096,13 @@ packages:
     version: 3.2.4
     dev: true
 
-  registry.npmmirror.com/follow-redirects/1.14.6_debug@4.3.3:
+  registry.npmmirror.com/follow-redirects/1.14.6:
     resolution:
       {
         integrity: sha512-fhUl5EwSJbbl8AR+uYL2KQDxLkdSjZGR36xy46AO7cOMTrCMON6Sa28FmAnC2tRTDbd/Uuzz3aJBv7EBN7JH8A==,
         registry: https://registry.npm.taobao.org/,
         tarball: https://registry.npmmirror.com/follow-redirects/download/follow-redirects-1.14.6.tgz
       }
-    id: registry.npmmirror.com/follow-redirects/1.14.6
     name: follow-redirects
     version: 1.14.6
     engines: { node: '>=4.0' }
@@ -10107,9 +10111,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dependencies:
-      debug: registry.npmmirror.com/debug/4.3.3
-    dev: true
 
   registry.npmmirror.com/fraction.js/4.1.2:
     resolution:
@@ -10136,6 +10137,30 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  registry.npmmirror.com/function-bind/1.1.1:
+    resolution:
+      {
+        integrity: sha1-pWiZ0+o8m6uHS7l3O3xe3pL0iV0=,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/function-bind/download/function-bind-1.1.1.tgz
+      }
+    name: function-bind
+    version: 1.1.1
+
+  registry.npmmirror.com/get-intrinsic/1.1.1:
+    resolution:
+      {
+        integrity: sha1-FfWfN2+FXERpY5SPDSTNNje0q8Y=,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/get-intrinsic/download/get-intrinsic-1.1.1.tgz
+      }
+    name: get-intrinsic
+    version: 1.1.1
+    dependencies:
+      function-bind: registry.npmmirror.com/function-bind/1.1.1
+      has: registry.nlark.com/has/1.0.3
+      has-symbols: registry.nlark.com/has-symbols/1.0.2
 
   registry.npmmirror.com/git-raw-commits/2.0.11:
     resolution:
@@ -11025,7 +11050,6 @@ packages:
       }
     name: object-inspect
     version: 1.12.0
-    dev: true
 
   registry.npmmirror.com/p-map/4.0.0:
     resolution:
@@ -11321,6 +11345,20 @@ packages:
     name: pug-error
     version: 2.0.0
     dev: true
+
+  registry.npmmirror.com/qs/6.10.2:
+    resolution:
+      {
+        integrity: sha512-mSIdjzqznWgfd4pMii7sHtaYF8rx8861hBO80SraY5GT0XQibWZWJSid0avzHGkDIZLImux2S5mXO0Hfct2QCw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/qs/download/qs-6.10.2.tgz
+      }
+    name: qs
+    version: 6.10.2
+    engines: { node: '>=0.6' }
+    dependencies:
+      side-channel: registry.nlark.com/side-channel/1.0.4
+    dev: false
 
   registry.npmmirror.com/queue-microtask/1.2.3:
     resolution:

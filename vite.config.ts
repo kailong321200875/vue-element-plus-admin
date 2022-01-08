@@ -21,8 +21,10 @@ function pathResolve(dir: string) {
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = null
-  if (command === 'serve') {
-    env = loadEnv(process.argv[3], root)
+  const isBuild = command === 'build'
+  console.log(isBuild)
+  if (!isBuild) {
+    env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
   } else {
     env = loadEnv(mode, root)
   }
@@ -60,8 +62,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       viteMockServe({
         ignore: /^\_/,
         mockPath: 'mock',
-        localEnabled: !(command === 'serve'),
-        prodEnabled: command !== 'serve',
+        localEnabled: !isBuild,
+        prodEnabled: isBuild,
         injectCode: `
           import { setupProdMockServer } from '../mock/_createProductionServer'
 
@@ -105,20 +107,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
     server: {
       proxy: {
-        // 字符串简写写法
-        '/foo': 'http://localhost:4567/foo',
         // 选项写法
-        '/api': {
-          target: 'http://jsonplaceholder.typicode.com',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
-        },
-        // 正则表达式写法
-        '^/fallback/.*': {
-          target: 'http://jsonplaceholder.typicode.com',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/fallback/, '')
-        }
+        // '/api': {
+        //   target: 'http://localhost:3000',
+        //   changeOrigin: true,
+        //   rewrite: path => path.replace(/^\/api/, '')
+        // }
       },
       hmr: {
         overlay: false
@@ -132,7 +126,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'element-plus/lib/locale/lang/zh-cn',
         'element-plus/lib/locale/lang/en',
         '@iconify/iconify',
-        '@vueuse/core'
+        '@vueuse/core',
+        'axios',
+        'qs'
       ]
     }
   }

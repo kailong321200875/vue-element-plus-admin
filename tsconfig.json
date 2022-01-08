@@ -24,8 +24,8 @@
       "@/*": ["src/*"]
     },
     "types": ["@intlify/vite-plugin-vue-i18n/client", "vite/client", "element-plus/global"],
-    "typeRoots": ["./node_modules/@types/", "./src/types"]
+    "typeRoots": ["./node_modules/@types/", "./types"]
   },
-  "include": ["./src/**/*"],
+  "include": ["src/**/*", "types/**/*.d.ts", "mock/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }
