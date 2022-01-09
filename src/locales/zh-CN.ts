@@ -23,7 +23,9 @@ export default {
     forgetPassword: '忘记密码'
   },
   router: {
-    login: '登录'
+    login: '登录',
+    level: '多级菜单',
+    menu: '菜单'
   },
   mock: {
     loginErr: '账号或密码错误'

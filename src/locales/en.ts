@@ -23,7 +23,9 @@ export default {
     forgetPassword: 'Forget password'
   },
   router: {
-    login: 'Login'
+    login: 'Login',
+    level: 'Multi level menu',
+    menu: 'Menu'
   },
   mock: {
     loginErr: 'Wrong account or password'

@@ -13,7 +13,7 @@ const props = defineProps({
   // icon name
   icon: propTypes.string,
   // icon color
-  color: propTypes.string.def('#888'),
+  color: propTypes.string,
   // icon size
   size: propTypes.number.def(16)
 })

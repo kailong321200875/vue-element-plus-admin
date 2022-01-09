@@ -37,6 +37,67 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
   }
 ]
 
+// export const asyncRouterMap: AppRouteRecordRaw[] = [
+//   {
+//     path: '/level',
+//     component: Layout,
+//     redirect: '/level/menu1/menu1-1/menu1-1-1',
+//     name: 'Level',
+//     meta: {
+//       title: t('router.level')
+//     },
+//     children: [
+//       {
+//         path: 'menu1',
+//         name: 'Menu1',
+//         component: getParentLayout('Menu1'),
+//         redirect: '/level/menu1/menu1-1/menu1-1-1',
+//         meta: {
+//           title: `${t('router.menu')}1`
+//         },
+//         children: [
+//           {
+//             path: 'menu1-1',
+//             name: 'Menu11',
+//             component: getParentLayout('Menu11Demo'),
+//             redirect: '/level/menu1/menu1-1/menu1-1-1',
+//             meta: {
+//               title: `${t('router.menu')}1-1`,
+//               alwaysShow: true
+//             },
+//             children: [
+//               {
+//                 path: 'menu1-1-1',
+//                 name: 'Menu111',
+//                 component: () => import('@/views/Level/Menu111.vue'),
+//                 meta: {
+//                   title: `${t('router.menu')}1-1-1`
+//                 }
+//               }
+//             ]
+//           },
+//           {
+//             path: 'menu1-2',
+//             name: 'Menu12',
+//             component: () => import('@/views/Level/Menu12.vue'),
+//             meta: {
+//               title: `${t('router.menu')}1-2`
+//             }
+//           }
+//         ]
+//       },
+//       {
+//         path: 'menu2',
+//         name: 'Menu2Demo',
+//         component: () => import('@/views/Level/Menu2.vue'),
+//         meta: {
+//           title: `${t('router.menu')}2`
+//         }
+//       }
+//     ]
+//   }
+// ]
+
 const router = createRouter({
   history: createWebHashHistory(),
   strict: true,
