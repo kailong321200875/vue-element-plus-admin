@@ -5,7 +5,8 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { required } from '@/utils/formRules'
 import { useForm } from '@/hooks/web/useForm'
-import { loginApi } from '../api'
+import { loginApi } from '@/api/login'
+import type { UserLoginType } from '@/api/login/types'
 
 const { t } = useI18n()
 
@@ -87,12 +88,11 @@ async function signIn() {
   if (validate) {
     loading.value = true
     const { getFormData } = methods
-    const formData = await getFormData()
-    const res = await loginApi({
-      data: formData
-    })
+    const formData = (await getFormData()) as UserLoginType
+    const res = await loginApi(formData)
+      .catch(() => {})
+      .finally(() => (loading.value = false))
     console.log(res)
-    loading.value = false
   }
 }
 </script>
@@ -118,7 +118,9 @@ async function signIn() {
     </template>
 
     <template #login>
-      <ElButton type="primary" class="w-[100%]" @click="signIn">{{ t('login.login') }}</ElButton>
+      <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
+        {{ t('login.login') }}
+      </ElButton>
     </template>
 
     <template #otherIcon>

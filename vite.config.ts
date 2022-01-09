@@ -22,7 +22,6 @@ function pathResolve(dir: string) {
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = null
   const isBuild = command === 'build'
-  console.log(isBuild)
   if (!isBuild) {
     env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
   } else {

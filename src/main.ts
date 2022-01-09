@@ -29,6 +29,8 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 
+import './permission'
+
 async function setupAll() {
   const app = createApp(App)
 

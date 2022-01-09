@@ -1,7 +1,9 @@
-import { config } from '@/config/axios'
+import { config } from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
 const { result_code } = config
+
+const timeout = 2000
 
 const List: {
   username: string
@@ -28,6 +30,7 @@ export default [
   {
     url: '/user/login',
     method: 'post',
+    timeout,
     response: ({ body }) => {
       const data = body
       let hasUser = false

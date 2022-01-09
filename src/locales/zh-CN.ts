@@ -22,6 +22,12 @@ export default {
     remember: '记住我',
     forgetPassword: '忘记密码'
   },
+  router: {
+    login: '登录'
+  },
+  mock: {
+    loginErr: '账号或密码错误'
+  },
   formDemo: {
     input: '输入框',
     inputNumber: '数字输入框',

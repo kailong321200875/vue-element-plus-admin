@@ -16,7 +16,7 @@ provide('configGlobal', props)
 </script>
 
 <template>
-  <ElConfigProvider :locale="locale.elLocale" :size="size">
+  <ElConfigProvider :locale="locale.elLocale" :message="{ max: 1 }" :size="size">
     <slot></slot>
   </ElConfigProvider>
 </template>

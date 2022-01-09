@@ -58,9 +58,6 @@ export const useAppStore = defineStore({
     getShowMenuTab(): boolean {
       return this.showMenuTab
     },
-    getRequestTime(): boolean {
-      return this.requestTime
-    },
     getIsDark(): boolean {
       return this.isDark
     },
@@ -116,9 +113,6 @@ export const useAppStore = defineStore({
     },
     setShowMenuTab(showMenuTab: boolean) {
       this.showMenuTab = showMenuTab
-    },
-    setRequestTime(requestTime: boolean) {
-      this.requestTime = requestTime
     },
     setIsDark(isDark: boolean) {
       this.isDark = isDark

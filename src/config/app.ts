@@ -21,7 +21,6 @@ export interface AppState {
   greyMode: boolean
   showBackTop: boolean
   showMenuTab: boolean
-  requestTime: boolean
   isDark: boolean
   size: ElememtPlusSzie
   sizeMap: ElememtPlusSzie[]
@@ -44,7 +43,6 @@ export const appModules: AppState = {
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
   showBackTop: true, // 是否显示回到顶部
   showMenuTab: false, // 是否固定一级菜单
-  requestTime: false, // 是否在接口调用时添加时间戳，避免IE缓存
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
   size: wsCache.get('default') || 'default', // 组件尺寸
   sizeMap: ['default', 'large', 'small']

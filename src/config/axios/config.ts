@@ -6,7 +6,7 @@ const config: {
     test: string
   }
   result_code: number | string
-  default_headers: AxiosHeadersType
+  default_headers: AxiosHeaders
   request_timeout: number
 } = {
   /**

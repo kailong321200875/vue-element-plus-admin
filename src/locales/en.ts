@@ -22,6 +22,12 @@ export default {
     remember: 'Remember me',
     forgetPassword: 'Forget password'
   },
+  router: {
+    login: 'Login'
+  },
+  mock: {
+    loginErr: 'Wrong account or password'
+  },
   formDemo: {
     input: 'Input',
     inputNumber: 'InputNumber',

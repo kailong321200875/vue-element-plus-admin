@@ -16,16 +16,20 @@ declare type ComponentRef<T> = InstanceType<T>
 
 declare type LocaleType = 'zh-CN' | 'en'
 
+declare type AxiosHeaders =
+  | 'application/json'
+  | 'application/x-www-form-urlencoded'
+  | 'multipart/form-data'
+
+declare type AxiosMethod = 'get' | 'post' | 'delete' | 'put'
+
+declare type AxiosResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
+
 declare type AxiosConfig = {
   params?: Recordable
   data?: Recordable
   url?: string
-  method?: 'get' | 'post' | 'delete' | 'put'
+  method?: AxiosMethod
   headersType?: string
-  responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
+  responseType?: AxiosResponseType
 }
-
-declare type AxiosHeadersType =
-  | 'application/json'
-  | 'application/x-www-form-urlencoded'
-  | 'multipart/form-data'

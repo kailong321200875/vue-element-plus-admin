@@ -10,7 +10,7 @@ import { ElMessage } from 'element-plus'
 
 import qs from 'qs'
 
-import { config } from '@/config/axios'
+import { config } from '@/config/axios/config'
 
 const { result_code, base_url } = config
 
@@ -25,7 +25,6 @@ const service: AxiosInstance = axios.create({
 // request拦截器
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    console.log('我进来了吗')
     if (
       config.method === 'post' &&
       (config.headers as AxiosRequestHeaders)['Content-Type'] ===
@@ -59,7 +58,6 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   (response: AxiosResponse<Recordable>) => {
-    console.log(response)
     if (response.data.code === result_code) {
       return response.data
     } else {
@@ -67,7 +65,6 @@ service.interceptors.response.use(
     }
   },
   (error: AxiosError) => {
-    console.log(error)
     console.log('err' + error) // for debug
     ElMessage.error(error.message)
     return Promise.reject(error)

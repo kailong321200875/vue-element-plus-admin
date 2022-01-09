@@ -1,12 +1,8 @@
-import { service } from '@/plugins/axios'
+import { service } from '@/config/axios'
 
 import { AxiosPromise } from 'axios'
 
-import { useAppStoreWithOut } from '@/store/modules/app'
-
-import { config } from '@/config/axios'
-
-const appStore = useAppStoreWithOut()
+import { config } from '@/config/axios/config'
 
 const { default_headers } = config
 
@@ -22,7 +18,7 @@ export function useAxios() {
     return service({
       url: url,
       method,
-      params: appStore.getRequestTime ? { time: new Date().getTime(), ...(params || {}) } : params,
+      params,
       data,
       responseType: responseType,
       headers: {

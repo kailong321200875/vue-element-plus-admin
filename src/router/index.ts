@@ -2,16 +2,36 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 // import { getParentLayout } from './helper'
-import { t } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
+
+/* Layout */
+const Layout = () => import('@/layout/Layout.vue')
 
 export const constantRouterMap: AppRouteRecordRaw[] = [
+  {
+    path: '/redirect',
+    component: Layout,
+    name: 'Redirect',
+    children: [
+      {
+        path: '/redirect/:path*',
+        name: 'Redirect',
+        component: () => import('@/views/Redirect/Redirect.vue'),
+        meta: {}
+      }
+    ],
+    meta: {
+      hidden: true
+    }
+  },
   {
     path: '/login',
     component: () => import('@/views/Login/Login.vue'),
     name: 'Login',
     meta: {
       hidden: true,
-      title: t('common.login'),
+      title: t('router.login'),
       noTagsView: true
     }
   }
