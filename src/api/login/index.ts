@@ -4,5 +4,8 @@ import type { UserLoginType } from './types'
 const { request } = useAxios()
 
 export const loginApi = (data: UserLoginType) => {
-  return request({ url: '/user/login', method: 'post', data })
+  return request({ url: '/user/login', method: 'post', data } as AxiosConfig<
+    Recordable,
+    UserLoginType
+  >)
 }

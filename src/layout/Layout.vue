@@ -1,9 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// import { computed } from 'vue'
+// const getCaches = computed((): string[] => {
+//   return []
+// })
+</script>
 
 <template>
-  <section>
-    <router-view v-slot="{ Component, route }">
-      <component :is="Component" :key="route.fullPath" />
-    </router-view>
-  </section>
+  <RouterView>
+    <template #default="{ Component, route }">
+      <KeepAlive>
+        <Component :is="Component" :key="route.fullPath" />
+      </KeepAlive>
+    </template>
+  </RouterView>
 </template>

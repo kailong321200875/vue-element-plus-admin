@@ -20,12 +20,19 @@ export default {
     login: 'Sign in',
     otherLogin: 'Sign in with',
     remember: 'Remember me',
-    forgetPassword: 'Forget password'
+    forgetPassword: 'Forget password',
+    usernamePlaceholder: 'username is admin or test',
+    passwordPlaceholder: 'password is admin or test'
   },
   router: {
     login: 'Login',
     level: 'Multi level menu',
-    menu: 'Menu'
+    menu: 'Menu',
+    menu1: 'Menu1',
+    menu11: 'Menu1-1',
+    menu111: 'Menu1-1-1',
+    menu12: 'Menu1-2',
+    menu2: 'Menu2'
   },
   mock: {
     loginErr: 'Wrong account or password'

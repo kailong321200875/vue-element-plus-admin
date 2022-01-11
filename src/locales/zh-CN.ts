@@ -20,12 +20,19 @@ export default {
     login: '登录',
     otherLogin: '其他登录方式',
     remember: '记住我',
-    forgetPassword: '忘记密码'
+    forgetPassword: '忘记密码',
+    usernamePlaceholder: '用户名为 admin 或者 test ',
+    passwordPlaceholder: '密码为 admin 或者 test '
   },
   router: {
     login: '登录',
     level: '多级菜单',
-    menu: '菜单'
+    menu: '菜单',
+    menu1: '菜单1',
+    menu11: '菜单1-1',
+    menu111: '菜单1-1-1',
+    menu12: '菜单1-2',
+    menu2: '菜单2'
   },
   mock: {
     loginErr: '账号或密码错误'

@@ -7,14 +7,8 @@ import { config } from '@/config/axios/config'
 const { default_headers } = config
 
 export function useAxios() {
-  function request({
-    url,
-    method,
-    params,
-    data,
-    headersType,
-    responseType
-  }: AxiosConfig): AxiosPromise {
+  function request(option: AxiosConfig): AxiosPromise {
+    const { url, method, params, data, headersType, responseType } = option
     return service({
       url: url,
       method,

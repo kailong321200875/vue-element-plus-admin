@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref, unref } from 'vue'
+import { reactive, ref, unref, watch } from 'vue'
 import { Form } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
@@ -7,6 +7,17 @@ import { required } from '@/utils/formRules'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi } from '@/api/login'
 import type { UserLoginType } from '@/api/login/types'
+import { useCache } from '@/hooks/web/useCache'
+import { useAppStore } from '@/store/modules/app'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useRouter } from 'vue-router'
+import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
+
+const appStore = useAppStore()
+
+const permissionStore = usePermissionStore()
+
+const { currentRoute, addRoute, push } = useRouter()
 
 const { t } = useI18n()
 
@@ -29,6 +40,9 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     colProps: {
       span: 24
+    },
+    componentProps: {
+      placeholder: t('login.usernamePlaceholder')
     }
   },
   {
@@ -42,7 +56,8 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       style: {
         width: '100%'
-      }
+      },
+      placeholder: t('login.passwordPlaceholder')
     }
   },
   {
@@ -81,6 +96,20 @@ const { register, elFormRef, methods } = useForm()
 
 const loading = ref(false)
 
+const iconColor = '#999'
+
+const redirect = ref<string>('')
+
+watch(
+  () => currentRoute.value,
+  (route: RouteLocationNormalizedLoaded) => {
+    redirect.value = route?.query?.redirect as string
+  },
+  {
+    immediate: true
+  }
+)
+
 // 登录
 async function signIn() {
   const formRef = unref(elFormRef)
@@ -89,10 +118,23 @@ async function signIn() {
     loading.value = true
     const { getFormData } = methods
     const formData = (await getFormData()) as UserLoginType
+
     const res = await loginApi(formData)
       .catch(() => {})
       .finally(() => (loading.value = false))
-    console.log(res)
+
+    if (res) {
+      const { wsCache } = useCache()
+      wsCache.set(appStore.getUserInfo, res.data)
+      await permissionStore.generateRoutes().catch(() => {})
+
+      permissionStore.getAddRouters.forEach((route) => {
+        console.log(route)
+        addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
+      })
+      permissionStore.setIsAddRouters(true)
+      push({ path: redirect.value || '/level' })
+    }
   }
 }
 </script>
@@ -125,16 +167,28 @@ async function signIn() {
 
     <template #otherIcon>
       <div class="flex justify-between w-[100%]">
-        <Icon icon="ant-design:github-filled" :size="iconSize" class="cursor-pointer anticon" />
-        <Icon icon="ant-design:wechat-filled" :size="iconSize" class="cursor-pointer anticon" />
+        <Icon
+          icon="ant-design:github-filled"
+          :size="iconSize"
+          class="cursor-pointer anticon"
+          :color="iconColor"
+        />
+        <Icon
+          icon="ant-design:wechat-filled"
+          :size="iconSize"
+          class="cursor-pointer anticon"
+          :color="iconColor"
+        />
         <Icon
           icon="ant-design:alipay-circle-filled"
           :size="iconSize"
+          :color="iconColor"
           class="cursor-pointer anticon"
         />
         <Icon
           icon="ant-design:weibo-circle-filled"
           :size="iconSize"
+          :color="iconColor"
           class="cursor-pointer anticon"
         />
       </div>
