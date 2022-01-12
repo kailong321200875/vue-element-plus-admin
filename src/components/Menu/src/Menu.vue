@@ -8,8 +8,6 @@ import type { LayoutType } from '@/config/app'
 import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
-import { lighten } from '@/utils/color'
-console.log(lighten('#001529', 6))
 
 export default defineComponent({
   name: 'Menu',
@@ -93,8 +91,6 @@ export default defineComponent({
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-menu';
-
-@menuBgColor: var(--left-menu-bg-color);
 
 .@{prefix-cls} {
   :deep(.el-menu) {

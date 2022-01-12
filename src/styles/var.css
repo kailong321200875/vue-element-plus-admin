@@ -14,4 +14,12 @@
   --left-menu-text-color: #bfcbd9;
 
   --left-menu-text-active-color: #fff;
+
+  --top-tool-height: 40px;
+
+  --top-tool-p-x: 20px;
+
+  --top-tool-border-color: #eee;
+
+  --tags-view-height: 40px;
 }
