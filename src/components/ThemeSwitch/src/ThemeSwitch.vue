@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ElSwitch } from 'element-plus'
-import { useCssVar } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useIcon } from '@/hooks/web/useIcon'
 
@@ -20,7 +19,7 @@ const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('theme-switch')
 
 // 设置switch的背景颜色
-const blackColor = useCssVar('--el-color-black', document.documentElement)
+const blackColor = 'var(--el-color-black)'
 
 function themeChange(val: boolean) {
   appStore.setIsDark(val)

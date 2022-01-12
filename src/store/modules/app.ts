@@ -10,8 +10,8 @@ export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => appModules,
   getters: {
-    getCollapsed(): boolean {
-      return this.collapsed
+    getCollapse(): boolean {
+      return this.collapse
     },
     getShowLogo(): boolean {
       return this.showLogo
@@ -69,8 +69,8 @@ export const useAppStore = defineStore({
     }
   },
   actions: {
-    setCollapsed(collapsed: boolean) {
-      this.collapsed = collapsed
+    setCollapse(collapse: boolean) {
+      this.collapse = collapse
     },
     setShowLogo(showLogo: boolean) {
       this.showLogo = showLogo

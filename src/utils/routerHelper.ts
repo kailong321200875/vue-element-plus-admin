@@ -12,7 +12,7 @@ const { wsCache } = useCache()
 const modules = import.meta.glob('../../views/**/*.{vue,tsx}')
 
 /* Layout */
-const Layout = () => import('@/layout/index.vue')
+export const Layout = () => import('@/layout/Layout.vue')
 
 export const getParentLayout = () => {
   return () =>
@@ -23,7 +23,7 @@ export const getParentLayout = () => {
     })
 }
 
-export function getRoute(route: RouteLocationNormalized): RouteLocationNormalized {
+export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
   if (!route) return route
   const { matched, ...opt } = route
   return {
@@ -101,14 +101,16 @@ export function generateRoutesFn2(routes: AppRouteRecordRaw[]): AppRouteRecordRa
       meta: route.meta
     }
     if (route.component) {
-      // 动态加载路由文件，可根据实际情况进行自定义逻辑
-      const component = route.component as string
-      data.component =
-        component === '#'
-          ? Layout
-          : component.includes('##')
-          ? getParentLayout()
-          : modules[`../../${route.component}.vue`] || modules[`../../${route.component}.tsx`]
+      const comModule =
+        modules[`../../${route.component}.vue`] || modules[`../../${route.component}.tsx`]
+      if (comModule) {
+        // 动态加载路由文件，可根据实际情况进行自定义逻辑
+        const component = route.component as string
+        data.component =
+          component === '#' ? Layout : component.includes('##') ? getParentLayout() : comModule
+      } else {
+        console.error(`未找到${route.component}.vue文件或${route.component}.tsx文件，请创建`)
+      }
     }
     // recursive child routes
     if (route.children) {
@@ -155,7 +157,7 @@ function isMultipleRoute(route: AppRouteRecordRaw) {
   return flag
 }
 
-// 路由降级
+// 生成二级路由
 function promoteRouteLevel(route: AppRouteRecordRaw) {
   let router: Router | null = createRouter({
     routes: [route as unknown as RouteRecordNormalized],

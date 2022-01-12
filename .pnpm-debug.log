@@ -13,7 +13,8 @@
       "name": "pnpm",
       "message": "butterfly-admin@3.0.0 clean: `npx rimraf docs/node_modules && npx rimraf node_modules`\nExit status 1",
       "code": "ELIFECYCLE",
-      "stack": "pnpm: butterfly-admin@3.0.0 clean: `npx rimraf docs/node_modules && npx rimraf node_modules`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\Saber\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.24.4\\node_modules\\pnpm\\dist\\pnpm.cjs:103873:20)\n    at EventEmitter.emit (node:events:365:28)\n    at ChildProcess.<anonymous> (C:\\Users\\Saber\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.24.4\\node_modules\\pnpm\\dist\\pnpm.cjs:91802:18)\n    at ChildProcess.emit (node:events:365:28)\n    at maybeClose (node:internal/child_process:1067:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+      "stack": "pnpm: butterfly-admin@3.0.0 clean: `npx rimraf docs/node_modules && npx rimraf node_modules`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\admin\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.25.1\\node_modules\\pnpm\\dist\\pnpm.cjs:104843:20)\n    at EventEmitter.emit (events.js:315:20)\n    at ChildProcess.<anonymous> (C:\\Users\\admin\\AppData\\Roaming\\npm\\pnpm-global\\5\\node_modules\\.pnpm\\registry.npmmirror.com+pnpm@6.25.1\\node_modules\\pnpm\\dist\\pnpm.cjs:91921:18)\n    at ChildProcess.emit (events.js:315:20)\n    at maybeClose (internal/child_process.js:1048:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)"
     }
-  }
+  },
+  "2 warn pnpm:global": " Local package.json exists, but node_modules missing, did you mean to install?"
 }

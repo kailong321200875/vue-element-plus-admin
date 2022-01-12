@@ -2,10 +2,10 @@ import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
 
-export type LayoutType = 'Classic' | 'LeftTop' | 'Top' | 'Test'
+export type LayoutType = 'classic' | 'leftTop' | 'top' | 'test'
 
 export interface AppState {
-  collapsed: boolean
+  collapse: boolean
   showTags: boolean
   showLogo: boolean
   showNavbar: boolean
@@ -27,12 +27,12 @@ export interface AppState {
 }
 
 export const appModules: AppState = {
-  collapsed: false, // 菜单栏是否栏缩收
+  collapse: false, // 菜单栏是否栏缩收
   showLogo: true, // 是否显示logo
   showTags: true, // 是否显示标签栏
   showNavbar: true, // 是否显示navbar
   fixedHeader: true, // 是否固定header
-  layout: 'Classic', // layout布局
+  layout: 'classic', // layout布局
   showBreadcrumb: true, // 是否显示面包屑
   showHamburger: true, // 是否显示侧边栏缩收按钮
   showScreenfull: true, // 是否全屏按钮

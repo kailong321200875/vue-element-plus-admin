@@ -1,13 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
-import { getParentLayout } from '@/utils/routerHelper'
+import { Layout, getParentLayout } from '@/utils/routerHelper'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
-
-/* Layout */
-const Layout = () => import('@/layout/Layout.vue')
 
 export const constantRouterMap: AppRouteRecordRaw[] = [
   {
@@ -45,7 +42,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     redirect: '/level/menu1/menu1-1/menu1-1-1',
     name: 'Level',
     meta: {
-      title: t('router.level')
+      title: t('router.level'),
+      icon: 'carbon:skill-level-advanced'
     },
     children: [
       {

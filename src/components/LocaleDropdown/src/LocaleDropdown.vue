@@ -2,7 +2,6 @@
 import { computed, unref } from 'vue'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { useLocaleStore } from '@/store/modules/locale'
-import { useCssVar } from '@vueuse/core'
 import { useLocale } from '@/hooks/web/useLocale'
 
 const localeStore = useLocaleStore()
@@ -10,8 +9,6 @@ const localeStore = useLocaleStore()
 const langMap = computed(() => localeStore.getLocaleMap)
 
 const currentLang = computed(() => localeStore.getLocale)
-
-const textColor = useCssVar('--el-text-color-primary', document.documentElement)
 
 function setLang(lang: LocaleType) {
   if (lang === unref(currentLang).lang) return
@@ -29,7 +26,7 @@ function setLang(lang: LocaleType) {
   <ElDropdown trigger="click" @command="setLang">
     <Icon
       icon="ion:language-sharp"
-      :color="textColor"
+      color="var(--el-text-color-primary)"
       class="cursor-pointer"
       :class="$attrs.class"
     />
