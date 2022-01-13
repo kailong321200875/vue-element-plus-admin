@@ -149,7 +149,3 @@ function subtractLight(color: string, amount: number) {
   const c = cc < 0 ? 0 : cc
   return c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`
 }
-
-export function setCssVar(prop: string, val: any, dom = document.documentElement) {
-  dom.style.setProperty(prop, val)
-}

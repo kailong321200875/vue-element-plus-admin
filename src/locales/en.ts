@@ -5,7 +5,13 @@ export default {
     startTimeText: 'Start time',
     endTimeText: 'End time',
     login: 'Login',
-    required: 'This is required'
+    required: 'This is required',
+    loginOut: 'Login out',
+    document: 'Document',
+    reminder: 'Reminder',
+    loginOutMessage: 'Exit the system？',
+    ok: 'OK',
+    cancel: 'Cancel'
   },
   size: {
     default: 'Default',

@@ -16,7 +16,12 @@ function setSize(size: ElememtPlusSzie) {
 
 <template>
   <ElDropdown trigger="click" @command="setSize">
-    <Icon icon="mdi:format-size" color="var(--el-text-color-primary)" class="cursor-pointer" />
+    <Icon
+      :size="18"
+      icon="mdi:format-size"
+      color="var(--el-text-color-primary)"
+      class="cursor-pointer"
+    />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in sizeMap" :key="item" :command="item">

@@ -1,6 +1,7 @@
 :root {
   --dark-bg-color: #293146;
 
+  /* left menu start */
   --left-menu-max-width: 200px;
 
   --left-menu-min-width: 64px;
@@ -15,11 +16,16 @@
 
   --left-menu-text-active-color: #fff;
 
+  --left-menu-collapse-bg-active-color: var(--el-color-primary);
+  /* left menu end */
+
   --top-tool-height: 40px;
 
-  --top-tool-p-x: 20px;
+  --top-tool-p-x: 0;
 
   --top-tool-border-color: #eee;
 
   --tags-view-height: 40px;
+
+  --transition-time-02: 0.2s;
 }

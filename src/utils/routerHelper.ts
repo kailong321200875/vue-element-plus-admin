@@ -122,7 +122,8 @@ export function generateRoutesFn2(routes: AppRouteRecordRaw[]): AppRouteRecordRa
 }
 
 export function pathResolve(parentPath: string, path: string) {
-  return `${parentPath}/${path}`
+  const childPath = path.startsWith('/') || !path ? path : `/${path}`
+  return `${parentPath}${childPath}`
 }
 
 // 路由降级

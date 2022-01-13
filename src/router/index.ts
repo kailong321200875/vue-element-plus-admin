@@ -94,6 +94,23 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    name: 'IconsDemo',
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/Level/Menu2.vue'),
+        name: 'Icons',
+        meta: {
+          title: '图标',
+          icon: 'carbon:skill-level-advanced'
+        }
+      }
+    ]
   }
 ]
 

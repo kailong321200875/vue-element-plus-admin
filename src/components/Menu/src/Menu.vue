@@ -22,8 +22,8 @@ export default defineComponent({
 
     const preFixCls = getPrefixCls('menu')
 
-    const menuMode = computed(() => {
-      // 水平模式
+    const menuMode = computed((): 'vertical' | 'horizontal' => {
+      // 竖
       const vertical: LayoutType[] = ['classic']
 
       if (vertical.includes(appStore.getLayout)) {
@@ -77,7 +77,7 @@ export default defineComponent({
           >
             {{
               default: () => {
-                const { renderMenuItem } = useRenderMenuItem(routers.value)
+                const { renderMenuItem } = useRenderMenuItem(routers.value, menuMode.value)
                 return renderMenuItem()
               }
             }}
@@ -93,7 +93,10 @@ export default defineComponent({
 @prefix-cls: ~'@{namespace}-menu';
 
 .@{prefix-cls} {
+  transition: width var(--transition-time-02);
+
   :deep(.el-menu) {
+    width: 100% !important;
     border-right: none;
 
     // 设置选中时子标题的颜色
@@ -132,8 +135,55 @@ export default defineComponent({
     }
   }
 
+  // 折叠时的最小宽度
   :deep(.el-menu--collapse) {
     width: var(--left-menu-min-width);
+
+    & > .is-active,
+    & > .is-active > .el-sub-menu__title {
+      background-color: var(--left-menu-collapse-bg-active-color) !important;
+    }
+  }
+
+  // 折叠动画的时候，就需要把文字给隐藏掉
+  :deep(.horizontal-collapse-transition) {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
+    .@{prefix-cls}__title {
+      display: none;
+    }
+  }
+}
+</style>
+
+<style lang="less">
+@prefix-cls: ~'@{namespace}-menu-popper';
+
+.@{prefix-cls} {
+  &--vertical {
+    // 设置选中时子标题的颜色
+    .is-active {
+      & > .el-sub-menu__title {
+        color: var(--left-menu-text-active-color) !important;
+      }
+    }
+
+    // 设置子菜单悬停的高亮和背景色
+    .el-sub-menu__title,
+    .el-menu-item {
+      &:hover {
+        color: var(--left-menu-text-active-color) !important;
+        background-color: var(--left-menu-bg-color) !important;
+      }
+    }
+
+    // 设置选中时的高亮背景
+    .el-menu-item.is-active {
+      background-color: var(--left-menu-bg-active-color) !important;
+
+      &:hover {
+        background-color: var(--left-menu-bg-active-color) !important;
+      }
+    }
   }
 }
 </style>

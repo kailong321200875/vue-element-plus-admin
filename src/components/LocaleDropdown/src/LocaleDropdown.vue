@@ -25,6 +25,7 @@ function setLang(lang: LocaleType) {
 <template>
   <ElDropdown trigger="click" @command="setLang">
     <Icon
+      :size="18"
       icon="ion:language-sharp"
       color="var(--el-text-color-primary)"
       class="cursor-pointer"

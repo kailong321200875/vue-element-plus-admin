@@ -10,10 +10,10 @@ export function useRenderMenuTitle() {
     return icon ? (
       <>
         <Icon icon={meta.icon}></Icon>
-        {t(title as string)}
+        <span>{t(title as string)}</span>
       </>
     ) : (
-      t(title as string)
+      <span>{t(title as string)}</span>
     )
   }
 

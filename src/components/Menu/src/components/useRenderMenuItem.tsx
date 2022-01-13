@@ -3,8 +3,13 @@ import type { RouteMeta } from 'vue-router'
 import { getAllParentPath, hasOneShowingChild } from '../helper'
 import { isUrl } from '@/utils/is'
 import { useRenderMenuTitle } from './useRenderMenuTitle'
+import { useDesign } from '@/hooks/web/useDesign'
+import { pathResolve } from '@/utils/routerHelper'
 
-export function useRenderMenuItem(allRouters: AppRouteRecordRaw[] = []) {
+export function useRenderMenuItem(
+  allRouters: AppRouteRecordRaw[] = [],
+  menuMode: 'vertical' | 'horizontal'
+) {
   function renderMenuItem(routers?: AppRouteRecordRaw[]) {
     return (routers || allRouters).map((v) => {
       const meta = (v.meta ?? {}) as RouteMeta
@@ -23,15 +28,23 @@ export function useRenderMenuItem(allRouters: AppRouteRecordRaw[] = []) {
           !meta?.alwaysShow
         ) {
           return (
-            <ElMenuItem index={fullPath}>
+            <ElMenuItem index={onlyOneChild ? pathResolve(fullPath, onlyOneChild.path) : fullPath}>
               {{
-                default: () => renderMenuTitle(meta)
+                default: () => renderMenuTitle(onlyOneChild ? onlyOneChild?.meta : meta)
               }}
             </ElMenuItem>
           )
         } else {
+          const { getPrefixCls } = useDesign()
+
+          const preFixCls = getPrefixCls('menu-popper')
           return (
-            <ElSubMenu index={fullPath}>
+            <ElSubMenu
+              index={fullPath}
+              popperClass={
+                menuMode === 'vertical' ? `${preFixCls}--vertical` : `${preFixCls}--horizontal`
+              }
+            >
               {{
                 title: () => renderMenuTitle(meta),
                 default: () => renderMenuItem(v.children)

@@ -5,7 +5,13 @@ export default {
     startTimeText: '开始时间',
     endTimeText: '结束时间',
     login: '登录',
-    required: '该项为必填项'
+    required: '该项为必填项',
+    loginOut: '退出系统',
+    document: '项目文档',
+    reminder: '温馨提示',
+    loginOutMessage: '是否退出本系统？',
+    ok: '确定',
+    cancel: '取消'
   },
   size: {
     default: '默认',
