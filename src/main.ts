@@ -31,7 +31,7 @@ import App from './App.vue'
 
 import './permission'
 
-async function setupAll() {
+const setupAll = async () => {
   const app = createApp(App)
 
   await setupI18n(app)

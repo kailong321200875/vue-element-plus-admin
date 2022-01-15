@@ -2,7 +2,6 @@
 import { ref, unref, computed, watch } from 'vue'
 import { ElInput } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
-import { useDesign } from '@/hooks/web/useDesign'
 import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
 import { zxcvbn } from '@zxcvbn-ts/core'
 import type { ZxcvbnResult } from '@zxcvbn-ts/core'
@@ -25,15 +24,10 @@ const { configGlobal } = useConfigGlobal()
 
 const emit = defineEmits(['update:modelValue'])
 
-// 生成class前缀
-const { getPrefixCls } = useDesign()
-
-const prefixCls = ref(getPrefixCls('input-password'))
-
 // 设置input的type属性
 const textType = ref<'password' | 'text'>('password')
 
-function changeTextType() {
+const changeTextType = () => {
   textType.value = unref(textType) === 'text' ? 'password' : 'text'
 }
 
@@ -61,7 +55,7 @@ const getIconName = computed(() =>
 </script>
 
 <template>
-  <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
+  <div :class="['v-input-password', `v-input-password--${configGlobal?.size}`]">
     <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
       <template #suffix>
         <Icon class="el-input__icon cursor-pointer" :icon="getIconName" @click="changeTextType" />
@@ -69,10 +63,9 @@ const getIconName = computed(() =>
     </ElInput>
     <div
       v-if="strength"
-      :class="`${prefixCls}__bar`"
-      class="relative h-6px mt-10px mb-6px mr-auto ml-auto"
+      class="v-input-password__bar relative h-6px mt-10px mb-6px mr-auto ml-auto"
     >
-      <div :class="`${prefixCls}__bar--fill`" :data-score="getPasswordStrength"></div>
+      <div class="v-input-password__bar--fill" :data-score="getPasswordStrength"></div>
     </div>
   </div>
 </template>

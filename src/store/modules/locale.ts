@@ -27,6 +27,6 @@ export const useLocaleStore = defineStore({
   }
 })
 
-export function useLocaleStoreWithOut() {
+export const useLocaleStoreWithOut = () => {
   return useLocaleStore(store)
 }

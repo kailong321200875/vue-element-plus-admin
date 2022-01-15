@@ -5,7 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 
 const appStore = useAppStoreWithOut()
 
-export function useTitle(newTitle?: string) {
+export const useTitle = (newTitle?: string) => {
   const { t } = useI18n()
   const title = ref(
     newTitle ? `${appStore.getTitle} - ${t(newTitle as string)}` : appStore.getTitle

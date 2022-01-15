@@ -24,6 +24,7 @@ export interface AppState {
   isDark: boolean
   size: ElememtPlusSzie
   sizeMap: ElememtPlusSzie[]
+  mobile: boolean
 }
 
 export const appModules: AppState = {
@@ -45,5 +46,6 @@ export const appModules: AppState = {
   showMenuTab: false, // 是否固定一级菜单
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
   size: wsCache.get('default') || 'default', // 组件尺寸
-  sizeMap: ['default', 'large', 'small']
+  sizeMap: ['default', 'large', 'small'],
+  mobile: false // 是否是移动端
 }

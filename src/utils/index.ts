@@ -21,7 +21,7 @@ export const withInstall = <T>(component: T, alias?: string) => {
  * @param str 需要转下划线的驼峰字符串
  * @returns 字符串下划线
  */
-export function humpToUnderline(str: string): string {
+export const humpToUnderline = (str: string): string => {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
@@ -29,12 +29,12 @@ export function humpToUnderline(str: string): string {
  * @param str 需要转驼峰的下划线字符串
  * @returns 字符串驼峰
  */
-export function underlineToHump(str: string): string {
-  return str.replace(/\-(\w)/g, function (_, letter: string) {
+export const underlineToHump = (str: string): string => {
+  return str.replace(/\-(\w)/g, (_, letter: string) => {
     return letter.toUpperCase()
   })
 }
 
-export function setCssVar(prop: string, val: any, dom = document.documentElement) {
+export const setCssVar = (prop: string, val: any, dom = document.documentElement) => {
   dom.style.setProperty(prop, val)
 }

@@ -1,7 +1,6 @@
 <script lang="tsx">
 import { computed, defineComponent } from 'vue'
 import { ElMenu, ElScrollbar } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import type { LayoutType } from '@/config/app'
@@ -17,10 +16,6 @@ export default defineComponent({
     const { push, currentRoute } = useRouter()
 
     const permissionStore = usePermissionStore()
-
-    const { getPrefixCls } = useDesign()
-
-    const preFixCls = getPrefixCls('menu')
 
     const menuMode = computed((): 'vertical' | 'horizontal' => {
       // 竖
@@ -46,7 +41,7 @@ export default defineComponent({
       return path
     })
 
-    function menuSelect(index: string) {
+    const menuSelect = (index: string) => {
       if (isUrl(index)) {
         window.open(index)
       } else {
@@ -57,8 +52,8 @@ export default defineComponent({
     return () => (
       <div
         class={[
-          preFixCls,
-          'h-[100%] overflow-hidden',
+          'v-menu',
+          'h-[100%] overflow-hidden z-100',
           appStore.getCollapse
             ? 'w-[var(--left-menu-min-width)]'
             : 'w-[var(--left-menu-max-width)]',
@@ -147,7 +142,7 @@ export default defineComponent({
 
   // 折叠动画的时候，就需要把文字给隐藏掉
   :deep(.horizontal-collapse-transition) {
-    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
+    // transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
     .@{prefix-cls}__title {
       display: none;
     }

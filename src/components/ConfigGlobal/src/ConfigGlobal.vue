@@ -1,8 +1,33 @@
 <script setup lang="ts">
-import { provide, computed } from 'vue'
+import { provide, computed, watch } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { ElConfigProvider } from 'element-plus'
 import { useLocaleStore } from '@/store/modules/locale'
+import { useWindowSize } from '@vueuse/core'
+import { useAppStore } from '@/store/modules/app'
+import { setCssVar } from '@/utils'
+
+const appStore = useAppStore()
+
+const { width } = useWindowSize()
+
+watch(
+  () => width.value,
+  (width: number) => {
+    if (width < 768) {
+      !appStore.getMobile ? appStore.setMobile(true) : undefined
+      setCssVar('--left-menu-min-width', '0')
+      appStore.setCollapse(true)
+      appStore.getLayout !== 'classic' ? appStore.setLayout('classic') : undefined
+    } else {
+      appStore.getMobile ? appStore.setMobile(false) : undefined
+      setCssVar('--left-menu-min-width', '64px')
+    }
+  },
+  {
+    immediate: true
+  }
+)
 
 const localeStore = useLocaleStore()
 

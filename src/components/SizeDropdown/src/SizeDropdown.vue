@@ -9,7 +9,7 @@ const appStore = useAppStore()
 
 const sizeMap = computed(() => appStore.sizeMap)
 
-function setSize(size: ElememtPlusSzie) {
+const setSize = (size: ElememtPlusSzie) => {
   appStore.setSize(size)
 }
 </script>

@@ -3,13 +3,13 @@ import { computed, defineComponent, KeepAlive } from 'vue'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useAppStore } from '@/store/modules/app'
 import { Menu } from '@/components/Menu'
-import { useDesign } from '@/hooks/web/useDesign'
 import { Collapse } from '@/components/Collapse'
 import { LocaleDropdown } from '@/components/LocaleDropdown'
 import { SizeDropdown } from '@/components/SizeDropdown'
 import { UserInfo } from '@/components/UserInfo'
 import { Screenfull } from '@/components/Screenfull'
-// import { TagsView } from '@/components/TagsView'
+import { Breadcrumb } from '@/components/Breadcrumb'
+import { TagsView } from '@/components/TagsView'
 
 const tagsViewStore = useTagsViewStore()
 
@@ -19,40 +19,50 @@ const getCaches = computed((): string[] => {
 
 const appStore = useAppStore()
 
+const mobile = computed(() => appStore.getMobile)
+
+const collapse = computed(() => appStore.getCollapse)
+
 const classSuffix = computed(() => appStore.getLayout)
 
-const { getPrefixCls } = useDesign()
-
-const perFixCls = getPrefixCls('app')
+const handleClickOutside = () => {
+  appStore.setCollapse(true)
+}
 
 export default defineComponent({
   name: 'Layout',
   setup() {
     return () => (
-      <section
-        class={[perFixCls, `${perFixCls}__${classSuffix.value}`, 'w-[100%] h-[100%] relative']}
-      >
+      <section class={['v-app', `v-app__${classSuffix.value}`, 'w-[100%] h-[100%] relative']}>
+        {mobile.value && !collapse.value ? (
+          <div
+            class="absolute top-0 left-0 w-full h-full opacity-30 z-99 bg-[var(--el-color-black)]"
+            onClick={handleClickOutside}
+          ></div>
+        ) : undefined}
         <Menu class="absolute top-0 left-0"></Menu>
         <div
           class={[
-            `${perFixCls}-right`,
+            'v-app-right',
             'absolute top-0 h-[100%]',
-            appStore.getCollapse
+            collapse.value
               ? 'w-[calc(100%-var(--left-menu-min-width))]'
               : 'w-[calc(100%-var(--left-menu-max-width))]',
-            appStore.getCollapse
+            collapse.value
               ? 'left-[var(--left-menu-min-width)]'
-              : 'left-[var(--left-menu-max-width)]'
+              : 'left-[var(--left-menu-max-width)]',
+            '<md:(!left-0 !w-[100%])'
           ]}
         >
           <div
             class={[
-              `${perFixCls}-right__tool`,
+              'v-app-right__tool',
               'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between'
             ]}
           >
             <div class="h-full flex items-center">
               <Collapse class="header__tigger"></Collapse>
+              <Breadcrumb class="<md:hidden"></Breadcrumb>
             </div>
             <div class="h-full flex items-center">
               <Screenfull class="header__tigger"></Screenfull>
@@ -60,6 +70,9 @@ export default defineComponent({
               <LocaleDropdown class="header__tigger"></LocaleDropdown>
               <UserInfo class="header__tigger"></UserInfo>
             </div>
+          </div>
+          <div class="v-app-right__tags relative">
+            <TagsView></TagsView>
           </div>
           <router-view>
             {{
@@ -97,7 +110,8 @@ export default defineComponent({
   &-right {
     transition: left var(--transition-time-02);
 
-    &__tool {
+    &__tool,
+    &__tags {
       &::after {
         position: absolute;
         bottom: 0;

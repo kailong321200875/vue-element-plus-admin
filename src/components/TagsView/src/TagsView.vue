@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>tagsView</div>
+  <div class="h-[var(--tags-view-height)]">tagsView</div>
 </template>

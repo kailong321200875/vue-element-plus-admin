@@ -4,6 +4,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useCache } from '@/hooks/web/useCache'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
+import { loginOutApi } from '@/api/login'
 
 const { t } = useI18n()
 
@@ -11,16 +12,19 @@ const { wsCache } = useCache()
 
 const { replace } = useRouter()
 
-function loginOut() {
+const loginOut = () => {
   ElMessageBox.confirm(t('common.loginOutMessage'), t('common.reminder'), {
     confirmButtonText: t('common.ok'),
     cancelButtonText: t('common.cancel'),
     type: 'warning'
   })
-    .then(() => {
-      wsCache.clear()
-      resetRouter() // 重置静态路由表
-      replace('/login')
+    .then(async () => {
+      const res = await loginOutApi().catch(() => {})
+      if (res) {
+        wsCache.clear()
+        resetRouter() // 重置静态路由表
+        replace('/login')
+      }
     })
     .catch(() => {})
 }

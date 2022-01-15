@@ -6,11 +6,10 @@ import { useCssVar } from '@vueuse/core'
 
 const primaryColor = useCssVar('--el-color-primary', document.documentElement)
 
-export function useNProgress() {
+export const useNProgress = () => {
   NProgress.configure({ showSpinner: false } as NProgressOptions)
-  initColor()
 
-  async function initColor() {
+  const initColor = async () => {
     await nextTick()
     const bar = document.getElementById('nprogress')?.getElementsByClassName('bar')[0] as ElRef
     if (bar) {
@@ -18,11 +17,13 @@ export function useNProgress() {
     }
   }
 
-  function start() {
+  initColor()
+
+  const start = () => {
     NProgress.start()
   }
 
-  function done() {
+  const done = () => {
     NProgress.done()
   }
 

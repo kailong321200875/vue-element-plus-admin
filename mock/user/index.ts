@@ -50,5 +50,17 @@ export default [
         }
       }
     }
+  },
+  // 退出接口
+  {
+    url: '/user/loginOut',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        code: result_code,
+        data: null
+      }
+    }
   }
 ] as MockMethod[]

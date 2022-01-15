@@ -8,7 +8,7 @@ const appStore = useAppStore()
 
 const size = computed(() => appStore.size)
 
-function initDark() {
+const initDark = () => {
   const isDarkTheme = isDark()
   appStore.setIsDark(isDarkTheme)
 }

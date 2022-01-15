@@ -62,7 +62,7 @@ export default defineComponent({
     })
 
     // 对表单赋值
-    function setValues(data: FormSetValuesType[]) {
+    const setValues = (data: FormSetValuesType[]) => {
       if (!data.length) return
       const formData: Recordable = {}
       for (const v of data) {
@@ -89,7 +89,7 @@ export default defineComponent({
     )
 
     // 渲染包裹标签，是否使用栅格布局
-    function renderWrap() {
+    const renderWrap = () => {
       const content = isCol ? (
         <ElRow gutter={20}>{renderFormItemWrap()}</ElRow>
       ) : (
@@ -99,7 +99,7 @@ export default defineComponent({
     }
 
     // 是否要渲染el-col
-    function renderFormItemWrap() {
+    const renderFormItemWrap = () => {
       // hidden属性表示隐藏，不做渲染
       return schema
         .filter((v) => !v.hidden)
@@ -119,7 +119,7 @@ export default defineComponent({
     }
 
     // 渲染formItem
-    function renderFormItem(item: FormSchema) {
+    const renderFormItem = (item: FormSchema) => {
       // 单独给只有options属性的组件做判断
       const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
       const slotsMap: Recordable = {
@@ -162,7 +162,7 @@ export default defineComponent({
     }
 
     // 渲染options
-    function renderOptions(item: FormSchema) {
+    const renderOptions = (item: FormSchema) => {
       switch (item.component) {
         case 'Select':
           const { renderSelectOptions } = useRenderSelect(slots)
@@ -181,7 +181,7 @@ export default defineComponent({
     }
 
     // 过滤传入Form组件的属性
-    function getFormBindValue() {
+    const getFormBindValue = () => {
       // 避免在标签上出现多余的属性
       const delKeys = ['schema', 'isCol', 'autoSetPlaceholder', 'isCustom', 'model']
       const props = { ...unref(getProps) }

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, unref } from 'vue'
-import { Icon } from '@/components/Icon'
 import { useAppStore } from '@/store/modules/app'
 
 const appStore = useAppStore()
 
 const collapse = computed(() => appStore.getCollapse)
 
-function toggleCollapse() {
+const toggleCollapse = () => {
   const collapsed = unref(collapse)
   appStore.setCollapse(!collapsed)
 }

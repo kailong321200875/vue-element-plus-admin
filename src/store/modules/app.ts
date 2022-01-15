@@ -66,6 +66,9 @@ export const useAppStore = defineStore({
     },
     getSizeMap(): ElememtPlusSzie[] {
       return this.sizeMap
+    },
+    getMobile(): boolean {
+      return this.mobile
     }
   },
   actions: {
@@ -128,10 +131,13 @@ export const useAppStore = defineStore({
     setSize(size: ElememtPlusSzie) {
       this.size = size
       wsCache.set('size', this.size)
+    },
+    setMobile(mobile: boolean) {
+      this.mobile = mobile
     }
   }
 })
 
-export function useAppStoreWithOut() {
+export const useAppStoreWithOut = () => {
   return useAppStore(store)
 }

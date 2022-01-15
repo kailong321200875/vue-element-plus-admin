@@ -17,7 +17,7 @@ interface PlaceholderMoel {
  * @returns 返回提示信息对象
  * @description 用于自动设置placeholder
  */
-export function setTextPlaceholder(schema: FormSchema): PlaceholderMoel {
+export const setTextPlaceholder = (schema: FormSchema): PlaceholderMoel => {
   const textMap = ['Input', 'Autocomplete', 'InputNumber', 'InputPassword']
   const selectMap = ['Select', 'TimePicker', 'DatePicker', 'TimeSelect', 'TimeSelect']
   if (textMap.includes(schema?.component as string)) {
@@ -53,7 +53,7 @@ export function setTextPlaceholder(schema: FormSchema): PlaceholderMoel {
  * @returns 返回栅格属性
  * @description 合并传入进来的栅格属性
  */
-export function setGridProp(col: ColProps = {}): ColProps {
+export const setGridProp = (col: ColProps = {}): ColProps => {
   const colProps: ColProps = {
     // 如果有span，代表用户优先级更高，所以不需要默认栅格
     ...(col.span
@@ -75,7 +75,7 @@ export function setGridProp(col: ColProps = {}): ColProps {
  * @param item 传入的组件属性
  * @returns 默认添加 clearable 属性
  */
-export function setComponentProps(item: FormSchema): Recordable {
+export const setComponentProps = (item: FormSchema): Recordable => {
   const notNeedClearable = ['ColorPicker']
   const componentProps: Recordable = notNeedClearable.includes(item.component as string)
     ? { ...item.componentProps }
@@ -94,11 +94,11 @@ export function setComponentProps(item: FormSchema): Recordable {
  * @param slotsProps 插槽属性
  * @param field 字段名
  */
-export function setItemComponentSlots(
+export const setItemComponentSlots = (
   slots: Slots,
   slotsProps: Recordable = {},
   field: string
-): Recordable {
+): Recordable => {
   const slotObj: Recordable = {}
   for (const key in slotsProps) {
     if (slotsProps[key]) {
@@ -118,7 +118,7 @@ export function setItemComponentSlots(
  * @returns FormMoel
  * @description 生成对应的formModel
  */
-export function initModel(schema: FormSchema[], formModel: Recordable) {
+export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   const model: Recordable = { ...formModel }
   schema.map((v) => {
     // 如果是hidden，就删除对应的值
@@ -138,7 +138,7 @@ export function initModel(schema: FormSchema[], formModel: Recordable) {
  * @param field 字段名
  * @returns 返回FormIiem插槽
  */
-export function setFormItemSlots(slots: Slots, field: string): Recordable {
+export const setFormItemSlots = (slots: Slots, field: string): Recordable => {
   const slotObj: Recordable = {}
   if (slots[`${field}-error`]) {
     slotObj['error'] = (data: Recordable) => {

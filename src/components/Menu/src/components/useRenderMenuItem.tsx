@@ -6,11 +6,11 @@ import { useRenderMenuTitle } from './useRenderMenuTitle'
 import { useDesign } from '@/hooks/web/useDesign'
 import { pathResolve } from '@/utils/routerHelper'
 
-export function useRenderMenuItem(
+export const useRenderMenuItem = (
   allRouters: AppRouteRecordRaw[] = [],
   menuMode: 'vertical' | 'horizontal'
-) {
-  function renderMenuItem(routers?: AppRouteRecordRaw[]) {
+) => {
+  const renderMenuItem = (routers?: AppRouteRecordRaw[]) => {
     return (routers || allRouters).map((v) => {
       const meta = (v.meta ?? {}) as RouteMeta
       if (!meta.hidden) {

@@ -2,7 +2,7 @@ import { i18n } from '@/plugins/vueI18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
 import { setHtmlPageLang } from '@/plugins/vueI18n/helper'
 
-function setI18nLanguage(locale: LocaleType) {
+const setI18nLanguage = (locale: LocaleType) => {
   const localeStore = useLocaleStoreWithOut()
 
   if (i18n.mode === 'legacy') {
@@ -16,10 +16,10 @@ function setI18nLanguage(locale: LocaleType) {
   setHtmlPageLang(locale)
 }
 
-export function useLocale() {
+export const useLocale = () => {
   // Switching the language will change the locale of useI18n
   // And submit to configuration modification
-  async function changeLocale(locale: LocaleType) {
+  const changeLocale = async (locale: LocaleType) => {
     const globalI18n = i18n.global
 
     const langModule = await import(`../../locales/${locale}.ts`)

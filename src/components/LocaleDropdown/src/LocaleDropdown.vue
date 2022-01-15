@@ -10,7 +10,7 @@ const langMap = computed(() => localeStore.getLocaleMap)
 
 const currentLang = computed(() => localeStore.getLocale)
 
-function setLang(lang: LocaleType) {
+const setLang = (lang: LocaleType) => {
   if (lang === unref(currentLang).lang) return
   // 需要重新加载页面让整个语言多初始化
   window.location.reload()
@@ -24,13 +24,7 @@ function setLang(lang: LocaleType) {
 
 <template>
   <ElDropdown trigger="click" @command="setLang">
-    <Icon
-      :size="18"
-      icon="ion:language-sharp"
-      color="var(--el-text-color-primary)"
-      class="cursor-pointer"
-      :class="$attrs.class"
-    />
+    <Icon :size="18" icon="ion:language-sharp" class="cursor-pointer" :class="$attrs.class" />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in langMap" :key="item.lang" :command="item.lang">

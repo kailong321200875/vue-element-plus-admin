@@ -1,6 +1,6 @@
 import { inject } from 'vue'
 
-export function useConfigGlobal() {
+export const useConfigGlobal = () => {
   const configGlobal = inject('configGlobal', {}) as ConfigGlobalTypes
 
   return {

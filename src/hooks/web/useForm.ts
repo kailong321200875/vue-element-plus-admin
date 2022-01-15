@@ -2,7 +2,7 @@ import type { Form, FormExpose } from '@/components/Form'
 import type { ElForm } from 'element-plus'
 import { ref, unref, nextTick } from 'vue'
 
-export function useForm() {
+export const useForm = () => {
   // From实例
   const formRef = ref<typeof Form & FormExpose>()
 
@@ -13,12 +13,12 @@ export function useForm() {
    * @param ref Form实例
    * @param elRef ElForm实例
    */
-  function register(ref: typeof Form & FormExpose, elRef: ComponentRef<typeof ElForm>) {
+  const register = (ref: typeof Form & FormExpose, elRef: ComponentRef<typeof ElForm>) => {
     formRef.value = ref
     elFormRef.value = elRef
   }
 
-  async function getForm() {
+  const getForm = async () => {
     const form = unref(formRef)
     if (!form) {
       console.error('The form is not registered. Please use the register method to register')

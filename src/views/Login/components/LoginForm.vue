@@ -111,7 +111,7 @@ watch(
 )
 
 // 登录
-async function signIn() {
+const signIn = async () => {
   const formRef = unref(elFormRef)
   const validate = await formRef?.validate()?.catch(() => {})
   if (validate) {

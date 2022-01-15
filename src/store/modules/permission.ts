@@ -91,6 +91,6 @@ export const usePermissionStore = defineStore({
   }
 })
 
-export function usePermissionStoreWithOut() {
+export const usePermissionStoreWithOut = () => {
   return usePermissionStore(store)
 }

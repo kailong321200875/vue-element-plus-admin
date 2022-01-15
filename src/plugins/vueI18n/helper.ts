@@ -1,3 +1,3 @@
-export function setHtmlPageLang(locale: LocaleType) {
+export const setHtmlPageLang = (locale: LocaleType) => {
   document.querySelector('html')?.setAttribute('lang', locale)
 }

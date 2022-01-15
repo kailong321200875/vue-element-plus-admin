@@ -7,7 +7,7 @@ const plugins = [ElLoading]
 
 const components = [ElScrollbar]
 
-export function setupElementPlus(app: App) {
+export const setupElementPlus = (app: App) => {
   plugins.forEach((plugin) => {
     app.use(plugin)
   })

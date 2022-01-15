@@ -4,7 +4,7 @@ import { useFullscreen } from '@vueuse/core'
 
 const { toggle, isFullscreen } = useFullscreen()
 
-function toggleFullscreen() {
+const toggleFullscreen = () => {
   toggle()
 }
 </script>

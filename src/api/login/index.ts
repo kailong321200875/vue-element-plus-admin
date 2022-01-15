@@ -9,3 +9,7 @@ export const loginApi = (data: UserLoginType) => {
     UserLoginType
   >)
 }
+
+export const loginOutApi = () => {
+  return request({ url: '/user/loginOut', method: 'get' })
+}

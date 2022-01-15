@@ -170,6 +170,6 @@ export const useTagsViewStore = defineStore({
   }
 })
 
-export function useTagsViewStoreWithOut() {
+export const useTagsViewStoreWithOut = () => {
   return useTagsViewStore(store)
 }

@@ -1,11 +1,6 @@
 import type { RouteMeta } from 'vue-router'
 import { ref, unref } from 'vue'
-
-interface TreeConfig {
-  id: string
-  children: string
-  pid: string
-}
+import { findPath } from '@/utils/tree'
 
 type OnlyOneChildType = AppRouteRecordRaw & { noShowingChildren?: boolean }
 
@@ -14,50 +9,15 @@ interface HasOneShowingChild {
   onlyOneChild?: OnlyOneChildType
 }
 
-const DEFAULT_CONFIG: TreeConfig = {
-  id: 'id',
-  children: 'children',
-  pid: 'pid'
-}
-
-const getConfig = (config: Partial<TreeConfig>) => Object.assign({}, DEFAULT_CONFIG, config)
-
-export function getAllParentPath<T = Recordable>(treeData: T[], path: string) {
+export const getAllParentPath = <T = Recordable>(treeData: T[], path: string) => {
   const menuList = findPath(treeData, (n) => n.path === path) as AppRouteRecordRaw[]
   return (menuList || []).map((item) => item.path)
 }
 
-export function findPath<T = any>(
-  tree: any,
-  func: Fn,
-  config: Partial<TreeConfig> = {}
-): T | T[] | null {
-  config = getConfig(config)
-  const path: T[] = []
-  const list = [...tree]
-  const visitedSet = new Set()
-  const { children } = config
-  while (list.length) {
-    const node = list[0]
-    if (visitedSet.has(node)) {
-      path.pop()
-      list.shift()
-    } else {
-      visitedSet.add(node)
-      node[children!] && list.unshift(...node[children!])
-      path.push(node)
-      if (func(node)) {
-        return path
-      }
-    }
-  }
-  return null
-}
-
-export function hasOneShowingChild(
+export const hasOneShowingChild = (
   children: AppRouteRecordRaw[] = [],
   parent: AppRouteRecordRaw
-): HasOneShowingChild {
+): HasOneShowingChild => {
   const onlyOneChild = ref<OnlyOneChildType>()
 
   const showingChildren = children.filter((v) => {

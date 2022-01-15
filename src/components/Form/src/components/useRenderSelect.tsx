@@ -2,9 +2,9 @@ import { ElOption, ElOptionGroup } from 'element-plus'
 import { getSlot } from '@/utils/tsxHelper'
 import { Slots } from 'vue'
 
-export function useRenderSelect(slots: Slots) {
+export const useRenderSelect = (slots: Slots) => {
   // 渲染 select options
-  function renderSelectOptions(item: FormSchema) {
+  const renderSelectOptions = (item: FormSchema) => {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
     return item?.componentProps?.options?.map((option) => {
@@ -25,7 +25,7 @@ export function useRenderSelect(slots: Slots) {
   }
 
   // 渲染 select option item
-  function renderSelectOptionItem(item: FormSchema, option: ComponentOptions) {
+  const renderSelectOptionItem = (item: FormSchema, option: ComponentOptions) => {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
     const valueAlias = item?.componentProps?.optionsAlias?.valueField

@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { computed, unref, ref, watch, nextTick } from 'vue'
 import { ElIcon } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 import Iconify from '@purge-icons/generated'
-
-const { getPrefixCls } = useDesign()
-
-const prefixCls = getPrefixCls('icon')
 
 const props = defineProps({
   // icon name
@@ -34,7 +29,7 @@ const getIconifyStyle = computed(() => {
   }
 })
 
-async function updateIcon(icon: string) {
+const updateIcon = async (icon: string) => {
   if (unref(isLocal)) return
 
   const el = unref(elRef)
@@ -66,7 +61,7 @@ watch(
 </script>
 
 <template>
-  <ElIcon :class="prefixCls" :size="size" :color="color">
+  <ElIcon class="v-icon" :size="size" :color="color">
     <svg v-if="isLocal" aria-hidden="true">
       <use :xlink:href="symbolId" />
     </svg>

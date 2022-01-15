@@ -121,7 +121,7 @@ const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
-export function resetRouter(): void {
+export const resetRouter = (): void => {
   const resetWhiteNameList = ['RedirectRoot', 'Redirect', 'Login', 'Root', 'Dashboard', 'Page404']
   router.getRoutes().forEach((route) => {
     const { name } = route
@@ -131,7 +131,7 @@ export function resetRouter(): void {
   })
 }
 
-export function setupRouter(app: App<Element>) {
+export const setupRouter = (app: App<Element>) => {
   app.use(router)
 }
 

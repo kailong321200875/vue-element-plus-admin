@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type { Router, RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
+import type { Router, RouteLocationNormalized, RouteRecordNormalized, RouteMeta } from 'vue-router'
 import { isUrl } from '@/utils/is'
 import { useCache } from '@/hooks/web/useCache'
 import { useAppStoreWithOut } from '@/store/modules/app'
@@ -23,7 +23,7 @@ export const getParentLayout = () => {
     })
 }
 
-export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
+export const getRawRoute = (route: RouteLocationNormalized): RouteLocationNormalized => {
   if (!route) return route
   const { matched, ...opt } = route
   return {
@@ -39,15 +39,16 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
 }
 
 // 前端控制路由生成
-export function generateRoutesFn1(
+export const generateRoutesFn1 = (
   routes: AppRouteRecordRaw[],
   basePath = '/'
-): AppRouteRecordRaw[] {
+): AppRouteRecordRaw[] => {
   const res: AppRouteRecordRaw[] = []
 
   for (const route of routes) {
+    const meta = route.meta as RouteMeta
     // skip some route
-    if (route.meta && route.meta.hidden && !route.meta.showMainRoute) {
+    if (meta.hidden && !meta.showMainRoute) {
       continue
     }
 
@@ -55,7 +56,7 @@ export function generateRoutesFn1(
 
     let onlyOneChild: Nullable<string> = null
 
-    if (route.children && route.children.length === 1 && !route.meta.alwaysShow) {
+    if (route.children && route.children.length === 1 && !meta.alwaysShow) {
       onlyOneChild = (
         isUrl(route.children[0].path)
           ? route.children[0].path
@@ -72,7 +73,7 @@ export function generateRoutesFn1(
         data = Object.assign({}, route)
       } else {
         const routePath = pathResolve(basePath, onlyOneChild || route.path)
-        if (routePath === item.path || (route.meta && route.meta.followRoute === item.path)) {
+        if (routePath === item.path || meta.followRoute === item.path) {
           data = Object.assign({}, route)
         }
       }
@@ -90,7 +91,7 @@ export function generateRoutesFn1(
 }
 
 // 后端控制路由生成
-export function generateRoutesFn2(routes: AppRouteRecordRaw[]): AppRouteRecordRaw[] {
+export const generateRoutesFn2 = (routes: AppRouteRecordRaw[]): AppRouteRecordRaw[] => {
   const res: AppRouteRecordRaw[] = []
 
   for (const route of routes) {
@@ -121,13 +122,13 @@ export function generateRoutesFn2(routes: AppRouteRecordRaw[]): AppRouteRecordRa
   return res
 }
 
-export function pathResolve(parentPath: string, path: string) {
+export const pathResolve = (parentPath: string, path: string) => {
   const childPath = path.startsWith('/') || !path ? path : `/${path}`
   return `${parentPath}${childPath}`
 }
 
 // 路由降级
-export function flatMultiLevelRoutes(routes: AppRouteRecordRaw[]) {
+export const flatMultiLevelRoutes = (routes: AppRouteRecordRaw[]) => {
   const modules: AppRouteRecordRaw[] = cloneDeep(routes)
   for (let index = 0; index < modules.length; index++) {
     const route = modules[index]
@@ -140,7 +141,7 @@ export function flatMultiLevelRoutes(routes: AppRouteRecordRaw[]) {
 }
 
 // 层级是否大于2
-function isMultipleRoute(route: AppRouteRecordRaw) {
+const isMultipleRoute = (route: AppRouteRecordRaw) => {
   if (!route || !Reflect.has(route, 'children') || !route.children?.length) {
     return false
   }
@@ -159,7 +160,7 @@ function isMultipleRoute(route: AppRouteRecordRaw) {
 }
 
 // 生成二级路由
-function promoteRouteLevel(route: AppRouteRecordRaw) {
+const promoteRouteLevel = (route: AppRouteRecordRaw) => {
   let router: Router | null = createRouter({
     routes: [route as unknown as RouteRecordNormalized],
     history: createWebHashHistory()
@@ -173,11 +174,11 @@ function promoteRouteLevel(route: AppRouteRecordRaw) {
 }
 
 // 添加所有子菜单
-function addToChildren(
+const addToChildren = (
   routes: RouteRecordNormalized[],
   children: AppRouteRecordRaw[],
   routeModule: AppRouteRecordRaw
-) {
+) => {
   for (let index = 0; index < children.length; index++) {
     const child = children[index]
     const route = routes.find((item) => item.name === child.name)
