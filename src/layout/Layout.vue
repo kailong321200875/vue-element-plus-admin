@@ -1,6 +1,5 @@
 <script lang="tsx">
-import { computed, defineComponent, KeepAlive } from 'vue'
-import { useTagsViewStore } from '@/store/modules/tagsView'
+import { computed, defineComponent } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { Menu } from '@/components/Menu'
 import { Collapse } from '@/components/Collapse'
@@ -10,12 +9,7 @@ import { UserInfo } from '@/components/UserInfo'
 import { Screenfull } from '@/components/Screenfull'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { TagsView } from '@/components/TagsView'
-
-const tagsViewStore = useTagsViewStore()
-
-const getCaches = computed((): string[] => {
-  return tagsViewStore.getCachedViews
-})
+import AppView from './components/AppView.vue'
 
 const appStore = useAppStore()
 
@@ -71,18 +65,10 @@ export default defineComponent({
               <UserInfo class="header__tigger"></UserInfo>
             </div>
           </div>
-          <div class="v-app-right__tags relative">
+          <div class="v-app-right__tags-view relative">
             <TagsView></TagsView>
           </div>
-          <router-view>
-            {{
-              default: ({ Component, route }) => (
-                <KeepAlive include={getCaches.value}>
-                  <Component is={Component} key={route.fullPath}></Component>
-                </KeepAlive>
-              )
-            }}
-          </router-view>
+          <AppView></AppView>
         </div>
       </section>
     )
@@ -111,7 +97,7 @@ export default defineComponent({
     transition: left var(--transition-time-02);
 
     &__tool,
-    &__tags {
+    &__tags-view {
       &::after {
         position: absolute;
         bottom: 0;

@@ -20,7 +20,8 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
       }
     ],
     meta: {
-      hidden: true
+      hidden: true,
+      noTagsView: true
     }
   },
   {
@@ -107,7 +108,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Icons',
         meta: {
           title: '图标',
-          icon: 'carbon:skill-level-advanced'
+          icon: 'carbon:skill-level-advanced',
+          affix: true
         }
       }
     ]

@@ -11,7 +11,13 @@ export default {
     reminder: '温馨提示',
     loginOutMessage: '是否退出本系统？',
     ok: '确定',
-    cancel: '取消'
+    cancel: '取消',
+    reload: '重新加载',
+    closeTab: '关闭标签页',
+    closeTheLeftTab: '关闭左侧标签页',
+    closeTheRightTab: '关闭右侧标签页',
+    closeOther: '关闭其他标签页',
+    closeAll: '关闭全部标签页'
   },
   size: {
     default: '默认',

@@ -129,11 +129,10 @@ const signIn = async () => {
       await permissionStore.generateRoutes().catch(() => {})
 
       permissionStore.getAddRouters.forEach((route) => {
-        console.log(route)
         addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
       })
       permissionStore.setIsAddRouters(true)
-      push({ path: redirect.value || '/level' })
+      push({ path: redirect.value || permissionStore.addRouters[0].path })
     }
   }
 }

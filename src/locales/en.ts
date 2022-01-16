@@ -11,7 +11,13 @@ export default {
     reminder: 'Reminder',
     loginOutMessage: 'Exit the system？',
     ok: 'OK',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    reload: 'Reload current',
+    closeTab: 'Close current',
+    closeTheLeftTab: 'Close left',
+    closeTheRightTab: 'Close right',
+    closeOther: 'Close other',
+    closeAll: 'Close all'
   },
   size: {
     default: 'Default',

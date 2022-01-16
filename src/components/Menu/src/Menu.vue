@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, unref } from 'vue'
 import { ElMenu, ElScrollbar } from 'element-plus'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -33,7 +33,7 @@ export default defineComponent({
     const collapse = computed(() => appStore.getCollapse)
 
     const activeMenu = computed(() => {
-      const { meta, path } = currentRoute.value
+      const { meta, path } = unref(currentRoute)
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu as string
@@ -62,9 +62,9 @@ export default defineComponent({
       >
         <ElScrollbar>
           <ElMenu
-            defaultActive={activeMenu.value}
-            mode={menuMode.value}
-            collapse={collapse.value}
+            defaultActive={unref(activeMenu)}
+            mode={unref(menuMode)}
+            collapse={unref(collapse)}
             backgroundColor="var(--left-menu-bg-color)"
             textColor="var(--left-menu-text-color)"
             activeTextColor="var(--left-menu-text-active-color)"
@@ -72,7 +72,7 @@ export default defineComponent({
           >
             {{
               default: () => {
-                const { renderMenuItem } = useRenderMenuItem(routers.value, menuMode.value)
+                const { renderMenuItem } = useRenderMenuItem(unref(routers), unref(menuMode))
                 return renderMenuItem()
               }
             }}

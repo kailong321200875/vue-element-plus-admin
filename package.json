@@ -84,6 +84,7 @@
     "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-style-import": "^1.4.1",
     "vite-plugin-svg-icons": "^1.1.0",
+    "vite-plugin-vue-setup-extend": "^0.3.0",
     "vite-plugin-windicss": "^1.6.2",
     "vue-tsc": "^0.30.2",
     "windicss": "^3.4.2",

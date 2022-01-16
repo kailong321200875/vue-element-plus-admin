@@ -1,5 +1,356 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, watch, computed, unref, ref, nextTick } from 'vue'
+import { useRouter } from 'vue-router'
+import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { usePermissionStore } from '@/store/modules/permission'
+import { useTagsViewStore } from '@/store/modules/tagsView'
+import { useI18n } from '@/hooks/web/useI18n'
+import { filterAffixTags } from './helper'
+import { ContextMenu } from '@/components/ContextMenu'
+
+const { t } = useI18n()
+
+const { currentRoute, push, replace } = useRouter()
+
+const permissionStore = usePermissionStore()
+
+const routers = computed(() => permissionStore.getRouters)
+
+const tagsViewStore = useTagsViewStore()
+
+const visitedViews = computed(() => tagsViewStore.getVisitedViews)
+
+const affixTagArr = ref<RouteLocationNormalizedLoaded[]>([])
+
+// 初始化tag
+const initTags = () => {
+  affixTagArr.value = filterAffixTags(unref(routers))
+  for (const tag of unref(affixTagArr)) {
+    // Must have tag name
+    if (tag.name) {
+      tagsViewStore.addVisitedView(tag)
+    }
+  }
+}
+
+const selectedTag = ref<RouteLocationNormalizedLoaded>()
+
+// 新增tag
+const addTags = () => {
+  const { name } = unref(currentRoute)
+  if (name) {
+    selectedTag.value = unref(currentRoute)
+    tagsViewStore.addView(unref(currentRoute))
+  }
+  return false
+}
+
+// 关闭选中的tag
+const closeSelectedTag = (view: RouteLocationNormalizedLoaded) => {
+  if (view?.meta?.affix) return
+  tagsViewStore.delView(view)
+  if (isActive(view)) {
+    toLastView()
+  }
+}
+
+// 关闭全部
+const closeAllTags = () => {
+  tagsViewStore.delAllViews()
+  toLastView()
+}
+
+// 关闭其他
+const closeOthersTags = () => {
+  tagsViewStore.delOthersViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
+}
+
+// 重新加载
+const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
+  if (!view) return
+  tagsViewStore.delCachedView()
+  const { fullPath } = view
+  await nextTick()
+  replace({
+    path: '/redirect' + fullPath
+  })
+}
+
+// 关闭左侧
+const closeLeftTags = () => {
+  tagsViewStore.delLeftViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
+}
+
+// 关闭右侧
+const closeRightTags = () => {
+  tagsViewStore.delRightViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
+}
+
+const toLastView = () => {
+  const visitedViews = tagsViewStore.getVisitedViews
+  const latestView = visitedViews.slice(-1)[0]
+  if (latestView) {
+    push(latestView)
+  } else {
+    if (
+      unref(currentRoute).path === permissionStore.getAddRouters[0].path ||
+      unref(currentRoute).path === permissionStore.getAddRouters[0].redirect
+    ) {
+      addTags()
+      return
+    }
+    // You can set another route
+    push(permissionStore.getAddRouters[0].path)
+  }
+}
+
+const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
+  return route.path === unref(currentRoute).path
+}
+
+onMounted(() => {
+  initTags()
+  addTags()
+})
+
+watch(
+  () => currentRoute.value,
+  () => {
+    addTags()
+    // moveToCurrentTag()
+  }
+)
+</script>
 
 <template>
-  <div class="h-[var(--tags-view-height)]">tagsView</div>
+  <div class="v-tags-view h-[var(--tags-view-height)] flex w-full">
+    <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
+      <Icon icon="ant-design:left-outlined" color="#333" />
+    </span>
+    <div class="overflow-hidden flex-1">
+      <ElScrollbar>
+        <div class="flex h-[var(--tags-view-height)]">
+          <ContextMenu
+            :schema="[
+              {
+                icon: 'ant-design:sync-outlined',
+                label: t('common.reload'),
+                disabled: selectedTag?.fullPath !== item.fullPath,
+                command: () => {
+                  refreshSelectedTag(item)
+                }
+              },
+              {
+                icon: 'ant-design:close-outlined',
+                label: t('common.closeTab'),
+                command: () => {
+                  closeSelectedTag(item)
+                }
+              },
+              {
+                divided: true,
+                icon: 'ant-design:vertical-right-outlined',
+                label: t('common.closeTheLeftTab'),
+                disabled:
+                  !!visitedViews?.length &&
+                  (item.fullPath === visitedViews[0].fullPath ||
+                    selectedTag?.fullPath !== item.fullPath),
+                command: () => {
+                  closeLeftTags()
+                }
+              },
+              {
+                icon: 'ant-design:vertical-left-outlined',
+                label: t('common.closeTheRightTab'),
+                disabled:
+                  !!visitedViews?.length &&
+                  (item.fullPath === visitedViews[visitedViews.length - 1].fullPath ||
+                    selectedTag?.fullPath !== item.fullPath),
+                command: () => {
+                  closeRightTags()
+                }
+              },
+              {
+                divided: true,
+                icon: 'ant-design:tag-outlined',
+                label: t('common.closeOther'),
+                disabled: selectedTag?.fullPath !== item.fullPath,
+                command: () => {
+                  closeOthersTags()
+                }
+              },
+              {
+                icon: 'ant-design:line-outlined',
+                label: t('common.closeAll'),
+                command: () => {
+                  closeAllTags()
+                }
+              }
+            ]"
+            v-for="item in visitedViews"
+            :key="item.fullPath"
+            :class="[
+              'v-tags-view__item',
+              {
+                'v-tags-view__item--affix': item?.meta?.affix,
+                'is-active': isActive(item)
+              }
+            ]"
+          >
+            <router-link :to="{ ...item }" custom #default="{ navigate }">
+              <div @click="navigate" class="h-full">
+                {{ t(item?.meta?.title as string) }}
+                <Icon
+                  class="v-tags-view__item--close"
+                  color="#333"
+                  icon="ant-design:close-outlined"
+                  :size="12"
+                  @click.prevent.stop="closeSelectedTag(item)"
+                />
+              </div>
+            </router-link>
+          </ContextMenu>
+        </div>
+      </ElScrollbar>
+    </div>
+    <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
+      <Icon icon="ant-design:right-outlined" color="#333" />
+    </span>
+    <span
+      class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer"
+      @click="refreshSelectedTag(selectedTag)"
+    >
+      <Icon icon="ant-design:reload-outlined" color="#333" />
+    </span>
+    <ContextMenu
+      trigger="click"
+      :schema="[
+        {
+          icon: 'ant-design:sync-outlined',
+          label: t('common.reload'),
+          command: () => {
+            refreshSelectedTag(selectedTag)
+          }
+        },
+        {
+          icon: 'ant-design:close-outlined',
+          label: t('common.closeTab')
+        },
+        {
+          divided: true,
+          icon: 'ant-design:vertical-right-outlined',
+          label: t('common.closeTheLeftTab'),
+          disabled: !!visitedViews?.length && selectedTag?.fullPath === visitedViews[0].fullPath,
+          command: () => {
+            closeLeftTags()
+          }
+        },
+        {
+          icon: 'ant-design:vertical-left-outlined',
+          label: t('common.closeTheRightTab'),
+          disabled:
+            !!visitedViews?.length &&
+            selectedTag?.fullPath === visitedViews[visitedViews.length - 1].fullPath,
+          command: () => {
+            closeRightTags()
+          }
+        },
+        {
+          divided: true,
+          icon: 'ant-design:tag-outlined',
+          label: t('common.closeOther'),
+          command: () => {
+            closeOthersTags()
+          }
+        },
+        {
+          icon: 'ant-design:line-outlined',
+          label: t('common.closeAll'),
+          command: () => {
+            closeAllTags()
+          }
+        }
+      ]"
+    >
+      <span
+        class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer block"
+      >
+        <Icon icon="ant-design:down-outlined" color="#333" />
+      </span>
+    </ContextMenu>
+  </div>
 </template>
+
+<style lang="less" scoped>
+@prefix-cls: ~'@{namespace}-tags-view';
+
+.@{prefix-cls} {
+  &__tool {
+    position: relative;
+
+    &:hover {
+      :deep(span) {
+        color: var(--el-color-black) !important;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--top-tool-border-color);
+      content: '';
+    }
+  }
+
+  &__item + &__item {
+    margin-left: 4px;
+  }
+
+  &__item {
+    position: relative;
+    top: 1px;
+    height: calc(~'100% - 4px');
+    padding: 0 15px;
+    font-size: 12px;
+    line-height: calc(~'var( - -tags-view-height) - 4px');
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+
+    &--close {
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      display: none;
+      transform: translate(0, -50%);
+    }
+    &:not(.@{prefix-cls}__item--affix):hover {
+      .@{prefix-cls}__item--close {
+        display: block;
+      }
+    }
+  }
+
+  &__item:not(.@{prefix-cls}__item--affix) {
+    padding-right: 25px;
+  }
+
+  &__item:not(.is-active) {
+    &:hover {
+      color: var(--el-color-primary);
+    }
+  }
+
+  &__item.is-active {
+    color: var(--el-color-white);
+    background-color: var(--el-color-primary);
+    .@{prefix-cls}__item--close {
+      :deep(span) {
+        color: var(--el-color-white) !important;
+      }
+    }
+  }
+}
+</style>
