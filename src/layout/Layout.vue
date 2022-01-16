@@ -9,6 +9,8 @@ import { UserInfo } from '@/components/UserInfo'
 import { Screenfull } from '@/components/Screenfull'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { TagsView } from '@/components/TagsView'
+import { Backtop } from '@/components/Backtop'
+import { Setting } from '@/components/Setting'
 import AppView from './components/AppView.vue'
 
 const appStore = useAppStore()
@@ -70,6 +72,10 @@ export default defineComponent({
           </div>
           <AppView></AppView>
         </div>
+
+        <Backtop></Backtop>
+
+        <Setting></Setting>
       </section>
     )
   }

@@ -7,6 +7,7 @@ import type { LayoutType } from '@/config/app'
 import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
+import { Logo } from '@/components/Logo'
 
 export default defineComponent({
   name: 'Menu',
@@ -53,14 +54,15 @@ export default defineComponent({
       <div
         class={[
           'v-menu',
-          'h-[100%] overflow-hidden z-100',
+          'h-[100%] overflow-hidden z-100 flex-col',
           appStore.getCollapse
             ? 'w-[var(--left-menu-min-width)]'
             : 'w-[var(--left-menu-max-width)]',
           'bg-[var(--left-menu-bg-color)]'
         ]}
       >
-        <ElScrollbar>
+        <Logo></Logo>
+        <ElScrollbar class={[{ '!h-[calc(100%-var(--top-tool-height))]': true }]}>
           <ElMenu
             defaultActive={unref(activeMenu)}
             mode={unref(menuMode)}

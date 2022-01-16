@@ -199,7 +199,7 @@ watch(
               }
             ]"
           >
-            <router-link :to="{ ...item }" custom #default="{ navigate }">
+            <router-link :to="{ ...item }" custom v-slot="{ navigate }">
               <div @click="navigate" class="h-full flex justify-center items-center">
                 {{ t(item?.meta?.title as string) }}
                 <Icon
@@ -277,7 +277,7 @@ watch(
       <span
         class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer block"
       >
-        <Icon icon="ant-design:down-outlined" color="#333" />
+        <Icon icon="ant-design:setting-outlined" color="#333" />
       </span>
     </ContextMenu>
   </div>

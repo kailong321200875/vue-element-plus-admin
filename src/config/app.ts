@@ -39,7 +39,7 @@ export const appModules: AppState = {
   showScreenfull: true, // 是否全屏按钮
   showUserInfo: true, // 是否显示用户头像
   title: 'butterfly-admin', // 标题
-  logoTitle: 'butterfly-admin', // logo标题
+  logoTitle: 'ButterflyAdmin', // logo标题
   userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
   showBackTop: true, // 是否显示回到顶部

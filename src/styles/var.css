@@ -19,6 +19,13 @@
   --left-menu-collapse-bg-active-color: var(--el-color-primary);
   /* left menu end */
 
+  /* logo start */
+  --logo-height: 50px;
+
+  --logo-title-text-color: #fff;
+  /* logo end */
+
+  /* header start */
   --top-tool-height: 40px;
 
   --top-tool-p-x: 0;
@@ -26,6 +33,9 @@
   --top-tool-border-color: #eee;
 
   --tags-view-height: 40px;
+  /* header start */
+
+  --app-content-padding: 20px;
 
   --transition-time-02: 0.2s;
 }
