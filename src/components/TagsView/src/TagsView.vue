@@ -86,6 +86,7 @@ const closeRightTags = () => {
   tagsViewStore.delRightViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
 }
 
+// 跳转到最后一个
 const toLastView = () => {
   const visitedViews = tagsViewStore.getVisitedViews
   const latestView = visitedViews.slice(-1)[0]
@@ -104,6 +105,7 @@ const toLastView = () => {
   }
 }
 
+// 是否是当前tag
 const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
   return route.path === unref(currentRoute).path
 }
@@ -198,7 +200,7 @@ watch(
             ]"
           >
             <router-link :to="{ ...item }" custom #default="{ navigate }">
-              <div @click="navigate" class="h-full">
+              <div @click="navigate" class="h-full flex justify-center items-center">
                 {{ t(item?.meta?.title as string) }}
                 <Icon
                   class="v-tags-view__item--close"
@@ -311,7 +313,7 @@ watch(
 
   &__item {
     position: relative;
-    top: 1px;
+    top: 2px;
     height: calc(~'100% - 4px');
     padding: 0 15px;
     font-size: 12px;
