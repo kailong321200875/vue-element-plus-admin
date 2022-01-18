@@ -19,6 +19,24 @@ export default {
     closeOther: 'Close other',
     closeAll: 'Close all'
   },
+  setting: {
+    projectSetting: 'Project setting',
+    theme: 'Theme',
+    layout: 'Layout',
+    systemTheme: 'System theme',
+    menuTheme: 'Menu theme',
+    interfaceDisplay: 'Interface display',
+    breadcrumb: 'Breadcrumb',
+    breadcrumbIcon: 'Breadcrumb icon',
+    collapseMenu: 'Collapse menu',
+    hamburgerIcon: 'Hamburger icon',
+    screenfullIcon: 'Screenfull icon',
+    sizeIcon: 'Size icon',
+    localeIcon: 'Locale icon',
+    tagsView: 'Tags view',
+    logo: 'Logo',
+    greyMode: 'Grey mode'
+  },
   size: {
     default: 'Default',
     large: 'Large',
@@ -45,9 +63,6 @@ export default {
     menu111: 'Menu1-1-1',
     menu12: 'Menu1-2',
     menu2: 'Menu2'
-  },
-  mock: {
-    loginErr: 'Wrong account or password'
   },
   formDemo: {
     input: 'Input',

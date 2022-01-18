@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, onMounted, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 
 const appStore = useAppStore()
@@ -11,6 +11,10 @@ const title = computed(() => appStore.getLogoTitle)
 const layout = computed(() => appStore.getLayout)
 
 const collapse = computed(() => appStore.getCollapse)
+
+onMounted(() => {
+  if (unref(collapse)) show.value = false
+})
 
 watch(
   () => collapse.value,
@@ -37,7 +41,7 @@ watch(
       {
         'v-logo__Top': layout !== 'classic'
       },
-      'flex h-[var(--logo-height)] items-center cursor-pointer pl-8px'
+      'flex h-[var(--logo-height)] items-center cursor-pointer pl-8px relative'
     ]"
     to="/"
   >
@@ -50,3 +54,18 @@ watch(
     }}</div>
   </router-link>
 </template>
+
+<style lang="less" scoped>
+@prefix-cls: ~'@{namespace}-logo';
+
+.@{prefix-cls} {
+  &:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--logo-border-color);
+    content: '';
+  }
+}
+</style>

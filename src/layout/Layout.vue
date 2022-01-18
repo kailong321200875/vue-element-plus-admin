@@ -15,9 +15,29 @@ import AppView from './components/AppView.vue'
 
 const appStore = useAppStore()
 
+// 是否是移动端
 const mobile = computed(() => appStore.getMobile)
 
+// 面包屑
+const breadcrumb = computed(() => appStore.getBreadcrumb)
+
+// 菜单折叠
 const collapse = computed(() => appStore.getCollapse)
+
+// 折叠图标
+const hamburger = computed(() => appStore.getHamburger)
+
+// 全屏图标
+const screenfull = computed(() => appStore.getScreenfull)
+
+// 尺寸图标
+const size = computed(() => appStore.getSize)
+
+// 多语言图标
+const locale = computed(() => appStore.getLocale)
+
+// 标签页
+const tagsView = computed(() => appStore.getTagsView)
 
 const classSuffix = computed(() => appStore.getLayout)
 
@@ -57,19 +77,22 @@ export default defineComponent({
             ]}
           >
             <div class="h-full flex items-center">
-              <Collapse class="header__tigger"></Collapse>
-              <Breadcrumb class="<md:hidden"></Breadcrumb>
+              {hamburger.value ? <Collapse class="header__tigger"></Collapse> : undefined}
+              {breadcrumb.value ? <Breadcrumb class="<md:hidden"></Breadcrumb> : undefined}
             </div>
             <div class="h-full flex items-center">
-              <Screenfull class="header__tigger"></Screenfull>
-              <SizeDropdown class="header__tigger"></SizeDropdown>
-              <LocaleDropdown class="header__tigger"></LocaleDropdown>
+              {screenfull.value ? <Screenfull class="header__tigger"></Screenfull> : undefined}
+              {size.value ? <SizeDropdown class="header__tigger"></SizeDropdown> : undefined}
+              {locale.value ? <LocaleDropdown class="header__tigger"></LocaleDropdown> : undefined}
               <UserInfo class="header__tigger"></UserInfo>
             </div>
           </div>
-          <div class="v-app-right__tags-view relative">
-            <TagsView></TagsView>
-          </div>
+          {tagsView.value ? (
+            <div class="v-app-right__tags-view relative">
+              <TagsView></TagsView>
+            </div>
+          ) : undefined}
+
           <AppView></AppView>
         </div>
 

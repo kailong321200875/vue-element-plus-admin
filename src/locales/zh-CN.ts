@@ -19,6 +19,24 @@ export default {
     closeOther: '关闭其他标签页',
     closeAll: '关闭全部标签页'
   },
+  setting: {
+    projectSetting: '项目配置',
+    theme: '主题',
+    layout: '布局',
+    systemTheme: '系统主题',
+    menuTheme: '菜单主题',
+    interfaceDisplay: '界面显示',
+    breadcrumb: '面包屑',
+    breadcrumbIcon: '面包屑图标',
+    collapseMenu: '折叠菜单',
+    hamburgerIcon: '折叠图标',
+    screenfullIcon: '全屏图标',
+    sizeIcon: '尺寸图标',
+    localeIcon: '多语言图标',
+    tagsView: '标签页',
+    logo: '标志',
+    greyMode: '灰色模式'
+  },
   size: {
     default: '默认',
     large: '大',
@@ -45,9 +63,6 @@ export default {
     menu111: '菜单1-1-1',
     menu12: '菜单1-2',
     menu2: '菜单2'
-  },
-  mock: {
-    loginErr: '账号或密码错误'
   },
   formDemo: {
     input: '输入框',

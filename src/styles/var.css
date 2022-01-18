@@ -2,6 +2,8 @@
   --dark-bg-color: #293146;
 
   /* left menu start */
+  --left-menu-border-color: 'inherit';
+
   --left-menu-max-width: 200px;
 
   --left-menu-min-width: 64px;
@@ -23,10 +25,12 @@
   --logo-height: 50px;
 
   --logo-title-text-color: #fff;
+
+  --logo-border-color: 'inherit';
   /* logo end */
 
   /* header start */
-  --top-tool-height: 40px;
+  --top-tool-height: var(--logo-height);
 
   --top-tool-p-x: 0;
 

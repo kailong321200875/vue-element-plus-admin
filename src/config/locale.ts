@@ -8,14 +8,13 @@ export const elLocaleMap = {
   'zh-CN': zhCn,
   en: en
 }
-
 export interface LocaleState {
-  locale: LocaleDropdownType
+  currentLocale: LocaleDropdownType
   localeMap: LocaleDropdownType[]
 }
 
 export const localeModules: LocaleState = {
-  locale: {
+  currentLocale: {
     lang: wsCache.get('lang') || 'zh-CN',
     elLocale: elLocaleMap[wsCache.get('lang') || 'zh-CN']
   },

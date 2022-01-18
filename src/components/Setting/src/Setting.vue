@@ -1,8 +1,64 @@
 <script setup lang="ts">
-import { ElDrawer } from 'element-plus'
-import { ref } from 'vue'
+import { ElDrawer, ElDivider } from 'element-plus'
+import { ref, unref } from 'vue'
+import { useI18n } from '@/hooks/web/useI18n'
+import { ThemeSwitch } from '@/components/ThemeSwitch'
+import { ColorRadioPicker } from '@/components/ColorRadioPicker'
+import { colorIsDark, lighten, hexToRGB } from '@/utils/color'
+import { useCssVar } from '@vueuse/core'
+import { useAppStore } from '@/store/modules/app'
+import { trim, setCssVar } from '@/utils'
+import InterfaceDisplay from './components/InterfaceDisplay.vue'
+
+const appStore = useAppStore()
+
+const { t } = useI18n()
 
 const drawer = ref(false)
+
+// 主题色相关
+const systemTheme = ref(appStore.getTheme.elColorPrimary)
+
+const setSystemTheme = (color: string) => {
+  setCssVar('--el-color-primary', color)
+  appStore.setTheme({ elColorPrimary: color })
+  const leftMenuBgColor = useCssVar('--left-menu-bg-color', document.documentElement)
+  setMenuTheme(trim(unref(leftMenuBgColor)))
+}
+
+// 菜单主题相关
+const menuTheme = ref(appStore.getTheme.leftMenuBgColor)
+
+const setMenuTheme = (color: string) => {
+  const primaryColor = useCssVar('--el-color-primary', document.documentElement)
+  const isDarkColor = colorIsDark(color)
+  const theme: Recordable = {
+    // 左侧菜单边框颜色
+    leftMenuBorderColor: isDarkColor ? 'inherit' : '#eee',
+    // 左侧菜单背景颜色
+    leftMenuBgColor: color,
+    // 左侧菜单浅色背景颜色
+    leftMenuBgLightColor: isDarkColor ? lighten(color!, 6) : color,
+    // 左侧菜单选中背景颜色
+    leftMenuBgActiveColor: isDarkColor
+      ? 'var(--el-color-primary)'
+      : hexToRGB(unref(primaryColor), 0.1),
+    // 左侧菜单收起选中背景颜色
+    leftMenuCollapseBgActiveColor: isDarkColor
+      ? 'var(--el-color-primary)'
+      : hexToRGB(unref(primaryColor), 0.1),
+    // 左侧菜单字体颜色
+    leftMenuTextColor: isDarkColor ? '#bfcbd9' : '#333',
+    // 左侧菜单选中字体颜色
+    leftMenuTextActiveColor: isDarkColor ? '#fff' : 'var(--el-color-primary)',
+    // logo字体颜色
+    logoTitleTextColor: isDarkColor ? '#fff' : 'inherit',
+    // logo边框颜色
+    logoBorderColor: isDarkColor ? 'inherit' : '#eee'
+  }
+  appStore.setTheme(theme)
+  appStore.setCssVarTheme()
+}
 </script>
 
 <template>
@@ -13,7 +69,58 @@ const drawer = ref(false)
     <Icon icon="ant-design:setting-outlined" color="#fff" />
   </div>
 
-  <ElDrawer v-model="drawer" :with-header="false" direction="rtl" size="300px">ddd</ElDrawer>
+  <ElDrawer v-model="drawer" direction="rtl" size="350px">
+    <template #title>
+      <span class="text-16px font-700">{{ t('setting.projectSetting') }}</span>
+    </template>
+
+    <div class="text-center">
+      <!-- 主题 -->
+      <ElDivider>{{ t('setting.theme') }}</ElDivider>
+      <ThemeSwitch />
+
+      <!-- 布局 -->
+      <ElDivider>{{ t('setting.layout') }}</ElDivider>
+
+      <!-- 系统主题 -->
+      <ElDivider>{{ t('setting.systemTheme') }}</ElDivider>
+      <ColorRadioPicker
+        v-model="systemTheme"
+        :schema="[
+          '#409eff',
+          '#009688',
+          '#536dfe',
+          '#ff5c93',
+          '#ee4f12',
+          '#0096c7',
+          '#9c27b0',
+          '#ff9800'
+        ]"
+        @change="setSystemTheme"
+      />
+
+      <!-- 菜单主题 -->
+      <ElDivider>{{ t('setting.menuTheme') }}</ElDivider>
+      <ColorRadioPicker
+        v-model="menuTheme"
+        :schema="[
+          '#fff',
+          '#001529',
+          '#212121',
+          '#273352',
+          '#191b24',
+          '#383f45',
+          '#001628',
+          '#344058'
+        ]"
+        @change="setMenuTheme"
+      />
+    </div>
+
+    <!-- 界面显示 -->
+    <ElDivider>{{ t('setting.interfaceDisplay') }}</ElDivider>
+    <InterfaceDisplay />
+  </ElDrawer>
 </template>
 
 <style lang="less" scoped>

@@ -5,47 +5,68 @@ const { wsCache } = useCache()
 export type LayoutType = 'classic' | 'leftTop' | 'top' | 'test'
 
 export interface AppState {
+  breadcrumb: boolean
+  breadcrumbIcon: boolean
   collapse: boolean
-  showTags: boolean
-  showLogo: boolean
-  showNavbar: boolean
-  fixedHeader: boolean
+  hamburger: boolean
+  screenfull: boolean
+  size: boolean
+  locale: boolean
+  tagsView: boolean
+  logo: boolean
+  greyMode: boolean
+
   layout: LayoutType
-  showBreadcrumb: boolean
-  showHamburger: boolean
-  showScreenfull: boolean
-  showUserInfo: boolean
   title: string
   logoTitle: string
   userInfo: string
-  greyMode: boolean
-  showBackTop: boolean
-  showMenuTab: boolean
   isDark: boolean
-  size: ElememtPlusSzie
+  currentSize: ElememtPlusSzie
   sizeMap: ElememtPlusSzie[]
   mobile: boolean
+  theme: Recordable
 }
 
 export const appModules: AppState = {
-  collapse: false, // 菜单栏是否栏缩收
-  showLogo: true, // 是否显示logo
-  showTags: true, // 是否显示标签栏
-  showNavbar: true, // 是否显示navbar
-  fixedHeader: true, // 是否固定header
+  breadcrumb: true, // 面包屑
+  breadcrumbIcon: true, // 面包屑图标
+  collapse: false, // 折叠菜单
+  hamburger: true, // 折叠图标
+  screenfull: true, // 全屏图标
+  size: true, // 尺寸图标
+  locale: true, // 多语言图标
+  tagsView: true, // 标签页
+  logo: true, // logo
+  greyMode: false, // 是否开始灰色模式，用于特殊悼念日
+
   layout: 'classic', // layout布局
-  showBreadcrumb: true, // 是否显示面包屑
-  showHamburger: true, // 是否显示侧边栏缩收按钮
-  showScreenfull: true, // 是否全屏按钮
-  showUserInfo: true, // 是否显示用户头像
   title: 'butterfly-admin', // 标题
   logoTitle: 'ButterflyAdmin', // logo标题
   userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
-  greyMode: false, // 是否开始灰色模式，用于特殊悼念日
-  showBackTop: true, // 是否显示回到顶部
-  showMenuTab: false, // 是否固定一级菜单
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
-  size: wsCache.get('default') || 'default', // 组件尺寸
+  currentSize: wsCache.get('default') || 'default', // 组件尺寸
   sizeMap: ['default', 'large', 'small'],
-  mobile: false // 是否是移动端
+  mobile: false, // 是否是移动端
+  theme: wsCache.get('theme') || {
+    // 主题色
+    elColorPrimary: '#409eff',
+    // 左侧菜单边框颜色
+    leftMenuBorderColor: 'inherit',
+    // 左侧菜单背景颜色
+    leftMenuBgColor: '#001529',
+    // 左侧菜单浅色背景颜色
+    leftMenuBgLightColor: '#0f2438',
+    // 左侧菜单选中背景颜色
+    leftMenuBgActiveColor: 'var(--el-color-primary)',
+    // 左侧菜单收起选中背景颜色
+    leftMenuCollapseBgActiveColor: 'var(--el-color-primary)',
+    // 左侧菜单字体颜色
+    leftMenuTextColor: '#bfcbd9',
+    // 左侧菜单选中字体颜色
+    leftMenuTextActiveColor: '#fff',
+    // logo字体颜色
+    logoTitleTextColor: '#fff',
+    // logo边框颜色
+    logoBorderColor: 'inherit'
+  }
 }

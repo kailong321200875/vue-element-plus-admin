@@ -2,13 +2,18 @@
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
 import { ref, watch, computed, unref, defineComponent, TransitionGroup } from 'vue'
 import { useRouter } from 'vue-router'
-// import { compile } from 'path-to-regexp'
 import { usePermissionStore } from '@/store/modules/permission'
 import { filterBreadcrumb } from './helper'
 import { filter, treeToList } from '@/utils/tree'
 import type { RouteLocationNormalizedLoaded, RouteMeta } from 'vue-router'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Icon } from '@/components/Icon'
+import { useAppStore } from '@/store/modules/app'
+
+const appStore = useAppStore()
+
+// 面包屑图标
+const breadcrumbIcon = computed(() => appStore.getBreadcrumbIcon)
 
 export default defineComponent({
   name: 'Breadcrumb',
@@ -41,7 +46,7 @@ export default defineComponent({
         const meta = v.meta as RouteMeta
         return (
           <ElBreadcrumbItem to={{ path: disabled ? '' : v.path }} key={v.name}>
-            {meta?.icon ? (
+            {meta?.icon && breadcrumbIcon.value ? (
               <>
                 <Icon icon={meta.icon} class="mr-[5px]"></Icon> {t(v?.meta?.title)}
               </>

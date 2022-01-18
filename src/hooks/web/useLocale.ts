@@ -10,7 +10,7 @@ const setI18nLanguage = (locale: LocaleType) => {
   } else {
     ;(i18n.global.locale as any).value = locale
   }
-  localeStore.setLocale({
+  localeStore.setCurrentLocale({
     lang: locale
   })
   setHtmlPageLang(locale)

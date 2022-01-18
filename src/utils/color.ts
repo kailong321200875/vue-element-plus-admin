@@ -30,7 +30,7 @@ export const rgbToHex = (r: number, g: number, b: number) => {
  * @param {string} hex The color to transform
  * @returns The RGB representation of the passed color
  */
-export const hexToRGB = (hex: string) => {
+export const hexToRGB = (hex: string, opacity?: number) => {
   let sHex = hex.toLowerCase()
   if (isHexColor(hex)) {
     if (sHex.length === 4) {
@@ -44,7 +44,9 @@ export const hexToRGB = (hex: string) => {
     for (let i = 1; i < 7; i += 2) {
       sColorChange.push(parseInt('0x' + sHex.slice(i, i + 2)))
     }
-    return 'RGB(' + sColorChange.join(',') + ')'
+    return opacity
+      ? 'RGBA(' + sColorChange.join(',') + ',' + opacity + ')'
+      : 'RGB(' + sColorChange.join(',') + ')'
   }
   return sHex
 }

@@ -14,6 +14,9 @@ export default defineComponent({
   setup() {
     const appStore = useAppStore()
 
+    // logo
+    const logo = computed(() => appStore.logo)
+
     const { push, currentRoute } = useRouter()
 
     const permissionStore = usePermissionStore()
@@ -61,8 +64,8 @@ export default defineComponent({
           'bg-[var(--left-menu-bg-color)]'
         ]}
       >
-        <Logo></Logo>
-        <ElScrollbar class={[{ '!h-[calc(100%-var(--top-tool-height))]': true }]}>
+        {logo.value ? <Logo></Logo> : undefined}
+        <ElScrollbar class={[{ '!h-[calc(100%-var(--logo-height))]': logo.value }]}>
           <ElMenu
             defaultActive={unref(activeMenu)}
             mode={unref(menuMode)}
@@ -89,8 +92,27 @@ export default defineComponent({
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-menu';
 
+.is-active--after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--el-color-primary);
+  content: '';
+}
+
 .@{prefix-cls} {
   transition: width var(--transition-time-02);
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border-left: 1px solid var(--left-menu-border-color);
+    content: '';
+  }
 
   :deep(.el-menu) {
     width: 100% !important;
@@ -123,6 +145,14 @@ export default defineComponent({
       }
     }
 
+    .el-menu-item.is-active {
+      position: relative;
+
+      &:after {
+        .is-active--after;
+      }
+    }
+
     // 设置子菜单的背景颜色
     .el-menu {
       .el-sub-menu__title,
@@ -138,7 +168,12 @@ export default defineComponent({
 
     & > .is-active,
     & > .is-active > .el-sub-menu__title {
+      position: relative;
       background-color: var(--left-menu-collapse-bg-active-color) !important;
+
+      &:after {
+        .is-active--after;
+      }
     }
   }
 
@@ -154,6 +189,16 @@ export default defineComponent({
 
 <style lang="less">
 @prefix-cls: ~'@{namespace}-menu-popper';
+
+.is-active--after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--el-color-primary);
+  content: '';
+}
 
 .@{prefix-cls} {
   &--vertical {
@@ -175,10 +220,15 @@ export default defineComponent({
 
     // 设置选中时的高亮背景
     .el-menu-item.is-active {
+      position: relative;
       background-color: var(--left-menu-bg-active-color) !important;
 
       &:hover {
         background-color: var(--left-menu-bg-active-color) !important;
+      }
+
+      &:after {
+        .is-active--after;
       }
     }
   }

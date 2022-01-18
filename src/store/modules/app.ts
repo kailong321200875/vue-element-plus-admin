@@ -3,6 +3,7 @@ import { store } from '../index'
 import { useCache } from '@/hooks/web/useCache'
 import { appModules } from '@/config/app'
 import type { AppState, LayoutType } from '@/config/app'
+import { setCssVar, humpToUnderline } from '@/utils'
 
 const { wsCache } = useCache()
 
@@ -10,35 +11,39 @@ export const useAppStore = defineStore({
   id: 'app',
   state: (): AppState => appModules,
   getters: {
+    getBreadcrumb(): boolean {
+      return this.breadcrumb
+    },
+    getBreadcrumbIcon(): boolean {
+      return this.breadcrumbIcon
+    },
     getCollapse(): boolean {
       return this.collapse
     },
-    getShowLogo(): boolean {
-      return this.showLogo
+    getHamburger(): boolean {
+      return this.hamburger
     },
-    getShowTags(): boolean {
-      return this.showTags
+    getScreenfull(): boolean {
+      return this.screenfull
     },
-    getShowNavbar(): boolean {
-      return this.showNavbar
+    getSize(): boolean {
+      return this.size
     },
-    getFixedHeader(): boolean {
-      return this.fixedHeader
+    getLocale(): boolean {
+      return this.locale
     },
+    getTagsView(): boolean {
+      return this.tagsView
+    },
+    getLogo(): boolean {
+      return this.logo
+    },
+    getGreyMode(): boolean {
+      return this.greyMode
+    },
+
     getLayout(): LayoutType {
       return this.layout
-    },
-    getShowBreadcrumb(): boolean {
-      return this.showBreadcrumb
-    },
-    getShowHamburger(): boolean {
-      return this.showHamburger
-    },
-    getShowScreenfull(): boolean {
-      return this.showScreenfull
-    },
-    getShowUserInfo(): boolean {
-      return this.showUserInfo
     },
     getTitle(): string {
       return this.title
@@ -49,73 +54,62 @@ export const useAppStore = defineStore({
     getUserInfo(): string {
       return this.userInfo
     },
-    getGreyMode(): boolean {
-      return this.greyMode
-    },
-    getShowBackTop(): boolean {
-      return this.showBackTop
-    },
-    getShowMenuTab(): boolean {
-      return this.showMenuTab
-    },
     getIsDark(): boolean {
       return this.isDark
     },
-    getSize(): ElememtPlusSzie {
-      return this.size
+    getCurrentSize(): ElememtPlusSzie {
+      return this.currentSize
     },
     getSizeMap(): ElememtPlusSzie[] {
       return this.sizeMap
     },
     getMobile(): boolean {
       return this.mobile
+    },
+    getTheme(): Recordable {
+      return this.theme
     }
   },
   actions: {
+    setBreadcrumb(breadcrumb: boolean) {
+      this.breadcrumb = breadcrumb
+    },
+    setBreadcrumbIcon(breadcrumbIcon: boolean) {
+      this.breadcrumbIcon = breadcrumbIcon
+    },
     setCollapse(collapse: boolean) {
       this.collapse = collapse
     },
-    setShowLogo(showLogo: boolean) {
-      this.showLogo = showLogo
+    setHamburger(hamburger: boolean) {
+      this.hamburger = hamburger
     },
-    setShowTags(showTags: boolean) {
-      this.showTags = showTags
+    setScreenfull(screenfull: boolean) {
+      this.screenfull = screenfull
     },
-    setShowNavbar(showNavbar: boolean) {
-      this.showNavbar = showNavbar
+    setSize(size: boolean) {
+      this.size = size
     },
-    setFixedHeader(fixedHeader: boolean) {
-      this.fixedHeader = fixedHeader
+    setLocale(locale: boolean) {
+      this.locale = locale
     },
+    setTagsView(tagsView: boolean) {
+      this.tagsView = tagsView
+    },
+    setLogo(logo: boolean) {
+      this.logo = logo
+    },
+    setGreyMode(greyMode: boolean) {
+      this.greyMode = greyMode
+    },
+
     setLayout(layout: LayoutType) {
       this.layout = layout
-    },
-    setBreadcrumb(showBreadcrumb: boolean) {
-      this.showBreadcrumb = showBreadcrumb
-    },
-    setHamburger(showHamburger: boolean) {
-      this.showHamburger = showHamburger
-    },
-    setScreenfull(showScreenfull: boolean) {
-      this.showScreenfull = showScreenfull
-    },
-    setUserInfo(showUserInfo: boolean) {
-      this.showUserInfo = showUserInfo
     },
     setTitle(title: string) {
       this.title = title
     },
     setLogoTitle(logoTitle: string) {
       this.logoTitle = logoTitle
-    },
-    setGreyMode(greyMode: boolean) {
-      this.greyMode = greyMode
-    },
-    setShowBackTop(showBackTop: boolean) {
-      this.showBackTop = showBackTop
-    },
-    setShowMenuTab(showMenuTab: boolean) {
-      this.showMenuTab = showMenuTab
     },
     setIsDark(isDark: boolean) {
       this.isDark = isDark
@@ -128,12 +122,21 @@ export const useAppStore = defineStore({
       }
       wsCache.set('isDark', this.isDark)
     },
-    setSize(size: ElememtPlusSzie) {
-      this.size = size
-      wsCache.set('size', this.size)
+    setCurrentSize(currentSize: ElememtPlusSzie) {
+      this.currentSize = currentSize
+      wsCache.set('currentSize', this.currentSize)
     },
     setMobile(mobile: boolean) {
       this.mobile = mobile
+    },
+    setTheme(theme: Recordable) {
+      this.theme = Object.assign(this.theme, theme)
+      wsCache.set('theme', this.theme)
+    },
+    setCssVarTheme() {
+      for (const key in this.theme) {
+        setCssVar(`--${humpToUnderline(key)}`, this.theme[key])
+      }
     }
   }
 })

@@ -6,7 +6,9 @@ import { isDark } from '@/utils/is'
 
 const appStore = useAppStore()
 
-const size = computed(() => appStore.size)
+const currentSize = computed(() => appStore.getCurrentSize)
+
+const greyMode = computed(() => appStore.getGreyMode)
 
 const initDark = () => {
   const isDarkTheme = isDark()
@@ -17,12 +19,14 @@ initDark()
 </script>
 
 <template>
-  <ConfigGlobal :size="size">
-    <RouterView />
+  <ConfigGlobal :size="currentSize">
+    <RouterView :class="{ 'v-grey__mode': greyMode }" />
   </ConfigGlobal>
 </template>
 
 <style lang="less">
+@prefix-cls: ~'@{namespace}-grey';
+
 .size {
   width: 100%;
   height: 100%;
@@ -38,5 +42,14 @@ body {
   #app {
     .size;
   }
+}
+
+.@{prefix-cls}__mode {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: progid:dximagetransform.microsoft.basicimage(grayscale=1);
 }
 </style>

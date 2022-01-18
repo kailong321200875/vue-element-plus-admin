@@ -127,7 +127,7 @@ watch(
 <template>
   <div class="v-tags-view h-[var(--tags-view-height)] flex w-full">
     <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
-      <Icon icon="ant-design:left-outlined" color="#333" />
+      <Icon icon="ep:d-arrow-left" color="#333" />
     </span>
     <div class="overflow-hidden flex-1">
       <ElScrollbar>
@@ -216,7 +216,7 @@ watch(
       </ElScrollbar>
     </div>
     <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
-      <Icon icon="ant-design:right-outlined" color="#333" />
+      <Icon icon="ep:d-arrow-right" color="#333" />
     </span>
     <span
       class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer"

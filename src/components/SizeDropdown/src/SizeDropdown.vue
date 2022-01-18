@@ -9,13 +9,13 @@ const appStore = useAppStore()
 
 const sizeMap = computed(() => appStore.sizeMap)
 
-const setSize = (size: ElememtPlusSzie) => {
-  appStore.setSize(size)
+const setCurrentSize = (size: ElememtPlusSzie) => {
+  appStore.setCurrentSize(size)
 }
 </script>
 
 <template>
-  <ElDropdown trigger="click" @command="setSize">
+  <ElDropdown trigger="click" @command="setCurrentSize">
     <Icon
       :size="18"
       icon="mdi:format-size"
