@@ -4,6 +4,7 @@ import { useCache } from '@/hooks/web/useCache'
 import { appModules } from '@/config/app'
 import type { AppState, LayoutType } from '@/config/app'
 import { setCssVar, humpToUnderline } from '@/utils'
+import { ElMessage } from 'element-plus'
 
 const { wsCache } = useCache()
 
@@ -37,6 +38,9 @@ export const useAppStore = defineStore({
     },
     getLogo(): boolean {
       return this.logo
+    },
+    getFixedHeader(): boolean {
+      return this.fixedHeader
     },
     getGreyMode(): boolean {
       return this.greyMode
@@ -98,12 +102,20 @@ export const useAppStore = defineStore({
     setLogo(logo: boolean) {
       this.logo = logo
     },
+    setFixedHeader(fixedHeader: boolean) {
+      this.fixedHeader = fixedHeader
+    },
     setGreyMode(greyMode: boolean) {
       this.greyMode = greyMode
     },
 
     setLayout(layout: LayoutType) {
+      if (this.mobile && layout !== 'classic') {
+        ElMessage.warning('移动端模式下不支持切换其他布局')
+        return
+      }
       this.layout = layout
+      wsCache.set('layout', this.layout)
     },
     setTitle(title: string) {
       this.title = title

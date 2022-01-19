@@ -41,7 +41,7 @@ watch(
       {
         'v-logo__Top': layout !== 'classic'
       },
-      'flex h-[var(--logo-height)] items-center cursor-pointer pl-8px relative'
+      'flex !h-[var(--logo-height)] items-center cursor-pointer pl-8px relative'
     ]"
     to="/"
   >
@@ -49,9 +49,18 @@ watch(
       src="@/assets/imgs/logo.png"
       class="w-[calc(var(--logo-height)-10px)] h-[calc(var(--logo-height)-10px)]"
     />
-    <div v-if="show" class="text-[var(--logo-title-text-color)] ml-10px text-16px font-700">{{
-      title
-    }}</div>
+    <div
+      v-if="show"
+      :class="[
+        'ml-10px text-16px font-700',
+        {
+          'text-[var(--logo-title-text-color)]': layout === 'classic',
+          'text-[var(--top-header-text-color)]': layout === 'topLeft'
+        }
+      ]"
+    >
+      {{ title }}
+    </div>
   </router-link>
 </template>
 

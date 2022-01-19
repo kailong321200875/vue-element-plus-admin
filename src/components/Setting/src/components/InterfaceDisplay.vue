@@ -71,6 +71,13 @@ const logoChange = (show: boolean) => {
   appStore.setLogo(show)
 }
 
+// 固定头部
+const fixedHeader = ref(appStore.getFixedHeader)
+
+const fixedHeaderChange = (show: boolean) => {
+  appStore.setFixedHeader(show)
+}
+
 // 灰色模式
 const greyMode = ref(appStore.getGreyMode)
 
@@ -124,6 +131,11 @@ const greyModeChange = (show: boolean) => {
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.logo') }}</span>
       <ElSwitch v-model="logo" @change="logoChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.fixedHeader') }}</span>
+      <ElSwitch v-model="fixedHeader" @change="fixedHeaderChange" />
     </div>
 
     <div class="flex justify-between items-center">

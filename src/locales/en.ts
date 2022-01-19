@@ -35,7 +35,9 @@ export default {
     localeIcon: 'Locale icon',
     tagsView: 'Tags view',
     logo: 'Logo',
-    greyMode: 'Grey mode'
+    greyMode: 'Grey mode',
+    fixedHeader: 'Fixed header',
+    headerTheme: 'Header theme'
   },
   size: {
     default: 'Default',

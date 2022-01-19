@@ -1,0 +1,25 @@
+.hover-tigger {
+  @apply flex h-full pt-1px px-10px cursor-pointer items-center;
+  transition: background var(--transition-time-02);
+  &:hover {
+    background-color: var(--top-header-hover-color);
+  }
+}
+
+.border-bottom {
+  @apply relative;
+  &:after {
+    content: '';
+    border-top: 1px solid var(--top-tool-border-color);
+    @apply absolute bottom-0 left-0 w-full h-1px;
+  }
+}
+
+.border-top {
+  @apply relative;
+  &:before {
+    content: '';
+    border-top: 1px solid var(--top-tool-border-color);
+    @apply absolute top-0 left-0 w-full h-1px;
+  }
+}

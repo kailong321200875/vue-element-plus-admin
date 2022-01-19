@@ -125,8 +125,10 @@ watch(
 </script>
 
 <template>
-  <div class="v-tags-view h-[var(--tags-view-height)] flex w-full">
-    <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
+  <div class="v-tags-view h-[var(--tags-view-height)] flex w-full relative">
+    <span
+      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+    >
       <Icon icon="ep:d-arrow-left" color="#333" />
     </span>
     <div class="overflow-hidden flex-1">
@@ -215,11 +217,13 @@ watch(
         </div>
       </ElScrollbar>
     </div>
-    <span class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer">
+    <span
+      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+    >
       <Icon icon="ep:d-arrow-right" color="#333" />
     </span>
     <span
-      class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer"
+      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
       @click="refreshSelectedTag(selectedTag)"
     >
       <Icon icon="ant-design:reload-outlined" color="#333" />
@@ -275,7 +279,7 @@ watch(
       ]"
     >
       <span
-        class="v-tags-view__tool w-[40px] h-[40px] text-center leading-[40px] cursor-pointer block"
+        class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer block"
       >
         <Icon icon="ant-design:setting-outlined" color="#333" />
       </span>

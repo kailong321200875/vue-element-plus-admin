@@ -2,7 +2,7 @@ import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
 
-export type LayoutType = 'classic' | 'leftTop' | 'top' | 'test'
+export type LayoutType = 'classic' | 'topLeft' | 'leftTop' | 'top' | 'test'
 
 export interface AppState {
   breadcrumb: boolean
@@ -14,6 +14,7 @@ export interface AppState {
   locale: boolean
   tagsView: boolean
   logo: boolean
+  fixedHeader: boolean
   greyMode: boolean
 
   layout: LayoutType
@@ -37,9 +38,10 @@ export const appModules: AppState = {
   locale: true, // 多语言图标
   tagsView: true, // 标签页
   logo: true, // logo
+  fixedHeader: true, // 固定toolheader
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
 
-  layout: 'classic', // layout布局
+  layout: wsCache.get('layout') || 'classic', // layout布局
   title: 'butterfly-admin', // 标题
   logoTitle: 'ButterflyAdmin', // logo标题
   userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
@@ -67,6 +69,12 @@ export const appModules: AppState = {
     // logo字体颜色
     logoTitleTextColor: '#fff',
     // logo边框颜色
-    logoBorderColor: 'inherit'
+    logoBorderColor: 'inherit',
+    // 头部背景颜色
+    topHeaderBgColor: '#fff',
+    // 头部字体颜色
+    topHeaderTextColor: 'inherit',
+    // 头部悬停颜色
+    topHeaderHoverColor: '#f6f6f6'
   }
 }

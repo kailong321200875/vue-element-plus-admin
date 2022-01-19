@@ -7,15 +7,11 @@ import type { LayoutType } from '@/config/app'
 import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
-import { Logo } from '@/components/Logo'
 
 export default defineComponent({
   name: 'Menu',
   setup() {
     const appStore = useAppStore()
-
-    // logo
-    const logo = computed(() => appStore.logo)
 
     const { push, currentRoute } = useRouter()
 
@@ -23,7 +19,7 @@ export default defineComponent({
 
     const menuMode = computed((): 'vertical' | 'horizontal' => {
       // 竖
-      const vertical: LayoutType[] = ['classic']
+      const vertical: LayoutType[] = ['classic', 'topLeft']
 
       if (vertical.includes(appStore.getLayout)) {
         return 'vertical'
@@ -64,8 +60,7 @@ export default defineComponent({
           'bg-[var(--left-menu-bg-color)]'
         ]}
       >
-        {logo.value ? <Logo></Logo> : undefined}
-        <ElScrollbar class={[{ '!h-[calc(100%-var(--logo-height))]': logo.value }]}>
+        <ElScrollbar>
           <ElMenu
             defaultActive={unref(activeMenu)}
             mode={unref(menuMode)}
@@ -103,6 +98,7 @@ export default defineComponent({
 }
 
 .@{prefix-cls} {
+  position: relative;
   transition: width var(--transition-time-02);
 
   &:after {

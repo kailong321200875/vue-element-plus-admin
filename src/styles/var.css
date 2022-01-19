@@ -30,13 +30,19 @@
   /* logo end */
 
   /* header start */
+  --top-header-bg-color: '#fff';
+
+  --top-header-text-color: 'inherit';
+
+  --top-header-hover-color: #f6f6f6;
+
   --top-tool-height: var(--logo-height);
 
   --top-tool-p-x: 0;
 
   --top-tool-border-color: #eee;
 
-  --tags-view-height: 40px;
+  --tags-view-height: 35px;
   /* header start */
 
   --app-content-padding: 20px;

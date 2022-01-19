@@ -34,7 +34,7 @@ const loginOut = () => {
   <ElDropdown trigger="click">
     <div class="flex items-center">
       <img src="@/assets/imgs/avatar.png" alt="" class="w-[calc(var(--tags-view-height)-10px)]" />
-      <span class="<lg:hidden text-14px pl-[5px] text-dark-50">Archer</span>
+      <span class="<lg:hidden text-14px pl-[5px] text-[var(--top-header-text-color)]">Archer</span>
     </div>
     <template #dropdown>
       <ElDropdownMenu>

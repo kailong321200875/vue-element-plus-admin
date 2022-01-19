@@ -35,7 +35,9 @@ export default {
     localeIcon: '多语言图标',
     tagsView: '标签页',
     logo: '标志',
-    greyMode: '灰色模式'
+    greyMode: '灰色模式',
+    fixedHeader: '固定头部',
+    headerTheme: '头部主题'
   },
   size: {
     default: '默认',

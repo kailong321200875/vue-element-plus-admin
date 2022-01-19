@@ -132,7 +132,8 @@ const signIn = async () => {
         addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
       })
       permissionStore.setIsAddRouters(true)
-      push({ path: redirect.value || permissionStore.addRouters[0].path })
+      // push({ path: redirect.value || permissionStore.addRouters[0].path })
+      push({ path: permissionStore.addRouters[0].path })
     }
   }
 }

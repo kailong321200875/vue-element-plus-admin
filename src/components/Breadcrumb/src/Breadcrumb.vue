@@ -83,12 +83,27 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-:deep(.el-breadcrumb__item) {
+:deep(.el-breadcrumb__item):not(:last-child) {
   display: flex;
 
   .el-breadcrumb__inner {
     display: flex;
     align-items: center;
+    color: var(--top-header-text-color);
+
+    &:hover {
+      color: var(--el-color-primary);
+    }
+  }
+}
+
+:deep(.el-breadcrumb__item):last-child {
+  .el-breadcrumb__inner {
+    color: rgba(255, 255, 255, 0.6);
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
   }
 }
 </style>

@@ -3,12 +3,13 @@ import { ElDrawer, ElDivider } from 'element-plus'
 import { ref, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
-import { ColorRadioPicker } from '@/components/ColorRadioPicker'
 import { colorIsDark, lighten, hexToRGB } from '@/utils/color'
 import { useCssVar } from '@vueuse/core'
 import { useAppStore } from '@/store/modules/app'
 import { trim, setCssVar } from '@/utils'
+import ColorRadioPicker from './components/ColorRadioPicker.vue'
 import InterfaceDisplay from './components/InterfaceDisplay.vue'
+import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
 
 const appStore = useAppStore()
 
@@ -24,6 +25,23 @@ const setSystemTheme = (color: string) => {
   appStore.setTheme({ elColorPrimary: color })
   const leftMenuBgColor = useCssVar('--left-menu-bg-color', document.documentElement)
   setMenuTheme(trim(unref(leftMenuBgColor)))
+}
+
+// 头部主题相关
+const headerTheme = ref(appStore.getTheme.topHeaderBgColor)
+
+const setHeaderTheme = (color: string) => {
+  const isDarkColor = colorIsDark(color)
+  const textColor = isDarkColor ? '#fff' : 'inherit'
+  const textHoverColor = isDarkColor ? lighten(color!, 6) : '#f6f6f6'
+  setCssVar('--top-header-bg-color', color)
+  setCssVar('--top-header-text-color', textColor)
+  setCssVar('--top-header-hover-color', textHoverColor)
+  appStore.setTheme({
+    topHeaderBgColor: color,
+    topHeaderTextColor: textColor,
+    topHeaderHoverColor: textHoverColor
+  })
 }
 
 // 菜单主题相关
@@ -81,6 +99,7 @@ const setMenuTheme = (color: string) => {
 
       <!-- 布局 -->
       <ElDivider>{{ t('setting.layout') }}</ElDivider>
+      <LayoutRadioPicker />
 
       <!-- 系统主题 -->
       <ElDivider>{{ t('setting.systemTheme') }}</ElDivider>
@@ -97,6 +116,23 @@ const setMenuTheme = (color: string) => {
           '#ff9800'
         ]"
         @change="setSystemTheme"
+      />
+
+      <!-- 头部主题 -->
+      <ElDivider>{{ t('setting.headerTheme') }}</ElDivider>
+      <ColorRadioPicker
+        v-model="headerTheme"
+        :schema="[
+          '#fff',
+          '#151515',
+          '#5172dc',
+          '#e74c3c',
+          '#24292e',
+          '#394664',
+          '#009688',
+          '#383f45'
+        ]"
+        @change="setHeaderTheme"
       />
 
       <!-- 菜单主题 -->

@@ -1,4 +1,5 @@
 import { defineConfig } from 'windicss/helpers'
+// import plugin from 'windicss/plugin'
 
 // function range(size, startAt = 1) {
 //   return Array.from(Array(size).keys()).map((i) => i + startAt)
@@ -34,16 +35,33 @@ export default defineConfig({
     //   // ...range(50).map((i) => `ml-${i}px`)
     // }
   }
-  // Plugin: [
-  //   require('@windicss/plugin-animations')({
-  //     settings: {
-  //       animatedSpeed: 1000,
-  //       heartBeatSpeed: 1000,
-  //       hingeSpeed: 2000,
-  //       bounceInSpeed: 750,
-  //       bounceOutSpeed: 750,
-  //       animationDelaySpeed: 1000
-  //     }
+  // plugins: [
+  //   plugin(({ addComponents }) => {
+  //     addComponents({
+  //       '.hover-tigger': {
+  //         display: 'flex',
+  //         height: '100%',
+  //         padding: '1px 10px 0',
+  //         cursor: 'pointer',
+  //         alignItems: 'center',
+  //         transition: 'background var(--transition-time-02)',
+  //         '&:hover': {
+  //           backgroundColor: '#f6f6f6'
+  //         }
+  //       },
+  //       '.border-bottom': {
+  //         position: 'relative',
+  //         '&:after': {
+  //           position: 'absolute',
+  //           bottom: '0',
+  //           left: '0',
+  //           width: '100%',
+  //           height: '1px',
+  //           borderTop: '1px solid var(--top-tool-border-color)',
+  //           content: ''
+  //         }
+  //       }
+  //     })
   //   })
   // ]
 })

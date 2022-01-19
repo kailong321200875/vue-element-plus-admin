@@ -3,6 +3,11 @@ import { computed, unref } from 'vue'
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useLocale } from '@/hooks/web/useLocale'
+import { propTypes } from '@/utils/propTypes'
+
+defineProps({
+  color: propTypes.string.def('')
+})
 
 const localeStore = useLocaleStore()
 
@@ -24,7 +29,13 @@ const setLang = (lang: LocaleType) => {
 
 <template>
   <ElDropdown trigger="click" @command="setLang">
-    <Icon :size="18" icon="ion:language-sharp" class="cursor-pointer" :class="$attrs.class" />
+    <Icon
+      :size="18"
+      icon="ion:language-sharp"
+      class="cursor-pointer"
+      :class="$attrs.class"
+      :color="color"
+    />
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in langMap" :key="item.lang" :command="item.lang">
