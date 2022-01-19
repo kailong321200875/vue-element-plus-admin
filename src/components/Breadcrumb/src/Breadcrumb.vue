@@ -83,7 +83,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-:deep(.el-breadcrumb__item):not(:last-child) {
+:deep(.el-breadcrumb__item) {
   display: flex;
 
   .el-breadcrumb__inner {
@@ -97,12 +97,22 @@ export default defineComponent({
   }
 }
 
-:deep(.el-breadcrumb__item):last-child {
+:deep(.el-breadcrumb__item):not(:last-child) {
   .el-breadcrumb__inner {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--top-header-text-color);
 
     &:hover {
-      color: rgba(255, 255, 255, 0.6);
+      color: var(--el-color-primary);
+    }
+  }
+}
+
+:deep(.el-breadcrumb__item):last-child {
+  .el-breadcrumb__inner {
+    color: var(--el-text-color-placeholder);
+
+    &:hover {
+      color: var(--el-text-color-placeholder);
     }
   }
 }
