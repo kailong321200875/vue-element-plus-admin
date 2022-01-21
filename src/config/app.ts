@@ -2,7 +2,7 @@ import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
 
-export type LayoutType = 'classic' | 'topLeft' | 'leftTop' | 'top' | 'test'
+export type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'
 
 export interface AppState {
   breadcrumb: boolean
@@ -15,11 +15,11 @@ export interface AppState {
   tagsView: boolean
   logo: boolean
   fixedHeader: boolean
+  fixedMenu: boolean
   greyMode: boolean
 
   layout: LayoutType
   title: string
-  logoTitle: string
   userInfo: string
   isDark: boolean
   currentSize: ElememtPlusSzie
@@ -39,11 +39,11 @@ export const appModules: AppState = {
   tagsView: true, // 标签页
   logo: true, // logo
   fixedHeader: true, // 固定toolheader
+  fixedMenu: false, // 固定切割菜单
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
 
   layout: wsCache.get('layout') || 'classic', // layout布局
-  title: 'butterfly-admin', // 标题
-  logoTitle: 'ButterflyAdmin', // logo标题
+  title: 'ButterflyAdmin', // 标题
   userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
   currentSize: wsCache.get('default') || 'default', // 组件尺寸
@@ -75,6 +75,8 @@ export const appModules: AppState = {
     // 头部字体颜色
     topHeaderTextColor: 'inherit',
     // 头部悬停颜色
-    topHeaderHoverColor: '#f6f6f6'
+    topHeaderHoverColor: '#f6f6f6',
+    // 头部边框颜色
+    topToolBorderColor: '#eee'
   }
 }

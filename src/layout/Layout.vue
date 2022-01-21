@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { computed, defineComponent, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-import { Backtop } from '@/components/Backtop'
+// import { Backtop } from '@/components/Backtop'
 import { Setting } from '@/components/Setting'
 import { useRenderLayout } from './components/useRenderLayout'
 
@@ -27,6 +27,12 @@ const renderLayout = () => {
     case 'topLeft':
       const { renderTopLeft } = useRenderLayout()
       return renderTopLeft()
+    case 'top':
+      const { renderTop } = useRenderLayout()
+      return renderTop()
+    case 'cutMenu':
+      const { renderCutMenu } = useRenderLayout()
+      return renderCutMenu()
     default:
       break
   }
@@ -46,7 +52,7 @@ export default defineComponent({
 
         {renderLayout()}
 
-        <Backtop></Backtop>
+        {/*<Backtop></Backtop>*/}
 
         <Setting></Setting>
       </section>

@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { computed, defineComponent, unref } from 'vue'
+import { computed, defineComponent, unref, PropType } from 'vue'
 import { ElMenu, ElScrollbar } from 'element-plus'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
@@ -10,8 +10,16 @@ import { isUrl } from '@/utils/is'
 
 export default defineComponent({
   name: 'Menu',
-  setup() {
+  props: {
+    menuSelect: {
+      type: Function as PropType<(index: string) => void>,
+      default: undefined
+    }
+  },
+  setup(props) {
     const appStore = useAppStore()
+
+    const layout = computed(() => appStore.getLayout)
 
     const { push, currentRoute } = useRouter()
 
@@ -19,16 +27,18 @@ export default defineComponent({
 
     const menuMode = computed((): 'vertical' | 'horizontal' => {
       // 竖
-      const vertical: LayoutType[] = ['classic', 'topLeft']
+      const vertical: LayoutType[] = ['classic', 'topLeft', 'cutMenu']
 
-      if (vertical.includes(appStore.getLayout)) {
+      if (vertical.includes(unref(layout))) {
         return 'vertical'
       } else {
         return 'horizontal'
       }
     })
 
-    const routers = computed(() => permissionStore.getRouters)
+    const routers = computed(() =>
+      unref(layout) === 'cutMenu' ? permissionStore.getMenuTabRouters : permissionStore.getRouters
+    )
 
     const collapse = computed(() => appStore.getCollapse)
 
@@ -42,6 +52,10 @@ export default defineComponent({
     })
 
     const menuSelect = (index: string) => {
+      if (props.menuSelect) {
+        props.menuSelect(index)
+      }
+      // 自定义事件
       if (isUrl(index)) {
         window.open(index)
       } else {
@@ -52,19 +66,21 @@ export default defineComponent({
     return () => (
       <div
         class={[
-          'v-menu',
-          'h-[100%] overflow-hidden z-100 flex-col',
-          appStore.getCollapse
-            ? 'w-[var(--left-menu-min-width)]'
-            : 'w-[var(--left-menu-max-width)]',
-          'bg-[var(--left-menu-bg-color)]'
+          `v-menu v-menu__${unref(menuMode)}`,
+          'h-[100%] overflow-hidden z-100 flex-col bg-[var(--left-menu-bg-color)]',
+          {
+            'w-[var(--left-menu-min-width)]': unref(collapse) && unref(layout) !== 'cutMenu',
+            'w-[var(--left-menu-max-width)]': !unref(collapse) && unref(layout) !== 'cutMenu'
+          }
         ]}
       >
         <ElScrollbar>
           <ElMenu
             defaultActive={unref(activeMenu)}
             mode={unref(menuMode)}
-            collapse={unref(collapse)}
+            collapse={
+              unref(layout) === 'top' || unref(layout) === 'cutMenu' ? false : unref(collapse)
+            }
             backgroundColor="var(--left-menu-bg-color)"
             textColor="var(--left-menu-text-color)"
             activeTextColor="var(--left-menu-text-active-color)"
@@ -180,6 +196,35 @@ export default defineComponent({
       display: none;
     }
   }
+
+  // 水平菜单
+  &__horizontal {
+    height: calc(~'var( - -top-tool-height)') !important;
+
+    :deep(.el-menu--horizontal) {
+      height: calc(~'var( - -top-tool-height)');
+      border-bottom: none;
+      // 重新设置底部高亮颜色
+      & > .el-sub-menu.is-active {
+        .el-sub-menu__title {
+          border-bottom-color: var(--el-color-primary) !important;
+        }
+      }
+
+      .el-menu-item.is-active {
+        position: relative;
+
+        &:after {
+          display: none !important;
+        }
+      }
+
+      .v-menu__title {
+        max-height: calc(~'var( - -top-tool-height)') !important;
+        line-height: calc(~'var( - -top-tool-height)');
+      }
+    }
+  }
 }
 </style>
 
@@ -196,36 +241,35 @@ export default defineComponent({
   content: '';
 }
 
-.@{prefix-cls} {
-  &--vertical {
-    // 设置选中时子标题的颜色
-    .is-active {
-      & > .el-sub-menu__title {
-        color: var(--left-menu-text-active-color) !important;
-      }
+.@{prefix-cls}--vertical,
+.@{prefix-cls}--horizontal {
+  // 设置选中时子标题的颜色
+  .is-active {
+    & > .el-sub-menu__title {
+      color: var(--left-menu-text-active-color) !important;
     }
+  }
 
-    // 设置子菜单悬停的高亮和背景色
-    .el-sub-menu__title,
-    .el-menu-item {
-      &:hover {
-        color: var(--left-menu-text-active-color) !important;
-        background-color: var(--left-menu-bg-color) !important;
-      }
+  // 设置子菜单悬停的高亮和背景色
+  .el-sub-menu__title,
+  .el-menu-item {
+    &:hover {
+      color: var(--left-menu-text-active-color) !important;
+      background-color: var(--left-menu-bg-color) !important;
     }
+  }
 
-    // 设置选中时的高亮背景
-    .el-menu-item.is-active {
-      position: relative;
+  // 设置选中时的高亮背景
+  .el-menu-item.is-active {
+    position: relative;
+    background-color: var(--left-menu-bg-active-color) !important;
+
+    &:hover {
       background-color: var(--left-menu-bg-active-color) !important;
+    }
 
-      &:hover {
-        background-color: var(--left-menu-bg-active-color) !important;
-      }
-
-      &:after {
-        .is-active--after;
-      }
+    &:after {
+      .is-active--after;
     }
   }
 }

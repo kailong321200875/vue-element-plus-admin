@@ -42,6 +42,9 @@ export const useAppStore = defineStore({
     getFixedHeader(): boolean {
       return this.fixedHeader
     },
+    getFixedMenu(): boolean {
+      return this.fixedMenu
+    },
     getGreyMode(): boolean {
       return this.greyMode
     },
@@ -51,9 +54,6 @@ export const useAppStore = defineStore({
     },
     getTitle(): string {
       return this.title
-    },
-    getLogoTitle(): string {
-      return this.logoTitle
     },
     getUserInfo(): string {
       return this.userInfo
@@ -105,6 +105,9 @@ export const useAppStore = defineStore({
     setFixedHeader(fixedHeader: boolean) {
       this.fixedHeader = fixedHeader
     },
+    setFixedMenu(fixedMenu: boolean) {
+      this.fixedMenu = fixedMenu
+    },
     setGreyMode(greyMode: boolean) {
       this.greyMode = greyMode
     },
@@ -119,9 +122,6 @@ export const useAppStore = defineStore({
     },
     setTitle(title: string) {
       this.title = title
-    },
-    setLogoTitle(logoTitle: string) {
-      this.logoTitle = logoTitle
     },
     setIsDark(isDark: boolean) {
       this.isDark = isDark

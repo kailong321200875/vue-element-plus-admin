@@ -15,7 +15,6 @@ export interface PermissionState {
   routers: AppRouteRecordRaw[]
   addRouters: AppRouteRecordRaw[]
   isAddRouters: boolean
-  activeTab: string
   menuTabRouters: AppRouteRecordRaw[]
 }
 
@@ -25,8 +24,7 @@ export const usePermissionStore = defineStore({
     routers: [],
     addRouters: [],
     isAddRouters: false,
-    menuTabRouters: [],
-    activeTab: ''
+    menuTabRouters: []
   }),
   getters: {
     getRouters(): AppRouteRecordRaw[] {
@@ -37,9 +35,6 @@ export const usePermissionStore = defineStore({
     },
     getIsAddRouters(): boolean {
       return this.isAddRouters
-    },
-    getActiveTab(): string {
-      return this.activeTab
     },
     getMenuTabRouters(): AppRouteRecordRaw[] {
       return this.menuTabRouters
@@ -84,9 +79,6 @@ export const usePermissionStore = defineStore({
     },
     setMenuTabRouters(routers: AppRouteRecordRaw[]): void {
       this.menuTabRouters = routers
-    },
-    setAcitveTab(activeTab: string): void {
-      this.activeTab = activeTab
     }
   }
 })

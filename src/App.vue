@@ -34,7 +34,7 @@ initDark()
 
 html,
 body {
-  padding: 0;
+  padding: 0 !important;
   margin: 0;
   overflow: hidden;
   .size;

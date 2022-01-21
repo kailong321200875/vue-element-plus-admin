@@ -1,6 +1,7 @@
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { Menu } from '@/components/Menu'
+import { TabMenu } from '@/components/TabMenu'
 import { TagsView } from '@/components/TagsView'
 import { Logo } from '@/components/Logo'
 import AppView from './AppView.vue'
@@ -32,7 +33,7 @@ export const useRenderLayout = () => {
           {logo.value ? (
             <Logo
               class={[
-                'bg-[var(--left-menu-bg-color)]',
+                'bg-[var(--left-menu-bg-color)] border-bottom-1 border-solid border-[var(--logo-border-color)]',
                 {
                   '!pl-0': mobile.value && collapse.value,
                   'w-[var(--left-menu-min-width)]': appStore.getCollapse,
@@ -80,9 +81,11 @@ export const useRenderLayout = () => {
               ]}
               style="transition: all var(--transition-time-02);"
             >
-              <ToolHeader class="border-bottom bg-[var(--top-header-bg-color)]"></ToolHeader>
+              <ToolHeader class="border-bottom-1 border-solid border-[var(--top-tool-border-color)] bg-[var(--top-header-bg-color)]"></ToolHeader>
 
-              {tagsView.value ? <TagsView class="border-bottom"></TagsView> : undefined}
+              {tagsView.value ? (
+                <TagsView class="border-bottom-1 border-solid border-[var(--tags-view-border-color)]"></TagsView>
+              ) : undefined}
             </div>
 
             <AppView></AppView>
@@ -95,12 +98,12 @@ export const useRenderLayout = () => {
   const renderTopLeft = () => {
     return (
       <>
-        <div class="flex items-center bg-[var(--top-header-bg-color)]">
-          <Logo class="hover-tigger !pr-15px"></Logo>
+        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+          {logo.value ? <Logo class="hover-tigger !pr-15px"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>
         </div>
-        <div class="absolute top-[var(--logo-height)] left-0 w-full h-[calc(100%-var(--logo-height))] flex">
+        <div class="absolute top-[var(--logo-height)+1px] left-0 w-full h-[calc(100%-1px-var(--logo-height))] flex">
           <Menu class="!h-full"></Menu>
           <div
             class={[
@@ -127,7 +130,7 @@ export const useRenderLayout = () => {
               {tagsView.value ? (
                 <TagsView
                   class={[
-                    'border-bottom border-top',
+                    'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
                     {
                       '!fixed top-0 left-0 z-10': fixedHeader.value,
                       'w-[calc(100%-var(--left-menu-min-width))] left-[var(--left-menu-min-width)] mt-[var(--logo-height)]':
@@ -148,8 +151,103 @@ export const useRenderLayout = () => {
     )
   }
 
+  const renderTop = () => {
+    return (
+      <>
+        <div class="flex items-center justify-between bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+          {logo.value ? <Logo class="hover-tigger"></Logo> : undefined}
+          <Menu class="flex-1 px-10px h-[var(--top-tool-height)]"></Menu>
+          <ToolHeader></ToolHeader>
+        </div>
+        <div class="v-app-right h-full w-full">
+          <ElScrollbar
+            class={[
+              'v-content',
+              {
+                'mt-[var(--tags-view-height)]': fixedHeader.value
+              }
+            ]}
+          >
+            {tagsView.value ? (
+              <TagsView
+                class={[
+                  'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
+                  {
+                    '!fixed w-full top-[var(--top-tool-height)] left-0': fixedHeader.value
+                  }
+                ]}
+                style="transition: all var(--transition-time-02);"
+              ></TagsView>
+            ) : undefined}
+
+            <AppView></AppView>
+          </ElScrollbar>
+        </div>
+      </>
+    )
+  }
+
+  const renderCutMenu = () => {
+    return (
+      <>
+        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+          {logo.value ? <Logo class="hover-tigger !pr-15px"></Logo> : undefined}
+
+          <ToolHeader class="flex-1"></ToolHeader>
+        </div>
+        <div class="absolute top-[var(--logo-height)] left-0 w-full h-[calc(100%-var(--logo-height))] flex">
+          <TabMenu></TabMenu>
+          {/* <Menu class="!h-full"></Menu> */}
+          <div
+            class={[
+              'v-app-right',
+              'h-[100%]',
+              {
+                'w-[calc(100%-var(--tab-menu-min-width))] left-[var(--tab-menu-min-width)]':
+                  collapse.value,
+                'w-[calc(100%-var(--tab-menu-max-width))] left-[var(--tab-menu-max-width)]':
+                  !collapse.value
+              }
+            ]}
+            style="transition: all var(--transition-time-02);"
+          >
+            <ElScrollbar
+              class={[
+                'v-content',
+                {
+                  '!h-[calc(100%-var(--tags-view-height))] mt-[calc(var(--tags-view-height))]':
+                    fixedHeader.value && tagsView.value
+                }
+              ]}
+            >
+              {tagsView.value ? (
+                <TagsView
+                  class={[
+                    'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
+                    {
+                      '!fixed top-0 left-0 z-10': fixedHeader.value,
+                      'w-[calc(100%-var(--tab-menu-min-width))] left-[var(--tab-menu-min-width)] mt-[var(--logo-height)]':
+                        collapse.value && fixedHeader.value,
+                      'w-[calc(100%-var(--tab-menu-max-width))] left-[var(--tab-menu-max-width)] mt-[var(--logo-height)]':
+                        !collapse.value && fixedHeader.value
+                    }
+                  ]}
+                  style="transition: all var(--transition-time-02);"
+                ></TagsView>
+              ) : undefined}
+
+              <AppView></AppView>
+            </ElScrollbar>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   return {
     renderClassic,
-    renderTopLeft
+    renderTopLeft,
+    renderTop,
+    renderCutMenu
   }
 }

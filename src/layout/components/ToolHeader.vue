@@ -22,6 +22,9 @@ const screenfull = computed(() => appStore.getScreenfull)
 // 尺寸图标
 const size = computed(() => appStore.getSize)
 
+// 布局
+const layout = computed(() => appStore.getLayout)
+
 // 多语言图标
 const locale = computed(() => appStore.getLocale)
 
@@ -35,12 +38,14 @@ export default defineComponent({
           'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between'
         ]}
       >
-        <div class="h-full flex items-center">
-          {hamburger.value ? (
-            <Collapse class="hover-tigger" color="var(--top-header-text-color)"></Collapse>
-          ) : undefined}
-          {breadcrumb.value ? <Breadcrumb class="<md:hidden"></Breadcrumb> : undefined}
-        </div>
+        {layout.value !== 'top' ? (
+          <div class="h-full flex items-center">
+            {hamburger.value && layout.value !== 'cutMenu' ? (
+              <Collapse class="hover-tigger" color="var(--top-header-text-color)"></Collapse>
+            ) : undefined}
+            {breadcrumb.value ? <Breadcrumb class="<md:hidden"></Breadcrumb> : undefined}
+          </div>
+        ) : undefined}
         <div class="h-full flex items-center">
           {screenfull.value ? (
             <Screenfull class="hover-tigger" color="var(--top-header-text-color)"></Screenfull>

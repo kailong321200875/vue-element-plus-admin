@@ -1,9 +1,9 @@
 import { defineConfig } from 'windicss/helpers'
-// import plugin from 'windicss/plugin'
+import plugin from 'windicss/plugin'
 
-// function range(size, startAt = 1) {
-//   return Array.from(Array(size).keys()).map((i) => i + startAt)
-// }
+function range(size, startAt = 1) {
+  return Array.from(Array(size).keys()).map((i) => i + startAt)
+}
 
 export default defineConfig({
   extract: {
@@ -34,34 +34,38 @@ export default defineConfig({
     //   // ...range(50).map((i) => `mb-${i}px`),
     //   // ...range(50).map((i) => `ml-${i}px`)
     // }
-  }
-  // plugins: [
-  //   plugin(({ addComponents }) => {
-  //     addComponents({
-  //       '.hover-tigger': {
-  //         display: 'flex',
-  //         height: '100%',
-  //         padding: '1px 10px 0',
-  //         cursor: 'pointer',
-  //         alignItems: 'center',
-  //         transition: 'background var(--transition-time-02)',
-  //         '&:hover': {
-  //           backgroundColor: '#f6f6f6'
-  //         }
-  //       },
-  //       '.border-bottom': {
-  //         position: 'relative',
-  //         '&:after': {
-  //           position: 'absolute',
-  //           bottom: '0',
-  //           left: '0',
-  //           width: '100%',
-  //           height: '1px',
-  //           borderTop: '1px solid var(--top-tool-border-color)',
-  //           content: ''
-  //         }
-  //       }
-  //     })
-  //   })
-  // ]
+  },
+  plugins: [
+    plugin(({ addComponents }) => {
+      const obj = {}
+      range(50).map((i) => {
+        obj[`.border-top-${i}`] = {
+          borderTopWidth: `${i}px`
+        }
+        obj[`.border-left-${i}`] = {
+          borderLeftWidth: `${i}px`
+        }
+        obj[`.border-right-${i}`] = {
+          borderRightWidth: `${i}px`
+        }
+        obj[`.border-bottom-${i}`] = {
+          borderBottomWidth: `${i}px`
+        }
+      })
+      addComponents({
+        '.hover-tigger': {
+          display: 'flex',
+          height: '100%',
+          padding: '1px 10px 0',
+          cursor: 'pointer',
+          alignItems: 'center',
+          transition: 'background var(--transition-time-02)',
+          '&:hover': {
+            backgroundColor: 'var(--top-header-hover-color)'
+          }
+        },
+        ...obj
+      })
+    })
+  ]
 })

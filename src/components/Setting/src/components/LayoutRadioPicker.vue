@@ -5,14 +5,13 @@ import { computed } from 'vue'
 const appStore = useAppStore()
 
 const layout = computed(() => appStore.getLayout)
-console.log(layout.value)
 </script>
 
 <template>
   <div class="v-layout-radio-picker flex flex-wrap space-x-14px">
     <div
       :class="[
-        'v-layout-radio-picker__classic relative w-56px h-48px cursor-pointer bg-gray-100',
+        'v-layout-radio-picker__classic relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'classic'
         }
@@ -21,13 +20,33 @@ console.log(layout.value)
     ></div>
     <div
       :class="[
-        'v-layout-radio-picker__top-left relative w-56px h-48px cursor-pointer bg-gray-100',
+        'v-layout-radio-picker__top-left relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'topLeft'
         }
       ]"
       @click="appStore.setLayout('topLeft')"
     ></div>
+    <div
+      :class="[
+        'v-layout-radio-picker__top relative w-56px h-48px cursor-pointer bg-gray-300',
+        {
+          'is-acitve': layout === 'top'
+        }
+      ]"
+      @click="appStore.setLayout('top')"
+    ></div>
+    <div
+      :class="[
+        'v-layout-radio-picker__cut-menu relative w-56px h-48px cursor-pointer bg-gray-300',
+        {
+          'is-acitve': layout === 'cutMenu'
+        }
+      ]"
+      @click="appStore.setLayout('cutMenu')"
+    >
+      <div class="absolute h-full w-[33%] top-0 left-[10%] bg-gray-200"></div>
+    </div>
   </div>
 </template>
 
@@ -84,6 +103,51 @@ console.log(layout.value)
       top: 0;
       left: 0;
       width: 33%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 4px 0 0 4px;
+      content: '';
+    }
+  }
+
+  &__top {
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 33%;
+      background-color: #273352;
+      border-radius: 4px 4px 0 0;
+      content: '';
+    }
+  }
+
+  &__cut-menu {
+    border: 2px solid #e5e7eb;
+    border-radius: 4px;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 33%;
+      background-color: #273352;
+      border-radius: 4px 4px 0 0;
+      content: '';
+    }
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10%;
       height: 100%;
       background-color: #fff;
       border-radius: 4px 0 0 4px;

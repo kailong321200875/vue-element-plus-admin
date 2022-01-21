@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElDrawer, ElDivider } from 'element-plus'
-import { ref, unref } from 'vue'
+import { ref, unref, computed, watch } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { colorIsDark, lighten, hexToRGB } from '@/utils/color'
@@ -14,6 +14,8 @@ import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
 const appStore = useAppStore()
 
 const { t } = useI18n()
+
+const layout = computed(() => appStore.getLayout)
 
 const drawer = ref(false)
 
@@ -34,14 +36,20 @@ const setHeaderTheme = (color: string) => {
   const isDarkColor = colorIsDark(color)
   const textColor = isDarkColor ? '#fff' : 'inherit'
   const textHoverColor = isDarkColor ? lighten(color!, 6) : '#f6f6f6'
+  const topToolBorderColor = isDarkColor ? color : '#eee'
   setCssVar('--top-header-bg-color', color)
   setCssVar('--top-header-text-color', textColor)
   setCssVar('--top-header-hover-color', textHoverColor)
+  setCssVar('--top-tool-border-color', topToolBorderColor)
   appStore.setTheme({
     topHeaderBgColor: color,
     topHeaderTextColor: textColor,
-    topHeaderHoverColor: textHoverColor
+    topHeaderHoverColor: textHoverColor,
+    topToolBorderColor
   })
+  if (unref(layout) === 'top') {
+    setMenuTheme(color)
+  }
 }
 
 // 菜单主题相关
@@ -72,11 +80,26 @@ const setMenuTheme = (color: string) => {
     // logo字体颜色
     logoTitleTextColor: isDarkColor ? '#fff' : 'inherit',
     // logo边框颜色
-    logoBorderColor: isDarkColor ? 'inherit' : '#eee'
+    logoBorderColor: isDarkColor ? color : '#eee'
   }
   appStore.setTheme(theme)
   appStore.setCssVarTheme()
 }
+
+// 监听layout变化，重置一些主题色
+watch(
+  () => layout.value,
+  (n, o) => {
+    if (o === 'top') {
+      menuTheme.value = '#fff'
+      setMenuTheme('#fff')
+    }
+    if ((o === 'classic' || o === 'topLeft') && n === 'top') {
+      menuTheme.value = headerTheme.value
+      setMenuTheme(unref(menuTheme))
+    }
+  }
+)
 </script>
 
 <template>
@@ -136,21 +159,23 @@ const setMenuTheme = (color: string) => {
       />
 
       <!-- 菜单主题 -->
-      <ElDivider>{{ t('setting.menuTheme') }}</ElDivider>
-      <ColorRadioPicker
-        v-model="menuTheme"
-        :schema="[
-          '#fff',
-          '#001529',
-          '#212121',
-          '#273352',
-          '#191b24',
-          '#383f45',
-          '#001628',
-          '#344058'
-        ]"
-        @change="setMenuTheme"
-      />
+      <template v-if="layout !== 'top'">
+        <ElDivider>{{ t('setting.menuTheme') }}</ElDivider>
+        <ColorRadioPicker
+          v-model="menuTheme"
+          :schema="[
+            '#fff',
+            '#001529',
+            '#212121',
+            '#273352',
+            '#191b24',
+            '#383f45',
+            '#001628',
+            '#344058'
+          ]"
+          @change="setMenuTheme"
+        />
+      </template>
     </div>
 
     <!-- 界面显示 -->

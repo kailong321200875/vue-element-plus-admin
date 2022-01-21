@@ -7,6 +7,10 @@
 }
 
 .border-bottom {
+  border-bottom: 1px solid var(--top-tool-border-color);
+}
+
+.border-bottom--after {
   @apply relative;
   &:after {
     content: '';
@@ -16,6 +20,10 @@
 }
 
 .border-top {
+  border-top: 1px solid var(--top-tool-border-color);
+}
+
+.border-top--before {
   @apply relative;
   &:before {
     content: '';

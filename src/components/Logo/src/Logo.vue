@@ -6,7 +6,7 @@ const appStore = useAppStore()
 
 const show = ref(true)
 
-const title = computed(() => appStore.getLogoTitle)
+const title = computed(() => appStore.getTitle)
 
 const layout = computed(() => appStore.getLayout)
 
@@ -19,15 +19,30 @@ onMounted(() => {
 watch(
   () => collapse.value,
   (collapse: boolean) => {
-    if (layout.value !== 'classic') {
+    if (unref(layout) === 'topLeft' || unref(layout) === 'cutMenu') {
+      show.value = true
+      return
+    }
+    if (!collapse) {
+      setTimeout(() => {
+        show.value = !collapse
+      }, 400)
+    } else {
+      show.value = !collapse
+    }
+  }
+)
+
+watch(
+  () => layout.value,
+  (layout) => {
+    if (layout === 'top' || layout === 'cutMenu') {
       show.value = true
     } else {
-      if (!collapse) {
-        setTimeout(() => {
-          show.value = !collapse
-        }, 400)
+      if (unref(collapse)) {
+        show.value = false
       } else {
-        show.value = !collapse
+        show.value = true
       }
     }
   }
@@ -55,7 +70,8 @@ watch(
         'ml-10px text-16px font-700',
         {
           'text-[var(--logo-title-text-color)]': layout === 'classic',
-          'text-[var(--top-header-text-color)]': layout === 'topLeft'
+          'text-[var(--top-header-text-color)]':
+            layout === 'topLeft' || layout === 'top' || layout === 'cutMenu'
         }
       ]"
     >
@@ -66,15 +82,4 @@ watch(
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-logo';
-
-.@{prefix-cls} {
-  &:after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    border-bottom: 1px solid var(--logo-border-color);
-    content: '';
-  }
-}
 </style>

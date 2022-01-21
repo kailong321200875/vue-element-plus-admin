@@ -37,7 +37,8 @@ export default {
     logo: '标志',
     greyMode: '灰色模式',
     fixedHeader: '固定头部',
-    headerTheme: '头部主题'
+    headerTheme: '头部主题',
+    cutMenu: '切割菜单'
   },
   size: {
     default: '默认',

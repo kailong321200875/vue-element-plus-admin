@@ -37,7 +37,8 @@ export default {
     logo: 'Logo',
     greyMode: 'Grey mode',
     fixedHeader: 'Fixed header',
-    headerTheme: 'Header theme'
+    headerTheme: 'Header theme',
+    cutMenu: 'Cut Menu'
   },
   size: {
     default: 'Default',

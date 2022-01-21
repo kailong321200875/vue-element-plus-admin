@@ -132,8 +132,8 @@ watch(
       <Icon icon="ep:d-arrow-left" color="#333" />
     </span>
     <div class="overflow-hidden flex-1">
-      <ElScrollbar>
-        <div class="flex h-[var(--tags-view-height)]">
+      <ElScrollbar class="h-full">
+        <div class="flex h-full">
           <ContextMenu
             :schema="[
               {
@@ -202,7 +202,10 @@ watch(
             ]"
           >
             <router-link :to="{ ...item }" custom v-slot="{ navigate }">
-              <div @click="navigate" class="h-full flex justify-center items-center">
+              <div
+                @click="navigate"
+                class="h-full flex justify-center items-center whitespace-nowrap"
+              >
                 {{ t(item?.meta?.title as string) }}
                 <Icon
                   class="v-tags-view__item--close"
@@ -291,6 +294,10 @@ watch(
 @prefix-cls: ~'@{namespace}-tags-view';
 
 .@{prefix-cls} {
+  :deep(.el-scrollbar__view) {
+    height: 100%;
+  }
+
   &__tool {
     position: relative;
 
@@ -302,11 +309,12 @@ watch(
 
     &:after {
       position: absolute;
-      top: 0;
+      top: 1px;
       left: 0;
       width: 100%;
-      height: 100%;
-      border: 1px solid var(--top-tool-border-color);
+      height: calc(~'100% - 1px');
+      border-right: 1px solid var(--tags-view-border-color);
+      border-left: 1px solid var(--tags-view-border-color);
       content: '';
     }
   }

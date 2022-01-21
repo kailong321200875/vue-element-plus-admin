@@ -2,7 +2,7 @@
 import { ElSwitch } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
-import { ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const appStore = useAppStore()
 
@@ -20,13 +20,6 @@ const breadcrumbIcon = ref(appStore.getBreadcrumbIcon)
 
 const breadcrumbIconChange = (show: boolean) => {
   appStore.setBreadcrumbIcon(show)
-}
-
-// 折叠菜单
-const collapse = ref(appStore.getCollapse)
-
-const collapseChange = (show: boolean) => {
-  appStore.setCollapse(show)
 }
 
 // 折叠图标
@@ -84,6 +77,17 @@ const greyMode = ref(appStore.getGreyMode)
 const greyModeChange = (show: boolean) => {
   appStore.setGreyMode(show)
 }
+
+const layout = computed(() => appStore.getLayout)
+
+watch(
+  () => layout.value,
+  (n) => {
+    if (n === 'top') {
+      appStore.setCollapse(false)
+    }
+  }
+)
 </script>
 
 <template>
@@ -96,11 +100,6 @@ const greyModeChange = (show: boolean) => {
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.breadcrumbIcon') }}</span>
       <ElSwitch v-model="breadcrumbIcon" @change="breadcrumbIconChange" />
-    </div>
-
-    <div class="flex justify-between items-center">
-      <span class="text-14px">{{ t('setting.collapseMenu') }}</span>
-      <ElSwitch v-model="collapse" @change="collapseChange" />
     </div>
 
     <div class="flex justify-between items-center">
