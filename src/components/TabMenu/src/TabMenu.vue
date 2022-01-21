@@ -37,7 +37,6 @@ export default defineComponent({
       (routers: AppRouteRecordRaw[]) => {
         initTabMap(routers)
         filterMenusPath(routers, routers)
-        console.log(tabPathMap)
       },
       {
         immediate: true,

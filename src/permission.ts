@@ -5,6 +5,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
+import { usePageLoading } from '@/hooks/web/usePageLoading'
 
 const permissionStore = usePermissionStoreWithOut()
 
@@ -14,10 +15,13 @@ const { wsCache } = useCache()
 
 const { start, done } = useNProgress()
 
+const { loadStart, loadDone } = usePageLoading()
+
 const whiteList = ['/login'] // 不重定向白名单
 
 router.beforeEach(async (to, from, next) => {
   start()
+  loadStart()
   if (wsCache.get(appStore.getUserInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })
@@ -48,4 +52,5 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach((to) => {
   useTitle(to?.meta?.title as string)
   done() // 结束Progress
+  loadDone()
 })

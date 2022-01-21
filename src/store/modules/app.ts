@@ -42,13 +42,12 @@ export const useAppStore = defineStore({
     getFixedHeader(): boolean {
       return this.fixedHeader
     },
-    getFixedMenu(): boolean {
-      return this.fixedMenu
-    },
     getGreyMode(): boolean {
       return this.greyMode
     },
-
+    getPageLoading(): boolean {
+      return this.pageLoading
+    },
     getLayout(): LayoutType {
       return this.layout
     },
@@ -105,13 +104,12 @@ export const useAppStore = defineStore({
     setFixedHeader(fixedHeader: boolean) {
       this.fixedHeader = fixedHeader
     },
-    setFixedMenu(fixedMenu: boolean) {
-      this.fixedMenu = fixedMenu
-    },
     setGreyMode(greyMode: boolean) {
       this.greyMode = greyMode
     },
-
+    setPageLoading(pageLoading: boolean) {
+      this.pageLoading = pageLoading
+    },
     setLayout(layout: LayoutType) {
       if (this.mobile && layout !== 'classic') {
         ElMessage.warning('移动端模式下不支持切换其他布局')

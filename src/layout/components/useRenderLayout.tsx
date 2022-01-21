@@ -10,6 +10,8 @@ import { ElScrollbar } from 'element-plus'
 
 const appStore = useAppStore()
 
+const pageLoading = computed(() => appStore.getPageLoading)
+
 // 标签页
 const tagsView = computed(() => appStore.getTagsView)
 
@@ -60,6 +62,7 @@ export const useRenderLayout = () => {
           style="transition: all var(--transition-time-02);"
         >
           <ElScrollbar
+            v-loading={pageLoading.value}
             class={[
               'v-content',
               {
@@ -119,6 +122,7 @@ export const useRenderLayout = () => {
             style="transition: all var(--transition-time-02);"
           >
             <ElScrollbar
+              v-loading={pageLoading.value}
               class={[
                 'v-content',
                 {
@@ -161,6 +165,7 @@ export const useRenderLayout = () => {
         </div>
         <div class="v-app-right h-full w-full">
           <ElScrollbar
+            v-loading={pageLoading.value}
             class={[
               'v-content',
               {
@@ -212,6 +217,7 @@ export const useRenderLayout = () => {
             style="transition: all var(--transition-time-02);"
           >
             <ElScrollbar
+              v-loading={pageLoading.value}
               class={[
                 'v-content',
                 {
@@ -232,7 +238,7 @@ export const useRenderLayout = () => {
                         !collapse.value && fixedHeader.value
                     }
                   ]}
-                  style="transition: all var(--transition-time-02);"
+                  style="transition: width var(--transition-time-02), left var(--transition-time-02);"
                 ></TagsView>
               ) : undefined}
 

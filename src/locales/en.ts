@@ -38,7 +38,10 @@ export default {
     greyMode: 'Grey mode',
     fixedHeader: 'Fixed header',
     headerTheme: 'Header theme',
-    cutMenu: 'Cut Menu'
+    cutMenu: 'Cut Menu',
+    copy: 'Copy',
+    clearAndReset: 'Clear cache and reset',
+    copySuccess: 'Copy success'
   },
   size: {
     default: 'Default',

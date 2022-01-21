@@ -15,9 +15,8 @@ export interface AppState {
   tagsView: boolean
   logo: boolean
   fixedHeader: boolean
-  fixedMenu: boolean
   greyMode: boolean
-
+  pageLoading: boolean
   layout: LayoutType
   title: string
   userInfo: string
@@ -29,6 +28,12 @@ export interface AppState {
 }
 
 export const appModules: AppState = {
+  userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
+  sizeMap: ['default', 'large', 'small'],
+  mobile: false, // 是否是移动端
+  title: 'ButterflyAdmin', // 标题
+  pageLoading: false, // 路由跳转loading
+
   breadcrumb: true, // 面包屑
   breadcrumbIcon: true, // 面包屑图标
   collapse: false, // 折叠菜单
@@ -39,16 +44,11 @@ export const appModules: AppState = {
   tagsView: true, // 标签页
   logo: true, // logo
   fixedHeader: true, // 固定toolheader
-  fixedMenu: false, // 固定切割菜单
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
 
   layout: wsCache.get('layout') || 'classic', // layout布局
-  title: 'ButterflyAdmin', // 标题
-  userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
   currentSize: wsCache.get('default') || 'default', // 组件尺寸
-  sizeMap: ['default', 'large', 'small'],
-  mobile: false, // 是否是移动端
   theme: wsCache.get('theme') || {
     // 主题色
     elColorPrimary: '#409eff',

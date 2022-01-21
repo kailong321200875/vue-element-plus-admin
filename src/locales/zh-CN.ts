@@ -38,7 +38,10 @@ export default {
     greyMode: '灰色模式',
     fixedHeader: '固定头部',
     headerTheme: '头部主题',
-    cutMenu: '切割菜单'
+    cutMenu: '切割菜单',
+    copy: '拷贝',
+    clearAndReset: '清除缓存并且重置',
+    copySuccess: '拷贝成功'
   },
   size: {
     default: '默认',
