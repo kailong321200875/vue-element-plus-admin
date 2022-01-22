@@ -220,8 +220,10 @@ export default defineComponent({
       }
 
       .v-menu__title {
-        max-height: calc(~'var( - -top-tool-height) - 2px') !important;
-        line-height: calc(~'var( - -top-tool-height) - 2px');
+        /* stylelint-disable-next-line */
+        max-height: calc(~'var(--top-tool-height) - 2px') !important;
+        /* stylelint-disable-next-line */
+        line-height: calc(~'var(--top-tool-height) - 2px');
       }
     }
   }
