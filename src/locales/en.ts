@@ -41,7 +41,8 @@ export default {
     cutMenu: 'Cut Menu',
     copy: 'Copy',
     clearAndReset: 'Clear cache and reset',
-    copySuccess: 'Copy success'
+    copySuccess: 'Copy success',
+    footer: 'Footer'
   },
   size: {
     default: 'Default',

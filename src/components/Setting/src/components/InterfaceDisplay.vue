@@ -71,6 +71,13 @@ const fixedHeaderChange = (show: boolean) => {
   appStore.setFixedHeader(show)
 }
 
+// 页脚
+const footer = ref(appStore.getFooter)
+
+const footerChange = (show: boolean) => {
+  appStore.setFooter(show)
+}
+
 // 灰色模式
 const greyMode = ref(appStore.getGreyMode)
 
@@ -135,6 +142,11 @@ watch(
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.fixedHeader') }}</span>
       <ElSwitch v-model="fixedHeader" @change="fixedHeaderChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.footer') }}</span>
+      <ElSwitch v-model="footer" @change="footerChange" />
     </div>
 
     <div class="flex justify-between items-center">

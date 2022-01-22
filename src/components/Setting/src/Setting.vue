@@ -32,7 +32,7 @@ const setSystemTheme = (color: string) => {
 }
 
 // 头部主题相关
-const headerTheme = ref(appStore.getTheme.topHeaderBgColor)
+const headerTheme = ref(appStore.getTheme.topHeaderBgColor || '')
 
 const setHeaderTheme = (color: string) => {
   const isDarkColor = colorIsDark(color)
@@ -55,7 +55,7 @@ const setHeaderTheme = (color: string) => {
 }
 
 // 菜单主题相关
-const menuTheme = ref(appStore.getTheme.leftMenuBgColor)
+const menuTheme = ref(appStore.getTheme.leftMenuBgColor || '')
 
 const setMenuTheme = (color: string) => {
   const primaryColor = useCssVar('--el-color-primary', document.documentElement)
@@ -91,13 +91,11 @@ const setMenuTheme = (color: string) => {
 // 监听layout变化，重置一些主题色
 watch(
   () => layout.value,
-  (n, o) => {
-    if (o === 'top') {
-      menuTheme.value = '#fff'
-      setMenuTheme('#fff')
-    }
-    if ((o === 'classic' || o === 'topLeft') && n === 'top') {
-      menuTheme.value = headerTheme.value
+  (n) => {
+    if (n === 'top') {
+      headerTheme.value = '#fff'
+      setHeaderTheme('#fff')
+    } else {
       setMenuTheme(unref(menuTheme))
     }
   }
@@ -125,6 +123,8 @@ tagsView: ${appStore.getTagsView},
 logo: ${appStore.getLogo},
 // 固定header
 fixedHeader: ${appStore.getFixedHeader},
+// 页脚
+footer: ${appStore.getFooter},
 // 灰色模式
 greyMode: ${appStore.getGreyMode},
 // layout布局

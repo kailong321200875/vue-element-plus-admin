@@ -30,8 +30,6 @@ import { defineComponent } from 'vue'
     followAuth: '/dashboard'  跟随哪个路由进行权限过滤
 
     canTo: true               设置为true即使hidden为true，也依然可以进行路由跳转(默认 false)
-
-    followRoute: '/dashboard' 为路由设置跟随其他路由的权限
   }
 **/
 declare module 'vue-router' {
@@ -47,7 +45,6 @@ declare module 'vue-router' {
     noTagsView?: boolean
     followAuth?: string
     canTo?: boolean
-    followRoute?: string
   }
 }
 

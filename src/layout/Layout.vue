@@ -63,4 +63,10 @@ export default defineComponent({
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-app';
+
+:deep(.@{namespace}-content) {
+  .el-scrollbar__view {
+    height: 100%;
+  }
+}
 </style>

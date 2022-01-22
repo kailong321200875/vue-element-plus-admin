@@ -4,6 +4,22 @@ const { wsCache } = useCache()
 
 export type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'
 
+export type ThemeTypes = {
+  elColorPrimary?: string
+  leftMenuBorderColor?: string
+  leftMenuBgColor?: string
+  leftMenuBgLightColor?: string
+  leftMenuBgActiveColor?: string
+  leftMenuCollapseBgActiveColor?: string
+  leftMenuTextColor?: string
+  leftMenuTextActiveColor?: string
+  logoTitleTextColor?: string
+  logoBorderColor?: string
+  topHeaderBgColor?: string
+  topHeaderTextColor?: string
+  topHeaderHoverColor?: string
+  topToolBorderColor?: string
+}
 export interface AppState {
   breadcrumb: boolean
   breadcrumbIcon: boolean
@@ -24,7 +40,8 @@ export interface AppState {
   currentSize: ElememtPlusSzie
   sizeMap: ElememtPlusSzie[]
   mobile: boolean
-  theme: Recordable
+  footer: boolean
+  theme: ThemeTypes
 }
 
 export const appModules: AppState = {
@@ -44,6 +61,7 @@ export const appModules: AppState = {
   tagsView: true, // 标签页
   logo: true, // logo
   fixedHeader: true, // 固定toolheader
+  footer: true, // 显示页脚
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
 
   layout: wsCache.get('layout') || 'classic', // layout布局

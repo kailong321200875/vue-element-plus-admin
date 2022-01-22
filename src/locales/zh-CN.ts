@@ -41,7 +41,8 @@ export default {
     cutMenu: '切割菜单',
     copy: '拷贝',
     clearAndReset: '清除缓存并且重置',
-    copySuccess: '拷贝成功'
+    copySuccess: '拷贝成功',
+    footer: '页脚'
   },
   size: {
     default: '默认',

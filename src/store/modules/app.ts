@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { useCache } from '@/hooks/web/useCache'
 import { appModules } from '@/config/app'
-import type { AppState, LayoutType } from '@/config/app'
+import type { AppState, LayoutType, ThemeTypes } from '@/config/app'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
 
@@ -69,8 +69,11 @@ export const useAppStore = defineStore({
     getMobile(): boolean {
       return this.mobile
     },
-    getTheme(): Recordable {
+    getTheme(): ThemeTypes {
       return this.theme
+    },
+    getFooter(): boolean {
+      return this.footer
     }
   },
   actions: {
@@ -139,7 +142,7 @@ export const useAppStore = defineStore({
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
-    setTheme(theme: Recordable) {
+    setTheme(theme: ThemeTypes) {
       this.theme = Object.assign(this.theme, theme)
       wsCache.set('theme', this.theme)
     },
@@ -147,6 +150,9 @@ export const useAppStore = defineStore({
       for (const key in this.theme) {
         setCssVar(`--${humpToUnderline(key)}`, this.theme[key])
       }
+    },
+    setFooter(footer: boolean) {
+      this.footer = footer
     }
   }
 })
