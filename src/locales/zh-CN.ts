@@ -69,7 +69,9 @@ export default {
     menu11: '菜单1-1',
     menu111: '菜单1-1-1',
     menu12: '菜单1-2',
-    menu2: '菜单2'
+    menu2: '菜单2',
+    dashboard: '首页',
+    analysis: '分析页'
   },
   formDemo: {
     input: '输入框',

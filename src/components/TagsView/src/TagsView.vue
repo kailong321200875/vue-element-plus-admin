@@ -147,6 +147,7 @@ watch(
               {
                 icon: 'ant-design:close-outlined',
                 label: t('common.closeTab'),
+                disabled: !!visitedViews?.length && selectedTag?.meta.affix,
                 command: () => {
                   closeSelectedTag(item)
                 }
@@ -243,7 +244,8 @@ watch(
         },
         {
           icon: 'ant-design:close-outlined',
-          label: t('common.closeTab')
+          label: t('common.closeTab'),
+          disabled: !!visitedViews?.length && selectedTag?.meta.affix
         },
         {
           divided: true,

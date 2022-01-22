@@ -38,6 +38,29 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
 
 export const asyncRouterMap: AppRouteRecordRaw[] = [
   {
+    path: '/dashboard',
+    component: Layout,
+    redirect: '/dashboard/analysis',
+    name: 'Dashboard',
+    meta: {
+      title: t('router.dashboard'),
+      icon: 'ant-design:dashboard-filled',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'analysis',
+        component: () => import('@/views/Dashboard/Analysis.vue'),
+        name: 'Analysis',
+        meta: {
+          title: t('router.analysis'),
+          noCache: true,
+          affix: true
+        }
+      }
+    ]
+  },
+  {
     path: '/level',
     component: Layout,
     redirect: '/level/menu1/menu1-1/menu1-1-1',

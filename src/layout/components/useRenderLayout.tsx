@@ -49,7 +49,7 @@ export const useRenderLayout = () => {
         </div>
         <div
           class={[
-            'v-app-right',
+            'v-content',
             'absolute top-0 h-[100%]',
             {
               'w-[calc(100%-var(--left-menu-min-width))] left-[var(--left-menu-min-width)]':
@@ -64,7 +64,6 @@ export const useRenderLayout = () => {
           <ElScrollbar
             v-loading={pageLoading.value}
             class={[
-              'v-content',
               {
                 '!h-[calc(100%-var(--top-tool-height)-var(--tags-view-height))] mt-[calc(var(--top-tool-height)+var(--tags-view-height))]':
                   fixedHeader.value
@@ -110,7 +109,7 @@ export const useRenderLayout = () => {
           <Menu class="!h-full"></Menu>
           <div
             class={[
-              'v-app-right',
+              'v-content',
               'h-[100%]',
               {
                 'w-[calc(100%-var(--left-menu-min-width))] left-[var(--left-menu-min-width)]':
@@ -124,7 +123,6 @@ export const useRenderLayout = () => {
             <ElScrollbar
               v-loading={pageLoading.value}
               class={[
-                'v-content',
                 {
                   '!h-[calc(100%-var(--tags-view-height))] mt-[calc(var(--tags-view-height))]':
                     fixedHeader.value && tagsView.value
@@ -163,11 +161,10 @@ export const useRenderLayout = () => {
           <Menu class="flex-1 px-10px h-[var(--top-tool-height)]"></Menu>
           <ToolHeader></ToolHeader>
         </div>
-        <div class="v-app-right h-full w-full">
+        <div class="v-content h-full w-full">
           <ElScrollbar
             v-loading={pageLoading.value}
             class={[
-              'v-content',
               {
                 'mt-[var(--tags-view-height)]': fixedHeader.value
               }
@@ -205,7 +202,7 @@ export const useRenderLayout = () => {
           {/* <Menu class="!h-full"></Menu> */}
           <div
             class={[
-              'v-app-right',
+              'v-content',
               'h-[100%]',
               {
                 'w-[calc(100%-var(--tab-menu-min-width))] left-[var(--tab-menu-min-width)]':
@@ -219,7 +216,6 @@ export const useRenderLayout = () => {
             <ElScrollbar
               v-loading={pageLoading.value}
               class={[
-                'v-content',
                 {
                   '!h-[calc(100%-var(--tags-view-height))] mt-[calc(var(--tags-view-height))]':
                     fixedHeader.value && tagsView.value

@@ -38,7 +38,7 @@ router.beforeEach(async (to, from, next) => {
       const redirect = decodeURIComponent(redirectPath as string)
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
       permissionStore.setIsAddRouters(true)
-      next(nextData)
+      next(to.path === '/' ? { path: permissionStore.addRouters[0]?.path as string } : nextData)
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
