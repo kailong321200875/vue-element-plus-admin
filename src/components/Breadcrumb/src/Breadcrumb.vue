@@ -88,7 +88,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-breadcrumb';
+@prefix-cls: ~'@{elNamespace}-breadcrumb';
 
 .@{prefix-cls} {
   :deep(&__item) {
