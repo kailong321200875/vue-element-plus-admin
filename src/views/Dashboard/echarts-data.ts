@@ -151,3 +151,34 @@ export const barOptions: EChartsOption = {
     }
   ]
 }
+
+export const radarOption: EChartsOption = {
+  legend: {
+    data: [t('workplace.personal'), t('workplace.team')]
+  },
+  radar: {
+    // shape: 'circle',
+    indicator: [
+      { name: t('workplace.quote'), max: 65 },
+      { name: t('workplace.contribution'), max: 160 },
+      { name: t('workplace.hot'), max: 300 },
+      { name: t('workplace.yield'), max: 130 }
+    ]
+  },
+  series: [
+    {
+      name: `xxx${t('workplace.index')}`,
+      type: 'radar',
+      data: [
+        {
+          value: [42, 30, 20, 35],
+          name: t('workplace.personal')
+        },
+        {
+          value: [50, 140, 28, 35],
+          name: t('workplace.team')
+        }
+      ]
+    }
+  ]
+}

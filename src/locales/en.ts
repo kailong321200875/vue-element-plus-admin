@@ -71,7 +71,8 @@ export default {
     menu12: 'Menu1-2',
     menu2: 'Menu2',
     dashboard: 'Dashboard',
-    analysis: 'Analysis'
+    analysis: 'Analysis',
+    workplace: 'Workplace'
   },
   analysis: {
     newUser: 'New user',
@@ -108,6 +109,28 @@ export default {
     friday: 'Friday',
     saturday: 'Saturday',
     sunday: 'Sunday'
+  },
+  workplace: {
+    goodMorning: 'Good morning',
+    happyDay: 'Wish you happy every day!',
+    toady: `It's sunny today`,
+    project: 'Project',
+    access: 'Project access',
+    toDo: 'To do',
+    introduction: 'A serious introduction',
+    more: 'More',
+    shortcutOperation: 'Shortcut operation',
+    operation: 'Operation',
+    index: 'Index',
+    personal: 'Personal',
+    team: 'Team',
+    quote: 'Quote',
+    contribution: 'Contribution',
+    hot: 'Hot',
+    yield: 'Yield',
+    dynamic: 'Dynamic',
+    push: 'push',
+    pushCode: 'Archer push code to GitHub'
   },
   formDemo: {
     input: 'Input',

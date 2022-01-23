@@ -71,7 +71,8 @@ export default {
     menu12: '菜单1-2',
     menu2: '菜单2',
     dashboard: '首页',
-    analysis: '分析页'
+    analysis: '分析页',
+    workplace: '工作台'
   },
   analysis: {
     newUser: '新增用户',
@@ -108,6 +109,28 @@ export default {
     friday: '周五',
     saturday: '周六',
     sunday: '周日'
+  },
+  workplace: {
+    goodMorning: '早安',
+    happyDay: '祝你开心每一天!',
+    toady: '今日晴',
+    project: '项目数',
+    access: '项目访问',
+    toDo: '待办',
+    introduction: '一个正经的简介',
+    more: '更多',
+    shortcutOperation: '快捷操作',
+    operation: '操作',
+    index: '指数',
+    personal: '个人',
+    team: '团队',
+    quote: '引用',
+    contribution: '贡献',
+    hot: '热度',
+    yield: '产量',
+    dynamic: '动态',
+    push: '推送',
+    pushCode: 'Archer 推送 代码到 Github'
   },
   formDemo: {
     input: '输入框',

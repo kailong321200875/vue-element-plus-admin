@@ -1,6 +1,13 @@
 import * as echarts from 'echarts/core'
 
-import { BarChart, LineChart, PieChart, MapChart, PictorialBarChart } from 'echarts/charts'
+import {
+  BarChart,
+  LineChart,
+  PieChart,
+  MapChart,
+  PictorialBarChart,
+  RadarChart
+} from 'echarts/charts'
 
 import {
   TitleComponent,
@@ -27,7 +34,8 @@ echarts.use([
   PieChart,
   MapChart,
   CanvasRenderer,
-  PictorialBarChart
+  PictorialBarChart,
+  RadarChart
 ])
 
 export default echarts

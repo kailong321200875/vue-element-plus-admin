@@ -32,7 +32,7 @@ setTimeout(() => {
     <ElCol :span="24">
       <ElCard shadow="hover" class="mb-20px">
         <ElSkeleton :loading="loading" animated :rows="4">
-          <Echart :options="lineOptions" :height="400" />
+          <Echart :options="lineOptions" :height="350" />
         </ElSkeleton>
       </ElCard>
     </ElCol>
