@@ -12,6 +12,11 @@ import InterfaceDisplay from './components/InterfaceDisplay.vue'
 import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
 import { useCache } from '@/hooks/web/useCache'
 import { useClipboard } from '@vueuse/core'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('setting')
 
 const appStore = useAppStore()
 
@@ -184,7 +189,8 @@ const clear = () => {
 
 <template>
   <div
-    class="v-setting fixed top-[45%] right-0 w-40px h-40px text-center leading-40px bg-[var(--el-color-primary)] cursor-pointer"
+    :class="prefixCls"
+    class="fixed top-[45%] right-0 w-40px h-40px text-center leading-40px bg-[var(--el-color-primary)] cursor-pointer"
     @click="drawer = true"
   >
     <Icon icon="ant-design:setting-outlined" color="#fff" />

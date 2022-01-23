@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { ref, watch, computed, onMounted, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('logo')
 
 const appStore = useAppStore()
 
@@ -52,10 +57,8 @@ watch(
 <template>
   <router-link
     :class="[
-      'v-logo',
-      {
-        'v-logo__Top': layout !== 'classic'
-      },
+      prefixCls,
+      layout !== 'classic' ? `${prefixCls}__Top` : '',
       'flex !h-[var(--logo-height)] items-center cursor-pointer pl-8px relative'
     ]"
     to="/"
@@ -79,7 +82,3 @@ watch(
     </div>
   </router-link>
 </template>
-
-<style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-logo';
-</style>

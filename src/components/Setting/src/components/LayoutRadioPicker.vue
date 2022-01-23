@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useAppStore } from '@/store/modules/app'
 import { computed } from 'vue'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('layout-radio-picker')
 
 const appStore = useAppStore()
 
@@ -8,10 +13,11 @@ const layout = computed(() => appStore.getLayout)
 </script>
 
 <template>
-  <div class="v-layout-radio-picker flex flex-wrap space-x-14px">
+  <div :class="prefixCls" class="flex flex-wrap space-x-14px">
     <div
       :class="[
-        'v-layout-radio-picker__classic relative w-56px h-48px cursor-pointer bg-gray-300',
+        `${prefixCls}__classic`,
+        'relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'classic'
         }
@@ -20,7 +26,8 @@ const layout = computed(() => appStore.getLayout)
     ></div>
     <div
       :class="[
-        'v-layout-radio-picker__top-left relative w-56px h-48px cursor-pointer bg-gray-300',
+        `${prefixCls}__top-left`,
+        'relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'topLeft'
         }
@@ -29,7 +36,8 @@ const layout = computed(() => appStore.getLayout)
     ></div>
     <div
       :class="[
-        'v-layout-radio-picker__top relative w-56px h-48px cursor-pointer bg-gray-300',
+        `${prefixCls}__top`,
+        'relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'top'
         }
@@ -38,7 +46,8 @@ const layout = computed(() => appStore.getLayout)
     ></div>
     <div
       :class="[
-        'v-layout-radio-picker__cut-menu relative w-56px h-48px cursor-pointer bg-gray-300',
+        `${prefixCls}__cut-menu`,
+        'relative w-56px h-48px cursor-pointer bg-gray-300',
         {
           'is-acitve': layout === 'cutMenu'
         }

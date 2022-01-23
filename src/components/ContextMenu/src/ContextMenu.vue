@@ -2,6 +2,11 @@
 import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
 import { PropType } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('context-menu')
 
 const { t } = useI18n()
 
@@ -23,6 +28,7 @@ const command = (item: contextMenuSchema) => {
 
 <template>
   <ElDropdown
+    :class="prefixCls"
     :trigger="trigger"
     placement="bottom-start"
     @command="command"
@@ -44,9 +50,3 @@ const command = (item: contextMenuSchema) => {
     </template>
   </ElDropdown>
 </template>
-
-<style lang="less">
-.v-context-menu-popper {
-  min-width: 150px;
-}
-</style>

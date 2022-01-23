@@ -2,12 +2,17 @@
 import { reactive, computed, watch, onMounted, unref, toRef, PropType } from 'vue'
 import { isNumber } from '@/utils/is'
 import { propTypes } from '@/utils/propTypes'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('count-to')
 
 const props = defineProps({
   startVal: propTypes.number.def(0),
   endVal: propTypes.number.def(2021),
   duration: propTypes.number.def(3000),
-  autoplay: propTypes.bool.def(false),
+  autoplay: propTypes.bool.def(true),
   decimals: propTypes.number.validate((value: number) => value >= 0).def(0),
   decimal: propTypes.string.def('.'),
   separator: propTypes.string.def(','),
@@ -169,7 +174,7 @@ defineExpose({
 </script>
 
 <template>
-  <span>
+  <span :class="prefixCls">
     {{ displayValue }}
   </span>
 </template>

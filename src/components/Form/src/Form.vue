@@ -15,6 +15,11 @@ import {
 import { useRenderSelect } from './components/useRenderSelect'
 import { useRenderRadio } from './components/useRenderRadio'
 import { useRenderChcekbox } from './components/useRenderChcekbox'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('form')
 
 export default defineComponent({
   name: 'Form',
@@ -194,7 +199,7 @@ export default defineComponent({
     }
 
     return () => (
-      <ElForm ref={elFormRef} {...getFormBindValue()} model={formModel} class="v-form">
+      <ElForm ref={elFormRef} {...getFormBindValue()} model={formModel} class={prefixCls}>
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
           default: () => (isCustom ? getSlot(slots, 'default') : renderWrap())

@@ -131,8 +131,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Icons',
         meta: {
           title: '图标',
-          icon: 'carbon:skill-level-advanced',
-          affix: true
+          icon: 'carbon:skill-level-advanced'
         }
       }
     ]

@@ -3,6 +3,11 @@ import { ElSwitch } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
 import { computed, ref, watch } from 'vue'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('interface-display')
 
 const appStore = useAppStore()
 
@@ -98,7 +103,7 @@ watch(
 </script>
 
 <template>
-  <div class="v-interface-display">
+  <div :class="prefixCls">
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.breadcrumb') }}</span>
       <ElSwitch v-model="breadcrumb" @change="breadcrumbChange" />

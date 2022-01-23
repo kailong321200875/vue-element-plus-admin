@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// import { ElRow, ElCol } from 'element-plus'
+import PanelGroup from './components/PanelGroup.vue'
 </script>
 
 <template>
-  <div>dddd</div>
+  <PanelGroup />
 </template>

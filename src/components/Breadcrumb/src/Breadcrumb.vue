@@ -9,6 +9,11 @@ import type { RouteLocationNormalizedLoaded, RouteMeta } from 'vue-router'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Icon } from '@/components/Icon'
 import { useAppStore } from '@/store/modules/app'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('breadcrumb')
 
 const appStore = useAppStore()
 
@@ -72,7 +77,7 @@ export default defineComponent({
     )
 
     return () => (
-      <ElBreadcrumb separator="/" class="flex items-center h-full ml-[10px]">
+      <ElBreadcrumb separator="/" class={`${prefixCls} flex items-center h-full ml-[10px]`}>
         <TransitionGroup appear enter-active-class="animate__animated animate__fadeInRight">
           {renderBreadcrumb()}
         </TransitionGroup>
@@ -83,36 +88,39 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-:deep(.el-breadcrumb__item) {
-  display: flex;
+@prefix-cls: ~'@{namespace}-breadcrumb';
 
-  .el-breadcrumb__inner {
+.@{prefix-cls} {
+  :deep(&__item) {
     display: flex;
-    align-items: center;
-    color: var(--top-header-text-color);
+    .@{prefix-cls}__inner {
+      display: flex;
+      align-items: center;
+      color: var(--top-header-text-color);
 
-    &:hover {
-      color: var(--el-color-primary);
+      &:hover {
+        color: var(--el-color-primary);
+      }
     }
   }
-}
 
-:deep(.el-breadcrumb__item):not(:last-child) {
-  .el-breadcrumb__inner {
-    color: var(--top-header-text-color);
+  :deep(&__item):not(:last-child) {
+    .@{prefix-cls}__inner {
+      color: var(--top-header-text-color);
 
-    &:hover {
-      color: var(--el-color-primary);
+      &:hover {
+        color: var(--el-color-primary);
+      }
     }
   }
-}
 
-:deep(.el-breadcrumb__item):last-child {
-  .el-breadcrumb__inner {
-    color: var(--el-text-color-placeholder);
-
-    &:hover {
+  :deep(&__item):last-child {
+    .@{prefix-cls}__inner {
       color: var(--el-text-color-placeholder);
+
+      &:hover {
+        color: var(--el-text-color-placeholder);
+      }
     }
   }
 }

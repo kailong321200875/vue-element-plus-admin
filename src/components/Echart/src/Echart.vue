@@ -7,6 +7,11 @@ import { propTypes } from '@/utils/propTypes'
 import { computed, PropType, ref, unref, watch, onMounted, onBeforeUnmount, onActivated } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { isString } from '@/utils/is'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('echart')
 
 const appStore = useAppStore()
 
@@ -106,5 +111,5 @@ onActivated(() => {
 </script>
 
 <template>
-  <div ref="elRef" :class="$attrs.class" :style="styles" />
+  <div ref="elRef" :class="[$attrs.class, prefixCls]" :style="styles" />
 </template>

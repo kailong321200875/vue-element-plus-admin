@@ -7,6 +7,11 @@ import { UserInfo } from '@/components/UserInfo'
 import { Screenfull } from '@/components/Screenfull'
 import { Breadcrumb } from '@/components/Breadcrumb'
 import { useAppStore } from '@/store/modules/app'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('tool-header')
 
 const appStore = useAppStore()
 
@@ -34,7 +39,7 @@ export default defineComponent({
     return () => (
       <div
         class={[
-          'v-tool-header',
+          prefixCls,
           'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between'
         ]}
       >

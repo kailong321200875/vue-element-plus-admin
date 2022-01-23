@@ -3,6 +3,11 @@ import { computed, unref, ref, watch, nextTick } from 'vue'
 import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import Iconify from '@purge-icons/generated'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('icon')
 
 const props = defineProps({
   // icon name
@@ -61,7 +66,7 @@ watch(
 </script>
 
 <template>
-  <ElIcon class="v-icon" :size="size" :color="color">
+  <ElIcon :class="prefixCls" :size="size" :color="color">
     <svg v-if="isLocal" aria-hidden="true">
       <use :xlink:href="symbolId" />
     </svg>

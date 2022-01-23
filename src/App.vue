@@ -3,6 +3,11 @@ import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ConfigGlobal } from '@/components/ConfigGlobal'
 import { isDark } from '@/utils/is'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('app')
 
 const appStore = useAppStore()
 
@@ -20,12 +25,12 @@ initDark()
 
 <template>
   <ConfigGlobal :size="currentSize">
-    <RouterView :class="{ 'v-grey__mode': greyMode }" />
+    <RouterView :class="greyMode ? `${prefixCls}-grey-mode` : ''" />
   </ConfigGlobal>
 </template>
 
 <style lang="less">
-@prefix-cls: ~'@{namespace}-grey';
+@prefix-cls: ~'@{namespace}-app';
 
 .size {
   width: 100%;
@@ -44,7 +49,7 @@ body {
   }
 }
 
-.@{prefix-cls}__mode {
+.@{prefix-cls}-grey-mode {
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
   -ms-filter: grayscale(100%);

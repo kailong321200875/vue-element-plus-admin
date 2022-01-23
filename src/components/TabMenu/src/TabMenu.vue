@@ -10,6 +10,11 @@ import { useRouter } from 'vue-router'
 import { pathResolve } from '@/utils/routerHelper'
 import { cloneDeep } from 'lodash-es'
 import { filterMenusPath, initTabMap, tabPathMap } from './helper'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('tab-menu')
 
 export default defineComponent({
   name: 'TabMenu',
@@ -102,7 +107,8 @@ export default defineComponent({
     return () => (
       <div
         class={[
-          'v-tab-menu relative bg-[var(--left-menu-bg-color)] top-1px',
+          prefixCls,
+          'relative bg-[var(--left-menu-bg-color)] top-1px',
           {
             'w-[var(--tab-menu-max-width)]': !unref(collapse),
             'w-[var(--tab-menu-min-width)]': unref(collapse)
@@ -115,7 +121,7 @@ export default defineComponent({
             {() => {
               return unref(tabRouters).map((v) => {
                 const item = (
-                  v?.children?.length && v?.children?.length > 1
+                  v.meta?.alwaysShow || (v?.children?.length && v?.children?.length > 1)
                     ? v
                     : {
                         ...(v?.children && v?.children[0]),
@@ -125,7 +131,8 @@ export default defineComponent({
                 return (
                   <div
                     class={[
-                      'v-tab-menu-item text-center text-12px relative py-12px cursor-pointer',
+                      `${prefixCls}__item`,
+                      'text-center text-12px relative py-12px cursor-pointer',
                       {
                         'is-active': isActice(v.path)
                       }
@@ -147,7 +154,10 @@ export default defineComponent({
           </div>
         </ElScrollbar>
         <div
-          class="v-tab-menu-collapse text-center h-[var(--tab-menu-collapse-height)] leading-[var(--tab-menu-collapse-height)] cursor-pointer"
+          class={[
+            `${prefixCls}--collapse`,
+            'text-center h-[var(--tab-menu-collapse-height)] leading-[var(--tab-menu-collapse-height)] cursor-pointer'
+          ]}
           onClick={setCollapse}
         >
           <Icon icon={unref(collapse) ? 'ep:d-arrow-right' : 'ep:d-arrow-left'}></Icon>
@@ -186,7 +196,7 @@ export default defineComponent({
     content: '';
   }
 
-  &-item {
+  &__item {
     color: var(--left-menu-text-color);
     transition: all var(--transition-time-02);
 
@@ -196,7 +206,7 @@ export default defineComponent({
     }
   }
 
-  &-collapse {
+  &--collapse {
     color: var(--left-menu-text-color);
     background-color: var(--left-menu-bg-light-color);
     border-top: 1px solid var(--left-menu-border-color);

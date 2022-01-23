@@ -1,9 +1,14 @@
 <script lang="tsx">
 import { computed, defineComponent, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
-// import { Backtop } from '@/components/Backtop'
+import { Backtop } from '@/components/Backtop'
 import { Setting } from '@/components/Setting'
 import { useRenderLayout } from './components/useRenderLayout'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('layout')
 
 const appStore = useAppStore()
 
@@ -42,7 +47,7 @@ export default defineComponent({
   name: 'Layout',
   setup() {
     return () => (
-      <section class={['v-app', `v-app__${layout.value}`, 'w-[100%] h-[100%] relative']}>
+      <section class={[prefixCls, `${prefixCls}__${layout.value}`, 'w-[100%] h-[100%] relative']}>
         {mobile.value && !collapse.value ? (
           <div
             class="absolute top-0 left-0 w-full h-full opacity-30 z-99 bg-[var(--el-color-black)]"
@@ -52,7 +57,7 @@ export default defineComponent({
 
         {renderLayout()}
 
-        {/*<Backtop></Backtop>*/}
+        <Backtop></Backtop>
 
         <Setting></Setting>
       </section>
@@ -62,11 +67,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-app';
-
-:deep(.@{namespace}-content) {
-  .el-scrollbar__view {
-    height: 100%;
-  }
+:deep(.@{elNamespace}-scrollbar__view) {
+  height: 100% !important;
 }
 </style>

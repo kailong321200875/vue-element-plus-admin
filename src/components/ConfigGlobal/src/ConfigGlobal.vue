@@ -6,6 +6,11 @@ import { useLocaleStore } from '@/store/modules/locale'
 import { useWindowSize } from '@vueuse/core'
 import { useAppStore } from '@/store/modules/app'
 import { setCssVar } from '@/utils'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls, variables } = useDesign()
+
+const prefixCls = getPrefixCls('config-global')
 
 const appStore = useAppStore()
 
@@ -48,7 +53,13 @@ const currentLocale = computed(() => localeStore.currentLocale)
 </script>
 
 <template>
-  <ElConfigProvider :locale="currentLocale.elLocale" :message="{ max: 1 }" :size="size">
+  <ElConfigProvider
+    :clss="prefixCls"
+    :namespace="variables.elNamespace"
+    :locale="currentLocale.elLocale"
+    :message="{ max: 1 }"
+    :size="size"
+  >
     <slot></slot>
   </ElConfigProvider>
 </template>

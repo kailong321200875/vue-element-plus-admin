@@ -7,6 +7,11 @@ import type { LayoutType } from '@/config/app'
 import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('menu')
 
 export default defineComponent({
   name: 'Menu',
@@ -66,7 +71,7 @@ export default defineComponent({
     return () => (
       <div
         class={[
-          `v-menu v-menu__${unref(menuMode)}`,
+          `${prefixCls} ${prefixCls}__${unref(menuMode)}`,
           'h-[100%] overflow-hidden z-100 flex-col bg-[var(--left-menu-bg-color)]',
           {
             'w-[var(--left-menu-min-width)]': unref(collapse) && unref(layout) !== 'cutMenu',
@@ -126,20 +131,20 @@ export default defineComponent({
     content: '';
   }
 
-  :deep(.el-menu) {
+  :deep(.@{elNamespace}-menu) {
     width: 100% !important;
     border-right: none;
 
     // 设置选中时子标题的颜色
     .is-active {
-      & > .el-sub-menu__title {
+      & > .@{elNamespace}-sub-menu__title {
         color: var(--left-menu-text-active-color) !important;
       }
     }
 
     // 设置子菜单悬停的高亮和背景色
-    .el-sub-menu__title,
-    .el-menu-item {
+    .@{elNamespace}-sub-menu__title,
+    .@{elNamespace}-menu-item {
       &:hover {
         color: var(--left-menu-text-active-color) !important;
         background-color: var(--left-menu-bg-color) !important;
@@ -147,8 +152,8 @@ export default defineComponent({
     }
 
     // 设置选中时的高亮背景和高亮颜色
-    .el-sub-menu.is-active,
-    .el-menu-item.is-active {
+    .@{elNamespace}-sub-menu.is-active,
+    .@{elNamespace}-menu-item.is-active {
       color: var(--left-menu-text-active-color) !important;
       background-color: var(--left-menu-bg-active-color) !important;
 
@@ -157,7 +162,7 @@ export default defineComponent({
       }
     }
 
-    .el-menu-item.is-active {
+    .@{elNamespace}-menu-item.is-active {
       position: relative;
 
       &:after {
@@ -166,20 +171,20 @@ export default defineComponent({
     }
 
     // 设置子菜单的背景颜色
-    .el-menu {
-      .el-sub-menu__title,
-      .el-menu-item:not(.is-active) {
+    .@{elNamespace}-menu {
+      .@{elNamespace}-sub-menu__title,
+      .@{elNamespace}-menu-item:not(.is-active) {
         background-color: var(--left-menu-bg-light-color) !important;
       }
     }
   }
 
   // 折叠时的最小宽度
-  :deep(.el-menu--collapse) {
+  :deep(.@{elNamespace}-menu--collapse) {
     width: var(--left-menu-min-width);
 
     & > .is-active,
-    & > .is-active > .el-sub-menu__title {
+    & > .is-active > .@{elNamespace}-sub-menu__title {
       position: relative;
       background-color: var(--left-menu-collapse-bg-active-color) !important;
 
@@ -201,17 +206,17 @@ export default defineComponent({
   &__horizontal {
     height: calc(~'var( - -top-tool-height)') !important;
 
-    :deep(.el-menu--horizontal) {
+    :deep(.@{elNamespace}-menu--horizontal) {
       height: calc(~'var( - -top-tool-height)');
       border-bottom: none;
       // 重新设置底部高亮颜色
-      & > .el-sub-menu.is-active {
-        .el-sub-menu__title {
+      & > .@{elNamespace}-sub-menu.is-active {
+        .@{elNamespace}-sub-menu__title {
           border-bottom-color: var(--el-color-primary) !important;
         }
       }
 
-      .el-menu-item.is-active {
+      .@{elNamespace}-menu-item.is-active {
         position: relative;
 
         &:after {
@@ -219,7 +224,7 @@ export default defineComponent({
         }
       }
 
-      .v-menu__title {
+      .@{prefix-cls}__title {
         /* stylelint-disable-next-line */
         max-height: calc(~'var(--top-tool-height) - 2px') !important;
         /* stylelint-disable-next-line */

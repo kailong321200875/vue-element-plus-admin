@@ -5,6 +5,11 @@ import { useCache } from '@/hooks/web/useCache'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { loginOutApi } from '@/api/login'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('user-info')
 
 const { t } = useI18n()
 
@@ -31,7 +36,7 @@ const loginOut = () => {
 </script>
 
 <template>
-  <ElDropdown trigger="click">
+  <ElDropdown :class="prefixCls" trigger="click">
     <div class="flex items-center">
       <img src="@/assets/imgs/avatar.png" alt="" class="w-[calc(var(--tags-view-height)-10px)]" />
       <span class="<lg:hidden text-14px pl-[5px] text-[var(--top-header-text-color)]">Archer</span>

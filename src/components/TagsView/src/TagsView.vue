@@ -7,6 +7,11 @@ import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useI18n } from '@/hooks/web/useI18n'
 import { filterAffixTags } from './helper'
 import { ContextMenu } from '@/components/ContextMenu'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('tags-view')
 
 const { t } = useI18n()
 
@@ -125,9 +130,10 @@ watch(
 </script>
 
 <template>
-  <div class="v-tags-view h-[var(--tags-view-height)] flex w-full relative">
+  <div :class="prefixCls" class="h-[var(--tags-view-height)] flex w-full relative">
     <span
-      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      :class="`${prefixCls}__tool`"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
     >
       <Icon icon="ep:d-arrow-left" color="#333" />
     </span>
@@ -195,9 +201,9 @@ watch(
             v-for="item in visitedViews"
             :key="item.fullPath"
             :class="[
-              'v-tags-view__item',
+              `${prefixCls}__item`,
+              item?.meta?.affix ? `${prefixCls}__item--affix` : '',
               {
-                'v-tags-view__item--affix': item?.meta?.affix,
                 'is-active': isActive(item)
               }
             ]"
@@ -209,7 +215,7 @@ watch(
               >
                 {{ t(item?.meta?.title as string) }}
                 <Icon
-                  class="v-tags-view__item--close"
+                  :class="`${prefixCls}__item--close`"
                   color="#333"
                   icon="ant-design:close-outlined"
                   :size="12"
@@ -222,12 +228,14 @@ watch(
       </ElScrollbar>
     </div>
     <span
-      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      :class="`${prefixCls}__tool`"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
     >
       <Icon icon="ep:d-arrow-right" color="#333" />
     </span>
     <span
-      class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      :class="`${prefixCls}__tool`"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
       @click="refreshSelectedTag(selectedTag)"
     >
       <Icon icon="ant-design:reload-outlined" color="#333" />
@@ -284,7 +292,8 @@ watch(
       ]"
     >
       <span
-        class="v-tags-view__tool w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer block"
+        :class="`${prefixCls}__tool`"
+        class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer block"
       >
         <Icon icon="ant-design:setting-outlined" color="#333" />
       </span>
@@ -296,7 +305,7 @@ watch(
 @prefix-cls: ~'@{namespace}-tags-view';
 
 .@{prefix-cls} {
-  :deep(.el-scrollbar__view) {
+  :deep(.@{elNamespace}-scrollbar__view) {
     height: 100%;
   }
 

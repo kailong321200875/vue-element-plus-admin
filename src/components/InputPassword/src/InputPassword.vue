@@ -5,6 +5,11 @@ import { propTypes } from '@/utils/propTypes'
 import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
 import { zxcvbn } from '@zxcvbn-ts/core'
 import type { ZxcvbnResult } from '@zxcvbn-ts/core'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('input-password')
 
 const props = defineProps({
   // 是否显示密码强度
@@ -55,7 +60,7 @@ const getIconName = computed(() =>
 </script>
 
 <template>
-  <div :class="['v-input-password', `v-input-password--${configGlobal?.size}`]">
+  <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
     <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
       <template #suffix>
         <Icon class="el-input__icon cursor-pointer" :icon="getIconName" @click="changeTextType" />
@@ -63,9 +68,10 @@ const getIconName = computed(() =>
     </ElInput>
     <div
       v-if="strength"
-      class="v-input-password__bar relative h-6px mt-10px mb-6px mr-auto ml-auto"
+      :class="`${prefixCls}__bar`"
+      class="relative h-6px mt-10px mb-6px mr-auto ml-auto"
     >
-      <div class="v-input-password__bar--fill" :data-score="getPasswordStrength"></div>
+      <div :class="`${prefixCls}__bar--fill`" :data-score="getPasswordStrength"></div>
     </div>
   </div>
 </template>
@@ -74,7 +80,7 @@ const getIconName = computed(() =>
 @prefix-cls: ~'@{namespace}-input-password';
 
 .@{prefix-cls} {
-  :deep(.el-input__clear) {
+  :deep(.@{elNamespace}-input__clear) {
     margin-left: 5px;
   }
 
