@@ -6,8 +6,9 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useI18n } from '@/hooks/web/useI18n'
 import { filterAffixTags } from './helper'
-import { ContextMenu } from '@/components/ContextMenu'
+import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
 import { useDesign } from '@/hooks/web/useDesign'
+import { useTemplateRefsList } from '@vueuse/core'
 
 const { getPrefixCls } = useDesign()
 
@@ -115,6 +116,23 @@ const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
   return route.path === unref(currentRoute).path
 }
 
+const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
+
+const visibleChange = (
+  visible: boolean,
+  ref: ComponentRef<typeof ContextMenu & ContextMenuExpose>
+) => {
+  const uid = ref.$el['__vueParentComponent'].uid
+  if (visible) {
+    for (const v of unref(itemRefs)) {
+      const elDropdownMenuRef = v.elDropdownMenuRef
+      if (uid !== elDropdownMenuRef?.$el['__vueParentComponent'].uid) {
+        elDropdownMenuRef?.handleClose()
+      }
+    }
+  }
+}
+
 onMounted(() => {
   initTags()
   addTags()
@@ -141,6 +159,7 @@ watch(
       <ElScrollbar class="h-full">
         <div class="flex h-full">
           <ContextMenu
+            :ref="itemRefs.set"
             :schema="[
               {
                 icon: 'ant-design:sync-outlined',
@@ -207,6 +226,7 @@ watch(
                 'is-active': isActive(item)
               }
             ]"
+            @visible-change="visibleChange"
           >
             <router-link :to="{ ...item }" custom v-slot="{ navigate }">
               <div

@@ -8,9 +8,7 @@ import { useAppStore } from '@/store/modules/app'
 import { setCssVar } from '@/utils'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { getPrefixCls, variables } = useDesign()
-
-const prefixCls = getPrefixCls('config-global')
+const { variables } = useDesign()
 
 const appStore = useAppStore()
 
@@ -54,7 +52,6 @@ const currentLocale = computed(() => localeStore.currentLocale)
 
 <template>
   <ElConfigProvider
-    :clss="prefixCls"
     :namespace="variables.elNamespace"
     :locale="currentLocale.elLocale"
     :message="{ max: 1 }"

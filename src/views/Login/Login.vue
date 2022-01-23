@@ -5,6 +5,11 @@ import { LocaleDropdown } from '@/components/LocaleDropdown'
 import { useI18n } from '@/hooks/web/useI18n'
 import { underlineToHump } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+
+const prefixCls = getPrefixCls('login')
 
 const appStore = useAppStore()
 
@@ -13,10 +18,13 @@ const { t } = useI18n()
 
 <template>
   <div
-    class="v-login h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px <xl:px-10px <md:px-10px"
+    :class="prefixCls"
+    class="h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px <xl:px-10px <md:px-10px"
   >
     <div class="relative h-full flex mx-auto">
-      <div class="v-login__left flex-1 bg-gray-500 bg-opacity-20 relative p-30px <xl:hidden">
+      <div
+        :class="`${prefixCls}__left flex-1 bg-gray-500 bg-opacity-20 relative p-30px <xl:hidden`"
+      >
         <div class="flex items-center relative text-white">
           <img src="@/assets/imgs/logo.png" alt="" class="w-48px h-48px mr-10px" />
           <span class="text-20px font-bold">{{ underlineToHump(appStore.getTitle) }}</span>

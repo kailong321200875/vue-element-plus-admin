@@ -130,7 +130,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@iconify/iconify',
         '@vueuse/core',
         'axios',
-        'qs'
+        'qs',
+        'echarts',
+        'echarts-wordcloud'
       ]
     }
   }

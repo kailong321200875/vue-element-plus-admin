@@ -1,0 +1,153 @@
+import { EChartsOption } from 'echarts'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
+
+export const lineOptions: EChartsOption = {
+  title: {
+    text: t('analysis.monthlySales'),
+    left: 'center'
+  },
+  xAxis: {
+    data: [
+      t('analysis.january'),
+      t('analysis.february'),
+      t('analysis.march'),
+      t('analysis.april'),
+      t('analysis.may'),
+      t('analysis.june'),
+      t('analysis.july'),
+      t('analysis.august'),
+      t('analysis.september'),
+      t('analysis.october'),
+      t('analysis.november'),
+      t('analysis.december')
+    ],
+    boundaryGap: false,
+    axisTick: {
+      show: false
+    }
+  },
+  grid: {
+    left: 20,
+    right: 20,
+    bottom: 20,
+    top: 80,
+    containLabel: true
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross'
+    },
+    padding: [5, 10]
+  },
+  yAxis: {
+    axisTick: {
+      show: false
+    }
+  },
+  legend: {
+    data: [t('analysis.estimate'), t('analysis.actual')],
+    top: 50
+  },
+  series: [
+    {
+      name: t('analysis.estimate'),
+      smooth: true,
+      type: 'line',
+      data: [100, 120, 161, 134, 105, 160, 165, 114, 163, 185, 118, 123],
+      animationDuration: 2800,
+      animationEasing: 'cubicInOut'
+    },
+    {
+      name: t('analysis.actual'),
+      smooth: true,
+      type: 'line',
+      itemStyle: {},
+      data: [120, 82, 91, 154, 162, 140, 145, 250, 134, 56, 99, 123],
+      animationDuration: 2800,
+      animationEasing: 'quadraticOut'
+    }
+  ]
+}
+
+export const pieOptions: EChartsOption = {
+  title: {
+    text: t('analysis.userAccessSource'),
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: [
+      t('analysis.directAccess'),
+      t('analysis.mailMarketing'),
+      t('analysis.allianceAdvertising'),
+      t('analysis.videoAdvertising'),
+      t('analysis.searchEngines')
+    ]
+  },
+  series: [
+    {
+      name: t('analysis.userAccessSource'),
+      type: 'pie',
+      radius: '55%',
+      center: ['50%', '60%'],
+      data: [
+        { value: 335, name: t('analysis.directAccess') },
+        { value: 310, name: t('analysis.mailMarketing') },
+        { value: 234, name: t('analysis.allianceAdvertising') },
+        { value: 135, name: t('analysis.videoAdvertising') },
+        { value: 1548, name: t('analysis.searchEngines') }
+      ]
+    }
+  ]
+}
+
+export const barOptions: EChartsOption = {
+  title: {
+    text: t('analysis.weeklyUserActivity'),
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    left: 50,
+    right: 20,
+    bottom: 20
+  },
+  xAxis: {
+    type: 'category',
+    data: [
+      t('analysis.monday'),
+      t('analysis.tuesday'),
+      t('analysis.wednesday'),
+      t('analysis.thursday'),
+      t('analysis.friday'),
+      t('analysis.saturday'),
+      t('analysis.sunday')
+    ],
+    axisTick: {
+      alignWithLabel: true
+    }
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: t('analysis.activeQuantity'),
+      data: [13253, 34235, 26321, 12340, 24643, 1322, 1324],
+      type: 'bar'
+    }
+  ]
+}

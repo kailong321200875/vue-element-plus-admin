@@ -9,7 +9,7 @@ import { useAppStore } from '@/store/modules/app'
 import { isString } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { getPrefixCls } = useDesign()
+const { getPrefixCls, variables } = useDesign()
 
 const prefixCls = getPrefixCls('echart')
 
@@ -40,7 +40,7 @@ const options = computed(() => {
 
 const elRef = ref<ElRef>()
 
-const echartRef = ref<echarts.ECharts>()
+let echartRef: Nullable<echarts.ECharts> = null
 
 const contentEl = ref<Element>()
 
@@ -56,16 +56,16 @@ const styles = computed(() => {
 
 const initChart = () => {
   if (unref(elRef) && props.options) {
-    echartRef.value = echarts.init(unref(elRef) as HTMLElement, unref(options))
+    echartRef = echarts.init(unref(elRef) as HTMLElement)
+    echartRef?.setOption(unref(options))
   }
 }
 
 watch(
   () => options.value,
   (options) => {
-    const chart = unref(echartRef)
-    if (chart) {
-      chart?.setOption(options)
+    if (echartRef) {
+      echartRef?.setOption(options)
     }
   },
   {
@@ -74,13 +74,12 @@ watch(
 )
 
 const resizeHandler = debounce(() => {
-  const chart = unref(echartRef)
-  if (chart) {
-    chart.resize()
+  if (echartRef) {
+    echartRef.resize()
   }
 }, 100)
 
-const contentResizeHandler = (e: TransitionEvent) => {
+const contentResizeHandler = async (e: TransitionEvent) => {
   if (e.propertyName === 'width') {
     resizeHandler()
   }
@@ -91,7 +90,7 @@ onMounted(() => {
 
   window.addEventListener('resize', resizeHandler)
 
-  contentEl.value = document.getElementsByClassName('v-content')[0]
+  contentEl.value = document.getElementsByClassName(`${variables.namespace}-layout-content`)[0]
   unref(contentEl) &&
     (unref(contentEl) as Element).addEventListener('transitionend', contentResizeHandler)
 })
@@ -103,13 +102,12 @@ onBeforeUnmount(() => {
 })
 
 onActivated(() => {
-  const chart = unref(echartRef)
-  if (chart) {
-    chart.resize()
+  if (echartRef) {
+    echartRef.resize()
   }
 })
 </script>
 
 <template>
-  <div ref="elRef" :class="[$attrs.class, prefixCls]" :style="styles" />
+  <div ref="elRef" :class="[$attrs.class, prefixCls]" :style="styles"></div>
 </template>
