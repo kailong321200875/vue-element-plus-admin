@@ -7,7 +7,7 @@ import { config } from '@/config/axios/config'
 const { default_headers } = config
 
 export const useAxios = () => {
-  const request = (option: AxiosConfig): AxiosPromise => {
+  const request = <T>(option: AxiosConfig): AxiosPromise<T> => {
     const { url, method, params, data, headersType, responseType } = option
     return service({
       url: url,

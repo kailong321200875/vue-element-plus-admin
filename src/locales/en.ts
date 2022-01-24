@@ -130,7 +130,7 @@ export default {
     yield: 'Yield',
     dynamic: 'Dynamic',
     push: 'push',
-    pushCode: 'Archer push code to GitHub'
+    pushCode: 'Archer push code to Github'
   },
   formDemo: {
     input: 'Input',
