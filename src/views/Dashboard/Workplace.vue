@@ -2,137 +2,112 @@
 import { useTimeAgo } from '@/hooks/web/useTimeAgo'
 import { ElRow, ElCol, ElSkeleton, ElCard, ElDivider, ElLink } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { CountTo } from '@/components/CountTo'
 import { formatTime } from '@/utils'
 import { Echart } from '@/components/Echart'
+import { EChartsOption } from 'echarts'
 import { radarOption } from './echarts-data'
 import { Highlight } from '@/components/Highlight'
-
-interface Project {
-  name: string
-  icon: string
-  message: string
-  personal: string
-  time: Date | number | string
-}
-
-interface Dynamic {
-  keys: string[]
-  time: Date | number | string
-}
-
-interface Team {
-  name: string
-  icon: string
-}
-
-const { t } = useI18n()
-
-const projects: Project[] = [
-  {
-    name: 'Github',
-    icon: 'akar-icons:github-fill',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
-    name: 'Vue',
-    icon: 'logos:vue',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
-    name: 'Angular',
-    icon: 'logos:angular-icon',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
-    name: 'React',
-    icon: 'logos:react',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
-    name: 'Webpack',
-    icon: 'logos:webpack',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  },
-  {
-    name: 'Vite',
-    icon: 'vscode-icons:file-type-vite',
-    message: t('workplace.introduction'),
-    personal: 'Archer',
-    time: new Date()
-  }
-]
-
-const dynamics: Dynamic[] = [
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  },
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  },
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  },
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  },
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  },
-  {
-    keys: [t('workplace.push'), 'Github'],
-    time: new Date()
-  }
-]
-
-const team: Team[] = [
-  {
-    name: 'Github',
-    icon: 'akar-icons:github-fill'
-  },
-  {
-    name: 'Vue',
-    icon: 'logos:vue'
-  },
-  {
-    name: 'Angular',
-    icon: 'logos:angular-icon'
-  },
-  {
-    name: 'React',
-    icon: 'logos:react'
-  },
-  {
-    name: 'Webpack',
-    icon: 'logos:webpack'
-  },
-  {
-    name: 'Vite',
-    icon: 'vscode-icons:file-type-vite'
-  }
-]
+import {
+  getCountApi,
+  getProjectApi,
+  getDynamicApi,
+  getTeamApi,
+  getRadarApi
+} from '@/api/dashboard/workplace'
+import type { WorkplaceTotal, Project, Dynamic, Team } from '@/api/dashboard/workplace/types'
+import { set } from 'lodash-es'
 
 const loading = ref(true)
 
-setTimeout(() => {
+// 获取统计数
+let totalSate = reactive<WorkplaceTotal>({
+  project: 0,
+  access: 0,
+  todo: 0
+})
+
+const getCount = async () => {
+  const res = await getCountApi().catch(() => {})
+  if (res) {
+    totalSate = Object.assign(totalSate, res.data)
+  }
+}
+
+let projects = reactive<Project[]>([])
+
+// 获取项目数
+const getProject = async () => {
+  const res = await getProjectApi().catch(() => {})
+  if (res) {
+    projects = Object.assign(projects, res.data)
+  }
+}
+
+// 获取动态
+let dynamics = reactive<Dynamic[]>([])
+
+const getDynamic = async () => {
+  const res = await getDynamicApi().catch(() => {})
+  if (res) {
+    dynamics = Object.assign(dynamics, res.data)
+  }
+}
+
+// 获取团队
+let team = reactive<Team[]>([])
+
+const getTeam = async () => {
+  const res = await getTeamApi().catch(() => {})
+  if (res) {
+    team = Object.assign(team, res.data)
+  }
+}
+
+// 获取指数
+let radarOptionData = reactive<EChartsOption>(radarOption) as EChartsOption
+
+const getRadar = async () => {
+  const res = await getRadarApi().catch(() => {})
+  if (res) {
+    set(
+      radarOptionData,
+      'radar.indicator',
+      res.data.map((v) => {
+        return {
+          name: t(v.name),
+          max: v.max
+        }
+      })
+    )
+    set(radarOptionData, 'series', [
+      {
+        name: `xxx${t('workplace.index')}`,
+        type: 'radar',
+        data: [
+          {
+            value: res.data.map((v) => v.personal),
+            name: t('workplace.personal')
+          },
+          {
+            value: res.data.map((v) => v.team),
+            name: t('workplace.team')
+          }
+        ]
+      }
+    ])
+  }
+}
+
+const getAllApi = async () => {
+  await Promise.all([getCount(), getProject(), getDynamic(), getTeam(), getRadar()])
   loading.value = false
-}, 1000)
+}
+
+getAllApi()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -161,17 +136,32 @@ setTimeout(() => {
             <div class="flex h-70px items-center justify-end <sm:mt-20px">
               <div class="px-8px text-right">
                 <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.project') }}</div>
-                <CountTo class="text-20px" :start-val="0" :end-val="40" :duration="2600" />
+                <CountTo
+                  class="text-20px"
+                  :start-val="0"
+                  :end-val="totalSate.project"
+                  :duration="2600"
+                />
               </div>
               <ElDivider direction="vertical" />
               <div class="px-8px text-right">
                 <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.toDo') }}</div>
-                <CountTo class="text-20px" :start-val="0" :end-val="10" :duration="2600" />
+                <CountTo
+                  class="text-20px"
+                  :start-val="0"
+                  :end-val="totalSate.todo"
+                  :duration="2600"
+                />
               </div>
               <ElDivider direction="vertical" border-style="dashed" />
               <div class="px-8px text-right">
                 <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.access') }}</div>
-                <CountTo class="text-20px" :start-val="0" :end-val="2340" :duration="2600" />
+                <CountTo
+                  class="text-20px"
+                  :start-val="0"
+                  :end-val="totalSate.access"
+                  :duration="2600"
+                />
               </div>
             </div>
           </ElCol>
@@ -205,7 +195,7 @@ setTimeout(() => {
                   <Icon :icon="item.icon" :size="25" class="mr-10px" />
                   <span class="text-16px">{{ item.name }}</span>
                 </div>
-                <div class="mt-15px text-14px text-gray-400">{{ item.message }}</div>
+                <div class="mt-15px text-14px text-gray-400">{{ t(item.message) }}</div>
                 <div class="mt-20px text-12px text-gray-400 flex justify-between">
                   <span>{{ item.personal }}</span>
                   <span>{{ formatTime(item.time, 'yyyy-MM-dd') }}</span>
@@ -233,7 +223,9 @@ setTimeout(() => {
               />
               <div>
                 <div class="text-14px">
-                  <Highlight :keys="item.keys"> {{ t('workplace.pushCode') }} </Highlight>
+                  <Highlight :keys="item.keys.map((v) => t(v))">
+                    {{ t('workplace.pushCode') }}
+                  </Highlight>
                 </div>
                 <div class="mt-15px text-12px text-gray-400">
                   {{ useTimeAgo(item.time) }}
@@ -273,7 +265,7 @@ setTimeout(() => {
           <template #header>
             <span>xx{{ t('workplace.index') }}</span>
           </template>
-          <Echart :options="radarOption" :height="400" />
+          <Echart :options="radarOptionData" :height="400" />
         </ElCard>
       </ElSkeleton>
 
