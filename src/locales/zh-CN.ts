@@ -17,7 +17,17 @@ export default {
     closeTheLeftTab: '关闭左侧标签页',
     closeTheRightTab: '关闭右侧标签页',
     closeOther: '关闭其他标签页',
-    closeAll: '关闭全部标签页'
+    closeAll: '关闭全部标签页',
+    prevLabel: '上一步',
+    nextLabel: '下一步',
+    skipLabel: '跳过',
+    doneLabel: '结束',
+    menu: '菜单',
+    menuDes: '以路由的结构渲染的菜单栏',
+    collapse: '展开缩收',
+    collapseDes: '展开和缩放菜单栏',
+    tagsView: '标签页',
+    tagsViewDes: '用于记录路由历史记录'
   },
   setting: {
     projectSetting: '项目配置',
@@ -72,7 +82,8 @@ export default {
     menu2: '菜单2',
     dashboard: '首页',
     analysis: '分析页',
-    workplace: '工作台'
+    workplace: '工作台',
+    guide: '引导'
   },
   analysis: {
     newUser: '新增用户',
@@ -173,5 +184,11 @@ export default {
     timeSelect: '时间选择',
     inputPassword: '密码输入框',
     passwordStrength: '密码强度'
+  },
+  guideDemo: {
+    guide: '引导页',
+    start: '开始',
+    message:
+      '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 intro.js'
   }
 }

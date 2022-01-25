@@ -69,6 +69,23 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/guide',
+    component: Layout,
+    name: 'Guide',
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/Guide/Guide.vue'),
+        name: 'GuideDemo',
+        meta: {
+          title: t('router.guide'),
+          icon: 'cib:telegram-plane'
+        }
+      }
+    ]
+  },
+  {
     path: '/level',
     component: Layout,
     redirect: '/level/menu1/menu1-1/menu1-1-1',

@@ -132,7 +132,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'axios',
         'qs',
         'echarts',
-        'echarts-wordcloud'
+        'echarts-wordcloud',
+        'intro.js'
       ]
     }
   }

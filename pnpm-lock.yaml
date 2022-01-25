@@ -7,6 +7,7 @@ specifiers:
   '@iconify/json': ^1.1.459
   '@intlify/vite-plugin-vue-i18n': ^3.2.1
   '@purge-icons/generated': ^0.7.0
+  '@types/intro.js': ^3.0.2
   '@types/lodash-es': ^4.17.5
   '@types/node': ^17.0.10
   '@types/nprogress': ^0.2.0
@@ -30,6 +31,7 @@ specifiers:
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^8.3.0
   husky: ^7.0.4
+  intro.js: ^4.3.0
   less: ^4.1.2
   lint-staged: ^12.2.2
   lodash-es: ^4.17.21
@@ -75,6 +77,7 @@ dependencies:
   echarts: registry.npmmirror.com/echarts/5.2.2
   echarts-wordcloud: registry.npmmirror.com/echarts-wordcloud/2.0.0_echarts@5.2.2
   element-plus: registry.npmmirror.com/element-plus/1.3.0-beta.7_vue@3.2.26
+  intro.js: registry.npmmirror.com/intro.js/4.3.0
   lodash-es: registry.nlark.com/lodash-es/4.17.21
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   nprogress: registry.npmmirror.com/nprogress/0.2.0
@@ -92,6 +95,7 @@ devDependencies:
   '@iconify/json': registry.npmmirror.com/@iconify/json/1.1.459
   '@intlify/vite-plugin-vue-i18n': registry.npmmirror.com/@intlify/vite-plugin-vue-i18n/3.2.1_vite@2.7.13+vue-i18n@9.1.9
   '@purge-icons/generated': registry.nlark.com/@purge-icons/generated/0.7.0
+  '@types/intro.js': registry.npmmirror.com/@types/intro.js/3.0.2
   '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.5
   '@types/node': registry.npmmirror.com/@types/node/17.0.10
   '@types/nprogress': registry.npmmirror.com/@types/nprogress/0.2.0
@@ -3910,25 +3914,6 @@ packages:
     version: 1.4.0
     dev: true
 
-  registry.nlark.com/needle/2.9.1:
-    resolution:
-      {
-        integrity: sha1-ItHf++NJDCuD4wH3cJtnNs2PJoQ=,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.nlark.com/needle/download/needle-2.9.1.tgz
-      }
-    name: needle
-    version: 2.9.1
-    engines: { node: '>= 4.4.x' }
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      debug: registry.npmmirror.com/debug/3.2.7
-      iconv-lite: registry.nlark.com/iconv-lite/0.4.24
-      sax: registry.nlark.com/sax/1.2.4
-    dev: true
-    optional: true
-
   registry.nlark.com/no-case/3.0.4:
     resolution:
       {
@@ -7288,8 +7273,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.28
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.28
+      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.29
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.29
       jsonc-eslint-parser: registry.npmmirror.com/jsonc-eslint-parser/1.4.1
       source-map: registry.nlark.com/source-map/0.6.1
       vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.26
@@ -7345,18 +7330,18 @@ packages:
       source-map: registry.nlark.com/source-map/0.6.1
     dev: false
 
-  registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.28:
+  registry.npmmirror.com/@intlify/message-compiler/9.2.0-beta.29:
     resolution:
       {
-        integrity: sha512-NBH9fZyitN2cijGt8bmU1W7ZPdhKbgW01L1RxJKFJW0cRaCmknJq63Aif1Q6xcxKt9ZhPbvIKHgPGzg1nWMfeA==,
+        integrity: sha512-FvMDwe57VvupujvNYUY90J8wv26wKu6j7I93dLwBOo/PTg7nQqFrmYQAF23UfDAdXO4FTdgHfFyb5ecYrN+n3g==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/message-compiler/download/@intlify/message-compiler-9.2.0-beta.28.tgz
+        tarball: https://registry.npmmirror.com/@intlify/message-compiler/download/@intlify/message-compiler-9.2.0-beta.29.tgz
       }
     name: '@intlify/message-compiler'
-    version: 9.2.0-beta.28
+    version: 9.2.0-beta.29
     engines: { node: '>= 12' }
     dependencies:
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.28
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.29
       source-map: registry.nlark.com/source-map/0.6.1
     dev: true
 
@@ -7400,15 +7385,15 @@ packages:
     engines: { node: '>= 10' }
     dev: false
 
-  registry.npmmirror.com/@intlify/shared/9.2.0-beta.28:
+  registry.npmmirror.com/@intlify/shared/9.2.0-beta.29:
     resolution:
       {
-        integrity: sha512-JBMcoj1D4kSAma7Vb0+d8z6lPLIn7hIdZJPxbU8bgeMMniwKLoIS/jGlEfrZihsB5+otckPeQp203z8skwVS0w==,
+        integrity: sha512-blMW14WBr3fiCEk/XO4IbSxM8WMAhQOzEgWzP1aqbkeXbIMiHeyFI0ZexwyTKsvDZz0wEWlhupQi+9udrJsozA==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/shared/download/@intlify/shared-9.2.0-beta.28.tgz
+        tarball: https://registry.npmmirror.com/@intlify/shared/download/@intlify/shared-9.2.0-beta.29.tgz
       }
     name: '@intlify/shared'
-    version: 9.2.0-beta.28
+    version: 9.2.0-beta.29
     engines: { node: '>= 12' }
     dev: true
 
@@ -7434,7 +7419,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/2.2.0_vue-i18n@9.1.9
-      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.28
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.2.0-beta.29
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils/4.1.2
       debug: registry.npmmirror.com/debug/4.3.3
       fast-glob: registry.nlark.com/fast-glob/3.2.7
@@ -7570,6 +7555,17 @@ packages:
       }
     name: '@types/estree'
     version: 0.0.39
+    dev: true
+
+  registry.npmmirror.com/@types/intro.js/3.0.2:
+    resolution:
+      {
+        integrity: sha1-y/m2nwVbd1gsws6+I26aQFsw770=,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/@types/intro.js/download/@types/intro.js-3.0.2.tgz
+      }
+    name: '@types/intro.js'
+    version: 3.0.2
     dev: true
 
   registry.npmmirror.com/@types/json-schema/7.0.9:
@@ -10629,6 +10625,17 @@ packages:
       through: registry.nlark.com/through/2.3.8
     dev: true
 
+  registry.npmmirror.com/intro.js/4.3.0:
+    resolution:
+      {
+        integrity: sha512-F4LXM42QIXcO3/2myGBBFdbbUVUK0lBhK7pAxPLd082u+3HfvigFR+Rptqy05q3OzjG/O0vMFDedrnHdSPi2rQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/intro.js/download/intro.js-4.3.0.tgz
+      }
+    name: intro.js
+    version: 4.3.0
+    dev: false
+
   registry.npmmirror.com/is-buffer/1.1.6:
     resolution:
       {
@@ -10840,7 +10847,7 @@ packages:
       image-size: registry.npmmirror.com/image-size/0.5.5
       make-dir: registry.nlark.com/make-dir/2.1.0
       mime: registry.npmmirror.com/mime/1.6.0
-      needle: registry.nlark.com/needle/2.9.1
+      needle: registry.npmmirror.com/needle/2.9.1
       source-map: registry.nlark.com/source-map/0.6.1
     dev: true
 
@@ -11190,6 +11197,25 @@ packages:
     version: 3.1.30
     engines: { node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1 }
     hasBin: true
+
+  registry.npmmirror.com/needle/2.9.1:
+    resolution:
+      {
+        integrity: sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/needle/download/needle-2.9.1.tgz
+      }
+    name: needle
+    version: 2.9.1
+    engines: { node: '>= 4.4.x' }
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      debug: registry.npmmirror.com/debug/3.2.7
+      iconv-lite: registry.nlark.com/iconv-lite/0.4.24
+      sax: registry.nlark.com/sax/1.2.4
+    dev: true
+    optional: true
 
   registry.npmmirror.com/node-fetch/2.6.1:
     resolution:

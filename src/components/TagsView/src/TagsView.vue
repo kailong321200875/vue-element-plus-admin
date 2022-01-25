@@ -148,7 +148,7 @@ watch(
 </script>
 
 <template>
-  <div :class="prefixCls" class="h-[var(--tags-view-height)] flex w-full relative">
+  <div :id="prefixCls" :class="prefixCls" class="h-[var(--tags-view-height)] flex w-full relative">
     <span
       :class="`${prefixCls}__tool`"
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"

@@ -12,7 +12,7 @@ import { cloneDeep } from 'lodash-es'
 import { filterMenusPath, initTabMap, tabPathMap } from './helper'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { getPrefixCls } = useDesign()
+const { getPrefixCls, variables } = useDesign()
 
 const prefixCls = getPrefixCls('tab-menu')
 
@@ -106,6 +106,7 @@ export default defineComponent({
 
     return () => (
       <div
+        id={`${variables.namespace}-menu`}
         class={[
           prefixCls,
           'relative bg-[var(--left-menu-bg-color)] top-1px',

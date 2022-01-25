@@ -17,7 +17,17 @@ export default {
     closeTheLeftTab: 'Close left',
     closeTheRightTab: 'Close right',
     closeOther: 'Close other',
-    closeAll: 'Close all'
+    closeAll: 'Close all',
+    prevLabel: 'Prev',
+    nextLabel: 'Next',
+    skipLabel: 'Jump',
+    doneLabel: 'End',
+    menu: 'Menu',
+    menuDes: 'Menu bar rendered in routed structure',
+    collapse: 'Collapse',
+    collapseDes: 'Expand and zoom the menu bar',
+    tagsView: 'Tags view',
+    tagsViewDes: 'Used to record routing history'
   },
   setting: {
     projectSetting: 'Project setting',
@@ -72,7 +82,8 @@ export default {
     menu2: 'Menu2',
     dashboard: 'Dashboard',
     analysis: 'Analysis',
-    workplace: 'Workplace'
+    workplace: 'Workplace',
+    guide: 'Guide'
   },
   analysis: {
     newUser: 'New user',
@@ -173,5 +184,11 @@ export default {
     timeSelect: 'Time Select',
     inputPassword: 'input Password',
     passwordStrength: 'Password Strength'
+  },
+  guideDemo: {
+    guide: 'Guide',
+    start: 'Start',
+    message:
+      'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on intro js'
   }
 }
