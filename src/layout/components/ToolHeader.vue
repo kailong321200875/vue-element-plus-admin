@@ -9,7 +9,7 @@ import { Breadcrumb } from '@/components/Breadcrumb'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { getPrefixCls } = useDesign()
+const { getPrefixCls, variables } = useDesign()
 
 const prefixCls = getPrefixCls('tool-header')
 
@@ -38,6 +38,7 @@ export default defineComponent({
   setup() {
     return () => (
       <div
+        id={`${variables.namespace}-tool-header`}
         class={[
           prefixCls,
           'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between'

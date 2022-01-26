@@ -27,7 +27,9 @@ export default {
     collapse: '展开缩收',
     collapseDes: '展开和缩放菜单栏',
     tagsView: '标签页',
-    tagsViewDes: '用于记录路由历史记录'
+    tagsViewDes: '用于记录路由历史记录',
+    tool: '工具',
+    toolDes: '用于设置定制系统'
   },
   setting: {
     projectSetting: '项目配置',
@@ -83,7 +85,9 @@ export default {
     dashboard: '首页',
     analysis: '分析页',
     workplace: '工作台',
-    guide: '引导'
+    guide: '引导',
+    component: '组件',
+    icon: '图标'
   },
   analysis: {
     newUser: '新增用户',
@@ -190,5 +194,14 @@ export default {
     start: '开始',
     message:
       '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 intro.js'
+  },
+  iconDemo: {
+    icon: '图标',
+    localIcon: '本地图标',
+    iconify: 'Iconify组件',
+    recommendedUse: '推荐使用',
+    recommendeDes:
+      'Iconify组件基本包含所有的图标，你可以查询到你想要的任何图标。并且打包只会打包所用到的图标。',
+    accessAddress: '访问地址'
   }
 }

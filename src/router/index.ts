@@ -86,6 +86,27 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/components',
+    component: Layout,
+    redirect: '/components/icon',
+    name: 'ComponentsDemo',
+    meta: {
+      title: t('router.component'),
+      icon: 'bx:bxs-component',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'icon',
+        component: () => import('@/views/Components/Icon.vue'),
+        name: 'Icon',
+        meta: {
+          title: t('router.icon')
+        }
+      }
+    ]
+  },
+  {
     path: '/level',
     component: Layout,
     redirect: '/level/menu1/menu1-1/menu1-1-1',
@@ -140,23 +161,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         component: () => import('@/views/Level/Menu2.vue'),
         meta: {
           title: t('router.menu2')
-        }
-      }
-    ]
-  },
-  {
-    path: '/icon',
-    component: Layout,
-    name: 'IconsDemo',
-    meta: {},
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/Level/Menu2.vue'),
-        name: 'Icons',
-        meta: {
-          title: '图标',
-          icon: 'carbon:skill-level-advanced'
         }
       }
     ]

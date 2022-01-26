@@ -27,7 +27,9 @@ export default {
     collapse: 'Collapse',
     collapseDes: 'Expand and zoom the menu bar',
     tagsView: 'Tags view',
-    tagsViewDes: 'Used to record routing history'
+    tagsViewDes: 'Used to record routing history',
+    tool: 'Tool',
+    toolDes: 'Used to set up custom systems'
   },
   setting: {
     projectSetting: 'Project setting',
@@ -83,7 +85,9 @@ export default {
     dashboard: 'Dashboard',
     analysis: 'Analysis',
     workplace: 'Workplace',
-    guide: 'Guide'
+    guide: 'Guide',
+    component: 'Component',
+    icon: 'Icon'
   },
   analysis: {
     newUser: 'New user',
@@ -190,5 +194,14 @@ export default {
     start: 'Start',
     message:
       'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on intro js'
+  },
+  iconDemo: {
+    icon: 'Icon',
+    localIcon: 'Local Icon',
+    iconify: 'Iconify component',
+    recommendedUse: 'Recommended use',
+    recommendeDes:
+      'Iconify component basically contains all icons. You can query any icon you want. And packaging will only package the icons used.',
+    accessAddress: 'Access address'
   }
 }

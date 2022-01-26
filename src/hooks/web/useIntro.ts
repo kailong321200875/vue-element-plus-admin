@@ -17,6 +17,12 @@ export const useIntro = (setps?: Step[], options?: Options) => {
       position: 'right'
     },
     {
+      element: `#${variables.namespace}-tool-header`,
+      title: t('common.tool'),
+      intro: t('common.toolDes'),
+      position: 'left'
+    },
+    {
       element: `#${variables.namespace}-tags-view`,
       title: t('common.tagsView'),
       intro: t('common.tagsViewDes'),
