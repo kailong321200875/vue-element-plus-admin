@@ -87,7 +87,10 @@ export default {
     workplace: '工作台',
     guide: '引导',
     component: '组件',
-    icon: '图标'
+    icon: '图标',
+    echart: '图表',
+    countTo: '数字动画',
+    watermark: '水印'
   },
   analysis: {
     newUser: '新增用户',
@@ -203,5 +206,29 @@ export default {
     recommendeDes:
       'Iconify组件基本包含所有的图标，你可以查询到你想要的任何图标。并且打包只会打包所用到的图标。',
     accessAddress: '访问地址'
+  },
+  echartDemo: {
+    echart: '图表',
+    echartDes:
+      '基于 echarts 二次封装组件，自适应宽度，只需传入 options 与 height 属性即可展示对应的图表。'
+  },
+  countToDemo: {
+    countTo: '数字动画',
+    countToDes: '基于 vue-count-to 进行改造，支持所有 vue-count-to 参数。',
+    suffix: '后缀',
+    prefix: '前缀',
+    separator: '分割符号',
+    duration: '持续时间',
+    endVal: '结束值',
+    startVal: '开始值',
+    start: '开始',
+    pause: '暂停',
+    resume: '继续'
+  },
+  watermarkDemo: {
+    watermark: '水印',
+    createdWatermark: '创建水印',
+    clearWatermark: '清除水印',
+    resetWatermark: '重置水印'
   }
 }

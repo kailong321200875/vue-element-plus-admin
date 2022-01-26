@@ -103,6 +103,30 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.icon')
         }
+      },
+      {
+        path: 'echart',
+        component: () => import('@/views/Components/Echart.vue'),
+        name: 'Echart',
+        meta: {
+          title: t('router.echart')
+        }
+      },
+      {
+        path: 'count-to',
+        component: () => import('@/views/Components/CountTo.vue'),
+        name: 'CountTo',
+        meta: {
+          title: t('router.countTo')
+        }
+      },
+      {
+        path: 'watermark',
+        component: () => import('@/views/Components/Watermark.vue'),
+        name: 'Watermark',
+        meta: {
+          title: t('router.watermark')
+        }
       }
     ]
   },

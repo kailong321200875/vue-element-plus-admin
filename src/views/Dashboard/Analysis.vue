@@ -17,7 +17,7 @@ const { t } = useI18n()
 
 const loading = ref(true)
 
-const pieOptionsData = reactive<EChartsOption>(pieOptions)
+const pieOptionsData = reactive<EChartsOption>(pieOptions) as EChartsOption
 
 // 用户来源
 const getUserAccessSource = async () => {
@@ -100,7 +100,7 @@ getAllApi()
     <ElCol :xl="10" :lg="10" :md="24" :sm="24" :xs="24">
       <ElCard shadow="hover" class="mb-20px">
         <ElSkeleton :loading="loading" animated>
-          <Echart :options="pieOptions" :height="300" />
+          <Echart :options="pieOptionsData" :height="300" />
         </ElSkeleton>
       </ElCard>
     </ElCol>

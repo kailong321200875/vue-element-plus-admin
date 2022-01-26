@@ -8,9 +8,7 @@ export const usePageLoading = () => {
   }
 
   const loadDone = () => {
-    setTimeout(() => {
-      appStore.setPageLoading(false)
-    }, 1000)
+    appStore.setPageLoading(false)
   }
 
   return {
