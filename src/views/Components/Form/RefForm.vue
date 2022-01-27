@@ -243,7 +243,7 @@ const verifyReset = () => {
     <ElButton @click="formValidation"> {{ t('formDemo.formValidation') }} </ElButton>
     <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
   </ContentWrap>
-  <ContentWrap :title="`useForm${t('formDemo.example')}`">
+  <ContentWrap :title="`refForm${t('formDemo.example')}`">
     <Form :schema="schema" ref="formRef" />
   </ContentWrap>
 </template>
