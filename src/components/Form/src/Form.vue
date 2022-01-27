@@ -16,6 +16,8 @@ import { useRenderSelect } from './components/useRenderSelect'
 import { useRenderRadio } from './components/useRenderRadio'
 import { useRenderChcekbox } from './components/useRenderChcekbox'
 import { useDesign } from '@/hooks/web/useDesign'
+import { findIndex } from '@/utils'
+import { set } from 'lodash-es'
 
 const { getPrefixCls } = useDesign()
 
@@ -27,7 +29,6 @@ export default defineComponent({
     // 生成Form的布局结构数组
     schema: {
       type: Array as PropType<FormSchema[]>,
-      required: true,
       default: () => []
     },
     // 是否需要栅格布局
@@ -42,43 +43,73 @@ export default defineComponent({
     // 是否自定义内容
     isCustom: propTypes.bool.def(false),
     // 表单label宽度
-    labelWidth: propTypes.oneOfType([String, Number]).def(130)
+    labelWidth: propTypes.oneOfType([String, Number]).def('auto')
   },
   emits: ['register'],
   setup(props, { slots, expose, emit }) {
     // element form 实例
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
-    const getProps = computed(() => props)
+
+    // useForm传入的props
+    const outsideProps = ref<Recordable>({})
+
+    const getProps = computed(() => Object.assign({ ...props }, unref(outsideProps)))
+
     const { schema, isCol, isCustom, autoSetPlaceholder } = unref(getProps)
+
     // 表单数据
     const formModel = ref<Recordable>({})
-    watch(
-      () => formModel.value,
-      (formModel: Recordable) => {
-        console.log(formModel)
-      },
-      {
-        deep: true
-      }
-    )
 
     onMounted(() => {
       emit('register', elFormRef.value?.$parent, elFormRef.value)
     })
 
     // 对表单赋值
-    const setValues = (data: FormSetValuesType[]) => {
-      if (!data.length) return
-      const formData: Recordable = {}
-      for (const v of data) {
-        formData[v.field] = v.value
+    const setValues = (data: Recordable = {}) => {
+      formModel.value = Object.assign(unref(formModel), data)
+    }
+
+    const setProps = (props: Recordable) => {
+      outsideProps.value = props
+    }
+
+    const delSchema = (field: string) => {
+      const index = findIndex(schema, (v: FormSchema) => v.field === field)
+      if (index > -1) {
+        schema.splice(index, 1)
       }
-      formModel.value = Object.assign(unref(formModel), formData)
+    }
+
+    const addSchema = (formSchema: FormSchema, index?: number) => {
+      if (index !== void 0) {
+        schema.splice(index, 0, formSchema)
+        return
+      }
+      schema.push(formSchema)
+    }
+
+    const setSchema = (schemaProps: FormSetPropsType[]) => {
+      for (const v of schema) {
+        for (const item of schemaProps) {
+          if (v.field === item.field) {
+            set(v, item.path, item.value)
+          }
+        }
+      }
+    }
+
+    const getElFormRef = (): ComponentRef<typeof ElForm> => {
+      return unref(elFormRef) as ComponentRef<typeof ElForm>
     }
 
     expose({
       setValues,
-      formModel
+      formModel,
+      setProps,
+      delSchema,
+      addSchema,
+      setSchema,
+      getElFormRef
     })
 
     // 监听表单结构化数组，重新生成formModel

@@ -93,7 +93,9 @@ export default {
     watermark: 'Watermark',
     qrcode: 'Qrcode',
     highlight: 'Highlight',
-    infotip: 'Infotip'
+    infotip: 'Infotip',
+    form: 'Form',
+    defaultForm: 'All examples'
   },
   analysis: {
     newUser: 'New user',
@@ -193,7 +195,24 @@ export default {
     timePicker: 'Time Picker',
     timeSelect: 'Time Select',
     inputPassword: 'input Password',
-    passwordStrength: 'Password Strength'
+    passwordStrength: 'Password Strength',
+    defaultForm: 'All examples',
+    formDes:
+      'The secondary encapsulation of form components based on ElementPlus realizes data-driven and supports all Form parameters',
+    example: 'example',
+    operate: 'Operate',
+    change: 'Change',
+    restore: 'Restore',
+    disabled: 'Disabled',
+    disablement: 'Disablement',
+    delete: 'Delete',
+    add: 'Add',
+    setValue: 'Set value',
+    resetValue: 'Reset value',
+    set: 'Set',
+    subitem: 'Subitem',
+    formValidation: 'Form validation',
+    verifyReset: 'Verify reset'
   },
   guideDemo: {
     guide: 'Guide',

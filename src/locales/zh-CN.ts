@@ -93,7 +93,9 @@ export default {
     watermark: '水印',
     qrcode: '二维码',
     highlight: '高亮',
-    infotip: '信息提示'
+    infotip: '信息提示',
+    form: '表单',
+    defaultForm: '全部示例'
   },
   analysis: {
     newUser: '新增用户',
@@ -193,7 +195,23 @@ export default {
     timePicker: '时间选择器',
     timeSelect: '时间选择',
     inputPassword: '密码输入框',
-    passwordStrength: '密码强度'
+    passwordStrength: '密码强度',
+    defaultForm: '全部示例',
+    formDes: '基于 ElementPlus 的 Form 组件二次封装，实现数据驱动，支持所有 Form 参数',
+    example: '示例',
+    operate: '操作',
+    change: '更改',
+    restore: '还原',
+    disabled: '禁用',
+    disablement: '解除禁用',
+    delete: '删除',
+    add: '添加',
+    setValue: '设置值',
+    resetValue: '重置值',
+    set: '设置',
+    subitem: '子项',
+    formValidation: '表单验证',
+    verifyReset: '验证重置'
   },
   guideDemo: {
     guide: '引导页',

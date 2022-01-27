@@ -84,11 +84,6 @@ declare global {
     hidden?: boolean
   }
 
-  declare type FormSetValuesType = {
-    field: string
-    value: FormValueType
-  }
-
   declare type FormSetPropsType = {
     field: string
     path: string

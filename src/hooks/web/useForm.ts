@@ -29,17 +29,19 @@ export const useForm = () => {
 
   // 一些内置的方法
   const methods: {
-    setValues: (data: FormSetValuesType[]) => void
-    getFormData: () => Promise<Recordable | undefined>
-    setSchema: (schemaProps: FormSetValuesType[]) => void
+    setProps: (props: Recordable) => void
+    setValues: (data: Recordable) => void
+    getFormData: <T = Recordable | undefined>() => Promise<T>
+    setSchema: (schemaProps: FormSetPropsType[]) => void
     addSchema: (formSchema: FormSchema, index?: number) => void
-    delSchema: (index: number) => void
+    delSchema: (field: string) => void
   } = {
-    /**
-     * @param field 字段
-     * @param value 值
-     */
-    setValues: async (data: FormSetValuesType[]) => {
+    setProps: async (props: Recordable = {}) => {
+      const form = await getForm()
+      form?.setProps(props)
+    },
+
+    setValues: async (data: Recordable) => {
       const form = await getForm()
       form?.setValues(data)
     },
@@ -62,19 +64,19 @@ export const useForm = () => {
     },
 
     /**
-     * @param index 删除哪个数据
+     * @param field 删除哪个数据
      */
-    delSchema: async (index: number) => {
+    delSchema: async (field: string) => {
       const form = await getForm()
-      form?.delSchema(index)
+      form?.delSchema(field)
     },
 
     /**
      * @returns form data
      */
-    getFormData: async (): Promise<Recordable | undefined> => {
+    getFormData: async <T = Recordable>(): Promise<T> => {
       const form = await getForm()
-      return form?.formModel || undefined
+      return form?.formModel as T
     }
   }
 

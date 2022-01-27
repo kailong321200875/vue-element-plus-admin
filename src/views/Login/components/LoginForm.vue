@@ -117,7 +117,7 @@ const signIn = async () => {
   if (validate) {
     loading.value = true
     const { getFormData } = methods
-    const formData = (await getFormData()) as UserLoginType
+    const formData = await getFormData<UserLoginType>()
 
     const res = await loginApi(formData)
       .catch(() => {})

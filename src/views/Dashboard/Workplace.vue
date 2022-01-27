@@ -172,14 +172,14 @@ const { t } = useI18n()
 
   <ElRow class="mt-20px" :gutter="20" justify="space-between">
     <ElCol :xl="16" :lg="16" :md="24" :sm="24" :xs="24" class="mb-20px">
-      <ElSkeleton :loading="loading" animated>
-        <ElCard shadow="never">
-          <template #header>
-            <div class="flex justify-between">
-              <span>{{ t('workplace.project') }}</span>
-              <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
-            </div>
-          </template>
+      <ElCard shadow="never">
+        <template #header>
+          <div class="flex justify-between">
+            <span>{{ t('workplace.project') }}</span>
+            <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
+          </div>
+        </template>
+        <ElSkeleton :loading="loading" animated>
           <ElRow>
             <ElCol
               v-for="(item, index) in projects"
@@ -203,17 +203,17 @@ const { t } = useI18n()
               </ElCard>
             </ElCol>
           </ElRow>
-        </ElCard>
-      </ElSkeleton>
+        </ElSkeleton>
+      </ElCard>
 
-      <ElSkeleton :loading="loading" animated>
-        <ElCard shadow="never" class="mt-20px">
-          <template #header>
-            <div class="flex justify-between">
-              <span>{{ t('workplace.dynamic') }}</span>
-              <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
-            </div>
-          </template>
+      <ElCard shadow="never" class="mt-20px">
+        <template #header>
+          <div class="flex justify-between">
+            <span>{{ t('workplace.dynamic') }}</span>
+            <ElLink type="primary" :underline="false">{{ t('workplace.more') }}</ElLink>
+          </div>
+        </template>
+        <ElSkeleton :loading="loading" animated>
           <div v-for="(item, index) in dynamics" :key="`dynamics-${index}`">
             <div class="flex items-center">
               <img
@@ -234,15 +234,15 @@ const { t } = useI18n()
             </div>
             <ElDivider />
           </div>
-        </ElCard>
-      </ElSkeleton>
+        </ElSkeleton>
+      </ElCard>
     </ElCol>
     <ElCol :xl="8" :lg="8" :md="24" :sm="24" :xs="24" class="mb-20px">
-      <ElSkeleton :loading="loading" animated>
-        <ElCard shadow="never">
-          <template #header>
-            <span>{{ t('workplace.shortcutOperation') }}</span>
-          </template>
+      <ElCard shadow="never">
+        <template #header>
+          <span>{{ t('workplace.shortcutOperation') }}</span>
+        </template>
+        <ElSkeleton :loading="loading" animated>
           <ElCol
             v-for="item in 9"
             :key="`card-${item}`"
@@ -257,23 +257,23 @@ const { t } = useI18n()
               {{ t('workplace.operation') }}{{ item }}
             </ElLink>
           </ElCol>
-        </ElCard>
-      </ElSkeleton>
+        </ElSkeleton>
+      </ElCard>
 
-      <ElSkeleton :loading="loading" animated>
-        <ElCard shadow="never" class="mt-20px">
-          <template #header>
-            <span>xx{{ t('workplace.index') }}</span>
-          </template>
+      <ElCard shadow="never" class="mt-20px">
+        <template #header>
+          <span>xx{{ t('workplace.index') }}</span>
+        </template>
+        <ElSkeleton :loading="loading" animated>
           <Echart :options="radarOptionData" :height="400" />
-        </ElCard>
-      </ElSkeleton>
+        </ElSkeleton>
+      </ElCard>
 
-      <ElSkeleton :loading="loading" animated>
-        <ElCard shadow="never" class="mt-20px">
-          <template #header>
-            <span>{{ t('workplace.team') }}</span>
-          </template>
+      <ElCard shadow="never" class="mt-20px">
+        <template #header>
+          <span>{{ t('workplace.team') }}</span>
+        </template>
+        <ElSkeleton :loading="loading" animated>
           <ElRow>
             <ElCol v-for="item in team" :key="`team-${item.name}`" :span="12" class="mb-20px">
               <div class="flex items-center">
@@ -284,8 +284,8 @@ const { t } = useI18n()
               </div>
             </ElCol>
           </ElRow>
-        </ElCard>
-      </ElSkeleton>
+        </ElSkeleton>
+      </ElCard>
     </ElCol>
   </ElRow>
 </template>
