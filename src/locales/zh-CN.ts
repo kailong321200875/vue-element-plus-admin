@@ -90,7 +90,8 @@ export default {
     icon: '图标',
     echart: '图表',
     countTo: '数字动画',
-    watermark: '水印'
+    watermark: '水印',
+    qrcode: '二维码'
   },
   analysis: {
     newUser: '新增用户',
@@ -230,5 +231,18 @@ export default {
     createdWatermark: '创建水印',
     clearWatermark: '清除水印',
     resetWatermark: '重置水印'
+  },
+  qrcodeDemo: {
+    qrcode: '二维码',
+    qrcodeDes: '基于 qrcode 二次封装',
+    basicUsage: '基础用法',
+    imgTag: 'img标签',
+    style: '样式配置',
+    click: '点击事件',
+    asynchronousContent: '异步内容',
+    invalid: '失效',
+    logoConfig: 'logo配置',
+    logoStyle: 'logo样式',
+    size: '大小配置'
   }
 }

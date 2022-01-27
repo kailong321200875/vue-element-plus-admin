@@ -133,7 +133,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'qs',
         'echarts',
         'echarts-wordcloud',
-        'intro.js'
+        'intro.js',
+        'qrcode'
       ]
     }
   }

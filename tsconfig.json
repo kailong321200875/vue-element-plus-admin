@@ -27,7 +27,8 @@
       "@intlify/vite-plugin-vue-i18n/client",
       "vite/client",
       "element-plus/global",
-      "@types/intro.js"
+      "@types/intro.js",
+      "@types/qrcode"
     ],
     "typeRoots": ["./node_modules/@types/", "./types"]
   },

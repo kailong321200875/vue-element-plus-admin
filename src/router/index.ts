@@ -127,6 +127,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.watermark')
         }
+      },
+      {
+        path: 'qrcode',
+        component: () => import('@/views/Components/Qrcode.vue'),
+        name: 'Qrcode',
+        meta: {
+          title: t('router.qrcode')
+        }
       }
     ]
   },

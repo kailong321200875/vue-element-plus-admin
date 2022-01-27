@@ -90,7 +90,8 @@ export default {
     icon: 'Icon',
     echart: 'Echart',
     countTo: 'Count to',
-    watermark: 'Watermark'
+    watermark: 'Watermark',
+    qrcode: 'Qrcode'
   },
   analysis: {
     newUser: 'New user',
@@ -231,5 +232,18 @@ export default {
     createdWatermark: 'Created watermark',
     clearWatermark: 'Clear watermark',
     resetWatermark: 'Reset watermark'
+  },
+  qrcodeDemo: {
+    qrcode: 'Qrcode',
+    qrcodeDes: 'Secondary packaging based on qrcode',
+    basicUsage: 'Basic usage',
+    imgTag: 'Img tag',
+    style: 'Style config',
+    click: 'Click event',
+    asynchronousContent: 'Asynchronous content',
+    invalid: 'Invalid',
+    logoConfig: 'Logo config',
+    logoStyle: 'Logo style',
+    size: 'size config'
   }
 }
