@@ -143,6 +143,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.highlight')
         }
+      },
+      {
+        path: 'infotip',
+        component: () => import('@/views/Components/Infotip.vue'),
+        name: 'Infotip',
+        meta: {
+          title: t('router.infotip')
+        }
       }
     ]
   },

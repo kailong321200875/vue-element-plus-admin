@@ -92,7 +92,8 @@ export default {
     countTo: '数字动画',
     watermark: '水印',
     qrcode: '二维码',
-    highlight: '高亮'
+    highlight: '高亮',
+    infotip: '信息提示'
   },
   analysis: {
     newUser: '新增用户',
@@ -251,5 +252,13 @@ export default {
     message: '种一棵树最好的时间是十年前，其次就是现在。',
     keys1: '十年前',
     keys2: '现在'
+  },
+  infotipDemo: {
+    infotip: '信息提示',
+    infotipDes: '基于 Highlight 组件二次封装',
+    title: '注意事项'
+  },
+  levelDemo: {
+    menu: '多级菜单缓存'
   }
 }

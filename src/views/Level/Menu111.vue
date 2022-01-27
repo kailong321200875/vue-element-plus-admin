@@ -1,10 +1,16 @@
 <script setup lang="ts" name="Menu111">
-import { onMounted } from 'vue'
-onMounted(() => {
-  console.log('????')
-})
+import { ElInput } from 'element-plus'
+import { ContentWrap } from '@/components/ContentWrap'
+import { useI18n } from '@/hooks/web/useI18n'
+import { ref } from 'vue'
+
+const { t } = useI18n()
+
+const text = ref('')
 </script>
 
 <template>
-  <div class="h-[100000px]">Menu111 <input type="text" /></div>
+  <ContentWrap :title="t('levelDemo.menu')">
+    <div class="flex items-center"> Menu111: <ElInput v-model="text" class="pl-20px" /> </div>
+  </ContentWrap>
 </template>

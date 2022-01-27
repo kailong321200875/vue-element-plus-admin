@@ -92,7 +92,8 @@ export default {
     countTo: 'Count to',
     watermark: 'Watermark',
     qrcode: 'Qrcode',
-    highlight: 'Highlight'
+    highlight: 'Highlight',
+    infotip: 'Infotip'
   },
   analysis: {
     newUser: 'New user',
@@ -252,5 +253,13 @@ export default {
     message: 'The best time to plant a tree is ten years ago, followed by now.',
     keys1: 'ten years ago',
     keys2: 'now'
+  },
+  infotipDemo: {
+    infotip: 'Infotip',
+    infotipDes: 'Secondary packaging of components based on Highlight',
+    title: 'matters needing attention'
+  },
+  levelDemo: {
+    menu: 'Multi level menu cache'
   }
 }
