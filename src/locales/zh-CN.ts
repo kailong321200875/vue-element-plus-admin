@@ -91,7 +91,8 @@ export default {
     echart: '图表',
     countTo: '数字动画',
     watermark: '水印',
-    qrcode: '二维码'
+    qrcode: '二维码',
+    highlight: '高亮'
   },
   analysis: {
     newUser: '新增用户',
@@ -244,5 +245,11 @@ export default {
     logoConfig: 'logo配置',
     logoStyle: 'logo样式',
     size: '大小配置'
+  },
+  highlightDemo: {
+    highlight: '高亮',
+    message: '种一棵树最好的时间是十年前，其次就是现在。',
+    keys1: '十年前',
+    keys2: '现在'
   }
 }

@@ -91,7 +91,8 @@ export default {
     echart: 'Echart',
     countTo: 'Count to',
     watermark: 'Watermark',
-    qrcode: 'Qrcode'
+    qrcode: 'Qrcode',
+    highlight: 'Highlight'
   },
   analysis: {
     newUser: 'New user',
@@ -245,5 +246,11 @@ export default {
     logoConfig: 'Logo config',
     logoStyle: 'Logo style',
     size: 'size config'
+  },
+  highlightDemo: {
+    highlight: 'Highlight',
+    message: 'The best time to plant a tree is ten years ago, followed by now.',
+    keys1: 'ten years ago',
+    keys2: 'now'
   }
 }

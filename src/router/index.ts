@@ -135,6 +135,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.qrcode')
         }
+      },
+      {
+        path: 'highlight',
+        component: () => import('@/views/Components/Highlight.vue'),
+        name: 'Highlight',
+        meta: {
+          title: t('router.highlight')
+        }
       }
     ]
   },
