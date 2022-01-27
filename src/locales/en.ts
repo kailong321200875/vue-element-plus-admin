@@ -200,7 +200,7 @@ export default {
     formDes:
       'The secondary encapsulation of form components based on ElementPlus realizes data-driven and supports all Form parameters',
     example: 'example',
-    operate: 'Operate',
+    operate: 'operate',
     change: 'Change',
     restore: 'Restore',
     disabled: 'Disabled',

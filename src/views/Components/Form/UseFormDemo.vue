@@ -221,7 +221,7 @@ const verifyReset = () => {
 </script>
 
 <template>
-  <ContentWrap :title="`useForm${t('formDemo.operate')}`">
+  <ContentWrap :title="`UseForm ${t('formDemo.operate')}`">
     <ElButton @click="changeLabelWidth(150)">{{ t('formDemo.change') }} labelWidth</ElButton>
     <ElButton @click="changeLabelWidth('auto')">{{ t('formDemo.restore') }} labelWidth</ElButton>
 
@@ -250,7 +250,7 @@ const verifyReset = () => {
     <ElButton @click="formValidation"> {{ t('formDemo.formValidation') }} </ElButton>
     <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
   </ContentWrap>
-  <ContentWrap :title="`useForm${t('formDemo.example')}`">
+  <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
     <Form :schema="schema" @register="register" />
   </ContentWrap>
 </template>
