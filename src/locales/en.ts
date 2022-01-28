@@ -29,7 +29,9 @@ export default {
     tagsView: 'Tags view',
     tagsViewDes: 'Used to record routing history',
     tool: 'Tool',
-    toolDes: 'Used to set up custom systems'
+    toolDes: 'Used to set up custom systems',
+    query: 'Query',
+    reset: 'Reset'
   },
   setting: {
     projectSetting: 'Project setting',
@@ -95,7 +97,8 @@ export default {
     highlight: 'Highlight',
     infotip: 'Infotip',
     form: 'Form',
-    defaultForm: 'All examples'
+    defaultForm: 'All examples',
+    search: 'Search'
   },
   analysis: {
     newUser: 'New user',
@@ -280,5 +283,21 @@ export default {
   },
   levelDemo: {
     menu: 'Multi level menu cache'
+  },
+  searchDemo: {
+    search: 'Search',
+    searchDes:
+      'Based on the secondary encapsulation of form components, the functions of query and reset are realized',
+    operate: 'operate',
+    change: 'Change',
+    grid: 'grid',
+    button: 'Button',
+    restore: 'Restore',
+    inline: 'inline',
+    bottom: 'Bottom',
+    position: 'position',
+    left: 'left',
+    center: 'center',
+    right: 'right'
   }
 }

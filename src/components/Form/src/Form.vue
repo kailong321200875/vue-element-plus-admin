@@ -52,10 +52,16 @@ export default defineComponent({
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
 
     // useForm传入的props
-    const outsideProps = ref<FormProps>({ ...props })
+    const outsideProps = ref<FormProps>({})
 
     const getProps = computed(() => {
-      return { ...props, ...unref(outsideProps) }
+      const propsObj = { ...props }
+      for (const key in unref(outsideProps)) {
+        if (Reflect.has(propsObj, key)) {
+          propsObj[key] = unref(outsideProps)[key]
+        }
+      }
+      return propsObj
     })
 
     // 表单数据
@@ -71,7 +77,7 @@ export default defineComponent({
     }
 
     const setProps = (props: FormProps = {}) => {
-      outsideProps.value = Object.assign(unref(formModel), props)
+      outsideProps.value = props
     }
 
     const delSchema = (field: string) => {

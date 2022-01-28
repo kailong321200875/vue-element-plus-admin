@@ -39,7 +39,6 @@ export const useForm = (props?: FormProps) => {
   } = {
     setProps: async (props: FormProps = {}) => {
       const form = await getForm()
-      console.log(form)
       form?.setProps(props)
     },
 

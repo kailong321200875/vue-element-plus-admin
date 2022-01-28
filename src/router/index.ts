@@ -132,6 +132,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
       },
       {
+        path: 'search',
+        component: () => import('@/views/Components/Search.vue'),
+        name: 'Search',
+        meta: {
+          title: t('router.search')
+        }
+      },
+      {
         path: 'icon',
         component: () => import('@/views/Components/Icon.vue'),
         name: 'Icon',

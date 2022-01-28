@@ -29,7 +29,9 @@ export default {
     tagsView: '标签页',
     tagsViewDes: '用于记录路由历史记录',
     tool: '工具',
-    toolDes: '用于设置定制系统'
+    toolDes: '用于设置定制系统',
+    query: '查询',
+    reset: '重置'
   },
   setting: {
     projectSetting: '项目配置',
@@ -95,7 +97,8 @@ export default {
     highlight: '高亮',
     infotip: '信息提示',
     form: '表单',
-    defaultForm: '全部示例'
+    defaultForm: '全部示例',
+    search: '查询'
   },
   analysis: {
     newUser: '新增用户',
@@ -278,5 +281,20 @@ export default {
   },
   levelDemo: {
     menu: '多级菜单缓存'
+  },
+  searchDemo: {
+    search: '查询',
+    searchDes: '基于 Form 组件二次封装，实现查询、重置功能',
+    operate: '操作',
+    change: '更改',
+    grid: '栅格',
+    button: '按钮',
+    restore: '还原',
+    inline: '内联',
+    bottom: '底部',
+    position: '位置',
+    left: '左',
+    center: '中',
+    right: '右'
   }
 }
