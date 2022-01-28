@@ -18,6 +18,7 @@ import { useRenderChcekbox } from './components/useRenderChcekbox'
 import { useDesign } from '@/hooks/web/useDesign'
 import { findIndex } from '@/utils'
 import { set } from 'lodash-es'
+import { FormProps } from './types'
 
 const { getPrefixCls } = useDesign()
 
@@ -51,11 +52,11 @@ export default defineComponent({
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
 
     // useForm传入的props
-    const outsideProps = ref<Recordable>({})
+    const outsideProps = ref<FormProps>({ ...props })
 
-    const getProps = computed(() => Object.assign({ ...props }, unref(outsideProps)))
-
-    const { schema, isCol, isCustom, autoSetPlaceholder } = unref(getProps)
+    const getProps = computed(() => {
+      return { ...props, ...unref(outsideProps) }
+    })
 
     // 表单数据
     const formModel = ref<Recordable>({})
@@ -69,11 +70,13 @@ export default defineComponent({
       formModel.value = Object.assign(unref(formModel), data)
     }
 
-    const setProps = (props: Recordable) => {
-      outsideProps.value = props
+    const setProps = (props: FormProps = {}) => {
+      outsideProps.value = Object.assign(unref(formModel), props)
     }
 
     const delSchema = (field: string) => {
+      const { schema } = unref(getProps)
+
       const index = findIndex(schema, (v: FormSchema) => v.field === field)
       if (index > -1) {
         schema.splice(index, 1)
@@ -81,6 +84,7 @@ export default defineComponent({
     }
 
     const addSchema = (formSchema: FormSchema, index?: number) => {
+      const { schema } = unref(getProps)
       if (index !== void 0) {
         schema.splice(index, 0, formSchema)
         return
@@ -89,6 +93,7 @@ export default defineComponent({
     }
 
     const setSchema = (schemaProps: FormSetPropsType[]) => {
+      const { schema } = unref(getProps)
       for (const v of schema) {
         for (const item of schemaProps) {
           if (v.field === item.field) {
@@ -114,8 +119,8 @@ export default defineComponent({
 
     // 监听表单结构化数组，重新生成formModel
     watch(
-      () => schema,
-      (schema) => {
+      () => unref(getProps).schema,
+      (schema = []) => {
         formModel.value = initModel(schema, unref(formModel))
       },
       {
@@ -126,6 +131,7 @@ export default defineComponent({
 
     // 渲染包裹标签，是否使用栅格布局
     const renderWrap = () => {
+      const { isCol } = unref(getProps)
       const content = isCol ? (
         <ElRow gutter={20}>{renderFormItemWrap()}</ElRow>
       ) : (
@@ -137,6 +143,8 @@ export default defineComponent({
     // 是否要渲染el-col
     const renderFormItemWrap = () => {
       // hidden属性表示隐藏，不做渲染
+      const { schema = [], isCol } = unref(getProps)
+
       return schema
         .filter((v) => !v.hidden)
         .map((item) => {
@@ -176,6 +184,9 @@ export default defineComponent({
               const Com = componentMap[item.component as string] as ReturnType<
                 typeof defineComponent
               >
+
+              const { autoSetPlaceholder } = unref(getProps)
+
               return slots[item.field] ? (
                 getSlot(slots, item.field, { item })
               ) : (
@@ -233,7 +244,10 @@ export default defineComponent({
       <ElForm ref={elFormRef} {...getFormBindValue()} model={formModel} class={prefixCls}>
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
-          default: () => (isCustom ? getSlot(slots, 'default') : renderWrap())
+          default: () => {
+            const { isCustom } = unref(getProps)
+            return isCustom ? getSlot(slots, 'default') : renderWrap()
+          }
         }}
       </ElForm>
     )

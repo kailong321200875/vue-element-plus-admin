@@ -1,15 +1,9 @@
 import { useI18n } from '@/hooks/web/useI18n'
 import type { Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
+import { PlaceholderMoel } from './types'
 
 const { t } = useI18n()
-
-interface PlaceholderMoel {
-  placeholder?: string
-  startPlaceholder?: string
-  endPlaceholder?: string
-  rangeSeparator?: string
-}
 
 /**
  *

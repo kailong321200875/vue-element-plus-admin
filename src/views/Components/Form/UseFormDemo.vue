@@ -89,7 +89,9 @@ const schema = reactive<FormSchema[]>([
   }
 ])
 
-const { register, methods, elFormRef } = useForm()
+const { register, methods, elFormRef } = useForm({
+  schema
+})
 
 const changeLabelWidth = (width: number | string) => {
   const { setProps } = methods
@@ -251,6 +253,6 @@ const verifyReset = () => {
     <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
-    <Form :schema="schema" @register="register" />
+    <Form @register="register" />
   </ContentWrap>
 </template>
