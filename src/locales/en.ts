@@ -31,7 +31,9 @@ export default {
     tool: 'Tool',
     toolDes: 'Used to set up custom systems',
     query: 'Query',
-    reset: 'Reset'
+    reset: 'Reset',
+    shrink: 'Put away',
+    expand: 'Expand'
   },
   setting: {
     projectSetting: 'Project setting',

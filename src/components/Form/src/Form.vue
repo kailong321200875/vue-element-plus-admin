@@ -66,7 +66,7 @@ export default defineComponent({
     const formModel = ref<Recordable>({})
 
     onMounted(() => {
-      emit('register', elFormRef.value?.$parent, elFormRef.value)
+      emit('register', unref(elFormRef)?.$parent, unref(elFormRef))
     })
 
     // 对表单赋值

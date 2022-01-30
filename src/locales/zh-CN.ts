@@ -31,7 +31,9 @@ export default {
     tool: '工具',
     toolDes: '用于设置定制系统',
     query: '查询',
-    reset: '重置'
+    reset: '重置',
+    shrink: '收起',
+    expand: '展开'
   },
   setting: {
     projectSetting: '项目配置',

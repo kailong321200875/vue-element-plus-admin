@@ -63,6 +63,94 @@ const schema = reactive<FormSchema[]>([
     field: 'field6',
     component: 'TimeSelect',
     label: t('formDemo.timeSelect')
+  },
+  {
+    field: 'field8',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field9',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field10',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field11',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field12',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field13',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field14',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field15',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field16',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field17',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
+  },
+  {
+    field: 'field18',
+    label: t('formDemo.input'),
+    component: 'Input',
+    formItemProps: {
+      rules: [required]
+    }
   }
 ])
 
@@ -109,6 +197,13 @@ const changePosition = (position: string) => {
   </ContentWrap>
 
   <ContentWrap :title="t('searchDemo.search')" :message="t('searchDemo.searchDes')">
-    <Search :schema="schema" :is-col="isGrid" :layout="layout" :buttom-position="buttomPosition" />
+    <Search
+      :schema="schema"
+      :is-col="isGrid"
+      :layout="layout"
+      :buttom-position="buttomPosition"
+      expand
+      expand-field="field6"
+    />
   </ContentWrap>
 </template>

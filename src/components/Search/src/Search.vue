@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { Form } from '@/components/Form'
-import { PropType, computed, unref, CSSProperties } from 'vue'
+import { PropType, computed, unref, CSSProperties, ref } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
+import { findIndex } from '@/utils'
+import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -25,14 +27,21 @@ const props = defineProps({
     .validate((v: string) => ['left', 'center', 'right'].includes(v))
     .def('center'),
   showSearch: propTypes.bool.def(true),
-  showReset: propTypes.bool.def(true)
+  showReset: propTypes.bool.def(true),
+  // 是否显示伸缩
+  expand: propTypes.bool.def(false),
+  // 伸缩的界限字段
+  expandField: propTypes.string.def('')
 })
 
 const emit = defineEmits(['search', 'reset'])
 
+const visible = ref(true)
+
 const newSchema = computed(() => {
+  let schema: FormSchema[] = []
   if (props.layout === 'inline') {
-    return props.schema.concat([
+    schema = cloneDeep(props.schema).concat([
       {
         field: 'action',
         formItemProps: {
@@ -41,8 +50,15 @@ const newSchema = computed(() => {
       }
     ])
   } else {
-    return props.schema
+    schema = cloneDeep(props.schema)
   }
+  if (props.expand && props.expandField && !unref(visible)) {
+    const index = findIndex(schema, (v: FormSchema) => v.field === props.expandField)
+    if (index > -1) {
+      schema.splice(0, index + 1)
+    }
+  }
+  return schema
 })
 
 const { register, elFormRef, methods } = useForm()
@@ -92,6 +108,10 @@ const bottonButtonStyle = computed(() => {
           <Icon icon="ep:refresh-right" class="mr-5px" />
           {{ t('common.reset') }}
         </ElButton>
+        <ElButton v-if="showReset" type="text" @click="visible = !visible">
+          {{ t(visible ? 'common.shrink' : 'common.expand') }}
+          <Icon :icon="visible ? 'ant-design:up-outlined' : 'ant-design:down-outlined'" />
+        </ElButton>
       </div>
     </template>
   </Form>
@@ -105,6 +125,10 @@ const bottonButtonStyle = computed(() => {
       <ElButton v-if="showReset" @click="reset">
         <Icon icon="ep:refresh-right" class="mr-5px" />
         {{ t('common.reset') }}
+      </ElButton>
+      <ElButton v-if="showReset" type="text" @click="visible = !visible">
+        {{ t(visible ? 'common.shrink' : 'common.expand') }}
+        <Icon :icon="visible ? 'ant-design:up-outlined' : 'ant-design:down-outlined'" />
       </ElButton>
     </div>
   </template>
