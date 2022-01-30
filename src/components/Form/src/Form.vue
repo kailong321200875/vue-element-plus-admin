@@ -54,13 +54,11 @@ export default defineComponent({
     // useForm传入的props
     const outsideProps = ref<FormProps>({})
 
+    const mergeProps = ref<FormProps>({})
+
     const getProps = computed(() => {
       const propsObj = { ...props }
-      for (const key in unref(outsideProps)) {
-        if (Reflect.has(propsObj, key)) {
-          propsObj[key] = unref(outsideProps)[key]
-        }
-      }
+      Object.assign(propsObj, unref(mergeProps))
       return propsObj
     })
 
@@ -77,6 +75,7 @@ export default defineComponent({
     }
 
     const setProps = (props: FormProps = {}) => {
+      mergeProps.value = Object.assign(unref(mergeProps), props)
       outsideProps.value = props
     }
 

@@ -82,7 +82,22 @@ const bottonButtonStyle = computed(() => {
     :schema="newSchema"
     @register="register"
   >
-    <template v-if="layout === 'inline'" #action>
+    <template #action>
+      <div v-if="layout === 'inline'">
+        <ElButton v-if="showSearch" type="primary" @click="search">
+          <Icon icon="ep:search" class="mr-5px" />
+          {{ t('common.query') }}
+        </ElButton>
+        <ElButton v-if="showReset" @click="reset">
+          <Icon icon="ep:refresh-right" class="mr-5px" />
+          {{ t('common.reset') }}
+        </ElButton>
+      </div>
+    </template>
+  </Form>
+
+  <template v-if="layout === 'bottom'">
+    <div :style="bottonButtonStyle">
       <ElButton v-if="showSearch" type="primary" @click="search">
         <Icon icon="ep:search" class="mr-5px" />
         {{ t('common.query') }}
@@ -91,16 +106,6 @@ const bottonButtonStyle = computed(() => {
         <Icon icon="ep:refresh-right" class="mr-5px" />
         {{ t('common.reset') }}
       </ElButton>
-    </template>
-  </Form>
-  <div v-if="layout === 'bottom'" :style="bottonButtonStyle">
-    <ElButton v-if="showSearch" type="primary" @click="search">
-      <Icon icon="ep:search" class="mr-5px" />
-      {{ t('common.query') }}
-    </ElButton>
-    <ElButton v-if="showReset" @click="reset">
-      <Icon icon="ep:refresh-right" class="mr-5px" />
-      {{ t('common.reset') }}
-    </ElButton>
-  </div>
+    </div>
+  </template>
 </template>

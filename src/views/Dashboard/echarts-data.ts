@@ -177,7 +177,7 @@ export const radarOption: EChartsOption = {
           name: t('workplace.personal')
         },
         {
-          value: [50, 140, 28, 35, 90],
+          value: [50, 140, 290, 100, 90],
           name: t('workplace.team')
         }
       ]

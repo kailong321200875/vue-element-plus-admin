@@ -7,7 +7,7 @@ import VueJsx from '@vitejs/plugin-vue-jsx'
 import EslintPlugin from 'vite-plugin-eslint'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import StyleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
-import ViteSvgIcons from 'vite-plugin-svg-icons'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -53,7 +53,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         compositionOnly: true,
         include: [resolve(__dirname, 'src/locales/**')]
       }),
-      ViteSvgIcons({
+      createSvgIconsPlugin({
         iconDirs: [pathResolve('src/assets/svgs')],
         symbolId: 'icon-[dir]-[name]',
         svgoOptions: true
