@@ -100,7 +100,7 @@ const disabledClick = () => {
       <ElCol :xl="6" :lg="6" :md="12" :sm="24" :xs="24">
         <ElCard shadow="hover" class="mb-10px text-center">
           <div class="font-bold">{{ t('qrcodeDemo.size') }}</div>
-          <Qrcode :text="title" :width="250" />
+          <Qrcode :text="title" :width="100" />
         </ElCard>
       </ElCol>
     </ElRow>

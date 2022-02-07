@@ -132,6 +132,25 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
       },
       {
+        path: 'table',
+        component: getParentLayout(),
+        name: 'TableDemo',
+        meta: {
+          title: t('router.table'),
+          alwaysShow: true
+        },
+        children: [
+          {
+            path: 'default-table',
+            component: () => import('@/views/Components/Table/DefaultTable.vue'),
+            name: 'DefaultTable',
+            meta: {
+              title: t('router.defaultTable')
+            }
+          }
+        ]
+      },
+      {
         path: 'search',
         component: () => import('@/views/Components/Search.vue'),
         name: 'Search',

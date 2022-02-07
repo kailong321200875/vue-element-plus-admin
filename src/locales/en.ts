@@ -100,7 +100,9 @@ export default {
     infotip: 'Infotip',
     form: 'Form',
     defaultForm: 'All examples',
-    search: 'Search'
+    search: 'Search',
+    table: 'Table',
+    defaultTable: 'Basic example'
   },
   analysis: {
     newUser: 'New user',
@@ -301,5 +303,19 @@ export default {
     left: 'left',
     center: 'center',
     right: 'right'
+  },
+  tableDemo: {
+    table: 'Table',
+    tableDes: 'Secondary packaging of Table components based on ElementPlus',
+    index: 'Index',
+    title: 'Title',
+    author: 'Author',
+    displayTime: 'Display time',
+    importance: 'Importance',
+    pageviews: 'Pageviews',
+    action: 'Action',
+    important: 'Important',
+    good: 'Good',
+    commonly: 'Commonly'
   }
 }

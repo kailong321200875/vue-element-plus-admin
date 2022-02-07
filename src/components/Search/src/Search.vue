@@ -39,9 +39,16 @@ const emit = defineEmits(['search', 'reset'])
 const visible = ref(true)
 
 const newSchema = computed(() => {
-  let schema: FormSchema[] = []
+  let schema: FormSchema[] = cloneDeep(props.schema)
+  if (props.expand && props.expandField && !unref(visible)) {
+    const index = findIndex(schema, (v: FormSchema) => v.field === props.expandField)
+    if (index > -1) {
+      const length = schema.length
+      schema.splice(index + 1, length)
+    }
+  }
   if (props.layout === 'inline') {
-    schema = cloneDeep(props.schema).concat([
+    schema = schema.concat([
       {
         field: 'action',
         formItemProps: {
@@ -49,14 +56,6 @@ const newSchema = computed(() => {
         }
       }
     ])
-  } else {
-    schema = cloneDeep(props.schema)
-  }
-  if (props.expand && props.expandField && !unref(visible)) {
-    const index = findIndex(schema, (v: FormSchema) => v.field === props.expandField)
-    if (index > -1) {
-      schema.splice(0, index + 1)
-    }
   }
   return schema
 })
@@ -86,6 +85,11 @@ const bottonButtonStyle = computed(() => {
     textAlign: props.buttomPosition
   }
 }) as CSSProperties
+
+const setVisible = () => {
+  unref(elFormRef)?.resetFields()
+  visible.value = !unref(visible)
+}
 </script>
 
 <template>
@@ -108,7 +112,7 @@ const bottonButtonStyle = computed(() => {
           <Icon icon="ep:refresh-right" class="mr-5px" />
           {{ t('common.reset') }}
         </ElButton>
-        <ElButton v-if="showReset" type="text" @click="visible = !visible">
+        <ElButton v-if="showReset" type="text" @click="setVisible">
           {{ t(visible ? 'common.shrink' : 'common.expand') }}
           <Icon :icon="visible ? 'ant-design:up-outlined' : 'ant-design:down-outlined'" />
         </ElButton>
@@ -126,7 +130,7 @@ const bottonButtonStyle = computed(() => {
         <Icon icon="ep:refresh-right" class="mr-5px" />
         {{ t('common.reset') }}
       </ElButton>
-      <ElButton v-if="showReset" type="text" @click="visible = !visible">
+      <ElButton v-if="showReset" type="text" @click="setVisible">
         {{ t(visible ? 'common.shrink' : 'common.expand') }}
         <Icon :icon="visible ? 'ant-design:up-outlined' : 'ant-design:down-outlined'" />
       </ElButton>

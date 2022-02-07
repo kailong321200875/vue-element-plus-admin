@@ -100,7 +100,9 @@ export default {
     infotip: '信息提示',
     form: '表单',
     defaultForm: '全部示例',
-    search: '查询'
+    search: '查询',
+    table: '表格',
+    defaultTable: '基础示例'
   },
   analysis: {
     newUser: '新增用户',
@@ -298,5 +300,19 @@ export default {
     left: '左',
     center: '中',
     right: '右'
+  },
+  tableDemo: {
+    table: '表格',
+    tableDes: '基于 ElementPlus 的 Table 组件二次封装',
+    index: '序号',
+    title: '标题',
+    author: '作者',
+    displayTime: '创建时间',
+    importance: '重要性',
+    pageviews: '阅读数',
+    action: '操作',
+    important: '重要',
+    good: '良好',
+    commonly: '一般'
   }
 }
