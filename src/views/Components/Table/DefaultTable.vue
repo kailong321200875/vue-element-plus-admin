@@ -77,7 +77,7 @@ const getTableList = async () => {
 
 getTableList()
 
-const acitonFn = (data: TableColumnDefault) => {
+const acitonFn = (data: TableSlotDefault) => {
   console.log(data)
 }
 </script>
@@ -86,9 +86,9 @@ const acitonFn = (data: TableColumnDefault) => {
   <ContentWrap :title="t('tableDemo.table')" :message="t('tableDemo.tableDes')">
     <Table :columns="columns" :data="tableDataList" :loading="loading">
       <template #action="data">
-        <ElButton @click="acitonFn(data as TableColumnDefault)">{{
-          t('tableDemo.action')
-        }}</ElButton>
+        <ElButton type="primary" @click="acitonFn(data as TableSlotDefault)">
+          {{ t('tableDemo.action') }}
+        </ElButton>
       </template>
     </Table>
   </ContentWrap>

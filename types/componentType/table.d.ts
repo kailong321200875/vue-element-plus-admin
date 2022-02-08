@@ -3,8 +3,8 @@ declare type TableColumn = {
   label?: string
 } & Recordable
 
-declare type TableColumnDefault = {
+declare type TableSlotDefault = {
   row: Recordable
-  field: string
-  index: number
-}
+  column: TableColumn
+  $index: number
+} & Recordable

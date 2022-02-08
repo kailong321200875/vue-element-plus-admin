@@ -67,7 +67,7 @@ export default defineComponent({
 
     const rnderTableColumn = (columns: TableColumn[]) => {
       return (props.selection ? [renderTableSelection()] : []).concat(
-        columns.map((v, i) => {
+        columns.map((v) => {
           if (v.type === 'index') {
             return (
               <ElTableColumn
@@ -89,11 +89,9 @@ export default defineComponent({
                 prop={v.field}
               >
                 {{
-                  default: () =>
+                  default: (data: TableSlotDefault) =>
                     // @ts-ignore
-                    getSlot(slots, v.field, { row: props.data[i], field: v.field, index: i }) ||
-                    v?.formatter?.() ||
-                    props.data[i][v.field],
+                    getSlot(slots, v.field, data) || v?.formatter?.() || data.row[v.field],
                   // @ts-ignore
                   header: getSlot(slots, `${v.field}-header`)
                 }}
