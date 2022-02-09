@@ -1,6 +1,7 @@
 declare type TableColumn = {
   field: string
   label?: string
+  children?: TableColumn[]
 } & Recordable
 
 declare type TableSlotDefault = {
@@ -26,4 +27,10 @@ declare interface Pagination {
   nextText?: string
   disabled?: boolean
   hideOnSinglePage?: boolean
+}
+
+declare interface TableSetPropsType {
+  field: string
+  path: string
+  value: any
 }

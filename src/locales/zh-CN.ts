@@ -324,6 +324,8 @@ export default {
     showSelections: '显示多选',
     hiddenSelections: '隐藏多选',
     showExpandedRows: '显示展开行',
-    hiddenExpandedRows: '隐藏展开行'
+    hiddenExpandedRows: '隐藏展开行',
+    changeTitle: '修改标题',
+    header: '头部'
   }
 }

@@ -1,30 +1,12 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table } from '@/components/Table'
+import { Table, TableExpose } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { ref, h, reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
-
-const { register, tableObject, methods } = useTable<
-  {
-    total: number
-    list: TableData[]
-  },
-  TableData
->({
-  getListApi: getTableListApi,
-  response: {
-    list: 'list',
-    total: 'total'
-  }
-})
-
-const { getList } = methods
-
-getList()
 
 const { t } = useI18n()
 
@@ -80,6 +62,29 @@ const columns = reactive<TableColumn[]>([
   }
 ])
 
+const { register, tableObject, methods } = useTable<
+  {
+    total: number
+    list: TableData[]
+  },
+  TableData
+>({
+  getListApi: getTableListApi,
+  response: {
+    list: 'list',
+    total: 'total'
+  },
+  props: {
+    columns
+  }
+})
+
+const { getList } = methods
+
+getList()
+
+const tableRef = ref<TableExpose>()
+
 const acitonFn = (data: TableSlotDefault) => {
   console.log(data)
 }
@@ -97,15 +102,13 @@ const showPagination = (show: boolean) => {
 }
 
 const reserveIndex = (custom: boolean) => {
-  const { setProps } = methods
-  setProps({
+  unref(tableRef)?.setProps({
     reserveIndex: custom
   })
 }
 
 const showSelections = (show: boolean) => {
-  const { setProps } = methods
-  setProps({
+  unref(tableRef)?.setProps({
     selection: show
   })
 }
@@ -113,8 +116,7 @@ const showSelections = (show: boolean) => {
 const index = ref(1)
 
 const changeTitle = () => {
-  const { setColumn } = methods
-  setColumn([
+  unref(tableRef)?.setColumn([
     {
       field: 'title',
       path: 'label',
@@ -125,15 +127,14 @@ const changeTitle = () => {
 }
 
 const showExpandedRows = (show: boolean) => {
-  const { setProps } = methods
-  setProps({
+  unref(tableRef)?.setProps({
     expand: show
   })
 }
 </script>
 
 <template>
-  <ContentWrap :title="`UseTable ${t('tableDemo.operate')}`">
+  <ContentWrap :title="`RefTable ${t('tableDemo.operate')}`">
     <ElButton @click="showPagination(true)">
       {{ t('tableDemo.show') }} {{ t('tableDemo.pagination') }}
     </ElButton>
@@ -152,11 +153,11 @@ const showExpandedRows = (show: boolean) => {
     <ElButton @click="showExpandedRows(true)">{{ t('tableDemo.showExpandedRows') }}</ElButton>
     <ElButton @click="showExpandedRows(false)">{{ t('tableDemo.hiddenExpandedRows') }}</ElButton>
   </ContentWrap>
-  <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
+  <ContentWrap :title="`RefTable ${t('tableDemo.example')}`">
     <Table
+      ref="tableRef"
       v-model:pageSize="tableObject.pageSize"
       v-model:currentPage="tableObject.currentPage"
-      :columns="columns"
       :data="tableObject.tableList"
       :loading="tableObject.loading"
       :pagination="paginationObj"

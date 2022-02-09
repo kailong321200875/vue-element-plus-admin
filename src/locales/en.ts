@@ -324,9 +324,11 @@ export default {
     pagination: 'pagination',
     reserveIndex: 'Reserve index',
     restoreIndex: 'Restore index',
-    showSelections: 'show selections',
-    hiddenSelections: 'restore selections',
-    showExpandedRows: 'show expanded rows',
-    hiddenExpandedRows: 'hidden expanded rows'
+    showSelections: 'Show selections',
+    hiddenSelections: 'Restore selections',
+    showExpandedRows: 'Show expanded rows',
+    hiddenExpandedRows: 'Hidden expanded rows',
+    changeTitle: 'Change title',
+    header: 'Header'
   }
 }

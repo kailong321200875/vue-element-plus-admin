@@ -155,6 +155,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: 'UseTable'
             }
+          },
+          {
+            path: 'ref-table',
+            component: () => import('@/views/Components/Table/RefTable.vue'),
+            name: 'RefTable',
+            meta: {
+              title: 'RefTable'
+            }
           }
         ]
       },

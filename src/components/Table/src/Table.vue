@@ -5,6 +5,7 @@ import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import { getSlot } from '@/utils/tsxHelper'
 import type { TableProps } from './types'
+import { set } from 'lodash-es'
 
 export default defineComponent({
   name: 'Table',
@@ -20,6 +21,8 @@ export default defineComponent({
       type: Array as PropType<TableColumn[]>,
       default: () => []
     },
+    // 展开行
+    expand: propTypes.bool.def(false),
     // 是否展示分页
     pagination: {
       type: Object as PropType<Pagination>,
@@ -73,8 +76,22 @@ export default defineComponent({
       outsideProps.value = props
     }
 
+    const setColumn = (columnProps: TableSetPropsType[], columnsChildren?: TableColumn[]) => {
+      const { columns } = unref(getProps)
+      for (const v of columnsChildren || columns) {
+        for (const item of columnProps) {
+          if (v.field === item.field) {
+            set(v, item.path, item.value)
+          } else if (v.children?.length) {
+            setColumn(columnProps, v.children)
+          }
+        }
+      }
+    }
+
     expose({
-      setProps
+      setProps,
+      setColumn
     })
 
     const pagination = computed(() => {
@@ -129,21 +146,73 @@ export default defineComponent({
     })
 
     const renderTableSelection = () => {
+      const { selection, reserveSelection, align, headerAlign } = unref(getProps)
       // 渲染多选
-      return unref(getProps).selection ? (
+      return selection ? (
         <ElTableColumn
           type="selection"
-          reserveSelection={unref(getProps).reserveSelection}
-          align={unref(getProps).align}
-          headerAlign={unref(getProps).headerAlign}
+          reserveSelection={reserveSelection}
+          align={align}
+          headerAlign={headerAlign}
           width="50"
         ></ElTableColumn>
       ) : undefined
     }
 
-    const rnderTableColumn = (columns: TableColumn[]) => {
-      return [renderTableSelection()].concat(
-        columns.map((v) => {
+    const renderTableExpand = () => {
+      const { align, headerAlign } = unref(getProps)
+      // 渲染展开行
+      return unref(getProps).expand ? (
+        <ElTableColumn type="expand" align={align} headerAlign={headerAlign}>
+          {{
+            // @ts-ignore
+            default: (data: TableSlotDefault) => getSlot(slots, 'expand', data)
+          }}
+        </ElTableColumn>
+      ) : undefined
+    }
+
+    const rnderTreeTableColumn = (columnsChildren: TableColumn[]) => {
+      const { align, headerAlign, showOverflowTooltip } = unref(getProps)
+      return columnsChildren.map((v) => {
+        const props = { ...v }
+        if (props.children) delete props.children
+        return (
+          <ElTableColumn
+            showOverflowTooltip={showOverflowTooltip}
+            align={align}
+            headerAlign={headerAlign}
+            {...props}
+            prop={v.field}
+          >
+            {{
+              default: (data: TableSlotDefault) =>
+                v.children && v.children.length
+                  ? rnderTableColumn(v.children)
+                  : // @ts-ignore
+                    getSlot(slots, v.field, data) ||
+                    v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
+                    data.row[v.field],
+              // @ts-ignore
+              header: getSlot(slots, `${v.field}-header`)
+            }}
+          </ElTableColumn>
+        )
+      })
+    }
+
+    const rnderTableColumn = (columnsChildren?: TableColumn[]) => {
+      const {
+        columns,
+        reserveIndex,
+        pageSize,
+        currentPage,
+        align,
+        headerAlign,
+        showOverflowTooltip
+      } = unref(getProps)
+      return [...[renderTableExpand()], ...[renderTableSelection()]].concat(
+        (columnsChildren || columns).map((v) => {
           // 自定生成序号
           if (v.type === 'index') {
             return (
@@ -152,35 +221,33 @@ export default defineComponent({
                 index={
                   v.index
                     ? v.index
-                    : (index) =>
-                        setIndex(
-                          unref(getProps).reserveIndex,
-                          index,
-                          unref(getProps).pageSize,
-                          unref(getProps).currentPage
-                        )
+                    : (index) => setIndex(reserveIndex, index, pageSize, currentPage)
                 }
-                align={v.align || unref(getProps).align}
-                headerAlign={v.headerAlign || unref(getProps).headerAlign}
+                align={v.align || align}
+                headerAlign={v.headerAlign || headerAlign}
                 label={v.label}
                 width="100px"
               ></ElTableColumn>
             )
           } else {
+            const props = { ...v }
+            if (props.children) delete props.children
             return (
               <ElTableColumn
-                showOverflowTooltip={unref(getProps).showOverflowTooltip}
-                align={unref(getProps).align}
-                headerAlign={unref(getProps).headerAlign}
-                {...v}
+                showOverflowTooltip={showOverflowTooltip}
+                align={align}
+                headerAlign={headerAlign}
+                {...props}
                 prop={v.field}
               >
                 {{
                   default: (data: TableSlotDefault) =>
-                    // @ts-ignore
-                    getSlot(slots, v.field, data) ||
-                    v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
-                    data.row[v.field],
+                    v.children && v.children.length
+                      ? rnderTreeTableColumn(v.children)
+                      : // @ts-ignore
+                        getSlot(slots, v.field, data) ||
+                        v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
+                        data.row[v.field],
                   // @ts-ignore
                   header: getSlot(slots, `${v.field}-header`)
                 }}
@@ -201,7 +268,7 @@ export default defineComponent({
           v-loading={unref(getProps).loading}
         >
           {{
-            default: () => rnderTableColumn(unref(getProps).columns),
+            default: () => rnderTableColumn(),
             // @ts-ignore
             append: () => getSlot(slots, 'append')
           }}

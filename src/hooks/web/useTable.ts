@@ -12,6 +12,7 @@ interface UseTableConfig<T, L> {
     list: string
     total?: string
   }
+  props?: TableProps
 }
 
 interface TableObject<K, L> {
@@ -88,7 +89,11 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     return table
   }
 
-  const methods = {
+  const methods: {
+    setProps: (props: Recordable) => void
+    getList: () => Promise<void>
+    setColumn: (columnProps: TableSetPropsType[]) => void
+  } = {
     getList: async () => {
       tableObject.loading = true
       const res = await config
@@ -105,11 +110,18 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     setProps: async (props: TableProps = {}) => {
       const table = await getTable()
       table?.setProps(props)
+    },
+    setColumn: async (columnProps: TableSetPropsType[]) => {
+      const table = await getTable()
+      table?.setColumn(columnProps)
     }
   }
 
+  config?.props && methods.setProps(config.props)
+
   return {
     register,
+    elTableRef,
     tableObject,
     methods
   }

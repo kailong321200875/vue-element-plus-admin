@@ -20,4 +20,5 @@ export type TableProps = {
   // 表头对齐方式
   headerAlign?: 'left' | 'center' | 'right'
   data?: Recordable
+  expand?: boolean
 } & Recordable
