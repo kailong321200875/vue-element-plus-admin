@@ -313,6 +313,17 @@ export default {
     action: '操作',
     important: '重要',
     good: '良好',
-    commonly: '一般'
+    commonly: '一般',
+    operate: '操作',
+    example: '示例',
+    show: '显示',
+    hidden: '隐藏',
+    pagination: '分页',
+    reserveIndex: '叠加序号',
+    restoreIndex: '还原序号',
+    showSelections: '显示多选',
+    hiddenSelections: '隐藏多选',
+    showExpandedRows: '显示展开行',
+    hiddenExpandedRows: '隐藏展开行'
   }
 }

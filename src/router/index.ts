@@ -147,6 +147,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.defaultTable')
             }
+          },
+          {
+            path: 'use-table',
+            component: () => import('@/views/Components/Table/UseTableDemo.vue'),
+            name: 'UseTable',
+            meta: {
+              title: 'UseTable'
+            }
           }
         ]
       },

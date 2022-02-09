@@ -316,6 +316,17 @@ export default {
     action: 'Action',
     important: 'Important',
     good: 'Good',
-    commonly: 'Commonly'
+    commonly: 'Commonly',
+    operate: 'operate',
+    example: 'example',
+    show: 'Show',
+    hidden: 'Hidden',
+    pagination: 'pagination',
+    reserveIndex: 'Reserve index',
+    restoreIndex: 'Restore index',
+    showSelections: 'show selections',
+    hiddenSelections: 'restore selections',
+    showExpandedRows: 'show expanded rows',
+    hiddenExpandedRows: 'hidden expanded rows'
   }
 }

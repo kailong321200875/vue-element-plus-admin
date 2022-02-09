@@ -7,6 +7,11 @@ import { TableData } from '@/api/table/types'
 import { ref, h } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 
+interface Params {
+  pageIndex?: number
+  pageSize?: number
+}
+
 const { t } = useI18n()
 
 const columns: TableColumn[] = [
@@ -34,12 +39,12 @@ const columns: TableColumn[] = [
       return h(
         ElTag,
         {
-          type: cellValue === 1 ? 'success' : cellValue === 1 ? 'warning' : 'danger'
+          type: cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'
         },
         () =>
           cellValue === 1
             ? t('tableDemo.important')
-            : cellValue === 1
+            : cellValue === 2
             ? t('tableDemo.good')
             : t('tableDemo.commonly')
       )
@@ -59,11 +64,11 @@ const loading = ref(true)
 
 let tableDataList = ref<TableData[]>([])
 
-const getTableList = async () => {
+const getTableList = async (params?: Params) => {
   const res = await getTableListApi({
-    params: {
+    params: params || {
       pageIndex: 1,
-      pageSize: 20
+      pageSize: 10
     }
   })
     .catch(() => {})
