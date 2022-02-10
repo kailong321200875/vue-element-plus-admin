@@ -134,7 +134,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'echarts',
         'echarts-wordcloud',
         'intro.js',
-        'qrcode'
+        'qrcode',
+        '@wangeditor/editor',
+        '@wangeditor/editor-for-vue'
       ]
     }
   }

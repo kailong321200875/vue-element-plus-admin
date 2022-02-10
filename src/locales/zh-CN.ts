@@ -102,7 +102,9 @@ export default {
     defaultForm: '全部示例',
     search: '查询',
     table: '表格',
-    defaultTable: '基础示例'
+    defaultTable: '基础示例',
+    editor: '编辑器',
+    richText: '富文本'
   },
   analysis: {
     newUser: '新增用户',
@@ -327,5 +329,9 @@ export default {
     hiddenExpandedRows: '隐藏展开行',
     changeTitle: '修改标题',
     header: '头部'
+  },
+  richText: {
+    richText: '富文本',
+    richTextDes: '基于 wangeditor 二次封装'
   }
 }

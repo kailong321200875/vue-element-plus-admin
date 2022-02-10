@@ -102,7 +102,9 @@ export default {
     defaultForm: 'All examples',
     search: 'Search',
     table: 'Table',
-    defaultTable: 'Basic example'
+    defaultTable: 'Basic example',
+    editor: 'Editor',
+    richText: 'Rich text'
   },
   analysis: {
     newUser: 'New user',
@@ -330,5 +332,9 @@ export default {
     hiddenExpandedRows: 'Hidden expanded rows',
     changeTitle: 'Change title',
     header: 'Header'
+  },
+  richText: {
+    richText: 'Rich text',
+    richTextDes: 'Secondary packaging based on wangeditor'
   }
 }

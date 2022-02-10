@@ -167,6 +167,25 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         ]
       },
       {
+        path: 'editor-demo',
+        component: getParentLayout(),
+        name: 'EditorDemo',
+        meta: {
+          title: t('router.editor'),
+          alwaysShow: true
+        },
+        children: [
+          {
+            path: 'editor',
+            component: () => import('@/views/Components/Editor/Editor.vue'),
+            name: 'Editor',
+            meta: {
+              title: t('router.richText')
+            }
+          }
+        ]
+      },
+      {
         path: 'search',
         component: () => import('@/views/Components/Search.vue'),
         name: 'Search',
