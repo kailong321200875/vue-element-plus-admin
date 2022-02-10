@@ -104,7 +104,8 @@ export default {
     table: '表格',
     defaultTable: '基础示例',
     editor: '编辑器',
-    richText: '富文本'
+    richText: '富文本',
+    dialog: '弹窗'
   },
   analysis: {
     newUser: '新增用户',
@@ -333,5 +334,11 @@ export default {
   richText: {
     richText: '富文本',
     richTextDes: '基于 wangeditor 二次封装'
+  },
+  dialogDemo: {
+    dialog: '弹窗',
+    dialogDes: '基于 ElementPlus 的 Dialog 组件二次封装',
+    open: '打开',
+    close: '关闭'
   }
 }

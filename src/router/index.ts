@@ -194,6 +194,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'dialog',
+        component: () => import('@/views/Components/Dialog.vue'),
+        name: 'Dialog',
+        meta: {
+          title: t('router.dialog')
+        }
+      },
+      {
         path: 'icon',
         component: () => import('@/views/Components/Icon.vue'),
         name: 'Icon',

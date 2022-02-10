@@ -104,7 +104,8 @@ export default {
     table: 'Table',
     defaultTable: 'Basic example',
     editor: 'Editor',
-    richText: 'Rich text'
+    richText: 'Rich text',
+    dialog: 'Dialog'
   },
   analysis: {
     newUser: 'New user',
@@ -336,5 +337,11 @@ export default {
   richText: {
     richText: 'Rich text',
     richTextDes: 'Secondary packaging based on wangeditor'
+  },
+  dialogDemo: {
+    dialog: 'Dialog',
+    dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
+    open: 'Open',
+    close: 'Close'
   }
 }
