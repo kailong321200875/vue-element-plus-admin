@@ -194,6 +194,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'descriptions',
+        component: () => import('@/views/Components/Descriptions.vue'),
+        name: 'Descriptions',
+        meta: {
+          title: t('router.descriptions')
+        }
+      },
+      {
         path: 'image-viewer',
         component: () => import('@/views/Components/ImageViewer.vue'),
         name: 'ImageViewer',

@@ -246,7 +246,12 @@ export default defineComponent({
     }
 
     return () => (
-      <ElForm ref={elFormRef} {...getFormBindValue()} model={formModel} class={prefixCls}>
+      <ElForm
+        ref={elFormRef}
+        {...getFormBindValue()}
+        model={props.isCustom ? props.model : formModel}
+        class={prefixCls}
+      >
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
           default: () => {

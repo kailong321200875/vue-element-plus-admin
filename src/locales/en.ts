@@ -106,7 +106,8 @@ export default {
     editor: 'Editor',
     richText: 'Rich text',
     dialog: 'Dialog',
-    imageViewer: 'Image viewer'
+    imageViewer: 'Image viewer',
+    descriptions: 'Descriptions'
   },
   analysis: {
     newUser: 'New user',
@@ -349,5 +350,15 @@ export default {
     open: 'Open',
     imageViewer: 'Image viewer',
     imageViewerDes: 'Secondary packaging of ImageViewer components based on ElementPlus'
+  },
+  descriptionsDemo: {
+    descriptions: 'Descriptions',
+    descriptionsDes: 'Secondary packaging of Descriptions components based on ElementPlus',
+    username: 'Username',
+    nickName: 'NickName',
+    phone: 'Phone',
+    email: 'Email',
+    addr: 'Address',
+    form: 'Combined with Form component'
   }
 }

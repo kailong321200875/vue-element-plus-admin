@@ -106,7 +106,8 @@ export default {
     editor: '编辑器',
     richText: '富文本',
     dialog: '弹窗',
-    imageViewer: '图片预览'
+    imageViewer: '图片预览',
+    descriptions: '描述'
   },
   analysis: {
     newUser: '新增用户',
@@ -346,5 +347,15 @@ export default {
     open: '打开',
     imageViewer: '图片预览',
     imageViewerDes: '基于 ElementPlus 的 ImageViewer 组件二次封装'
+  },
+  descriptionsDemo: {
+    descriptions: '描述',
+    descriptionsDes: '基于 ElementPlus 的 descriptions 组件二次封装',
+    username: '用户名',
+    nickName: '昵称',
+    phone: '联系电话',
+    email: '邮箱',
+    addr: '地址',
+    form: '与 Form 组件组合'
   }
 }
