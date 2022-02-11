@@ -105,7 +105,8 @@ export default {
     defaultTable: 'Basic example',
     editor: 'Editor',
     richText: 'Rich text',
-    dialog: 'Dialog'
+    dialog: 'Dialog',
+    imageViewer: 'Image viewer'
   },
   analysis: {
     newUser: 'New user',
@@ -343,5 +344,10 @@ export default {
     dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
     open: 'Open',
     close: 'Close'
+  },
+  imageViewerDemo: {
+    open: 'Open',
+    imageViewer: 'Image viewer',
+    imageViewerDes: 'Secondary packaging of ImageViewer components based on ElementPlus'
   }
 }

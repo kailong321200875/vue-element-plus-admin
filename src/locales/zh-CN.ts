@@ -105,7 +105,8 @@ export default {
     defaultTable: '基础示例',
     editor: '编辑器',
     richText: '富文本',
-    dialog: '弹窗'
+    dialog: '弹窗',
+    imageViewer: '图片预览'
   },
   analysis: {
     newUser: '新增用户',
@@ -340,5 +341,10 @@ export default {
     dialogDes: '基于 ElementPlus 的 Dialog 组件二次封装',
     open: '打开',
     close: '关闭'
+  },
+  imageViewerDemo: {
+    open: '打开',
+    imageViewer: '图片预览',
+    imageViewerDes: '基于 ElementPlus 的 ImageViewer 组件二次封装'
   }
 }
