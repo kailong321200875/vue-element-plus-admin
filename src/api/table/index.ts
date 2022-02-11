@@ -9,3 +9,7 @@ export const getTableListApi = ({ params }: AxiosConfig) => {
     list: TableData[]
   }>({ url: '/example/list', method: 'get', params })
 }
+
+export const saveTableApi = ({ data }: AxiosConfig) => {
+  return request({ url: '/example/save', method: 'post', data })
+}

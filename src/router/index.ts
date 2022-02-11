@@ -333,6 +333,27 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/example',
+    component: Layout,
+    redirect: '/example/example-dialog',
+    name: 'Example',
+    meta: {
+      title: t('router.example'),
+      icon: 'ep:management',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'example-dialog',
+        component: () => import('@/views/Example/Dialog/ExampleDialog.vue'),
+        name: 'ExampleDialog',
+        meta: {
+          title: t('router.exampleDialog')
+        }
+      }
+    ]
   }
 ]
 

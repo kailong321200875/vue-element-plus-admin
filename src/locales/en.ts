@@ -107,7 +107,9 @@ export default {
     richText: 'Rich text',
     dialog: 'Dialog',
     imageViewer: 'Image viewer',
-    descriptions: 'Descriptions'
+    descriptions: 'Descriptions',
+    example: 'Example',
+    exampleDialog: 'Example dialog'
   },
   analysis: {
     newUser: 'New user',
@@ -360,5 +362,18 @@ export default {
     email: 'Email',
     addr: 'Address',
     form: 'Combined with Form component'
+  },
+  exampleDemo: {
+    title: 'Title',
+    add: 'Add',
+    del: 'Delete',
+    edit: 'Edit',
+    author: 'Author',
+    displayTime: 'Display time',
+    importance: 'Importance',
+    pageviews: 'Pageviews',
+    important: 'Important',
+    content: 'Content',
+    save: 'Save'
   }
 }

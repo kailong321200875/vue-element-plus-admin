@@ -107,7 +107,9 @@ export default {
     richText: '富文本',
     dialog: '弹窗',
     imageViewer: '图片预览',
-    descriptions: '描述'
+    descriptions: '描述',
+    example: '综合示例',
+    exampleDialog: '综合示例 - 弹窗'
   },
   analysis: {
     newUser: '新增用户',
@@ -357,5 +359,18 @@ export default {
     email: '邮箱',
     addr: '地址',
     form: '与 Form 组件组合'
+  },
+  exampleDemo: {
+    title: '标题',
+    add: '新增',
+    del: '删除',
+    edit: '编辑',
+    author: '作者',
+    displayTime: '创建时间',
+    importance: '重要性',
+    pageviews: '阅读数',
+    important: '重要',
+    content: '内容',
+    save: '保存'
   }
 }

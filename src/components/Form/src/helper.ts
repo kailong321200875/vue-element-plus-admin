@@ -57,7 +57,7 @@ export const setGridProp = (col: ColProps = {}): ColProps => {
           sm: 12,
           md: 12,
           lg: 12,
-          xl: 8
+          xl: 12
         }),
     ...col
   }

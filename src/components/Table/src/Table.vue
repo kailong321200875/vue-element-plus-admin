@@ -259,13 +259,12 @@ export default defineComponent({
     }
 
     return () => (
-      <>
+      <div v-loading={unref(getProps).loading}>
         <ElTable
           // @ts-ignore
           ref={elTableRef}
           data={unref(getProps).data}
           {...getBindValue}
-          v-loading={unref(getProps).loading}
         >
           {{
             default: () => rnderTableColumn(),
@@ -281,7 +280,7 @@ export default defineComponent({
             {...unref(pagination)}
           ></ElPagination>
         ) : undefined}
-      </>
+      </div>
     )
   }
 })

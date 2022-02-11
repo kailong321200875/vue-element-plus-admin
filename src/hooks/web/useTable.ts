@@ -22,6 +22,8 @@ interface TableObject<K, L> {
   tableList: K[]
   parmasObj: L
   loading: boolean
+  dialogVisible: boolean
+  currentRow: Nullable<K>
 }
 
 export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
@@ -39,7 +41,11 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     // AxiosConfig 配置
     parmasObj: {} as L,
     // 加载中
-    loading: true
+    loading: true,
+    // 弹窗
+    dialogVisible: false,
+    // 当前行的数据
+    currentRow: null
   })
 
   const parmasObj = computed(() => {
@@ -93,6 +99,7 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     setProps: (props: Recordable) => void
     getList: () => Promise<void>
     setColumn: (columnProps: TableSetPropsType[]) => void
+    setSearchParmas: (data: Recordable) => void
   } = {
     getList: async () => {
       tableObject.loading = true
@@ -114,6 +121,18 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     setColumn: async (columnProps: TableSetPropsType[]) => {
       const table = await getTable()
       table?.setColumn(columnProps)
+    },
+    // 与Search组件结合
+    setSearchParmas: (data: Recordable) => {
+      tableObject.currentPage = 1
+      tableObject.parmasObj = Object.assign(tableObject.parmasObj, {
+        params: {
+          pageSize: tableObject.pageSize,
+          pageIndex: tableObject.currentPage,
+          ...data
+        }
+      })
+      methods.getList()
     }
   }
 
