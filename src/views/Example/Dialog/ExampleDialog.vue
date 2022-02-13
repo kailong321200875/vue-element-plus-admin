@@ -47,44 +47,38 @@ const columns = reactive<TableColumn[]>([
     type: 'index'
   },
   {
-    field: 'content',
-    label: t('tableDemo.header'),
-    children: [
-      {
-        field: 'title',
-        label: t('tableDemo.title')
-      },
-      {
-        field: 'author',
-        label: t('tableDemo.author')
-      },
-      {
-        field: 'display_time',
-        label: t('tableDemo.displayTime')
-      },
-      {
-        field: 'importance',
-        label: t('tableDemo.importance'),
-        formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
-          return h(
-            ElTag,
-            {
-              type: cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'
-            },
-            () =>
-              cellValue === 1
-                ? t('tableDemo.important')
-                : cellValue === 2
-                ? t('tableDemo.good')
-                : t('tableDemo.commonly')
-          )
-        }
-      },
-      {
-        field: 'pageviews',
-        label: t('tableDemo.pageviews')
-      }
-    ]
+    field: 'title',
+    label: t('tableDemo.title')
+  },
+  {
+    field: 'author',
+    label: t('tableDemo.author')
+  },
+  {
+    field: 'display_time',
+    label: t('tableDemo.displayTime')
+  },
+  {
+    field: 'importance',
+    label: t('tableDemo.importance'),
+    formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
+      return h(
+        ElTag,
+        {
+          type: cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'
+        },
+        () =>
+          cellValue === 1
+            ? t('tableDemo.important')
+            : cellValue === 2
+            ? t('tableDemo.good')
+            : t('tableDemo.commonly')
+      )
+    }
+  },
+  {
+    field: 'pageviews',
+    label: t('tableDemo.pageviews')
   },
   {
     field: 'action',
@@ -107,12 +101,11 @@ const writeRef = ref<ComponentRef<typeof Write>>()
 const loading = ref(false)
 
 const save = async () => {
-  loading.value = true
   const write = unref(writeRef)
   const validate = await write?.elFormRef?.validate()?.catch(() => {})
   if (validate) {
+    loading.value = true
     const data = await write?.getFormData()
-
     const res = await saveTableApi({
       data
     })
