@@ -100,6 +100,9 @@
     "windicss": "^3.4.3",
     "windicss-analysis": "^0.3.5"
   },
+  "resolutions": {
+    "console": "consola"
+  },
   "engines": {
     "node": ">= 14.0.0"
   },
