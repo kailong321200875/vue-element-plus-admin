@@ -46,8 +46,6 @@ jobs:
         run: |
           yarn install
           yarn run build:pro
-          touch dist/.nojekyll
-          cp dist/index.html dist/404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2.5.0
