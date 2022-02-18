@@ -5,7 +5,7 @@ NODE_ENV = production
 VITE_API_BASEPATH = pro
 
 # 打包路径
-VITE_BASE_PATH = /dist-pro/
+VITE_BASE_PATH = /butterfly-admin/
 
 # 是否删除debugger
 VITE_DROP_DEBUGGER = true
