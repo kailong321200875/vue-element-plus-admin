@@ -30,6 +30,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Set SSH Environment
+        env:
+          DOCS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com > ~/.ssh/known_hosts
+          chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+          git config --local user.email "321200875@qq.com"
+          git config --local user.name "kailong321200875"
+
       - name: Build
         run: |
           yarn install
@@ -38,7 +50,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v2.5.0
         env:
-          ACTIONS_DEPLOY_KEY: ${{secrets.ACCESS_TOKEN}}
+          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./dist-pro
         with:
