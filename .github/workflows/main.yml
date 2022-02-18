@@ -42,14 +42,10 @@ jobs:
           git config --local user.email "321200875@qq.com"
           git config --local user.name "kailong321200875"
 
-      - name: Delete gh-pages branch
-        run: |
-          git push origin --delete gh-pages
-
       - name: Build
         run: |
           yarn install
-          yarn run build
+          yarn run build:pro
           touch dist/.nojekyll
           cp dist/index.html dist/404.html
 
