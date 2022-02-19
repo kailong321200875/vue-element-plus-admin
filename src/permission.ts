@@ -30,7 +30,15 @@ router.beforeEach(async (to, from, next) => {
         to.path === '/' ? next({ path: permissionStore.addRouters[0]?.path as string }) : next()
         return
       }
-      await permissionStore.generateRoutes()
+
+      // 开发者可根据实际情况进行修改
+      const roleRouters = wsCache.get('roleRouters') || []
+      const userInfo = wsCache.get(appStore.getUserInfo)
+
+      userInfo.role === 'admin'
+        ? await permissionStore.generateRoutes('admin', roleRouters as AppCustomRouteRecordRaw[])
+        : await permissionStore.generateRoutes('test', roleRouters as string[])
+
       permissionStore.getAddRouters.forEach((route) => {
         router.addRoute(route as unknown as RouteRecordRaw) // 动态添加可访问路由表
       })

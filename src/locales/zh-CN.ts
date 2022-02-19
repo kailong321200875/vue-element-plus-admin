@@ -126,7 +126,10 @@ export default {
     exampleAdd: '综合示例 - 新增',
     exampleEdit: '综合示例 - 编辑',
     exampleDetail: '综合示例 - 详情',
-    errorPage: '错误页面'
+    errorPage: '错误页面',
+    authorization: '权限管理',
+    user: '用户管理',
+    role: '角色管理'
   },
   analysis: {
     newUser: '新增用户',
@@ -390,5 +393,17 @@ export default {
     content: '内容',
     save: '保存',
     detail: '详情'
+  },
+  userDemo: {
+    title: '用户管理',
+    message: '由于是模拟数据，所以只提供了两种不同权限的帐号，开发者可根据实际情况自行改造结合。',
+    index: '序号',
+    action: '操作',
+    username: '用户名',
+    password: '密码',
+    role: '角色',
+    remark: '备注',
+    remarkMessage1: '后端控制路由权限',
+    remarkMessage2: '前端控制路由权限'
   }
 }

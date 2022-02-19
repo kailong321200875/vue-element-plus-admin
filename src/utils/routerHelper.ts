@@ -1,15 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { Router, RouteLocationNormalized, RouteRecordNormalized, RouteMeta } from 'vue-router'
 import { isUrl } from '@/utils/is'
-import { useCache } from '@/hooks/web/useCache'
-import { useAppStoreWithOut } from '@/store/modules/app'
 import { omit, cloneDeep } from 'lodash-es'
 
-const appStore = useAppStoreWithOut()
-
-const { wsCache } = useCache()
-
-const modules = import.meta.glob('../../views/**/*.{vue,tsx}')
+const modules = import.meta.glob('../views/**/*.{vue,tsx}')
 
 /* Layout */
 export const Layout = () => import('@/layout/Layout.vue')
@@ -41,6 +35,7 @@ export const getRawRoute = (route: RouteLocationNormalized): RouteLocationNormal
 // 前端控制路由生成
 export const generateRoutesFn1 = (
   routes: AppRouteRecordRaw[],
+  keys: string[],
   basePath = '/'
 ): AppRouteRecordRaw[] => {
   const res: AppRouteRecordRaw[] = []
@@ -55,7 +50,6 @@ export const generateRoutesFn1 = (
     let data: Nullable<AppRouteRecordRaw> = null
 
     let onlyOneChild: Nullable<string> = null
-
     if (route.children && route.children.length === 1 && !meta.alwaysShow) {
       onlyOneChild = (
         isUrl(route.children[0].path)
@@ -64,16 +58,14 @@ export const generateRoutesFn1 = (
       ) as string
     }
 
-    // 权限过滤，通过获取登录信息里面的角色权限，动态的渲染菜单。
-    const list = wsCache.get(appStore.getUserInfo).checkedNodes
     // 开发者可以根据实际情况进行扩展
-    for (const item of list) {
+    for (const item of keys) {
       // 通过路径去匹配
-      if (isUrl(item.path) && (onlyOneChild === item.path || route.path === item.path)) {
+      if (isUrl(item) && (onlyOneChild === item || route.path === item)) {
         data = Object.assign({}, route)
       } else {
         const routePath = pathResolve(basePath, onlyOneChild || route.path)
-        if (routePath === item.path || meta.followRoute === item.path) {
+        if (routePath === item || meta.followRoute === item) {
           data = Object.assign({}, route)
         }
       }
@@ -81,7 +73,7 @@ export const generateRoutesFn1 = (
 
     // recursive child routes
     if (route.children && data) {
-      data.children = generateRoutesFn1(route.children, pathResolve(basePath, data.path))
+      data.children = generateRoutesFn1(route.children, keys, pathResolve(basePath, data.path))
     }
     if (data) {
       res.push(data as AppRouteRecordRaw)
@@ -91,7 +83,7 @@ export const generateRoutesFn1 = (
 }
 
 // 后端控制路由生成
-export const generateRoutesFn2 = (routes: AppRouteRecordRaw[]): AppRouteRecordRaw[] => {
+export const generateRoutesFn2 = (routes: AppCustomRouteRecordRaw[]): AppRouteRecordRaw[] => {
   const res: AppRouteRecordRaw[] = []
 
   for (const route of routes) {
@@ -102,15 +94,14 @@ export const generateRoutesFn2 = (routes: AppRouteRecordRaw[]): AppRouteRecordRa
       meta: route.meta
     }
     if (route.component) {
-      const comModule =
-        modules[`../../${route.component}.vue`] || modules[`../../${route.component}.tsx`]
-      if (comModule) {
+      const comModule = modules[`../${route.component}.vue`] || modules[`../${route.component}.tsx`]
+      const component = route.component as string
+      if (!comModule && !component.includes('#')) {
+        console.error(`未找到${route.component}.vue文件或${route.component}.tsx文件，请创建`)
+      } else {
         // 动态加载路由文件，可根据实际情况进行自定义逻辑
-        const component = route.component as string
         data.component =
           component === '#' ? Layout : component.includes('##') ? getParentLayout() : comModule
-      } else {
-        console.error(`未找到${route.component}.vue文件或${route.component}.tsx文件，请创建`)
       }
     }
     // recursive child routes
@@ -124,7 +115,7 @@ export const generateRoutesFn2 = (routes: AppRouteRecordRaw[]): AppRouteRecordRa
 
 export const pathResolve = (parentPath: string, path: string) => {
   const childPath = path.startsWith('/') || !path ? path : `/${path}`
-  return `${parentPath}${childPath}`
+  return `${parentPath}${childPath}`.replace(/\/\//g, '/')
 }
 
 // 路由降级

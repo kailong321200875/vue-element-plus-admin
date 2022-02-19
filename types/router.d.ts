@@ -62,4 +62,13 @@ declare global {
     props?: Recordable
     fullPath?: string
   }
+
+  declare interface AppCustomRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
+    name: string
+    meta: RouteMeta
+    component: string
+    path: string
+    redirect: string
+    children?: AppCustomRouteRecordRaw[]
+  }
 }
