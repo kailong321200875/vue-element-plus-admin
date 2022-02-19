@@ -115,7 +115,11 @@ export default {
     imageViewer: '图片预览',
     descriptions: '描述',
     example: '综合示例',
-    exampleDialog: '综合示例 - 弹窗'
+    exampleDialog: '综合示例 - 弹窗',
+    examplePage: '综合示例 - 页面',
+    exampleAdd: '综合示例 - 新增',
+    exampleEdit: '综合示例 - 编辑',
+    exampleDetail: '综合示例 - 详情'
   },
   analysis: {
     newUser: '新增用户',

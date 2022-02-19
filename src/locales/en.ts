@@ -115,7 +115,11 @@ export default {
     imageViewer: 'Image viewer',
     descriptions: 'Descriptions',
     example: 'Example',
-    exampleDialog: 'Example dialog'
+    exampleDialog: 'Example dialog',
+    examplePage: 'Example page',
+    exampleAdd: 'Example page - add',
+    exampleEdit: 'Example page - edit',
+    exampleDetail: 'Example page - detail'
   },
   analysis: {
     newUser: 'New user',

@@ -38,6 +38,7 @@ specifiers:
   less: ^4.1.2
   lint-staged: ^12.3.4
   lodash-es: ^4.17.21
+  mitt: ^3.0.0
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   pinia: ^2.0.11
@@ -86,6 +87,7 @@ dependencies:
   element-plus: registry.npmmirror.com/element-plus/2.0.2_1a412d14def5ff5ca1122000e4bee666
   intro.js: registry.npmmirror.com/intro.js/5.0.0
   lodash-es: registry.nlark.com/lodash-es/4.17.21
+  mitt: registry.npmmirror.com/mitt/3.0.0
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.11_typescript@4.5.5+vue@3.2.31
@@ -10126,6 +10128,17 @@ packages:
     name: minimist
     version: 1.2.5
     dev: true
+
+  registry.npmmirror.com/mitt/3.0.0:
+    resolution:
+      {
+        integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/mitt/-/mitt-3.0.0.tgz
+      }
+    name: mitt
+    version: 3.0.0
+    dev: false
 
   registry.npmmirror.com/mixin-deep/1.3.2:
     resolution:
