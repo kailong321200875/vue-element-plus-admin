@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
+import { useCache } from '@/hooks/web/useCache'
 import { appModules } from '@/config/app'
 import type { AppState, LayoutType, ThemeTypes } from '@/config/app'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
+
+const { wsCache } = useCache()
 
 export const useAppStore = defineStore({
   id: 'app',
@@ -119,6 +122,7 @@ export const useAppStore = defineStore({
         return
       }
       this.layout = layout
+      wsCache.set('layout', this.layout)
     },
     setTitle(title: string) {
       this.title = title
@@ -132,15 +136,18 @@ export const useAppStore = defineStore({
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
       }
+      wsCache.set('isDark', this.isDark)
     },
     setCurrentSize(currentSize: ElememtPlusSzie) {
       this.currentSize = currentSize
+      wsCache.set('currentSize', this.currentSize)
     },
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
     setTheme(theme: ThemeTypes) {
       this.theme = Object.assign(this.theme, theme)
+      wsCache.set('theme', this.theme)
     },
     setCssVarTheme() {
       for (const key in this.theme) {

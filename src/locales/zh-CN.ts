@@ -33,7 +33,13 @@ export default {
     query: '查询',
     reset: '重置',
     shrink: '收起',
-    expand: '展开'
+    expand: '展开',
+    delMessage: '是否删除所选中数据？',
+    delWarning: '提示',
+    delOk: '确定',
+    delCancel: '取消',
+    delNoData: '请选择需要删除的数据',
+    delSuccess: '删除成功'
   },
   setting: {
     projectSetting: '项目配置',
@@ -371,6 +377,7 @@ export default {
     pageviews: '阅读数',
     important: '重要',
     content: '内容',
-    save: '保存'
+    save: '保存',
+    detail: '详情'
   }
 }

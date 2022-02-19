@@ -1,12 +1,16 @@
 import { Table, TableExpose } from '@/components/Table'
-import { ElTable } from 'element-plus'
+import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
 import { ref, reactive, watch, computed, unref, nextTick } from 'vue'
 import { AxiosPromise } from 'axios'
 import { get, assign } from 'lodash-es'
 import type { TableProps } from '@/components/Table/src/types'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 interface UseTableConfig<T, L> {
   getListApi: (option: L) => AxiosPromise<T>
+  delListApi?: (option: AxiosConfig) => AxiosPromise<unknown>
   // 返回数据格式配置
   response: {
     list: string
@@ -22,7 +26,6 @@ interface TableObject<K, L> {
   tableList: K[]
   parmasObj: L
   loading: boolean
-  dialogVisible: boolean
   currentRow: Nullable<K>
 }
 
@@ -42,8 +45,6 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     parmasObj: {} as L,
     // 加载中
     loading: true,
-    // 弹窗
-    dialogVisible: false,
     // 当前行的数据
     currentRow: null
   })
@@ -95,11 +96,31 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     return table
   }
 
+  const delData = async (paramsObj: AxiosConfig, ids: string[] | number[]) => {
+    const res = await (config?.delListApi && config?.delListApi(paramsObj))
+    if (res) {
+      ElMessage.success(t('common.delSuccess'))
+
+      // 计算出临界点
+      const currentPage =
+        tableObject.total % tableObject.pageSize === ids.length || tableObject.pageSize === 1
+          ? tableObject.currentPage > 1
+            ? tableObject.currentPage - 1
+            : tableObject.currentPage
+          : tableObject.currentPage
+
+      tableObject.currentPage = currentPage
+      methods.getList()
+    }
+  }
+
   const methods: {
     setProps: (props: Recordable) => void
     getList: () => Promise<void>
     setColumn: (columnProps: TableSetPropsType[]) => void
     setSearchParmas: (data: Recordable) => void
+    getSelections: () => Promise<K[]>
+    delList: (ids: string[] | number[], multiple: boolean, message?: boolean) => Promise<void>
   } = {
     getList: async () => {
       tableObject.loading = true
@@ -122,6 +143,10 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
       const table = await getTable()
       table?.setColumn(columnProps)
     },
+    getSelections: async () => {
+      const table = await getTable()
+      return (table?.selections || []) as K[]
+    },
     // 与Search组件结合
     setSearchParmas: (data: Recordable) => {
       tableObject.currentPage = 1
@@ -133,6 +158,39 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
         }
       })
       methods.getList()
+    },
+    // 删除数据
+    delList: async (ids: string[] | number[], multiple: boolean, message = true) => {
+      const tableRef = await getTable()
+      if (multiple) {
+        if (!tableRef?.selections.length) {
+          ElMessage.warning(t('common.delNoData'))
+          return
+        }
+      } else {
+        if (!tableObject.currentRow) {
+          ElMessage.warning(t('common.delNoData'))
+          return
+        }
+      }
+      const paramsObj: AxiosConfig = {
+        data: {
+          ids
+        }
+      }
+      if (message) {
+        ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
+          confirmButtonText: t('common.delOk'),
+          cancelButtonText: t('common.delCancel'),
+          type: 'warning'
+        })
+          .then(async () => {
+            await delData(paramsObj, ids)
+          })
+          .catch(() => {})
+      } else {
+        await delData(paramsObj, ids)
+      }
     }
   }
 

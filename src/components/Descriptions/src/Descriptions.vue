@@ -100,7 +100,7 @@ const toggleClick = () => {
             </template>
 
             <template #default>
-              <slot :name="item.field">{{ data[item.field] }}</slot>
+              <slot :name="item.field" :row="data">{{ data[item.field] }}</slot>
             </template>
           </ElDescriptionsItem>
         </ElDescriptions>

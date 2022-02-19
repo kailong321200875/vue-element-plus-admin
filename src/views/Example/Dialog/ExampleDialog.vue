@@ -5,11 +5,12 @@ import { Dialog } from '@/components/Dialog'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElTag } from 'element-plus'
 import { Table } from '@/components/Table'
-import { getTableListApi, saveTableApi } from '@/api/table'
+import { getTableListApi, saveTableApi, delTableListApi } from '@/api/table'
 import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
 import { h, reactive, ref, unref } from 'vue'
 import Write from './components/Write.vue'
+import Detail from './components/Detail.vue'
 
 const { register, tableObject, methods } = useTable<
   {
@@ -19,6 +20,7 @@ const { register, tableObject, methods } = useTable<
   TableData
 >({
   getListApi: getTableListApi,
+  delListApi: delTableListApi,
   response: {
     list: 'list',
     total: 'total'
@@ -82,18 +84,43 @@ const columns = reactive<TableColumn[]>([
   },
   {
     field: 'action',
+    width: '260px',
     label: t('tableDemo.action')
   }
 ])
 
+const dialogVisible = ref(false)
+
+const dialogTitle = ref('')
+
 const AddAction = () => {
+  dialogTitle.value = t('exampleDemo.add')
   tableObject.currentRow = null
-  tableObject.dialogVisible = true
+  dialogVisible.value = true
 }
 
-const editAction = (row: TableData) => {
+const delLoading = ref(false)
+
+const delData = async (row: TableData | null, multiple: boolean) => {
   tableObject.currentRow = row
-  tableObject.dialogVisible = true
+  const { delList, getSelections } = methods
+  const selections = await getSelections()
+  delLoading.value = true
+  await delList(
+    multiple ? selections.map((v) => v.id) : [tableObject.currentRow?.id as string],
+    multiple
+  ).finally(() => {
+    delLoading.value = false
+  })
+}
+
+const actionType = ref('')
+
+const action = (row: TableData, type: string) => {
+  dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
+  actionType.value = type
+  tableObject.currentRow = row
+  dialogVisible.value = true
 }
 
 const writeRef = ref<ComponentRef<typeof Write>>()
@@ -105,7 +132,7 @@ const save = async () => {
   const validate = await write?.elFormRef?.validate()?.catch(() => {})
   if (validate) {
     loading.value = true
-    const data = await write?.getFormData()
+    const data = (await write?.getFormData()) as TableData
     const res = await saveTableApi({
       data
     })
@@ -114,7 +141,7 @@ const save = async () => {
         loading.value = false
       })
     if (res) {
-      tableObject.dialogVisible = false
+      dialogVisible.value = false
       tableObject.currentPage = 1
       getList()
     }
@@ -128,7 +155,9 @@ const save = async () => {
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
-      <ElButton type="danger">{{ t('exampleDemo.del') }}</ElButton>
+      <ElButton :loading="delLoading" type="danger" @click="delData(null, true)">
+        {{ t('exampleDemo.del') }}
+      </ElButton>
     </div>
 
     <Table
@@ -143,21 +172,29 @@ const save = async () => {
       @register="register"
     >
       <template #action="{ row }">
-        <ElButton type="primary" @click="editAction(row)">
+        <ElButton type="primary" @click="action(row, 'edit')">
           {{ t('exampleDemo.edit') }}
+        </ElButton>
+        <ElButton type="success" @click="action(row, 'detail')">
+          {{ t('exampleDemo.detail') }}
+        </ElButton>
+        <ElButton type="danger" @click="delData(row, false)">
+          {{ t('exampleDemo.del') }}
         </ElButton>
       </template>
     </Table>
   </ContentWrap>
 
-  <Dialog v-model="tableObject.dialogVisible" :title="t('exampleDemo.add')">
-    <Write ref="writeRef" :current-row="tableObject.currentRow" />
+  <Dialog v-model="dialogVisible" :title="dialogTitle">
+    <Write v-if="actionType === 'edit'" ref="writeRef" :current-row="tableObject.currentRow" />
+
+    <Detail v-if="actionType === 'detail'" :current-row="tableObject.currentRow" />
 
     <template #footer>
-      <ElButton type="primary" :loading="loading" @click="save">
+      <ElButton v-if="actionType !== 'detail'" type="primary" :loading="loading" @click="save">
         {{ t('exampleDemo.save') }}
       </ElButton>
-      <ElButton @click="tableObject.dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>
+      <ElButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>
     </template>
   </Dialog>
 </template>

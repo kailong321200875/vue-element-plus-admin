@@ -89,9 +89,16 @@ export default defineComponent({
       }
     }
 
+    const selections = ref<Recordable[]>([])
+
+    const selectionChange = (selection: Recordable[]) => {
+      selections.value = selection
+    }
+
     expose({
       setProps,
-      setColumn
+      setColumn,
+      selections
     })
 
     const pagination = computed(() => {
@@ -226,7 +233,7 @@ export default defineComponent({
                 align={v.align || align}
                 headerAlign={v.headerAlign || headerAlign}
                 label={v.label}
-                width="100px"
+                width="65px"
               ></ElTableColumn>
             )
           } else {
@@ -264,6 +271,7 @@ export default defineComponent({
           // @ts-ignore
           ref={elTableRef}
           data={unref(getProps).data}
+          onSelection-change={selectionChange}
           {...getBindValue}
         >
           {{

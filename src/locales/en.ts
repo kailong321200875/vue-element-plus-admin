@@ -33,7 +33,13 @@ export default {
     query: 'Query',
     reset: 'Reset',
     shrink: 'Put away',
-    expand: 'Expand'
+    expand: 'Expand',
+    delMessage: 'Delete the selected data?',
+    delWarning: 'Warning',
+    delOk: 'OK',
+    delCancel: 'Cancel',
+    delNoData: 'Please select the data to delete',
+    delSuccess: 'Deleted successfully'
   },
   setting: {
     projectSetting: 'Project setting',
@@ -374,6 +380,7 @@ export default {
     pageviews: 'Pageviews',
     important: 'Important',
     content: 'Content',
-    save: 'Save'
+    save: 'Save',
+    detail: 'Detail'
   }
 }

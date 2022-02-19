@@ -92,5 +92,46 @@ export default [
         }
       }
     }
+  },
+  // 详情接口
+  {
+    url: '/example/detail',
+    method: 'get',
+    response: ({ query }) => {
+      const { id } = query
+      for (const example of List) {
+        if (example.id === id) {
+          return {
+            code: result_code,
+            data: example
+          }
+        }
+      }
+    }
+  },
+  // 删除接口
+  {
+    url: '/example/delete',
+    method: 'post',
+    response: ({ body }) => {
+      const ids = body.ids
+      if (!ids) {
+        return {
+          code: '500',
+          message: '请选择需要删除的数据'
+        }
+      } else {
+        let i = List.length
+        while (i--) {
+          if (ids.indexOf(List[i].id) !== -1) {
+            List.splice(i, 1)
+          }
+        }
+        return {
+          code: result_code,
+          data: 'success'
+        }
+      }
+    }
   }
 ] as MockMethod[]
