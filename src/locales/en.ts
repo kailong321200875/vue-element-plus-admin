@@ -41,6 +41,12 @@ export default {
     delNoData: 'Please select the data to delete',
     delSuccess: 'Deleted successfully'
   },
+  error: {
+    noPermission: `Sorry, you don't have permission to access this page.`,
+    pageError: 'Sorry, the page you visited does not exist.',
+    networkError: 'Sorry, the server reported an error.',
+    returnToHome: 'Return to home'
+  },
   setting: {
     projectSetting: 'Project setting',
     theme: 'Theme',
@@ -119,7 +125,8 @@ export default {
     examplePage: 'Example page',
     exampleAdd: 'Example page - add',
     exampleEdit: 'Example page - edit',
-    exampleDetail: 'Example page - detail'
+    exampleDetail: 'Example page - detail',
+    errorPage: 'Error page'
   },
   analysis: {
     newUser: 'New user',

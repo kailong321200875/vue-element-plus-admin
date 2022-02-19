@@ -186,7 +186,7 @@ const save = async () => {
   </ContentWrap>
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
-    <Write v-if="actionType === 'edit'" ref="writeRef" :current-row="tableObject.currentRow" />
+    <Write v-if="actionType !== 'detail'" ref="writeRef" :current-row="tableObject.currentRow" />
 
     <Detail v-if="actionType === 'detail'" :current-row="tableObject.currentRow" />
 

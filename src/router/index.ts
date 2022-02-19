@@ -401,6 +401,43 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/error',
+    component: Layout,
+    redirect: '/error/404',
+    name: 'Error',
+    meta: {
+      title: t('router.errorPage'),
+      icon: 'ci:error',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: '404',
+        component: () => import('@/views/Error/404.vue'),
+        name: '404',
+        meta: {
+          title: '404'
+        }
+      },
+      {
+        path: '403',
+        component: () => import('@/views/Error/403.vue'),
+        name: '403',
+        meta: {
+          title: '403'
+        }
+      },
+      {
+        path: '500',
+        component: () => import('@/views/Error/500.vue'),
+        name: '500',
+        meta: {
+          title: '500'
+        }
+      }
+    ]
   }
 ]
 

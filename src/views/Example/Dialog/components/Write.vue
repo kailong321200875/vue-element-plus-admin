@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Form } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
-import { PropType, reactive } from 'vue'
+import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
 import { useI18n } from '@/hooks/web/useI18n'
 import { required } from '@/utils/formRules'
@@ -113,17 +113,25 @@ const { register, methods, elFormRef } = useForm({
   schema
 })
 
-if (props.currentRow) {
-  const { setValues, setSchema } = methods
-  setValues(props.currentRow)
-  setSchema([
-    {
-      field: 'content',
-      path: 'componentProps.defaultHtml',
-      value: props.currentRow.content
-    }
-  ])
-}
+watch(
+  () => props.currentRow,
+  (currentRow) => {
+    if (!currentRow) return
+    const { setValues, setSchema } = methods
+    setValues(currentRow)
+    setSchema([
+      {
+        field: 'content',
+        path: 'componentProps.defaultHtml',
+        value: currentRow.content
+      }
+    ])
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 
 defineExpose({
   elFormRef,

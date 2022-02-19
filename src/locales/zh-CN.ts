@@ -41,6 +41,12 @@ export default {
     delNoData: '请选择需要删除的数据',
     delSuccess: '删除成功'
   },
+  error: {
+    noPermission: `抱歉，您无权访问此页面。`,
+    pageError: '抱歉，您访问的页面不存在。',
+    networkError: '抱歉，服务器报告错误。',
+    returnToHome: '返回首页'
+  },
   setting: {
     projectSetting: '项目配置',
     theme: '主题',
@@ -119,7 +125,8 @@ export default {
     examplePage: '综合示例 - 页面',
     exampleAdd: '综合示例 - 新增',
     exampleEdit: '综合示例 - 编辑',
-    exampleDetail: '综合示例 - 详情'
+    exampleDetail: '综合示例 - 详情',
+    errorPage: '错误页面'
   },
   analysis: {
     newUser: '新增用户',

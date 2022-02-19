@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
     } else {
       if (permissionStore.getIsAddRouters) {
-        next()
+        to.path === '/' ? next({ path: permissionStore.addRouters[0]?.path as string }) : next()
         return
       }
       await permissionStore.generateRoutes()
@@ -42,7 +42,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
-      next()
+      to.path === '/' ? next({ path: permissionStore.addRouters[0]?.path as string }) : next()
     } else {
       next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
     }
