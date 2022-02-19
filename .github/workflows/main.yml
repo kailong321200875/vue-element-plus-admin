@@ -46,7 +46,7 @@ jobs:
         run: |
           yarn install
           yarn run build:pro
-          cp ./path/to/CNAME ./public/CNAME
+          cp ./path/to/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

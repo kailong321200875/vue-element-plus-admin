@@ -41,6 +41,7 @@ specifiers:
   mockjs: ^1.1.0
   nprogress: ^0.2.0
   pinia: ^2.0.11
+  pinia-plugin-persist: ^0.0.93
   postcss: ^8.4.6
   postcss-html: ^1.3.0
   postcss-less: ^6.0.0
@@ -62,7 +63,6 @@ specifiers:
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-style-import: 1.4.1
   vite-plugin-svg-icons: ^2.0.1
-  vite-plugin-vue-setup-extend: ^0.4.0
   vite-plugin-windicss: ^1.7.1
   vue: 3.2.31
   vue-i18n: 9.1.9
@@ -89,6 +89,7 @@ dependencies:
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   nprogress: registry.npmmirror.com/nprogress/0.2.0
   pinia: registry.npmmirror.com/pinia/2.0.11_typescript@4.5.5+vue@3.2.31
+  pinia-plugin-persist: registry.npmmirror.com/pinia-plugin-persist/0.0.93_vue@3.2.31
   qrcode: registry.npmmirror.com/qrcode/1.5.0
   qs: registry.npmmirror.com/qs/6.10.3
   vue: registry.npmmirror.com/vue/3.2.31
@@ -142,7 +143,6 @@ devDependencies:
   vite-plugin-purge-icons: registry.nlark.com/vite-plugin-purge-icons/0.7.0_vite@2.8.3
   vite-plugin-style-import: registry.npmmirror.com/vite-plugin-style-import/1.4.1_vite@2.8.3
   vite-plugin-svg-icons: registry.npmmirror.com/vite-plugin-svg-icons/2.0.1_vite@2.8.3
-  vite-plugin-vue-setup-extend: registry.npmmirror.com/vite-plugin-vue-setup-extend/0.4.0_vite@2.8.3
   vite-plugin-windicss: registry.npmmirror.com/vite-plugin-windicss/1.7.1_vite@2.8.3
   vue-tsc: registry.npmmirror.com/vue-tsc/0.31.4_typescript@4.5.5
   windicss: registry.npmmirror.com/windicss/3.4.3
@@ -2124,19 +2124,6 @@ packages:
       js-tokens: registry.npmmirror.com/js-tokens/4.0.0
     dev: true
 
-  registry.npmmirror.com/@babel/parser/7.16.6:
-    resolution:
-      {
-        integrity: sha512-Gr86ujcNuPDnNOY8mi383Hvi8IYrJVJYuf3XcuBM/Dgd+bINn/7tHqsj+tKkoreMbmGsFLsltI/JJd8fOFWGDQ==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@babel/parser/-/parser-7.16.6.tgz
-      }
-    name: '@babel/parser'
-    version: 7.16.6
-    engines: { node: '>=6.0.0' }
-    hasBin: true
-    dev: true
-
   registry.npmmirror.com/@babel/parser/7.17.0:
     resolution:
       {
@@ -3846,22 +3833,6 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/@vue/compiler-core/3.2.29:
-    resolution:
-      {
-        integrity: sha512-RePZ/J4Ub3sb7atQw6V6Rez+/5LCRHGFlSetT3N4VMrejqJnNPXKUt5AVm/9F5MJriy2w/VudEIvgscCfCWqxw==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.2.29.tgz
-      }
-    name: '@vue/compiler-core'
-    version: 3.2.29
-    dependencies:
-      '@babel/parser': registry.npmmirror.com/@babel/parser/7.17.0
-      '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.29
-      estree-walker: registry.npmmirror.com/estree-walker/2.0.2
-      source-map: registry.npmmirror.com/source-map/0.6.1
-    dev: true
-
   registry.npmmirror.com/@vue/compiler-core/3.2.31:
     resolution:
       {
@@ -3877,20 +3848,6 @@ packages:
       estree-walker: registry.npmmirror.com/estree-walker/2.0.2
       source-map: registry.npmmirror.com/source-map/0.6.1
 
-  registry.npmmirror.com/@vue/compiler-dom/3.2.29:
-    resolution:
-      {
-        integrity: sha512-y26vK5khdNS9L3ckvkqJk/78qXwWb75Ci8iYLb67AkJuIgyKhIOcR1E8RIt4mswlVCIeI9gQ+fmtdhaiTAtrBQ==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/compiler-dom/-/compiler-dom-3.2.29.tgz
-      }
-    name: '@vue/compiler-dom'
-    version: 3.2.29
-    dependencies:
-      '@vue/compiler-core': registry.npmmirror.com/@vue/compiler-core/3.2.29
-      '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.29
-    dev: true
-
   registry.npmmirror.com/@vue/compiler-dom/3.2.31:
     resolution:
       {
@@ -3903,28 +3860,6 @@ packages:
     dependencies:
       '@vue/compiler-core': registry.npmmirror.com/@vue/compiler-core/3.2.31
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.31
-
-  registry.npmmirror.com/@vue/compiler-sfc/3.2.29:
-    resolution:
-      {
-        integrity: sha512-X9+0dwsag2u6hSOP/XsMYqFti/edvYvxamgBgCcbSYuXx1xLZN+dS/GvQKM4AgGS4djqo0jQvWfIXdfZ2ET68g==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/compiler-sfc/-/compiler-sfc-3.2.29.tgz
-      }
-    name: '@vue/compiler-sfc'
-    version: 3.2.29
-    dependencies:
-      '@babel/parser': registry.npmmirror.com/@babel/parser/7.16.6
-      '@vue/compiler-core': registry.npmmirror.com/@vue/compiler-core/3.2.29
-      '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom/3.2.29
-      '@vue/compiler-ssr': registry.npmmirror.com/@vue/compiler-ssr/3.2.29
-      '@vue/reactivity-transform': registry.npmmirror.com/@vue/reactivity-transform/3.2.29
-      '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.29
-      estree-walker: registry.npmmirror.com/estree-walker/2.0.2
-      magic-string: registry.npmmirror.com/magic-string/0.25.7
-      postcss: registry.npmmirror.com/postcss/8.4.6
-      source-map: registry.npmmirror.com/source-map/0.6.1
-    dev: true
 
   registry.npmmirror.com/@vue/compiler-sfc/3.2.31:
     resolution:
@@ -3947,20 +3882,6 @@ packages:
       postcss: registry.npmmirror.com/postcss/8.4.6
       source-map: registry.npmmirror.com/source-map/0.6.1
     dev: false
-
-  registry.npmmirror.com/@vue/compiler-ssr/3.2.29:
-    resolution:
-      {
-        integrity: sha512-LrvQwXlx66uWsB9/VydaaqEpae9xtmlUkeSKF6aPDbzx8M1h7ukxaPjNCAXuFd3fUHblcri8k42lfimHfzMICA==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/compiler-ssr/-/compiler-ssr-3.2.29.tgz
-      }
-    name: '@vue/compiler-ssr'
-    version: 3.2.29
-    dependencies:
-      '@vue/compiler-dom': registry.npmmirror.com/@vue/compiler-dom/3.2.29
-      '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.29
-    dev: true
 
   registry.npmmirror.com/@vue/compiler-ssr/3.2.31:
     resolution:
@@ -3986,23 +3907,6 @@ packages:
     name: '@vue/devtools-api'
     version: 6.0.0-beta.21.1
     dev: false
-
-  registry.npmmirror.com/@vue/reactivity-transform/3.2.29:
-    resolution:
-      {
-        integrity: sha512-YF6HdOuhdOw6KyRm59+3rML8USb9o8mYM1q+SH0G41K3/q/G7uhPnHGKvspzceD7h9J3VR1waOQ93CUZj7J7OA==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/reactivity-transform/-/reactivity-transform-3.2.29.tgz
-      }
-    name: '@vue/reactivity-transform'
-    version: 3.2.29
-    dependencies:
-      '@babel/parser': registry.npmmirror.com/@babel/parser/7.17.0
-      '@vue/compiler-core': registry.npmmirror.com/@vue/compiler-core/3.2.29
-      '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.29
-      estree-walker: registry.npmmirror.com/estree-walker/2.0.2
-      magic-string: registry.npmmirror.com/magic-string/0.25.7
-    dev: true
 
   registry.npmmirror.com/@vue/reactivity-transform/3.2.31:
     resolution:
@@ -4093,17 +3997,6 @@ packages:
       '@vue/shared': registry.npmmirror.com/@vue/shared/3.2.31
       vue: registry.npmmirror.com/vue/3.2.31
     dev: false
-
-  registry.npmmirror.com/@vue/shared/3.2.29:
-    resolution:
-      {
-        integrity: sha512-BjNpU8OK6Z0LVzGUppEk0CMYm/hKDnZfYdjSmPOs0N+TR1cLKJAkDwW8ASZUvaaSLEi6d3hVM7jnWnX+6yWnHw==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@vue/shared/-/shared-3.2.29.tgz
-      }
-    name: '@vue/shared'
-    version: 3.2.29
-    dev: true
 
   registry.npmmirror.com/@vue/shared/3.2.30:
     resolution:
@@ -10954,6 +10847,27 @@ packages:
     engines: { node: '>=8.6' }
     dev: true
 
+  registry.npmmirror.com/pinia-plugin-persist/0.0.93_vue@3.2.31:
+    resolution:
+      {
+        integrity: sha512-ARHTYDMFTikIyywVnuJK859q3B8gjW8vy/E722why4ER9Obrdf5bK7H9/lYztJHuPHhfN46oDv0ab7S/2SfccQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/pinia-plugin-persist/-/pinia-plugin-persist-0.0.93.tgz
+      }
+    id: registry.npmmirror.com/pinia-plugin-persist/0.0.93
+    name: pinia-plugin-persist
+    version: 0.0.93
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.31
+      vue-demi: registry.npmmirror.com/vue-demi/0.11.4_vue@3.2.31
+    dev: false
+
   registry.npmmirror.com/pinia/2.0.11_typescript@4.5.5+vue@3.2.31:
     resolution:
       {
@@ -13666,24 +13580,6 @@ packages:
       - supports-color
     dev: true
 
-  registry.npmmirror.com/vite-plugin-vue-setup-extend/0.4.0_vite@2.8.3:
-    resolution:
-      {
-        integrity: sha512-WMbjPCui75fboFoUTHhdbXzu4Y/bJMv5N9QT9a7do3wNMNHHqrk+Tn2jrSJU0LS5fGl/EG+FEDBYVUeWIkDqXQ==,
-        registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/vite-plugin-vue-setup-extend/-/vite-plugin-vue-setup-extend-0.4.0.tgz
-      }
-    id: registry.npmmirror.com/vite-plugin-vue-setup-extend/0.4.0
-    name: vite-plugin-vue-setup-extend
-    version: 0.4.0
-    peerDependencies:
-      vite: '>=2.0.0'
-    dependencies:
-      '@vue/compiler-sfc': registry.npmmirror.com/@vue/compiler-sfc/3.2.29
-      magic-string: registry.npmmirror.com/magic-string/0.25.7
-      vite: registry.npmmirror.com/vite/2.8.3_less@4.1.2
-    dev: true
-
   registry.npmmirror.com/vite-plugin-windicss/1.7.1_vite@2.8.3:
     resolution:
       {
@@ -13958,6 +13854,29 @@ packages:
       vscode-pug-languageservice: registry.npmmirror.com/vscode-pug-languageservice/0.31.4
       vscode-typescript-languageservice: registry.npmmirror.com/vscode-typescript-languageservice/0.31.4
     dev: true
+
+  registry.npmmirror.com/vue-demi/0.11.4_vue@3.2.31:
+    resolution:
+      {
+        integrity: sha512-/3xFwzSykLW2HiiLie43a+FFgNOcokbBJ+fzvFXd0r2T8MYohqvphUyDQ8lbAwzQ3Dlcrb1c9ykifGkhSIAk6A==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/vue-demi/-/vue-demi-0.11.4.tgz
+      }
+    id: registry.npmmirror.com/vue-demi/0.11.4
+    name: vue-demi
+    version: 0.11.4
+    engines: { node: '>=12' }
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: registry.npmmirror.com/vue/3.2.31
+    dev: false
 
   registry.npmmirror.com/vue-demi/0.12.1_vue@3.2.31:
     resolution:

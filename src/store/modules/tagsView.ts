@@ -16,6 +16,9 @@ export const useTagsViewStore = defineStore({
     visitedViews: [],
     cachedViews: new Set()
   }),
+  persist: {
+    enabled: true
+  },
   getters: {
     getVisitedViews(): RouteLocationNormalizedLoaded[] {
       return this.visitedViews
