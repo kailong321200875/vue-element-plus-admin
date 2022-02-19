@@ -101,5 +101,13 @@
   "engines": {
     "node": ">= 14.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kailong321200875/vue-element-plus-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kailong321200875/vue-element-plus-admin/issues"
+  },
+  "homepage": "https://github.com/kailong321200875/vue-element-plus-admin"
 }

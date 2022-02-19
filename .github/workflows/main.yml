@@ -49,9 +49,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        env:
-          ACTIONS_DEPLOY_KEY: ${{secrets.ACTIONS_DEPLOY_KEY}}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./dist-pro
         with:
-          forceOrphan: true
+          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          publish_branch: gh-pages
+          publish_dir: ./dist-pro
