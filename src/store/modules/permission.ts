@@ -60,18 +60,17 @@ export const usePermissionStore = defineStore({
         const routerMap: AppRouteRecordRaw[] = cloneDeep(asyncRouterMap)
 
         // 动态路由，404一定要放到最后面
-        this.addRouters = routerMap
-        // .concat([
-        //   {
-        //     path: '/:path(.*)*',
-        //     redirect: '/404',
-        //     name: '404',
-        //     meta: {
-        //       hidden: true,
-        //       breadcrumb: false
-        //     }
-        //   }
-        // ])
+        this.addRouters = routerMap.concat([
+          {
+            path: '/:path(.*)*',
+            redirect: '/404',
+            name: '404Page',
+            meta: {
+              hidden: true,
+              breadcrumb: false
+            }
+          }
+        ])
         // 渲染菜单的所有路由
         this.routers = cloneDeep(constantRouterMap).concat(routerMap)
         resolve()

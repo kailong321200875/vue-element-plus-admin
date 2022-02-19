@@ -11,6 +11,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import DefineOptions from 'unplugin-vue-define-options/vite'
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -70,7 +71,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           setupProdMockServer()
           `
       }),
-      DefineOptions()
+      DefineOptions(),
+      createHtmlPlugin({
+        inject: {
+          data: {
+            title: env.VITE_APP_TITLE,
+            injectScript: `<script src="./inject.js"></script>`,
+          }
+        }
+      })
     ],
 
     css: {
