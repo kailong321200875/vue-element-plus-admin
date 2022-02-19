@@ -10,7 +10,7 @@ import styleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import { viteMockServe } from 'vite-plugin-mock'
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -70,7 +70,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           setupProdMockServer()
           `
       }),
-      VueSetupExtend()
+      DefineOptions()
     ],
 
     css: {
