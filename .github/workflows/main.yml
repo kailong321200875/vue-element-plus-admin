@@ -46,7 +46,11 @@ jobs:
         run: |
           yarn install
           yarn run build:pro
-          cp ./path/to/CNAME ./CNAME
+
+      - uses: 'finnp/create-file-action@master'
+        env:
+          FILE_NAME: './public/CNAME'
+          FILE_DATA: 'element-plus-admin.cn'
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
