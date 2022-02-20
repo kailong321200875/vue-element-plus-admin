@@ -15,7 +15,7 @@
     "serve:dev": "vite preview --mode dev",
     "serve:test": "vite preview --mode test",
     "npm:check": "npx npm-check-updates",
-    "clean": "npx rimraf docs/node_modules && npx rimraf node_modules",
+    "clean": "npx rimraf node_modules",
     "clean:cache": "npx rimraf node_modules/.cache",
     "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
     "lint:format": "prettier --write --loglevel warn \"src/**/*.{js,ts,json,tsx,css,less,vue,html,md}\"",

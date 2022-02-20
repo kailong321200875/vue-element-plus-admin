@@ -336,7 +336,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       },
       {
         path: 'menu2',
-        name: 'Menu2Demo',
+        name: 'Menu2',
         component: () => import('@/views/Level/Menu2.vue'),
         meta: {
           title: t('router.menu2')
