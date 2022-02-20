@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch, computed, unref, ref, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -9,6 +9,8 @@ import { filterAffixTags } from './helper'
 import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useTemplateRefsList } from '@vueuse/core'
+import { ElScrollbar } from 'element-plus'
+import { useScrollTo } from '@/hooks/event/useScrollTo'
 
 const { getPrefixCls } = useDesign()
 
@@ -111,13 +113,97 @@ const toLastView = () => {
   }
 }
 
+// 滚动到选中的tag
+const moveToCurrentTag = async () => {
+  await nextTick()
+  for (const v of unref(visitedViews)) {
+    if (v.fullPath === unref(currentRoute).path) {
+      moveToTarget(v)
+      if (v.fullPath !== unref(currentRoute).fullPath) {
+        tagsViewStore.updateVisitedView(unref(currentRoute))
+      }
+
+      break
+    }
+  }
+}
+
+const tagLinksRefs = useTemplateRefsList<RouterLinkProps>()
+
+const moveToTarget = (currentTag: RouteLocationNormalizedLoaded) => {
+  const wrap$ = unref(scrollbarRef)?.wrap$
+  let firstTag: Nullable<RouterLinkProps> = null
+  let lastTag: Nullable<RouterLinkProps> = null
+
+  const tagList = unref(tagLinksRefs)
+  // find first tag and last tag
+  if (tagList.length > 0) {
+    firstTag = tagList[0]
+    lastTag = tagList[tagList.length - 1]
+  }
+  if ((firstTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    // 直接滚动到0的位置
+    const { start } = useScrollTo({
+      el: wrap$!,
+      position: 'scrollLeft',
+      to: 0,
+      duration: 500
+    })
+    start()
+  } else if ((lastTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    // 滚动到最后的位置
+    const { start } = useScrollTo({
+      el: wrap$!,
+      position: 'scrollLeft',
+      to: wrap$!.scrollWidth - wrap$!.offsetWidth,
+      duration: 500
+    })
+    start()
+  } else {
+    // find preTag and nextTag
+    const currentIndex: number = tagList.findIndex(
+      (item) => (item?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath
+    )
+    const tgsRefs = document.getElementsByClassName(`${prefixCls}__item`)
+
+    const prevTag = tgsRefs[currentIndex - 1] as HTMLElement
+    const nextTag = tgsRefs[currentIndex + 1] as HTMLElement
+
+    // the tag's offsetLeft after of nextTag
+    const afterNextTagOffsetLeft = nextTag.offsetLeft + nextTag.offsetWidth + 4
+
+    // the tag's offsetLeft before of prevTag
+    const beforePrevTagOffsetLeft = prevTag.offsetLeft - 4
+
+    if (afterNextTagOffsetLeft > unref(scrollLeftNumber) + wrap$!.offsetWidth) {
+      const { start } = useScrollTo({
+        el: wrap$!,
+        position: 'scrollLeft',
+        to: afterNextTagOffsetLeft - wrap$!.offsetWidth,
+        duration: 500
+      })
+      start()
+    } else if (beforePrevTagOffsetLeft < unref(scrollLeftNumber)) {
+      const { start } = useScrollTo({
+        el: wrap$!,
+        position: 'scrollLeft',
+        to: beforePrevTagOffsetLeft,
+        duration: 500
+      })
+      start()
+    }
+  }
+}
+
 // 是否是当前tag
 const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
   return route.path === unref(currentRoute).path
 }
 
+// 所有右键菜单组件的元素
 const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
 
+// 右键菜单装填改变的时候
 const visibleChange = (
   visible: boolean,
   ref: ComponentRef<typeof ContextMenu & ContextMenuExpose>
@@ -133,6 +219,28 @@ const visibleChange = (
   }
 }
 
+// elscroll 实例
+const scrollbarRef = ref<ComponentRef<typeof ElScrollbar>>()
+
+// 保存滚动位置
+const scrollLeftNumber = ref(0)
+
+const scroll = ({ scrollLeft }) => {
+  scrollLeftNumber.value = scrollLeft as number
+}
+
+// 移动到某个位置
+const move = (to: number) => {
+  const wrap$ = unref(scrollbarRef)?.wrap$
+  const { start } = useScrollTo({
+    el: wrap$!,
+    position: 'scrollLeft',
+    to: unref(scrollLeftNumber) + to,
+    duration: 500
+  })
+  start()
+}
+
 onMounted(() => {
   initTags()
   addTags()
@@ -142,7 +250,7 @@ watch(
   () => currentRoute.value,
   () => {
     addTags()
-    // moveToCurrentTag()
+    moveToCurrentTag()
   }
 )
 </script>
@@ -152,12 +260,14 @@ watch(
     <span
       :class="`${prefixCls}__tool`"
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      @click="move(-200)"
     >
       <Icon icon="ep:d-arrow-left" color="#333" />
     </span>
     <div class="overflow-hidden flex-1">
-      <ElScrollbar class="h-full">
+      <ElScrollbar ref="scrollbarRef" class="h-full" @scroll="scroll">
         <div class="flex h-full">
+          <div></div>
           <ContextMenu
             :ref="itemRefs.set"
             :schema="[
@@ -228,10 +338,10 @@ watch(
             ]"
             @visible-change="visibleChange"
           >
-            <router-link :to="{ ...item }" custom v-slot="{ navigate }">
+            <router-link :ref="tagLinksRefs.set" :to="{ ...item }" custom v-slot="{ navigate }">
               <div
                 @click="navigate"
-                class="h-full flex justify-center items-center whitespace-nowrap"
+                class="h-full flex justify-center items-center whitespace-nowrap pl-15px"
               >
                 {{ t(item?.meta?.title as string) }}
                 <Icon
@@ -250,6 +360,7 @@ watch(
     <span
       :class="`${prefixCls}__tool`"
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      @click="move(200)"
     >
       <Icon icon="ep:d-arrow-right" color="#333" />
     </span>
@@ -358,9 +469,8 @@ watch(
     position: relative;
     top: 2px;
     height: calc(~'100% - 4px');
-    padding: 0 15px;
+    // padding: 0 15px;
     font-size: 12px;
-    line-height: calc(~'var( - -tags-view-height) - 4px');
     cursor: pointer;
     border: 1px solid #d9d9d9;
 

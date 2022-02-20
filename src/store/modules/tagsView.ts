@@ -124,6 +124,14 @@ export const useTagsViewStore = defineStore({
         })
         this.addCachedView()
       }
+    },
+    updateVisitedView(view: RouteLocationNormalizedLoaded) {
+      for (let v of this.visitedViews) {
+        if (v.path === view.path) {
+          v = Object.assign(v, view)
+          break
+        }
+      }
     }
   }
 })
