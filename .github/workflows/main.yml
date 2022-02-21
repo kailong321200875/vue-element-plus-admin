@@ -1,10 +1,9 @@
 name: deploy
 
-# v3 分支 push 代码的时候触发
 on:
   push:
     branches:
-      - v3
+      - master
 
 jobs:
   push-to-gh-pages:

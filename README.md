@@ -82,7 +82,7 @@ pnpm run build:pro
 
 ## Change Log
 
-[CHANGELOG](./CHANGELOG.en.md)
+[CHANGELOG](./CHANGELOG.md)
 
 ## How to contribute
 

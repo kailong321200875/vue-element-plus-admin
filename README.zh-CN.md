@@ -82,7 +82,7 @@ pnpm run build:pro
 
 ## 更新日志
 
-[更新日志](./CHANGELOG.zh_CN.md)
+[更新日志](./CHANGELOG.md)
 
 ## 如何贡献
 
