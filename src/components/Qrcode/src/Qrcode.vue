@@ -41,7 +41,7 @@ const prefixCls = getPrefixCls('qrcode')
 
 const { toCanvas, toDataURL } = QRCode
 
-const loading = ref<boolean>(true)
+const loading = ref(true)
 
 const wrapRef = ref<Nullable<HTMLCanvasElement | HTMLImageElement>>(null)
 

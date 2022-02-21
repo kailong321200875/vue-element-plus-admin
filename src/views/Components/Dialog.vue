@@ -18,7 +18,7 @@ const dialogVisible = ref(false)
     <Dialog v-model="dialogVisible" :title="t('dialogDemo.dialog')">
       <div v-for="v in 10000" :key="v">{{ v }}</div>
       <template #footer>
-        <el-button @click="dialogVisible = false">{{ t('dialogDemo.close') }}</el-button>
+        <ElButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>
       </template>
     </Dialog>
   </ContentWrap>
