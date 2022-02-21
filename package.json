@@ -1,6 +1,6 @@
 {
   "name": "element-plus-admin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一套基于vue3、element-plus、typesScript、vite2的后台集成方案",
   "author": "Archer <502431556@qq.com>",
   "private": false,
