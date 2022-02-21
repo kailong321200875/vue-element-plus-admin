@@ -14,4 +14,4 @@ jobs:
           fetch-depth: 0
       - run: npx conventional-github-releaser -p angular
         env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.ACTIONS_DEPLOY_KEY}}
