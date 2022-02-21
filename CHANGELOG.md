@@ -2,18 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.0.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.3...v1.0.4) (2022-02-21)
-
-### [1.0.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.2...v1.0.3) (2022-02-21)
-
-### [1.0.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.1...v1.0.2) (2022-02-21)
-
-### Build System
-
-- Add conventional-github-releaser plugin ([3cd5c71](https://github.com/kailong321200875/vue-element-plus-admin/commit/3cd5c71899dde3ac3910aef0180d8b39fad51f1b))
-
-### [1.0.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.0...v1.0.1) (2022-02-21)
-
 ## 1.0.0 (2022-02-21)
 
 ### Features
@@ -123,6 +111,21 @@ All notable changes to this project will be documented in this file. See [standa
 - **Login:** update login styles ([eb68f1d](https://github.com/kailong321200875/vue-element-plus-admin/commit/eb68f1d919e13c07b7d200e9aec53804b2a6dc7b))
 - **TagView:** Vertical center tag ([41281c4](https://github.com/kailong321200875/vue-element-plus-admin/commit/41281c4d541a2744e5df5dff2764cc85465b6a4c))
 
+### Others
+
+- 🤖 升级 element-plus 版本 ([38724e1](https://github.com/kailong321200875/vue-element-plus-admin/commit/38724e19d069791bde02b17e7f93b631ea16967e))
+- **release:** 1.0.0 ([ec419ac](https://github.com/kailong321200875/vue-element-plus-admin/commit/ec419acce370a041d98d18b55d277535062cdc42))
+- **release:** 1.0.0 ([5799e32](https://github.com/kailong321200875/vue-element-plus-admin/commit/5799e323d9374d25f2924376b9bb94b374c030c2))
+- **release:** 1.0.1 ([946977a](https://github.com/kailong321200875/vue-element-plus-admin/commit/946977a3e4f096b2476c2f5f1c251f8d3a915ff0))
+- **release:** 1.0.1 ([195727a](https://github.com/kailong321200875/vue-element-plus-admin/commit/195727acd7380928469964e9ebce23a416597805))
+- **release:** 1.0.1 ([7feefdd](https://github.com/kailong321200875/vue-element-plus-admin/commit/7feefdd69ac9db5d3347bb6f4626f9c9574631a0))
+- **release:** 1.0.2 ([ed2a3ea](https://github.com/kailong321200875/vue-element-plus-admin/commit/ed2a3eaaf010e9988b45e33d23e63575fb8389a7))
+- **release:** 1.0.2 ([28f27a2](https://github.com/kailong321200875/vue-element-plus-admin/commit/28f27a2f03b804caf7c0f1986cee27a8aee712fd))
+- **release:** 1.0.3 ([de21747](https://github.com/kailong321200875/vue-element-plus-admin/commit/de217476ddc3668cf2dcdac4bdbcf34854ed1f73))
+- **release:** 1.0.4 ([76e8289](https://github.com/kailong321200875/vue-element-plus-admin/commit/76e828934caeeaf82a83d8492a47804581a7c0e6))
+- **release:** 1.1.0 ([1c9fb94](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c9fb94a93830a22f599b1da68a4d0818183e7d5))
+- **release:** 1.1.3 ([39fb70e](https://github.com/kailong321200875/vue-element-plus-admin/commit/39fb70e6e54cc5804fad00382e08614b5faccb6d))
+
 ### Build System
 
 - 集成基础配置 ([ced99de](https://github.com/kailong321200875/vue-element-plus-admin/commit/ced99de9b113a01d9d0b190f6d2c6adc983a3102))
@@ -131,20 +134,10 @@ All notable changes to this project will be documented in this file. See [standa
 - 设置多语言 ([45e879e](https://github.com/kailong321200875/vue-element-plus-admin/commit/45e879edeef677b6aa1d2cfe4dd8dc5b76c83c59))
 - 修改 vite 配置 ([9991fb4](https://github.com/kailong321200875/vue-element-plus-admin/commit/9991fb4e5c46b9e4016beaade7232e28dc272797))
 - Add conventional-changelog-cli plugin ([384485f](https://github.com/kailong321200875/vue-element-plus-admin/commit/384485f6994c6ac33abee506508ab9d35fe658a9))
+- Add conventional-github-releaser plugin ([3cd5c71](https://github.com/kailong321200875/vue-element-plus-admin/commit/3cd5c71899dde3ac3910aef0180d8b39fad51f1b))
 - Add standard-version plugin ([110ce25](https://github.com/kailong321200875/vue-element-plus-admin/commit/110ce257841648e29b247a0338624a188694b6e9))
 - Add vite-plugin-html plugin ([d5b6e2a](https://github.com/kailong321200875/vue-element-plus-admin/commit/d5b6e2a7770eb59aa32839f69da5be37397e3538))
+- delete useless plugin ([c756761](https://github.com/kailong321200875/vue-element-plus-admin/commit/c756761dfc3200156acb228474d3539197ef413b))
 - **pinia:** Add pinia ([2040500](https://github.com/kailong321200875/vue-element-plus-admin/commit/2040500af14d277a79f01eba5eca2a440203cecf))
 - **types:** Add vue-types ([2c41826](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c41826c572268b74a663a6966c548628ac7e280))
 - update plugin ([8d08bc6](https://github.com/kailong321200875/vue-element-plus-admin/commit/8d08bc6fc92258674abdd12834eaa4530ec276dd))
-
-### Others
-
-- 🤖 升级 element-plus 版本 ([38724e1](https://github.com/kailong321200875/vue-element-plus-admin/commit/38724e19d069791bde02b17e7f93b631ea16967e))
-- **release:** 1.0.0 ([5799e32](https://github.com/kailong321200875/vue-element-plus-admin/commit/5799e323d9374d25f2924376b9bb94b374c030c2))
-- **release:** 1.0.1 ([195727a](https://github.com/kailong321200875/vue-element-plus-admin/commit/195727acd7380928469964e9ebce23a416597805))
-- **release:** 1.0.1 ([7feefdd](https://github.com/kailong321200875/vue-element-plus-admin/commit/7feefdd69ac9db5d3347bb6f4626f9c9574631a0))
-- **release:** 1.0.2 ([28f27a2](https://github.com/kailong321200875/vue-element-plus-admin/commit/28f27a2f03b804caf7c0f1986cee27a8aee712fd))
-- **release:** 1.1.0 ([1c9fb94](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c9fb94a93830a22f599b1da68a4d0818183e7d5))
-- **release:** 1.1.3 ([39fb70e](https://github.com/kailong321200875/vue-element-plus-admin/commit/39fb70e6e54cc5804fad00382e08614b5faccb6d))
-
-### [1.0.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.0...v1.0.1) (2022-02-21)
