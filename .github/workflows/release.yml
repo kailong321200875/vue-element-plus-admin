@@ -1,24 +1,17 @@
-name: Create Release
+name: Release
 
 on:
   push:
     tags:
-      - v*
+      - 'v*'
 
 jobs:
-  build:
-    name: Create Release
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-
-      - name: Create Release for Tag
-        id: release_tag
-        uses: yyx990803/release-tag@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+      - uses: actions/checkout@v2
         with:
-          tag_name: ${{ github.ref }}
-          body: |
-            Please refer to [CHANGELOG.md](https://github.com/kailong321200875/vue-element-plus-admin/blob/master/CHANGELOG.md) for details.
+          fetch-depth: 0
+      - run: npx conventional-github-releaser -p angular
+        env:
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
