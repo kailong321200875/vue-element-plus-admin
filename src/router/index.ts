@@ -8,6 +8,15 @@ const { t } = useI18n()
 
 export const constantRouterMap: AppRouteRecordRaw[] = [
   {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard/analysis',
+    name: 'Root',
+    meta: {
+      hidden: true
+    }
+  },
+  {
     path: '/redirect',
     component: Layout,
     name: 'Redirect',
@@ -488,7 +497,7 @@ const router = createRouter({
 })
 
 export const resetRouter = (): void => {
-  const resetWhiteNameList = ['Redirect', 'Login', 'NoFind']
+  const resetWhiteNameList = ['Redirect', 'Login', 'NoFind', 'Root']
   router.getRoutes().forEach((route) => {
     const { name } = route
     if (name && !resetWhiteNameList.includes(name as string)) {

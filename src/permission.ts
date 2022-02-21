@@ -27,7 +27,7 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
     } else {
       if (permissionStore.getIsAddRouters) {
-        to.path === '/' ? next({ path: permissionStore.addRouters[0]?.path as string }) : next()
+        next()
         return
       }
 
@@ -46,11 +46,11 @@ router.beforeEach(async (to, from, next) => {
       const redirect = decodeURIComponent(redirectPath as string)
       const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect }
       permissionStore.setIsAddRouters(true)
-      next(to.path === '/' ? { path: permissionStore.addRouters[0]?.path as string } : nextData)
+      next(nextData)
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {
-      to.path === '/' ? next({ path: permissionStore.addRouters[0]?.path as string }) : next()
+      next()
     } else {
       next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页
     }
