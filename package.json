@@ -9,6 +9,7 @@
     "dev": "vite --mode base",
     "ts:check": "vue-tsc --noEmit",
     "build:pro": "vite build --mode pro",
+    "build:gitee": "vite build --mode gitee",
     "build:dev": "npm run ts:check && vite build --mode dev",
     "build:test": "npm run ts:check && vite build --mode test",
     "serve:pro": "vite preview --mode pro",
