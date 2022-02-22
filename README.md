@@ -39,7 +39,9 @@ account: **admin/admin test/test**
 
 ## Documentation
 
-[Document Github](https://element-plus-admin.cn/) [Document Gitee](https://kailong110120130.gitee.io/vue-element-plus-admin-doc)
+[Document Github](https://element-plus-admin-doc.cn/)
+
+[Document Gitee](https://kailong110120130.gitee.io/vue-element-plus-admin-doc)
 
 ## Preparation
 
