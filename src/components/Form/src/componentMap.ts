@@ -19,7 +19,6 @@ import {
   ElDivider
 } from 'element-plus'
 import { InputPassword } from '@/components/InputPassword'
-import { Editor } from '@/components/Editor'
 
 const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadioGroup,
@@ -41,8 +40,7 @@ const componentMap: Recordable<Component, ComponentName> = {
   TimeSelect: ElTimeSelect,
   SelectV2: ElSelectV2,
   RadioButton: ElRadioGroup,
-  InputPassword: InputPassword,
-  Editor: Editor
+  InputPassword: InputPassword
 }
 
 export { componentMap }
