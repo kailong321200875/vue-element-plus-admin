@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  push-to-gh-pages:
+  push-to-gh-pages-gitee:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: '16.x'
 
-      - name: Get yarn cache
+      - name: Get Yarn Cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Cache dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
@@ -46,7 +46,7 @@ jobs:
           yarn install
           yarn run build:gitee
 
-      - name: Deploy
+      - name: Deploy Gitee
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
@@ -54,9 +54,6 @@ jobs:
           publish_dir: ./dist-pro
           keep_files: true
 
-  github-repos-to-gitee:
-    runs-on: ubuntu-20.04
-    steps:
       - name: Sync Github Repos To Gitee # 名字随便起
         uses: Yikun/hub-mirror-action@v1.1 # 使用Yikun/hub-mirror-action
         with:
