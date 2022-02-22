@@ -6,6 +6,9 @@ import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { loginOutApi } from '@/api/login'
 import { useDesign } from '@/hooks/web/useDesign'
+import { useTagsViewStore } from '@/store/modules/tagsView'
+
+const tagsViewStore = useTagsViewStore()
 
 const { getPrefixCls } = useDesign()
 
@@ -27,11 +30,16 @@ const loginOut = () => {
       const res = await loginOutApi().catch(() => {})
       if (res) {
         wsCache.clear()
+        tagsViewStore.delAllViews()
         resetRouter() // 重置静态路由表
         replace('/login')
       }
     })
     .catch(() => {})
+}
+
+const toDocument = () => {
+  window.open('https://element-plus-admin-doc.cn/')
 }
 </script>
 
@@ -48,7 +56,7 @@ const loginOut = () => {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem>
-          <div>{{ t('common.document') }}</div>
+          <div @click="toDocument">{{ t('common.document') }}</div>
         </ElDropdownItem>
         <ElDropdownItem divided>
           <div @click="loginOut">{{ t('common.loginOut') }}</div>

@@ -88,6 +88,22 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     ]
   },
   {
+    path: '/external-link',
+    component: Layout,
+    meta: {},
+    name: 'ExternalLink',
+    children: [
+      {
+        path: 'https://element-plus-admin-doc.cn/',
+        name: 'DocumentLink',
+        meta: {
+          title: t('router.document'),
+          icon: 'clarity:document-solid'
+        }
+      }
+    ]
+  },
+  {
     path: '/guide',
     component: Layout,
     name: 'Guide',

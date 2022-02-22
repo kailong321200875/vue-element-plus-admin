@@ -29,6 +29,7 @@ vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模
 ## 预览
 
 - [vue-element-plus-admin](https://element-plus-admin.cn/) - 完整版 github 站点
+- [vue-element-plus-admin](https://kailong110120130.gitee.io/vue-element-plus-admin) - 完整版 gitee 站点
 
 帐号：**admin/admin test/test**
 
@@ -38,7 +39,7 @@ vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模
 
 ## 文档
 
-[文档地址](https://element-plus-admin-doc.cn/)
+[文档地址 Github](https://element-plus-admin-doc.cn/) [文档地址 Gitee](https://kailong110120130.gitee.io/vue-element-plus-admin-doc)
 
 ## 前序准备
 

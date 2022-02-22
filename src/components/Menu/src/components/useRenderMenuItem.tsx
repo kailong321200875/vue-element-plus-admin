@@ -15,7 +15,6 @@ export const useRenderMenuItem = (
       const meta = (v.meta ?? {}) as RouteMeta
       if (!meta.hidden) {
         const { oneShowingChild, onlyOneChild } = hasOneShowingChild(v.children, v)
-
         const fullPath = isUrl(v.path)
           ? v.path
           : getAllParentPath<AppRouteRecordRaw>(allRouters, v.path).join('/')

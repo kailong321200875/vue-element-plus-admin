@@ -129,7 +129,8 @@ export default {
     errorPage: 'Error page',
     authorization: 'Authorization',
     user: 'User management',
-    role: 'Role management'
+    role: 'Role management',
+    document: 'Document'
   },
   analysis: {
     newUser: 'New user',

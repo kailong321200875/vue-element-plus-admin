@@ -11,6 +11,7 @@ import { pathResolve } from '@/utils/routerHelper'
 import { cloneDeep } from 'lodash-es'
 import { filterMenusPath, initTabMap, tabPathMap } from './helper'
 import { useDesign } from '@/hooks/web/useDesign'
+import { isUrl } from '@/utils/is'
 
 const { getPrefixCls, variables } = useDesign()
 
@@ -72,6 +73,10 @@ export default defineComponent({
 
     // tab点击事件
     const tabClick = (item: AppRouteRecordRaw) => {
+      if (isUrl(item.path)) {
+        window.open(item.path)
+        return
+      }
       tabActive.value = item.children ? item.path : item.path.split('/')[0]
       if (item.children) {
         showMenu.value = !unref(showMenu)

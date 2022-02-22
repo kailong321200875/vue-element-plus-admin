@@ -129,7 +129,8 @@ export default {
     errorPage: '错误页面',
     authorization: '权限管理',
     user: '用户管理',
-    role: '角色管理'
+    role: '角色管理',
+    document: '文档'
   },
   analysis: {
     newUser: '新增用户',
