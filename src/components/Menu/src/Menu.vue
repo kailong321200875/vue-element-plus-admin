@@ -61,7 +61,6 @@ export default defineComponent({
         props.menuSelect(index)
       }
       // 自定义事件
-      console.log(index)
       if (isUrl(index)) {
         window.open(index)
       } else {
