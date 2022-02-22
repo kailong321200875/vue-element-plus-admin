@@ -52,4 +52,5 @@ jobs:
           deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
           publish_branch: gh-pages
           publish_dir: ./dist-pro
-          keep_files: true
+          force_orphan: true
+          cname: element-plus-admin.cn

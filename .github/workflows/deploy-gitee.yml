@@ -52,7 +52,7 @@ jobs:
           deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
           publish_branch: gh-pages-gitee
           publish_dir: ./dist-pro
-          keep_files: true
+          force_orphan: true
 
       - name: Sync Github Repos To Gitee # 名字随便起
         uses: Yikun/hub-mirror-action@v1.1 # 使用Yikun/hub-mirror-action
