@@ -139,13 +139,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@iconify/iconify',
         '@vueuse/core',
         'axios',
-        'qs',
-        'echarts',
-        'echarts-wordcloud',
-        'intro.js',
-        'qrcode',
-        '@wangeditor/editor',
-        '@wangeditor/editor-for-vue'
+        'qs'
       ]
     }
   }
