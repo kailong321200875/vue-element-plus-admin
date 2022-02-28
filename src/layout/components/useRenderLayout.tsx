@@ -36,7 +36,7 @@ export const useRenderLayout = () => {
   const renderClassic = () => {
     return (
       <>
-        <div class={['absolute top-0 left-0 h-full', { '!fixed z-99': mobile.value }]}>
+        <div class={['absolute top-0 left-0 h-full', { '!fixed z-3000': mobile.value }]}>
           {logo.value ? (
             <Logo
               class={[
