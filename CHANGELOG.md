@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.1...v1.0.2) (2022-02-28)
+
+### Docs
+
+- update README ([27979dc](https://github.com/kailong321200875/vue-element-plus-admin/commit/27979dc6def7d9d8cea62a08d49a6c828be2258b))
+
+### Build System
+
+- update plugins ([3c58042](https://github.com/kailong321200875/vue-element-plus-admin/commit/3c580420a20121845f02c0dd3caca5a74f06a89d))
+
+### Styling
+
+- delete console.log ([49a6bfe](https://github.com/kailong321200875/vue-element-plus-admin/commit/49a6bfe9d81a40e2f5f15b68d7289e1787e89b54))
+- modify menu z-index attribute ([0d7a778](https://github.com/kailong321200875/vue-element-plus-admin/commit/0d7a7781ce0b5e39f01355d3acdb3f364cabf76d))
+
 ### [1.0.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.0...v1.0.1) (2022-02-22)
 
 ### Docs
