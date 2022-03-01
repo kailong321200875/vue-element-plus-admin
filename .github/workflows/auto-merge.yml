@@ -23,6 +23,6 @@ jobs:
       - name: Automerge
         uses: 'pascalgn/automerge-action@v0.14.3'
         env:
-          GITHUB_TOKEN: '${{ secrets.ACTIONS_DEPLOY_KEY }}'
+          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
           MERGE_LABELS: ''
           MERGE_FILTER_AUTHOR: 'kailong321200875'
