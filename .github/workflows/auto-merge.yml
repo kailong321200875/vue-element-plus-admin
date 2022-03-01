@@ -61,6 +61,7 @@ jobs:
 
       - name: Build Github
         run: |
+          yarn install
           yarn run build:pro
 
       - name: Deploy
