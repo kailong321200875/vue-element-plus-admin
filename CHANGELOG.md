@@ -4,10 +4,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.1.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.0...v1.1.1) (2022-03-01)
 
+### Workflows
 
-### Workflow
-
-* update workflow ([085328a](https://github.com/kailong321200875/vue-element-plus-admin/commit/085328aba8c4f356bf7915a6bbdc1ec4f46ceeda))
+- update workflow ([085328a](https://github.com/kailong321200875/vue-element-plus-admin/commit/085328aba8c4f356bf7915a6bbdc1ec4f46ceeda))
 
 ## [1.1.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.0.3...v1.1.0) (2022-03-01)
 

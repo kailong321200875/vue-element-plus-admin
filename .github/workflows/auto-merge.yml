@@ -59,7 +59,7 @@ jobs:
           git config --local user.email "321200875@qq.com"
           git config --local user.name "kailong321200875"
 
-      - name: Build
+      - name: Build Gitee
         run: |
           yarn install
           yarn run build:gitee
@@ -71,6 +71,31 @@ jobs:
           publish_branch: gh-pages-gitee
           publish_dir: ./dist-pro
           force_orphan: true
+
+      - name: Set SSH Environment
+        env:
+          DOCS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com > ~/.ssh/known_hosts
+          chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
+          git config --local user.email "321200875@qq.com"
+          git config --local user.name "kailong321200875"
+
+      - name: Build Github
+        run: |
+          yarn run build:pro
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          publish_branch: gh-pages
+          publish_dir: ./dist-pro
+          force_orphan: true
+          cname: element-plus-admin.cn
 
       - name: Sync Github Repos To Gitee # 名字随便起
         uses: Yikun/hub-mirror-action@v1.1 # 使用Yikun/hub-mirror-action
@@ -85,16 +110,3 @@ jobs:
           force_update: true # 启用后，强制同步，即强制覆盖目的端仓库
           static_list: 'vue-element-plus-admin' # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
           timeout: '600s' # git超时设置，超时后会自动重试git操作
-
-      - name: Build
-        run: |
-          yarn run build:pro
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
-          publish_branch: gh-pages
-          publish_dir: ./dist-pro
-          force_orphan: true
-          cname: element-plus-admin.cn
