@@ -14,7 +14,7 @@ import { config } from '@/config/axios/config'
 
 const { result_code, base_url } = config
 
-export const PATH_URL = base_url[import.meta.env.VITE_API_BASEPATH as string]
+export const PATH_URL = base_url[import.meta.env.VITE_API_BASEPATH]
 
 // 创建axios实例
 const service: AxiosInstance = axios.create({
