@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.4...v1.1.5) (2022-03-02)
+
+
+### Bug Fixes
+
+* fix the problem of tagsview error when loginout ([835d76a](https://github.com/kailong321200875/vue-element-plus-admin/commit/835d76ae87b950106f957976ebc8f6f2e8842ddf))
+
+
+### Build System
+
+* update plugins ([de34bb1](https://github.com/kailong321200875/vue-element-plus-admin/commit/de34bb193d6c844dbc1cec38db5f61b3f95e19f2))
+
+
+### Styling
+
+* fix tabMenu z-index bug ([8b3be02](https://github.com/kailong321200875/vue-element-plus-admin/commit/8b3be02368a1bddb7dc78f18adbea7f4ebfe75d6))
+* fix tags-view style bug ([ebff817](https://github.com/kailong321200875/vue-element-plus-admin/commit/ebff81777b9c0b839256b83e321ecbdbff25fc73))
+
 ## [1.1.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.3...v1.1.4) (2022-03-01)
 
 ### CI
