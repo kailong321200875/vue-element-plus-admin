@@ -6,4 +6,4 @@
 /vite.config.ts
 /src/types/env.d.ts
 /docs/**/*
-.versionrc
+CHANGELOG

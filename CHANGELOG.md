@@ -2,13 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.1.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.3...v1.1.4) (2022-03-01)
-
+## [1.1.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.3...v1.1.4) (2022-03-01)
 
 ### CI
 
-* update workflow ([0490d18](https://github.com/kailong321200875/vue-element-plus-admin/commit/0490d18145cb0d9c4b066ab01a2c10cb527e38ba))
-* update workflow ([51f7bca](https://github.com/kailong321200875/vue-element-plus-admin/commit/51f7bca6034902b251d081ee383b0d796782d434))
+- update workflow ([0490d18](https://github.com/kailong321200875/vue-element-plus-admin/commit/0490d18145cb0d9c4b066ab01a2c10cb527e38ba))
+- update workflow ([51f7bca](https://github.com/kailong321200875/vue-element-plus-admin/commit/51f7bca6034902b251d081ee383b0d796782d434))
 
 ## [1.1.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.2...v1.1.3) (2022-03-01)
 
