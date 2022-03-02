@@ -73,7 +73,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Analysis',
         meta: {
           title: t('router.analysis'),
-          noCache: true
+          noCache: true,
+          affix: true
         }
       },
       {

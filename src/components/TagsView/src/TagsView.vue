@@ -469,7 +469,7 @@ watch(
     position: relative;
     top: 2px;
     height: calc(~'100% - 4px');
-    // padding: 0 15px;
+    padding-right: 25px;
     font-size: 12px;
     cursor: pointer;
     border: 1px solid #d9d9d9;
@@ -486,10 +486,6 @@ watch(
         display: block;
       }
     }
-  }
-
-  &__item:not(.@{prefix-cls}__item--affix) {
-    padding-right: 25px;
   }
 
   &__item:not(.is-active) {
