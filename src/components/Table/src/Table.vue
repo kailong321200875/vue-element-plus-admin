@@ -272,7 +272,7 @@ export default defineComponent({
           ref={elTableRef}
           data={unref(getProps).data}
           onSelection-change={selectionChange}
-          {...getBindValue}
+          {...unref(getBindValue)}
         >
           {{
             default: () => rnderTableColumn(),
