@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.5...v1.1.6) (2022-03-04)
+
+
+### Bug Fixes
+
+* fix the problem that the tree data of Table component cannot be displayed ([bf83d3e](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf83d3efbad9097f245c32cc07d1178580cec4e3))
+
 ### [1.1.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.4...v1.1.5) (2022-03-02)
 
 
