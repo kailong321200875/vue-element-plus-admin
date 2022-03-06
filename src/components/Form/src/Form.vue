@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
+import { ElForm, ElFormItem, ElRow, ElCol, ElTooltip } from 'element-plus'
 import { componentMap } from './componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
@@ -19,6 +19,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { findIndex } from '@/utils'
 import { set } from 'lodash-es'
 import { FormProps } from './types'
+import { Icon } from '@/components/Icon'
 
 const { getPrefixCls } = useDesign()
 
@@ -181,10 +182,35 @@ export default defineComponent({
       ) {
         slotsMap.default = () => renderOptions(item)
       }
+      
+      const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
+      // 如果有 labelMessage，自动使用插槽渲染
+      if (item?.labelMessage) {
+        formItemSlots.label = () => {
+          return (
+            <>
+              <span>{item.label}</span>
+              <ElTooltip placement="right" raw-content>
+                {{
+                  content: () => <span v-html={item.labelMessage}></span>,
+                  default: () => (
+                    <Icon
+                      icon="ep:warning"
+                      size={16}
+                      color="var(--el-color-primary)"
+                      class="ml-2px relative top-1px"
+                    ></Icon>
+                  )
+                }}
+              </ElTooltip>
+            </>
+          )
+        }
+      }
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {{
-            ...setFormItemSlots(slots, item.field),
+            ...formItemSlots,
             default: () => {
               const Com = componentMap[item.component as string] as ReturnType<
                 typeof defineComponent
