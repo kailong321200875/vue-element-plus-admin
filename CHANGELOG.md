@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.6...v1.1.7) (2022-03-06)
+
+
+### Styling
+
+* add labelMessage attribute to Form component ([8c42790](https://github.com/kailong321200875/vue-element-plus-admin/commit/8c427907843ccb2dfd882d27c1e8a894c5616487))
+
 ### [1.1.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.5...v1.1.6) (2022-03-04)
 
 
