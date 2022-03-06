@@ -71,6 +71,8 @@ declare global {
     field: string
     // 标题
     label?: string
+    // 提示
+    labelMessage?: string
     // col组件属性
     colProps?: ColProps
     // 表单组件属性，slots对应的是表单组件的插槽，规则：${field}-xxx，具体可以查看element-plus文档
