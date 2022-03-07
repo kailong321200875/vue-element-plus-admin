@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.7...v1.1.8) (2022-03-07)
+
+
+### Docs
+
+* update changelog ([bf09441](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf09441852e59b0d07d4949a33de75958696817f))
+
 ### [1.1.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.6...v1.1.7) (2022-03-06)
 
 ### Styling
