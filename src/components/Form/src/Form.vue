@@ -182,7 +182,7 @@ export default defineComponent({
       ) {
         slotsMap.default = () => renderOptions(item)
       }
-      
+
       const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
       // 如果有 labelMessage，自动使用插槽渲染
       if (item?.labelMessage) {
