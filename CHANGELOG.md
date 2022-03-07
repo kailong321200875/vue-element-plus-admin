@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.9](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.8...v1.1.9) (2022-03-07)
+
+
+### Build System
+
+* update plugins ([1456fd4](https://github.com/kailong321200875/vue-element-plus-admin/commit/1456fd49ec9abbfe1f25aeadfe5fed54fec07394))
+
 ### [1.1.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.7...v1.1.8) (2022-03-07)
 
 
