@@ -4,56 +4,51 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.1.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.6...v1.1.7) (2022-03-06)
 
-
 ### Styling
 
-* add labelMessage attribute to Form component ([8c42790](https://github.com/kailong321200875/vue-element-plus-admin/commit/8c427907843ccb2dfd882d27c1e8a894c5616487))
+- add labelMessage attribute to Form component ([8c42790](https://github.com/kailong321200875/vue-element-plus-admin/commit/8c427907843ccb2dfd882d27c1e8a894c5616487))
 
 ### [1.1.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.5...v1.1.6) (2022-03-04)
 
-
 ### Bug Fixes
 
-* fix the problem that the tree data of Table component cannot be displayed ([bf83d3e](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf83d3efbad9097f245c32cc07d1178580cec4e3))
+- fix the problem that the tree data of Table component cannot be displayed ([bf83d3e](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf83d3efbad9097f245c32cc07d1178580cec4e3))
 
 ### [1.1.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.4...v1.1.5) (2022-03-02)
 
-
 ### Bug Fixes
 
-* fix the problem of tagsview error when loginout ([835d76a](https://github.com/kailong321200875/vue-element-plus-admin/commit/835d76ae87b950106f957976ebc8f6f2e8842ddf))
-
+- fix the problem of tagsview error when loginout ([835d76a](https://github.com/kailong321200875/vue-element-plus-admin/commit/835d76ae87b950106f957976ebc8f6f2e8842ddf))
 
 ### Build System
 
-* update plugins ([de34bb1](https://github.com/kailong321200875/vue-element-plus-admin/commit/de34bb193d6c844dbc1cec38db5f61b3f95e19f2))
-
+- update plugins ([de34bb1](https://github.com/kailong321200875/vue-element-plus-admin/commit/de34bb193d6c844dbc1cec38db5f61b3f95e19f2))
 
 ### Styling
 
-* fix tabMenu z-index bug ([8b3be02](https://github.com/kailong321200875/vue-element-plus-admin/commit/8b3be02368a1bddb7dc78f18adbea7f4ebfe75d6))
-* fix tags-view style bug ([ebff817](https://github.com/kailong321200875/vue-element-plus-admin/commit/ebff81777b9c0b839256b83e321ecbdbff25fc73))
+- fix tabMenu z-index bug ([8b3be02](https://github.com/kailong321200875/vue-element-plus-admin/commit/8b3be02368a1bddb7dc78f18adbea7f4ebfe75d6))
+- fix tags-view style bug ([ebff817](https://github.com/kailong321200875/vue-element-plus-admin/commit/ebff81777b9c0b839256b83e321ecbdbff25fc73))
 
-## [1.1.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.3...v1.1.4) (2022-03-01)
+### [1.1.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.3...v1.1.4) (2022-03-01)
 
 ### CI
 
 - update workflow ([0490d18](https://github.com/kailong321200875/vue-element-plus-admin/commit/0490d18145cb0d9c4b066ab01a2c10cb527e38ba))
 - update workflow ([51f7bca](https://github.com/kailong321200875/vue-element-plus-admin/commit/51f7bca6034902b251d081ee383b0d796782d434))
 
-## [1.1.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.2...v1.1.3) (2022-03-01)
+### [1.1.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.2...v1.1.3) (2022-03-01)
 
 ### CI
 
 - update workflow ([91cc5c5](https://github.com/kailong321200875/vue-element-plus-admin/commit/91cc5c595cadc5695d8f54bdc4922d8f04439f24))
 
-## [1.1.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.1...v1.1.2) (2022-03-01)
+### [1.1.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.1...v1.1.2) (2022-03-01)
 
 ### Workflows
 
 - update workflow ([d9708aa](https://github.com/kailong321200875/vue-element-plus-admin/commit/d9708aae5bc0cb795bb0fbf8d17df753cc88ba1d))
 
-## [1.1.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.0...v1.1.1) (2022-03-01)
+### [1.1.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.0...v1.1.1) (2022-03-01)
 
 ### Workflows
 
