@@ -63,9 +63,9 @@ const rules = reactive({
 const { register, elFormRef } = useForm()
 
 const formValidation = () => {
-  unref(elFormRef)
-    ?.validate()
-    ?.catch(() => {})
+  unref(elFormRef)!.validate((isValid) => {
+    console.log(isValid)
+  })
 }
 </script>
 
