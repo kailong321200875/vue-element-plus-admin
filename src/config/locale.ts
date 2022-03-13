@@ -1,6 +1,6 @@
 import { useCache } from '@/hooks/web/useCache'
-import zhCn from 'element-plus/lib/locale/lang/zh-cn'
-import en from 'element-plus/lib/locale/lang/en'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
 
 const { wsCache } = useCache()
 

@@ -212,9 +212,9 @@ const addItem = () => {
 }
 
 const formValidation = () => {
-  unref(elFormRef)
-    ?.validate()
-    ?.catch(() => {})
+  unref(elFormRef)!.validate((isValid) => {
+    console.log(isValid)
+  })
 }
 
 const verifyReset = () => {

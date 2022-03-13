@@ -113,23 +113,24 @@ watch(
 // 登录
 const signIn = async () => {
   const formRef = unref(elFormRef)
-  const validate = await formRef?.validate()?.catch(() => {})
-  if (validate) {
-    loading.value = true
-    const { getFormData } = methods
-    const formData = await getFormData<UserLoginType>()
+  await formRef?.validate(async (isValid) => {
+    if (isValid) {
+      loading.value = true
+      const { getFormData } = methods
+      const formData = await getFormData<UserLoginType>()
 
-    const res = await loginApi(formData)
-      .catch(() => {})
-      .finally(() => (loading.value = false))
+      const res = await loginApi(formData)
+        .catch(() => {})
+        .finally(() => (loading.value = false))
 
-    if (res) {
-      const { wsCache } = useCache()
-      wsCache.set(appStore.getUserInfo, res.data)
+      if (res) {
+        const { wsCache } = useCache()
+        wsCache.set(appStore.getUserInfo, res.data)
 
-      getRole()
+        getRole()
+      }
     }
-  }
+  })
 }
 
 // 获取角色信息
