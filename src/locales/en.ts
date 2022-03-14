@@ -70,6 +70,7 @@ export default {
     copy: 'Copy',
     clearAndReset: 'Clear cache and reset',
     copySuccess: 'Copy success',
+    copyFailed: 'Copy failed',
     footer: 'Footer'
   },
   size: {

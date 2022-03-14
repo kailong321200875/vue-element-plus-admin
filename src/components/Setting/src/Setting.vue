@@ -108,72 +108,76 @@ watch(
 
 // 拷贝
 const copyConfig = async () => {
-  const { copy, copied } = useClipboard({
+  const { copy, copied, isSupported } = useClipboard({
     source: `
-// 面包屑
-breadcrumb: ${appStore.getBreadcrumb},
-// 面包屑图标
-breadcrumbIcon: ${appStore.getBreadcrumbIcon},
-// 折叠图标
-hamburger: ${appStore.getHamburger},
-// 全屏图标
-screenfull: ${appStore.getScreenfull},
-// 尺寸图标
-size: ${appStore.getSize},
-// 多语言图标
-locale: ${appStore.getLocale},
-// 标签页
-tagsView: ${appStore.getTagsView},
-// logo
-logo: ${appStore.getLogo},
-// 固定header
-fixedHeader: ${appStore.getFixedHeader},
-// 页脚
-footer: ${appStore.getFooter},
-// 灰色模式
-greyMode: ${appStore.getGreyMode},
-// layout布局
-layout: '${appStore.getLayout}',
-// 暗黑模式
-isDark: ${appStore.getIsDark},
-// 组件尺寸
-currentSize: '${appStore.getCurrentSize}',
-// 主题相关
-theme: {
-  // 主题色
-  elColorPrimary: '${appStore.getTheme.elColorPrimary}',
-  // 左侧菜单边框颜色
-  leftMenuBorderColor: '${appStore.getTheme.leftMenuBorderColor}',
-  // 左侧菜单背景颜色
-  leftMenuBgColor: '${appStore.getTheme.leftMenuBgColor}',
-  // 左侧菜单浅色背景颜色
-  leftMenuBgLightColor: '${appStore.getTheme.leftMenuBgLightColor}',
-  // 左侧菜单选中背景颜色
-  leftMenuBgActiveColor: '${appStore.getTheme.leftMenuBgActiveColor}',
-  // 左侧菜单收起选中背景颜色
-  leftMenuCollapseBgActiveColor: '${appStore.getTheme.leftMenuCollapseBgActiveColor}',
-  // 左侧菜单字体颜色
-  leftMenuTextColor: '${appStore.getTheme.leftMenuTextColor}',
-  // 左侧菜单选中字体颜色
-  leftMenuTextActiveColor: '${appStore.getTheme.leftMenuTextActiveColor}',
-  // logo字体颜色
-  logoTitleTextColor: '${appStore.getTheme.logoTitleTextColor}',
-  // logo边框颜色
-  logoBorderColor: '${appStore.getTheme.logoBorderColor}',
-  // 头部背景颜色
-  topHeaderBgColor: '${appStore.getTheme.topHeaderBgColor}',
-  // 头部字体颜色
-  topHeaderTextColor: '${appStore.getTheme.topHeaderTextColor}',
-  // 头部悬停颜色
-  topHeaderHoverColor: '${appStore.getTheme.topHeaderHoverColor}',
-  // 头部边框颜色
-  topToolBorderColor: '${appStore.getTheme.topToolBorderColor}'
-}
+      // 面包屑
+      breadcrumb: ${appStore.getBreadcrumb},
+      // 面包屑图标
+      breadcrumbIcon: ${appStore.getBreadcrumbIcon},
+      // 折叠图标
+      hamburger: ${appStore.getHamburger},
+      // 全屏图标
+      screenfull: ${appStore.getScreenfull},
+      // 尺寸图标
+      size: ${appStore.getSize},
+      // 多语言图标
+      locale: ${appStore.getLocale},
+      // 标签页
+      tagsView: ${appStore.getTagsView},
+      // logo
+      logo: ${appStore.getLogo},
+      // 固定header
+      fixedHeader: ${appStore.getFixedHeader},
+      // 页脚
+      footer: ${appStore.getFooter},
+      // 灰色模式
+      greyMode: ${appStore.getGreyMode},
+      // layout布局
+      layout: '${appStore.getLayout}',
+      // 暗黑模式
+      isDark: ${appStore.getIsDark},
+      // 组件尺寸
+      currentSize: '${appStore.getCurrentSize}',
+      // 主题相关
+      theme: {
+        // 主题色
+        elColorPrimary: '${appStore.getTheme.elColorPrimary}',
+        // 左侧菜单边框颜色
+        leftMenuBorderColor: '${appStore.getTheme.leftMenuBorderColor}',
+        // 左侧菜单背景颜色
+        leftMenuBgColor: '${appStore.getTheme.leftMenuBgColor}',
+        // 左侧菜单浅色背景颜色
+        leftMenuBgLightColor: '${appStore.getTheme.leftMenuBgLightColor}',
+        // 左侧菜单选中背景颜色
+        leftMenuBgActiveColor: '${appStore.getTheme.leftMenuBgActiveColor}',
+        // 左侧菜单收起选中背景颜色
+        leftMenuCollapseBgActiveColor: '${appStore.getTheme.leftMenuCollapseBgActiveColor}',
+        // 左侧菜单字体颜色
+        leftMenuTextColor: '${appStore.getTheme.leftMenuTextColor}',
+        // 左侧菜单选中字体颜色
+        leftMenuTextActiveColor: '${appStore.getTheme.leftMenuTextActiveColor}',
+        // logo字体颜色
+        logoTitleTextColor: '${appStore.getTheme.logoTitleTextColor}',
+        // logo边框颜色
+        logoBorderColor: '${appStore.getTheme.logoBorderColor}',
+        // 头部背景颜色
+        topHeaderBgColor: '${appStore.getTheme.topHeaderBgColor}',
+        // 头部字体颜色
+        topHeaderTextColor: '${appStore.getTheme.topHeaderTextColor}',
+        // 头部悬停颜色
+        topHeaderHoverColor: '${appStore.getTheme.topHeaderHoverColor}',
+        // 头部边框颜色
+        topToolBorderColor: '${appStore.getTheme.topToolBorderColor}'
+      }
     `
   })
-  await copy()
-  if (unref(copied)) {
-    ElMessage.success(t('setting.copySuccess'))
+  if (!isSupported) {
+    ElMessage.error(t('setting.copyFailed'))
+  } else {
+    await copy()
+    if (unref(copied)) {
+      ElMessage.success(t('setting.copySuccess'))
+    }
   }
 }
 

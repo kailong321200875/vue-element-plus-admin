@@ -70,6 +70,7 @@ export default {
     copy: '拷贝',
     clearAndReset: '清除缓存并且重置',
     copySuccess: '拷贝成功',
+    copyFailed: '拷贝失败',
     footer: '页脚'
   },
   size: {
