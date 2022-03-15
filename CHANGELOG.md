@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.11](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.10...v1.1.11) (2022-03-15)
+
+
+### Bug Fixes
+
+* fix the problem of blank bar when toggle the TagsView component ([b1d9771](https://github.com/kailong321200875/vue-element-plus-admin/commit/b1d9771c750709fe45061d13299a85dbbd6ead25))
+* fix the problem that no reaction when copy setting config in http page ([61e0e33](https://github.com/kailong321200875/vue-element-plus-admin/commit/61e0e33c64d6a889fe6ed80d27a10cf8b201d21a))
+
 ### [1.1.10](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.9...v1.1.10) (2022-03-13)
 
 
