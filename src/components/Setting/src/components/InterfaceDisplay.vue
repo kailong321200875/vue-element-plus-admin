@@ -3,6 +3,7 @@ import { ElSwitch } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
 import { computed, ref, watch } from 'vue'
+import { setCssVar } from '@/utils'
 import { useDesign } from '@/hooks/web/useDesign'
 
 const { getPrefixCls } = useDesign()
@@ -59,6 +60,8 @@ const localeChange = (show: boolean) => {
 const tagsView = ref(appStore.getTagsView)
 
 const tagsViewChange = (show: boolean) => {
+  // 切换标签栏显示时，同步切换标签栏的高度
+  setCssVar('--tags-view-height', show ? '35px' : '0px')
   appStore.setTagsView(show)
 }
 
