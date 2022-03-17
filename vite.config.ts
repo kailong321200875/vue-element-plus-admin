@@ -134,18 +134,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'vue',
         'vue-router',
         'vue-types',
-        'element-plus/lib/locale/lang/zh-cn',
-        'element-plus/lib/locale/lang/en',
+        'element-plus/es/locale/lang/zh-cn',
+        'element-plus/es/locale/lang/en',
         '@iconify/iconify',
         '@vueuse/core',
         'axios',
-        'qs',
-        'echarts',
-        'echarts-wordcloud',
-        'intro.js',
-        'qrcode',
-        '@wangeditor/editor',
-        '@wangeditor/editor-for-vue'
+        'qs'
       ]
     }
   }

@@ -48,7 +48,7 @@ export const appModules: AppState = {
   userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
   sizeMap: ['default', 'large', 'small'],
   mobile: false, // 是否是移动端
-  title: import.meta.env.VITE_APP_TITLE as string, // 标题
+  title: import.meta.env.VITE_APP_TITLE, // 标题
   pageLoading: false, // 路由跳转loading
 
   breadcrumb: true, // 面包屑

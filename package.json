@@ -16,7 +16,6 @@
     "serve:dev": "vite preview --mode dev",
     "serve:test": "vite preview --mode test",
     "npm:check": "npx npm-check-updates",
-    "release": "standard-version",
     "clean": "npx rimraf node_modules",
     "clean:cache": "npx rimraf node_modules/.cache",
     "lint:eslint": "eslint --fix --ext .js,.ts,.vue ./src",
