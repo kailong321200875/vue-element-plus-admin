@@ -63,14 +63,13 @@ const newSchema = computed(() => {
 const { register, elFormRef, methods } = useForm()
 
 const search = async () => {
-  const res = await unref(elFormRef)
-    ?.validate()
-    ?.catch(() => {})
-  if (res) {
-    const { getFormData } = methods
-    const model = await getFormData()
-    emit('search', model)
-  }
+  await unref(elFormRef)?.validate(async (isValid) => {
+    if (isValid) {
+      const { getFormData } = methods
+      const model = await getFormData()
+      emit('search', model)
+    }
+  })
 }
 
 const reset = async () => {
