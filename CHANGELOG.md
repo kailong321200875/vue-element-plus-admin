@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.14](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.13...v1.1.14) (2022-03-22)
+
+
+### Bug Fixes
+
+* fix the bug that the form search function is invalid of the example-dialog page ([9ec30e7](https://github.com/kailong321200875/vue-element-plus-admin/commit/9ec30e719f89865497dbb1321be1df906f59f14e))
+
 ### [1.1.13](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.12...v1.1.13) (2022-03-17)
 
 
