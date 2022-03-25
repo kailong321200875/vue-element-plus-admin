@@ -15,12 +15,13 @@ const currentSize = computed(() => appStore.getCurrentSize)
 
 const greyMode = computed(() => appStore.getGreyMode)
 
-const initDark = () => {
+// 根据浏览器当前主题设置系统主题色
+const setDefaultTheme = () => {
   const isDarkTheme = isDark()
   appStore.setIsDark(isDarkTheme)
 }
 
-initDark()
+setDefaultTheme()
 </script>
 
 <template>
@@ -50,11 +51,6 @@ body {
 }
 
 .@{prefix-cls}-grey-mode {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
   filter: grayscale(100%);
-  filter: progid:dximagetransform.microsoft.basicimage(grayscale=1);
 }
 </style>
