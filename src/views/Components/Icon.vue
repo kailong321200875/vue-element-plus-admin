@@ -2,6 +2,8 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Infotip } from '@/components/Infotip'
+import { ElButton } from 'element-plus'
+import { useIcon } from '@/hooks/web/useIcon'
 
 const { t } = useI18n()
 
@@ -42,6 +44,14 @@ const keyClick = (key: string) => {
       <Icon icon="ep:alarm-clock" />
       <Icon icon="ep:baseball" />
       <Icon icon="ep:chat-line-round" />
+    </div>
+  </ContentWrap>
+  <ContentWrap title="useIcon">
+    <div class="flex justify-between">
+      <ElButton :icon="useIcon({ icon: 'svg-icon:peoples' })">Button</ElButton>
+      <ElButton :icon="useIcon({ icon: 'svg-icon:money' })">Button</ElButton>
+      <ElButton :icon="useIcon({ icon: 'ep:aim' })">Button</ElButton>
+      <ElButton :icon="useIcon({ icon: 'ep:alarm-clock' })">Button</ElButton>
     </div>
   </ContentWrap>
 </template>
