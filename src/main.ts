@@ -30,7 +30,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import './permission'
-
+// 创建实例
 const setupAll = async () => {
   const app = createApp(App)
 
