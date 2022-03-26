@@ -31,7 +31,7 @@ const setCurrentSize = (size: ElememtPlusSzie) => {
     <template #dropdown>
       <ElDropdownMenu>
         <ElDropdownItem v-for="item in sizeMap" :key="item" :command="item">
-          {{ t(`size.${[item]}`) }}
+          {{ t(`size.${[!item ? 'default' : item]}`) }}
         </ElDropdownItem>
       </ElDropdownMenu>
     </template>
