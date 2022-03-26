@@ -227,14 +227,6 @@ const adminList = [
         }
       },
       {
-        path: 'watermark',
-        component: 'views/Components/Watermark',
-        name: 'Watermark',
-        meta: {
-          title: 'router.watermark'
-        }
-      },
-      {
         path: 'qrcode',
         component: 'views/Components/Qrcode',
         name: 'Qrcode',
@@ -256,6 +248,27 @@ const adminList = [
         name: 'Infotip',
         meta: {
           title: 'router.infotip'
+        }
+      }
+    ]
+  },
+  {
+    path: '/hooks',
+    component: '#',
+    redirect: '/hooks/useWatermark',
+    name: 'Hooks',
+    meta: {
+      title: 'hooks',
+      icon: 'ic:outline-webhook',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'useWatermark',
+        component: 'views/hooks/useWatermark',
+        name: 'UseWatermark',
+        meta: {
+          title: 'useWatermark'
         }
       }
     ]
@@ -452,10 +465,11 @@ const testList: string[] = [
   '/components/icon',
   '/components/echart',
   '/components/count-to',
-  '/components/watermark',
   '/components/qrcode',
   '/components/highlight',
   '/components/infotip',
+  '/hooks',
+  '/hooks/useWatermark',
   '/level',
   '/level/menu1',
   '/level/menu1/menu1-1',

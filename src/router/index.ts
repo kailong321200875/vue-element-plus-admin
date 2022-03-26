@@ -278,14 +278,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
-        path: 'watermark',
-        component: () => import('@/views/Components/Watermark.vue'),
-        name: 'Watermark',
-        meta: {
-          title: t('router.watermark')
-        }
-      },
-      {
         path: 'qrcode',
         component: () => import('@/views/Components/Qrcode.vue'),
         name: 'Qrcode',
@@ -307,6 +299,27 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Infotip',
         meta: {
           title: t('router.infotip')
+        }
+      }
+    ]
+  },
+  {
+    path: '/hooks',
+    component: Layout,
+    redirect: '/hooks/useWatermark',
+    name: 'Hooks',
+    meta: {
+      title: t('router.component'),
+      icon: 'ic:outline-webhook',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'useWatermark',
+        component: () => import('@/views/hooks/useWatermark.vue'),
+        name: 'UseWatermark',
+        meta: {
+          title: 'useWatermark'
         }
       }
     ]
