@@ -6,7 +6,7 @@ declare type Nullable<T> = T | null
 
 declare type ElRef<T extends HTMLElement = HTMLDivElement> = Nullable<T>
 
-declare type ElememtPlusSzie = 'default' | 'small' | 'large'
+declare type ElememtPlusSzie = '' | 'small' | 'large'
 
 declare type ElementPlusInfoType = 'success' | 'info' | 'warning' | 'danger'
 
