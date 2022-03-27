@@ -23,7 +23,8 @@
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "lint:pretty": "pretty-quick --staged",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "plop": "plop"
   },
   "dependencies": {
     "@iconify/iconify": "^2.1.2",
@@ -43,6 +44,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.12",
     "pinia-plugin-persist": "^1.0.0",
+    "plop": "^3.0.5",
     "qrcode": "^1.5.0",
     "qs": "^6.10.3",
     "vue": "3.2.31",
