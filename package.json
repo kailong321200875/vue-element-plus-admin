@@ -44,7 +44,6 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.12",
     "pinia-plugin-persist": "^1.0.0",
-    "plop": "^3.0.5",
     "qrcode": "^1.5.0",
     "qs": "^6.10.3",
     "vue": "3.2.31",
@@ -102,7 +101,8 @@
     "vite-plugin-windicss": "^1.8.3",
     "vue-tsc": "^0.33.2",
     "windicss": "^3.5.1",
-    "windicss-analysis": "^0.3.5"
+    "windicss-analysis": "^0.3.5",
+    "plop": "^3.0.5"
   },
   "engines": {
     "node": ">= 14.0.0"

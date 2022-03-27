@@ -1,11 +1,20 @@
-<script setup lang='ts'>
-  import { ElButton } from 'element-plus' import { useI18n } from '@/hooks/web/useI18n' import { ref
-  } from 'vue' defineOptions({ name: '{{upperFirstName}}', components: { ElButton }, setup() {} })
-  const { t } = useI18n()
+<script setup lang="ts">
+import { ElButton } from 'element-plus'
+import { useI18n } from '@/hooks/web/useI18n'
+import { ref } from 'vue'
+
+defineOptions({
+  name: '{{ upperFirstName }}',
+  components: {
+    ElButton
+  },
+  setup() {}
+})
+const { t } = useI18n()
 </script>
 
 <template>
   <ContentWrap>
-    <ElButton type='primary'>{{name}}</ElButton>
+    <ElButton type="primary">{{ name }}</ElButton>
   </ContentWrap>
 </template>
