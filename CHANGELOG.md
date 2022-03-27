@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.14...v1.2.0) (2022-03-27)
+
+
+### Features
+
+* add hooks demo ([c43f39e](https://github.com/kailong321200875/vue-element-plus-admin/commit/c43f39efef296266c64cc24690717d07fa0bcb85))
+* add inputPassword demo ([8f8b126](https://github.com/kailong321200875/vue-element-plus-admin/commit/8f8b1260e75df6998ebea617f62d4ab6be81d721))
+
+
+### Docs
+
+* update LICENSE ([69d3dcc](https://github.com/kailong321200875/vue-element-plus-admin/commit/69d3dcc7edf69e9b4e3042ddb11faa85ec7d39e2))
+
+
+### Styling
+
+* modify the function name to make it more semantic ([046ae51](https://github.com/kailong321200875/vue-element-plus-admin/commit/046ae512f02df2d3f08134949b9376a061c1eef3))
+* update Footer component presentation ([d4a9ba3](https://github.com/kailong321200875/vue-element-plus-admin/commit/d4a9ba3aa6758b8aac18b30e1a6b9501baff826c))
+* update Icon demo ([8597122](https://github.com/kailong321200875/vue-element-plus-admin/commit/85971227cd3055ea280cf493c7c42b250c1515da))
+
+
+### Tests
+
+* test push first commit ([a67bb48](https://github.com/kailong321200875/vue-element-plus-admin/commit/a67bb48f269651a2dcd01b9e33d10f20c42d76ee))
+
+
+### Build System
+
+* update plugins ([9c13d92](https://github.com/kailong321200875/vue-element-plus-admin/commit/9c13d92b36a2a7c95b9edb7821367fc8f0ac6658))
+* update server port ([d2be8c1](https://github.com/kailong321200875/vue-element-plus-admin/commit/d2be8c1a307a3c5daf363bd7f1d21e574598de5c))
+
 ### [1.1.14](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.13...v1.1.14) (2022-03-22)
 
 
