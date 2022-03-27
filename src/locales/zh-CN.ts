@@ -131,7 +131,8 @@ export default {
     authorization: '权限管理',
     user: '用户管理',
     role: '角色管理',
-    document: '文档'
+    document: '文档',
+    inputPassword: '密码输入框'
   },
   analysis: {
     newUser: '新增用户',
@@ -374,7 +375,7 @@ export default {
   },
   descriptionsDemo: {
     descriptions: '描述',
-    descriptionsDes: '基于 ElementPlus 的 descriptions 组件二次封装',
+    descriptionsDes: '基于 ElementPlus 的 Descriptions 组件二次封装',
     username: '用户名',
     nickName: '昵称',
     phone: '联系电话',
@@ -407,5 +408,9 @@ export default {
     remark: '备注',
     remarkMessage1: '后端控制路由权限',
     remarkMessage2: '前端控制路由权限'
+  },
+  inputPasswordDemo: {
+    title: '密码输入框',
+    inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
   }
 }

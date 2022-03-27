@@ -73,7 +73,7 @@ const dialogStyle = computed(() => {
         </slot>
         <Icon
           v-if="fullscreen"
-          class="mr-15px cursor-pointer is-hover"
+          class="mr-11px cursor-pointer is-hover mt-2px"
           :icon="isFullscreen ? 'zmdi:fullscreen-exit' : 'zmdi:fullscreen'"
           color="var(--el-color-info)"
           @click="toggleFull"

@@ -300,6 +300,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.infotip')
         }
+      },
+      {
+        path: 'input-password',
+        component: () => import('@/views/Components/InputPassword.vue'),
+        name: 'InputPassword',
+        meta: {
+          title: t('router.inputPassword')
+        }
       }
     ]
   },

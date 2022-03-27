@@ -131,7 +131,8 @@ export default {
     authorization: 'Authorization',
     user: 'User management',
     role: 'Role management',
-    document: 'Document'
+    document: 'Document',
+    inputPassword: 'InputPassword'
   },
   analysis: {
     newUser: 'New user',
@@ -411,5 +412,9 @@ export default {
     remark: 'Remark',
     remarkMessage1: 'Back end control routing permission',
     remarkMessage2: 'Front end control routing permission'
+  },
+  inputPasswordDemo: {
+    title: 'InputPassword',
+    inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
   }
 }
