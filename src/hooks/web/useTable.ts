@@ -2,7 +2,7 @@ import { Table, TableExpose } from '@/components/Table'
 import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
 import { ref, reactive, watch, computed, unref, nextTick } from 'vue'
 import { AxiosPromise } from 'axios'
-import { get, assign } from 'lodash-es'
+import { get } from 'lodash-es'
 import type { TableProps } from '@/components/Table/src/types'
 import { useI18n } from '@/hooks/web/useI18n'
 
@@ -50,15 +50,13 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
   })
 
   const parmasObj = computed(() => {
-    return assign(
-      {
-        params: {
-          pageSize: tableObject.pageSize,
-          pageIndex: tableObject.currentPage
-        }
-      },
-      tableObject.parmasObj
-    )
+    return {
+      params: {
+        ...tableObject.parmasObj.params,
+        pageSize: tableObject.pageSize,
+        pageIndex: tableObject.currentPage
+      }
+    }
   })
 
   watch(
@@ -125,7 +123,7 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     getList: async () => {
       tableObject.loading = true
       const res = await config
-        ?.getListApi(unref(parmasObj) as L)
+        ?.getListApi(unref(parmasObj) as unknown as L)
         .catch(() => {})
         .finally(() => {
           tableObject.loading = false
