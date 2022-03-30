@@ -24,7 +24,7 @@ interface TableObject<K, L> {
   currentPage: number
   total: number
   tableList: K[]
-  parmasObj: L
+  paramsObj: L
   loading: boolean
   currentRow: Nullable<K>
 }
@@ -42,17 +42,17 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     // 表格数据
     tableList: [],
     // AxiosConfig 配置
-    parmasObj: {} as L,
+    paramsObj: {} as L,
     // 加载中
     loading: true,
     // 当前行的数据
     currentRow: null
   })
 
-  const parmasObj = computed(() => {
+  const paramsObj = computed(() => {
     return {
       params: {
-        ...tableObject.parmasObj.params,
+        ...tableObject.paramsObj.params,
         pageSize: tableObject.pageSize,
         pageIndex: tableObject.currentPage
       }
@@ -116,14 +116,14 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     setProps: (props: Recordable) => void
     getList: () => Promise<void>
     setColumn: (columnProps: TableSetPropsType[]) => void
-    setSearchParmas: (data: Recordable) => void
+    setSearchParams: (data: Recordable) => void
     getSelections: () => Promise<K[]>
     delList: (ids: string[] | number[], multiple: boolean, message?: boolean) => Promise<void>
   } = {
     getList: async () => {
       tableObject.loading = true
       const res = await config
-        ?.getListApi(unref(parmasObj) as unknown as L)
+        ?.getListApi(unref(paramsObj) as unknown as L)
         .catch(() => {})
         .finally(() => {
           tableObject.loading = false
@@ -146,9 +146,9 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
       return (table?.selections || []) as K[]
     },
     // 与Search组件结合
-    setSearchParmas: (data: Recordable) => {
+    setSearchParams: (data: Recordable) => {
       tableObject.currentPage = 1
-      tableObject.parmasObj = Object.assign(tableObject.parmasObj, {
+      tableObject.paramsObj = Object.assign(tableObject.paramsObj, {
         params: {
           pageSize: tableObject.pageSize,
           pageIndex: tableObject.currentPage,
