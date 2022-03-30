@@ -257,6 +257,14 @@ const adminList = [
         meta: {
           title: 'router.inputPassword'
         }
+      },
+      {
+        path: 'sticky',
+        component: 'views/Components/Sticky',
+        name: 'Sticky',
+        meta: {
+          title: 'router.sticky'
+        }
       }
     ]
   },
@@ -477,6 +485,7 @@ const testList: string[] = [
   '/components/highlight',
   '/components/infotip',
   '/Components/InputPassword',
+  '/Components/Sticky',
   '/hooks',
   '/hooks/useWatermark',
   '/level',

@@ -22,7 +22,7 @@ const getCaches = computed((): string[] => {
 <template>
   <section
     :class="[
-      'p-[var(--app-content-padding)] w-[100%] bg-[var(--app-contnet-bg-color)]',
+      'w-[100%] bg-[var(--app-contnet-bg-color)]',
       {
         '!min-h-[calc(100%-var(--app-footer-height))]':
           fixedHeader && (layout === 'classic' || layout === 'topLeft') && footer,

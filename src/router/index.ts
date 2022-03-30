@@ -308,6 +308,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.inputPassword')
         }
+      },
+      {
+        path: 'sticky',
+        component: () => import('@/views/Components/Sticky.vue'),
+        name: 'Sticky',
+        meta: {
+          title: t('router.sticky')
+        }
       }
     ]
   },
