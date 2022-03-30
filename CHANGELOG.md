@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.1...v1.2.2) (2022-03-30)
+
+
+### Bug Fixes
+
+* fix avatar height bug ([cd4ab76](https://github.com/kailong321200875/vue-element-plus-admin/commit/cd4ab767018941777174d7837045f5259d1cc403))
+* fix parmas to params ([2c7211c](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c7211c89d7299ffc0a36bef8999b3c201dbaf4a))
+
 ### [1.2.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.0...v1.2.1) (2022-03-29)
 
 
