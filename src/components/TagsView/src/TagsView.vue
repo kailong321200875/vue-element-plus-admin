@@ -77,10 +77,11 @@ const closeOthersTags = () => {
 const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
   if (!view) return
   tagsViewStore.delCachedView()
-  const { fullPath } = view
+  const { path, query } = view
   await nextTick()
   replace({
-    path: '/redirect' + fullPath
+    path: '/redirect' + path,
+    query: query
   })
 }
 
