@@ -81,7 +81,6 @@ const handleScroll = () => {
     reset()
   } else {
     const offsetBottom = refSticky.value.getBoundingClientRect().bottom
-    console.log(offsetBottom, props.offset)
     if (offsetBottom > windowHeight.value - props.offset) {
       sticky()
       return

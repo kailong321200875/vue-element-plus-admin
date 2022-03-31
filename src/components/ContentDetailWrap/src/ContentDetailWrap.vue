@@ -24,22 +24,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="content-detail-wrap-container" ref="contentDetailWrap" id="contentDetailWrap">
+  <div class="content-detail-wrap-container" ref="contentDetailWrap">
     <Sticky :offset="offset">
       <div class="detail-wrap-header">
-        <div style="float: left">
-          <el-button style="float: left; margin: 10px 0px 0px 10px" @click="emit('back')">
+        <div class="header-left">
+          <el-button @click="emit('back')">
             <Icon icon="ep:arrow-left" class="mr-5px" />
             {{ t('common.back') }}
           </el-button>
         </div>
-        <div style="float: right">
-          <slot name="right"></slot>
-        </div>
-        <div>
+        <div class="header-center">
           <slot name="title">
-            <label class="detail-wrap-header-title">{{ title }}</label>
+            <label class="header-title">{{ title }}</label>
           </slot>
+        </div>
+        <div class="header-right">
+          <slot name="right"></slot>
         </div>
       </div>
     </Sticky>
@@ -59,18 +59,42 @@ onMounted(() => {
   .detail-wrap-header {
     position: relative;
     z-index: 999 !important;
+    display: flex;
     width: 100%;
     height: 50px;
     padding-right: 20px;
     line-height: 50px;
     text-align: center;
+
     background: #fff;
     border-bottom: 1px solid #d0d0d0;
     transition: position 0.6s ease;
 
-    .detail-wrap-header-title {
-      font-weight: 700;
+    .el-button {
+      margin: 10px 10px 0px 10px;
     }
+
+    .header-center {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+
+      .header-title {
+        font-weight: 700;
+      }
+    }
+
+    .header-left {
+      display: flex;
+    }
+
+    .header-right {
+      display: flex;
+    }
+  }
+
+  .readonly input {
+    background-color: #f6f6f6;
   }
 }
 </style>
