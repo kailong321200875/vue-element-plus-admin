@@ -9,7 +9,7 @@ const { t } = useI18n()
 
 const { getPrefixCls } = useDesign()
 
-const prefixCls = getPrefixCls('content-wrap')
+const prefixCls = getPrefixCls('content-detail-wrap')
 
 defineProps({
   title: propTypes.string.def(''),
@@ -24,27 +24,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="content-detail-wrap-container" ref="contentDetailWrap">
+  <div :class="[`${prefixCls}-container`, 'relative']" ref="contentDetailWrap">
     <Sticky :offset="offset">
-      <div class="detail-wrap-header">
-        <div class="header-left">
+      <div
+        :class="[
+          `${prefixCls}-header`,
+          'flex border-bottom-1 h-50px items-center text-center bg-white  pr-10px '
+        ]"
+      >
+        <div :class="[`${prefixCls}-header__back`, 'flex pl-10px pr-10px ']">
           <el-button @click="emit('back')">
             <Icon icon="ep:arrow-left" class="mr-5px" />
             {{ t('common.back') }}
           </el-button>
         </div>
-        <div class="header-center">
+        <div :class="[`${prefixCls}-header__title`, 'flex flex-1  justify-center']">
           <slot name="title">
-            <label class="header-title">{{ title }}</label>
+            <label class="text-16px font-700">{{ title }}</label>
           </slot>
         </div>
-        <div class="header-right">
+        <div :class="[`${prefixCls}-header__right`, 'flex  pl-10px pr-10px']">
           <slot name="right"></slot>
         </div>
       </div>
     </Sticky>
     <div style="padding: var(--app-content-padding)">
-      <ElCard :class="[prefixCls, 'mb-20px']" shadow="never">
+      <ElCard :class="[`${prefixCls}-body`, 'mb-20px']" shadow="never">
         <div>
           <slot></slot>
         </div>
@@ -52,49 +57,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-<style lang="less">
-.content-detail-wrap-container {
-  position: relative;
-
-  .detail-wrap-header {
-    position: relative;
-    z-index: 999 !important;
-    display: flex;
-    width: 100%;
-    height: 50px;
-    padding-right: 20px;
-    line-height: 50px;
-    text-align: center;
-
-    background: #fff;
-    border-bottom: 1px solid #d0d0d0;
-    transition: position 0.6s ease;
-
-    .el-button {
-      margin: 10px 10px 0px 10px;
-    }
-
-    .header-center {
-      display: flex;
-      justify-content: center;
-      flex: 1;
-
-      .header-title {
-        font-weight: 700;
-      }
-    }
-
-    .header-left {
-      display: flex;
-    }
-
-    .header-right {
-      display: flex;
-    }
-  }
-
-  .readonly input {
-    background-color: #f6f6f6;
-  }
-}
-</style>
