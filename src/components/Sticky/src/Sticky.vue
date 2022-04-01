@@ -3,9 +3,13 @@ import { propTypes } from '@/utils/propTypes'
 import { ref, onMounted, onActivated, shallowRef } from 'vue'
 import { useEventListener, useWindowSize } from '@vueuse/core'
 const props = defineProps({
+  // 距离顶部或者底部的距离(单位px)
   offset: propTypes.number.def(0),
+  // 设置元素的堆叠顺序
   zIndex: propTypes.number.def(999),
+  // 设置指定的class
   className: propTypes.string.def(''),
+  // 定位方式，默认为(top)，表示距离顶部位置，可以设置为top或者bottom
   position: {
     type: String,
     validator: function (value: string) {
