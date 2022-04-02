@@ -19,7 +19,6 @@ const props = defineProps({
     default: 'top'
   }
 })
-const active = ref(false)
 const width = ref('auto' as string)
 const height = ref('auto' as string)
 const isSticky = ref(false)
@@ -108,18 +107,16 @@ const handleReize = () => {
   }
 }
 const sticky = () => {
-  if (active.value) {
+  if (isSticky.value) {
     return
   }
-  active.value = true
   isSticky.value = true
 }
 const reset = () => {
-  if (!active.value) {
+  if (!isSticky.value) {
     return
   }
   width.value = 'auto'
-  active.value = false
   isSticky.value = false
 }
 </script>
@@ -131,7 +128,7 @@ const reset = () => {
         top: position === 'top' ? offset + 'px' : '',
         bottom: position !== 'top' ? offset + 'px' : '',
         zIndex: zIndex,
-        position: active ? 'fixed' : 'static',
+        position: isSticky ? 'fixed' : 'static',
         width: width,
         height: height
       }"
