@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.3...v1.2.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* add Sticky props comment ([46133b3](https://github.com/kailong321200875/vue-element-plus-admin/commit/46133b3ff39d48d11cbcaa1f20a271118f48eb29))
+* fix bug ([179ca06](https://github.com/kailong321200875/vue-element-plus-admin/commit/179ca064ba8adbb3b063d9798ec1930ccc68e459))
+* fix remove unnecessary variables ([ca01cbf](https://github.com/kailong321200875/vue-element-plus-admin/commit/ca01cbfd98b63a0d76190fe8d43097fdc9df74e6))
+* fix style ([17c8fea](https://github.com/kailong321200875/vue-element-plus-admin/commit/17c8fea93811d9d9b708808484f5c907d761fcf1))
+* remove ContentDetailWrap style ([4ceaa9d](https://github.com/kailong321200875/vue-element-plus-admin/commit/4ceaa9d7816369d0dcaf3e18e4cdbbd6165cef88))
+
 ### [1.2.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.2...v1.2.3) (2022-03-31)
 
 
