@@ -10,6 +10,7 @@ export default {
     document: '项目文档',
     reminder: '温馨提示',
     loginOutMessage: '是否退出本系统？',
+    back: '返回',
     ok: '确定',
     cancel: '取消',
     reload: '重新加载',
@@ -132,7 +133,8 @@ export default {
     user: '用户管理',
     role: '角色管理',
     document: '文档',
-    inputPassword: '密码输入框'
+    inputPassword: '密码输入框',
+    sticky: '黏性'
   },
   analysis: {
     newUser: '新增用户',
@@ -330,6 +332,9 @@ export default {
     left: '左',
     center: '中',
     right: '右'
+  },
+  stickyDemo: {
+    sticky: '黏性'
   },
   tableDemo: {
     table: '表格',

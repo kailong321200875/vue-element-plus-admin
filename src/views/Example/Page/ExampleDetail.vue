@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import Detail from './components/Detail.vue'
-import { ContentWrap } from '@/components/ContentWrap'
+import { ContentDetailWrap } from '@/components/ContentDetailWrap'
 import { ref } from 'vue'
-import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
 import { getTableDetApi } from '@/api/table'
@@ -31,11 +30,7 @@ getTableDet()
 </script>
 
 <template>
-  <ContentWrap :title="t('exampleDemo.detail')">
+  <ContentDetailWrap :title="t('exampleDemo.detail')" @back="push('/example/example-page')">
     <Detail :current-row="currentRow" />
-
-    <div class="text-center">
-      <ElButton @click="push('/example/example-page')">{{ t('dialogDemo.close') }}</ElButton>
-    </div>
-  </ContentWrap>
+  </ContentDetailWrap>
 </template>

@@ -9,7 +9,8 @@ export default {
     loginOut: 'Login out',
     document: 'Document',
     reminder: 'Reminder',
-    loginOutMessage: 'Exit the system？',
+    loginOutMessage: 'Exit the system?',
+    back: 'Back',
     ok: 'OK',
     cancel: 'Cancel',
     reload: 'Reload current',
@@ -132,7 +133,8 @@ export default {
     user: 'User management',
     role: 'Role management',
     document: 'Document',
-    inputPassword: 'InputPassword'
+    inputPassword: 'InputPassword',
+    sticky: 'Sticky'
   },
   analysis: {
     newUser: 'New user',
@@ -333,6 +335,9 @@ export default {
     left: 'left',
     center: 'center',
     right: 'right'
+  },
+  stickyDemo: {
+    sticky: 'Sticky'
   },
   tableDemo: {
     table: 'Table',

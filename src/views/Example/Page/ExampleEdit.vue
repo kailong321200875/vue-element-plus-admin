@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Write from './components/Write.vue'
-import { ContentWrap } from '@/components/ContentWrap'
+import { ContentDetailWrap } from '@/components/ContentDetailWrap'
 import { ref, unref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -58,14 +58,13 @@ const save = async () => {
 </script>
 
 <template>
-  <ContentWrap :title="t('exampleDemo.edit')">
+  <ContentDetailWrap :title="t('exampleDemo.edit')" @back="push('/example/example-page')">
     <Write ref="writeRef" :current-row="currentRow" />
 
-    <div class="text-center">
+    <template #right>
       <ElButton type="primary" :loading="loading" @click="save">
         {{ t('exampleDemo.save') }}
       </ElButton>
-      <ElButton @click="push('/example/example-page')">{{ t('dialogDemo.close') }}</ElButton>
-    </div>
-  </ContentWrap>
+    </template>
+  </ContentDetailWrap>
 </template>
