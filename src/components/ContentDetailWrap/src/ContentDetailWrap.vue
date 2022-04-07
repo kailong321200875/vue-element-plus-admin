@@ -24,7 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="[`${prefixCls}-container`, 'relative']" ref="contentDetailWrap">
+  <div :class="[`${prefixCls}-container`, 'relative bg-[#fff]']" ref="contentDetailWrap">
     <Sticky :offset="offset">
       <div
         :class="[
