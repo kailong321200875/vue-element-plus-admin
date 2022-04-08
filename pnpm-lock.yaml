@@ -4,7 +4,7 @@ specifiers:
   '@commitlint/cli': ^16.2.3
   '@commitlint/config-conventional': ^16.2.1
   '@iconify/iconify': ^2.2.1
-  '@iconify/json': ^2.1.25
+  '@iconify/json': ^2.1.26
   '@intlify/vite-plugin-vue-i18n': ^3.4.0
   '@purge-icons/generated': ^0.8.1
   '@types/intro.js': ^3.0.2
@@ -18,7 +18,7 @@ specifiers:
   '@vitejs/plugin-vue': ^2.3.1
   '@vitejs/plugin-vue-jsx': ^1.3.9
   '@vueuse/core': ^8.2.5
-  '@wangeditor/editor': ^0.15.19
+  '@wangeditor/editor': ^0.15.20
   '@wangeditor/editor-for-vue': ^5.1.8-7
   '@zxcvbn-ts/core': ^2.0.1
   animate.css: ^4.1.1
@@ -79,8 +79,8 @@ specifiers:
 dependencies:
   '@iconify/iconify': registry.npmmirror.com/@iconify/iconify/2.2.1
   '@vueuse/core': registry.npmmirror.com/@vueuse/core/8.2.5_vue@3.2.31
-  '@wangeditor/editor': registry.npmmirror.com/@wangeditor/editor/0.15.19
-  '@wangeditor/editor-for-vue': registry.npmmirror.com/@wangeditor/editor-for-vue/5.1.8-7_504998df9b76af4ca21cd23e65b1c591
+  '@wangeditor/editor': registry.npmmirror.com/@wangeditor/editor/0.15.20
+  '@wangeditor/editor-for-vue': registry.npmmirror.com/@wangeditor/editor-for-vue/5.1.8-7_1d8ef808b4851217c7df7d24afdb9b03
   '@zxcvbn-ts/core': registry.npmmirror.com/@zxcvbn-ts/core/2.0.1
   animate.css: registry.npmmirror.com/animate.css/4.1.1
   axios: registry.npmmirror.com/axios/0.26.1
@@ -105,7 +105,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/16.2.3
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/16.2.1
-  '@iconify/json': registry.npmmirror.com/@iconify/json/2.1.25
+  '@iconify/json': registry.npmmirror.com/@iconify/json/2.1.26
   '@intlify/vite-plugin-vue-i18n': registry.npmmirror.com/@intlify/vite-plugin-vue-i18n/3.4.0_vite@2.9.1+vue-i18n@9.1.9
   '@purge-icons/generated': registry.npmmirror.com/@purge-icons/generated/0.8.1
   '@types/intro.js': registry.npmmirror.com/@types/intro.js/3.0.2
@@ -1005,7 +1005,7 @@ packages:
     engines: { node: '>= 10.13.0' }
     dependencies:
       expand-tilde: r2.cnpmjs.org/expand-tilde/2.0.2
-      is-plain-object: r2.cnpmjs.org/is-plain-object/5.0.0
+      is-plain-object: registry.npmmirror.com/is-plain-object/5.0.0
       object.defaults: r2.cnpmjs.org/object.defaults/1.1.0
       object.pick: r2.cnpmjs.org/object.pick/1.3.0
       parse-filepath: r2.cnpmjs.org/parse-filepath/1.0.2
@@ -1409,18 +1409,6 @@ packages:
     engines: { node: '>=8' }
     dev: true
 
-  r2.cnpmjs.org/is-plain-object/5.0.0:
-    resolution:
-      {
-        integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/is-plain-object/-/is-plain-object-5.0.0.tgz
-      }
-    name: is-plain-object
-    version: 5.0.0
-    engines: { node: '>=0.10.0' }
-    dev: true
-
   r2.cnpmjs.org/is-relative/1.0.0:
     resolution:
       {
@@ -1523,7 +1511,7 @@ packages:
       findup-sync: r2.cnpmjs.org/findup-sync/5.0.0
       fined: r2.cnpmjs.org/fined/2.0.0
       flagged-respawn: r2.cnpmjs.org/flagged-respawn/2.0.0
-      is-plain-object: r2.cnpmjs.org/is-plain-object/5.0.0
+      is-plain-object: registry.npmmirror.com/is-plain-object/5.0.0
       object.map: r2.cnpmjs.org/object.map/1.0.1
       rechoir: r2.cnpmjs.org/rechoir/0.8.0
       resolve: 1.22.0
@@ -4671,15 +4659,15 @@ packages:
     name: '@iconify/iconify'
     version: 2.2.1
 
-  registry.npmmirror.com/@iconify/json/2.1.25:
+  registry.npmmirror.com/@iconify/json/2.1.26:
     resolution:
       {
-        integrity: sha512-yrWcRQ+nqgIZCNtDyT2kVzvkD3NplAlq64Dqix2Y0q2XbuvZx7FOYnjWWnuc9LW6IaxLB3tHuLiuZp7XkK1gJw==,
+        integrity: sha512-nOrXZzu0LPai/lseCLwVJPKTSL9DzzDZWagItLmkKkF+61Hs25NYP5gykHOTvh74+65BRgNt8s3MTIW5g53Zsg==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.1.25.tgz
+        tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.1.26.tgz
       }
     name: '@iconify/json'
-    version: 2.1.25
+    version: 2.1.26
     dependencies:
       '@iconify/types': registry.npmmirror.com/@iconify/types/1.1.0
       pathe: registry.npmmirror.com/pathe/0.2.0
@@ -6007,16 +5995,16 @@ packages:
       vue-demi: registry.npmmirror.com/vue-demi/0.12.1_vue@3.2.31
     dev: false
 
-  registry.npmmirror.com/@wangeditor/basic-modules/0.11.13_4adbc274c4618e8fd4b915731e16faac:
+  registry.npmmirror.com/@wangeditor/basic-modules/0.11.14_3de243ca14518dd8f76233cdcd49c101:
     resolution:
       {
-        integrity: sha512-jbUufEhw531+83NmVO3hvFBLYQNNSuacmzBbc2Hk+T5RUWLbT3ijQrvC0zm3ZCXZpE7AHHQf9g1Wzbz7t+KiXA==,
+        integrity: sha512-fM0munkovkx38iQWQqQf1k9ID40NXCcxXdpvVCtuz8wMZFPZrOfOO0AETfVxVgPAY/pT8JJJpHt1P1TTkqdeQA==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@wangeditor/basic-modules/-/basic-modules-0.11.13.tgz
+        tarball: https://registry.npmmirror.com/@wangeditor/basic-modules/-/basic-modules-0.11.14.tgz
       }
-    id: registry.npmmirror.com/@wangeditor/basic-modules/0.11.13
+    id: registry.npmmirror.com/@wangeditor/basic-modules/0.11.14
     name: '@wangeditor/basic-modules'
-    version: 0.11.13
+    version: 0.11.14
     peerDependencies:
       '@wangeditor/core': 0.x
       dom7: ^3.0.0
@@ -6025,7 +6013,7 @@ packages:
       slate: ^0.72.0
       snabbdom: ^3.1.0
     dependencies:
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       is-url: registry.npmmirror.com/is-url/1.2.4
       lodash.throttle: registry.npmmirror.com/lodash.throttle/4.1.1
@@ -6034,7 +6022,7 @@ packages:
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/code-highlight/0.9.6_a57f379c758399d43c342cc46d2a8d1b:
+  registry.npmmirror.com/@wangeditor/code-highlight/0.9.6_dc210829c3f25517a5e3acefd017856c:
     resolution:
       {
         integrity: sha512-w9IB3GYwd+09htZmlOpKc0jQ0GzFgMOQViKC4777qfVaMLvCBYTWCgijs/WLRmiOxH0I8SX88xsFXXIq/YrztQ==,
@@ -6050,23 +6038,23 @@ packages:
       slate: ^0.72.0
       snabbdom: ^3.1.0
     dependencies:
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       prismjs: registry.npmmirror.com/prismjs/1.26.0
       slate: registry.npmmirror.com/slate/0.72.8
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec:
+  registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec:
     resolution:
       {
-        integrity: sha512-HPa56CxjFXwsXi0B4XRATDK4OH+7zqR8LMnFgtptYwkFZWqFxwMflHbwtfC8dNfWQv5tyJ0cl+Z6JD+VFQT+yA==,
+        integrity: sha512-WQnG2A7cRSc88xn+7/F2cxqIZm5j8HZWmyfPojpqeh+6oM++YxoBHxo07suRNBI2Mm9WtHg7oSpbBoAPORfEcg==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@wangeditor/core/-/core-0.14.18.tgz
+        tarball: https://registry.npmmirror.com/@wangeditor/core/-/core-0.14.19.tgz
       }
-    id: registry.npmmirror.com/@wangeditor/core/0.14.18
+    id: registry.npmmirror.com/@wangeditor/core/0.14.19
     name: '@wangeditor/core'
-    version: 0.14.18
+    version: 0.14.19
     peerDependencies:
       '@uppy/core': ^2.1.1
       '@uppy/xhr-upload': ^2.0.3
@@ -6105,7 +6093,7 @@ packages:
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/editor-for-vue/5.1.8-7_504998df9b76af4ca21cd23e65b1c591:
+  registry.npmmirror.com/@wangeditor/editor-for-vue/5.1.8-7_1d8ef808b4851217c7df7d24afdb9b03:
     resolution:
       {
         integrity: sha512-U+gixhGoPHNbwNXFretC+Hh7nimjLIvgIZ0U3c5w8GDhH6cOut2S4c+NYFV1xLYI/1PokIIiixxp+lx+hyka+g==,
@@ -6119,30 +6107,30 @@ packages:
       '@wangeditor/editor': ^0.14.0
       vue: ^3.0.5
     dependencies:
-      '@wangeditor/editor': registry.npmmirror.com/@wangeditor/editor/0.15.19
+      '@wangeditor/editor': registry.npmmirror.com/@wangeditor/editor/0.15.20
       eventemitter3: registry.npmmirror.com/eventemitter3/4.0.7
       vue: registry.npmmirror.com/vue/3.2.31
     dev: false
 
-  registry.npmmirror.com/@wangeditor/editor/0.15.19:
+  registry.npmmirror.com/@wangeditor/editor/0.15.20:
     resolution:
       {
-        integrity: sha512-FcM1Np0LubVmaeTjCUrHYs1ZR4ehxeC+kTW1DvoVs+5w/qKhQNmLkFBYDt558nz51P+l9ir6/Guz0tK+JgF/ZA==,
+        integrity: sha512-2D62m2bvPMkuX7WD7gwOxaSpCc2d+emVlSf821ZAZ91YiYIP3mwoZGq4Updzo3DhICgo80I5RFsYzK9oi+63Eg==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@wangeditor/editor/-/editor-0.15.19.tgz
+        tarball: https://registry.npmmirror.com/@wangeditor/editor/-/editor-0.15.20.tgz
       }
     name: '@wangeditor/editor'
-    version: 0.15.19
+    version: 0.15.20
     dependencies:
       '@uppy/core': registry.npmmirror.com/@uppy/core/2.1.4
       '@uppy/xhr-upload': registry.npmmirror.com/@uppy/xhr-upload/2.0.7_@uppy+core@2.1.4
-      '@wangeditor/basic-modules': registry.npmmirror.com/@wangeditor/basic-modules/0.11.13_4adbc274c4618e8fd4b915731e16faac
-      '@wangeditor/code-highlight': registry.npmmirror.com/@wangeditor/code-highlight/0.9.6_a57f379c758399d43c342cc46d2a8d1b
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
-      '@wangeditor/list-module': registry.npmmirror.com/@wangeditor/list-module/0.9.5_a57f379c758399d43c342cc46d2a8d1b
-      '@wangeditor/table-module': registry.npmmirror.com/@wangeditor/table-module/0.10.11_312e548b45c9a40370678597c0f06214
-      '@wangeditor/upload-image-module': registry.npmmirror.com/@wangeditor/upload-image-module/0.8.4_82a471cce326ba1271f78ac4bbed4da9
-      '@wangeditor/video-module': registry.npmmirror.com/@wangeditor/video-module/0.10.11_123a3b5b6d1de27b744251b17d2a3cfe
+      '@wangeditor/basic-modules': registry.npmmirror.com/@wangeditor/basic-modules/0.11.14_3de243ca14518dd8f76233cdcd49c101
+      '@wangeditor/code-highlight': registry.npmmirror.com/@wangeditor/code-highlight/0.9.6_dc210829c3f25517a5e3acefd017856c
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/list-module': registry.npmmirror.com/@wangeditor/list-module/0.9.5_dc210829c3f25517a5e3acefd017856c
+      '@wangeditor/table-module': registry.npmmirror.com/@wangeditor/table-module/0.10.11_e5a9b881968add579a48c1b6cb2f8662
+      '@wangeditor/upload-image-module': registry.npmmirror.com/@wangeditor/upload-image-module/0.8.4_c3eda5c31ad757be371c5d3a4aca04b4
+      '@wangeditor/video-module': registry.npmmirror.com/@wangeditor/video-module/0.10.11_8e57ad274ce84a47c1f5acf83a17ef39
       dom7: registry.npmmirror.com/dom7/3.0.0
       is-hotkey: registry.npmmirror.com/is-hotkey/0.2.0
       lodash.camelcase: registry.npmmirror.com/lodash.camelcase/4.3.0
@@ -6157,7 +6145,7 @@ packages:
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/list-module/0.9.5_a57f379c758399d43c342cc46d2a8d1b:
+  registry.npmmirror.com/@wangeditor/list-module/0.9.5_dc210829c3f25517a5e3acefd017856c:
     resolution:
       {
         integrity: sha512-q0rAapCJqhMziT9EqplHEnPZ/XdoNvw0+fzfAKWyJqzxoFuPfU6dpbrMONSAsvT8EYwunyGJBzOfZpsFrwY63g==,
@@ -6173,13 +6161,13 @@ packages:
       slate: ^0.72.0
       snabbdom: ^3.1.0
     dependencies:
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       slate: registry.npmmirror.com/slate/0.72.8
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/table-module/0.10.11_312e548b45c9a40370678597c0f06214:
+  registry.npmmirror.com/@wangeditor/table-module/0.10.11_e5a9b881968add579a48c1b6cb2f8662:
     resolution:
       {
         integrity: sha512-vQPwoAzFiLVHuwjFs/0K89HEi+woh3qi5FCj5bnH7QJn1yOmlP4qcrUZbJSbfyESJ3pgKnZ9S005es2O2WRhMg==,
@@ -6197,7 +6185,7 @@ packages:
       slate: ^0.72.0
       snabbdom: ^3.1.0
     dependencies:
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       lodash.isequal: registry.npmmirror.com/lodash.isequal/4.5.0
       nanoid: registry.npmmirror.com/nanoid/3.3.1
@@ -6205,7 +6193,7 @@ packages:
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/upload-image-module/0.8.4_82a471cce326ba1271f78ac4bbed4da9:
+  registry.npmmirror.com/@wangeditor/upload-image-module/0.8.4_c3eda5c31ad757be371c5d3a4aca04b4:
     resolution:
       {
         integrity: sha512-WbXT8/GRRB7wMV8otkrkG/09x4kBrc/xgGGeR0aeM2RJr2Eg1SiG6JQThjZazXXpZPGpoeIzMOqM9UpPq07EUg==,
@@ -6227,15 +6215,15 @@ packages:
     dependencies:
       '@uppy/core': registry.npmmirror.com/@uppy/core/2.1.4
       '@uppy/xhr-upload': registry.npmmirror.com/@uppy/xhr-upload/2.0.7_@uppy+core@2.1.4
-      '@wangeditor/basic-modules': registry.npmmirror.com/@wangeditor/basic-modules/0.11.13_4adbc274c4618e8fd4b915731e16faac
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/basic-modules': registry.npmmirror.com/@wangeditor/basic-modules/0.11.14_3de243ca14518dd8f76233cdcd49c101
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       lodash.foreach: registry.npmmirror.com/lodash.foreach/4.5.0
       slate: registry.npmmirror.com/slate/0.72.8
       snabbdom: registry.npmmirror.com/snabbdom/3.3.1
     dev: false
 
-  registry.npmmirror.com/@wangeditor/video-module/0.10.11_123a3b5b6d1de27b744251b17d2a3cfe:
+  registry.npmmirror.com/@wangeditor/video-module/0.10.11_8e57ad274ce84a47c1f5acf83a17ef39:
     resolution:
       {
         integrity: sha512-JSz+Vxo5d0v6+8OkexYZYxhrU4zD2IoukMem3WmxrazhYkSh8wOIr9EJ0ZRQnKA7g9WkTV/k9kgF+W9ppij1MQ==,
@@ -6256,7 +6244,7 @@ packages:
     dependencies:
       '@uppy/core': registry.npmmirror.com/@uppy/core/2.1.4
       '@uppy/xhr-upload': registry.npmmirror.com/@uppy/xhr-upload/2.0.7_@uppy+core@2.1.4
-      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.18_a928485b3609bef22c9de9d973bf37ec
+      '@wangeditor/core': registry.npmmirror.com/@wangeditor/core/0.14.19_a928485b3609bef22c9de9d973bf37ec
       dom7: registry.npmmirror.com/dom7/3.0.0
       nanoid: registry.npmmirror.com/nanoid/3.3.1
       slate: registry.npmmirror.com/slate/0.72.8
