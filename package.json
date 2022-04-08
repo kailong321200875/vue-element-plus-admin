@@ -24,7 +24,7 @@
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "lint:pretty": "pretty-quick --staged",
     "postinstall": "husky install",
-    "plop": "plop"
+    "p": "plop"
   },
   "dependencies": {
     "@iconify/iconify": "^2.2.1",

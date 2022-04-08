@@ -1,7 +1,7 @@
-const createNewModule = require('./plop/generator/newModule')
+const viewGenerator = require('./plop/view/prompt.js')
+const componentGenerator = require('./plop/component/prompt.js')
 
-function Cli(plop) {
-  plop.setGenerator('newModule', createNewModule)
+module.exports = function (plop) {
+  plop.setGenerator('view', viewGenerator)
+  plop.setGenerator('component', componentGenerator)
 }
-
-module.exports = Cli

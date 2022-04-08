@@ -92,9 +92,8 @@ dependencies:
   mitt: registry.npmmirror.com/mitt/3.0.0
   mockjs: registry.npmmirror.com/mockjs/1.1.0
   nprogress: registry.npmmirror.com/nprogress/0.2.0
-  pinia: registry.npmmirror.com/pinia/2.0.12_typescript@4.6.2+vue@3.2.31
-  pinia-plugin-persist: registry.npmmirror.com/pinia-plugin-persist/1.0.0_pinia@2.0.12+vue@3.2.31
-  plop: r2.cnpmjs.org/plop/3.0.5
+  pinia: registry.npmmirror.com/pinia/2.0.13_typescript@4.6.3+vue@3.2.31
+  pinia-plugin-persist: registry.npmmirror.com/pinia-plugin-persist/1.0.0_pinia@2.0.13+vue@3.2.31
   qrcode: registry.npmmirror.com/qrcode/1.5.0
   qs: registry.npmmirror.com/qs/6.10.3
   vue: registry.npmmirror.com/vue/3.2.31
@@ -129,6 +128,7 @@ devDependencies:
   husky: registry.npmmirror.com/husky/7.0.4
   less: registry.npmmirror.com/less/4.1.2
   lint-staged: registry.npmmirror.com/lint-staged/12.3.7
+  plop: r2.cnpmjs.org/plop/3.0.5
   postcss: registry.npmmirror.com/postcss/8.4.12
   postcss-html: registry.npmmirror.com/postcss-html/1.3.0
   postcss-less: registry.npmmirror.com/postcss-less/6.0.0_postcss@8.4.12
@@ -155,72 +155,6 @@ devDependencies:
   windicss-analysis: registry.npmmirror.com/windicss-analysis/0.3.5
 
 packages:
-  /@commitlint/load/16.2.3:
-    resolution:
-      {
-        integrity: sha512-Hb4OUlMnBUK6UxJEZ/VJ5k0LocIS7PtEMbRXEAA7eSpOgORIFexC4K/RaRpVd5UTtu3M0ST3ddPPijF9rdW6nw==
-      }
-    engines: { node: '>=v12' }
-    dependencies:
-      '@commitlint/config-validator': registry.npmmirror.com/@commitlint/config-validator/16.2.1
-      '@commitlint/execute-rule': registry.npmmirror.com/@commitlint/execute-rule/16.2.1
-      '@commitlint/resolve-extends': registry.npmmirror.com/@commitlint/resolve-extends/16.2.1
-      '@commitlint/types': registry.npmmirror.com/@commitlint/types/16.2.1
-      '@types/node': registry.npmmirror.com/@types/node/17.0.21
-      chalk: r2.cnpmjs.org/chalk/4.1.2
-      cosmiconfig: registry.npmmirror.com/cosmiconfig/7.0.1
-      cosmiconfig-typescript-loader: registry.npmmirror.com/cosmiconfig-typescript-loader/1.0.2_e79e62fe450383fd2d418267dc75e645
-      lodash: registry.npmmirror.com/lodash/4.17.21
-      resolve-from: registry.npmmirror.com/resolve-from/5.0.0
-      typescript: registry.npmmirror.com/typescript/4.6.2
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@swc/wasm'
-    dev: true
-    optional: true
-
-  /@intlify/bundle-utils/2.2.1_vue-i18n@9.1.9:
-    resolution:
-      {
-        integrity: sha512-8n8zhYEKypS+KP22KUAC6BnQifJDDWUGcn3OVPqsThqMMucU22MShGvOuiKqQ4AeT7XQ5O4pudlJmxv3L91JrQ==
-      }
-    engines: { node: '>= 12' }
-    peerDependencies:
-      petite-vue-i18n: '*'
-      vue-i18n: '*'
-    peerDependenciesMeta:
-      petite-vue-i18n:
-        optional: true
-      vue-i18n:
-        optional: true
-    dependencies:
-      '@intlify/message-compiler': 9.2.0-beta.33
-      '@intlify/shared': 9.2.0-beta.33
-      jsonc-eslint-parser: r2.cnpmjs.org/jsonc-eslint-parser/1.4.1
-      source-map: r2.cnpmjs.org/source-map/0.6.1
-      vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.31
-      yaml-eslint-parser: r2.cnpmjs.org/yaml-eslint-parser/0.3.2
-    dev: true
-
-  /@intlify/message-compiler/9.2.0-beta.33:
-    resolution:
-      {
-        integrity: sha512-+SICjFlnHSbRLZT+sNdBvOAQfcNX+fESyMmgPxC8HHWu4GLN2CoVQS4ACXb3QBZDKLVJBFhFGMnl+UXyJrno6g==
-      }
-    engines: { node: '>= 12' }
-    dependencies:
-      '@intlify/shared': 9.2.0-beta.33
-      source-map: r2.cnpmjs.org/source-map/0.6.1
-    dev: true
-
-  /@intlify/shared/9.2.0-beta.33:
-    resolution:
-      {
-        integrity: sha512-HldlkV66vMt1vQsuUz4zjQ202C5KW6aHeIQhx7RxBO11i3E8V84dp5MG9epr9GZXVsrCAR56Ekj0HaTqksIRJA==
-      }
-    engines: { node: '>= 12' }
-    dev: true
-
   /@types/inquirer/8.2.0:
     resolution:
       {
@@ -229,14 +163,14 @@ packages:
     dependencies:
       '@types/through': r2.cnpmjs.org/@types/through/0.0.30
       rxjs: 7.5.2
-    dev: false
+    dev: true
 
   /@types/node/17.0.21:
     resolution:
       {
         integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==
       }
-    dev: false
+    dev: true
 
   /buffer/5.7.1:
     resolution:
@@ -246,7 +180,7 @@ packages:
     dependencies:
       base64-js: r2.cnpmjs.org/base64-js/1.5.1
       ieee754: r2.cnpmjs.org/ieee754/1.2.1
-    dev: false
+    dev: true
 
   /buffer/6.0.3:
     resolution:
@@ -256,7 +190,7 @@ packages:
     dependencies:
       base64-js: r2.cnpmjs.org/base64-js/1.5.1
       ieee754: r2.cnpmjs.org/ieee754/1.2.1
-    dev: false
+    dev: true
 
   /chalk/5.0.1:
     resolution:
@@ -264,235 +198,7 @@ packages:
         integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==
       }
     engines: { node: ^12.17.0 || ^14.13 || >=16.0.0 }
-    dev: false
-
-  /esbuild-android-arm64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-Bqgld1TY0wZv8TqiQmVxQFgYzz8ZmyzT7clXBDZFkOOdRybzsnj8AZuK1pwcLVA7Ya6XncHgJqIao7NFd3s0RQ==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm64]
-    os: [android]
-    requiresBuild: true
     dev: true
-    optional: true
-
-  /esbuild-darwin-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-j+Eg+e13djzyYINVvAbOo2/zvZ2DivuJJTaBrJnJHSD7kUNuGHRkHoSfFjbI80KHkn091w350wdmXDNSgRjfYQ==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-darwin-arm64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-nDNTKWDPI0RuoPj5BhcSB2z5EmZJJAyRtZLIjyXSqSpAyoB8eyAKXl4lB8U2P78Fnh4Lh1le/fmpewXE04JhBQ==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-freebsd-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-zIurkCHXhxELiDZtLGiexi8t8onQc2LtuE+S7457H/pP0g0MLRKMrsn/IN4LDkNe6lvBjuoZZi2OfelOHn831g==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-freebsd-arm64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-wdxMmkJfbwcN+q85MpeUEamVZ40FNsBa9mPq8tAszDn8TRT2HoJvVRADPIIBa9SWWwlDChIMjkDKAnS3KS/sPA==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-32/0.14.21:
-    resolution:
-      {
-        integrity: sha512-fmxvyzOPPh2xiEHojpCeIQP6pXcoKsWbz3ryDDIKLOsk4xp3GbpHIEAWP0xTeuhEbendmvBDVKbAVv3PnODXLg==
-      }
-    engines: { node: '>=12' }
-    cpu: [ia32]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-edZyNOv1ql+kpmlzdqzzDjRQYls+tSyi4QFi+PdBhATJFUqHsnNELWA9vMSzAaInPOEaVUTA5Ml28XFChcy4DA==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-arm/0.14.21:
-    resolution:
-      {
-        integrity: sha512-aSU5pUueK6afqmLQsbU+QcFBT62L+4G9hHMJDHWfxgid6hzhSmfRH9U/f+ymvxsSTr/HFRU4y7ox8ZyhlVl98w==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-arm64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-t5qxRkq4zdQC0zXpzSB2bTtfLgOvR0C6BXYaRE/6/k8/4SrkZcTZBeNu+xGvwCU4b5dU9ST9pwIWkK6T1grS8g==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-mips64le/0.14.21:
-    resolution:
-      {
-        integrity: sha512-jLZLQGCNlUsmIHtGqNvBs3zN+7a4D9ckf0JZ+jQTwHdZJ1SgV9mAjbB980OFo66LoY+WeM7t3WEnq3FjI1zw4A==
-      }
-    engines: { node: '>=12' }
-    cpu: [mips64el]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-ppc64le/0.14.21:
-    resolution:
-      {
-        integrity: sha512-4TWxpK391en2UBUw6GSrukToTDu6lL9vkm3Ll40HrI08WG3qcnJu7bl8e1+GzelDsiw1QmfAY/nNvJ6iaHRpCQ==
-      }
-    engines: { node: '>=12' }
-    cpu: [ppc64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-riscv64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-fElngqOaOfTsF+u+oetDLHsPG74vB2ZaGZUqmGefAJn3a5z9Z2pNa4WpVbbKgHpaAAy5tWM1m1sbGohj6Ki6+Q==
-      }
-    engines: { node: '>=12' }
-    cpu: [riscv64]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-linux-s390x/0.14.21:
-    resolution:
-      {
-        integrity: sha512-brleZ6R5fYv0qQ7ZBwenQmP6i9TdvJCB092c/3D3pTLQHBGHJb5zWgKxOeS7bdHzmLy6a6W7GbFk6QKpjyD6QA==
-      }
-    engines: { node: '>=12' }
-    cpu: [s390x]
-    os: [linux]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-netbsd-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-nCEgsLCQ8RoFWVV8pVI+kX66ICwbPP/M9vEa0NJGIEB/Vs5sVGMqkf67oln90XNSkbc0bPBDuo4G6FxlF7PN8g==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [netbsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-openbsd-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-h9zLMyVD0T73MDTVYIb/qUTokwI6EJH9O6wESuTNq6+XpMSr6C5aYZ4fvFKdNELW+Xsod+yDS2hV2JTUAbFrLA==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [openbsd]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-sunos-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-Kl+7Cot32qd9oqpLdB1tEGXEkjBlijrIxMJ0+vlDFaqsODutif25on0IZlFxEBtL2Gosd4p5WCV1U7UskNQfXA==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [sunos]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-windows-32/0.14.21:
-    resolution:
-      {
-        integrity: sha512-V7vnTq67xPBUCk/9UtlolmQ798Ecjdr1ZoI1vcSgw7M82aSSt0eZdP6bh5KAFZU8pxDcx3qoHyWQfHYr11f22A==
-      }
-    engines: { node: '>=12' }
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-windows-64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-kDgHjKOHwjfJDCyRGELzVxiP/RBJBTA+wyspf78MTTJQkyPuxH2vChReNdWc+dU2S4gIZFHMdP1Qrl/k22ZmaA==
-      }
-    engines: { node: '>=12' }
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
-
-  /esbuild-windows-arm64/0.14.21:
-    resolution:
-      {
-        integrity: sha512-8Sbo0zpzgwWrwjQYLmHF78f7E2xg5Ve63bjB2ng3V2aManilnnTGaliq2snYg+NOX60+hEvJHRdVnuIAHW0lVw==
-      }
-    engines: { node: '>=12' }
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: true
-    optional: true
 
   /fast-glob/3.2.11:
     resolution:
@@ -506,7 +212,7 @@ packages:
       glob-parent: r2.cnpmjs.org/glob-parent/5.1.2
       merge2: r2.cnpmjs.org/merge2/1.4.1
       micromatch: r2.cnpmjs.org/micromatch/4.0.4
-    dev: false
+    dev: true
 
   /globby/11.1.0:
     resolution:
@@ -521,7 +227,7 @@ packages:
       ignore: r2.cnpmjs.org/ignore/5.2.0
       merge2: r2.cnpmjs.org/merge2/1.4.1
       slash: r2.cnpmjs.org/slash/3.0.0
-    dev: false
+    dev: true
 
   /globby/12.2.0:
     resolution:
@@ -536,7 +242,7 @@ packages:
       ignore: r2.cnpmjs.org/ignore/5.2.0
       merge2: r2.cnpmjs.org/merge2/1.4.1
       slash: r2.cnpmjs.org/slash/4.0.0
-    dev: false
+    dev: true
 
   /inquirer/8.2.2:
     resolution:
@@ -551,7 +257,7 @@ packages:
       cli-width: r2.cnpmjs.org/cli-width/3.0.0
       external-editor: r2.cnpmjs.org/external-editor/3.1.0
       figures: r2.cnpmjs.org/figures/3.2.0
-      lodash: r2.cnpmjs.org/lodash/4.17.21
+      lodash: registry.npmmirror.com/lodash/4.17.21
       mute-stream: r2.cnpmjs.org/mute-stream/0.0.8
       ora: r2.cnpmjs.org/ora/5.4.1
       run-async: r2.cnpmjs.org/run-async/2.4.1
@@ -559,7 +265,7 @@ packages:
       string-width: r2.cnpmjs.org/string-width/4.2.3
       strip-ansi: r2.cnpmjs.org/strip-ansi/6.0.1
       through: r2.cnpmjs.org/through/2.3.8
-    dev: false
+    dev: true
 
   /is-core-module/2.8.1:
     resolution:
@@ -568,7 +274,7 @@ packages:
       }
     dependencies:
       has: r2.cnpmjs.org/has/1.0.3
-    dev: false
+    dev: true
 
   /is-unicode-supported/1.2.0:
     resolution:
@@ -576,7 +282,7 @@ packages:
         integrity: sha512-wH+U77omcRzevfIG8dDhTS0V9zZyweakfD01FULl97+0EHiJTTZtJqxPSkIIo/SDPv/i07k/C9jAPY+jwLLeUQ==
       }
     engines: { node: '>=12' }
-    dev: false
+    dev: true
 
   /isbinaryfile/4.0.10:
     resolution:
@@ -584,7 +290,7 @@ packages:
         integrity: sha512-iHrqe5shvBUcFbmZq9zOQHBoeOhZJu6RQGrDpBgenUm/Am+F3JM2MgQj+rK3Z601fzrL5gLZWtAPH2OBaSVcyw==
       }
     engines: { node: '>= 8.0.0' }
-    dev: false
+    dev: true
 
   /ora/6.1.0:
     resolution:
@@ -602,7 +308,7 @@ packages:
       log-symbols: r2.cnpmjs.org/log-symbols/5.1.0
       strip-ansi: r2.cnpmjs.org/strip-ansi/7.0.1
       wcwidth: r2.cnpmjs.org/wcwidth/1.0.1
-    dev: false
+    dev: true
 
   /resolve/1.22.0:
     resolution:
@@ -614,7 +320,7 @@ packages:
       is-core-module: 2.8.1
       path-parse: r2.cnpmjs.org/path-parse/1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: false
+    dev: true
 
   /rxjs/7.5.2:
     resolution:
@@ -623,7 +329,7 @@ packages:
       }
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   /rxjs/7.5.5:
     resolution:
@@ -632,14 +338,14 @@ packages:
       }
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   /signal-exit/3.0.7:
     resolution:
       {
         integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
       }
-    dev: false
+    dev: true
 
   /supports-preserve-symlinks-flag/1.0.0:
     resolution:
@@ -647,18 +353,7 @@ packages:
         integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
       }
     engines: { node: '>= 0.4' }
-    dev: false
-
-  /uglify-js/3.15.3:
-    resolution:
-      {
-        integrity: sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==
-      }
-    engines: { node: '>=0.8.0' }
-    hasBin: true
-    requiresBuild: true
-    dev: false
-    optional: true
+    dev: true
 
   r2.cnpmjs.org/@nodelib/fs.scandir/2.1.5:
     resolution:
@@ -673,7 +368,7 @@ packages:
     dependencies:
       '@nodelib/fs.stat': r2.cnpmjs.org/@nodelib/fs.stat/2.0.5
       run-parallel: r2.cnpmjs.org/run-parallel/1.2.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/@nodelib/fs.stat/2.0.5:
     resolution:
@@ -685,7 +380,7 @@ packages:
     name: '@nodelib/fs.stat'
     version: 2.0.5
     engines: { node: '>= 8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/@nodelib/fs.walk/1.2.8:
     resolution:
@@ -700,7 +395,7 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': r2.cnpmjs.org/@nodelib/fs.scandir/2.1.5
       fastq: r2.cnpmjs.org/fastq/1.13.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/@types/fined/1.1.3:
     resolution:
@@ -711,7 +406,7 @@ packages:
       }
     name: '@types/fined'
     version: 1.1.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/@types/liftoff/4.0.0:
     resolution:
@@ -725,7 +420,7 @@ packages:
     dependencies:
       '@types/fined': r2.cnpmjs.org/@types/fined/1.1.3
       '@types/node': 17.0.21
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/@types/through/0.0.30:
     resolution:
@@ -738,35 +433,6 @@ packages:
     version: 0.0.30
     dependencies:
       '@types/node': 17.0.21
-    dev: false
-
-  r2.cnpmjs.org/acorn-jsx/5.3.2_acorn@7.4.1:
-    resolution:
-      {
-        integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/acorn-jsx/-/acorn-jsx-5.3.2.tgz
-      }
-    id: r2.cnpmjs.org/acorn-jsx/5.3.2
-    name: acorn-jsx
-    version: 5.3.2
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: r2.cnpmjs.org/acorn/7.4.1
-    dev: true
-
-  r2.cnpmjs.org/acorn/7.4.1:
-    resolution:
-      {
-        integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/acorn/-/acorn-7.4.1.tgz
-      }
-    name: acorn
-    version: 7.4.1
-    engines: { node: '>=0.4.0' }
-    hasBin: true
     dev: true
 
   r2.cnpmjs.org/aggregate-error/3.1.0:
@@ -782,7 +448,7 @@ packages:
     dependencies:
       clean-stack: r2.cnpmjs.org/clean-stack/2.2.0
       indent-string: r2.cnpmjs.org/indent-string/4.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ansi-escapes/4.3.2:
     resolution:
@@ -796,7 +462,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       type-fest: r2.cnpmjs.org/type-fest/0.21.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ansi-regex/5.0.1:
     resolution:
@@ -808,7 +474,7 @@ packages:
     name: ansi-regex
     version: 5.0.1
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ansi-regex/6.0.1:
     resolution:
@@ -820,7 +486,7 @@ packages:
     name: ansi-regex
     version: 6.0.1
     engines: { node: '>=12' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/array-each/1.0.1:
     resolution:
@@ -832,7 +498,7 @@ packages:
     name: array-each
     version: 1.0.1
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/array-slice/1.1.0:
     resolution:
@@ -844,7 +510,7 @@ packages:
     name: array-slice
     version: 1.1.0
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/array-union/2.1.0:
     resolution:
@@ -856,7 +522,7 @@ packages:
     name: array-union
     version: 2.1.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/array-union/3.0.1:
     resolution:
@@ -868,7 +534,7 @@ packages:
     name: array-union
     version: 3.0.1
     engines: { node: '>=12' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/balanced-match/1.0.2:
     resolution:
@@ -879,7 +545,7 @@ packages:
       }
     name: balanced-match
     version: 1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/base64-js/1.5.1:
     resolution:
@@ -890,7 +556,7 @@ packages:
       }
     name: base64-js
     version: 1.5.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/bl/4.1.0:
     resolution:
@@ -905,7 +571,7 @@ packages:
       buffer: 5.7.1
       inherits: r2.cnpmjs.org/inherits/2.0.4
       readable-stream: r2.cnpmjs.org/readable-stream/3.6.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/bl/5.0.0:
     resolution:
@@ -920,7 +586,7 @@ packages:
       buffer: 6.0.3
       inherits: r2.cnpmjs.org/inherits/2.0.4
       readable-stream: r2.cnpmjs.org/readable-stream/3.6.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/brace-expansion/1.1.11:
     resolution:
@@ -934,7 +600,7 @@ packages:
     dependencies:
       balanced-match: r2.cnpmjs.org/balanced-match/1.0.2
       concat-map: r2.cnpmjs.org/concat-map/0.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/braces/3.0.2:
     resolution:
@@ -948,7 +614,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       fill-range: r2.cnpmjs.org/fill-range/7.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/camel-case/4.1.2:
     resolution:
@@ -962,7 +628,7 @@ packages:
     dependencies:
       pascal-case: r2.cnpmjs.org/pascal-case/3.1.2
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/capital-case/1.0.4:
     resolution:
@@ -977,7 +643,7 @@ packages:
       no-case: r2.cnpmjs.org/no-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
       upper-case-first: r2.cnpmjs.org/upper-case-first/2.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/chalk/4.1.2:
     resolution:
@@ -992,6 +658,7 @@ packages:
     dependencies:
       ansi-styles: registry.npmmirror.com/ansi-styles/4.3.0
       supports-color: registry.npmmirror.com/supports-color/7.2.0
+    dev: true
 
   r2.cnpmjs.org/change-case/4.1.2:
     resolution:
@@ -1015,7 +682,7 @@ packages:
       sentence-case: r2.cnpmjs.org/sentence-case/3.0.4
       snake-case: r2.cnpmjs.org/snake-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/chardet/0.7.0:
     resolution:
@@ -1026,7 +693,7 @@ packages:
       }
     name: chardet
     version: 0.7.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/clean-stack/2.2.0:
     resolution:
@@ -1038,7 +705,7 @@ packages:
     name: clean-stack
     version: 2.2.0
     engines: { node: '>=6' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/cli-cursor/3.1.0:
     resolution:
@@ -1052,7 +719,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       restore-cursor: r2.cnpmjs.org/restore-cursor/3.1.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/cli-cursor/4.0.0:
     resolution:
@@ -1066,7 +733,7 @@ packages:
     engines: { node: ^12.20.0 || ^14.13.1 || >=16.0.0 }
     dependencies:
       restore-cursor: r2.cnpmjs.org/restore-cursor/4.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/cli-spinners/2.6.1:
     resolution:
@@ -1078,7 +745,7 @@ packages:
     name: cli-spinners
     version: 2.6.1
     engines: { node: '>=6' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/cli-width/3.0.0:
     resolution:
@@ -1090,7 +757,7 @@ packages:
     name: cli-width
     version: 3.0.0
     engines: { node: '>= 10' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/clone/1.0.4:
     resolution:
@@ -1102,7 +769,7 @@ packages:
     name: clone
     version: 1.0.4
     engines: { node: '>=0.8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/concat-map/0.0.1:
     resolution:
@@ -1113,7 +780,7 @@ packages:
       }
     name: concat-map
     version: 0.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/constant-case/3.0.4:
     resolution:
@@ -1128,7 +795,7 @@ packages:
       no-case: r2.cnpmjs.org/no-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
       upper-case: r2.cnpmjs.org/upper-case/2.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/defaults/1.0.3:
     resolution:
@@ -1141,7 +808,7 @@ packages:
     version: 1.0.3
     dependencies:
       clone: r2.cnpmjs.org/clone/1.0.4
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/del/6.0.0:
     resolution:
@@ -1155,14 +822,14 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       globby: 11.1.0
-      graceful-fs: r2.cnpmjs.org/graceful-fs/4.2.8
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
       is-glob: r2.cnpmjs.org/is-glob/4.0.3
       is-path-cwd: r2.cnpmjs.org/is-path-cwd/2.2.0
       is-path-inside: r2.cnpmjs.org/is-path-inside/3.0.3
       p-map: r2.cnpmjs.org/p-map/4.0.0
       rimraf: r2.cnpmjs.org/rimraf/3.0.2
       slash: r2.cnpmjs.org/slash/3.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/detect-file/1.0.0:
     resolution:
@@ -1174,7 +841,7 @@ packages:
     name: detect-file
     version: 1.0.0
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/dir-glob/3.0.1:
     resolution:
@@ -1188,7 +855,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       path-type: r2.cnpmjs.org/path-type/4.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/dot-case/3.0.4:
     resolution:
@@ -1202,7 +869,7 @@ packages:
     dependencies:
       no-case: r2.cnpmjs.org/no-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/emoji-regex/8.0.0:
     resolution:
@@ -1213,23 +880,7 @@ packages:
       }
     name: emoji-regex
     version: 8.0.0
-    dev: false
-
-  r2.cnpmjs.org/errno/0.1.8:
-    resolution:
-      {
-        integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/errno/-/errno-0.1.8.tgz
-      }
-    name: errno
-    version: 0.1.8
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      prr: registry.nlark.com/prr/1.0.1
     dev: true
-    optional: true
 
   r2.cnpmjs.org/escape-string-regexp/1.0.5:
     resolution:
@@ -1241,48 +892,6 @@ packages:
     name: escape-string-regexp
     version: 1.0.5
     engines: { node: '>=0.8.0' }
-    dev: false
-
-  r2.cnpmjs.org/eslint-utils/2.1.0:
-    resolution:
-      {
-        integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/eslint-utils/-/eslint-utils-2.1.0.tgz
-      }
-    name: eslint-utils
-    version: 2.1.0
-    engines: { node: '>=6' }
-    dependencies:
-      eslint-visitor-keys: r2.cnpmjs.org/eslint-visitor-keys/1.3.0
-    dev: true
-
-  r2.cnpmjs.org/eslint-visitor-keys/1.3.0:
-    resolution:
-      {
-        integrity: sha512-6J72N8UNa462wa/KFODt/PJ3IU60SDpC3QXC1Hjc1BXXpfL2C9R5+AU7jhe0F6GREqVMh4Juu+NY7xn+6dipUQ==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-1.3.0.tgz
-      }
-    name: eslint-visitor-keys
-    version: 1.3.0
-    engines: { node: '>=4' }
-    dev: true
-
-  r2.cnpmjs.org/espree/6.2.1:
-    resolution:
-      {
-        integrity: sha512-ysCxRQY3WaXJz9tdbWOwuWr5Y/XrPTGX9Kiz3yoUXwW0VZ4w30HTkQLaGx/+ttFjF8i+ACbArnB4ce68a9m5hw==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/espree/-/espree-6.2.1.tgz
-      }
-    name: espree
-    version: 6.2.1
-    engines: { node: '>=6.0.0' }
-    dependencies:
-      acorn: r2.cnpmjs.org/acorn/7.4.1
-      acorn-jsx: r2.cnpmjs.org/acorn-jsx/5.3.2_acorn@7.4.1
-      eslint-visitor-keys: r2.cnpmjs.org/eslint-visitor-keys/1.3.0
     dev: true
 
   r2.cnpmjs.org/expand-tilde/2.0.2:
@@ -1297,7 +906,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       homedir-polyfill: r2.cnpmjs.org/homedir-polyfill/1.0.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/extend/3.0.2:
     resolution:
@@ -1308,7 +917,7 @@ packages:
       }
     name: extend
     version: 3.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/external-editor/3.1.0:
     resolution:
@@ -1324,7 +933,7 @@ packages:
       chardet: r2.cnpmjs.org/chardet/0.7.0
       iconv-lite: r2.cnpmjs.org/iconv-lite/0.4.24
       tmp: r2.cnpmjs.org/tmp/0.0.33
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/fastq/1.13.0:
     resolution:
@@ -1337,7 +946,7 @@ packages:
     version: 1.13.0
     dependencies:
       reusify: r2.cnpmjs.org/reusify/1.0.4
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/figures/3.2.0:
     resolution:
@@ -1351,7 +960,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       escape-string-regexp: r2.cnpmjs.org/escape-string-regexp/1.0.5
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/fill-range/7.0.1:
     resolution:
@@ -1365,7 +974,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       to-regex-range: r2.cnpmjs.org/to-regex-range/5.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/findup-sync/5.0.0:
     resolution:
@@ -1382,7 +991,7 @@ packages:
       is-glob: r2.cnpmjs.org/is-glob/4.0.3
       micromatch: r2.cnpmjs.org/micromatch/4.0.4
       resolve-dir: r2.cnpmjs.org/resolve-dir/1.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/fined/2.0.0:
     resolution:
@@ -1400,7 +1009,7 @@ packages:
       object.defaults: r2.cnpmjs.org/object.defaults/1.1.0
       object.pick: r2.cnpmjs.org/object.pick/1.3.0
       parse-filepath: r2.cnpmjs.org/parse-filepath/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/flagged-respawn/2.0.0:
     resolution:
@@ -1412,7 +1021,7 @@ packages:
     name: flagged-respawn
     version: 2.0.0
     engines: { node: '>= 10.13.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/for-in/1.0.2:
     resolution:
@@ -1424,7 +1033,7 @@ packages:
     name: for-in
     version: 1.0.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/for-own/1.0.0:
     resolution:
@@ -1438,7 +1047,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       for-in: r2.cnpmjs.org/for-in/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/fs.realpath/1.0.0:
     resolution:
@@ -1449,22 +1058,7 @@ packages:
       }
     name: fs.realpath
     version: 1.0.0
-    dev: false
-
-  r2.cnpmjs.org/fsevents/2.3.2:
-    resolution:
-      {
-        integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/fsevents/-/fsevents-2.3.2.tgz
-      }
-    name: fsevents
-    version: 2.3.2
-    engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
-    os: [darwin]
-    requiresBuild: true
     dev: true
-    optional: true
 
   r2.cnpmjs.org/function-bind/1.1.1:
     resolution:
@@ -1475,7 +1069,7 @@ packages:
       }
     name: function-bind
     version: 1.1.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/glob-parent/5.1.2:
     resolution:
@@ -1489,7 +1083,7 @@ packages:
     engines: { node: '>= 6' }
     dependencies:
       is-glob: r2.cnpmjs.org/is-glob/4.0.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/glob/7.2.0:
     resolution:
@@ -1507,7 +1101,7 @@ packages:
       minimatch: r2.cnpmjs.org/minimatch/3.0.4
       once: r2.cnpmjs.org/once/1.4.0
       path-is-absolute: r2.cnpmjs.org/path-is-absolute/1.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/global-modules/1.0.0:
     resolution:
@@ -1523,7 +1117,7 @@ packages:
       global-prefix: r2.cnpmjs.org/global-prefix/1.0.2
       is-windows: r2.cnpmjs.org/is-windows/1.0.2
       resolve-dir: r2.cnpmjs.org/resolve-dir/1.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/global-prefix/1.0.2:
     resolution:
@@ -1541,17 +1135,7 @@ packages:
       ini: r2.cnpmjs.org/ini/1.3.8
       is-windows: r2.cnpmjs.org/is-windows/1.0.2
       which: r2.cnpmjs.org/which/1.3.1
-    dev: false
-
-  r2.cnpmjs.org/graceful-fs/4.2.8:
-    resolution:
-      {
-        integrity: sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz
-      }
-    name: graceful-fs
-    version: 4.2.8
+    dev: true
 
   r2.cnpmjs.org/handlebars/4.7.7:
     resolution:
@@ -1567,11 +1151,11 @@ packages:
     dependencies:
       minimist: r2.cnpmjs.org/minimist/1.2.5
       neo-async: r2.cnpmjs.org/neo-async/2.6.2
-      source-map: r2.cnpmjs.org/source-map/0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
       wordwrap: r2.cnpmjs.org/wordwrap/1.0.0
     optionalDependencies:
-      uglify-js: 3.15.3
-    dev: false
+      uglify-js: registry.npmmirror.com/uglify-js/3.15.3
+    dev: true
 
   r2.cnpmjs.org/has/1.0.3:
     resolution:
@@ -1585,7 +1169,7 @@ packages:
     engines: { node: '>= 0.4.0' }
     dependencies:
       function-bind: r2.cnpmjs.org/function-bind/1.1.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/header-case/2.0.4:
     resolution:
@@ -1599,7 +1183,7 @@ packages:
     dependencies:
       capital-case: r2.cnpmjs.org/capital-case/1.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/homedir-polyfill/1.0.3:
     resolution:
@@ -1613,7 +1197,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       parse-passwd: r2.cnpmjs.org/parse-passwd/1.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/iconv-lite/0.4.24:
     resolution:
@@ -1627,7 +1211,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       safer-buffer: r2.cnpmjs.org/safer-buffer/2.1.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ieee754/1.2.1:
     resolution:
@@ -1638,7 +1222,7 @@ packages:
       }
     name: ieee754
     version: 1.2.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ignore/5.2.0:
     resolution:
@@ -1650,22 +1234,7 @@ packages:
     name: ignore
     version: 5.2.0
     engines: { node: '>= 4' }
-    dev: false
-
-  r2.cnpmjs.org/image-size/0.5.5:
-    resolution:
-      {
-        integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/image-size/-/image-size-0.5.5.tgz
-      }
-    name: image-size
-    version: 0.5.5
-    engines: { node: '>=0.10.0' }
-    hasBin: true
-    requiresBuild: true
     dev: true
-    optional: true
 
   r2.cnpmjs.org/indent-string/4.0.0:
     resolution:
@@ -1677,7 +1246,7 @@ packages:
     name: indent-string
     version: 4.0.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/inflight/1.0.6:
     resolution:
@@ -1691,7 +1260,7 @@ packages:
     dependencies:
       once: r2.cnpmjs.org/once/1.4.0
       wrappy: r2.cnpmjs.org/wrappy/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/inherits/2.0.4:
     resolution:
@@ -1702,7 +1271,7 @@ packages:
       }
     name: inherits
     version: 2.0.4
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ini/1.3.8:
     resolution:
@@ -1713,7 +1282,7 @@ packages:
       }
     name: ini
     version: 1.3.8
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/interpret/2.2.0:
     resolution:
@@ -1725,7 +1294,7 @@ packages:
     name: interpret
     version: 2.2.0
     engines: { node: '>= 0.10' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-absolute/1.0.0:
     resolution:
@@ -1740,7 +1309,7 @@ packages:
     dependencies:
       is-relative: r2.cnpmjs.org/is-relative/1.0.0
       is-windows: r2.cnpmjs.org/is-windows/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-extglob/2.1.1:
     resolution:
@@ -1752,7 +1321,7 @@ packages:
     name: is-extglob
     version: 2.1.1
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-fullwidth-code-point/3.0.0:
     resolution:
@@ -1764,7 +1333,7 @@ packages:
     name: is-fullwidth-code-point
     version: 3.0.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-glob/4.0.3:
     resolution:
@@ -1778,7 +1347,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       is-extglob: r2.cnpmjs.org/is-extglob/2.1.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-interactive/1.0.0:
     resolution:
@@ -1790,7 +1359,7 @@ packages:
     name: is-interactive
     version: 1.0.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-interactive/2.0.0:
     resolution:
@@ -1802,7 +1371,7 @@ packages:
     name: is-interactive
     version: 2.0.0
     engines: { node: '>=12' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-number/7.0.0:
     resolution:
@@ -1814,7 +1383,7 @@ packages:
     name: is-number
     version: 7.0.0
     engines: { node: '>=0.12.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-path-cwd/2.2.0:
     resolution:
@@ -1826,7 +1395,7 @@ packages:
     name: is-path-cwd
     version: 2.2.0
     engines: { node: '>=6' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-path-inside/3.0.3:
     resolution:
@@ -1838,7 +1407,7 @@ packages:
     name: is-path-inside
     version: 3.0.3
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-plain-object/5.0.0:
     resolution:
@@ -1850,7 +1419,7 @@ packages:
     name: is-plain-object
     version: 5.0.0
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-relative/1.0.0:
     resolution:
@@ -1864,7 +1433,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       is-unc-path: r2.cnpmjs.org/is-unc-path/1.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-unc-path/1.0.0:
     resolution:
@@ -1878,7 +1447,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       unc-path-regex: r2.cnpmjs.org/unc-path-regex/0.1.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-unicode-supported/0.1.0:
     resolution:
@@ -1890,7 +1459,7 @@ packages:
     name: is-unicode-supported
     version: 0.1.0
     engines: { node: '>=10' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/is-windows/1.0.2:
     resolution:
@@ -1902,7 +1471,7 @@ packages:
     name: is-windows
     version: 1.0.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/isexe/2.0.0:
     resolution:
@@ -1913,7 +1482,7 @@ packages:
       }
     name: isexe
     version: 2.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/isobject/3.0.1:
     resolution:
@@ -1925,24 +1494,6 @@ packages:
     name: isobject
     version: 3.0.1
     engines: { node: '>=0.10.0' }
-    dev: false
-
-  r2.cnpmjs.org/jsonc-eslint-parser/1.4.1:
-    resolution:
-      {
-        integrity: sha512-hXBrvsR1rdjmB2kQmUjf1rEIa+TqHBGMge8pwi++C+Si1ad7EjZrJcpgwym+QGK/pqTx+K7keFAtLlVNdLRJOg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/jsonc-eslint-parser/-/jsonc-eslint-parser-1.4.1.tgz
-      }
-    name: jsonc-eslint-parser
-    version: 1.4.1
-    engines: { node: '>=8.10.0' }
-    dependencies:
-      acorn: r2.cnpmjs.org/acorn/7.4.1
-      eslint-utils: r2.cnpmjs.org/eslint-utils/2.1.0
-      eslint-visitor-keys: r2.cnpmjs.org/eslint-visitor-keys/1.3.0
-      espree: r2.cnpmjs.org/espree/6.2.1
-      semver: r2.cnpmjs.org/semver/6.3.0
     dev: true
 
   r2.cnpmjs.org/kind-of/6.0.3:
@@ -1955,7 +1506,7 @@ packages:
     name: kind-of
     version: 6.0.3
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/liftoff/4.0.0:
     resolution:
@@ -1976,7 +1527,7 @@ packages:
       object.map: r2.cnpmjs.org/object.map/1.0.1
       rechoir: r2.cnpmjs.org/rechoir/0.8.0
       resolve: 1.22.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/lodash.get/4.4.2:
     resolution:
@@ -1987,17 +1538,7 @@ packages:
       }
     name: lodash.get
     version: 4.4.2
-    dev: false
-
-  r2.cnpmjs.org/lodash/4.17.21:
-    resolution:
-      {
-        integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
-      }
-    name: lodash
-    version: 4.17.21
+    dev: true
 
   r2.cnpmjs.org/log-symbols/4.1.0:
     resolution:
@@ -2012,7 +1553,7 @@ packages:
     dependencies:
       chalk: r2.cnpmjs.org/chalk/4.1.2
       is-unicode-supported: r2.cnpmjs.org/is-unicode-supported/0.1.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/log-symbols/5.1.0:
     resolution:
@@ -2027,7 +1568,7 @@ packages:
     dependencies:
       chalk: 5.0.1
       is-unicode-supported: 1.2.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/lower-case/2.0.2:
     resolution:
@@ -2040,24 +1581,7 @@ packages:
     version: 2.0.2
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
-
-  r2.cnpmjs.org/make-dir/2.1.0:
-    resolution:
-      {
-        integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/make-dir/-/make-dir-2.1.0.tgz
-      }
-    name: make-dir
-    version: 2.1.0
-    engines: { node: '>=6' }
-    requiresBuild: true
-    dependencies:
-      pify: registry.npmmirror.com/pify/4.0.1
-      semver: registry.npmmirror.com/semver/5.7.1
     dev: true
-    optional: true
 
   r2.cnpmjs.org/make-iterator/1.0.1:
     resolution:
@@ -2071,7 +1595,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       kind-of: r2.cnpmjs.org/kind-of/6.0.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/map-cache/0.2.2:
     resolution:
@@ -2083,7 +1607,7 @@ packages:
     name: map-cache
     version: 0.2.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/merge2/1.4.1:
     resolution:
@@ -2095,7 +1619,7 @@ packages:
     name: merge2
     version: 1.4.1
     engines: { node: '>= 8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/micromatch/4.0.4:
     resolution:
@@ -2110,22 +1634,7 @@ packages:
     dependencies:
       braces: r2.cnpmjs.org/braces/3.0.2
       picomatch: r2.cnpmjs.org/picomatch/2.3.0
-    dev: false
-
-  r2.cnpmjs.org/mime/1.6.0:
-    resolution:
-      {
-        integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/mime/-/mime-1.6.0.tgz
-      }
-    name: mime
-    version: 1.6.0
-    engines: { node: '>=4' }
-    hasBin: true
-    requiresBuild: true
     dev: true
-    optional: true
 
   r2.cnpmjs.org/mimic-fn/2.1.0:
     resolution:
@@ -2137,7 +1646,7 @@ packages:
     name: mimic-fn
     version: 2.1.0
     engines: { node: '>=6' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/minimatch/3.0.4:
     resolution:
@@ -2150,7 +1659,7 @@ packages:
     version: 3.0.4
     dependencies:
       brace-expansion: r2.cnpmjs.org/brace-expansion/1.1.11
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/minimist/1.2.5:
     resolution:
@@ -2161,7 +1670,7 @@ packages:
       }
     name: minimist
     version: 1.2.5
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/mkdirp/1.0.4:
     resolution:
@@ -2174,7 +1683,7 @@ packages:
     version: 1.0.4
     engines: { node: '>=10' }
     hasBin: true
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/mute-stream/0.0.8:
     resolution:
@@ -2185,26 +1694,7 @@ packages:
       }
     name: mute-stream
     version: 0.0.8
-    dev: false
-
-  r2.cnpmjs.org/needle/2.9.1:
-    resolution:
-      {
-        integrity: sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/needle/-/needle-2.9.1.tgz
-      }
-    name: needle
-    version: 2.9.1
-    engines: { node: '>= 4.4.x' }
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      debug: registry.npmmirror.com/debug/3.2.7
-      iconv-lite: registry.nlark.com/iconv-lite/0.4.24
-      sax: registry.nlark.com/sax/1.2.4
     dev: true
-    optional: true
 
   r2.cnpmjs.org/neo-async/2.6.2:
     resolution:
@@ -2215,7 +1705,7 @@ packages:
       }
     name: neo-async
     version: 2.6.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/no-case/3.0.4:
     resolution:
@@ -2229,7 +1719,7 @@ packages:
     dependencies:
       lower-case: r2.cnpmjs.org/lower-case/2.0.2
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/node-plop/0.30.0:
     resolution:
@@ -2255,7 +1745,7 @@ packages:
       resolve: 1.22.0
       title-case: r2.cnpmjs.org/title-case/3.0.3
       upper-case: r2.cnpmjs.org/upper-case/2.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/object.defaults/1.1.0:
     resolution:
@@ -2272,7 +1762,7 @@ packages:
       array-slice: r2.cnpmjs.org/array-slice/1.1.0
       for-own: r2.cnpmjs.org/for-own/1.0.0
       isobject: r2.cnpmjs.org/isobject/3.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/object.map/1.0.1:
     resolution:
@@ -2287,7 +1777,7 @@ packages:
     dependencies:
       for-own: r2.cnpmjs.org/for-own/1.0.0
       make-iterator: r2.cnpmjs.org/make-iterator/1.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/object.pick/1.3.0:
     resolution:
@@ -2301,7 +1791,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       isobject: r2.cnpmjs.org/isobject/3.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/once/1.4.0:
     resolution:
@@ -2314,7 +1804,7 @@ packages:
     version: 1.4.0
     dependencies:
       wrappy: r2.cnpmjs.org/wrappy/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/onetime/5.1.2:
     resolution:
@@ -2328,7 +1818,7 @@ packages:
     engines: { node: '>=6' }
     dependencies:
       mimic-fn: r2.cnpmjs.org/mimic-fn/2.1.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/ora/5.4.1:
     resolution:
@@ -2350,7 +1840,7 @@ packages:
       log-symbols: r2.cnpmjs.org/log-symbols/4.1.0
       strip-ansi: r2.cnpmjs.org/strip-ansi/6.0.1
       wcwidth: r2.cnpmjs.org/wcwidth/1.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/os-tmpdir/1.0.2:
     resolution:
@@ -2362,7 +1852,7 @@ packages:
     name: os-tmpdir
     version: 1.0.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/p-map/4.0.0:
     resolution:
@@ -2376,7 +1866,7 @@ packages:
     engines: { node: '>=10' }
     dependencies:
       aggregate-error: r2.cnpmjs.org/aggregate-error/3.1.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/param-case/3.0.4:
     resolution:
@@ -2390,7 +1880,7 @@ packages:
     dependencies:
       dot-case: r2.cnpmjs.org/dot-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/parse-filepath/1.0.2:
     resolution:
@@ -2406,7 +1896,7 @@ packages:
       is-absolute: r2.cnpmjs.org/is-absolute/1.0.0
       map-cache: r2.cnpmjs.org/map-cache/0.2.2
       path-root: r2.cnpmjs.org/path-root/0.1.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/parse-passwd/1.0.0:
     resolution:
@@ -2418,7 +1908,7 @@ packages:
     name: parse-passwd
     version: 1.0.0
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/pascal-case/3.1.2:
     resolution:
@@ -2432,7 +1922,7 @@ packages:
     dependencies:
       no-case: r2.cnpmjs.org/no-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-case/3.0.4:
     resolution:
@@ -2446,7 +1936,7 @@ packages:
     dependencies:
       dot-case: r2.cnpmjs.org/dot-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-is-absolute/1.0.1:
     resolution:
@@ -2458,7 +1948,7 @@ packages:
     name: path-is-absolute
     version: 1.0.1
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-parse/1.0.7:
     resolution:
@@ -2469,7 +1959,7 @@ packages:
       }
     name: path-parse
     version: 1.0.7
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-root-regex/0.1.2:
     resolution:
@@ -2481,7 +1971,7 @@ packages:
     name: path-root-regex
     version: 0.1.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-root/0.1.1:
     resolution:
@@ -2495,7 +1985,7 @@ packages:
     engines: { node: '>=0.10.0' }
     dependencies:
       path-root-regex: r2.cnpmjs.org/path-root-regex/0.1.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/path-type/4.0.0:
     resolution:
@@ -2507,7 +1997,7 @@ packages:
     name: path-type
     version: 4.0.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/picomatch/2.3.0:
     resolution:
@@ -2519,7 +2009,7 @@ packages:
     name: picomatch
     version: 2.3.0
     engines: { node: '>=8.6' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/plop/3.0.5:
     resolution:
@@ -2541,7 +2031,7 @@ packages:
       node-plop: r2.cnpmjs.org/node-plop/0.30.0
       ora: 6.1.0
       v8flags: r2.cnpmjs.org/v8flags/4.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/queue-microtask/1.2.3:
     resolution:
@@ -2552,7 +2042,7 @@ packages:
       }
     name: queue-microtask
     version: 1.2.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/readable-stream/3.6.0:
     resolution:
@@ -2568,7 +2058,7 @@ packages:
       inherits: r2.cnpmjs.org/inherits/2.0.4
       string_decoder: r2.cnpmjs.org/string_decoder/1.3.0
       util-deprecate: r2.cnpmjs.org/util-deprecate/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/rechoir/0.8.0:
     resolution:
@@ -2582,7 +2072,7 @@ packages:
     engines: { node: '>= 10.13.0' }
     dependencies:
       resolve: 1.22.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/resolve-dir/1.0.1:
     resolution:
@@ -2597,7 +2087,7 @@ packages:
     dependencies:
       expand-tilde: r2.cnpmjs.org/expand-tilde/2.0.2
       global-modules: r2.cnpmjs.org/global-modules/1.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/restore-cursor/3.1.0:
     resolution:
@@ -2612,7 +2102,7 @@ packages:
     dependencies:
       onetime: r2.cnpmjs.org/onetime/5.1.2
       signal-exit: 3.0.7
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/restore-cursor/4.0.0:
     resolution:
@@ -2627,7 +2117,7 @@ packages:
     dependencies:
       onetime: r2.cnpmjs.org/onetime/5.1.2
       signal-exit: 3.0.7
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/reusify/1.0.4:
     resolution:
@@ -2639,7 +2129,7 @@ packages:
     name: reusify
     version: 1.0.4
     engines: { iojs: '>=1.0.0', node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/rimraf/3.0.2:
     resolution:
@@ -2653,7 +2143,7 @@ packages:
     hasBin: true
     dependencies:
       glob: r2.cnpmjs.org/glob/7.2.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/run-async/2.4.1:
     resolution:
@@ -2665,7 +2155,7 @@ packages:
     name: run-async
     version: 2.4.1
     engines: { node: '>=0.12.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/run-parallel/1.2.0:
     resolution:
@@ -2678,7 +2168,7 @@ packages:
     version: 1.2.0
     dependencies:
       queue-microtask: r2.cnpmjs.org/queue-microtask/1.2.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/safe-buffer/5.2.1:
     resolution:
@@ -2689,7 +2179,7 @@ packages:
       }
     name: safe-buffer
     version: 5.2.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/safer-buffer/2.1.2:
     resolution:
@@ -2700,18 +2190,6 @@ packages:
       }
     name: safer-buffer
     version: 2.1.2
-    dev: false
-
-  r2.cnpmjs.org/semver/6.3.0:
-    resolution:
-      {
-        integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/semver/-/semver-6.3.0.tgz
-      }
-    name: semver
-    version: 6.3.0
-    hasBin: true
     dev: true
 
   r2.cnpmjs.org/sentence-case/3.0.4:
@@ -2727,7 +2205,7 @@ packages:
       no-case: r2.cnpmjs.org/no-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
       upper-case-first: r2.cnpmjs.org/upper-case-first/2.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/slash/3.0.0:
     resolution:
@@ -2739,7 +2217,7 @@ packages:
     name: slash
     version: 3.0.0
     engines: { node: '>=8' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/slash/4.0.0:
     resolution:
@@ -2751,7 +2229,7 @@ packages:
     name: slash
     version: 4.0.0
     engines: { node: '>=12' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/snake-case/3.0.4:
     resolution:
@@ -2765,18 +2243,7 @@ packages:
     dependencies:
       dot-case: r2.cnpmjs.org/dot-case/3.0.4
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
-
-  r2.cnpmjs.org/source-map/0.6.1:
-    resolution:
-      {
-        integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/source-map/-/source-map-0.6.1.tgz
-      }
-    name: source-map
-    version: 0.6.1
-    engines: { node: '>=0.10.0' }
+    dev: true
 
   r2.cnpmjs.org/string-width/4.2.3:
     resolution:
@@ -2792,7 +2259,7 @@ packages:
       emoji-regex: r2.cnpmjs.org/emoji-regex/8.0.0
       is-fullwidth-code-point: r2.cnpmjs.org/is-fullwidth-code-point/3.0.0
       strip-ansi: r2.cnpmjs.org/strip-ansi/6.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/string_decoder/1.3.0:
     resolution:
@@ -2805,7 +2272,7 @@ packages:
     version: 1.3.0
     dependencies:
       safe-buffer: r2.cnpmjs.org/safe-buffer/5.2.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/strip-ansi/6.0.1:
     resolution:
@@ -2819,7 +2286,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       ansi-regex: r2.cnpmjs.org/ansi-regex/5.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/strip-ansi/7.0.1:
     resolution:
@@ -2833,7 +2300,7 @@ packages:
     engines: { node: '>=12' }
     dependencies:
       ansi-regex: r2.cnpmjs.org/ansi-regex/6.0.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/through/2.3.8:
     resolution:
@@ -2844,7 +2311,7 @@ packages:
       }
     name: through
     version: 2.3.8
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/title-case/3.0.3:
     resolution:
@@ -2857,7 +2324,7 @@ packages:
     version: 3.0.3
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/tmp/0.0.33:
     resolution:
@@ -2871,7 +2338,7 @@ packages:
     engines: { node: '>=0.6.0' }
     dependencies:
       os-tmpdir: r2.cnpmjs.org/os-tmpdir/1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/to-regex-range/5.0.1:
     resolution:
@@ -2885,7 +2352,7 @@ packages:
     engines: { node: '>=8.0' }
     dependencies:
       is-number: r2.cnpmjs.org/is-number/7.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/tslib/2.3.1:
     resolution:
@@ -2896,7 +2363,7 @@ packages:
       }
     name: tslib
     version: 2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/type-fest/0.21.3:
     resolution:
@@ -2908,7 +2375,7 @@ packages:
     name: type-fest
     version: 0.21.3
     engines: { node: '>=10' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/unc-path-regex/0.1.2:
     resolution:
@@ -2920,7 +2387,7 @@ packages:
     name: unc-path-regex
     version: 0.1.2
     engines: { node: '>=0.10.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/upper-case-first/2.0.2:
     resolution:
@@ -2933,7 +2400,7 @@ packages:
     version: 2.0.2
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/upper-case/2.0.2:
     resolution:
@@ -2946,7 +2413,7 @@ packages:
     version: 2.0.2
     dependencies:
       tslib: r2.cnpmjs.org/tslib/2.3.1
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/util-deprecate/1.0.2:
     resolution:
@@ -2957,7 +2424,7 @@ packages:
       }
     name: util-deprecate
     version: 1.0.2
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/v8flags/4.0.0:
     resolution:
@@ -2969,7 +2436,7 @@ packages:
     name: v8flags
     version: 4.0.0
     engines: { node: '>= 10.13.0' }
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/wcwidth/1.0.1:
     resolution:
@@ -2982,7 +2449,7 @@ packages:
     version: 1.0.1
     dependencies:
       defaults: r2.cnpmjs.org/defaults/1.0.3
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/which/1.3.1:
     resolution:
@@ -2996,7 +2463,7 @@ packages:
     hasBin: true
     dependencies:
       isexe: r2.cnpmjs.org/isexe/2.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/wordwrap/1.0.0:
     resolution:
@@ -3007,7 +2474,7 @@ packages:
       }
     name: wordwrap
     version: 1.0.0
-    dev: false
+    dev: true
 
   r2.cnpmjs.org/wrappy/1.0.2:
     resolution:
@@ -3018,33 +2485,6 @@ packages:
       }
     name: wrappy
     version: 1.0.2
-    dev: false
-
-  r2.cnpmjs.org/yaml-eslint-parser/0.3.2:
-    resolution:
-      {
-        integrity: sha512-32kYO6kJUuZzqte82t4M/gB6/+11WAuHiEnK7FreMo20xsCKPeFH5tDBU7iWxR7zeJpNnMXfJyXwne48D0hGrg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/yaml-eslint-parser/-/yaml-eslint-parser-0.3.2.tgz
-      }
-    name: yaml-eslint-parser
-    version: 0.3.2
-    dependencies:
-      eslint-visitor-keys: r2.cnpmjs.org/eslint-visitor-keys/1.3.0
-      lodash: r2.cnpmjs.org/lodash/4.17.21
-      yaml: r2.cnpmjs.org/yaml/1.10.2
-    dev: true
-
-  r2.cnpmjs.org/yaml/1.10.2:
-    resolution:
-      {
-        integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==,
-        registry: http://r.cnpmjs.org/,
-        tarball: https://r2.cnpmjs.org/yaml/-/yaml-1.10.2.tgz
-      }
-    name: yaml
-    version: 1.10.2
-    engines: { node: '>= 6' }
     dev: true
 
   registry.nlark.com/@cspotcode/source-map-consumer/0.8.0:
@@ -3255,7 +2695,7 @@ packages:
       longest: registry.nlark.com/longest/2.0.1
       word-wrap: registry.npmmirror.com/word-wrap/1.2.3
     optionalDependencies:
-      '@commitlint/load': 16.2.3
+      '@commitlint/load': registry.npmmirror.com/@commitlint/load/16.2.3
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
@@ -5256,6 +4696,34 @@ packages:
     version: 1.1.0
     dev: true
 
+  registry.npmmirror.com/@intlify/bundle-utils/2.2.2_vue-i18n@9.1.9:
+    resolution:
+      {
+        integrity: sha512-vngkvlIVV8ZJoyC5VqMvqJd2nvsx+qMN7pQjPiPjOrVndeiR7Dlue0k86Q8FsFUzyksW3HJZZi833ldxwbFzTA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/@intlify/bundle-utils/-/bundle-utils-2.2.2.tgz
+      }
+    id: registry.npmmirror.com/@intlify/bundle-utils/2.2.2
+    name: '@intlify/bundle-utils'
+    version: 2.2.2
+    engines: { node: '>= 12' }
+    peerDependencies:
+      petite-vue-i18n: '*'
+      vue-i18n: '*'
+    peerDependenciesMeta:
+      petite-vue-i18n:
+        optional: true
+      vue-i18n:
+        optional: true
+    dependencies:
+      '@intlify/message-compiler': registry.npmmirror.com/@intlify/message-compiler/9.1.9
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.1.9
+      jsonc-eslint-parser: registry.npmmirror.com/jsonc-eslint-parser/1.4.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
+      vue-i18n: registry.npmmirror.com/vue-i18n/9.1.9_vue@3.2.31
+      yaml-eslint-parser: registry.npmmirror.com/yaml-eslint-parser/0.3.2
+    dev: true
+
   registry.npmmirror.com/@intlify/core-base/9.1.9:
     resolution:
       {
@@ -5303,14 +4771,13 @@ packages:
       '@intlify/message-resolver': registry.npmmirror.com/@intlify/message-resolver/9.1.9
       '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.1.9
       source-map: registry.npmmirror.com/source-map/0.6.1
-    dev: false
 
   registry.npmmirror.com/@intlify/message-resolver/9.1.9:
     resolution:
       {
-        integrity: sha1-MVXM0vXm0NwWyti38djpf82gW/w=,
+        integrity: sha512-Lx/DBpigeK0sz2BBbzv5mu9/dAlt98HxwbG7xLawC3O2xMF9MNWU5FtOziwYG6TDIjNq0O/3ZbOJAxwITIWXEA==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/@intlify/message-resolver/download/@intlify/message-resolver-9.1.9.tgz
+        tarball: https://registry.npmmirror.com/@intlify/message-resolver/-/message-resolver-9.1.9.tgz
       }
     name: '@intlify/message-resolver'
     version: 9.1.9
@@ -5342,7 +4809,6 @@ packages:
     name: '@intlify/shared'
     version: 9.1.9
     engines: { node: '>= 10' }
-    dev: false
 
   registry.npmmirror.com/@intlify/vite-plugin-vue-i18n/3.4.0_vite@2.9.1+vue-i18n@9.1.9:
     resolution:
@@ -5365,8 +4831,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': 2.2.1_vue-i18n@9.1.9
-      '@intlify/shared': 9.2.0-beta.33
+      '@intlify/bundle-utils': registry.npmmirror.com/@intlify/bundle-utils/2.2.2_vue-i18n@9.1.9
+      '@intlify/shared': registry.npmmirror.com/@intlify/shared/9.1.9
       '@rollup/pluginutils': registry.npmmirror.com/@rollup/pluginutils/4.1.2
       debug: registry.npmmirror.com/debug/4.3.3
       fast-glob: registry.npmmirror.com/fast-glob/3.2.11
@@ -7861,7 +7327,7 @@ packages:
       normalize-path: registry.npmmirror.com/normalize-path/3.0.0
       readdirp: registry.nlark.com/readdirp/3.6.0
     optionalDependencies:
-      fsevents: r2.cnpmjs.org/fsevents/2.3.2
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   registry.npmmirror.com/chokidar/3.5.3:
@@ -9141,6 +8607,22 @@ packages:
     engines: { node: '>=0.12' }
     dev: true
 
+  registry.npmmirror.com/errno/0.1.8:
+    resolution:
+      {
+        integrity: sha512-dJ6oBr5SQ1VSd9qkk7ByRgb/1SH4JZjCHSW/mr63/QcXO9zLVxvJ6Oy13nio03rxpSnVDDjFor75SjVeZWPW/A==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/errno/-/errno-0.1.8.tgz
+      }
+    name: errno
+    version: 0.1.8
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      prr: registry.nlark.com/prr/1.0.1
+    dev: true
+    optional: true
+
   registry.npmmirror.com/error-ex/1.3.2:
     resolution:
       {
@@ -9209,6 +8691,326 @@ packages:
       ext: registry.npmmirror.com/ext/1.6.0
     dev: false
 
+  registry.npmmirror.com/esbuild-android-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-q1qjB2UcoWehR9Yp9dO2RdJUeLLrXAYsbOU4tkYa+GmJzxTwuvOrMdvaemsXYqb7F4STVTca9KpfqGicEChtUg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-android-64/-/esbuild-android-64-0.14.32.tgz
+      }
+    name: esbuild-android-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [android]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-android-arm64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-bs1uu+RuM15f8yjFc0FhPDE/6NID4fKl7beDVsGCme6Q8ld2IzRXmp5QaHurlcH93PFyQnUgVvdahIWgtK2QZw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-android-arm64/-/esbuild-android-arm64-0.14.32.tgz
+      }
+    name: esbuild-android-arm64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm64]
+    os: [android]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-darwin-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-6MekflAld28wYtzanwZTxQlxMPeYw/yv1ToFG2hpo3LGxOIE2mBD5IJaMCcyy1//EYvGnGToO3p6XKdbS8E1QQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-darwin-64/-/esbuild-darwin-64-0.14.32.tgz
+      }
+    name: esbuild-darwin-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-darwin-arm64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-BHYIjiPDYQTD+4zwqdqRo+I2bbg3fn9mah/gZm4SCCy+7uwTTYOYobIunHT7wVCgxnFCr50PJUdaMrEoCImRbw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-darwin-arm64/-/esbuild-darwin-arm64-0.14.32.tgz
+      }
+    name: esbuild-darwin-arm64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-freebsd-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-6BOBhtfAf9AlfjL1AvtfVOxwY82tHPfYrA0lskJpFjfiEMGTLU6e0vdOwb4+4x++gGz49azuGK0woYqdfL03uw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-freebsd-64/-/esbuild-freebsd-64-0.14.32.tgz
+      }
+    name: esbuild-freebsd-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-freebsd-arm64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-zIRR4gKQW56p/xLM8TlpxVBNiX0w3VoR9ZxfH4nrfJ7QiL0SYHRy8YPL5C7zMWRjSze2WxQRHfS9bHKdVrVXBw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-freebsd-arm64/-/esbuild-freebsd-arm64-0.14.32.tgz
+      }
+    name: esbuild-freebsd-arm64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-32/0.14.32:
+    resolution:
+      {
+        integrity: sha512-kn0AkGtPvzA6xiv93/mavvZ7DVinu/ewh2F2S0/8mE8/PXi3D4+svZ6V3beV5DIH7vcHVuGhoooWav8HPF04tg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-32/-/esbuild-linux-32-0.14.32.tgz
+      }
+    name: esbuild-linux-32
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [ia32]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-Ie+PMvrPj/HCOmSc0QubKttDxP2iBtPzDu+b+V3HGDGwkGmVpDkyXx1NXp5LjkIphIay2QekMwy1dSw3KDqCew==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-64/-/esbuild-linux-64-0.14.32.tgz
+      }
+    name: esbuild-linux-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-arm/0.14.32:
+    resolution:
+      {
+        integrity: sha512-R/Bvn/YQNDyvfN0SERh/I7hKPqN+nSSruQdVeiYEJ+jc3fUi73jXYAscpTQgIBeER/yXnEsgJGU/UQ9+sscr7A==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-arm/-/esbuild-linux-arm-0.14.32.tgz
+      }
+    name: esbuild-linux-arm
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-arm64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-ykoqKaxX95nB+lk2K/+qxr0ke+BxkeVi0yKOnymCR5Ive7IZDHa4BJX53NEGSBKLfWPwKE6SXTz8qcEewSntoA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-arm64/-/esbuild-linux-arm64-0.14.32.tgz
+      }
+    name: esbuild-linux-arm64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-mips64le/0.14.32:
+    resolution:
+      {
+        integrity: sha512-IilnlBexpHpt/5po0cle/L/S6CYnwaq23UuAqWzxp+opHLOCNnyANpC1jOoP551aRx4JuZ7z3xZZ7bYQZB147w==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-mips64le/-/esbuild-linux-mips64le-0.14.32.tgz
+      }
+    name: esbuild-linux-mips64le
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [mips64el]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-ppc64le/0.14.32:
+    resolution:
+      {
+        integrity: sha512-TR6l5nWZbfq7jSY+1vsiQjT4m67NWplNhbX6GBieZq6DBt0nTx1XgTZAdKROF7jTuaK7YrCYlPXtfO3w86Mysw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-ppc64le/-/esbuild-linux-ppc64le-0.14.32.tgz
+      }
+    name: esbuild-linux-ppc64le
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [ppc64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-riscv64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-aSOcUzTeIAslfri8e+bMpyzQuxhcIiNhWyuCGGXum2PtxwYiUqR8/UCMYfwYtYkhr1yABOFOfs83mm9KBy5qCQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-riscv64/-/esbuild-linux-riscv64-0.14.32.tgz
+      }
+    name: esbuild-linux-riscv64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [riscv64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-linux-s390x/0.14.32:
+    resolution:
+      {
+        integrity: sha512-dNlip+EvexxKjRZitFCWCd7DVk64c7R5ySr8aFEMHCb/RriNiyDxYJGzYWm4EMJsMRMupMUHlMY64BAa3Op9FA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-linux-s390x/-/esbuild-linux-s390x-0.14.32.tgz
+      }
+    name: esbuild-linux-s390x
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [s390x]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-netbsd-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-Pa3QByYqxzlBFQQQhjYBPg3WUfSjwibqzh1hC6mPDRUHnCeUcrLoBuIiG4xqOYEpQM9/kDowIBsrGIQEVWWdQA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-netbsd-64/-/esbuild-netbsd-64-0.14.32.tgz
+      }
+    name: esbuild-netbsd-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [netbsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-openbsd-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-uWKKqpCjkMY8TCIobFvaSETonQY3OrmgnoTCC3tF+lvMoneYjppB6akx7L5Xv0kP+1tnSbrIof1ca8PfqGUyjw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.14.32.tgz
+      }
+    name: esbuild-openbsd-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [openbsd]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-sunos-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-Ar+u3mBk0oVV4Fwv/qlinJZNIPPtTBSG+1W42o8lOaVxJ+rJgecDoeUN+5uyd9at0BK1SVrQ1qZ4wjHKB0qFpQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-sunos-64/-/esbuild-sunos-64-0.14.32.tgz
+      }
+    name: esbuild-sunos-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [sunos]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-windows-32/0.14.32:
+    resolution:
+      {
+        integrity: sha512-rLMsbflMY6Hjh3rmQnCDVZahJQ7n+XfT6o1+no5pHRpDlMh38MHthgGh35q+EcOMgrGP3ppnw70rhJq80SaYTQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-windows-32/-/esbuild-windows-32-0.14.32.tgz
+      }
+    name: esbuild-windows-32
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-windows-64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-OHnMMxYufVgLXIMnwLynLMKguHMrsVnWcehieSP9i6ZX31KEsOFYWrorcnTWOn4rbZVLSL10ofxLuVIgRW3SWw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-windows-64/-/esbuild-windows-64-0.14.32.tgz
+      }
+    name: esbuild-windows-64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-windows-arm64/0.14.32:
+    resolution:
+      {
+        integrity: sha512-ddavy6IPUBySMfqDfG243TgtuqwQBNJQJPVaA4DaavmMfpBsUxFrSV+HzBWXTKU3I9EcuoEvIATLuQ7NJKxjwg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/esbuild-windows-arm64/-/esbuild-windows-arm64-0.14.32.tgz
+      }
+    name: esbuild-windows-arm64
+    version: 0.14.32
+    engines: { node: '>=12' }
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
+
   registry.npmmirror.com/esbuild/0.11.3:
     resolution:
       {
@@ -9235,25 +9037,26 @@ packages:
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      esbuild-android-arm64: 0.14.21
-      esbuild-darwin-64: 0.14.21
-      esbuild-darwin-arm64: 0.14.21
-      esbuild-freebsd-64: 0.14.21
-      esbuild-freebsd-arm64: 0.14.21
-      esbuild-linux-32: 0.14.21
-      esbuild-linux-64: 0.14.21
-      esbuild-linux-arm: 0.14.21
-      esbuild-linux-arm64: 0.14.21
-      esbuild-linux-mips64le: 0.14.21
-      esbuild-linux-ppc64le: 0.14.21
-      esbuild-linux-riscv64: 0.14.21
-      esbuild-linux-s390x: 0.14.21
-      esbuild-netbsd-64: 0.14.21
-      esbuild-openbsd-64: 0.14.21
-      esbuild-sunos-64: 0.14.21
-      esbuild-windows-32: 0.14.21
-      esbuild-windows-64: 0.14.21
-      esbuild-windows-arm64: 0.14.21
+      esbuild-android-64: registry.npmmirror.com/esbuild-android-64/0.14.32
+      esbuild-android-arm64: registry.npmmirror.com/esbuild-android-arm64/0.14.32
+      esbuild-darwin-64: registry.npmmirror.com/esbuild-darwin-64/0.14.32
+      esbuild-darwin-arm64: registry.npmmirror.com/esbuild-darwin-arm64/0.14.32
+      esbuild-freebsd-64: registry.npmmirror.com/esbuild-freebsd-64/0.14.32
+      esbuild-freebsd-arm64: registry.npmmirror.com/esbuild-freebsd-arm64/0.14.32
+      esbuild-linux-32: registry.npmmirror.com/esbuild-linux-32/0.14.32
+      esbuild-linux-64: registry.npmmirror.com/esbuild-linux-64/0.14.32
+      esbuild-linux-arm: registry.npmmirror.com/esbuild-linux-arm/0.14.32
+      esbuild-linux-arm64: registry.npmmirror.com/esbuild-linux-arm64/0.14.32
+      esbuild-linux-mips64le: registry.npmmirror.com/esbuild-linux-mips64le/0.14.32
+      esbuild-linux-ppc64le: registry.npmmirror.com/esbuild-linux-ppc64le/0.14.32
+      esbuild-linux-riscv64: registry.npmmirror.com/esbuild-linux-riscv64/0.14.32
+      esbuild-linux-s390x: registry.npmmirror.com/esbuild-linux-s390x/0.14.32
+      esbuild-netbsd-64: registry.npmmirror.com/esbuild-netbsd-64/0.14.32
+      esbuild-openbsd-64: registry.npmmirror.com/esbuild-openbsd-64/0.14.32
+      esbuild-sunos-64: registry.npmmirror.com/esbuild-sunos-64/0.14.32
+      esbuild-windows-32: registry.npmmirror.com/esbuild-windows-32/0.14.32
+      esbuild-windows-64: registry.npmmirror.com/esbuild-windows-64/0.14.32
+      esbuild-windows-arm64: registry.npmmirror.com/esbuild-windows-arm64/0.14.32
     dev: true
 
   registry.npmmirror.com/escalade/3.1.1:
@@ -9597,6 +9400,22 @@ packages:
       v8-compile-cache: registry.npmmirror.com/v8-compile-cache/2.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  registry.npmmirror.com/espree/6.2.1:
+    resolution:
+      {
+        integrity: sha512-ysCxRQY3WaXJz9tdbWOwuWr5Y/XrPTGX9Kiz3yoUXwW0VZ4w30HTkQLaGx/+ttFjF8i+ACbArnB4ce68a9m5hw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/espree/-/espree-6.2.1.tgz
+      }
+    name: espree
+    version: 6.2.1
+    engines: { node: '>=6.0.0' }
+    dependencies:
+      acorn: registry.npmmirror.com/acorn/7.4.1
+      acorn-jsx: registry.npmmirror.com/acorn-jsx/5.3.2_acorn@7.4.1
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/1.3.0
     dev: true
 
   registry.npmmirror.com/espree/7.3.1:
@@ -10231,6 +10050,21 @@ packages:
       universalify: registry.npmmirror.com/universalify/2.0.0
     dev: true
 
+  registry.npmmirror.com/fsevents/2.3.2:
+    resolution:
+      {
+        integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/fsevents/-/fsevents-2.3.2.tgz
+      }
+    name: fsevents
+    version: 2.3.2
+    engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
   registry.npmmirror.com/function-bind/1.1.1:
     resolution:
       {
@@ -10627,6 +10461,7 @@ packages:
     name: has-flag
     version: 4.0.0
     engines: { node: '>=8' }
+    dev: true
 
   registry.npmmirror.com/has-symbols/1.0.2:
     resolution:
@@ -11726,15 +11561,22 @@ packages:
     hasBin: true
     dev: true
 
-  registry.npmmirror.com/jsonc-parser/3.0.0:
+  registry.npmmirror.com/jsonc-eslint-parser/1.4.1:
     resolution:
       {
-        integrity: sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==,
+        integrity: sha512-hXBrvsR1rdjmB2kQmUjf1rEIa+TqHBGMge8pwi++C+Si1ad7EjZrJcpgwym+QGK/pqTx+K7keFAtLlVNdLRJOg==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/jsonc-parser/-/jsonc-parser-3.0.0.tgz
+        tarball: https://registry.npmmirror.com/jsonc-eslint-parser/-/jsonc-eslint-parser-1.4.1.tgz
       }
-    name: jsonc-parser
-    version: 3.0.0
+    name: jsonc-eslint-parser
+    version: 1.4.1
+    engines: { node: '>=8.10.0' }
+    dependencies:
+      acorn: registry.npmmirror.com/acorn/7.4.1
+      eslint-utils: registry.npmmirror.com/eslint-utils/2.1.0
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/1.3.0
+      espree: registry.npmmirror.com/espree/6.2.1
+      semver: registry.npmmirror.com/semver/6.3.0
     dev: true
 
   registry.npmmirror.com/jsonfile/4.0.0:
@@ -11747,7 +11589,7 @@ packages:
     name: jsonfile
     version: 4.0.0
     optionalDependencies:
-      graceful-fs: r2.cnpmjs.org/graceful-fs/4.2.8
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
     dev: true
 
   registry.npmmirror.com/jsonfile/6.1.0:
@@ -11762,7 +11604,7 @@ packages:
     dependencies:
       universalify: registry.npmmirror.com/universalify/2.0.0
     optionalDependencies:
-      graceful-fs: r2.cnpmjs.org/graceful-fs/4.2.8
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
     dev: true
 
   registry.npmmirror.com/jsonparse/1.3.1:
@@ -11867,13 +11709,13 @@ packages:
       parse-node-version: registry.npmmirror.com/parse-node-version/1.0.1
       tslib: registry.nlark.com/tslib/2.3.1
     optionalDependencies:
-      errno: r2.cnpmjs.org/errno/0.1.8
-      graceful-fs: r2.cnpmjs.org/graceful-fs/4.2.8
-      image-size: r2.cnpmjs.org/image-size/0.5.5
-      make-dir: r2.cnpmjs.org/make-dir/2.1.0
-      mime: r2.cnpmjs.org/mime/1.6.0
-      needle: r2.cnpmjs.org/needle/2.9.1
-      source-map: r2.cnpmjs.org/source-map/0.6.1
+      errno: registry.npmmirror.com/errno/0.1.8
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.8
+      image-size: registry.npmmirror.com/image-size/0.5.5
+      make-dir: registry.npmmirror.com/make-dir/2.1.0
+      mime: registry.npmmirror.com/mime/1.6.0
+      needle: registry.npmmirror.com/needle/2.9.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   registry.npmmirror.com/levn/0.4.1:
@@ -12209,6 +12051,23 @@ packages:
     dependencies:
       sourcemap-codec: registry.npmmirror.com/sourcemap-codec/1.4.8
 
+  registry.npmmirror.com/make-dir/2.1.0:
+    resolution:
+      {
+        integrity: sha512-LS9X+dc8KLxXCb8dni79fLIIUA5VyZoyjSMCwTluaXA0o27cCK0bhXkpgw+sTXVpPy/lSO57ilRixqk0vDmtRA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/make-dir/-/make-dir-2.1.0.tgz
+      }
+    name: make-dir
+    version: 2.1.0
+    engines: { node: '>=6' }
+    requiresBuild: true
+    dependencies:
+      pify: registry.npmmirror.com/pify/4.0.1
+      semver: registry.npmmirror.com/semver/5.7.1
+    dev: true
+    optional: true
+
   registry.npmmirror.com/make-error/1.3.6:
     resolution:
       {
@@ -12428,6 +12287,21 @@ packages:
     dependencies:
       wildcard: registry.npmmirror.com/wildcard/1.1.2
     dev: false
+
+  registry.npmmirror.com/mime/1.6.0:
+    resolution:
+      {
+        integrity: sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/mime/-/mime-1.6.0.tgz
+      }
+    name: mime
+    version: 1.6.0
+    engines: { node: '>=4' }
+    hasBin: true
+    requiresBuild: true
+    dev: true
+    optional: true
 
   registry.npmmirror.com/mimic-fn/1.2.0:
     resolution:
@@ -12666,6 +12540,25 @@ packages:
     name: natural-compare
     version: 1.4.0
     dev: true
+
+  registry.npmmirror.com/needle/2.9.1:
+    resolution:
+      {
+        integrity: sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/needle/-/needle-2.9.1.tgz
+      }
+    name: needle
+    version: 2.9.1
+    engines: { node: '>= 4.4.x' }
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      debug: registry.npmmirror.com/debug/3.2.7
+      iconv-lite: registry.nlark.com/iconv-lite/0.4.24
+      sax: registry.nlark.com/sax/1.2.4
+    dev: true
+    optional: true
 
   registry.npmmirror.com/next-tick/1.0.0:
     resolution:
@@ -14133,7 +14026,7 @@ packages:
     engines: { node: '>=10.0.0' }
     hasBin: true
     optionalDependencies:
-      fsevents: r2.cnpmjs.org/fsevents/2.3.2
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   registry.npmmirror.com/run-parallel/1.2.0:
@@ -15140,6 +15033,7 @@ packages:
     engines: { node: '>=8' }
     dependencies:
       has-flag: registry.npmmirror.com/has-flag/4.0.0
+    dev: true
 
   registry.npmmirror.com/supports-color/9.2.1:
     resolution:
@@ -15614,6 +15508,21 @@ packages:
     hasBin: true
     dev: true
 
+  registry.npmmirror.com/uglify-js/3.15.3:
+    resolution:
+      {
+        integrity: sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/uglify-js/-/uglify-js-3.15.3.tgz
+      }
+    name: uglify-js
+    version: 3.15.3
+    engines: { node: '>=0.8.0' }
+    hasBin: true
+    requiresBuild: true
+    dev: true
+    optional: true
+
   registry.npmmirror.com/union-value/1.0.1:
     resolution:
       {
@@ -16035,7 +15944,7 @@ packages:
       resolve: registry.npmmirror.com/resolve/1.22.0
       rollup: registry.npmmirror.com/rollup/2.62.0
     optionalDependencies:
-      fsevents: r2.cnpmjs.org/fsevents/2.3.2
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   registry.npmmirror.com/vscode-jsonrpc/8.0.0-next.5:
@@ -16458,6 +16367,21 @@ packages:
       }
     name: yallist
     version: 4.0.0
+    dev: true
+
+  registry.npmmirror.com/yaml-eslint-parser/0.3.2:
+    resolution:
+      {
+        integrity: sha512-32kYO6kJUuZzqte82t4M/gB6/+11WAuHiEnK7FreMo20xsCKPeFH5tDBU7iWxR7zeJpNnMXfJyXwne48D0hGrg==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/yaml-eslint-parser/-/yaml-eslint-parser-0.3.2.tgz
+      }
+    name: yaml-eslint-parser
+    version: 0.3.2
+    dependencies:
+      eslint-visitor-keys: registry.npmmirror.com/eslint-visitor-keys/1.3.0
+      lodash: registry.npmmirror.com/lodash/4.17.21
+      yaml: registry.npmmirror.com/yaml/1.10.2
     dev: true
 
   registry.npmmirror.com/yaml/1.10.2:
