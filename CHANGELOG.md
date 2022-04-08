@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.4...v1.2.5) (2022-04-08)
+
+
+### Performance Improvements
+
+* add plop ([fa54a17](https://github.com/kailong321200875/vue-element-plus-admin/commit/fa54a1704ffd93f7b42dbeb1229bc4868d2d3a6a))
+
+
+### Build System
+
+* update plugins ([18c6bd8](https://github.com/kailong321200875/vue-element-plus-admin/commit/18c6bd868622d954b51ea34e37516361ad4eb540))
+
+
+### Styling
+
+* fix padding and background color ([f8c9d54](https://github.com/kailong321200875/vue-element-plus-admin/commit/f8c9d54687edafd92f5b61bf5288bb1188c73f01))
+
 ### [1.2.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.3...v1.2.4) (2022-04-06)
 
 ### Bug Fixes
