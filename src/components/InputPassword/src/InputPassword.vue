@@ -85,7 +85,7 @@ const getIconName = computed(() =>
   }
 
   &__bar {
-    background-color: var(--el-text-color-disabled-base);
+    background-color: var(--el-text-color-disabled);
     border-radius: var(--el-border-radius-base);
 
     &::before,

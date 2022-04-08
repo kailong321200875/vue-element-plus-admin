@@ -12,6 +12,11 @@ const keyClick = (key: string) => {
     window.open('https://iconify.design/')
   }
 }
+
+const peoples = useIcon({ icon: 'svg-icon:peoples' })
+const money = useIcon({ icon: 'svg-icon:money' })
+const aim = useIcon({ icon: 'ep:aim' })
+const alarmClock = useIcon({ icon: 'ep:alarm-clock' })
 </script>
 
 <template>
@@ -48,10 +53,10 @@ const keyClick = (key: string) => {
   </ContentWrap>
   <ContentWrap title="useIcon">
     <div class="flex justify-between">
-      <ElButton :icon="useIcon({ icon: 'svg-icon:peoples' })">Button</ElButton>
-      <ElButton :icon="useIcon({ icon: 'svg-icon:money' })">Button</ElButton>
-      <ElButton :icon="useIcon({ icon: 'ep:aim' })">Button</ElButton>
-      <ElButton :icon="useIcon({ icon: 'ep:alarm-clock' })">Button</ElButton>
+      <ElButton :icon="peoples">Button</ElButton>
+      <ElButton :icon="money">Button</ElButton>
+      <ElButton :icon="aim">Button</ElButton>
+      <ElButton :icon="alarmClock">Button</ElButton>
     </div>
   </ContentWrap>
 </template>

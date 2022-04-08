@@ -2,55 +2,107 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.1.14](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.13...v1.1.14) (2022-03-22)
-
-
-### Bug Fixes
-
-* fix the bug that the form search function is invalid of the example-dialog page ([9ec30e7](https://github.com/kailong321200875/vue-element-plus-admin/commit/9ec30e719f89865497dbb1321be1df906f59f14e))
-
-### [1.1.13](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.12...v1.1.13) (2022-03-17)
-
-
-### Build System
-
-* update plugins ([a2d0313](https://github.com/kailong321200875/vue-element-plus-admin/commit/a2d03137899f9b16fc1d4a09a23576cd74e7950e))
-
-### [1.1.12](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.11...v1.1.12) (2022-03-15)
-
-
-### Build System
-
-* update plugins ([fee2252](https://github.com/kailong321200875/vue-element-plus-admin/commit/fee2252930b05b709d0c012e809568c4ed32bd89))
-
-### [1.1.11](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.10...v1.1.11) (2022-03-15)
-
+### [1.2.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.3...v1.2.4) (2022-04-06)
 
 ### Bug Fixes
 
-* fix the problem of blank bar when toggle the TagsView component ([b1d9771](https://github.com/kailong321200875/vue-element-plus-admin/commit/b1d9771c750709fe45061d13299a85dbbd6ead25))
-* fix the problem that no reaction when copy setting config in http page ([61e0e33](https://github.com/kailong321200875/vue-element-plus-admin/commit/61e0e33c64d6a889fe6ed80d27a10cf8b201d21a))
+- add Sticky props comment ([46133b3](https://github.com/kailong321200875/vue-element-plus-admin/commit/46133b3ff39d48d11cbcaa1f20a271118f48eb29))
+- fix bug ([179ca06](https://github.com/kailong321200875/vue-element-plus-admin/commit/179ca064ba8adbb3b063d9798ec1930ccc68e459))
+- fix remove unnecessary variables ([ca01cbf](https://github.com/kailong321200875/vue-element-plus-admin/commit/ca01cbfd98b63a0d76190fe8d43097fdc9df74e6))
+- fix style ([17c8fea](https://github.com/kailong321200875/vue-element-plus-admin/commit/17c8fea93811d9d9b708808484f5c907d761fcf1))
+- remove ContentDetailWrap style ([4ceaa9d](https://github.com/kailong321200875/vue-element-plus-admin/commit/4ceaa9d7816369d0dcaf3e18e4cdbbd6165cef88))
 
-### [1.1.10](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.9...v1.1.10) (2022-03-13)
+### [1.2.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.2...v1.2.3) (2022-03-31)
 
+### Bug Fixes
+
+- fix refresh with query ([e94020f](https://github.com/kailong321200875/vue-element-plus-admin/commit/e94020ff541a061599486c0003258f1dbf13aba8))
+
+### [1.2.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.1...v1.2.2) (2022-03-30)
+
+### Bug Fixes
+
+- fix avatar height bug ([cd4ab76](https://github.com/kailong321200875/vue-element-plus-admin/commit/cd4ab767018941777174d7837045f5259d1cc403))
+- fix parmas to params ([2c7211c](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c7211c89d7299ffc0a36bef8999b3c201dbaf4a))
+
+### [1.2.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.0...v1.2.1) (2022-03-29)
+
+### Bug Fixes
+
+- fix invalid paging ([ad184ee](https://github.com/kailong321200875/vue-element-plus-admin/commit/ad184ee9c0619da36f1ca3f26e67f18f88488523))
 
 ### Build System
 
-* update plugins ([0b525c8](https://github.com/kailong321200875/vue-element-plus-admin/commit/0b525c875075a28288e92243b205b337f85ab550))
+- update plugins ([0c7276f](https://github.com/kailong321200875/vue-element-plus-admin/commit/0c7276feadaedef83e6a4ad9d457e26d408698a8))
 
-### [1.1.9](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.8...v1.1.9) (2022-03-07)
+## [1.2.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.14...v1.2.0) (2022-03-27)
 
+### Features
 
-### Build System
-
-* update plugins ([1456fd4](https://github.com/kailong321200875/vue-element-plus-admin/commit/1456fd49ec9abbfe1f25aeadfe5fed54fec07394))
-
-### [1.1.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.7...v1.1.8) (2022-03-07)
-
+- add hooks demo ([c43f39e](https://github.com/kailong321200875/vue-element-plus-admin/commit/c43f39efef296266c64cc24690717d07fa0bcb85))
+- add inputPassword demo ([8f8b126](https://github.com/kailong321200875/vue-element-plus-admin/commit/8f8b1260e75df6998ebea617f62d4ab6be81d721))
 
 ### Docs
 
-* update changelog ([bf09441](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf09441852e59b0d07d4949a33de75958696817f))
+- update LICENSE ([69d3dcc](https://github.com/kailong321200875/vue-element-plus-admin/commit/69d3dcc7edf69e9b4e3042ddb11faa85ec7d39e2))
+
+### Styling
+
+- modify the function name to make it more semantic ([046ae51](https://github.com/kailong321200875/vue-element-plus-admin/commit/046ae512f02df2d3f08134949b9376a061c1eef3))
+- update Footer component presentation ([d4a9ba3](https://github.com/kailong321200875/vue-element-plus-admin/commit/d4a9ba3aa6758b8aac18b30e1a6b9501baff826c))
+- update Icon demo ([8597122](https://github.com/kailong321200875/vue-element-plus-admin/commit/85971227cd3055ea280cf493c7c42b250c1515da))
+
+### Tests
+
+- test push first commit ([a67bb48](https://github.com/kailong321200875/vue-element-plus-admin/commit/a67bb48f269651a2dcd01b9e33d10f20c42d76ee))
+
+### Build System
+
+- update plugins ([9c13d92](https://github.com/kailong321200875/vue-element-plus-admin/commit/9c13d92b36a2a7c95b9edb7821367fc8f0ac6658))
+- update server port ([d2be8c1](https://github.com/kailong321200875/vue-element-plus-admin/commit/d2be8c1a307a3c5daf363bd7f1d21e574598de5c))
+
+### [1.1.14](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.13...v1.1.14) (2022-03-22)
+
+### Bug Fixes
+
+- fix the bug that the form search function is invalid of the example-dialog page ([9ec30e7](https://github.com/kailong321200875/vue-element-plus-admin/commit/9ec30e719f89865497dbb1321be1df906f59f14e))
+
+### [1.1.13](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.12...v1.1.13) (2022-03-17)
+
+### Build System
+
+- update plugins ([a2d0313](https://github.com/kailong321200875/vue-element-plus-admin/commit/a2d03137899f9b16fc1d4a09a23576cd74e7950e))
+
+### [1.1.12](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.11...v1.1.12) (2022-03-15)
+
+### Build System
+
+- update plugins ([fee2252](https://github.com/kailong321200875/vue-element-plus-admin/commit/fee2252930b05b709d0c012e809568c4ed32bd89))
+
+### [1.1.11](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.10...v1.1.11) (2022-03-15)
+
+### Bug Fixes
+
+- fix the problem of blank bar when toggle the TagsView component ([b1d9771](https://github.com/kailong321200875/vue-element-plus-admin/commit/b1d9771c750709fe45061d13299a85dbbd6ead25))
+- fix the problem that no reaction when copy setting config in http page ([61e0e33](https://github.com/kailong321200875/vue-element-plus-admin/commit/61e0e33c64d6a889fe6ed80d27a10cf8b201d21a))
+
+### [1.1.10](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.9...v1.1.10) (2022-03-13)
+
+### Build System
+
+- update plugins ([0b525c8](https://github.com/kailong321200875/vue-element-plus-admin/commit/0b525c875075a28288e92243b205b337f85ab550))
+
+### [1.1.9](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.8...v1.1.9) (2022-03-07)
+
+### Build System
+
+- update plugins ([1456fd4](https://github.com/kailong321200875/vue-element-plus-admin/commit/1456fd49ec9abbfe1f25aeadfe5fed54fec07394))
+
+### [1.1.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.7...v1.1.8) (2022-03-07)
+
+### Docs
+
+- update changelog ([bf09441](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf09441852e59b0d07d4949a33de75958696817f))
 
 ### [1.1.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.1.6...v1.1.7) (2022-03-06)
 

@@ -32,7 +32,7 @@ const { register, tableObject, methods } = useTable<
   }
 })
 
-const { getList, setSearchParmas } = methods
+const { getList, setSearchParams } = methods
 
 getList()
 
@@ -130,7 +130,7 @@ const action = (row: TableData, type: string) => {
 
 <template>
   <ContentWrap>
-    <Search :schema="searchData" @search="setSearchParmas" @reset="setSearchParmas" />
+    <Search :schema="searchData" @search="setSearchParams" @reset="setSearchParams" />
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>

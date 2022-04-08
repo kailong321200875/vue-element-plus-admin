@@ -249,6 +249,22 @@ const adminList = [
         meta: {
           title: 'router.infotip'
         }
+      },
+      {
+        path: 'input-password',
+        component: 'views/Components/InputPassword',
+        name: 'InputPassword',
+        meta: {
+          title: 'router.inputPassword'
+        }
+      },
+      {
+        path: 'sticky',
+        component: 'views/Components/Sticky',
+        name: 'Sticky',
+        meta: {
+          title: 'router.sticky'
+        }
       }
     ]
   },
@@ -468,6 +484,8 @@ const testList: string[] = [
   '/components/qrcode',
   '/components/highlight',
   '/components/infotip',
+  '/Components/InputPassword',
+  '/Components/Sticky',
   '/hooks',
   '/hooks/useWatermark',
   '/level',
