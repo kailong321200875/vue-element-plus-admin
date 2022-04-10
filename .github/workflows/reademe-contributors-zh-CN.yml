@@ -13,4 +13,4 @@ jobs:
         with:
           readme_path: README.zh-CN.md
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
