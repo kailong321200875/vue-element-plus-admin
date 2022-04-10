@@ -70,7 +70,7 @@
     "@vitejs/plugin-vue-jsx": "^1.3.9",
     "autoprefixer": "^10.4.4",
     "commitizen": "^4.2.4",
-    "eslint": "^8.12.0",
+    "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -99,7 +99,7 @@
     "vite-plugin-style-import": "^1.4.1",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-windicss": "^1.8.3",
-    "vue-tsc": "^0.33.9",
+    "vue-tsc": "^0.34.1",
     "windicss": "^3.5.1",
     "windicss-analysis": "^0.3.5",
     "plop": "^3.0.5"
