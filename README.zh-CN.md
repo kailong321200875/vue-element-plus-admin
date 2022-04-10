@@ -130,3 +130,13 @@ pnpm run build:pro
 ## 许可证
 
 [MIT](./LICENSE)
+
+## 合作者
+
+<!-- readme: collaborators -start -->
+<!-- readme: collaborators -end -->
+
+## 贡献者
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->

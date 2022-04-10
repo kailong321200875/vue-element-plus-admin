@@ -130,3 +130,13 @@ Support modern browsers, not IE
 ## License
 
 [MIT](./LICENSE)
+
+## Collaborators
+
+<!-- readme: collaborators -start -->
+<!-- readme: collaborators -end -->
+
+## Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
