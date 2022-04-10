@@ -5,5 +5,5 @@ module.exports = {
   '*.vue': ['prettier --write', 'stylelint --fix'],
   '*.{scss,less,styl,css,html}': ['stylelint --fix', 'prettier --write'],
   '*.md': ['prettier --write'],
-  '*.{hbs}': ['prettier --write']
+  '*.hbs': ['prettier --write']
 }
