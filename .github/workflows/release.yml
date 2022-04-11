@@ -16,7 +16,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
 
   contrib-readme-job:
-    needs: [contrib-readme-en-job]
     runs-on: ubuntu-latest
     name: A job to automate contrib in readme.zh-CN
     steps:
@@ -152,9 +151,28 @@ jobs:
           static_list: 'vue-element-plus-admin' # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
           timeout: '600s' # git超时设置，超时后会自动重试git操作
 
+  # 合并发布版本的 pr 到 master
+  auto-merge:
+    needs: [contrib-readme-en-job, contrib-readme-job, push-to-gh-pages, push-to-gh-pages-gitee]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge
+        uses: 'pascalgn/automerge-action@v0.14.3'
+        env:
+          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
+          MERGE_LABELS: ''
+          MERGE_FILTER_AUTHOR: 'kailong321200875'
+
   # 自动发布版本
   release-please:
-    needs: [contrib-readme-en-job, contrib-readme-job, push-to-gh-pages, push-to-gh-pages-gitee]
+    needs:
+      [
+        contrib-readme-en-job,
+        contrib-readme-job,
+        push-to-gh-pages,
+        push-to-gh-pages-gitee,
+        auto-merge
+      ]
     runs-on: ubuntu-latest
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v3
@@ -164,22 +182,3 @@ jobs:
           release-type: node
           package-name: standard-version
           changelog-types: '[{"type": "types", "section":"Types", "hidden": false},{"type": "revert", "section":"Reverts", "hidden": false},{"type": "feat", "section": "Features", "hidden": false},{"type": "fix", "section": "Bug Fixes", "hidden": false},{"type": "improvement", "section": "Feature Improvements", "hidden": false},{"type": "docs", "section":"Docs", "hidden": false},{"type": "style", "section":"Styling", "hidden": false},{"type": "refactor", "section":"Code Refactoring", "hidden": false},{"type": "perf", "section":"Performance Improvements", "hidden": false},{"type": "test", "section":"Tests", "hidden": false},{"type": "build", "section":"Build System", "hidden": false},{"type": "ci", "section":"CI", "hidden":false}]'
-
-  # 合并发布版本的 pr 到 master
-  auto-merge:
-    needs:
-      [
-        contrib-readme-en-job,
-        contrib-readme-job,
-        push-to-gh-pages,
-        push-to-gh-pages-gitee,
-        release-please
-      ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Automerge
-        uses: 'pascalgn/automerge-action@v0.14.3'
-        env:
-          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
-          MERGE_LABELS: ''
-          MERGE_FILTER_AUTHOR: 'kailong321200875'
