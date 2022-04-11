@@ -69,7 +69,7 @@ jobs:
           git config --local user.email "321200875@qq.com"
           git config --local user.name "kailong321200875"
 
-      # 发布到github
+      # 发布到 github
       - name: Build Github
         run: |
           pnpm install
@@ -130,7 +130,7 @@ jobs:
           pnpm install
           pnpm run build:gitee
 
-      # 发布到gitee
+      # 发布到 gitee
       - name: Deploy Gitee
         uses: peaceiris/actions-gh-pages@v3
         with:
