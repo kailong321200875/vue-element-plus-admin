@@ -204,7 +204,7 @@ Support modern browsers, not IE
         <a href="https://github.com/z6w6j6">
             <img src="https://avatars.githubusercontent.com/u/23661303?v=4" width="100;" alt="z6w6j6"/>
             <br />
-            <sub><b>z6w6j6</b></sub>
+            <sub><b>Z6w6j6</b></sub>
         </a>
     </td></tr>
 </table>
