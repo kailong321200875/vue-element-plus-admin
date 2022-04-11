@@ -17,7 +17,8 @@ const { start, done } = useNProgress()
 
 const { loadStart, loadDone } = usePageLoading()
 
-const whiteList = ['/login'] // 不重定向白名单
+// 不重定向白名单
+const whiteList = ['/login']
 
 router.beforeEach(async (to, from, next) => {
   start()
