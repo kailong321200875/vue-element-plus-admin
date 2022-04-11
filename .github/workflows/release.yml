@@ -7,7 +7,6 @@ name: Release
 
 jobs:
   contrib-readme-en-job:
-    needs: [release-please]
     runs-on: ubuntu-latest
     name: A job to automate contrib in readme
     steps:
@@ -17,7 +16,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
 
   contrib-readme-job:
-    needs: [release-please]
     runs-on: ubuntu-latest
     name: A job to automate contrib in readme.zh-CN
     steps:
