@@ -1,14 +1,35 @@
-name: Deploy Gitee
-
 on:
   push:
     branches:
       - master
 
+name: Release
+
 jobs:
-  push-to-gh-pages-gitee:
+  # 自动发布版本
+  release-please:
     runs-on: ubuntu-latest
     steps:
+      - uses: GoogleCloudPlatform/release-please-action@v3
+        id: release
+        with:
+          token: ${{ secrets.TOKEN }}
+          release-type: node
+          package-name: standard-version
+          changelog-types: '[{"type": "types", "section":"Types", "hidden": false},{"type": "revert", "section":"Reverts", "hidden": false},{"type": "feat", "section": "Features", "hidden": false},{"type": "fix", "section": "Bug Fixes", "hidden": false},{"type": "improvement", "section": "Feature Improvements", "hidden": false},{"type": "docs", "section":"Docs", "hidden": false},{"type": "style", "section":"Styling", "hidden": false},{"type": "refactor", "section":"Code Refactoring", "hidden": false},{"type": "perf", "section":"Performance Improvements", "hidden": false},{"type": "test", "section":"Tests", "hidden": false},{"type": "build", "section":"Build System", "hidden": false},{"type": "ci", "section":"CI", "hidden":false}]'
+
+  # 合并发布版本的 pr 到 master
+  auto-merge:
+    needs: release-please
+    runs-on: ubuntu-latest
+    steps:
+      - name: Automerge
+        uses: 'pascalgn/automerge-action@v0.14.3'
+        env:
+          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
+          MERGE_LABELS: ''
+          MERGE_FILTER_AUTHOR: 'kailong321200875'
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -17,7 +38,7 @@ jobs:
         with:
           version: latest
 
-      - name: use Node.js 16
+      - name: Use Node.js 16
         uses: actions/setup-node@v2.1.2
         with:
           node-version: '16.x'
@@ -46,10 +67,27 @@ jobs:
           git config --local user.email "321200875@qq.com"
           git config --local user.name "kailong321200875"
 
+      # 发布到github
+      - name: Build Github
+        run: |
+          pnpm install
+          pnpm run build:pro
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          publish_branch: gh-pages
+          publish_dir: ./dist-pro
+          force_orphan: true
+          cname: element-plus-admin.cn
+
       - name: Build
         run: |
           pnpm install
           pnpm run build:gitee
+
+      # 发布到gitee
       - name: Deploy Gitee
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -71,3 +109,25 @@ jobs:
           force_update: true # 启用后，强制同步，即强制覆盖目的端仓库
           static_list: 'vue-element-plus-admin' # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
           timeout: '600s' # git超时设置，超时后会自动重试git操作
+
+  contrib-readme-en-job:
+    needs: [release-please, auto-merge]
+    runs-on: ubuntu-latest
+    name: A job to automate contrib in readme
+    steps:
+      - name: Contribute List
+        uses: akhilmhdh/contributors-readme-action@v2.3.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
+
+  contrib-readme-job:
+    needs: [release-please, auto-merge, contrib-readme-en-job]
+    runs-on: ubuntu-latest
+    name: A job to automate contrib in readme.zh-CN
+    steps:
+      - name: Contribute List
+        uses: akhilmhdh/contributors-readme-action@v2.3.4
+        with:
+          readme_path: README.zh-CN.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
