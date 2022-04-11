@@ -134,9 +134,78 @@ Support modern browsers, not IE
 ## Collaborators
 
 <!-- readme: collaborators -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/niyg">
+            <img src="https://avatars.githubusercontent.com/u/14817820?v=4" width="100;" alt="niyg"/>
+            <br />
+            <sub><b>福州-大雨</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/git-Where">
+            <img src="https://avatars.githubusercontent.com/u/16344566?v=4" width="100;" alt="git-Where"/>
+            <br />
+            <sub><b>葉家男孩</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/z6w6j6">
+            <img src="https://avatars.githubusercontent.com/u/23661303?v=4" width="100;" alt="z6w6j6"/>
+            <br />
+            <sub><b>z6w6j6</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/kailong321200875">
+            <img src="https://avatars.githubusercontent.com/u/32283845?v=4" width="100;" alt="kailong321200875"/>
+            <br />
+            <sub><b>Archer</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: collaborators -end -->
 
 ## Contributors
 
 <!-- readme: contributors -start -->
+<table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/kailong321200875">
+            <img src="https://avatars.githubusercontent.com/u/32283845?v=4" width="100;" alt="kailong321200875"/>
+            <br />
+            <sub><b>Archer</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/kailong502431556">
+            <img src="https://avatars.githubusercontent.com/u/30221169?v=4" width="100;" alt="kailong502431556"/>
+            <br />
+            <sub><b>kailong502431556</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/huanghong1125">
+            <img src="https://avatars.githubusercontent.com/u/12794817?v=4" width="100;" alt="huanghong1125"/>
+            <br />
+            <sub><b>Huanghong</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/snowords">
+            <img src="https://avatars.githubusercontent.com/u/22708432?v=4" width="100;" alt="snowords"/>
+            <br />
+            <sub><b>Snoword</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/z6w6j6">
+            <img src="https://avatars.githubusercontent.com/u/23661303?v=4" width="100;" alt="z6w6j6"/>
+            <br />
+            <sub><b>z6w6j6</b></sub>
+        </a>
+    </td></tr>
+</table>
 <!-- readme: contributors -end -->
