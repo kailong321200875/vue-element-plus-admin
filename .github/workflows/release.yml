@@ -6,30 +6,8 @@ on:
 name: Release
 
 jobs:
-  contrib-readme-en-job:
-    runs-on: ubuntu-latest
-    name: A job to automate contrib in readme
-    steps:
-      - name: Contribute List
-        uses: akhilmhdh/contributors-readme-action@v2.3.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
-
-  contrib-readme-job:
-    needs: [contrib-readme-en-job]
-    runs-on: ubuntu-latest
-    name: A job to automate contrib in readme.zh-CN
-    steps:
-      - name: Contribute List
-        uses: akhilmhdh/contributors-readme-action@v2.3.4
-        with:
-          readme_path: README.zh-CN.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
-
   # 自动发布版本
   release-please:
-    needs: [contrib-readme-en-job, contrib-readme-job]
     runs-on: ubuntu-latest
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v3
@@ -42,7 +20,7 @@ jobs:
 
   # 合并发布版本的 pr 到 master
   auto-merge:
-    needs: [contrib-readme-en-job, contrib-readme-job, release-please]
+    needs: release-please
     runs-on: ubuntu-latest
     steps:
       - name: Automerge
@@ -104,9 +82,8 @@ jobs:
           force_orphan: true
           cname: element-plus-admin.cn
 
-      - name: Build
+      - name: Build Gitee
         run: |
-          pnpm install
           pnpm run build:gitee
 
       # 发布到gitee
@@ -131,4 +108,3 @@ jobs:
           force_update: true # 启用后，强制同步，即强制覆盖目的端仓库
           static_list: 'vue-element-plus-admin' # 静态同步列表，在此填写需要同步的仓库名称，可填写多个
           timeout: '600s' # git超时设置，超时后会自动重试git操作
-
