@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.7...v1.2.8) (2022-04-11)
+
+
+### Bug Fixes
+
+* 🐛 添加stylelint-config-recommended依赖，设置layout为top时默认背景颜色 ([3ffd82d](https://github.com/kailong321200875/vue-element-plus-admin/commit/3ffd82dba2d75f4169a1f2aec7977b6f4ae8bef9))
+
 ### [1.2.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.6...v1.2.7) (2022-04-10)
 
 
