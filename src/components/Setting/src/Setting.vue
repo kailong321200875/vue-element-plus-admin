@@ -92,6 +92,10 @@ const setMenuTheme = (color: string) => {
   appStore.setTheme(theme)
   appStore.setCssVarTheme()
 }
+if (layout.value === 'top') {
+  headerTheme.value = '#fff'
+  setHeaderTheme('#fff')
+}
 
 // 监听layout变化，重置一些主题色
 watch(
