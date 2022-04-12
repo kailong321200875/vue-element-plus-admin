@@ -205,15 +205,11 @@ const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
 const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
 
 // 右键菜单装填改变的时候
-const visibleChange = (
-  visible: boolean,
-  ref: ComponentRef<typeof ContextMenu & ContextMenuExpose>
-) => {
-  const uid = ref.$el['__vueParentComponent'].uid
+const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
     for (const v of unref(itemRefs)) {
       const elDropdownMenuRef = v.elDropdownMenuRef
-      if (uid !== elDropdownMenuRef?.$el['__vueParentComponent'].uid) {
+      if (tagItem.fullPath !== v.tagItem.fullPath) {
         elDropdownMenuRef?.handleClose()
       }
     }
@@ -330,6 +326,7 @@ watch(
             ]"
             v-for="item in visitedViews"
             :key="item.fullPath"
+            :tag-item="item"
             :class="[
               `${prefixCls}__item`,
               item?.meta?.affix ? `${prefixCls}__item--affix` : '',
