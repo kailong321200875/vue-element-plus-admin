@@ -2,13 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.2.9](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.8...v1.2.9) (2022-04-12)
-
-
-### Bug Fixes
-
-* 修复menu右键菜单多个问题 ([6c9ca7a](https://github.com/kailong321200875/vue-element-plus-admin/commit/6c9ca7ad7806858269f2404bb0a8337ef0b24a93))
-
 ### [1.2.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.7...v1.2.8) (2022-04-11)
 
 ### Build System
@@ -198,23 +191,23 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 - 🎸 layout 三种布局重构完成 ([429e428](https://github.com/kailong321200875/vue-element-plus-admin/commit/429e42809cef33a33662e41ad50297217d128b8c))
-- 🎸 layout 布局重构 �([bd24b92](https://github.com/kailong321200875/vue-element-plus-admin/commit/bd24b92acb279343dbaf83b74f1ed2a3f57f1003))
-- 🎸 Table 组件重构完成并给出相应示 �([35879f8](https://github.com/kailong321200875/vue-element-plus-admin/commit/35879f8ecc0ffa76122a336e2eaa93ecfb408c1d))
+- 🎸 layout 布局重构 �[bd24b92](https://github.com/kailong321200875/vue-element-plus-admin/commit/bd24b92acb279343dbaf83b74f1ed2a3f57f1003))
+- 🎸 Table 组件重构完成并给出相应示 �[35879f8](https://github.com/kailong321200875/vue-element-plus-admin/commit/35879f8ecc0ffa76122a336e2eaa93ecfb408c1d))
 - 🎸 v0.0.4 发布 ([a58dc1b](https://github.com/kailong321200875/vue-element-plus-admin/commit/a58dc1b1c2774974782ef6d116b8805975b82b1c))
-- 🎸 初始化项 �([26d4c7c](https://github.com/kailong321200875/vue-element-plus-admin/commit/26d4c7c56894cf2031b3a7cce08d53c37f4a49e3))
+- 🎸 初始化项 �[26d4c7c](https://github.com/kailong321200875/vue-element-plus-admin/commit/26d4c7c56894cf2031b3a7cce08d53c37f4a49e3))
 - 🎸 初版完成 ([5bfe4d2](https://github.com/kailong321200875/vue-element-plus-admin/commit/5bfe4d236fd9c2841da100f34c980b4572b67b20))
-- 🎸 新增 Detail 详情组件并给出相应示 �([e77a931](https://github.com/kailong321200875/vue-element-plus-admin/commit/e77a931ef2d2967a9717e27b187d68512c01284f))
-- 🎸 新增二维码组 �([85555ee](https://github.com/kailong321200875/vue-element-plus-admin/commit/85555eef7dc7d72cb701bdd81044ba8fb8e72acc))
+- 🎸 新增 Detail 详情组件并给出相应示 �[e77a931](https://github.com/kailong321200875/vue-element-plus-admin/commit/e77a931ef2d2967a9717e27b187d68512c01284f))
+- 🎸 新增二维码组 �[85555ee](https://github.com/kailong321200875/vue-element-plus-admin/commit/85555eef7dc7d72cb701bdd81044ba8fb8e72acc))
 - 🎸 新增全局配置 ([f8405a6](https://github.com/kailong321200875/vue-element-plus-admin/commit/f8405a63c9b1288fbe95bae235b65a08e8fae8d2))
-- 🎸 新增固定 � 级菜单配 �([4c4903e](https://github.com/kailong321200875/vue-element-plus-admin/commit/4c4903e806c8818e320108cc3e5279d728061c29))
-- 🎸 新增权限管理及相关示例文 �([32b6583](https://github.com/kailong321200875/vue-element-plus-admin/commit/32b6583099646b2ee622ac7b35388468769b91b8))
+- 🎸 新增固定 � 级菜单配 �[4c4903e](https://github.com/kailong321200875/vue-element-plus-admin/commit/4c4903e806c8818e320108cc3e5279d728061c29))
+- 🎸 新增权限管理及相关示例文 �[32b6583](https://github.com/kailong321200875/vue-element-plus-admin/commit/32b6583099646b2ee622ac7b35388468769b91b8))
 - 🎸 显示更多组建 � 发中 ([fa9f24d](https://github.com/kailong321200875/vue-element-plus-admin/commit/fa9f24d5da8d2e40d7c3661eabacb8f0474a7bf2))
 - 🎸 权限管理 � 发中 ([38f5211](https://github.com/kailong321200875/vue-element-plus-admin/commit/38f521174ba9eba750fee4516141d7a267f1c4ce))
 - 🎸 权限管理 � 发中 ([6d7ea66](https://github.com/kailong321200875/vue-element-plus-admin/commit/6d7ea6694d8299332018a6689bcd82502a9a552c))
-- 🎸 综合实例重构 �([5142e6e](https://github.com/kailong321200875/vue-element-plus-admin/commit/5142e6e323cb20c89a97398bf41d32c93ce42cad))
+- 🎸 综合实例重构 �[5142e6e](https://github.com/kailong321200875/vue-element-plus-admin/commit/5142e6e323cb20c89a97398bf41d32c93ce42cad))
 - 🎸 重构 layout ([7ede021](https://github.com/kailong321200875/vue-element-plus-admin/commit/7ede02141e258ab4c88e9b4daad966513d4dbe68))
 - 🎸 重构 layout-classic 布局 ([29d9c98](https://github.com/kailong321200875/vue-element-plus-admin/commit/29d9c988605b822195900268da6bc3f3b0b9c770))
-- 🎸 重构 sider 组件 �([51313d7](https://github.com/kailong321200875/vue-element-plus-admin/commit/51313d7116c7ab2ded7e3a65514ea9ac413edecd))
+- 🎸 重构 sider 组件 �[51313d7](https://github.com/kailong321200875/vue-element-plus-admin/commit/51313d7116c7ab2ded7e3a65514ea9ac413edecd))
 - Add analysis api ([83327ea](https://github.com/kailong321200875/vue-element-plus-admin/commit/83327ea763ebb233bb540513276ffa288fbcb4a1))
 - Add analysis demo ([cd06934](https://github.com/kailong321200875/vue-element-plus-admin/commit/cd069340fc5157535fdc82e792c6b6dce7d7a97e))
 - Add count-to demo ([d3fbd3a](https://github.com/kailong321200875/vue-element-plus-admin/commit/d3fbd3a06c3b802fc863b4dc8013122c14bd16f2))
@@ -275,7 +268,7 @@ All notable changes to this project will be documented in this file. See [standa
 - **VForm:** Add VForm component ([448ac52](https://github.com/kailong321200875/vue-element-plus-admin/commit/448ac5293e48a03840df2bb0b399a8f02aae666e))
 - **VInputPassword:** Add VInputPassword Component ([a1bf7e9](https://github.com/kailong321200875/vue-element-plus-admin/commit/a1bf7e9b552f75d3b87c64904ac9e7c99fc936a5))
 - **Workplace:** Add wrokplace demo ([c53fa56](https://github.com/kailong321200875/vue-element-plus-admin/commit/c53fa562e540447df082e35c7f26e56f2426e430))
-- 综合实例、权限管理重 �([a4bd206](https://github.com/kailong321200875/vue-element-plus-admin/commit/a4bd2068a5d40d146b5b45cb3727ced990147b68))
+- 综合实例、权限管理重 �[a4bd206](https://github.com/kailong321200875/vue-element-plus-admin/commit/a4bd2068a5d40d146b5b45cb3727ced990147b68))
 - 部分组件重构完成 ([3d96229](https://github.com/kailong321200875/vue-element-plus-admin/commit/3d9622978dc234ef12dbce63e18caf3440563aa0))
 
 ### Bug Fixes
@@ -283,7 +276,7 @@ All notable changes to this project will be documented in this file. See [standa
 - 🐛 删除 Editor 双向绑定，改 �props 传参 ([c395e27](https://github.com/kailong321200875/vue-element-plus-admin/commit/c395e27f67af9f60b151a5484ab5a3c90c4c1d1e))
 - fix Form component setProps not work bug ([48ffc52](https://github.com/kailong321200875/vue-element-plus-admin/commit/48ffc52ca8fa26d8e6a5fa4b8b3001701a1f0732))
 - fix useScrollTo not work bug ([53201ae](https://github.com/kailong321200875/vue-element-plus-admin/commit/53201ae97a425714871d99e8847a3672ba0d389f))
-- 修复 tagsView 无动画效 �([0e3eb4b](https://github.com/kailong321200875/vue-element-plus-admin/commit/0e3eb4ba8b1503e1d221dfda59a3a0001dbdcb56))
+- 修复 tagsView 无动画效 �[0e3eb4b](https://github.com/kailong321200875/vue-element-plus-admin/commit/0e3eb4ba8b1503e1d221dfda59a3a0001dbdcb56))
 
 ### Performance Improvements
 
@@ -309,8 +302,8 @@ All notable changes to this project will be documented in this file. See [standa
 - **vite-plugin-style-import:** Add vite-plugin-style-import ([2040500](https://github.com/kailong321200875/vue-element-plus-admin/commit/2040500af14d277a79f01eba5eca2a440203cecf))
 - **vite-plugin-vue-setup-extend:** Delete vite-plugin-vue-setup-extend ([2040500](https://github.com/kailong321200875/vue-element-plus-admin/commit/2040500af14d277a79f01eba5eca2a440203cecf))
 - 修改 vite 配置 ([9991fb4](https://github.com/kailong321200875/vue-element-plus-admin/commit/9991fb4e5c46b9e4016beaade7232e28dc272797))
-- 设置多语 � ([45e879e](https://github.com/kailong321200875/vue-element-plus-admin/commit/45e879edeef677b6aa1d2cfe4dd8dc5b76c83c59))
-- 配置代码格式 �([ffdb556](https://github.com/kailong321200875/vue-element-plus-admin/commit/ffdb556a096db247306eae8eecc1b85718314cdd))
+- 设置多语 �([45e879e](https://github.com/kailong321200875/vue-element-plus-admin/commit/45e879edeef677b6aa1d2cfe4dd8dc5b76c83c59))
+- 配置代码格式 �[ffdb556](https://github.com/kailong321200875/vue-element-plus-admin/commit/ffdb556a096db247306eae8eecc1b85718314cdd))
 - 集成基础配置 ([ced99de](https://github.com/kailong321200875/vue-element-plus-admin/commit/ced99de9b113a01d9d0b190f6d2c6adc983a3102))
 - 集成基础配置 ([5dbcf23](https://github.com/kailong321200875/vue-element-plus-admin/commit/5dbcf2397ccdec80c695c113f49e8aa9bb6d012c))
 
