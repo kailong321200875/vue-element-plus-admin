@@ -16,25 +16,3 @@ jobs:
           release-type: node
           package-name: standard-version
           changelog-types: '[{"type": "types", "section":"Types", "hidden": false},{"type": "revert", "section":"Reverts", "hidden": false},{"type": "feat", "section": "Features", "hidden": false},{"type": "fix", "section": "Bug Fixes", "hidden": false},{"type": "improvement", "section": "Feature Improvements", "hidden": false},{"type": "docs", "section":"Docs", "hidden": false},{"type": "style", "section":"Styling", "hidden": false},{"type": "refactor", "section":"Code Refactoring", "hidden": false},{"type": "perf", "section":"Performance Improvements", "hidden": false},{"type": "test", "section":"Tests", "hidden": false},{"type": "build", "section":"Build System", "hidden": false},{"type": "ci", "section":"CI", "hidden":false}]'
-
-  contrib-readme-en-job:
-    needs: [release-please]
-    runs-on: ubuntu-latest
-    name: A job to automate contrib in readme
-    steps:
-      - name: Contribute List
-        uses: akhilmhdh/contributors-readme-action@v2.3.4
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
-
-  contrib-readme-job:
-    needs: [release-please]
-    runs-on: ubuntu-latest
-    name: A job to automate contrib in readme.zh-CN
-    steps:
-      - name: Contribute List
-        uses: akhilmhdh/contributors-readme-action@v2.3.4
-        with:
-          readme_path: README.zh-CN.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.CONTRIBUTORS_TOKEN }}
