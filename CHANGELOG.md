@@ -4,15 +4,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.2.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.7...v1.2.8) (2022-04-11)
 
-
 ### Build System
 
-* update plugins ([00a573a](https://github.com/kailong321200875/vue-element-plus-admin/commit/00a573af3f455395b4ee2ab99a03f3103d466e9c))
-
+- update plugins ([00a573a](https://github.com/kailong321200875/vue-element-plus-admin/commit/00a573af3f455395b4ee2ab99a03f3103d466e9c))
 
 ### Docs
 
-* update changlog ([62fc183](https://github.com/kailong321200875/vue-element-plus-admin/commit/62fc1839fdff3a4d06a7db4cf3f8ce2cb9aee681))
+- update changlog ([62fc183](https://github.com/kailong321200875/vue-element-plus-admin/commit/62fc1839fdff3a4d06a7db4cf3f8ce2cb9aee681))
 
 ### [1.2.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.5...v1.2.6) (2022-04-08)
 

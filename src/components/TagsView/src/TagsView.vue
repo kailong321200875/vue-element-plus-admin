@@ -205,15 +205,11 @@ const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
 const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
 
 // 右键菜单装填改变的时候
-const visibleChange = (
-  visible: boolean,
-  ref: ComponentRef<typeof ContextMenu & ContextMenuExpose>
-) => {
-  const uid = ref.$el['__vueParentComponent'].uid
+const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
     for (const v of unref(itemRefs)) {
       const elDropdownMenuRef = v.elDropdownMenuRef
-      if (uid !== elDropdownMenuRef?.$el['__vueParentComponent'].uid) {
+      if (tagItem.fullPath !== v.tagItem.fullPath) {
         elDropdownMenuRef?.handleClose()
       }
     }
@@ -337,6 +333,7 @@ watch(
                 'is-active': isActive(item)
               }
             ]"
+            :tag-item="item"
             @visible-change="visibleChange"
           >
             <router-link :ref="tagLinksRefs.set" :to="{ ...item }" custom v-slot="{ navigate }">
