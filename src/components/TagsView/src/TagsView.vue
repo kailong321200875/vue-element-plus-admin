@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useTagsViewStore } from '@/store/modules/tagsView'
+import { useAppStore } from '@/store/modules/app'
 import { useI18n } from '@/hooks/web/useI18n'
 import { filterAffixTags } from './helper'
 import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
@@ -29,6 +30,10 @@ const tagsViewStore = useTagsViewStore()
 const visitedViews = computed(() => tagsViewStore.getVisitedViews)
 
 const affixTagArr = ref<RouteLocationNormalizedLoaded[]>([])
+
+const appStore = useAppStore()
+
+const tagsViewIcon = computed(() => appStore.getTagsViewIcon)
 
 // 初始化tag
 const initTags = () => {
@@ -341,6 +346,17 @@ watch(
                 @click="navigate"
                 class="h-full flex justify-center items-center whitespace-nowrap pl-15px"
               >
+                <Icon
+                  v-if="
+                    item?.matched &&
+                    item?.matched[1] &&
+                    item?.matched[1]?.meta?.icon &&
+                    tagsViewIcon
+                  "
+                  :icon="item?.matched[1]?.meta?.icon"
+                  :size="12"
+                  class="mr-5px"
+                />
                 {{ t(item?.meta?.title as string) }}
                 <Icon
                   :class="`${prefixCls}__item--close`"
@@ -434,6 +450,7 @@ watch(
 @prefix-cls: ~'@{namespace}-tags-view';
 
 .@{prefix-cls} {
+  background-color: #fff;
   :deep(.@{elNamespace}-scrollbar__view) {
     height: 100%;
   }

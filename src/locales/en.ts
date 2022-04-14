@@ -73,7 +73,8 @@ export default {
     copySuccess: 'Copy success',
     copyFailed: 'Copy failed',
     footer: 'Footer',
-    uniqueOpened: 'Unique opened'
+    uniqueOpened: 'Unique opened',
+    tagsViewIcon: 'Tags view icon'
   },
   size: {
     default: 'Default',

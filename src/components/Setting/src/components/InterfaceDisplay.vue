@@ -65,6 +65,13 @@ const tagsViewChange = (show: boolean) => {
   appStore.setTagsView(show)
 }
 
+// 标签页图标
+const tagsViewIcon = ref(appStore.getTagsViewIcon)
+
+const tagsViewIconChange = (show: boolean) => {
+  appStore.setTagsViewIcon(show)
+}
+
 // logo
 const logo = ref(appStore.getLogo)
 
@@ -147,6 +154,11 @@ watch(
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.tagsView') }}</span>
       <ElSwitch v-model="tagsView" @change="tagsViewChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.tagsViewIcon') }}</span>
+      <ElSwitch v-model="tagsViewIcon" @change="tagsViewIconChange" />
     </div>
 
     <div class="flex justify-between items-center">

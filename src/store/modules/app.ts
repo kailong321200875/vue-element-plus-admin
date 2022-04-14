@@ -42,6 +42,9 @@ export const useAppStore = defineStore({
     getTagsView(): boolean {
       return this.tagsView
     },
+    getTagsViewIcon(): boolean {
+      return this.tagsViewIcon
+    },
     getLogo(): boolean {
       return this.logo
     },
@@ -109,6 +112,9 @@ export const useAppStore = defineStore({
     },
     setTagsView(tagsView: boolean) {
       this.tagsView = tagsView
+    },
+    setTagsViewIcon(tagsViewIcon: boolean) {
+      this.tagsViewIcon = tagsViewIcon
     },
     setLogo(logo: boolean) {
       this.logo = logo

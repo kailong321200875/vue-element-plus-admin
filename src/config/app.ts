@@ -30,6 +30,7 @@ export interface AppState {
   size: boolean
   locale: boolean
   tagsView: boolean
+  tagsViewIcon: boolean
   logo: boolean
   fixedHeader: boolean
   greyMode: boolean
@@ -61,6 +62,7 @@ export const appModules: AppState = {
   size: true, // 尺寸图标
   locale: true, // 多语言图标
   tagsView: true, // 标签页
+  tagsViewIcon: true, // 是否显示标签图标
   logo: true, // logo
   fixedHeader: true, // 固定toolheader
   footer: true, // 显示页脚
