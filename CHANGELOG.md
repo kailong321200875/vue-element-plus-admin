@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.11](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.10...v1.2.11) (2022-04-14)
+
+
+### Bug Fixes
+
+* fix the error reported by the Editor component ([7dc6d8a](https://github.com/kailong321200875/vue-element-plus-admin/commit/7dc6d8a9d7289bfaf27f972e9ca1773c0a1ddd7d))
+* fix the error reported by the Editor component ([90ef985](https://github.com/kailong321200875/vue-element-plus-admin/commit/90ef9856a0885fa812339cb7047ecc98b86c7b73))
+
+
+### Performance Improvements
+
+* add tagsViewIcon setting ([d395f03](https://github.com/kailong321200875/vue-element-plus-admin/commit/d395f03a57a9265f1d39b3220fc7c9b983efee30))
+* add uniqueopened setting ([b060319](https://github.com/kailong321200875/vue-element-plus-admin/commit/b0603199a5ae0ee923483dad449f49220d36f444))
+
+
+### Build System
+
+* update plugins ([2ee4954](https://github.com/kailong321200875/vue-element-plus-admin/commit/2ee49549e7b601af26ef5204f7648d271f3348f2))
+
+
+### Styling
+
+* add layout background color ([9b614fe](https://github.com/kailong321200875/vue-element-plus-admin/commit/9b614fe89288538197c50f164586aeed7836b7a8))
+
 ### [1.2.10](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.9...v1.2.10) (2022-04-12)
 
 
