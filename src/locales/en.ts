@@ -72,7 +72,9 @@ export default {
     clearAndReset: 'Clear cache and reset',
     copySuccess: 'Copy success',
     copyFailed: 'Copy failed',
-    footer: 'Footer'
+    footer: 'Footer',
+    uniqueOpened: 'Unique opened',
+    tagsViewIcon: 'Tags view icon'
   },
   size: {
     default: 'Default',

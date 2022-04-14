@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onBeforeUnmount, computed, PropType, unref, nextTick, ref, watch } from 'vue'
-import { Editor, Toolbar, getEditor, removeEditor } from '@wangeditor/editor-for-vue'
+import { onBeforeUnmount, computed, PropType, unref, nextTick, ref, watch, shallowRef } from 'vue'
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 import { IDomEditor, IEditorConfig, i18nChangeLanguage } from '@wangeditor/editor'
 import { propTypes } from '@/utils/propTypes'
 import { isNumber } from '@/utils/is'
@@ -22,6 +22,13 @@ const props = defineProps({
   },
   defaultHtml: propTypes.string.def('')
 })
+
+// 编辑器实例，必须用 shallowRef
+const editorRef = shallowRef<IDomEditor>()
+
+const handleCreated = (editor: IDomEditor) => {
+  editorRef.value = editor
+}
 
 const emit = defineEmits(['change'])
 
@@ -70,17 +77,16 @@ const handleChange = (editor: IDomEditor) => {
 
 // 组件销毁时，及时销毁编辑器
 onBeforeUnmount(() => {
-  const editor = getEditor(props.editorId)
-  if (editor == null) return
+  const editor = unref(editorRef.value)
+  if (editor === null) return
 
   // 销毁，并移除 editor
-  editor.destroy()
-  removeEditor(props.editorId)
+  editor?.destroy()
 })
 
 const getEditorRef = async (): Promise<IDomEditor> => {
   await nextTick()
-  return getEditor(props.editorId) as IDomEditor
+  return unref(editorRef.value) as IDomEditor
 }
 
 defineExpose({
@@ -104,6 +110,7 @@ watch(
   <div v-if="show" class="border-1 border-solid border-[var(--tags-view-border-color)]">
     <!-- 工具栏 -->
     <Toolbar
+      :editor="editorRef"
       :editorId="editorId"
       class="border-bottom-1 border-solid border-[var(--tags-view-border-color)]"
     />
@@ -114,6 +121,7 @@ watch(
       :defaultHtml="defaultHtml"
       :style="editorStyle"
       @on-change="handleChange"
+      @onCreated="handleCreated"
     />
   </div>
 </template>

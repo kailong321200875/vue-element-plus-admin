@@ -65,11 +65,25 @@ const tagsViewChange = (show: boolean) => {
   appStore.setTagsView(show)
 }
 
+// 标签页图标
+const tagsViewIcon = ref(appStore.getTagsViewIcon)
+
+const tagsViewIconChange = (show: boolean) => {
+  appStore.setTagsViewIcon(show)
+}
+
 // logo
 const logo = ref(appStore.getLogo)
 
 const logoChange = (show: boolean) => {
   appStore.setLogo(show)
+}
+
+// 菜单手风琴
+const uniqueOpened = ref(appStore.getUniqueOpened)
+
+const uniqueOpenedChange = (uniqueOpened: boolean) => {
+  appStore.setUniqueOpened(uniqueOpened)
 }
 
 // 固定头部
@@ -143,8 +157,18 @@ watch(
     </div>
 
     <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.tagsViewIcon') }}</span>
+      <ElSwitch v-model="tagsViewIcon" @change="tagsViewIconChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.logo') }}</span>
       <ElSwitch v-model="logo" @change="logoChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.uniqueOpened') }}</span>
+      <ElSwitch v-model="uniqueOpened" @change="uniqueOpenedChange" />
     </div>
 
     <div class="flex justify-between items-center">

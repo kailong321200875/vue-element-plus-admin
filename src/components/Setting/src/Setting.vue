@@ -128,8 +128,12 @@ const copyConfig = async () => {
       locale: ${appStore.getLocale},
       // 标签页
       tagsView: ${appStore.getTagsView},
+      // 标签页图标
+      getTagsViewIcon: ${appStore.getTagsViewIcon},
       // logo
       logo: ${appStore.getLogo},
+      // 菜单手风琴
+      uniqueOpened: ${appStore.getUniqueOpened},
       // 固定header
       fixedHeader: ${appStore.getFixedHeader},
       // 页脚

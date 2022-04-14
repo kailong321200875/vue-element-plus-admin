@@ -92,7 +92,7 @@ export const useRenderLayout = () => {
               <ToolHeader class="border-bottom-1 border-solid border-[var(--top-tool-border-color)] bg-[var(--top-header-bg-color)]"></ToolHeader>
 
               {tagsView.value ? (
-                <TagsView class="border-bottom-1 border-solid border-[var(--tags-view-border-color)]"></TagsView>
+                <TagsView class="border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]"></TagsView>
               ) : undefined}
             </div>
 
@@ -139,7 +139,7 @@ export const useRenderLayout = () => {
               {tagsView.value ? (
                 <TagsView
                   class={[
-                    'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
+                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
                     {
                       '!fixed top-0 left-0 z-10': fixedHeader.value,
                       'w-[calc(100%-var(--left-menu-min-width))] left-[var(--left-menu-min-width)] mt-[var(--logo-height)]':
@@ -181,7 +181,7 @@ export const useRenderLayout = () => {
             {tagsView.value ? (
               <TagsView
                 class={[
-                  'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
+                  'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
                   {
                     '!fixed w-full top-[var(--top-tool-height)] left-0': fixedHeader.value
                   }
@@ -233,7 +233,7 @@ export const useRenderLayout = () => {
               {tagsView.value ? (
                 <TagsView
                   class={[
-                    'border-bottom-1 border-solid border-[var(--tags-view-border-color)]',
+                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
                     {
                       '!fixed top-0 left-0 z-10': fixedHeader.value,
                       'w-[calc(100%-var(--tab-menu-min-width))] left-[var(--tab-menu-min-width)] mt-[var(--logo-height)]':
