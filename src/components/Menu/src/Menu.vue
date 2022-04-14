@@ -47,6 +47,8 @@ export default defineComponent({
 
     const collapse = computed(() => appStore.getCollapse)
 
+    const uniqueOpened = computed(() => appStore.getUniqueOpened)
+
     const activeMenu = computed(() => {
       const { meta, path } = unref(currentRoute)
       // if set path, the sidebar will highlight the path you set
@@ -87,6 +89,7 @@ export default defineComponent({
             collapse={
               unref(layout) === 'top' || unref(layout) === 'cutMenu' ? false : unref(collapse)
             }
+            uniqueOpened={unref(layout) === 'top' ? false : unref(uniqueOpened)}
             backgroundColor="var(--left-menu-bg-color)"
             textColor="var(--left-menu-text-color)"
             activeTextColor="var(--left-menu-text-active-color)"

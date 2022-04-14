@@ -72,6 +72,13 @@ const logoChange = (show: boolean) => {
   appStore.setLogo(show)
 }
 
+// 菜单手风琴
+const uniqueOpened = ref(appStore.getUniqueOpened)
+
+const uniqueOpenedChange = (uniqueOpened: boolean) => {
+  appStore.setUniqueOpened(uniqueOpened)
+}
+
 // 固定头部
 const fixedHeader = ref(appStore.getFixedHeader)
 
@@ -145,6 +152,11 @@ watch(
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.logo') }}</span>
       <ElSwitch v-model="logo" @change="logoChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.uniqueOpened') }}</span>
+      <ElSwitch v-model="uniqueOpened" @change="uniqueOpenedChange" />
     </div>
 
     <div class="flex justify-between items-center">

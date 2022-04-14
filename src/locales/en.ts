@@ -72,7 +72,8 @@ export default {
     clearAndReset: 'Clear cache and reset',
     copySuccess: 'Copy success',
     copyFailed: 'Copy failed',
-    footer: 'Footer'
+    footer: 'Footer',
+    uniqueOpened: 'Unique opened'
   },
   size: {
     default: 'Default',

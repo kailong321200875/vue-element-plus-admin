@@ -24,6 +24,7 @@ export interface AppState {
   breadcrumb: boolean
   breadcrumbIcon: boolean
   collapse: boolean
+  uniqueOpened: boolean
   hamburger: boolean
   screenfull: boolean
   size: boolean
@@ -54,6 +55,7 @@ export const appModules: AppState = {
   breadcrumb: true, // 面包屑
   breadcrumbIcon: true, // 面包屑图标
   collapse: false, // 折叠菜单
+  uniqueOpened: false, // 是否只保持一个子菜单的展开
   hamburger: true, // 折叠图标
   screenfull: true, // 全屏图标
   size: true, // 尺寸图标

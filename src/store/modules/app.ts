@@ -24,6 +24,9 @@ export const useAppStore = defineStore({
     getCollapse(): boolean {
       return this.collapse
     },
+    getUniqueOpened(): boolean {
+      return this.uniqueOpened
+    },
     getHamburger(): boolean {
       return this.hamburger
     },
@@ -88,6 +91,9 @@ export const useAppStore = defineStore({
     },
     setCollapse(collapse: boolean) {
       this.collapse = collapse
+    },
+    setUniqueOpened(uniqueOpened: boolean) {
+      this.uniqueOpened = uniqueOpened
     },
     setHamburger(hamburger: boolean) {
       this.hamburger = hamburger

@@ -72,7 +72,8 @@ export default {
     clearAndReset: '清除缓存并且重置',
     copySuccess: '拷贝成功',
     copyFailed: '拷贝失败',
-    footer: '页脚'
+    footer: '页脚',
+    uniqueOpened: '菜单手风琴'
   },
   size: {
     default: '默认',
