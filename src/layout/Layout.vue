@@ -67,7 +67,12 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-:deep(.@{elNamespace}-scrollbar__view) {
-  height: 100% !important;
+@prefix-cls: ~'@{namespace}-layout';
+
+.@{prefix-cls} {
+  background-color: var(--app-contnet-bg-color);
+  :deep(.@{elNamespace}-scrollbar__view) {
+    height: 100% !important;
+  }
 }
 </style>
