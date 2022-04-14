@@ -78,10 +78,10 @@ const handleChange = (editor: IDomEditor) => {
 // 组件销毁时，及时销毁编辑器
 onBeforeUnmount(() => {
   const editor = unref(editorRef.value)
-  if (editor == null) return
+  if (editor === null) return
 
   // 销毁，并移除 editor
-  editor.destroy()
+  editor?.destroy()
 })
 
 const getEditorRef = async (): Promise<IDomEditor> => {
@@ -110,12 +110,12 @@ watch(
   <div v-if="show" class="border-1 border-solid border-[var(--tags-view-border-color)]">
     <!-- 工具栏 -->
     <Toolbar
+      :editor="editorRef"
       :editorId="editorId"
       class="border-bottom-1 border-solid border-[var(--tags-view-border-color)]"
     />
     <!-- 编辑器 -->
     <Editor
-      :editor="editorRef"
       :editorId="editorId"
       :defaultConfig="editorConfig"
       :defaultHtml="defaultHtml"
