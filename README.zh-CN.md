@@ -201,12 +201,20 @@ pnpm run build:pro
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/amifed">
+            <img src="https://avatars.githubusercontent.com/u/36906371?v=4" width="100;" alt="amifed"/>
+            <br />
+            <sub><b>Yangyu</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/WuYihui">
             <img src="https://avatars.githubusercontent.com/u/29938095?v=4" width="100;" alt="WuYihui"/>
             <br />
             <sub><b>WuYihui</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/z6w6j6">
             <img src="https://avatars.githubusercontent.com/u/23661303?v=4" width="100;" alt="z6w6j6"/>
