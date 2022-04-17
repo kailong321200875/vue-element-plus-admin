@@ -1,3 +1,3 @@
 declare interface ConfigGlobalTypes {
-  size?: ElememtPlusSzie
+  size?: ElememtPlusSize
 }
