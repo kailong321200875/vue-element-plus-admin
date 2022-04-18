@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.13](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.12...v1.2.13) (2022-04-18)
+
+
+### Performance Improvements
+
+* Editor component support v-model ([d77f8e3](https://github.com/kailong321200875/vue-element-plus-admin/commit/d77f8e334d77ee43c9ee0f411733f7397b278bc0))
+
 ### [1.2.12](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.11...v1.2.12) (2022-04-17)
 
 
