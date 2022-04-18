@@ -27,6 +27,6 @@ setTimeout(() => {
 
 <template>
   <ContentWrap :title="t('richText.richText')" :message="t('richText.richTextDes')">
-    <Editor ref="editorRef" @change="change" :defaultHtml="defaultHtml" />
+    <Editor v-model="defaultHtml" ref="editorRef" @change="change" />
   </ContentWrap>
 </template>

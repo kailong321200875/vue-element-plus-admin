@@ -20,17 +20,38 @@ const props = defineProps({
     type: Object as PropType<IEditorConfig>,
     default: () => undefined
   },
-  defaultHtml: propTypes.string.def('')
+  modelValue: propTypes.string.def('')
 })
+
+const emit = defineEmits(['change', 'update:modelValue'])
 
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef<IDomEditor>()
 
+const valueHtml = ref('')
+
+watch(
+  () => props.modelValue,
+  (val: string) => {
+    if (val === unref(valueHtml)) return
+    valueHtml.value = val
+  },
+  {
+    immediate: true
+  }
+)
+
+// 监听
+watch(
+  () => valueHtml.value,
+  (val: string) => {
+    emit('update:modelValue', val)
+  }
+)
+
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor
 }
-
-const emit = defineEmits(['change'])
 
 // 编辑器配置
 const editorConfig = computed((): IEditorConfig => {
@@ -92,22 +113,10 @@ const getEditorRef = async (): Promise<IDomEditor> => {
 defineExpose({
   getEditorRef
 })
-
-const show = ref(true)
-
-watch(
-  () => props.defaultHtml,
-  () => {
-    show.value = false
-    setTimeout(() => {
-      show.value = true
-    }, 0)
-  }
-)
 </script>
 
 <template>
-  <div v-if="show" class="border-1 border-solid border-[var(--tags-view-border-color)]">
+  <div class="border-1 border-solid border-[var(--tags-view-border-color)]">
     <!-- 工具栏 -->
     <Toolbar
       :editor="editorRef"
@@ -116,12 +125,12 @@ watch(
     />
     <!-- 编辑器 -->
     <Editor
+      v-model="valueHtml"
       :editorId="editorId"
       :defaultConfig="editorConfig"
-      :defaultHtml="defaultHtml"
       :style="editorStyle"
       @on-change="handleChange"
-      @onCreated="handleCreated"
+      @on-created="handleCreated"
     />
   </div>
 </template>
