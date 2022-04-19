@@ -6,20 +6,20 @@ import type {
   MonthlySales
 } from './types'
 
-const { request } = useAxios()
+const request = useAxios()
 
 export const getCountApi = () => {
-  return request<AnalysisTotalTypes>({ url: '/analysis/total', method: 'get' })
+  return request.get<AnalysisTotalTypes>({ url: '/analysis/total' })
 }
 
 export const getUserAccessSourceApi = () => {
-  return request<UserAccessSource[]>({ url: '/analysis/userAccessSource', method: 'get' })
+  return request.get<UserAccessSource[]>({ url: '/analysis/userAccessSource' })
 }
 
 export const getWeeklyUserActivityApi = () => {
-  return request<WeeklyUserActivity[]>({ url: '/analysis/weeklyUserActivity', method: 'get' })
+  return request.get<WeeklyUserActivity[]>({ url: '/analysis/weeklyUserActivity' })
 }
 
 export const getMonthlySalesApi = () => {
-  return request<MonthlySales[]>({ url: '/analysis/monthlySales', method: 'get' })
+  return request.get<MonthlySales[]>({ url: '/analysis/monthlySales' })
 }

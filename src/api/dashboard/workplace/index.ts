@@ -1,24 +1,24 @@
 import { useAxios } from '@/hooks/web/useAxios'
 import type { WorkplaceTotal, Project, Dynamic, Team, RadarData } from './types'
 
-const { request } = useAxios()
+const request = useAxios()
 
 export const getCountApi = () => {
-  return request<WorkplaceTotal>({ url: '/workplace/total', method: 'get' })
+  return request.get<WorkplaceTotal>({ url: '/workplace/total' })
 }
 
 export const getProjectApi = () => {
-  return request<Project[]>({ url: '/workplace/project', method: 'get' })
+  return request.get<Project[]>({ url: '/workplace/project' })
 }
 
 export const getDynamicApi = () => {
-  return request<Dynamic[]>({ url: '/workplace/dynamic', method: 'get' })
+  return request.get<Dynamic[]>({ url: '/workplace/dynamic' })
 }
 
 export const getTeamApi = () => {
-  return request<Team[]>({ url: '/workplace/team', method: 'get' })
+  return request.get<Team[]>({ url: '/workplace/team' })
 }
 
 export const getRadarApi = () => {
-  return request<RadarData[]>({ url: '/workplace/radar', method: 'get' })
+  return request.get<RadarData[]>({ url: '/workplace/radar' })
 }

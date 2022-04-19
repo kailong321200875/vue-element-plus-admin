@@ -1,37 +1,23 @@
 import { useAxios } from '@/hooks/web/useAxios'
 import type { TableData } from './types'
 
-const { request } = useAxios()
+const request = useAxios()
 
-export const getTableListApi = ({ params }: AxiosConfig) => {
-  return request<{
+export const getTableListApi = ({ params }) => {
+  return request.get<{
     total: number
     list: TableData[]
-  }>({ url: '/example/list', method: 'get', params })
+  }>({ url: '/example/list', params })
 }
 
-export const saveTableApi = ({ data }: AxiosConfig<Recordable, TableData>) => {
-  return request({ url: '/example/save', method: 'post', data })
+export const saveTableApi = ({ data }) => {
+  return request.post<TableData>({ url: '/example/save', data })
 }
 
-export const getTableDetApi = ({
-  params
-}: AxiosConfig<
-  {
-    id: string
-  },
-  Recordable
->) => {
-  return request<TableData>({ url: '/example/detail', method: 'get', params })
+export const getTableDetApi = ({ params }) => {
+  return request.get<TableData>({ url: '/example/detail', params })
 }
 
-export const delTableListApi = ({
-  data
-}: AxiosConfig<
-  Recordable,
-  {
-    id: string[] | number[]
-  }
->) => {
-  return request({ url: '/example/delete', method: 'post', data })
+export const delTableListApi = ({ data }) => {
+  return request.post({ url: '/example/delete', data })
 }
