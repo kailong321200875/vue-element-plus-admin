@@ -63,10 +63,10 @@ export const useAppStore = defineStore({
     getIsDark(): boolean {
       return this.isDark
     },
-    getCurrentSize(): ElememtPlusSzie {
+    getCurrentSize(): ElememtPlusSize {
       return this.currentSize
     },
-    getSizeMap(): ElememtPlusSzie[] {
+    getSizeMap(): ElememtPlusSize[] {
       return this.sizeMap
     },
     getMobile(): boolean {
@@ -138,7 +138,7 @@ export const useAppStore = defineStore({
       }
       wsCache.set('isDark', this.isDark)
     },
-    setCurrentSize(currentSize: ElememtPlusSzie) {
+    setCurrentSize(currentSize: ElememtPlusSize) {
       this.currentSize = currentSize
       wsCache.set('currentSize', this.currentSize)
     },

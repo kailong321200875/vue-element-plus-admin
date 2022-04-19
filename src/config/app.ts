@@ -37,8 +37,8 @@ export interface AppState {
   title: string
   userInfo: string
   isDark: boolean
-  currentSize: ElememtPlusSzie
-  sizeMap: ElememtPlusSzie[]
+  currentSize: ElememtPlusSize
+  sizeMap: ElememtPlusSize[]
   mobile: boolean
   footer: boolean
   theme: ThemeTypes
