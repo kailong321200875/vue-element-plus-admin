@@ -8,9 +8,10 @@ import { Table } from '@/components/Table'
 import { getTableListApi, saveTableApi, delTableListApi } from '@/api/table'
 import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
-import { h, reactive, ref, unref } from 'vue'
+import { h, ref, unref, reactive } from 'vue'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
+import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 const { register, tableObject, methods } = useTable<
   {
@@ -33,24 +34,32 @@ getList()
 
 const { t } = useI18n()
 
-const searchData: FormSchema[] = [
-  {
-    label: t('exampleDemo.title'),
-    value: '',
-    component: 'Input',
-    field: 'title'
-  }
-]
-
-const columns = reactive<TableColumn[]>([
+const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'index',
     label: t('tableDemo.index'),
-    type: 'index'
+    type: 'index',
+    form: {
+      show: false
+    },
+    detail: {
+      show: false
+    }
   },
   {
     field: 'title',
-    label: t('tableDemo.title')
+    label: t('tableDemo.title'),
+    search: {
+      show: true
+    },
+    form: {
+      colProps: {
+        span: 24
+      }
+    },
+    detail: {
+      span: 24
+    }
   },
   {
     field: 'author',
@@ -58,7 +67,14 @@ const columns = reactive<TableColumn[]>([
   },
   {
     field: 'display_time',
-    label: t('tableDemo.displayTime')
+    label: t('tableDemo.displayTime'),
+    form: {
+      component: 'DatePicker',
+      componentProps: {
+        type: 'datetime',
+        valueFormat: 'YYYY-MM-DD HH:mm:ss'
+      }
+    }
   },
   {
     field: 'importance',
@@ -76,18 +92,65 @@ const columns = reactive<TableColumn[]>([
             ? t('tableDemo.good')
             : t('tableDemo.commonly')
       )
+    },
+    form: {
+      component: 'Select',
+      componentProps: {
+        options: [
+          {
+            label: '重要',
+            value: 3
+          },
+          {
+            label: '良好',
+            value: 2
+          },
+          {
+            label: '一般',
+            value: 1
+          }
+        ]
+      }
     }
   },
   {
     field: 'pageviews',
-    label: t('tableDemo.pageviews')
+    label: t('tableDemo.pageviews'),
+    form: {
+      component: 'InputNumber',
+      value: 0
+    }
+  },
+  {
+    field: 'content',
+    label: t('exampleDemo.content'),
+    table: {
+      show: false
+    },
+    form: {
+      component: 'Editor',
+      colProps: {
+        span: 24
+      }
+    },
+    detail: {
+      span: 24
+    }
   },
   {
     field: 'action',
     width: '260px',
-    label: t('tableDemo.action')
+    label: t('tableDemo.action'),
+    form: {
+      show: false
+    },
+    detail: {
+      show: false
+    }
   }
 ])
+
+const { allSchemas } = useCrudSchemas(crudSchemas)
 
 const dialogVisible = ref(false)
 
@@ -152,7 +215,7 @@ const save = async () => {
 
 <template>
   <ContentWrap>
-    <Search :schema="searchData" @search="setSearchParams" @reset="setSearchParams" />
+    <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
@@ -164,7 +227,7 @@ const save = async () => {
     <Table
       v-model:pageSize="tableObject.pageSize"
       v-model:currentPage="tableObject.currentPage"
-      :columns="columns"
+      :columns="allSchemas.tableColumns"
       :data="tableObject.tableList"
       :loading="tableObject.loading"
       :pagination="{
@@ -187,9 +250,18 @@ const save = async () => {
   </ContentWrap>
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
-    <Write v-if="actionType !== 'detail'" ref="writeRef" :current-row="tableObject.currentRow" />
+    <Write
+      v-if="actionType !== 'detail'"
+      ref="writeRef"
+      :form-schema="allSchemas.formSchema"
+      :current-row="tableObject.currentRow"
+    />
 
-    <Detail v-if="actionType === 'detail'" :current-row="tableObject.currentRow" />
+    <Detail
+      v-if="actionType === 'detail'"
+      :detail-schema="allSchemas.detailSchema"
+      :current-row="tableObject.currentRow"
+    />
 
     <template #footer>
       <ElButton v-if="actionType !== 'detail'" type="primary" :loading="loading" @click="save">

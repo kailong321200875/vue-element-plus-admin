@@ -10,6 +10,7 @@ import { TableData } from '@/api/table/types'
 import { h, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useEmitt } from '@/hooks/web/useEmitt'
+import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 defineOptions({
   name: 'ExamplePage'
@@ -48,16 +49,7 @@ useEmitt({
 
 const { t } = useI18n()
 
-const searchData: FormSchema[] = [
-  {
-    label: t('exampleDemo.title'),
-    value: '',
-    component: 'Input',
-    field: 'title'
-  }
-]
-
-const columns = reactive<TableColumn[]>([
+const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'index',
     label: t('tableDemo.index'),
@@ -65,7 +57,10 @@ const columns = reactive<TableColumn[]>([
   },
   {
     field: 'title',
-    label: t('tableDemo.title')
+    label: t('tableDemo.title'),
+    search: {
+      show: true
+    }
   },
   {
     field: 'author',
@@ -98,11 +93,20 @@ const columns = reactive<TableColumn[]>([
     label: t('tableDemo.pageviews')
   },
   {
+    field: 'content',
+    label: t('exampleDemo.content'),
+    table: {
+      show: false
+    }
+  },
+  {
     field: 'action',
     width: '260px',
     label: t('tableDemo.action')
   }
 ])
+
+const { allSchemas } = useCrudSchemas(crudSchemas)
 
 const AddAction = () => {
   push('/example/example-add')
@@ -130,7 +134,7 @@ const action = (row: TableData, type: string) => {
 
 <template>
   <ContentWrap>
-    <Search :schema="searchData" @search="setSearchParams" @reset="setSearchParams" />
+    <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
@@ -142,7 +146,7 @@ const action = (row: TableData, type: string) => {
     <Table
       v-model:pageSize="tableObject.pageSize"
       v-model:currentPage="tableObject.currentPage"
-      :columns="columns"
+      :columns="allSchemas.tableColumns"
       :data="tableObject.tableList"
       :loading="tableObject.loading"
       :pagination="{

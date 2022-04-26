@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PropType, reactive } from 'vue'
+import { PropType } from 'vue'
 import type { TableData } from '@/api/table/types'
 import { Descriptions } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -11,41 +11,16 @@ defineProps({
   currentRow: {
     type: Object as PropType<Nullable<TableData>>,
     default: () => null
+  },
+  detailSchema: {
+    type: Array as PropType<DescriptionsSchema[]>,
+    default: () => []
   }
 })
-
-const schema = reactive<DescriptionsSchema[]>([
-  {
-    field: 'title',
-    label: t('exampleDemo.title'),
-    span: 24
-  },
-  {
-    field: 'author',
-    label: t('exampleDemo.author')
-  },
-  {
-    field: 'display_time',
-    label: t('exampleDemo.displayTime')
-  },
-  {
-    field: 'importance',
-    label: t('exampleDemo.importance')
-  },
-  {
-    field: 'pageviews',
-    label: t('exampleDemo.pageviews')
-  },
-  {
-    field: 'content',
-    label: t('exampleDemo.content'),
-    span: 24
-  }
-])
 </script>
 
 <template>
-  <Descriptions :schema="schema" :data="currentRow || {}">
+  <Descriptions :schema="detailSchema" :data="currentRow || {}">
     <template #importance="{ row }: { row: TableData }">
       <ElTag :type="row.importance === 1 ? 'success' : row.importance === 2 ? 'warning' : 'danger'">
         {{
