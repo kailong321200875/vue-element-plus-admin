@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.13...v1.3.0) (2022-04-26)
+
+
+### Features
+
+* add useCrudSchemas hook ([00d947e](https://github.com/kailong321200875/vue-element-plus-admin/commit/00d947e2f81105194b0622d33768f999e37ad28a))
+
+
+### Bug Fixes
+
+* fix Table slot warning ([0eac05d](https://github.com/kailong321200875/vue-element-plus-admin/commit/0eac05d4f973ff7b15e00973f6e96595a3cd6d43))
+
+
+### Code Refactoring
+
+* refactor useAxios ([185f1e6](https://github.com/kailong321200875/vue-element-plus-admin/commit/185f1e6e210ecaac28ebfdee4198b7ca2eaa0933))
+
+
+### Build System
+
+* add url ([ab0f59a](https://github.com/kailong321200875/vue-element-plus-admin/commit/ab0f59ac91a077cf060923fa76e6d57e05d0b21b))
+* update plugins ([c475a61](https://github.com/kailong321200875/vue-element-plus-admin/commit/c475a610c19094034306f2dc665e240c7c117f87))
+* update plugins ([dfedbc7](https://github.com/kailong321200875/vue-element-plus-admin/commit/dfedbc74fdb2c819a96b6263849bdaab59b9e337))
+
 ### [1.2.13](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.2.12...v1.2.13) (2022-04-18)
 
 
