@@ -1,7 +1,7 @@
 import { ElCheckbox, ElCheckboxButton } from 'element-plus'
 import { defineComponent } from 'vue'
 
-export const useRenderChcekbox = () => {
+export const useRenderCheckbox = () => {
   const renderChcekboxOptions = (item: FormSchema) => {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
