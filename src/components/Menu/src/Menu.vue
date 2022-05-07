@@ -70,6 +70,38 @@ export default defineComponent({
       }
     }
 
+    const renderMenuWrap = () => {
+      if (unref(layout) === 'top') {
+        return renderMenu()
+      } else {
+        return <ElScrollbar>{renderMenu()}</ElScrollbar>
+      }
+    }
+
+    const renderMenu = () => {
+      return (
+        <ElMenu
+          defaultActive={unref(activeMenu)}
+          mode={unref(menuMode)}
+          collapse={
+            unref(layout) === 'top' || unref(layout) === 'cutMenu' ? false : unref(collapse)
+          }
+          uniqueOpened={unref(layout) === 'top' ? false : unref(uniqueOpened)}
+          backgroundColor="var(--left-menu-bg-color)"
+          textColor="var(--left-menu-text-color)"
+          activeTextColor="var(--left-menu-text-active-color)"
+          onSelect={menuSelect}
+        >
+          {{
+            default: () => {
+              const { renderMenuItem } = useRenderMenuItem(unref(routers), unref(menuMode))
+              return renderMenuItem()
+            }
+          }}
+        </ElMenu>
+      )
+    }
+
     return () => (
       <div
         id={prefixCls}
@@ -82,27 +114,7 @@ export default defineComponent({
           }
         ]}
       >
-        <ElScrollbar>
-          <ElMenu
-            defaultActive={unref(activeMenu)}
-            mode={unref(menuMode)}
-            collapse={
-              unref(layout) === 'top' || unref(layout) === 'cutMenu' ? false : unref(collapse)
-            }
-            uniqueOpened={unref(layout) === 'top' ? false : unref(uniqueOpened)}
-            backgroundColor="var(--left-menu-bg-color)"
-            textColor="var(--left-menu-text-color)"
-            activeTextColor="var(--left-menu-text-active-color)"
-            onSelect={menuSelect}
-          >
-            {{
-              default: () => {
-                const { renderMenuItem } = useRenderMenuItem(unref(routers), unref(menuMode))
-                return renderMenuItem()
-              }
-            }}
-          </ElMenu>
-        </ElScrollbar>
+        {renderMenuWrap()}
       </div>
     )
   }
