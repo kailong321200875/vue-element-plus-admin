@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.3.1...v1.3.2) (2022-05-07)
+
+
+### Bug Fixes
+
+* fix the problem that the page is stuck in top mode ([8d01f48](https://github.com/kailong321200875/vue-element-plus-admin/commit/8d01f48d5098195b10c03b3cb3a0f485ebc9e018))
+
 ### [1.3.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.3.0...v1.3.1) (2022-05-06)
 
 
