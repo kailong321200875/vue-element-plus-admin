@@ -92,7 +92,7 @@ const setMenuTheme = (color: string) => {
   appStore.setTheme(theme)
   appStore.setCssVarTheme()
 }
-if (layout.value === 'top') {
+if (layout.value === 'top' && !appStore.getIsDark) {
   headerTheme.value = '#fff'
   setHeaderTheme('#fff')
 }
@@ -101,7 +101,7 @@ if (layout.value === 'top') {
 watch(
   () => layout.value,
   (n) => {
-    if (n === 'top') {
+    if (n === 'top' && !appStore.getIsDark) {
       headerTheme.value = '#fff'
       setHeaderTheme('#fff')
     } else {

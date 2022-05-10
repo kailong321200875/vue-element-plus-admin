@@ -106,7 +106,7 @@ export const useRenderLayout = () => {
   const renderTopLeft = () => {
     return (
       <>
-        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)] dark:border-[var(--el-border-color)]">
           {logo.value ? <Logo class="hover-tigger !pr-15px"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>

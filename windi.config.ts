@@ -64,6 +64,11 @@ export default defineConfig({
             backgroundColor: 'var(--top-header-hover-color)'
           }
         },
+        '.dark .hover-tigger': {
+          '&:hover': {
+            backgroundColor: 'var(--el-bg-color-overlay)'
+          }
+        },
         ...obj
       })
     })

@@ -59,7 +59,8 @@ watch(
     :class="[
       prefixCls,
       layout !== 'classic' ? `${prefixCls}__Top` : '',
-      'flex !h-[var(--logo-height)] items-center cursor-pointer pl-8px relative'
+      'flex !h-[var(--logo-height)] items-center cursor-pointer pl-8px relative',
+      'dark:bg-[var(--el-bg-color)]'
     ]"
     to="/"
   >
