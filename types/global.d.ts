@@ -25,9 +25,9 @@ declare type AxiosMethod = 'get' | 'post' | 'delete' | 'put'
 
 declare type AxiosResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
 
-declare type AxiosConfig<T = Recordable, K = Recordable> = {
-  params?: T
-  data?: K
+declare type AxiosConfig = {
+  params?: any
+  data?: any
   url?: string
   method?: AxiosMethod
   headersType?: string

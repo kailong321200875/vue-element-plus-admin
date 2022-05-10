@@ -85,8 +85,8 @@ export const useTagsViewStore = defineStore({
     },
     // 删除所有tag
     delAllVisitedViews() {
-      const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
-      this.visitedViews = affixTags
+      // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
+      this.visitedViews = []
     },
     // 删除其他
     delOthersViews(view: RouteLocationNormalizedLoaded) {

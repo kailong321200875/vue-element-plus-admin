@@ -54,7 +54,7 @@ const setHeaderTheme = (color: string) => {
     topHeaderHoverColor: textHoverColor,
     topToolBorderColor
   })
-  if (unref(layout) === 'top') {
+  if (unref(layout) === 'top' && !appStore.getIsDark) {
     setMenuTheme(color)
   }
 }
@@ -97,7 +97,7 @@ const setMenuTheme = (color: string) => {
 watch(
   () => layout.value,
   (n) => {
-    if (n === 'top') {
+    if (n === 'top' && !appStore.getIsDark) {
       headerTheme.value = '#fff'
       setHeaderTheme('#fff')
     } else {
