@@ -40,7 +40,6 @@ watch(
     if (val) {
       const windowHeight = document.documentElement.offsetHeight
       dialogHeight.value = `${windowHeight - 55 - 60 - (slots.footer ? 63 : 0)}px`
-      console.log(windowHeight)
     } else {
       dialogHeight.value = isNumber(props.maxHeight) ? `${props.maxHeight}px` : props.maxHeight
     }
@@ -73,7 +72,7 @@ const dialogStyle = computed(() => {
         </slot>
         <Icon
           v-if="fullscreen"
-          class="mr-11px cursor-pointer is-hover mt-2px"
+          class="mr-18px cursor-pointer is-hover mt-2px"
           :icon="isFullscreen ? 'zmdi:fullscreen-exit' : 'zmdi:fullscreen'"
           color="var(--el-color-info)"
           @click="toggleFull"
@@ -94,6 +93,7 @@ const dialogStyle = computed(() => {
 <style lang="less">
 .@{elNamespace}-dialog__header {
   border-bottom: 1px solid var(--tags-view-border-color);
+  margin-right: 0 !important;
 }
 
 .@{elNamespace}-dialog__footer {
@@ -103,6 +103,16 @@ const dialogStyle = computed(() => {
 .is-hover {
   &:hover {
     color: var(--el-color-primary) !important;
+  }
+}
+
+.dark {
+  .@{elNamespace}-dialog__header {
+    border-bottom: 1px solid var(--el-border-color);
+  }
+
+  .@{elNamespace}-dialog__footer {
+    border-top: 1px solid var(--el-border-color);
   }
 }
 </style>

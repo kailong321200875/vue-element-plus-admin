@@ -62,12 +62,17 @@ const toggleClick = () => {
 </script>
 
 <template>
-  <div :class="[prefixCls, 'bg-[var(--el-color-white)]']">
+  <div
+    :class="[
+      prefixCls,
+      'bg-[var(--el-color-white)] dark:(bg-[var(--el-bg-color)] border-[var(--el-border-color)] border-1px)'
+    ]"
+  >
     <div
       v-if="title"
       :class="[
         `${prefixCls}-header`,
-        'h-50px flex justify-between items-center mb-10px border-bottom-1 border-solid border-[var(--tags-view-border-color)] px-10px cursor-pointer'
+        'h-50px flex justify-between items-center mb-10px border-bottom-1 border-solid border-[var(--tags-view-border-color)] px-10px cursor-pointer dark:border-[var(--el-border-color)]'
       ]"
       @click="toggleClick"
     >
