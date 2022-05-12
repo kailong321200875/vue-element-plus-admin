@@ -40,7 +40,7 @@ export const useRenderLayout = () => {
           {logo.value ? (
             <Logo
               class={[
-                'bg-[var(--left-menu-bg-color)] border-bottom-1 border-solid border-[var(--logo-border-color)]',
+                'bg-[var(--left-menu-bg-color)] border-bottom-1 border-solid border-[var(--logo-border-color)] dark:border-[var(--el-border-color)]',
                 {
                   '!pl-0': mobile.value && collapse.value,
                   'w-[var(--left-menu-min-width)]': appStore.getCollapse,
@@ -89,10 +89,10 @@ export const useRenderLayout = () => {
               ]}
               style="transition: all var(--transition-time-02);"
             >
-              <ToolHeader class="border-bottom-1 border-solid border-[var(--top-tool-border-color)] bg-[var(--top-header-bg-color)]"></ToolHeader>
+              <ToolHeader class="border-bottom-1 border-solid border-[var(--top-tool-border-color)] bg-[var(--top-header-bg-color)] dark:border-[var(--el-border-color)]"></ToolHeader>
 
               {tagsView.value ? (
-                <TagsView class="border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]"></TagsView>
+                <TagsView class="border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)] dark:border-[var(--el-border-color)]"></TagsView>
               ) : undefined}
             </div>
 
@@ -106,7 +106,7 @@ export const useRenderLayout = () => {
   const renderTopLeft = () => {
     return (
       <>
-        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)] dark:border-[var(--el-border-color)]">
           {logo.value ? <Logo class="hover-tigger !pr-15px"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>
@@ -139,7 +139,7 @@ export const useRenderLayout = () => {
               {tagsView.value ? (
                 <TagsView
                   class={[
-                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
+                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)] dark:border-[var(--el-border-color)]',
                     {
                       '!fixed top-0 left-0 z-10': fixedHeader.value,
                       'w-[calc(100%-var(--left-menu-min-width))] left-[var(--left-menu-min-width)] mt-[var(--logo-height)]':
@@ -163,7 +163,7 @@ export const useRenderLayout = () => {
   const renderTop = () => {
     return (
       <>
-        <div class="flex items-center justify-between bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+        <div class="flex items-center justify-between bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)] dark:border-[var(--el-border-color)]">
           {logo.value ? <Logo class="hover-tigger"></Logo> : undefined}
           <Menu class="flex-1 px-10px h-[var(--top-tool-height)]"></Menu>
           <ToolHeader></ToolHeader>
@@ -181,7 +181,7 @@ export const useRenderLayout = () => {
             {tagsView.value ? (
               <TagsView
                 class={[
-                  'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
+                  'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)] dark:border-[var(--el-border-color)]',
                   {
                     '!fixed w-full top-[var(--top-tool-height)] left-0': fixedHeader.value
                   }
@@ -200,7 +200,7 @@ export const useRenderLayout = () => {
   const renderCutMenu = () => {
     return (
       <>
-        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)]">
+        <div class="flex items-center bg-[var(--top-header-bg-color)] border-bottom-1 border-solid border-[var(--top-tool-border-color)] dark:border-[var(--el-border-color)]">
           {logo.value ? <Logo class="hover-tigger !pr-15px"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>
@@ -233,7 +233,7 @@ export const useRenderLayout = () => {
               {tagsView.value ? (
                 <TagsView
                   class={[
-                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)]',
+                    'border-bottom-1 border-top-1 border-solid border-[var(--tags-view-border-color)] dark:border-[var(--el-border-color)]',
                     {
                       '!fixed top-0 left-0 z-10': fixedHeader.value,
                       'w-[calc(100%-var(--tab-menu-min-width))] left-[var(--tab-menu-min-width)] mt-[var(--logo-height)]':
