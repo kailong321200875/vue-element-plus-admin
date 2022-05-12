@@ -187,17 +187,17 @@ Support modern browsers, not IE
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/huanghong1125">
-            <img src="https://avatars.githubusercontent.com/u/12794817?v=4" width="100;" alt="huanghong1125"/>
-            <br />
-            <sub><b>Huanghong</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/snowords">
             <img src="https://avatars.githubusercontent.com/u/22708432?v=4" width="100;" alt="snowords"/>
             <br />
             <sub><b>Snoword</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/huanghong1125">
+            <img src="https://avatars.githubusercontent.com/u/12794817?v=4" width="100;" alt="huanghong1125"/>
+            <br />
+            <sub><b>Huanghong</b></sub>
         </a>
     </td>
     <td align="center">
