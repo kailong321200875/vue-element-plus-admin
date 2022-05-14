@@ -5,7 +5,6 @@ module.exports = {
       2,
       'always',
       [
-        'init', // 初始化
         'feat', // 新功能(feature)
         'fix', // 修补bug
         'docs', // 文档(documentation)
@@ -13,7 +12,6 @@ module.exports = {
         'refactor', // 重构(即不是新增功能，也不是修改BUG的代码)
         'perf', // 优化相关，比如提升性能、体验
         'test', // 添加测试
-        'build', // 编译相关的修改，对项目构建或者依赖的改动
         'ci', // 持续集成修改
         'chore', // 构建过程或辅助工具的变动
         'revert', // 回滚到上一个版本
