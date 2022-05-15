@@ -42,7 +42,7 @@ export default defineComponent({
         class={[
           prefixCls,
           'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between',
-          'dark:(bg-[var(--el-bg-color)] border-[--el-border-color])'
+          'dark:bg-[var(--el-bg-color)]'
         ]}
       >
         {layout.value !== 'top' ? (
