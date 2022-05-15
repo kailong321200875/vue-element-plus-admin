@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.1...v1.4.2) (2022-05-15)
+
+
+### Styling
+
+* fix dark mode bug ([2f9fd5d](https://github.com/kailong321200875/vue-element-plus-admin/commit/2f9fd5d21550d771ec12ae3540b975e2eebcd25b))
+
 ### [1.4.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.0...v1.4.1) (2022-05-12)
 
 
