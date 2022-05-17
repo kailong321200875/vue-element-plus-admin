@@ -53,7 +53,8 @@ export default defineComponent({
 
     // 注册
     onMounted(() => {
-      emit('register', unref(elTableRef)?.$parent, unref(elTableRef))
+      const tableRef = unref(elTableRef)
+      emit('register', tableRef?.$parent, elTableRef)
     })
 
     const pageSizeRef = ref(props.pageSize)
@@ -167,9 +168,9 @@ export default defineComponent({
     }
 
     const renderTableExpand = () => {
-      const { align, headerAlign } = unref(getProps)
+      const { align, headerAlign, expand } = unref(getProps)
       // 渲染展开行
-      return unref(getProps).expand ? (
+      return expand ? (
         <ElTableColumn type="expand" align={align} headerAlign={headerAlign}>
           {{
             // @ts-ignore
