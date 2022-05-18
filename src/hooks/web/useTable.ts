@@ -69,8 +69,13 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
   watch(
     () => tableObject.pageSize,
     () => {
-      tableObject.currentPage = 1
-      methods.getList()
+      // 当前页不为1时，修改页数后会导致多次调用getList方法
+      if (tableObject.currentPage === 1) {
+        methods.getList()
+      } else {
+        tableObject.currentPage = 1
+        methods.getList()
+      }
     }
   )
 
