@@ -209,7 +209,7 @@ const clear = () => {
   </div>
 
   <ElDrawer v-model="drawer" direction="rtl" size="350px">
-    <template #title>
+    <template #header>
       <span class="text-16px font-700">{{ t('setting.projectSetting') }}</span>
     </template>
 

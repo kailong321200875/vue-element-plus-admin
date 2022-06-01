@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form } from '@/components/Form'
-import { PropType, computed, unref, CSSProperties, ref } from 'vue'
+import { PropType, computed, unref, ref } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -81,9 +81,9 @@ const reset = async () => {
 
 const bottonButtonStyle = computed(() => {
   return {
-    textAlign: props.buttomPosition
+    textAlign: props.buttomPosition as unknown as 'left' | 'center' | 'right'
   }
-}) as CSSProperties
+})
 
 const setVisible = () => {
   unref(elFormRef)?.resetFields()
