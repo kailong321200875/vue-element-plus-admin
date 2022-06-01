@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.2...v1.4.3) (2022-06-01)
+
+
+### Bug Fixes
+
+* multiple requests when pageSize change and currentPage isn't 1 ([f71a250](https://github.com/kailong321200875/vue-element-plus-admin/commit/f71a2503bc521c01e7102feecf4ec39a5224a6bb))
+
 ### [1.4.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.1...v1.4.2) (2022-05-15)
 
 
