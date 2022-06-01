@@ -216,6 +216,13 @@ Support modern browsers, not IE
     </td></tr>
 <tr>
     <td align="center">
+        <a href="https://github.com/xiterjia">
+            <img src="https://avatars.githubusercontent.com/u/3360879?v=4" width="100;" alt="xiterjia"/>
+            <br />
+            <sub><b>Xiterjia</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/z6w6j6">
             <img src="https://avatars.githubusercontent.com/u/23661303?v=4" width="100;" alt="z6w6j6"/>
             <br />
