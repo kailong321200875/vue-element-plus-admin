@@ -65,7 +65,7 @@ const dialogStyle = computed(() => {
     draggable
     :close-on-click-modal="false"
   >
-    <template #title>
+    <template #header>
       <div class="flex justify-between">
         <slot name="title">
           {{ title }}
@@ -92,8 +92,8 @@ const dialogStyle = computed(() => {
 
 <style lang="less">
 .@{elNamespace}-dialog__header {
-  border-bottom: 1px solid var(--tags-view-border-color);
   margin-right: 0 !important;
+  border-bottom: 1px solid var(--tags-view-border-color);
 }
 
 .@{elNamespace}-dialog__footer {

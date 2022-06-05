@@ -1,4 +1,4 @@
-import type { App, Plugin } from 'vue'
+// import type { Plugin } from 'vue'
 
 /**
  *
@@ -8,7 +8,7 @@ import type { App, Plugin } from 'vue'
  */
 export const withInstall = <T>(component: T, alias?: string) => {
   const comp = component as any
-  comp.install = (app: App) => {
+  comp.install = (app: any) => {
     app.component(comp.name || comp.displayName, component)
     if (alias) {
       app.config.globalProperties[alias] = component
