@@ -46,7 +46,7 @@
     "qrcode": "^1.5.0",
     "qs": "^6.10.3",
     "url": "^0.11.0",
-    "vue": "3.2.36",
+    "vue": "3.2.37",
     "vue-i18n": "9.1.10",
     "vue-router": "^4.0.15",
     "vue-types": "^4.1.1",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@iconify/json": "^2.1.56",
+    "@iconify/json": "^2.1.57",
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@purge-icons/generated": "^0.8.1",
     "@types/intro.js": "^3.0.2",
