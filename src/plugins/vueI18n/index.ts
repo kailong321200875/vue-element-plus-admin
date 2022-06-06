@@ -1,4 +1,4 @@
-// import type { App } from 'vue'
+import type { AppContext, Plugin } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
 import type { I18n, I18nOptions } from 'vue-i18n'
@@ -35,8 +35,8 @@ const createI18nOptions = async (): Promise<I18nOptions> => {
   }
 }
 
-export const setupI18n = async (app: any) => {
+export const setupI18n = async (app: AppContext['app']) => {
   const options = await createI18nOptions()
   i18n = createI18n(options) as I18n
-  app.use(i18n)
+  app.use(i18n as Plugin)
 }

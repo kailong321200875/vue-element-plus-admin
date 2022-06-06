@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-// import type { App } from 'vue'
+import type { AppContext, Plugin } from 'vue'
 import { Layout, getParentLayout } from '@/utils/routerHelper'
 import { useI18n } from '@/hooks/web/useI18n'
 
@@ -552,8 +552,8 @@ export const resetRouter = (): void => {
   })
 }
 
-export const setupRouter = (app: any) => {
-  app.use(router)
+export const setupRouter = (app: AppContext['app']) => {
+  app.use(router as Plugin)
 }
 
 export default router
