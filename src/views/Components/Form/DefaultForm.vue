@@ -43,26 +43,26 @@ onMounted(() => {
   restaurants.value = loadAll()
 })
 
-// const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-// const options = ref<ComponentOptions[]>(
-//   Array.from({ length: 1000 }).map((_, idx) => ({
-//     value: `Option ${idx + 1}`,
-//     label: `${initials[idx % 10]}${idx}`
-//   }))
-// )
-// const options2 = ref<ComponentOptions[]>(
-//   Array.from({ length: 10 }).map((_, idx) => {
-//     const label = idx + 1
-//     return {
-//       value: `Group ${label}`,
-//       label: `Group ${label}`,
-//       options: Array.from({ length: 10 }).map((_, idx) => ({
-//         value: `Option ${idx + 1 + 10 * label}`,
-//         label: `${initials[idx % 10]}${idx + 1 + 10 * label}`
-//       }))
-//     }
-//   })
-// )
+const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+const options = ref<ComponentOptions[]>(
+  Array.from({ length: 1000 }).map((_, idx) => ({
+    value: `Option ${idx + 1}`,
+    label: `${initials[idx % 10]}${idx}`
+  }))
+)
+const options2 = ref<ComponentOptions[]>(
+  Array.from({ length: 10 }).map((_, idx) => {
+    const label = idx + 1
+    return {
+      value: `Group ${label}`,
+      label: `Group ${label}`,
+      options: Array.from({ length: 10 }).map((_, idx) => ({
+        value: `Option ${idx + 1 + 10 * label}`,
+        label: `${initials[idx % 10]}${idx + 1 + 10 * label}`
+      }))
+    }
+  })
+)
 
 const options3: ComponentOptions[] = [
   {
@@ -558,44 +558,44 @@ const schema = reactive<FormSchema[]>([
     label: `${t('formDemo.selectV2')}`,
     component: 'Divider'
   },
-  // {
-  //   field: 'field19',
-  //   label: t('formDemo.default'),
-  //   component: 'SelectV2',
-  //   componentProps: {
-  //     options: options.value
-  //   }
-  // }
-  // {
-  //   field: 'field20',
-  //   label: t('formDemo.slot'),
-  //   component: 'SelectV2',
-  //   componentProps: {
-  //     options: options.value,
-  //     slots: {
-  //       default: true
-  //     }
-  //   }
-  // }
-  // {
-  //   field: 'field21',
-  //   label: t('formDemo.selectGroup'),
-  //   component: 'SelectV2',
-  //   componentProps: {
-  //     options: options2.value
-  //   }
-  // },
-  // {
-  //   field: 'field22',
-  //   label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-  //   component: 'SelectV2',
-  //   componentProps: {
-  //     options: options2.value,
-  //     slots: {
-  //       default: true
-  //     }
-  //   }
-  // },
+  {
+    field: 'field19',
+    label: t('formDemo.default'),
+    component: 'SelectV2',
+    componentProps: {
+      options: options.value
+    }
+  },
+  {
+    field: 'field20',
+    label: t('formDemo.slot'),
+    component: 'SelectV2',
+    componentProps: {
+      options: options.value,
+      slots: {
+        default: true
+      }
+    }
+  },
+  {
+    field: 'field21',
+    label: t('formDemo.selectGroup'),
+    component: 'SelectV2',
+    componentProps: {
+      options: options2.value
+    }
+  },
+  {
+    field: 'field22',
+    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
+    component: 'SelectV2',
+    componentProps: {
+      options: options2.value,
+      slots: {
+        default: true
+      }
+    }
+  },
   {
     field: 'field23',
     label: t('formDemo.cascader'),
