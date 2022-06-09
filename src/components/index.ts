@@ -1,6 +1,6 @@
-import type { AppContext } from 'vue'
+import type { App } from 'vue'
 import { Icon } from './Icon'
 
-export const setupGlobCom = (app: AppContext['app']): void => {
+export const setupGlobCom = (app: App<Element>): void => {
   app.component('Icon', Icon)
 }
