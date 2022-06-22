@@ -86,12 +86,15 @@ export default {
     message: 'Backstage management system',
     username: 'Username',
     password: 'Password',
+    register: 'Register',
+    checkPassword: 'Confirm password',
     login: 'Sign in',
     otherLogin: 'Sign in with',
     remember: 'Remember me',
+    hasUser: 'Existing account? Go to login',
     forgetPassword: 'Forget password',
-    usernamePlaceholder: 'username is admin or test',
-    passwordPlaceholder: 'password is admin or test'
+    usernamePlaceholder: 'Please input username',
+    passwordPlaceholder: 'Please input password'
   },
   router: {
     login: 'Login',

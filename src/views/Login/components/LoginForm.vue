@@ -13,6 +13,8 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 
+const emit = defineEmits(['to-register'])
+
 const appStore = useAppStore()
 
 const permissionStore = usePermissionStore()
@@ -162,6 +164,11 @@ const getRole = async () => {
     push({ path: redirect.value || permissionStore.addRouters[0].path })
   }
 }
+
+// 去注册页面
+const toRegister = () => {
+  emit('to-register')
+}
 </script>
 
 <template>
@@ -186,9 +193,16 @@ const getRole = async () => {
     </template>
 
     <template #login>
-      <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
-        {{ t('login.login') }}
-      </ElButton>
+      <div class="w-[100%]">
+        <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
+          {{ t('login.login') }}
+        </ElButton>
+      </div>
+      <div class="w-[100%] mt-15px">
+        <ElButton class="w-[100%]" @click="toRegister">
+          {{ t('login.register') }}
+        </ElButton>
+      </div>
     </template>
 
     <template #otherIcon>
