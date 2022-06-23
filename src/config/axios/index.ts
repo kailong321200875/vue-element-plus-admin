@@ -59,7 +59,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse<Recordable>) => {
     if (response.data.code === result_code) {
-      return response.data
+      return response
     } else {
       ElMessage.error(response.data.message)
     }

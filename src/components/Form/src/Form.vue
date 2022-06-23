@@ -219,7 +219,7 @@ export default defineComponent({
               const { autoSetPlaceholder } = unref(getProps)
 
               return slots[item.field] ? (
-                getSlot(slots, item.field, { item })
+                getSlot(slots, item.field, formModel.value)
               ) : (
                 <Com
                   vModel={formModel.value[item.field]}
@@ -293,7 +293,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .@{elNamespace}-form.@{namespace}-form .@{elNamespace}-row {
-  margin-left: 0 !important;
   margin-right: 0 !important;
+  margin-left: 0 !important;
 }
 </style>

@@ -94,7 +94,9 @@ export default {
     hasUser: 'Existing account? Go to login',
     forgetPassword: 'Forget password',
     usernamePlaceholder: 'Please input username',
-    passwordPlaceholder: 'Please input password'
+    passwordPlaceholder: 'Please input password',
+    code: 'Verification code',
+    codePlaceholder: 'Please input verification code'
   },
   router: {
     login: 'Login',
