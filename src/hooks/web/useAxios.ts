@@ -6,7 +6,7 @@ import { config } from '@/config/axios/config'
 
 const { default_headers } = config
 
-const request = <T>(option: AxiosConfig): AxiosPromise<T> => {
+const request = (option: AxiosConfig) => {
   const { url, method, params, data, headersType, responseType } = option
   return service({
     url: url,
@@ -21,19 +21,19 @@ const request = <T>(option: AxiosConfig): AxiosPromise<T> => {
 }
 
 function getFn<T = any>(option: AxiosConfig): AxiosPromise<T> {
-  return request<T>({ method: 'get', ...option })
+  return request({ method: 'get', ...option })
 }
 
 function postFn<T = any>(option: AxiosConfig): AxiosPromise<T> {
-  return request<T>({ method: 'post', ...option })
+  return request({ method: 'post', ...option })
 }
 
 function deleteFn<T = any>(option: AxiosConfig): AxiosPromise<T> {
-  return request<T>({ method: 'delete', ...option })
+  return request({ method: 'delete', ...option })
 }
 
 function putFn<T = any>(option: AxiosConfig): AxiosPromise<T> {
-  return request<T>({ method: 'put', ...option })
+  return request({ method: 'put', ...option })
 }
 
 export const useAxios = () => {

@@ -131,8 +131,8 @@ const toLogin = () => {
 
 const codeUrl = ref('')
 const getCode = async () => {
-  const { data } = await getCodeApi()
-  codeUrl.value = data.result
+  const { result } = await getCodeApi()
+  codeUrl.value = result
 }
 getCode()
 
@@ -145,8 +145,8 @@ const loginRegister = async () => {
       try {
         loading.value = true
         const formData = await getFormData<Omit<IUserModel, 'is_admin'>>()
-        const { data } = await registerApi(formData)
-        if (data) {
+        const { result } = await registerApi(formData)
+        if (result) {
           ElMessage.success('注册成功')
           toLogin()
         }
