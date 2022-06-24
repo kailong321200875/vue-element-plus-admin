@@ -7,6 +7,8 @@ import { ElButton, ElInput, FormRules, ElMessage } from 'element-plus'
 import { getCodeApi, registerApi } from '@/api/register'
 import { useValidator } from '@/hooks/web/useValidator'
 import { IUserModel } from '@/api-types/user'
+import md5 from 'js-md5'
+import { cloneDeep } from 'lodash-es'
 
 const emit = defineEmits(['to-login'])
 
@@ -99,7 +101,7 @@ const rules: FormRules = {
     required('密码不能为空'),
     {
       validator: (_, value, callback) =>
-        lengthRange(value, callback, { min: 6, max: 20, message: '密码长度必须在6-20之间' })
+        lengthRange(value, callback, { min: 5, max: 20, message: '密码长度必须在5-20之间' })
     },
     {
       validator: (_, value, callback) => notSpecialCharacters(value, callback, '密码不能是特殊字符')
@@ -109,7 +111,7 @@ const rules: FormRules = {
     required('确认密码不能为空'),
     {
       validator: (_, value, callback) =>
-        lengthRange(value, callback, { min: 6, max: 20, message: '确认密码长度必须在6-20之间' })
+        lengthRange(value, callback, { min: 5, max: 20, message: '确认密码长度必须在5-20之间' })
     },
     {
       validator: (_, value, callback) =>
@@ -130,9 +132,14 @@ const toLogin = () => {
 }
 
 const codeUrl = ref('')
+const codeUuid = ref('')
 const getCode = async () => {
-  const { result } = await getCodeApi()
-  codeUrl.value = result
+  const res = await getCodeApi()
+  if (res) {
+    const { url, uuid } = res.result
+    codeUrl.value = url
+    codeUuid.value = uuid
+  }
 }
 getCode()
 
@@ -145,8 +152,14 @@ const loginRegister = async () => {
       try {
         loading.value = true
         const formData = await getFormData<Omit<IUserModel, 'is_admin'>>()
-        const { result } = await registerApi(formData)
-        if (result) {
+        const res = await registerApi(
+          Object.assign(cloneDeep(formData), {
+            uuid: codeUuid.value,
+            password: md5(formData.password),
+            check_password: md5(formData.check_password)
+          })
+        )
+        if (res) {
           ElMessage.success('注册成功')
           toLogin()
         }
@@ -175,7 +188,7 @@ const loginRegister = async () => {
     <template #code="form">
       <div class="w-[100%] flex">
         <ElInput v-model="form['code']" :placeholder="t('login.codePlaceholder')" class="flex-2" />
-        <div v-html="codeUrl" class="h-38px flex-1 cursor-pointer" @click="getCode"></div>
+        <div v-html="codeUrl" class="h-38px flex-1 cursor-pointer w-150px" @click="getCode"></div>
       </div>
     </template>
 

@@ -22,7 +22,7 @@ function pathResolve(dir: string) {
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  let env = null
+  let env = {} as any
   const isBuild = command === 'build'
   if (!isBuild) {
     env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
@@ -146,7 +146,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'intro.js',
         'qrcode',
         '@wangeditor/editor',
-        '@wangeditor/editor-for-vue'
+        '@wangeditor/editor-for-vue',
+        'js-md5'
       ]
     }
   }

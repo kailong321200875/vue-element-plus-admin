@@ -3,10 +3,17 @@ import { IUserModel } from '@/api-types/user'
 
 const request = useAxios()
 
+interface ICodeModel {
+  url: string
+  uuid: string
+}
+
 export const getCodeApi = async () => {
-  return (await request.get<IResponse<string>>({ url: 'user/captcha' })).data
+  const res = await request.get<IResponse<ICodeModel>>({ url: 'user/captcha' })
+  return res && res.data
 }
 
 export const registerApi = async (data: Omit<IUserModel, 'is_admin'>) => {
-  return (await request.post<IResponse<IUserModel>>({ url: 'user/register', data })).data
+  const res = await request.post<IResponse<IUserModel>>({ url: 'user/register', data })
+  return res && res.data
 }
