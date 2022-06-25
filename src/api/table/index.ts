@@ -3,21 +3,22 @@ import type { TableData } from './types'
 
 const request = useAxios()
 
-export const getTableListApi = ({ params }) => {
-  return request.get<{
-    total: number
-    list: TableData[]
-  }>({ url: '/example/list', params })
+export const getTableListApi = async (params: any): Promise<IResponse> => {
+  const res = await request.get({ url: '/example/list', params })
+  return res && res.data
 }
 
-export const saveTableApi = ({ data }) => {
-  return request.post<TableData>({ url: '/example/save', data })
+export const saveTableApi = async (data: Partial<TableData>): Promise<IResponse> => {
+  const res = await request.post({ url: '/example/save', data })
+  return res && res.data
 }
 
-export const getTableDetApi = ({ params }) => {
-  return request.get<TableData>({ url: '/example/detail', params })
+export const getTableDetApi = async (id: string): Promise<IResponse<TableData>> => {
+  const res = await request.get({ url: '/example/detail', params: { id } })
+  return res && res.data
 }
 
-export const delTableListApi = ({ data }) => {
-  return request.post({ url: '/example/delete', data })
+export const delTableListApi = async (ids: string[] | number[]): Promise<IResponse> => {
+  const res = await request.post({ url: '/example/delete', data: { ids } })
+  return res && res.data
 }

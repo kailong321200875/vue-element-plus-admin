@@ -8,13 +8,7 @@ import { ref, h, reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
 
-const { register, tableObject, methods } = useTable<
-  {
-    total: number
-    list: TableData[]
-  },
-  TableData
->({
+const { register, tableObject, methods } = useTable<TableData>({
   getListApi: getTableListApi,
   response: {
     list: 'list',

@@ -3,7 +3,9 @@ import { Form } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
-import { required } from '@/utils/formRules'
+import { useValidator } from '@/hooks/web/useValidator'
+
+const { required } = useValidator()
 
 const props = defineProps({
   currentRow: {
@@ -17,12 +19,12 @@ const props = defineProps({
 })
 
 const rules = reactive({
-  title: [required],
-  author: [required],
-  importance: [required],
-  pageviews: [required],
-  display_time: [required],
-  content: [required]
+  title: [required()],
+  author: [required()],
+  importance: [required()],
+  pageviews: [required()],
+  display_time: [required()],
+  content: [required()]
 })
 
 const { register, methods, elFormRef } = useForm({

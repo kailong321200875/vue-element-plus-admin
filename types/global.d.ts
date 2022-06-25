@@ -25,7 +25,7 @@ declare type AxiosMethod = 'get' | 'post' | 'delete' | 'put'
 
 declare type AxiosResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
 
-declare type AxiosConfig = {
+declare interface AxiosConfig {
   params?: any
   data?: any
   url?: string
@@ -36,5 +36,5 @@ declare type AxiosConfig = {
 
 declare interface IResponse<T = any> {
   code: string
-  result: T extends any ? T : T & any
+  data: T extends any ? T : T & any
 }

@@ -5,7 +5,9 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
 import { ElButton } from 'element-plus'
-import { required } from '@/utils/formRules'
+import { useValidator } from '@/hooks/web/useValidator'
+
+const { required } = useValidator()
 
 const { t } = useI18n()
 
@@ -15,7 +17,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {

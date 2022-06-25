@@ -3,22 +3,16 @@ import { Form } from '@/components/Form'
 import { reactive, ref, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
-import { ElButton, ElInput, FormRules, ElMessage } from 'element-plus'
-import { getCodeApi, registerApi } from '@/api/register'
+import { ElButton, ElInput, FormRules } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
-import { IUserModel } from '@/api-types/user'
-import md5 from 'js-md5'
-import { cloneDeep } from 'lodash-es'
 
 const emit = defineEmits(['to-login'])
 
-const { register, methods, elFormRef } = useForm()
-
-const { getFormData } = methods
+const { register, elFormRef } = useForm()
 
 const { t } = useI18n()
 
-const { required, lengthRange, notSpace, notSpecialCharacters, isEqual } = useValidator()
+const { required } = useValidator()
 
 const schema = reactive<FormSchema[]>([
   {
@@ -28,7 +22,7 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'user_name',
+    field: 'username',
     label: t('login.username'),
     value: '',
     component: 'Input',
@@ -87,61 +81,15 @@ const schema = reactive<FormSchema[]>([
 ])
 
 const rules: FormRules = {
-  user_name: [
-    required('用户名不能为空'),
-    {
-      validator: (_, value, callback) =>
-        lengthRange(value, callback, { min: 2, max: 10, message: '用户名长度必须在2-10之间' })
-    },
-    {
-      validator: (_, value, callback) => notSpace(value, callback, '用户名不能有空格')
-    }
-  ],
-  password: [
-    required('密码不能为空'),
-    {
-      validator: (_, value, callback) =>
-        lengthRange(value, callback, { min: 5, max: 20, message: '密码长度必须在5-20之间' })
-    },
-    {
-      validator: (_, value, callback) => notSpecialCharacters(value, callback, '密码不能是特殊字符')
-    }
-  ],
-  check_password: [
-    required('确认密码不能为空'),
-    {
-      validator: (_, value, callback) =>
-        lengthRange(value, callback, { min: 5, max: 20, message: '确认密码长度必须在5-20之间' })
-    },
-    {
-      validator: (_, value, callback) =>
-        notSpecialCharacters(value, callback, '确认密码不能是特殊字符')
-    },
-    {
-      validator: async (_, value, callback) => {
-        const formData = await getFormData<Omit<IUserModel, 'is_admin'>>()
-        return isEqual(value, formData.password, callback, '两次密码不一致')
-      }
-    }
-  ],
-  code: [required('验证码不能为空')]
+  username: [required()],
+  password: [required()],
+  check_password: [required()],
+  code: [required()]
 }
 
 const toLogin = () => {
   emit('to-login')
 }
-
-const codeUrl = ref('')
-const codeUuid = ref('')
-const getCode = async () => {
-  const { result } = await getCodeApi()
-  if (result) {
-    const { url, uuid } = result
-    codeUrl.value = url
-    codeUuid.value = uuid
-  }
-}
-getCode()
 
 const loading = ref(false)
 
@@ -151,18 +99,7 @@ const loginRegister = async () => {
     if (valid) {
       try {
         loading.value = true
-        const formData = await getFormData<Omit<IUserModel, 'is_admin'>>()
-        const { result } = await registerApi(
-          Object.assign(cloneDeep(formData), {
-            uuid: codeUuid.value,
-            password: md5(formData.password),
-            check_password: md5(formData.check_password)
-          })
-        )
-        if (result) {
-          ElMessage.success('注册成功')
-          toLogin()
-        }
+        toLogin()
       } finally {
         loading.value = false
       }
@@ -187,12 +124,7 @@ const loginRegister = async () => {
 
     <template #code="form">
       <div class="w-[100%] flex">
-        <ElInput
-          v-model="form['code']"
-          :placeholder="t('login.codePlaceholder')"
-          class="!w-[calc(100%-150px)]"
-        />
-        <div v-html="codeUrl" class="h-38px cursor-pointer w-150px" @click="getCode"></div>
+        <ElInput v-model="form['code']" :placeholder="t('login.codePlaceholder')" />
       </div>
     </template>
 

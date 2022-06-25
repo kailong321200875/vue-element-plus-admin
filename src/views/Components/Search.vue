@@ -3,8 +3,10 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Search } from '@/components/Search'
 import { reactive, ref, unref } from 'vue'
-import { required } from '@/utils/formRules'
+import { useValidator } from '@/hooks/web/useValidator'
 import { ElButton } from 'element-plus'
+
+const { required } = useValidator()
 
 const { t } = useI18n()
 
@@ -14,7 +16,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -69,7 +71,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -77,7 +79,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -85,7 +87,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -93,7 +95,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -101,7 +103,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -109,7 +111,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -117,7 +119,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -125,7 +127,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -133,7 +135,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -141,7 +143,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -149,7 +151,7 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.input'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   }
 ])

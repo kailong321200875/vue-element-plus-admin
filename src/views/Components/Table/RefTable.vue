@@ -62,13 +62,7 @@ const columns = reactive<TableColumn[]>([
   }
 ])
 
-const { register, tableObject, methods } = useTable<
-  {
-    total: number
-    list: TableData[]
-  },
-  TableData
->({
+const { register, tableObject, methods } = useTable<TableData>({
   getListApi: getTableListApi,
   response: {
     list: 'list',

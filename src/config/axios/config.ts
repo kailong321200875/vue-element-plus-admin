@@ -14,7 +14,7 @@ const config: {
    */
   base_url: {
     // 开发环境接口前缀
-    base: '/api',
+    base: '',
 
     // 打包开发环境接口前缀
     dev: '',

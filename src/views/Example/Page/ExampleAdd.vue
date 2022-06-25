@@ -25,9 +25,7 @@ const save = async () => {
     if (isValid) {
       loading.value = true
       const data = (await write?.getFormData()) as TableData
-      const res = await saveTableApi({
-        data
-      })
+      const res = await saveTableApi(data)
         .catch(() => {})
         .finally(() => {
           loading.value = false

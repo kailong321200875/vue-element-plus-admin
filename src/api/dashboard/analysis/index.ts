@@ -8,18 +8,22 @@ import type {
 
 const request = useAxios()
 
-export const getCountApi = () => {
-  return request.get<AnalysisTotalTypes>({ url: '/analysis/total' })
+export const getCountApi = async (): Promise<IResponse<AnalysisTotalTypes[]>> => {
+  const res = await request.get({ url: '/analysis/total' })
+  return res && res.data
 }
 
-export const getUserAccessSourceApi = () => {
-  return request.get<UserAccessSource[]>({ url: '/analysis/userAccessSource' })
+export const getUserAccessSourceApi = async (): Promise<IResponse<UserAccessSource[]>> => {
+  const res = await request.get({ url: '/analysis/userAccessSource' })
+  return res && res.data
 }
 
-export const getWeeklyUserActivityApi = () => {
-  return request.get<WeeklyUserActivity[]>({ url: '/analysis/weeklyUserActivity' })
+export const getWeeklyUserActivityApi = async (): Promise<IResponse<WeeklyUserActivity[]>> => {
+  const res = await request.get({ url: '/analysis/weeklyUserActivity' })
+  return res && res.data
 }
 
-export const getMonthlySalesApi = () => {
-  return request.get<MonthlySales[]>({ url: '/analysis/monthlySales' })
+export const getMonthlySalesApi = async (): Promise<IResponse<MonthlySales[]>> => {
+  const res = await request.get({ url: '/analysis/monthlySales' })
+  return res && res.data
 }

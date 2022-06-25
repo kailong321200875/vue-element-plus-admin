@@ -16,11 +16,7 @@ const { t } = useI18n()
 const currentRow = ref<Nullable<TableData>>(null)
 
 const getTableDet = async () => {
-  const res = await getTableDetApi({
-    params: {
-      id: query.id as string
-    }
-  })
+  const res = await getTableDetApi(query.id as string)
   if (res) {
     currentRow.value = res.data
   }

@@ -65,12 +65,12 @@ const loading = ref(true)
 let tableDataList = ref<TableData[]>([])
 
 const getTableList = async (params?: Params) => {
-  const res = await getTableListApi({
-    params: params || {
+  const res = await getTableListApi(
+    params || {
       pageIndex: 1,
       pageSize: 10
     }
-  })
+  )
     .catch(() => {})
     .finally(() => {
       loading.value = false

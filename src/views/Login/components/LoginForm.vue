@@ -3,7 +3,6 @@ import { reactive, ref, unref, watch } from 'vue'
 import { Form } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
-import { required } from '@/utils/formRules'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
 import { useCache } from '@/hooks/web/useCache'
@@ -11,9 +10,10 @@ import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
-import { IUserModel } from '@/api-types/user'
-import md5 from 'js-md5'
-import { cloneDeep } from 'lodash-es'
+import { UserType } from '@/api/login/types'
+import { useValidator } from '@/hooks/web/useValidator'
+
+const { required } = useValidator()
 
 const emit = defineEmits(['to-register'])
 
@@ -28,8 +28,8 @@ const { wsCache } = useCache()
 const { t } = useI18n()
 
 const rules = {
-  user_name: [required],
-  password: [required]
+  username: [required()],
+  password: [required()]
 }
 
 const schema = reactive<FormSchema[]>([
@@ -40,7 +40,7 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'user_name',
+    field: 'username',
     label: t('login.username'),
     value: 'admin',
     component: 'Input',
@@ -123,17 +123,13 @@ const signIn = async () => {
     if (isValid) {
       loading.value = true
       const { getFormData } = methods
-      const formData = await getFormData<IUserModel>()
+      const formData = await getFormData<UserType>()
 
       try {
-        const { result } = await loginApi(
-          Object.assign(cloneDeep(formData), {
-            password: md5(formData.password)
-          })
-        )
+        const res = await loginApi(formData)
 
-        if (result) {
-          wsCache.set(appStore.getUserInfo, result)
+        if (res) {
+          wsCache.set(appStore.getUserInfo, res.data)
           getRole()
         }
       } finally {
@@ -146,22 +142,20 @@ const signIn = async () => {
 // 获取角色信息
 const getRole = async () => {
   const { getFormData } = methods
-  const formData = await getFormData<IUserModel>()
+  const formData = await getFormData<UserType>()
   const params = {
-    roleName: formData.user_name
+    roleName: formData.username
   }
   // admin - 模拟后端过滤菜单
   // test - 模拟前端过滤菜单
   const res =
-    formData.user_name === 'admin'
-      ? await getAdminRoleApi({ params })
-      : await getTestRoleApi({ params })
+    formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
   if (res) {
     const { wsCache } = useCache()
-    const routers = res.data.list || []
+    const routers = res.data || []
     wsCache.set('roleRouters', routers)
 
-    formData.user_name === 'admin'
+    formData.username === 'admin'
       ? await permissionStore.generateRoutes('admin', routers).catch(() => {})
       : await permissionStore.generateRoutes('test', routers).catch(() => {})
 

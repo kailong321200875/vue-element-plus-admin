@@ -13,13 +13,7 @@ import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
-const { register, tableObject, methods } = useTable<
-  {
-    total: number
-    list: TableData[]
-  },
-  TableData
->({
+const { register, tableObject, methods } = useTable<TableData>({
   getListApi: getTableListApi,
   delListApi: delTableListApi,
   response: {
@@ -196,9 +190,7 @@ const save = async () => {
     if (isValid) {
       loading.value = true
       const data = (await write?.getFormData()) as TableData
-      const res = await saveTableApi({
-        data
-      })
+      const res = await saveTableApi(data)
         .catch(() => {})
         .finally(() => {
           loading.value = false

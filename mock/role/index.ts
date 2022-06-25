@@ -516,9 +516,7 @@ export default [
       const { roleName } = query
       return {
         code: result_code,
-        data: {
-          list: roleName === 'admin' ? adminList : testList
-        }
+        data: roleName === 'admin' ? adminList : testList
       }
     }
   }

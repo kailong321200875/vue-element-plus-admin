@@ -4,8 +4,10 @@ import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
 import { useI18n } from '@/hooks/web/useI18n'
-import { required } from '@/utils/formRules'
+import { useValidator } from '@/hooks/web/useValidator'
 import { IDomEditor } from '@wangeditor/editor'
+
+const { required } = useValidator()
 
 const props = defineProps({
   currentRow: {
@@ -22,7 +24,7 @@ const schema = reactive<FormSchema[]>([
     label: t('exampleDemo.title'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     },
     colProps: {
       span: 24
@@ -33,7 +35,7 @@ const schema = reactive<FormSchema[]>([
     label: t('exampleDemo.author'),
     component: 'Input',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -45,7 +47,7 @@ const schema = reactive<FormSchema[]>([
       valueFormat: 'YYYY-MM-DD HH:mm:ss'
     },
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -53,7 +55,7 @@ const schema = reactive<FormSchema[]>([
     label: t('exampleDemo.importance'),
     component: 'Select',
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     },
     componentProps: {
       options: [
@@ -78,7 +80,7 @@ const schema = reactive<FormSchema[]>([
     component: 'InputNumber',
     value: 0,
     formItemProps: {
-      rules: [required]
+      rules: [required()]
     }
   },
   {
@@ -101,12 +103,12 @@ const schema = reactive<FormSchema[]>([
 ])
 
 const rules = reactive({
-  title: [required],
-  author: [required],
-  importance: [required],
-  pageviews: [required],
-  display_time: [required],
-  content: [required]
+  title: [required()],
+  author: [required()],
+  importance: [required()],
+  pageviews: [required()],
+  display_time: [required()],
+  content: [required()]
 })
 
 const { register, methods, elFormRef } = useForm({

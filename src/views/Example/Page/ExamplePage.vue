@@ -18,13 +18,7 @@ defineOptions({
 
 const { push } = useRouter()
 
-const { register, tableObject, methods } = useTable<
-  {
-    total: number
-    list: TableData[]
-  },
-  TableData
->({
+const { register, tableObject, methods } = useTable<TableData>({
   getListApi: getTableListApi,
   delListApi: delTableListApi,
   response: {

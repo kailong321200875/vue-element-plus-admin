@@ -3,22 +3,27 @@ import type { WorkplaceTotal, Project, Dynamic, Team, RadarData } from './types'
 
 const request = useAxios()
 
-export const getCountApi = () => {
-  return request.get<WorkplaceTotal>({ url: '/workplace/total' })
+export const getCountApi = async (): Promise<IResponse<WorkplaceTotal>> => {
+  const res = await request.get({ url: '/workplace/total' })
+  return res && res.data
 }
 
-export const getProjectApi = () => {
-  return request.get<Project[]>({ url: '/workplace/project' })
+export const getProjectApi = async (): Promise<IResponse<Project>> => {
+  const res = await request.get({ url: '/workplace/project' })
+  return res && res.data
 }
 
-export const getDynamicApi = () => {
-  return request.get<Dynamic[]>({ url: '/workplace/dynamic' })
+export const getDynamicApi = async (): Promise<IResponse<Dynamic[]>> => {
+  const res = await request.get({ url: '/workplace/dynamic' })
+  return res && res.data
 }
 
-export const getTeamApi = () => {
-  return request.get<Team[]>({ url: '/workplace/team' })
+export const getTeamApi = async (): Promise<IResponse<Team[]>> => {
+  const res = await request.get({ url: '/workplace/team' })
+  return res && res.data
 }
 
-export const getRadarApi = () => {
-  return request.get<RadarData[]>({ url: '/workplace/radar' })
+export const getRadarApi = async (): Promise<IResponse<RadarData[]>> => {
+  const res = await request.get({ url: '/workplace/radar' })
+  return res && res.data
 }

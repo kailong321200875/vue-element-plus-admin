@@ -1,16 +1,22 @@
 import { Table, TableExpose } from '@/components/Table'
 import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
 import { ref, reactive, watch, computed, unref, nextTick } from 'vue'
-import { AxiosPromise } from 'axios'
 import { get } from 'lodash-es'
 import type { TableProps } from '@/components/Table/src/types'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()
 
-interface UseTableConfig<T, L> {
-  getListApi: (option: L) => AxiosPromise<T>
-  delListApi?: (option: AxiosConfig) => AxiosPromise<unknown>
+interface TableResponse<T = any> {
+  total: number
+  list: T[]
+  pageNumber: number
+  pageSize: number
+}
+
+interface UseTableConfig<T = any> {
+  getListApi: (option: any) => Promise<IResponse<TableResponse<T>>>
+  delListApi?: (option: any) => Promise<IResponse>
   // 返回数据格式配置
   response: {
     list: string
@@ -19,20 +25,18 @@ interface UseTableConfig<T, L> {
   props?: TableProps
 }
 
-interface TableObject<K, L> {
+interface TableObject<T = any> {
   pageSize: number
   currentPage: number
   total: number
-  tableList: K[]
-  paramsObj: L
+  tableList: T[]
+  params: any
   loading: boolean
-  currentRow: Nullable<K>
+  currentRow: Nullable<T>
 }
 
-export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
-  config?: UseTableConfig<T, L>
-) => {
-  const tableObject = reactive<TableObject<K, L>>({
+export const useTable = <T = any>(config?: UseTableConfig<T>) => {
+  const tableObject = reactive<TableObject<T>>({
     // 页数
     pageSize: 10,
     // 当前页
@@ -42,7 +46,7 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     // 表格数据
     tableList: [],
     // AxiosConfig 配置
-    paramsObj: {} as L,
+    params: {},
     // 加载中
     loading: true,
     // 当前行的数据
@@ -51,11 +55,9 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
 
   const paramsObj = computed(() => {
     return {
-      params: {
-        ...tableObject.paramsObj.params,
-        pageSize: tableObject.pageSize,
-        pageIndex: tableObject.currentPage
-      }
+      ...tableObject.params,
+      pageSize: tableObject.pageSize,
+      pageIndex: tableObject.currentPage
     }
   })
 
@@ -99,8 +101,8 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     return table
   }
 
-  const delData = async (paramsObj: AxiosConfig, ids: string[] | number[]) => {
-    const res = await (config?.delListApi && config?.delListApi(paramsObj))
+  const delData = async (ids: string[] | number[]) => {
+    const res = await (config?.delListApi && config?.delListApi(ids))
     if (res) {
       ElMessage.success(t('common.delSuccess'))
 
@@ -117,22 +119,12 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     }
   }
 
-  const methods: {
-    setProps: (props: Recordable) => void
-    getList: () => Promise<void>
-    setColumn: (columnProps: TableSetPropsType[]) => void
-    setSearchParams: (data: Recordable) => void
-    getSelections: () => Promise<K[]>
-    delList: (ids: string[] | number[], multiple: boolean, message?: boolean) => Promise<void>
-  } = {
+  const methods = {
     getList: async () => {
       tableObject.loading = true
-      const res = await config
-        ?.getListApi(unref(paramsObj) as unknown as L)
-        .catch(() => {})
-        .finally(() => {
-          tableObject.loading = false
-        })
+      const res = await config?.getListApi(unref(paramsObj)).finally(() => {
+        tableObject.loading = false
+      })
       if (res) {
         tableObject.tableList = get(res.data || {}, config?.response.list as string)
         tableObject.total = get(res.data || {}, config?.response?.total as string) || 0
@@ -148,17 +140,15 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
     },
     getSelections: async () => {
       const table = await getTable()
-      return (table?.selections || []) as K[]
+      return (table?.selections || []) as T[]
     },
     // 与Search组件结合
     setSearchParams: (data: Recordable) => {
       tableObject.currentPage = 1
-      tableObject.paramsObj = Object.assign(tableObject.paramsObj, {
-        params: {
-          pageSize: tableObject.pageSize,
-          pageIndex: tableObject.currentPage,
-          ...data
-        }
+      tableObject.params = Object.assign(tableObject.params, {
+        pageSize: tableObject.pageSize,
+        pageIndex: tableObject.currentPage,
+        ...data
       })
       methods.getList()
     },
@@ -176,23 +166,16 @@ export const useTable = <T, K, L extends AxiosConfig = AxiosConfig>(
           return
         }
       }
-      const paramsObj: AxiosConfig = {
-        data: {
-          ids
-        }
-      }
       if (message) {
         ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
           confirmButtonText: t('common.delOk'),
           cancelButtonText: t('common.delCancel'),
           type: 'warning'
+        }).then(async () => {
+          await delData(ids)
         })
-          .then(async () => {
-            await delData(paramsObj, ids)
-          })
-          .catch(() => {})
       } else {
-        await delData(paramsObj, ids)
+        await delData(ids)
       }
     }
   }
