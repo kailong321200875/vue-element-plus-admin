@@ -1,6 +1,6 @@
 {
   "name": "vue-element-plus-admin",
-  "version": "1.4.3",
+  "version": "1.4.5",
   "description": "一套基于vue3、element-plus、typesScript、vite2的后台集成方案。",
   "author": "Archer <502431556@qq.com>",
   "private": false,
@@ -37,6 +37,7 @@
     "echarts-wordcloud": "^2.0.0",
     "element-plus": "2.2.6",
     "intro.js": "^5.1.0",
+    "js-md5": "^0.7.3",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.0",
     "mockjs": "^1.1.0",
@@ -59,6 +60,7 @@
     "@intlify/vite-plugin-vue-i18n": "^3.4.0",
     "@purge-icons/generated": "^0.8.1",
     "@types/intro.js": "^3.0.2",
+    "@types/js-md5": "^0.4.3",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.0.0",
     "@types/nprogress": "^0.2.0",

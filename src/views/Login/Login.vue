@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { LoginForm } from './components'
+import { LoginForm, RegisterForm } from './components'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { LocaleDropdown } from '@/components/LocaleDropdown'
 import { useI18n } from '@/hooks/web/useI18n'
 import { underlineToHump } from '@/utils'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
+import { ref } from 'vue'
 
 const { getPrefixCls } = useDesign()
 
@@ -14,12 +15,22 @@ const prefixCls = getPrefixCls('login')
 const appStore = useAppStore()
 
 const { t } = useI18n()
+
+const isLogin = ref(true)
+
+const toRegister = () => {
+  isLogin.value = false
+}
+
+const toLogin = () => {
+  isLogin.value = true
+}
 </script>
 
 <template>
   <div
     :class="prefixCls"
-    class="h-[100%] relative overflow-hidden <xl:bg-v-dark <sm:px-10px <xl:px-10px <md:px-10px"
+    class="h-[100%] relative <xl:bg-v-dark <sm:px-10px <xl:px-10px <md:px-10px"
   >
     <div class="relative h-full flex mx-auto">
       <div
@@ -59,7 +70,16 @@ const { t } = useI18n()
           <div
             class="h-full flex items-center m-auto w-[100%] @2xl:max-w-500px @xl:max-w-500px @md:max-w-500px @lg:max-w-500px"
           >
-            <LoginForm class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)" />
+            <LoginForm
+              v-if="isLogin"
+              class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)"
+              @to-register="toRegister"
+            />
+            <RegisterForm
+              v-else
+              class="p-20px h-auto m-auto <xl:(rounded-3xl light:bg-white)"
+              @to-login="toLogin"
+            />
           </div>
         </Transition>
       </div>

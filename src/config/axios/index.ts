@@ -1,10 +1,4 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosRequestHeaders,
-  AxiosResponse,
-  AxiosError
-} from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
 import { ElMessage } from 'element-plus'
 
@@ -27,8 +21,7 @@ service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (
       config.method === 'post' &&
-      (config.headers as AxiosRequestHeaders)['Content-Type'] ===
-        'application/x-www-form-urlencoded'
+      config!.headers!['Content-Type'] === 'application/x-www-form-urlencoded'
     ) {
       config.data = qs.stringify(config.data)
     }
@@ -59,7 +52,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response: AxiosResponse<Recordable>) => {
     if (response.data.code === result_code) {
-      return response.data
+      return response
     } else {
       ElMessage.error(response.data.message)
     }

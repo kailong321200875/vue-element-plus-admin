@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.4...v1.4.5) (2022-06-09)
+
+
+### Bug Fixes
+
+* fix tagsview not work ([d88e051](https://github.com/kailong321200875/vue-element-plus-admin/commit/d88e0514349e877f1c5280a48f9b1bd2bfd622bf))
+* fix tagsview not work ([1bf2d4c](https://github.com/kailong321200875/vue-element-plus-admin/commit/1bf2d4c77287fdca7ed1cb8c9998a53f1375dc6f))
+
+
+### Types
+
+* fix types error ([586486a](https://github.com/kailong321200875/vue-element-plus-admin/commit/586486a68d4bf2a024e50a79945b4007324f642d))
+
+## [1.4.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.3...v1.4.4) (2022-06-06)
+
+
+### Types
+
+* fix type error ([d66f12e](https://github.com/kailong321200875/vue-element-plus-admin/commit/d66f12e0e77f6acf485bae06509d9ea4abcd1eaa))
+
 ### [1.4.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.2...v1.4.3) (2022-06-01)
 
 
