@@ -1,13 +1,15 @@
 import { useAxios } from '@/hooks/web/useAxios'
-import type { UserLoginType, UserType } from './types'
+import type { UserType } from './types'
+import { IUserModel } from '@/api-types/user'
 
 const request = useAxios()
 
-export const loginApi = (data: UserLoginType) => {
-  return request.post({
+export const loginApi = async (data: Pick<IUserModel, 'user_name' | 'password'>) => {
+  const res = await request.post<IResponse<IUserModel>>({
     url: '/user/login',
     data
   })
+  return res && res.data
 }
 
 export const loginOutApi = () => {

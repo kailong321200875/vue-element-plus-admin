@@ -3,5 +3,7 @@ export interface IUserModel {
   password: string
   check_password: string
   is_admin: number
-  code: string | number
+  code?: string | number
+  token?: string
+  refreshToken?: string
 }

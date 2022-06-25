@@ -6,12 +6,14 @@ import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { required } from '@/utils/formRules'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import type { UserLoginType } from '@/api/login/types'
 import { useCache } from '@/hooks/web/useCache'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
+import { IUserModel } from '@/api-types/user'
+import md5 from 'js-md5'
+import { cloneDeep } from 'lodash-es'
 
 const emit = defineEmits(['to-register'])
 
@@ -21,10 +23,12 @@ const permissionStore = usePermissionStore()
 
 const { currentRoute, addRoute, push } = useRouter()
 
+const { wsCache } = useCache()
+
 const { t } = useI18n()
 
 const rules = {
-  username: [required],
+  user_name: [required],
   password: [required]
 }
 
@@ -36,7 +40,7 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'username',
+    field: 'user_name',
     label: t('login.username'),
     value: 'admin',
     component: 'Input',
@@ -119,17 +123,21 @@ const signIn = async () => {
     if (isValid) {
       loading.value = true
       const { getFormData } = methods
-      const formData = await getFormData<UserLoginType>()
+      const formData = await getFormData<IUserModel>()
 
-      const res = await loginApi(formData)
-        .catch(() => {})
-        .finally(() => (loading.value = false))
+      try {
+        const { result } = await loginApi(
+          Object.assign(cloneDeep(formData), {
+            password: md5(formData.password)
+          })
+        )
 
-      if (res) {
-        const { wsCache } = useCache()
-        wsCache.set(appStore.getUserInfo, res.data)
-
-        getRole()
+        if (result) {
+          wsCache.set(appStore.getUserInfo, result)
+          getRole()
+        }
+      } finally {
+        loading.value = false
       }
     }
   })
@@ -138,14 +146,14 @@ const signIn = async () => {
 // 获取角色信息
 const getRole = async () => {
   const { getFormData } = methods
-  const formData = await getFormData<UserLoginType>()
+  const formData = await getFormData<IUserModel>()
   const params = {
-    roleName: formData.username
+    roleName: formData.user_name
   }
   // admin - 模拟后端过滤菜单
   // test - 模拟前端过滤菜单
   const res =
-    formData.username === 'admin'
+    formData.user_name === 'admin'
       ? await getAdminRoleApi({ params })
       : await getTestRoleApi({ params })
   if (res) {
@@ -153,7 +161,7 @@ const getRole = async () => {
     const routers = res.data.list || []
     wsCache.set('roleRouters', routers)
 
-    formData.username === 'admin'
+    formData.user_name === 'admin'
       ? await permissionStore.generateRoutes('admin', routers).catch(() => {})
       : await permissionStore.generateRoutes('test', routers).catch(() => {})
 

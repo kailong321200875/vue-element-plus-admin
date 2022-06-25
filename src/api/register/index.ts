@@ -8,12 +8,14 @@ interface ICodeModel {
   uuid: string
 }
 
-export const getCodeApi = async () => {
-  const res = await request.get<IResponse<ICodeModel>>({ url: 'user/captcha' })
+export const getCodeApi = async (): Promise<IResponse<ICodeModel>> => {
+  const res = await request.get({ url: 'user/captcha' })
   return res && res.data
 }
 
-export const registerApi = async (data: Omit<IUserModel, 'is_admin'>) => {
-  const res = await request.post<IResponse<IUserModel>>({ url: 'user/register', data })
+export const registerApi = async (
+  data: Omit<IUserModel, 'is_admin'>
+): Promise<IResponse<IUserModel>> => {
+  const res = await request.post({ url: 'user/register', data })
   return res && res.data
 }

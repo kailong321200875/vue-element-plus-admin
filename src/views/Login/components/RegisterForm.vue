@@ -134,9 +134,9 @@ const toLogin = () => {
 const codeUrl = ref('')
 const codeUuid = ref('')
 const getCode = async () => {
-  const res = await getCodeApi()
-  if (res) {
-    const { url, uuid } = res.result
+  const { result } = await getCodeApi()
+  if (result) {
+    const { url, uuid } = result
     codeUrl.value = url
     codeUuid.value = uuid
   }
@@ -152,14 +152,14 @@ const loginRegister = async () => {
       try {
         loading.value = true
         const formData = await getFormData<Omit<IUserModel, 'is_admin'>>()
-        const res = await registerApi(
+        const { result } = await registerApi(
           Object.assign(cloneDeep(formData), {
             uuid: codeUuid.value,
             password: md5(formData.password),
             check_password: md5(formData.check_password)
           })
         )
-        if (res) {
+        if (result) {
           ElMessage.success('注册成功')
           toLogin()
         }
@@ -187,8 +187,12 @@ const loginRegister = async () => {
 
     <template #code="form">
       <div class="w-[100%] flex">
-        <ElInput v-model="form['code']" :placeholder="t('login.codePlaceholder')" class="flex-2" />
-        <div v-html="codeUrl" class="h-38px flex-1 cursor-pointer w-150px" @click="getCode"></div>
+        <ElInput
+          v-model="form['code']"
+          :placeholder="t('login.codePlaceholder')"
+          class="!w-[calc(100%-150px)]"
+        />
+        <div v-html="codeUrl" class="h-38px cursor-pointer w-150px" @click="getCode"></div>
       </div>
     </template>
 
