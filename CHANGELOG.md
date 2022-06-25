@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.5...v1.5.0) (2022-06-25)
+
+
+### Features
+
+* refactoring API ([37b7583](https://github.com/kailong321200875/vue-element-plus-admin/commit/37b75839a591648b145065432efb1dc8c7a3b917))
+
+
+### Bug Fixes
+
+* 修复axios已知问题 ([537af57](https://github.com/kailong321200875/vue-element-plus-admin/commit/537af57a0aaa24c88ebe75acf52dc0403a58b04b))
+
+
+### Performance Improvements
+
+* perf axios config ([39edd84](https://github.com/kailong321200875/vue-element-plus-admin/commit/39edd84023109a84683c21ea33e41bd024756520))
+
 ## [1.4.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.4...v1.4.5) (2022-06-09)
 
 
