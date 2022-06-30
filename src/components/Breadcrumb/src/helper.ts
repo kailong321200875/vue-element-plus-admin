@@ -9,7 +9,7 @@ export const filterBreadcrumb = (
 
   for (const route of routes) {
     const meta = route?.meta as RouteMeta
-    if (meta.hidden && !meta.showMainRoute) {
+    if (meta.hidden && !meta.canTo) {
       continue
     }
 

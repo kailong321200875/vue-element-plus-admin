@@ -435,7 +435,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           noTagsView: true,
           noCache: true,
           hidden: true,
-          showMainRoute: true,
+          canTo: true,
           activeMenu: '/example/example-page'
         }
       },
@@ -448,7 +448,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           noTagsView: true,
           noCache: true,
           hidden: true,
-          showMainRoute: true,
+          canTo: true,
           activeMenu: '/example/example-page'
         }
       },
@@ -461,7 +461,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           noTagsView: true,
           noCache: true,
           hidden: true,
-          showMainRoute: true,
+          canTo: true,
           activeMenu: '/example/example-page'
         }
       }

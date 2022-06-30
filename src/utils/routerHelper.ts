@@ -43,7 +43,7 @@ export const generateRoutesFn1 = (
   for (const route of routes) {
     const meta = route.meta as RouteMeta
     // skip some route
-    if (meta.hidden && !meta.showMainRoute) {
+    if (meta.hidden && !meta.canTo) {
       continue
     }
 
