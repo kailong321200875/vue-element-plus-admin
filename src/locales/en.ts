@@ -382,7 +382,9 @@ export default {
     dialog: 'Dialog',
     dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
     open: 'Open',
-    close: 'Close'
+    close: 'Close',
+    combineWithForm: 'Combine with form',
+    submit: 'Submit'
   },
   imageViewerDemo: {
     open: 'Open',

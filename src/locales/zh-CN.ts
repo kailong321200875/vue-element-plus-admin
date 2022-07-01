@@ -379,7 +379,9 @@ export default {
     dialog: '弹窗',
     dialogDes: '基于 ElementPlus 的 Dialog 组件二次封装',
     open: '打开',
-    close: '关闭'
+    close: '关闭',
+    combineWithForm: '与表单结合',
+    submit: '提交'
   },
   imageViewerDemo: {
     open: '打开',
