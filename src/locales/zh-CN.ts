@@ -338,7 +338,8 @@ export default {
     position: '位置',
     left: '左',
     center: '中',
-    right: '右'
+    right: '右',
+    dynamicOptions: '动态选项'
   },
   stickyDemo: {
     sticky: '黏性'

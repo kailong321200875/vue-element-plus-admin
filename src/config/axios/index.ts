@@ -25,6 +25,8 @@ service.interceptors.request.use(
     ) {
       config.data = qs.stringify(config.data)
     }
+    // 添加token，可根据实际业务修改
+    // config!.headers!['Authorization'] = 'something'
     // get参数编码
     if (config.method === 'get' && config.params) {
       let url = config.url as string

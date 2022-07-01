@@ -341,7 +341,8 @@ export default {
     position: 'position',
     left: 'left',
     center: 'center',
-    right: 'right'
+    right: 'right',
+    dynamicOptions: 'Dynamic options'
   },
   stickyDemo: {
     sticky: 'Sticky'
