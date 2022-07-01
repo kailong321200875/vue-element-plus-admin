@@ -90,6 +90,9 @@ const crudSchemas = reactive<CrudSchema[]>([
     form: {
       component: 'Select',
       componentProps: {
+        style: {
+          width: '100%'
+        },
         options: [
           {
             label: '重要',
