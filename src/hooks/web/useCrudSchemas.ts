@@ -95,7 +95,7 @@ const filterSearchSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): F
         componentProps: {},
         ...schemaItem.search,
         field: schemaItem.field,
-        label: schemaItem.label
+        label: schemaItem.search?.label || schemaItem.label
       }
 
       if (searchSchemaItem.dictName) {
@@ -111,7 +111,7 @@ const filterSearchSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): F
             })
             if (index !== -1) {
               allSchemas.searchSchema[index]!.componentProps!.options = filterOptions(
-                res.data,
+                res,
                 searchSchemaItem.componentProps.optionsAlias?.labelField
               )
             }
@@ -168,7 +168,7 @@ const filterFormSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
         component: (schemaItem.form && schemaItem.form.component) || 'Input',
         ...schemaItem.form,
         field: schemaItem.field,
-        label: schemaItem.label
+        label: schemaItem.form?.label || schemaItem.label
       }
 
       // 删除不必要的字段
@@ -191,7 +191,7 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
       const descriptionsSchemaItem = {
         ...schemaItem.detail,
         field: schemaItem.field,
-        label: schemaItem.label
+        label: schemaItem.detail?.label || schemaItem.label
       }
 
       // 删除不必要的字段
