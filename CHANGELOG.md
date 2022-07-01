@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.5.1...v1.5.2) (2022-07-01)
+
+
+### Performance Improvements
+
+* add useCrudSchemas demo ([ca3ce54](https://github.com/kailong321200875/vue-element-plus-admin/commit/ca3ce54630b723d87415b14c642440d6734876ff))
+
 ## [1.5.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.5.0...v1.5.1) (2022-07-01)
 
 
