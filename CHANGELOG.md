@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.5.0...v1.5.1) (2022-07-01)
+
+
+### Bug Fixes
+
+* change showMainRoute to canTo ([5e292f8](https://github.com/kailong321200875/vue-element-plus-admin/commit/5e292f8a2b2ded7297a2a76893e113ac81517d23))
+
+
+### Performance Improvements
+
+* dialog combine with form ([34aefb6](https://github.com/kailong321200875/vue-element-plus-admin/commit/34aefb64ab9237521a1225925264818eebff9ad3))
+* dynamic options demo ([1acb4d7](https://github.com/kailong321200875/vue-element-plus-admin/commit/1acb4d7e8f449ba342699f1b4387ac2404a4c1fb))
+* dynamic options demo ([9a3b617](https://github.com/kailong321200875/vue-element-plus-admin/commit/9a3b6177aa0fbc99c86c5073a1c6c696e1eaf890))
+* useCrudSchemas cutom label ([7864d83](https://github.com/kailong321200875/vue-element-plus-admin/commit/7864d830e2134d814609e722b7bad1754ea9460e))
+
 ## [1.5.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.4.5...v1.5.0) (2022-06-25)
 
 
