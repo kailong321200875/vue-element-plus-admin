@@ -237,7 +237,7 @@ const save = async () => {
         <ElButton type="success" @click="action(row, 'detail')">
           {{ t('exampleDemo.detail') }}
         </ElButton>
-        <ElButton type="danger" @click="delData(row, false)">
+        <ElButton type="danger" v-hasPermi="['example:dialog:delete']" @click="delData(row, false)">
           {{ t('exampleDemo.del') }}
         </ElButton>
       </template>
