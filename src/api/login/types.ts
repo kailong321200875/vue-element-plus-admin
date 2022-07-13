@@ -8,4 +8,5 @@ export type UserType = {
   password: string
   role: string
   roleId: string
+  permissions: string | string[]
 }
