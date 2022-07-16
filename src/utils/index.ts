@@ -30,6 +30,7 @@ export const humpToUnderline = (str: string): string => {
  * @returns 字符串驼峰
  */
 export const underlineToHump = (str: string): string => {
+  if (!str) return ''
   return str.replace(/\-(\w)/g, (_, letter: string) => {
     return letter.toUpperCase()
   })

@@ -10,7 +10,7 @@ Object.keys(modules).forEach(async (key) => {
   if (key.includes('_')) {
     return
   }
-  mockModules.push(...(modules[key] as any).default)
+  mockModules.push(...(modules[key] as any))
 })
 
 export function setupProdMockServer() {
