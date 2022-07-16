@@ -107,7 +107,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       minify: 'terser',
       outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true' ? 'inline' : false,
-      brotliSize: false,
+      // brotliSize: false,
       terserOptions: {
         compress: {
           drop_debugger: env.VITE_DROP_DEBUGGER === 'true',
