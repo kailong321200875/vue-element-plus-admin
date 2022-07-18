@@ -187,6 +187,13 @@ pnpm run build:pro
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/xingyu4j">
+            <img src="https://avatars.githubusercontent.com/u/41043753?v=4" width="100;" alt="xingyu4j"/>
+            <br />
+            <sub><b>xingyu4j</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/snowords">
             <img src="https://avatars.githubusercontent.com/u/22708432?v=4" width="100;" alt="snowords"/>
             <br />
@@ -206,15 +213,15 @@ pnpm run build:pro
             <br />
             <sub><b>Yangyu</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/WuYihui">
             <img src="https://avatars.githubusercontent.com/u/29938095?v=4" width="100;" alt="WuYihui"/>
             <br />
             <sub><b>WuYihui</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/xiterjia">
             <img src="https://avatars.githubusercontent.com/u/3360879?v=4" width="100;" alt="xiterjia"/>
