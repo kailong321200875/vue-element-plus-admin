@@ -17,7 +17,7 @@ If you need a basic template, please switch to the `tempalte` branch. `Tempalte`
 
 ## Feature
 
-- **State of The Art Development**：Use front-end front-end technology development such as Vue3/vite2
+- **State of The Art Development**：Use front-end front-end technology development such as Vue3/vite3
 - **TypeScript**: Application-level JavaScript language
 - **Theming**: Configurable themes
 - **International**：Built-in complete internationalization program
