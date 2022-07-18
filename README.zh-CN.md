@@ -190,7 +190,7 @@ pnpm run build:pro
         <a href="https://github.com/xingyu4j">
             <img src="https://avatars.githubusercontent.com/u/41043753?v=4" width="100;" alt="xingyu4j"/>
             <br />
-            <sub><b>xingyu4j</b></sub>
+            <sub><b>Xingyu4j</b></sub>
         </a>
     </td>
     <td align="center">
