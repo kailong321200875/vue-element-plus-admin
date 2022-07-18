@@ -17,7 +17,7 @@ const List: {
     password: 'admin',
     role: 'admin',
     roleId: '1',
-    permissions: '*.*.*'
+    permissions: ['*.*.*']
   },
   {
     username: 'test',
