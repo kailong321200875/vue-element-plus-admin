@@ -1,5 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import type { Router, RouteLocationNormalized, RouteRecordNormalized, RouteMeta } from 'vue-router'
+import type {
+  Router,
+  RouteLocationNormalized,
+  RouteRecordNormalized,
+  RouteMeta,
+  RouteRecordRaw
+} from 'vue-router'
 import { isUrl } from '@/utils/is'
 import { omit, cloneDeep } from 'lodash-es'
 
@@ -154,7 +160,7 @@ const isMultipleRoute = (route: AppRouteRecordRaw) => {
 // 生成二级路由
 const promoteRouteLevel = (route: AppRouteRecordRaw) => {
   let router: Router | null = createRouter({
-    routes: [route as unknown as RouteRecordNormalized],
+    routes: [route as RouteRecordRaw],
     history: createWebHashHistory()
   })
 

@@ -34,7 +34,10 @@ const schema = reactive<FormSchema[]>([
           label: 'option2',
           value: '2'
         }
-      ]
+      ],
+      onChange: (value: string) => {
+        console.log(value)
+      }
     }
   },
   {
