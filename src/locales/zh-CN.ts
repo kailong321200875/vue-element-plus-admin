@@ -143,6 +143,9 @@ export default {
     inputPassword: '密码输入框',
     sticky: '黏性'
   },
+  permission: {
+    hasPermission: '请设置操作权限值'
+  },
   analysis: {
     newUser: '新增用户',
     unreadInformation: '未读消息',

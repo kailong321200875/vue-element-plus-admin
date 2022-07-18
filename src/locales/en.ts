@@ -143,6 +143,9 @@ export default {
     inputPassword: 'InputPassword',
     sticky: 'Sticky'
   },
+  permission: {
+    hasPermission: 'Please set the operation permission value'
+  },
   analysis: {
     newUser: 'New user',
     unreadInformation: 'Unread information',
