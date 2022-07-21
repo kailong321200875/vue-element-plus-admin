@@ -43,8 +43,6 @@ type CrudDescriptionsParams = {
 
 const dictStore = useDictStoreWithOut()
 
-const { t } = useI18n()
-
 interface AllSchemas {
   searchSchema: FormSchema[]
   tableColumns: TableColumn[]
@@ -240,6 +238,7 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
 
 // 给options添加国际化
 const filterOptions = (options: Recordable, labelField?: string) => {
+  const { t } = useI18n()
   return options.map((v: Recordable) => {
     if (labelField) {
       v['labelField'] = t(v.labelField)
