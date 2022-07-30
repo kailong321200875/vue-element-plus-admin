@@ -34,6 +34,7 @@ export interface AppState {
   logo: boolean
   fixedHeader: boolean
   greyMode: boolean
+  dynamicRouter: boolean
   pageLoading: boolean
   layout: LayoutType
   title: string
@@ -67,6 +68,7 @@ export const appModules: AppState = {
   fixedHeader: true, // 固定toolheader
   footer: true, // 显示页脚
   greyMode: false, // 是否开始灰色模式，用于特殊悼念日
+  dynamicRouter: wsCache.get('dynamicRouter') || false, // 是否动态路由
 
   layout: wsCache.get('layout') || 'classic', // layout布局
   isDark: wsCache.get('isDark') || false, // 是否是暗黑模式

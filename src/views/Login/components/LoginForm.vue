@@ -130,7 +130,17 @@ const signIn = async () => {
 
         if (res) {
           wsCache.set(appStore.getUserInfo, res.data)
-          getRole()
+          // 是否使用动态路由
+          if (appStore.getDynamicRouter) {
+            getRole()
+          } else {
+            await permissionStore.generateRoutes('none').catch(() => {})
+            permissionStore.getAddRouters.forEach((route) => {
+              addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
+            })
+            permissionStore.setIsAddRouters(true)
+            push({ path: redirect.value || permissionStore.addRouters[0].path })
+          }
         }
       } finally {
         loading.value = false

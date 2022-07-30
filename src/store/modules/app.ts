@@ -54,6 +54,9 @@ export const useAppStore = defineStore({
     getGreyMode(): boolean {
       return this.greyMode
     },
+    getDynamicRouter(): boolean {
+      return this.dynamicRouter
+    },
     getPageLoading(): boolean {
       return this.pageLoading
     },
@@ -124,6 +127,10 @@ export const useAppStore = defineStore({
     },
     setGreyMode(greyMode: boolean) {
       this.greyMode = greyMode
+    },
+    setDynamicRouter(dynamicRouter: boolean) {
+      wsCache.set('dynamicRouter', dynamicRouter)
+      this.dynamicRouter = dynamicRouter
     },
     setPageLoading(pageLoading: boolean) {
       this.pageLoading = pageLoading
