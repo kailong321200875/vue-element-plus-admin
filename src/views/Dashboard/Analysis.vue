@@ -28,7 +28,12 @@ const getUserAccessSource = async () => {
       'legend.data',
       res.data.map((v) => t(v.name))
     )
-    set(pieOptionsData, 'series.data', res.data)
+    pieOptionsData!.series![0].data = res.data.map((v) => {
+      return {
+        name: t(v.name),
+        value: v.value
+      }
+    })
   }
 }
 

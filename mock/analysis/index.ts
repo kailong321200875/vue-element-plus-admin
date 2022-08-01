@@ -32,7 +32,7 @@ export default [
       return {
         code: result_code,
         data: [
-          { value: 335, name: 'analysis.directAccess' },
+          { value: 1000, name: 'analysis.directAccess' },
           { value: 310, name: 'analysis.mailMarketing' },
           { value: 234, name: 'analysis.allianceAdvertising' },
           { value: 135, name: 'analysis.videoAdvertising' },
