@@ -56,16 +56,24 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         dts: 'src/auto-imports.d.ts',
         resolvers: [ElementPlusResolver()],
         eslintrc: {
-          enabled: true, // Default `false`
+          enabled: false, // Default `false`
           filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
           globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
         },
       }),
       Components({
+        // 要搜索组件的目录的相对路径
+        dirs: ['src/components'],
+        // 组件的有效文件扩展名
         extensions: ['vue', 'md'],
-        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+         // 搜索子目录
+        deep: true,
+        include: [/\.vue$/, /\.vue\?vue/],
+        // 生成自定义 `auto-components.d.ts` 全局声明
         dts: 'src/auto-components.d.ts',
-        resolvers: [ElementPlusResolver()]
+        // 自定义组件的解析器
+        resolvers: [ElementPlusResolver()],
+        exclude: [/[\\/]node_modules[\\/]/]
       }),
       EslintPlugin({
         cache: false,
