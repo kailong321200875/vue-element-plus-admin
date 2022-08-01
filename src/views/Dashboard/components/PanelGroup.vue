@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { CountTo } from '@/components/CountTo'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getCountApi } from '@/api/dashboard/analysis'

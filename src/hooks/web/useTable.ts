@@ -1,5 +1,5 @@
 import { Table, TableExpose } from '@/components/Table'
-import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
+import { ElTable } from 'element-plus'
 import { get } from 'lodash-es'
 import type { TableProps } from '@/components/Table/src/types'
 import { useI18n } from '@/hooks/web/useI18n'

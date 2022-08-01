@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import PanelGroup from './components/PanelGroup.vue'
-import { Echart } from '@/components/Echart'
 import { pieOptions, barOptions, lineOptions } from './echarts-data'
 import {
   getUserAccessSourceApi,

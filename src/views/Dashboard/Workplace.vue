@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { useTimeAgo } from '@/hooks/web/useTimeAgo'
 import { useI18n } from '@/hooks/web/useI18n'
-import { CountTo } from '@/components/CountTo'
 import { formatTime } from '@/utils'
-import { Echart } from '@/components/Echart'
 import { EChartsOption } from 'echarts'
 import { radarOption } from './echarts-data'
-import { Highlight } from '@/components/Highlight'
 import {
   getCountApi,
   getProjectApi,

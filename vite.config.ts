@@ -51,8 +51,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         imports: [
           'vue',
           'vue-router',
-          'vue/macros',
-          '@vueuse/head',
           '@vueuse/core',
         ],
         dts: 'src/auto-imports.d.ts',
@@ -66,7 +64,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Components({
         extensions: ['vue', 'md'],
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        dts: 'src/component.d.ts',
+        dts: 'src/auto-components.d.ts',
         resolvers: [ElementPlusResolver()]
       }),
       EslintPlugin({

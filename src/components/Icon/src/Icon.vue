@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { nextTick } from 'vue'
-import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import Iconify from '@purge-icons/generated'
 import { useDesign } from '@/hooks/web/useDesign'

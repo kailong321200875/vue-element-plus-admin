@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Error } from '@/components/Error'
 import { usePermissionStore } from '@/store/modules/permission'
 
 const { push } = useRouter()

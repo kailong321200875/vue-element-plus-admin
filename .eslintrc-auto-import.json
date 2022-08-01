@@ -1,12 +1,5 @@
 {
   "globals": {
-    "$": true,
-    "$$": true,
-    "$computed": true,
-    "$customRef": true,
-    "$ref": true,
-    "$shallowRef": true,
-    "$toRef": true,
     "EffectScope": true,
     "ElMessage": true,
     "ElMessageBox": true,
@@ -164,7 +157,6 @@
     "useFullscreen": true,
     "useGamepad": true,
     "useGeolocation": true,
-    "useHead": true,
     "useIdle": true,
     "useImage": true,
     "useInfiniteScroll": true,
