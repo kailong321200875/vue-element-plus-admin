@@ -2,7 +2,7 @@
 import { ElCollapseTransition, ElDescriptions, ElDescriptionsItem, ElTooltip } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
-import { ref, unref, PropType, computed, useAttrs } from 'vue'
+import { PropType } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 
 const appStore = useAppStore()

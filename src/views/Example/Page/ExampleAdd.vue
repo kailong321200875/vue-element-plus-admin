@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import Write from './components/Write.vue'
 import { ContentDetailWrap } from '@/components/ContentDetailWrap'
-import { ref, unref } from 'vue'
-import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { useRouter } from 'vue-router'
 import { saveTableApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { useEmitt } from '@/hooks/web/useEmitt'

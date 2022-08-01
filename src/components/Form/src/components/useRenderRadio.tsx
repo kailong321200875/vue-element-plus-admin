@@ -1,5 +1,4 @@
 import { ElRadio, ElRadioButton } from 'element-plus'
-import { defineComponent } from 'vue'
 
 export const useRenderRadio = () => {
   const renderRadioOptions = (item: FormSchema) => {

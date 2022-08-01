@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
-import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
+import { PropType } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import { getSlot } from '@/utils/tsxHelper'

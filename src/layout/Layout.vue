@@ -1,5 +1,4 @@
 <script lang="tsx">
-import { computed, defineComponent, unref } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { Backtop } from '@/components/Backtop'
 import { Setting } from '@/components/Setting'

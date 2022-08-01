@@ -1,7 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
-import { ElMessage } from 'element-plus'
-
 import qs from 'qs'
 
 import { config } from '@/config/axios/config'
