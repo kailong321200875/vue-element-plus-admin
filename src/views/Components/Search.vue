@@ -2,9 +2,7 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Search } from '@/components/Search'
-import { reactive, ref, unref } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
-import { ElButton } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
 
 const { required } = useValidator()

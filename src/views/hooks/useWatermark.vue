@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton } from 'element-plus'
 import { useWatermark } from '@/hooks/web/useWatermark'
-import { computed, onBeforeUnmount } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 
 const appStore = useAppStore()

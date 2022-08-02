@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ElCard, ElButton } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useDesign } from '@/hooks/web/useDesign'
-import { ref, onMounted, defineEmits } from 'vue'
 import { Sticky } from '@/components/Sticky'
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()

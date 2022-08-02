@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
 import { Dialog } from '@/components/Dialog'
-import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ref, reactive, unref } from 'vue'
 import { Form, FormExpose } from '@/components/Form'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'

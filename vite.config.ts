@@ -6,7 +6,10 @@ import WindiCSS from 'vite-plugin-windicss'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import EslintPlugin from 'vite-plugin-eslint'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
-import styleImport, { ElementPlusResolve } from 'vite-plugin-style-import'
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import { viteMockServe } from 'vite-plugin-mock'
@@ -34,7 +37,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Vue(),
       VueJsx(),
       WindiCSS(),
-      styleImport({
+      createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
         libs: [{
           libraryName: 'element-plus',
@@ -43,6 +46,34 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             return `element-plus/es/components/${name.substring(3)}/style/css`
           }
         }]
+      }),
+      AutoImport({
+        imports: [
+          'vue',
+          'vue-router',
+          '@vueuse/core',
+        ],
+        dts: 'src/auto-imports.d.ts',
+        resolvers: [ElementPlusResolver()],
+        eslintrc: {
+          enabled: false, // Default `false`
+          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        },
+      }),
+      Components({
+        // 要搜索组件的目录的相对路径
+        dirs: ['src/components'],
+        // 组件的有效文件扩展名
+        extensions: ['vue', 'md'],
+         // 搜索子目录
+        deep: true,
+        include: [/\.vue$/, /\.vue\?vue/],
+        // 生成自定义 `auto-components.d.ts` 全局声明
+        dts: 'src/auto-components.d.ts',
+        // 自定义组件的解析器
+        resolvers: [ElementPlusResolver()],
+        exclude: [/[\\/]node_modules[\\/]/]
       }),
       EslintPlugin({
         cache: false,

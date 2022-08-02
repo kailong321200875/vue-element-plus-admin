@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
 import { createImageViewer } from '@/components/ImageViewer'
-import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 
 const { t } = useI18n()

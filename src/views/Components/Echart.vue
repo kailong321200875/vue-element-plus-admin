@@ -3,7 +3,6 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { pieOptions, barOptions, lineOptions, wordOptions } from '@/views/Dashboard/echarts-data'
 import { Echart } from '@/components/Echart'
-import { ElRow, ElCol, ElCard } from 'element-plus'
 
 const { t } = useI18n()
 </script>

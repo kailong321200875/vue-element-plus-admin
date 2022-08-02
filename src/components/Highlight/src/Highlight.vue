@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { defineComponent, PropType, computed, h, unref } from 'vue'
+import { PropType } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 
 export default defineComponent({

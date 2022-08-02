@@ -4,7 +4,6 @@ import { useCache } from '@/hooks/web/useCache'
 import { appModules } from '@/config/app'
 import type { AppState, LayoutType, ThemeTypes } from '@/config/app'
 import { setCssVar, humpToUnderline } from '@/utils'
-import { ElMessage } from 'element-plus'
 
 const { wsCache } = useCache()
 

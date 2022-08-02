@@ -1,4 +1,3 @@
-import { h } from 'vue'
 import type { VNode } from 'vue'
 import { Icon } from '@/components/Icon'
 

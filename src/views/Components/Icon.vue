@@ -2,7 +2,6 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Infotip } from '@/components/Infotip'
-import { ElButton } from 'element-plus'
 import { useIcon } from '@/hooks/web/useIcon'
 
 const { t } = useI18n()
