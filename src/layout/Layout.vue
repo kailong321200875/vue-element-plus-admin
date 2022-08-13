@@ -70,7 +70,7 @@ export default defineComponent({
 @prefix-cls: ~'@{namespace}-layout';
 
 .@{prefix-cls} {
-  background-color: var(--app-contnet-bg-color);
+  background-color: var(--app-content-bg-color);
   :deep(.@{elNamespace}-scrollbar__view) {
     height: 100% !important;
   }
