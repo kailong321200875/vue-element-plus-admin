@@ -377,7 +377,8 @@ export default {
     showExpandedRows: 'Show expanded rows',
     hiddenExpandedRows: 'Hidden expanded rows',
     changeTitle: 'Change title',
-    header: 'Header'
+    header: 'Header',
+    selectAllNone: 'Select all / none'
   },
   richText: {
     richText: 'Rich text',

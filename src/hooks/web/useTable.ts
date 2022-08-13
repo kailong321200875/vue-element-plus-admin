@@ -89,7 +89,7 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
 
   const register = (ref: typeof Table & TableExpose, elRef: ComponentRef<typeof ElTable>) => {
     tableRef.value = ref
-    elTableRef.value = elRef
+    elTableRef.value = unref(elRef)
   }
 
   const getTable = async () => {
