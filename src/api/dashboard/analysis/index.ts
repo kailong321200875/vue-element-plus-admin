@@ -1,4 +1,4 @@
-import { useAxios } from '@/hooks/web/useAxios'
+import request from '@/config/axios'
 import type {
   AnalysisTotalTypes,
   UserAccessSource,
@@ -6,24 +6,18 @@ import type {
   MonthlySales
 } from './types'
 
-const request = useAxios()
-
-export const getCountApi = async (): Promise<IResponse<AnalysisTotalTypes[]>> => {
-  const res = await request.get({ url: '/analysis/total' })
-  return res && res.data
+export const getCountApi = (): Promise<IResponse<AnalysisTotalTypes[]>> => {
+  return request.get({ url: '/analysis/total' })
 }
 
-export const getUserAccessSourceApi = async (): Promise<IResponse<UserAccessSource[]>> => {
-  const res = await request.get({ url: '/analysis/userAccessSource' })
-  return res && res.data
+export const getUserAccessSourceApi = (): Promise<IResponse<UserAccessSource[]>> => {
+  return request.get({ url: '/analysis/userAccessSource' })
 }
 
-export const getWeeklyUserActivityApi = async (): Promise<IResponse<WeeklyUserActivity[]>> => {
-  const res = await request.get({ url: '/analysis/weeklyUserActivity' })
-  return res && res.data
+export const getWeeklyUserActivityApi = (): Promise<IResponse<WeeklyUserActivity[]>> => {
+  return request.get({ url: '/analysis/weeklyUserActivity' })
 }
 
-export const getMonthlySalesApi = async (): Promise<IResponse<MonthlySales[]>> => {
-  const res = await request.get({ url: '/analysis/monthlySales' })
-  return res && res.data
+export const getMonthlySalesApi = (): Promise<IResponse<MonthlySales[]>> => {
+  return request.get({ url: '/analysis/monthlySales' })
 }

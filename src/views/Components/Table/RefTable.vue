@@ -125,6 +125,10 @@ const showExpandedRows = (show: boolean) => {
     expand: show
   })
 }
+
+const selectAllNone = () => {
+  unref(tableRef)?.elTableRef?.toggleAllSelection()
+}
 </script>
 
 <template>
@@ -146,6 +150,8 @@ const showExpandedRows = (show: boolean) => {
 
     <ElButton @click="showExpandedRows(true)">{{ t('tableDemo.showExpandedRows') }}</ElButton>
     <ElButton @click="showExpandedRows(false)">{{ t('tableDemo.hiddenExpandedRows') }}</ElButton>
+
+    <ElButton @click="selectAllNone">{{ t('tableDemo.selectAllNone') }}</ElButton>
   </ContentWrap>
   <ContentWrap :title="`RefTable ${t('tableDemo.example')}`">
     <Table

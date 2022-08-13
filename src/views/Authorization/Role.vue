@@ -59,12 +59,12 @@ const getTableList = async (params?: Params) => {
       pageSize: 10
     }
   })
-    .catch(() => {})
-    .finally(() => {
-      loading.value = false
-    })
+  // .catch(() => {})
+  // .finally(() => {
+  //   loading.value = false
+  // })
   if (res) {
-    tableDataList.value = res.data.list
+    tableDataList.value = res.list
   }
 }
 

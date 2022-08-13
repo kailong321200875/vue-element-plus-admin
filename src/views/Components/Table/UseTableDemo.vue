@@ -8,7 +8,7 @@ import { ref, h, reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
 
-const { register, tableObject, methods } = useTable<TableData>({
+const { register, tableObject, methods, elTableRef } = useTable<TableData>({
   getListApi: getTableListApi,
   response: {
     list: 'list',
@@ -124,6 +124,10 @@ const showExpandedRows = (show: boolean) => {
     expand: show
   })
 }
+
+const selectAllNone = () => {
+  unref(elTableRef)?.toggleAllSelection()
+}
 </script>
 
 <template>
@@ -145,6 +149,8 @@ const showExpandedRows = (show: boolean) => {
 
     <ElButton @click="showExpandedRows(true)">{{ t('tableDemo.showExpandedRows') }}</ElButton>
     <ElButton @click="showExpandedRows(false)">{{ t('tableDemo.hiddenExpandedRows') }}</ElButton>
+
+    <ElButton @click="selectAllNone">{{ t('tableDemo.selectAllNone') }}</ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table

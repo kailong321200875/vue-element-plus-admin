@@ -374,7 +374,8 @@ export default {
     showExpandedRows: '显示展开行',
     hiddenExpandedRows: '隐藏展开行',
     changeTitle: '修改标题',
-    header: '头部'
+    header: '头部',
+    selectAllNone: '全选/全不选'
   },
   richText: {
     richText: '富文本',
