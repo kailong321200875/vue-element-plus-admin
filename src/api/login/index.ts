@@ -1,20 +1,16 @@
-import { useAxios } from '@/hooks/web/useAxios'
+import request from '@/config/axios'
 import type { UserType } from './types'
 
 interface RoleParams {
   roleName: string
 }
 
-const request = useAxios()
-
-export const loginApi = async (data: UserType): Promise<IResponse<UserType>> => {
-  const res = await request.post({ url: '/user/login', data })
-  return res && res.data
+export const loginApi = (data: UserType): Promise<IResponse<UserType>> => {
+  return request.post({ url: '/user/login', data })
 }
 
-export const loginOutApi = async (): Promise<IResponse> => {
-  const res = await request.get({ url: '/user/loginOut' })
-  return res && res.data
+export const loginOutApi = (): Promise<IResponse> => {
+  return request.get({ url: '/user/loginOut' })
 }
 
 export const getUserListApi = ({ params }: AxiosConfig) => {
@@ -24,14 +20,12 @@ export const getUserListApi = ({ params }: AxiosConfig) => {
   }>({ url: '/user/list', params })
 }
 
-export const getAdminRoleApi = async (
+export const getAdminRoleApi = (
   params: RoleParams
 ): Promise<IResponse<AppCustomRouteRecordRaw[]>> => {
-  const res = await request.get({ url: '/role/list', params })
-  return res && res.data
+  return request.get({ url: '/role/list', params })
 }
 
-export const getTestRoleApi = async (params: RoleParams): Promise<IResponse<string[]>> => {
-  const res = await request.get({ url: '/role/list', params })
-  return res && res.data
+export const getTestRoleApi = (params: RoleParams): Promise<IResponse<string[]>> => {
+  return request.get({ url: '/role/list', params })
 }

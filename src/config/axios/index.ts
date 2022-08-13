@@ -1,69 +1,33 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import { service } from './service'
 
-import { ElMessage } from 'element-plus'
+import { config } from './config'
 
-import qs from 'qs'
+const { default_headers } = config
 
-import { config } from '@/config/axios/config'
-
-const { result_code, base_url } = config
-
-export const PATH_URL = base_url[import.meta.env.VITE_API_BASEPATH]
-
-// 创建axios实例
-const service: AxiosInstance = axios.create({
-  baseURL: PATH_URL, // api 的 base_url
-  timeout: config.request_timeout // 请求超时时间
-})
-
-// request拦截器
-service.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    if (
-      config.method === 'post' &&
-      config!.headers!['Content-Type'] === 'application/x-www-form-urlencoded'
-    ) {
-      config.data = qs.stringify(config.data)
+const request = (option: any) => {
+  const { url, method, params, data, headersType, responseType } = option
+  return service({
+    url: url,
+    method,
+    params,
+    data,
+    responseType: responseType,
+    headers: {
+      'Content-Type': headersType || default_headers
     }
-    // 添加token，可根据实际业务修改
-    // config!.headers!['Authorization'] = 'something'
-    // get参数编码
-    if (config.method === 'get' && config.params) {
-      let url = config.url as string
-      url += '?'
-      const keys = Object.keys(config.params)
-      for (const key of keys) {
-        if (config.params[key] !== void 0 && config.params[key] !== null) {
-          url += `${key}=${encodeURIComponent(config.params[key])}&`
-        }
-      }
-      url = url.substring(0, url.length - 1)
-      config.params = {}
-      config.url = url
-    }
-    return config
+  })
+}
+export default {
+  get: <T = any>(option: any) => {
+    return request({ method: 'get', ...option }) as unknown as T
   },
-  (error: AxiosError) => {
-    // Do something with request error
-    console.log(error) // for debug
-    Promise.reject(error)
-  }
-)
-
-// response 拦截器
-service.interceptors.response.use(
-  (response: AxiosResponse<Recordable>) => {
-    if (response.data.code === result_code) {
-      return response
-    } else {
-      ElMessage.error(response.data.message)
-    }
+  post: <T = any>(option: any) => {
+    return request({ method: 'post', ...option }) as unknown as T
   },
-  (error: AxiosError) => {
-    console.log('err' + error) // for debug
-    ElMessage.error(error.message)
-    return Promise.reject(error)
+  delete: <T = any>(option: any) => {
+    return request({ method: 'delete', ...option }) as unknown as T
+  },
+  put: <T = any>(option: any) => {
+    return request({ method: 'put', ...option }) as unknown as T
   }
-)
-
-export { service }
+}

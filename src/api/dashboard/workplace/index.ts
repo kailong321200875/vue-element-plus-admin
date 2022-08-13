@@ -1,29 +1,22 @@
-import { useAxios } from '@/hooks/web/useAxios'
+import request from '@/config/axios'
 import type { WorkplaceTotal, Project, Dynamic, Team, RadarData } from './types'
 
-const request = useAxios()
-
-export const getCountApi = async (): Promise<IResponse<WorkplaceTotal>> => {
-  const res = await request.get({ url: '/workplace/total' })
-  return res && res.data
+export const getCountApi = (): Promise<IResponse<WorkplaceTotal>> => {
+  return request.get({ url: '/workplace/total' })
 }
 
-export const getProjectApi = async (): Promise<IResponse<Project>> => {
-  const res = await request.get({ url: '/workplace/project' })
-  return res && res.data
+export const getProjectApi = (): Promise<IResponse<Project>> => {
+  return request.get({ url: '/workplace/project' })
 }
 
-export const getDynamicApi = async (): Promise<IResponse<Dynamic[]>> => {
-  const res = await request.get({ url: '/workplace/dynamic' })
-  return res && res.data
+export const getDynamicApi = (): Promise<IResponse<Dynamic[]>> => {
+  return request.get({ url: '/workplace/dynamic' })
 }
 
-export const getTeamApi = async (): Promise<IResponse<Team[]>> => {
-  const res = await request.get({ url: '/workplace/team' })
-  return res && res.data
+export const getTeamApi = (): Promise<IResponse<Team[]>> => {
+  return request.get({ url: '/workplace/team' })
 }
 
-export const getRadarApi = async (): Promise<IResponse<RadarData[]>> => {
-  const res = await request.get({ url: '/workplace/radar' })
-  return res && res.data
+export const getRadarApi = (): Promise<IResponse<RadarData[]>> => {
+  return request.get({ url: '/workplace/radar' })
 }
