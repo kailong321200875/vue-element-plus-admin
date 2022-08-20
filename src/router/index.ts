@@ -325,7 +325,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     redirect: '/hooks/useWatermark',
     name: 'Hooks',
     meta: {
-      title: t('router.component'),
+      title: 'hooks',
       icon: 'ic:outline-webhook',
       alwaysShow: true
     },

@@ -63,11 +63,11 @@ const initQrcode = async () => {
       options.errorCorrectionLevel || getErrorCorrectionLevel(unref(renderText))
     const _width: number = await getOriginWidth(unref(renderText), options)
     options.scale = props.width === 0 ? undefined : (props.width / _width) * 4
-    const canvasRef: HTMLCanvasElement = await toCanvas(
+    const canvasRef = (await toCanvas(
       unref(wrapRef) as HTMLCanvasElement,
       unref(renderText),
       options
-    )
+    )) as unknown as HTMLCanvasElement
     if (props.logo) {
       const url = await createLogoCode(canvasRef)
       emit('done', url)
