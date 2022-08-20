@@ -73,7 +73,7 @@ const adminList = [
   {
     path: '/components',
     component: '#',
-    redirect: '/components/icon',
+    redirect: '/components/form/default-form',
     name: 'ComponentsDemo',
     meta: {
       title: 'router.component',
@@ -119,6 +119,7 @@ const adminList = [
       {
         path: 'table',
         component: '##',
+        redirect: '/components/table/default-table',
         name: 'TableDemo',
         meta: {
           title: 'router.table',
@@ -154,6 +155,7 @@ const adminList = [
       {
         path: 'editor-demo',
         component: '##',
+        redirect: '/components/editor-demo/editor',
         name: 'EditorDemo',
         meta: {
           title: 'router.editor',

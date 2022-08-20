@@ -124,7 +124,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
   {
     path: '/components',
     component: Layout,
-    redirect: '/components/icon',
     name: 'ComponentsDemo',
     meta: {
       title: t('router.component'),
@@ -135,6 +134,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       {
         path: 'form',
         component: getParentLayout(),
+        redirect: '/components/form/default-form',
         name: 'Form',
         meta: {
           title: t('router.form'),
@@ -170,6 +170,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       {
         path: 'table',
         component: getParentLayout(),
+        redirect: '/components/table/default-table',
         name: 'TableDemo',
         meta: {
           title: t('router.table'),
@@ -205,6 +206,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
       {
         path: 'editor-demo',
         component: getParentLayout(),
+        redirect: '/components/editor-demo/editor',
         name: 'EditorDemo',
         meta: {
           title: t('router.editor'),

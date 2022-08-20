@@ -157,6 +157,7 @@ const AddAction = () => {
   dialogTitle.value = t('exampleDemo.add')
   tableObject.currentRow = null
   dialogVisible.value = true
+  actionType.value = ''
 }
 
 const delLoading = ref(false)
