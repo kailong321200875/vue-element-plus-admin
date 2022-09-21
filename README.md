@@ -211,7 +211,7 @@ Support modern browsers, not IE
         <a href="https://github.com/macrossx">
             <img src="https://avatars.githubusercontent.com/u/19276552?v=4" width="100;" alt="macrossx"/>
             <br />
-            <sub><b>macrossx</b></sub>
+            <sub><b>Macrossx</b></sub>
         </a>
     </td></tr>
 <tr>
