@@ -208,13 +208,20 @@ Support modern browsers, not IE
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/macrossx">
+            <img src="https://avatars.githubusercontent.com/u/19276552?v=4" width="100;" alt="macrossx"/>
+            <br />
+            <sub><b>macrossx</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
         <a href="https://github.com/amifed">
             <img src="https://avatars.githubusercontent.com/u/36906371?v=4" width="100;" alt="amifed"/>
             <br />
             <sub><b>Yangyu</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
     <td align="center">
         <a href="https://github.com/WuYihui">
             <img src="https://avatars.githubusercontent.com/u/29938095?v=4" width="100;" alt="WuYihui"/>
