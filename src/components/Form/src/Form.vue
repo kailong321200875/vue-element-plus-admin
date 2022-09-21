@@ -181,10 +181,6 @@ export default defineComponent({
         item?.componentProps?.options
       ) {
         slotsMap.default = () => renderOptions(item)
-      } else if (item.componentProps?.slots) {
-        // 非Options的组件，通过slots配置，渲染组件
-        // 例如 componentProps{slots:{append: ()=>h('span',null,'appendComponent')}}
-        Object.entries(item.componentProps.slots).forEach((slot) => (slotsMap[slot[0]] = slot[1]))
       }
 
       const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
