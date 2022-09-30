@@ -6,15 +6,12 @@ export interface DictState {
   dictObj: Recordable
 }
 
-export const useDictStore = defineStore({
-  id: 'dict',
+export const useDictStore = defineStore('dict', {
   state: (): DictState => ({
     isSetDict: false,
     dictObj: {}
   }),
-  persist: {
-    enabled: true
-  },
+  persist: true,
   getters: {
     getDictObj(): Recordable {
       return this.dictObj

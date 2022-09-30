@@ -11,17 +11,14 @@ export interface PermissionState {
   menuTabRouters: AppRouteRecordRaw[]
 }
 
-export const usePermissionStore = defineStore({
-  id: 'permission',
+export const usePermissionStore = defineStore('permission', {
   state: (): PermissionState => ({
     routers: [],
     addRouters: [],
     isAddRouters: false,
     menuTabRouters: []
   }),
-  persist: {
-    enabled: true
-  },
+  persist: true,
   getters: {
     getRouters(): AppRouteRecordRaw[] {
       return this.routers

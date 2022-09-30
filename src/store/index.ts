@@ -1,13 +1,22 @@
-import type { App } from 'vue'
+// TODO: 感觉这样是有问题的，但目前还没想到更好的办法
 import { createPinia } from 'pinia'
-import piniaPluginPersist from 'pinia-plugin-persist'
+
+import { createApp } from 'vue'
+
+import App from '../App.vue'
+
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const app = createApp(App)
 
 const store = createPinia()
 
-store.use(piniaPluginPersist)
+store.use(
+  createPersistedState({
+    storage: sessionStorage
+  })
+)
 
-export const setupStore = (app: App<Element>) => {
-  app.use(store)
-}
+app.use(store)
 
 export { store }
