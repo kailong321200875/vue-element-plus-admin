@@ -42,7 +42,6 @@
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.22",
-    "pinia-plugin-persistedstate": "^2.2.0",
     "qrcode": "^1.5.1",
     "qs": "^6.11.0",
     "url": "^0.11.0",

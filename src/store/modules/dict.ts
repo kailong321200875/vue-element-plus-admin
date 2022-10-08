@@ -11,7 +11,6 @@ export const useDictStore = defineStore('dict', {
     isSetDict: false,
     dictObj: {}
   }),
-  persist: true,
   getters: {
     getDictObj(): Recordable {
       return this.dictObj

@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
+import { useCache } from '@/hooks/web/useCache'
+
+const { wsCache } = useCache()
 
 type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'
 
@@ -71,12 +74,12 @@ export const useAppStore = defineStore('app', {
       fixedHeader: true, // 固定toolheader
       footer: true, // 显示页脚
       greyMode: false, // 是否开始灰色模式，用于特殊悼念日
-      dynamicRouter: false, // 是否动态路由
+      dynamicRouter: wsCache.get('dynamicRouter') || false, // 是否动态路由
 
-      layout: 'classic', // layout布局
-      isDark: false, // 是否是暗黑模式
-      currentSize: 'default', // 组件尺寸
-      theme: {
+      layout: wsCache.get('layout') || 'classic', // layout布局
+      isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
+      currentSize: wsCache.get('default') || 'default', // 组件尺寸
+      theme: wsCache.get('theme') || {
         // 主题色
         elColorPrimary: '#409eff',
         // 左侧菜单边框颜色
@@ -108,7 +111,6 @@ export const useAppStore = defineStore('app', {
       }
     }
   },
-  persist: true,
   getters: {
     getBreadcrumb(): boolean {
       return this.breadcrumb
@@ -224,7 +226,7 @@ export const useAppStore = defineStore('app', {
       this.greyMode = greyMode
     },
     setDynamicRouter(dynamicRouter: boolean) {
-      // wsCache.set('dynamicRouter', dynamicRouter)
+      wsCache.set('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
     },
     setPageLoading(pageLoading: boolean) {
@@ -236,7 +238,7 @@ export const useAppStore = defineStore('app', {
         return
       }
       this.layout = layout
-      // wsCache.set('layout', this.layout)
+      wsCache.set('layout', this.layout)
     },
     setTitle(title: string) {
       this.title = title
@@ -250,18 +252,18 @@ export const useAppStore = defineStore('app', {
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
       }
-      // wsCache.set('isDark', this.isDark)
+      wsCache.set('isDark', this.isDark)
     },
     setCurrentSize(currentSize: ElememtPlusSize) {
       this.currentSize = currentSize
-      // wsCache.set('currentSize', this.currentSize)
+      wsCache.set('currentSize', this.currentSize)
     },
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
     setTheme(theme: ThemeTypes) {
       this.theme = Object.assign(this.theme, theme)
-      // wsCache.set('theme', this.theme)
+      wsCache.set('theme', this.theme)
     },
     setCssVarTheme() {
       for (const key in this.theme) {

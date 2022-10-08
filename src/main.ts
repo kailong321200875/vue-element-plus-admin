@@ -4,13 +4,11 @@ import '@/plugins/windi.css'
 // 导入全局的svg图标
 import '@/plugins/svgIcon'
 
-import './store'
-
 // 初始化多语言
 import { setupI18n } from '@/plugins/vueI18n'
 
 // 引入状态管理
-// import { setupStore } from '@/store'
+import { setupStore } from '@/store'
 
 // 全局组件
 import { setupGlobCom } from '@/components'
@@ -42,7 +40,7 @@ const setupAll = async () => {
 
   await setupI18n(app)
 
-  // setupStore(app)
+  setupStore(app)
 
   setupGlobCom(app)
 
