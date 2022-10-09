@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
+import { ElementPlusSize } from '@/types/elementPlus'
 import { useCache } from '@/hooks/web/useCache'
 
 const { wsCache } = useCache()
@@ -169,10 +170,10 @@ export const useAppStore = defineStore('app', {
     getIsDark(): boolean {
       return this.isDark
     },
-    getCurrentSize(): ElememtPlusSize {
+    getCurrentSize(): ElementPlusSize {
       return this.currentSize
     },
-    getSizeMap(): ElememtPlusSize[] {
+    getSizeMap(): ElementPlusSize[] {
       return this.sizeMap
     },
     getMobile(): boolean {
@@ -254,7 +255,7 @@ export const useAppStore = defineStore('app', {
       }
       wsCache.set('isDark', this.isDark)
     },
-    setCurrentSize(currentSize: ElememtPlusSize) {
+    setCurrentSize(currentSize: ElementPlusSize) {
       this.currentSize = currentSize
       wsCache.set('currentSize', this.currentSize)
     },

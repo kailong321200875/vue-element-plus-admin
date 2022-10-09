@@ -1,6 +1,8 @@
 import { ElOption, ElOptionGroup } from 'element-plus'
 import { getSlot } from '@/utils/tsxHelper'
 import { Slots } from 'vue'
+import { FormSchema } from '@/types/form'
+import { ComponentOptions } from '@/types/components'
 
 export const useRenderSelect = (slots: Slots) => {
   // 渲染 select options
