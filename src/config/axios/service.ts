@@ -1,4 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosResponse,
+  AxiosError
+} from 'axios'
 
 import qs from 'qs'
 
@@ -21,10 +27,12 @@ service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     if (
       config.method === 'post' &&
-      (config.headers as any)['Content-Type'] === 'application/x-www-form-urlencoded'
+      (config.headers as AxiosRequestHeaders)['Content-Type'] ===
+        'application/x-www-form-urlencoded'
     ) {
       config.data = qs.stringify(config.data)
     }
+    // ;(config.headers as AxiosRequestHeaders)['Token'] = 'test test'
     // get参数编码
     if (config.method === 'get' && config.params) {
       let url = config.url as string

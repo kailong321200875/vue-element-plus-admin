@@ -216,6 +216,13 @@ Support modern browsers, not IE
     </td></tr>
 <tr>
     <td align="center">
+        <a href="https://github.com/hongxinzz">
+            <img src="https://avatars.githubusercontent.com/u/31195324?v=4" width="100;" alt="hongxinzz"/>
+            <br />
+            <sub><b>Hongxinzz</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/amifed">
             <img src="https://avatars.githubusercontent.com/u/36906371?v=4" width="100;" alt="amifed"/>
             <br />

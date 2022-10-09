@@ -530,7 +530,8 @@ const schema = reactive<FormSchema[]>([
           options: [
             {
               label: 'option1-1',
-              value: '1-1'
+              value: '1-1',
+              disabled: true
             },
             {
               label: 'option1-2',
