@@ -208,18 +208,18 @@ Support modern browsers, not IE
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/hongxinzz">
-            <img src="https://avatars.githubusercontent.com/u/31195324?v=4" width="100;" alt="hongxinzz"/>
-            <br />
-            <sub><b>Hongxinzz</b></sub>
-        </a>
-    </td></tr>
-<tr>
-    <td align="center">
         <a href="https://github.com/macrossx">
             <img src="https://avatars.githubusercontent.com/u/19276552?v=4" width="100;" alt="macrossx"/>
             <br />
             <sub><b>Macrossx</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/hongxinzz">
+            <img src="https://avatars.githubusercontent.com/u/31195324?v=4" width="100;" alt="hongxinzz"/>
+            <br />
+            <sub><b>Hongxinzz</b></sub>
         </a>
     </td>
     <td align="center">
