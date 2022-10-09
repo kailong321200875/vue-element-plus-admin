@@ -6,6 +6,7 @@ import { TableData } from '@/api/table/types'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useValidator } from '@/hooks/web/useValidator'
 import { IDomEditor } from '@wangeditor/editor'
+import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 

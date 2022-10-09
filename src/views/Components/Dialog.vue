@@ -7,6 +7,7 @@ import { ref, reactive, unref } from 'vue'
 import { Form, FormExpose } from '@/components/Form'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
+import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 

@@ -6,6 +6,7 @@ import { Form } from '@/components/Form'
 import { ElFormItem, ElInput, ElButton } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useForm } from '@/hooks/web/useForm'
+import { DescriptionsSchema } from '@/types/descriptions'
 
 const { required } = useValidator()
 

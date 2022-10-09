@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
+import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 
