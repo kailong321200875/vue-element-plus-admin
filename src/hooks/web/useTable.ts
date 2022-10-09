@@ -144,13 +144,17 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
     },
     // 与Search组件结合
     setSearchParams: (data: Recordable) => {
-      tableObject.currentPage = 1
       tableObject.params = Object.assign(tableObject.params, {
         pageSize: tableObject.pageSize,
-        pageIndex: tableObject.currentPage,
+        pageIndex: 1,
         ...data
       })
-      methods.getList()
+      // 页码不等于1时更新页码重新获取数据，页码等于1时重新获取数据
+      if (tableObject.currentPage !== 1) {
+        tableObject.currentPage = 1
+      } else {
+        methods.getList()
+      }
     },
     // 删除数据
     delList: async (ids: string[] | number[], multiple: boolean, message = true) => {
