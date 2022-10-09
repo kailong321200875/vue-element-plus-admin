@@ -4,6 +4,7 @@ import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
 import { useValidator } from '@/hooks/web/useValidator'
+import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 

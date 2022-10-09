@@ -4,6 +4,9 @@ import { findIndex } from '@/utils'
 import { useDictStoreWithOut } from '@/store/modules/dict'
 import { useI18n } from '@/hooks/web/useI18n'
 import type { AxiosPromise } from 'axios'
+import { FormSchema } from '@/types/form'
+import { TableColumn } from '@/types/table'
+import { DescriptionsSchema } from '@/types/descriptions'
 
 export type CrudSchema = Omit<TableColumn, 'children'> & {
   search?: CrudSearchParams

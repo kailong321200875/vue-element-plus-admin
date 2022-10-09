@@ -6,6 +6,7 @@ import { getUserListApi } from '@/api/login'
 import { UserType } from '@/api/login/types'
 import { ref, h } from 'vue'
 import { ElButton } from 'element-plus'
+import { TableColumn, TableSlotDefault } from '@/types/table'
 
 interface Params {
   pageIndex?: number

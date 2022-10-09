@@ -3,6 +3,7 @@ import { store } from '../index'
 import { useCache } from '@/hooks/web/useCache'
 import { localeModules, elLocaleMap } from '@/config/locale'
 import type { LocaleState } from '@/config/locale'
+import { LocaleDropdownType } from '@/types/localeDropdown'
 
 const { wsCache } = useCache()
 

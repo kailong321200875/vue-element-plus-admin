@@ -5,6 +5,7 @@ import { appModules } from '@/config/app'
 import type { AppState, LayoutType, ThemeTypes } from '@/config/app'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
+import { ElementPlusSize } from '@/types/elementPlus'
 
 const { wsCache } = useCache()
 
@@ -72,10 +73,10 @@ export const useAppStore = defineStore({
     getIsDark(): boolean {
       return this.isDark
     },
-    getCurrentSize(): ElememtPlusSize {
+    getCurrentSize(): ElementPlusSize {
       return this.currentSize
     },
-    getSizeMap(): ElememtPlusSize[] {
+    getSizeMap(): ElementPlusSize[] {
       return this.sizeMap
     },
     getMobile(): boolean {
@@ -157,7 +158,7 @@ export const useAppStore = defineStore({
       }
       wsCache.set('isDark', this.isDark)
     },
-    setCurrentSize(currentSize: ElememtPlusSize) {
+    setCurrentSize(currentSize: ElementPlusSize) {
       this.currentSize = currentSize
       wsCache.set('currentSize', this.currentSize)
     },

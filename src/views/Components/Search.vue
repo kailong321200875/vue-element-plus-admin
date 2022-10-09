@@ -6,6 +6,7 @@ import { reactive, ref, unref } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { ElButton } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
+import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 

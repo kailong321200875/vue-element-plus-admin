@@ -11,6 +11,7 @@ import { h, ref, reactive } from 'vue'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 import { useDictStore } from '@/store/modules/dict'
 import { getDictOneApi } from '@/api/common'
+import { TableColumn } from '@/types/table'
 
 const dictStore = useDictStore()
 
