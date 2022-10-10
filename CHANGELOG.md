@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.7.1...v1.8.0) (2022-10-10)
+
+
+### Features
+
+* types优化 ([3351155](https://github.com/kailong321200875/vue-element-plus-admin/commit/33511553cd9055b036b2d7491f9c2eda123f8b22))
+
+
+### Styling
+
+* 优化第四种布局 ([122fa62](https://github.com/kailong321200875/vue-element-plus-admin/commit/122fa62d859413d16175e0d97c7bf13f232dbb3a))
+
 ## [1.7.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.7.0...v1.7.1) (2022-10-10)
 
 
