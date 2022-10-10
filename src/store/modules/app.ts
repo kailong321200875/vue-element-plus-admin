@@ -4,27 +4,11 @@ import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
 import { ElementPlusSize } from '@/types/elementPlus'
 import { useCache } from '@/hooks/web/useCache'
+import { LayoutType } from '@/types/layout'
+import { ThemeTypes } from '@/types/theme'
 
 const { wsCache } = useCache()
 
-type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'
-
-type ThemeTypes = {
-  elColorPrimary?: string
-  leftMenuBorderColor?: string
-  leftMenuBgColor?: string
-  leftMenuBgLightColor?: string
-  leftMenuBgActiveColor?: string
-  leftMenuCollapseBgActiveColor?: string
-  leftMenuTextColor?: string
-  leftMenuTextActiveColor?: string
-  logoTitleTextColor?: string
-  logoBorderColor?: string
-  topHeaderBgColor?: string
-  topHeaderTextColor?: string
-  topHeaderHoverColor?: string
-  topToolBorderColor?: string
-}
 interface AppState {
   breadcrumb: boolean
   breadcrumbIcon: boolean
