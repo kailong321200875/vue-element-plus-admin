@@ -45,8 +45,8 @@ interface AppState {
   title: string
   userInfo: string
   isDark: boolean
-  currentSize: ElememtPlusSize
-  sizeMap: ElememtPlusSize[]
+  currentSize: ElementPlusSize
+  sizeMap: ElementPlusSize[]
   mobile: boolean
   footer: boolean
   theme: ThemeTypes
