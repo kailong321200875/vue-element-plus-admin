@@ -115,6 +115,13 @@ const dynamicRouterChange = (show: boolean) => {
   appStore.setDynamicRouter(show)
 }
 
+// 固定菜单
+const fixedMenu = ref(appStore.getFixedMenu)
+
+const fixedMenuChange = (show: boolean) => {
+  appStore.setFixedMenu(show)
+}
+
 const layout = computed(() => appStore.getLayout)
 
 watch(
@@ -197,6 +204,11 @@ watch(
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.dynamicRouter') }}</span>
       <ElSwitch v-model="dynamicRouter" @change="dynamicRouterChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.fixedMenu') }}</span>
+      <ElSwitch v-model="fixedMenu" @change="fixedMenuChange" />
     </div>
   </div>
 </template>
