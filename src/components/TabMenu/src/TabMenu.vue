@@ -144,7 +144,7 @@ export default defineComponent({
         id={`${variables.namespace}-menu`}
         class={[
           prefixCls,
-          'relative bg-[var(--left-menu-bg-color)] top-1px z-99999',
+          'relative bg-[var(--left-menu-bg-color)] top-1px z-1000',
           {
             'w-[var(--tab-menu-max-width)]': !unref(collapse),
             'w-[var(--tab-menu-min-width)]': unref(collapse)
