@@ -23,7 +23,8 @@
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "prepare": "husky install",
-    "p": "plop"
+    "p": "plop",
+    "analysis": "windicss-analysis"
   },
   "dependencies": {
     "@iconify/iconify": "^3.0.0",
