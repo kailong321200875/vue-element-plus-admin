@@ -53,7 +53,7 @@ export default defineConfig({
         }
       })
       addComponents({
-        '.hover-tigger': {
+        '.hover-trigger': {
           display: 'flex',
           height: '100%',
           padding: '1px 10px 0',
@@ -64,7 +64,7 @@ export default defineConfig({
             backgroundColor: 'var(--top-header-hover-color)'
           }
         },
-        '.dark .hover-tigger': {
+        '.dark .hover-trigger': {
           '&:hover': {
             backgroundColor: 'var(--el-bg-color-overlay)'
           }
