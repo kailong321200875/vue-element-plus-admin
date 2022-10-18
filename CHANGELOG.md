@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.1...v1.8.2) (2022-10-18)
+
+
+### Bug Fixes
+
+* Correct spelling of words(aciton →action) ([eb405b2](https://github.com/kailong321200875/vue-element-plus-admin/commit/eb405b2a9041ca0ad4455db79bf617ec910dc485))
+* Correct spelling of words(tigger →trigger) ([c2ca2d7](https://github.com/kailong321200875/vue-element-plus-admin/commit/c2ca2d736c92e02380923a6741450844acb41a38))
+
 ## [1.8.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.0...v1.8.1) (2022-10-11)
 
 
