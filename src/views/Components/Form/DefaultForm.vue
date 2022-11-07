@@ -456,6 +456,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
+          disabled: true,
           label: 'option1',
           value: '1'
         },
@@ -494,6 +495,7 @@ const schema = reactive<FormSchema[]>([
           label: 'option1',
           options: [
             {
+              disabled: true,
               label: 'option1-1',
               value: '1-1'
             },
@@ -757,6 +759,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
+          disabled: true,
           label: 'option-1',
           value: '1'
         },
@@ -774,6 +777,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
+          disabled: true,
           label: 'option-1',
           value: '1'
         },
@@ -797,6 +801,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
+          disabled: true,
           label: 'option-1',
           value: '1'
         },
@@ -819,6 +824,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: [
         {
+          disabled: true,
           label: 'option-1',
           value: '1'
         },
