@@ -31,7 +31,8 @@ const columns: TableColumn[] = [
   },
   {
     field: 'display_time',
-    label: t('tableDemo.displayTime')
+    label: t('tableDemo.displayTime'),
+    sortable: true
   },
   {
     field: 'importance',
@@ -90,7 +91,12 @@ const actionFn = (data: TableSlotDefault) => {
 
 <template>
   <ContentWrap :title="t('tableDemo.table')" :message="t('tableDemo.tableDes')">
-    <Table :columns="columns" :data="tableDataList" :loading="loading">
+    <Table
+      :columns="columns"
+      :data="tableDataList"
+      :loading="loading"
+      :defaultSort="{ prop: 'display_time', order: 'descending' }"
+    >
       <template #action="data">
         <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">
           {{ t('tableDemo.action') }}

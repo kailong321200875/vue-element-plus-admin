@@ -20,6 +20,9 @@ const { register, tableObject, methods } = useTable<TableData>({
   response: {
     list: 'list',
     total: 'total'
+  },
+  defaultParams: {
+    title: 's'
   }
 })
 
@@ -212,7 +215,12 @@ const save = async () => {
 
 <template>
   <ContentWrap>
-    <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
+    <Search
+      :model="{ title: 's' }"
+      :schema="allSchemas.searchSchema"
+      @search="setSearchParams"
+      @reset="setSearchParams"
+    />
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>

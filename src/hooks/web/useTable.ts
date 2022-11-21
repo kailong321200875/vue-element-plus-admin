@@ -23,6 +23,8 @@ interface UseTableConfig<T = any> {
     list: string
     total?: string
   }
+  // 默认传递的参数
+  defaultParams?: Recordable
   props?: TableProps
 }
 
@@ -47,7 +49,9 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
     // 表格数据
     tableList: [],
     // AxiosConfig 配置
-    params: {},
+    params: {
+      ...(config?.defaultParams || {})
+    },
     // 加载中
     loading: true,
     // 当前行的数据
