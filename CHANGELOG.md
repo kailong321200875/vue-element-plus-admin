@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.5...v1.8.6) (2022-11-21)
+
+
+### Bug Fixes
+
+* 修复Search组件无法默认值 ([3368fda](https://github.com/kailong321200875/vue-element-plus-admin/commit/3368fda251bd3ff5a8e0059b3b33f9c0339d236b))
+
 ## [1.8.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.4...v1.8.5) (2022-11-17)
 
 
