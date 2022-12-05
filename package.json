@@ -69,6 +69,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "autoprefixer": "^10.4.13",
+    "consola": "^2.15.3",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-define-config": "^1.12.0",
