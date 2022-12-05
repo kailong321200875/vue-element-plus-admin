@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.6...v1.8.7) (2022-12-05)
+
+
+### Bug Fixes
+
+* 解决iframe无法正常工作 ([4fcc46f](https://github.com/kailong321200875/vue-element-plus-admin/commit/4fcc46fccf747b47909e2079c4f2abc5dbfb1a0c))
+
 ## [1.8.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.5...v1.8.6) (2022-11-21)
 
 
