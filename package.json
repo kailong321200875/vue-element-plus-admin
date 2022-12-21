@@ -99,6 +99,7 @@
     "vite-plugin-ejs": "^1.6.4",
     "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-progress": "^0.0.6",
     "vite-plugin-purge-icons": "^0.9.2",
     "vite-plugin-style-import": "2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",

@@ -4,6 +4,7 @@ import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import WindiCSS from 'vite-plugin-windicss'
+import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ViteEjsPlugin } from "vite-plugin-ejs"
 import { viteMockServe } from 'vite-plugin-mock'
@@ -34,6 +35,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Vue(),
       VueJsx(),
       WindiCSS(),
+      progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
         libs: [{
