@@ -2,16 +2,17 @@ import { resolve } from 'path'
 import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
 import VueJsx from '@vitejs/plugin-vue-jsx'
+import WindiCSS from 'vite-plugin-windicss'
+import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
-import VueI18n from '@intlify/vite-plugin-vue-i18n'
-import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import PurgeIcons from 'vite-plugin-purge-icons'
-import { viteMockServe } from 'vite-plugin-mock'
-import VueMarcos from 'unplugin-vue-macros/vite'
 import { ViteEjsPlugin } from "vite-plugin-ejs"
+import { viteMockServe } from 'vite-plugin-mock'
+import PurgeIcons from 'vite-plugin-purge-icons'
+import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import DefineOptions from "unplugin-vue-define-options/vite"
+import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -34,6 +35,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       Vue(),
       VueJsx(),
       WindiCSS(),
+      progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
         libs: [{
@@ -48,7 +50,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         cache: false,
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
       }),
-      VueI18n({
+      VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
         include: [resolve(__dirname, 'src/locales/**')]
@@ -70,7 +72,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           setupProdMockServer()
           `
       }),
-      VueMarcos(),
+      DefineOptions(),
       ViteEjsPlugin({
         title: env.VITE_APP_TITLE
       })

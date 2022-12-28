@@ -9,7 +9,7 @@
 
 ## Introduction
 
-vue-element-plus-admin is a free and open source middle and background template based on `element-plus`. Developed using the latest mainstream technologies such as `vue3`, `vite3` and `typescript`, the out of the box middle and background front-end solution can be used as the starting template of the project and learning reference. And always pay attention to the latest technological trends and update them as soon as possible.
+vue-element-plus-admin is a free and open source middle and background template based on `element-plus`. Developed using the latest mainstream technologies such as `vue3`, `vite4` and `typescript`, the out of the box middle and background front-end solution can be used as the starting template of the project and learning reference. And always pay attention to the latest technological trends and update them as soon as possible.
 
 vue-element-plus-admin is positioned as a background integration scheme, which is not suitable for secondary development as a basic template. Because it integrates many functions that you may not use, it will cause a lot of code redundancy. If your project doesn't pay attention to this problem, you can also directly carry out secondary development based on it.
 
@@ -17,7 +17,7 @@ If you need a basic template, please switch to the `tempalte` branch. `Tempalte`
 
 ## Feature
 
-- **State of The Art Development**：Use front-end front-end technology development such as Vue3/vite3
+- **State of The Art Development**：Use front-end front-end technology development such as Vue3/vite4
 - **TypeScript**: Application-level JavaScript language
 - **Theming**: Configurable themes
 - **International**：Built-in complete internationalization program
@@ -46,7 +46,7 @@ account: **admin/admin test/test**
 ## Preparation
 
 - [node](http://nodejs.org/) and [git](https://git-scm.com/) - Project development environment
-- [Vite](https://vitejs.dev/) - Familiar with vite features
+- [Vite4](https://vitejs.dev/) - Familiar with vite features
 - [Vue3](https://v3.vuejs.org/) - Familiar with Vue basic syntax
 - [TypeScript](https://www.typescriptlang.org/) - Familiar with the basic syntax of `TypeScript`
 - [Es6+](http://es6.ruanyifeng.com/) - Familiar with es6 basic syntax
