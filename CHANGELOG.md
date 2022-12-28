@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.7...v1.9.0) (2022-12-28)
+
+
+### Features
+
+* 添加打包进度条 ([354e87f](https://github.com/kailong321200875/vue-element-plus-admin/commit/354e87f7c533ad8e93ef484b47d0fe16f17048c9))
+
+
+### Bug Fixes
+
+* husky ([6fe5b2e](https://github.com/kailong321200875/vue-element-plus-admin/commit/6fe5b2e6c781b251bff5f0ac936c04dcfe5ef95f))
+
 ## [1.8.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.8.6...v1.8.7) (2022-12-05)
 
 
