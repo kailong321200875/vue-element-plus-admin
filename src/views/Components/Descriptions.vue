@@ -82,19 +82,19 @@ const formValidation = () => {
 
   <Form is-custom :model="form" :rules="rules" @register="register">
     <Descriptions :title="t('descriptionsDemo.form')" :data="data" :schema="schema" class="mt-20px">
-      <template #username-label="scope">
+      <template #username-label="{ row: scope }">
         <span class="is-required--item">{{ scope.label }}</span>
       </template>
-      <template #nickName-label="scope">
+      <template #nickName-label="{ row: scope }">
         <span class="is-required--item">{{ scope.label }}</span>
       </template>
-      <template #phone-label="scope">
+      <template #phone-label="{ row: scope }">
         <span class="is-required--item">{{ scope.label }}</span>
       </template>
-      <template #email-label="scope">
+      <template #email-label="{ row: scope }">
         <span class="is-required--item">{{ scope.label }}</span>
       </template>
-      <template #addr-label="scope">
+      <template #addr-label="{ row: scope }">
         <span class="is-required--item">{{ scope.label }}</span>
       </template>
 
