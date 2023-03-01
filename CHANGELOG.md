@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.2...v1.9.3) (2023-03-01)
+
+
+### Types
+
+* 修复类型错误 ([297b2c6](https://github.com/kailong321200875/vue-element-plus-admin/commit/297b2c69a239b487126c3b9316645a1b5f06bb7c))
+
+
+### Styling
+
+* 抽屉弹出样式问题 ([16a3eef](https://github.com/kailong321200875/vue-element-plus-admin/commit/16a3eef85a1ffb296bd44f67d89a911ecaf1c25e))
+* 调整主题切换样式 ([6e6beef](https://github.com/kailong321200875/vue-element-plus-admin/commit/6e6beefc3c380f7297985adcabcf966fbd2c5197))
+
 ## [1.9.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.1...v1.9.2) (2023-01-16)
 
 
