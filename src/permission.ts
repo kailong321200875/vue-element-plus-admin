@@ -30,11 +30,6 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (permissionStore.getIsAddRouters) {
-        next()
-        return
-      }
-
       if (!dictStore.getIsSetDict) {
         // 获取所有字典
         const res = await getDictApi()
@@ -42,6 +37,10 @@ router.beforeEach(async (to, from, next) => {
           dictStore.setDictObj(res.data)
           dictStore.setIsSetDict(true)
         }
+      }
+      if (permissionStore.getIsAddRouters) {
+        next()
+        return
       }
 
       // 开发者可根据实际情况进行修改

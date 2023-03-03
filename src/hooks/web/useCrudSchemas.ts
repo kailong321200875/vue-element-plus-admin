@@ -214,7 +214,6 @@ const filterFormSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): For
   for (const task of formRequestTask) {
     task()
   }
-  console.log(formSchema)
   return formSchema
 }
 
@@ -243,7 +242,7 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
 
 // 给options添加国际化
 const filterOptions = (options: Recordable, labelField?: string) => {
-  return options.map((v: Recordable) => {
+  return options?.map((v: Recordable) => {
     if (labelField) {
       v['labelField'] = t(v.labelField)
     } else {

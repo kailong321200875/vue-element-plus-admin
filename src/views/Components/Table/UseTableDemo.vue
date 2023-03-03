@@ -21,6 +21,22 @@ const { getList } = methods
 
 getList()
 
+const {
+  register: register2,
+  tableObject: tableObject2,
+  methods: methods2
+} = useTable<TableData>({
+  getListApi: getTableListApi,
+  response: {
+    list: 'list',
+    total: 'total'
+  }
+})
+
+const { getList: getList2 } = methods2
+
+getList2()
+
 const { t } = useI18n()
 
 const columns = reactive<TableColumn[]>([
@@ -162,6 +178,32 @@ const selectAllNone = () => {
       :loading="tableObject.loading"
       :pagination="paginationObj"
       @register="register"
+    >
+      <template #action="data">
+        <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">
+          {{ t('tableDemo.action') }}
+        </ElButton>
+      </template>
+
+      <template #expand="data">
+        <div class="ml-30px">
+          <div>{{ t('tableDemo.title') }}：{{ data.row.title }}</div>
+          <div>{{ t('tableDemo.author') }}：{{ data.row.author }}</div>
+          <div>{{ t('tableDemo.displayTime') }}：{{ data.row.display_time }}</div>
+        </div>
+      </template>
+    </Table>
+  </ContentWrap>
+
+  <ContentWrap :title="`UseTable 2 ${t('tableDemo.example')}`">
+    <Table
+      v-model:pageSize="tableObject2.pageSize"
+      v-model:currentPage="tableObject2.currentPage"
+      :columns="columns"
+      :data="tableObject2.tableList"
+      :loading="tableObject2.loading"
+      :pagination="paginationObj"
+      @register="register2"
     >
       <template #action="data">
         <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">

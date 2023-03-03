@@ -82,20 +82,20 @@ const formValidation = () => {
 
   <Form is-custom :model="form" :rules="rules" @register="register">
     <Descriptions :title="t('descriptionsDemo.form')" :data="data" :schema="schema" class="mt-20px">
-      <template #username-label="{ row: scope }">
-        <span class="is-required--item">{{ scope.label }}</span>
+      <template #username-label="{ row }">
+        <span class="is-required--item">{{ row.label }}</span>
       </template>
-      <template #nickName-label="{ row: scope }">
-        <span class="is-required--item">{{ scope.label }}</span>
+      <template #nickName-label="{ row }">
+        <span class="is-required--item">{{ row.label }}</span>
       </template>
-      <template #phone-label="{ row: scope }">
-        <span class="is-required--item">{{ scope.label }}</span>
+      <template #phone-label="{ row }">
+        <span class="is-required--item">{{ row.label }}</span>
       </template>
-      <template #email-label="{ row: scope }">
-        <span class="is-required--item">{{ scope.label }}</span>
+      <template #email-label="{ row }">
+        <span class="is-required--item">{{ row.label }}</span>
       </template>
-      <template #addr-label="{ row: scope }">
-        <span class="is-required--item">{{ scope.label }}</span>
+      <template #addr-label="{ row }">
+        <span class="is-required--item">{{ row.label }}</span>
       </template>
 
       <template #username>
