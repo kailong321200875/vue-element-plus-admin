@@ -15,8 +15,11 @@ export const loginOutApi = (): Promise<IResponse> => {
 
 export const getUserListApi = ({ params }: AxiosConfig) => {
   return request.get<{
-    total: number
-    list: UserType[]
+    code: ''
+    data: {
+      list: UserType[]
+      total: number 
+    }   
   }>({ url: '/user/list', params })
 }
 
