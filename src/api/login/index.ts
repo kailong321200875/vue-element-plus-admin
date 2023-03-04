@@ -15,7 +15,7 @@ export const loginOutApi = (): Promise<IResponse> => {
 
 export const getUserListApi = ({ params }: AxiosConfig) => {
   return request.get<{
-    code: ''
+    code: string
     data: {
       list: UserType[]
       total: number 
