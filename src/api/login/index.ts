@@ -18,8 +18,8 @@ export const getUserListApi = ({ params }: AxiosConfig) => {
     code: string
     data: {
       list: UserType[]
-      total: number 
-    }   
+      total: number
+    }
   }>({ url: '/user/list', params })
 }
 
