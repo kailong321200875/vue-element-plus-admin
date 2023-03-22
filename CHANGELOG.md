@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.5...v1.9.6) (2023-03-22)
+
+
+### Bug Fixes
+
+* 修改 Editor 的 z-index 使其不会遮挡『综合示例 - 新增』界面的下拉菜单 ([c046e45](https://github.com/kailong321200875/vue-element-plus-admin/commit/c046e4554ba8fd99614484d8fb636650072b833e))
+
 ## [1.9.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.4...v1.9.5) (2023-03-13)
 
 
