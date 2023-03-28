@@ -23,6 +23,8 @@ type CrudSearchParams = {
   dictName?: string
   // 接口
   api?: () => Promise<any>
+  // 搜索字段
+  field?: string
 } & Omit<FormSchema, 'field'>
 
 type CrudTableParams = {
@@ -101,7 +103,7 @@ const filterSearchSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): F
         component: schemaItem.search.component || 'Input',
         componentProps: {},
         ...schemaItem.search,
-        field: schemaItem.field,
+        field: schemaItem?.search?.field || schemaItem.field,
         label: schemaItem.search?.label || schemaItem.label
       }
 
