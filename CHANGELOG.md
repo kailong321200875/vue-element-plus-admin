@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.7](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.6...v1.9.7) (2023-03-28)
+
+
+### Bug Fixes
+
+* 修复表格与搜索框字段不能不一致的问题 ([5c1cd29](https://github.com/kailong321200875/vue-element-plus-admin/commit/5c1cd298defefb36b858adc766b776a0a7b9bd66))
+
 ## [1.9.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.5...v1.9.6) (2023-03-22)
 
 
