@@ -141,7 +141,7 @@ export default defineComponent({
         id={`${variables.namespace}-menu`}
         class={[
           prefixCls,
-          'relative bg-[var(--left-menu-bg-color)] top-1px z-3000',
+          'relative bg-[var(--left-menu-bg-color)] top-1px',
           {
             'w-[var(--tab-menu-max-width)]': !unref(collapse),
             'w-[var(--tab-menu-min-width)]': unref(collapse)
@@ -219,7 +219,7 @@ export default defineComponent({
 .@{prefix-cls} {
   transition: all var(--transition-time-02);
 
-  &:after {
+  &::after {
     position: absolute;
     top: 0;
     right: 0;
