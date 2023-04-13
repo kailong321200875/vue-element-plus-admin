@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.9](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.8...v1.9.9) (2023-04-13)
+
+
+### Bug Fixes
+
+* 使用动态路由时，多级路由只有一个子路且父路由未使用alwaysShow时，子路由未添加至路由中 ([9b330a1](https://github.com/kailong321200875/vue-element-plus-admin/commit/9b330a1f513d3af9233b9a9dde6bdfeeefbc3393))
+
 ## [1.9.8](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.7...v1.9.8) (2023-04-12)
 
 
