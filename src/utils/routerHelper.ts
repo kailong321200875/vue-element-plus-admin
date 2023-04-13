@@ -71,7 +71,7 @@ export const generateRoutesFn1 = (
         data = Object.assign({}, route)
       } else {
         const routePath = onlyOneChild ?? pathResolve(basePath, route.path)
-        if (routePath === item || meta.followRoute === item) {
+        if (routePath === item || meta.followAuth === item) {
           data = Object.assign({}, route)
         }
       }
