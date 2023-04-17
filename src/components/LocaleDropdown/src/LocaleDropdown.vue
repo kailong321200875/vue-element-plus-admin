@@ -37,7 +37,7 @@ const setLang = (lang: LocaleType) => {
     <Icon
       :size="18"
       icon="ion:language-sharp"
-      class="cursor-pointer"
+      class="cursor-pointer !p-0"
       :class="$attrs.class"
       :color="color"
     />

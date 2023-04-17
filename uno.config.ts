@@ -1,26 +1,47 @@
 import { defineConfig, toEscapedSelector as e, presetUno } from 'unocss'
+// color: ${JSON.stringify(rules)} ${JSON.stringify(variantHandlers)};
+
+const POSITION_MAP = {
+  t: 'top',
+  b: 'bottom',
+  l: 'left',
+  r: 'right',
+  top: 'top',
+  bottom: 'bottom',
+  left: 'left',
+  right: 'right'
+}
 
 export default defineConfig({
   // ...UnoCSS options
   rules: [
     [
-      'v-dark',
-      {
-        'background-color': 'var(--dark-bg-color)'
+      /^custom-b-(.+)-(\d+)$/,
+      ([_, position, count], { rawSelector, rules, variantHandlers }) => {
+        // custom-b-bottom-1 或者 custom-b-b-1
+        const selector = e(rawSelector)
+        const newPosition = POSITION_MAP[position]
+        return `
+${selector}:after {
+  content: '';
+  position: absolute;
+  width: ${newPosition === 'bottom' || newPosition === 'top' ? '100%' : count + 'px'};
+  height: ${newPosition === 'left' || newPosition === 'right' ? '100%' : count + 'px'};
+  ${newPosition === 'bottom' ? 'bottom' : 'top'}: 0px;
+  ${newPosition === 'right' ? 'right' : 'left'}: 0px;
+  background-color: var(--custom-border-color-light);
+}
+
+.dark ${selector}:after {
+  background-color: var(--el-border-color);
+}
+      `
       }
     ],
-    [/^border-top-(\d+)$/, (match) => ({ 'border-top-width': `${match[1]}px` })],
-    [/^border-left-(\d+)$/, (match) => ({ 'border-left-width': `${match[1]}px` })],
-    [/^border-right-(\d+)$/, (match) => ({ 'border-right-width': `${match[1]}px` })],
-    [/^border-bottom-(\d+)$/, (match) => ({ 'border-bottom-width': `${match[1]}px` })],
     [
-      /^hover-trigger(.+)$/,
-      ([, name], { rawSelector, currentSelector, variantHandlers, theme }) => {
-        console.log(variantHandlers)
-        // if you want, you can disable the variants for this rule
-        if (variantHandlers.length) return
+      /^custom-hover$/,
+      ([], { rawSelector }) => {
         const selector = e(rawSelector)
-        // return a string instead of an object
         return `
 ${selector} {
   display: flex;
@@ -34,7 +55,7 @@ ${selector} {
 ${selector}:hover {
   background-color: var(--top-header-hover-color);
 }
-.dark ${selector} {
+.dark ${selector}:hover {
   background-color: var(--el-bg-color-overlay);
 }
 `

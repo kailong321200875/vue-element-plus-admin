@@ -197,7 +197,7 @@ export default defineComponent({
         </div>
         <Menu
           class={[
-            '!absolute top-0 border-left-1 border-solid border-[var(--left-menu-bg-light-color)]',
+            '!absolute top-0 b-l-1 border-solid border-[var(--left-menu-bg-light-color)]',
             {
               '!left-[var(--tab-menu-min-width)]': unref(collapse),
               '!left-[var(--tab-menu-max-width)]': !unref(collapse),

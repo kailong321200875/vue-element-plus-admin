@@ -30,7 +30,7 @@ const toLogin = () => {
 <template>
   <div
     :class="prefixCls"
-    class="h-[100%] relative lt-xl:v-dark lt-sm:px-10px lt-xl:px-10px lt-md:px-10px"
+    class="h-[100%] relative lt-xl:bg-[var(--dark-bg-color)] lt-sm:px-10px lt-xl:px-10px lt-md:px-10px"
   >
     <div class="relative h-full flex mx-auto">
       <div
@@ -54,7 +54,7 @@ const toLogin = () => {
           </TransitionGroup>
         </div>
       </div>
-      <div class="flex-1 p-30px lt-sm:p-10px dark:v-dark relative">
+      <div class="flex-1 p-30px lt-sm:p-10px dark:bg-[var(--dark-bg-color)] relative">
         <div
           class="flex justify-between items-center text-white at-2xl:justify-end at-xl:justify-end"
         >
