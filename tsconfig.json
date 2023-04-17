@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
@@ -31,9 +31,8 @@
       "@types/qrcode",
       "vite-plugin-svg-icons/client",
       "unplugin-vue-define-options/macros-global"
-    ],
-    "typeRoots": ["./node_modules/@types/", "./types"]
+    ]
   },
-  "include": ["src/**/*", "types/**/*.d.ts", "mock/**/*.ts"],
-  "exclude": ["dist", "node_modules"]
+  "include": ["src", "types/**/*.d.ts", "mock/**/*.ts"]
+  // "exclude": ["dist", "node_modules"]
 }

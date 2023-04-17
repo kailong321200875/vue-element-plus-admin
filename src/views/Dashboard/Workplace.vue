@@ -133,7 +133,7 @@ const { t } = useI18n()
             </div>
           </ElCol>
           <ElCol :xl="12" :lg="12" :md="12" :sm="24" :xs="24">
-            <div class="flex h-70px items-center justify-end <sm:mt-20px">
+            <div class="flex h-70px items-center justify-end lt-sm:mt-20px">
               <div class="px-8px text-right">
                 <div class="text-14px text-gray-400 mb-20px">{{ t('workplace.project') }}</div>
                 <CountTo

@@ -68,7 +68,7 @@ const toggleClick = () => {
   <div
     :class="[
       prefixCls,
-      'bg-[var(--el-color-white)] dark:(bg-[var(--el-bg-color)] border-[var(--el-border-color)] border-1px)'
+      'bg-[var(--el-color-white)] dark:bg-[var(--el-bg-color)] dark:border-[var(--el-border-color)] dark:border-1px'
     ]"
   >
     <div
