@@ -1,6 +1,5 @@
 import { defineConfig, toEscapedSelector as e, presetUno } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
-// color: ${JSON.stringify(rules)} ${JSON.stringify(variantHandlers)};
 
 const POSITION_MAP = {
   t: 'top',

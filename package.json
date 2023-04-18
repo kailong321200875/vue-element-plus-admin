@@ -23,8 +23,7 @@
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
     "prepare": "husky install",
-    "p": "plop",
-    "analysis": "windicss-analysis"
+    "p": "plop"
   },
   "dependencies": {
     "@iconify/iconify": "^3.1.0",
@@ -66,7 +65,6 @@
     "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
-    "@unocss/preset-wind": "^0.51.4",
     "@unocss/transformer-variant-group": "^0.51.4",
     "@vitejs/plugin-legacy": "^4.0.2",
     "@vitejs/plugin-vue": "^4.1.0",
@@ -107,10 +105,7 @@
     "vite-plugin-purge-icons": "^0.9.2",
     "vite-plugin-style-import": "2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vite-plugin-windicss": "^1.8.10",
-    "vue-tsc": "^1.2.0",
-    "windicss": "^3.5.6",
-    "windicss-analysis": "^0.3.5"
+    "vue-tsc": "^1.2.0"
   },
   "engines": {
     "node": ">= 14.18.0"

@@ -3,7 +3,6 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-// import WindiCSS from 'vite-plugin-windicss'
 import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
 import { ViteEjsPlugin } from "vite-plugin-ejs"
@@ -15,7 +14,6 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import DefineOptions from "unplugin-vue-define-options/vite"
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
-// import { sveltekit } from '@sveltejs/kit/vite'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
