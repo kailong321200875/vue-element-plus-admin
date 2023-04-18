@@ -123,7 +123,7 @@ const { t } = useI18n()
                 class="w-70px h-70px rounded-[50%] mr-20px"
               />
               <div>
-                <div class="text-20px text-700">
+                <div class="text-20px">
                   {{ t('workplace.goodMorning') }}，Archer，{{ t('workplace.happyDay') }}
                 </div>
                 <div class="mt-10px text-14px text-gray-500">
@@ -243,20 +243,22 @@ const { t } = useI18n()
           <span>{{ t('workplace.shortcutOperation') }}</span>
         </template>
         <ElSkeleton :loading="loading" animated>
-          <ElCol
-            v-for="item in 9"
-            :key="`card-${item}`"
-            :xl="12"
-            :lg="12"
-            :md="12"
-            :sm="24"
-            :xs="24"
-            class="mb-10px"
-          >
-            <ElLink type="default" :underline="false">
-              {{ t('workplace.operation') }}{{ item }}
-            </ElLink>
-          </ElCol>
+          <ElRow>
+            <ElCol
+              v-for="item in 9"
+              :key="`card-${item}`"
+              :xl="12"
+              :lg="12"
+              :md="12"
+              :sm="24"
+              :xs="24"
+              class="mb-10px"
+            >
+              <ElLink type="default" :underline="false">
+                {{ t('workplace.operation') }}{{ item }}
+              </ElLink>
+            </ElCol>
+          </ElRow>
         </ElSkeleton>
       </ElCard>
 
