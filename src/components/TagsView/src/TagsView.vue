@@ -482,7 +482,7 @@ watch(
       left: 0;
       width: 100%;
       height: calc(~'100% - 1px');
-      border-left: 1px solid var(--tags-view-border-color);
+      border-left: 1px solid var(--layout-border-color);
       content: '';
     }
 
@@ -496,7 +496,7 @@ watch(
         left: 0;
         width: 100%;
         height: calc(~'100% - 1px');
-        border-right: 1px solid var(--tags-view-border-color);
+        border-right: 1px solid var(--layout-border-color);
         content: '';
       }
     }
@@ -560,14 +560,7 @@ watch(
         }
       }
 
-      &:after {
-        border-left: 1px solid var(--el-border-color);
-      }
-
       &--first {
-        &:before {
-          border-right: 1px solid var(--el-border-color);
-        }
         &:after {
           display: none;
         }

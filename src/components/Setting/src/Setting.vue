@@ -47,7 +47,7 @@ const setHeaderTheme = (color: string) => {
   setCssVar('--top-header-bg-color', color)
   setCssVar('--top-header-text-color', textColor)
   setCssVar('--top-header-hover-color', textHoverColor)
-  setCssVar('--top-tool-border-color', topToolBorderColor)
+  setCssVar('--layout-border-color', topToolBorderColor)
   appStore.setTheme({
     topHeaderBgColor: color,
     topHeaderTextColor: textColor,

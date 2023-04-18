@@ -1,17 +1,6 @@
 import { defineConfig, toEscapedSelector as e, presetUno } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 
-const POSITION_MAP = {
-  t: 'top',
-  b: 'bottom',
-  l: 'left',
-  r: 'right',
-  top: 'top',
-  bottom: 'bottom',
-  left: 'left',
-  right: 'right'
-}
-
 export default defineConfig({
   // ...UnoCSS options
   rules: [

@@ -2,8 +2,6 @@
   --login-bg-color: #293146;
 
   /* left menu start */
-  --left-menu-border-color: '#eee';
-
   --left-menu-max-width: 200px;
 
   --left-menu-min-width: 64px;
@@ -25,8 +23,6 @@
   --logo-height: 50px;
 
   --logo-title-text-color: #fff;
-
-  --logo-border-color: 'inherit';
   /* logo end */
 
   /* header start */
@@ -42,8 +38,6 @@
 
   --layout-border-color: #eee;
 
-  --top-tool-border-color: #eee;
-
   --tags-view-height: 35px;
 
   --tags-view-border-color: #eee;
@@ -55,8 +49,6 @@
   --tab-menu-min-width: 30px;
 
   --tab-menu-collapse-height: 36px;
-
-  --tab-menu-border-color: #eee;
   /* tab menu end */
 
   --app-content-padding: 20px;

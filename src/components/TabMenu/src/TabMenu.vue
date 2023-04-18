@@ -219,16 +219,6 @@ export default defineComponent({
 .@{prefix-cls} {
   transition: all var(--transition-time-02);
 
-  &:after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1px;
-    height: 100%;
-    border-left: 1px solid var(--left-menu-border-color);
-    content: '';
-  }
-
   &__item {
     color: var(--left-menu-text-color);
     transition: all var(--transition-time-02);
@@ -242,7 +232,6 @@ export default defineComponent({
   &--collapse {
     color: var(--left-menu-text-color);
     background-color: var(--left-menu-bg-light-color);
-    border-top: 1px solid var(--left-menu-border-color);
   }
 
   .is-active {
