@@ -7,7 +7,6 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
 import { FormSchema } from '@/types/form'
 import { ComponentOptions } from '@/types/components'
-import { useForm } from '@/hooks/web/useForm'
 
 const appStore = useAppStore()
 
@@ -1031,17 +1030,11 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.default')
   }
 ])
-
-const { register, formRef, methods } = useForm({
-  schema,
-  labelWidth: 'auto',
-  labelPosition: isMobile.value ? 'top' : 'right'
-})
 </script>
 
 <template>
   <ContentWrap :title="t('formDemo.defaultForm')" :message="t('formDemo.formDes')">
-    <!-- <Form :schema="schema" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
+    <Form :schema="schema" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
       <template #field4-prefix>
         <Icon icon="ep:calendar" class="el-input__icon" />
       </template>
@@ -1100,67 +1093,6 @@ const { register, formRef, methods } = useForm({
           <span v-if="isHoliday(cell)" class="holiday"></span>
         </div>
       </template>
-    </Form> -->
-
-    <Form @register="register">
-      <!-- <template #field4-prefix>
-        <Icon icon="ep:calendar" class="el-input__icon" />
-      </template>
-      <template #field4-suffix>
-        <Icon icon="ep:calendar" class="el-input__icon" />
-      </template>
-
-      <template #field5-prepend> Http:// </template>
-      <template #field5-append> .com </template>
-
-      <template #field9-default="{ item }">
-        <div class="value">{{ item.value }}</div>
-        <span class="link">{{ item.link }}</span>
-      </template>
-
-      <template #field15-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field17-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field20-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field22-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field25-default="{ node, data }">
-        <span>{{ data.label }}</span>
-        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-      </template>
-
-      <template #field36-default="{ option }">
-        <span>{{ option.value }} - {{ option.desc }}</span>
-      </template>
-
-      <template #field55-default="cell">
-        <div class="cell" :class="{ current: cell.isCurrent }">
-          <span class="text">{{ cell.text }}</span>
-          <span v-if="isHoliday(cell)" class="holiday"></span>
-        </div>
-      </template> -->
     </Form>
   </ContentWrap>
 </template>
