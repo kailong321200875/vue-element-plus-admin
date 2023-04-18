@@ -264,8 +264,8 @@ watch(
     class="flex w-full relative bg-[#fff] dark:bg-[var(--el-bg-color)]"
   >
     <span
-      :class="`${prefixCls}__tool`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      :class="`${prefixCls}__tool ${prefixCls}__tool--first`"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="move(-200)"
     >
       <Icon
@@ -381,7 +381,7 @@ watch(
     </div>
     <span
       :class="`${prefixCls}__tool`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="move(200)"
     >
       <Icon
@@ -391,7 +391,7 @@ watch(
     </span>
     <span
       :class="`${prefixCls}__tool`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer"
+      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="refreshSelectedTag(selectedTag)"
     >
       <Icon
@@ -455,7 +455,7 @@ watch(
     >
       <span
         :class="`${prefixCls}__tool`"
-        class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] text-center leading-[var(--tags-view-height)] cursor-pointer block"
+        class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer block"
       >
         <Icon
           icon="ant-design:setting-outlined"
@@ -476,34 +476,48 @@ watch(
 
   &__tool {
     position: relative;
-
-    &:hover {
-      :deep(span) {
-        color: var(--el-color-black) !important;
-      }
-    }
-
     &:after {
       position: absolute;
       top: 1px;
       left: 0;
       width: 100%;
       height: calc(~'100% - 1px');
-      border-right: 1px solid var(--tags-view-border-color);
       border-left: 1px solid var(--tags-view-border-color);
       content: '';
+    }
+
+    &--first {
+      &:after {
+        display: none;
+      }
+      &:before {
+        position: absolute;
+        top: 1px;
+        left: 0;
+        width: 100%;
+        height: calc(~'100% - 1px');
+        border-right: 1px solid var(--tags-view-border-color);
+        content: '';
+      }
+    }
+
+    &:hover {
+      :deep(span) {
+        color: var(--el-color-black) !important;
+      }
     }
   }
 
   &__item {
     position: relative;
     top: 2px;
-    height: calc(~'100% - 4px');
+    height: calc(~'100% - 6px');
     padding-right: 25px;
     margin-left: 4px;
     font-size: 12px;
     cursor: pointer;
     border: 1px solid #d9d9d9;
+    border-radius: 2px;
 
     &--close {
       position: absolute;
@@ -547,18 +561,20 @@ watch(
       }
 
       &:after {
-        border-right: 1px solid var(--el-border-color);
         border-left: 1px solid var(--el-border-color);
+      }
+
+      &--first {
+        &:before {
+          border-right: 1px solid var(--el-border-color);
+        }
+        &:after {
+          display: none;
+        }
       }
     }
 
     &__item {
-      position: relative;
-      top: 2px;
-      height: calc(~'100% - 4px');
-      padding-right: 25px;
-      font-size: 12px;
-      cursor: pointer;
       border: 1px solid var(--el-border-color);
     }
 
@@ -571,6 +587,7 @@ watch(
     &__item.is-active {
       color: var(--el-color-white);
       background-color: var(--el-color-primary);
+      border: 1px solid var(--el-color-primary);
       .@{prefix-cls}__item--close {
         :deep(span) {
           color: var(--el-color-white) !important;

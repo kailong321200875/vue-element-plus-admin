@@ -1,4 +1,5 @@
 import { defineConfig, toEscapedSelector as e, presetUno } from 'unocss'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
 // color: ${JSON.stringify(rules)} ${JSON.stringify(variantHandlers)};
 
 const POSITION_MAP = {
@@ -15,29 +16,6 @@ const POSITION_MAP = {
 export default defineConfig({
   // ...UnoCSS options
   rules: [
-    [
-      /^custom-b-(.+)-(\d+)$/,
-      ([_, position, count], { rawSelector, rules, variantHandlers }) => {
-        // custom-b-bottom-1 或者 custom-b-b-1
-        const selector = e(rawSelector)
-        const newPosition = POSITION_MAP[position]
-        return `
-${selector}:after {
-  content: '';
-  position: absolute;
-  width: ${newPosition === 'bottom' || newPosition === 'top' ? '100%' : count + 'px'};
-  height: ${newPosition === 'left' || newPosition === 'right' ? '100%' : count + 'px'};
-  ${newPosition === 'bottom' ? 'bottom' : 'top'}: 0px;
-  ${newPosition === 'right' ? 'right' : 'left'}: 0px;
-  background-color: var(--custom-border-color-light);
-}
-
-.dark ${selector}:after {
-  background-color: var(--el-border-color);
-}
-      `
-      }
-    ],
     [
       /^custom-hover$/,
       ([], { rawSelector }) => {
@@ -62,5 +40,16 @@ ${selector}:hover {
       }
     ]
   ],
-  presets: [presetUno({ dark: 'class', attributify: false })]
+  presets: [presetUno({ dark: 'class', attributify: false })],
+  transformers: [transformerVariantGroup()],
+  shortcuts: {
+    'layout-border__left':
+      'before:(content-none absolute top-0 left-0 w-1px h-full bg-[var(--layout-border-color)]) z-10',
+    'layout-border__right':
+      'after:(content-none absolute top-0 right-0 w-1px h-full bg-[var(--layout-border-color)]) z-10',
+    'layout-border__top':
+      'before:(content-none absolute top-0 left-0 w-full h-1px bg-[var(--layout-border-color)]) z-10',
+    'layout-border__bottom':
+      'after:(content-none absolute bottom-0 left-0 w-full h-1px bg-[var(--layout-border-color)]) z-10'
+  }
 })

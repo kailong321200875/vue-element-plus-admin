@@ -116,7 +116,7 @@ const loginRegister = async () => {
     label-position="top"
     hide-required-asterisk
     size="large"
-    class="dark:border-1 dark:border-[var(--el-border-color)] dark:border-solid"
+    class="dark:(border-1 border-[var(--el-border-color)] border-solid)"
     @register="register"
   >
     <template #title>

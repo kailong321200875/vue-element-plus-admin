@@ -1,5 +1,5 @@
 :root {
-  --dark-bg-color: #293146;
+  --login-bg-color: #293146;
 
   /* left menu start */
   --left-menu-border-color: '#eee';
@@ -40,7 +40,7 @@
 
   --top-tool-p-x: 0;
 
-  --custom-border-color-light: #eee;
+  --layout-border-color: #eee;
 
   --top-tool-border-color: #eee;
 
@@ -66,4 +66,10 @@
   --app-footer-height: 50px;
 
   --transition-time-02: 0.2s;
+}
+
+.dark {
+  --layout-border-color: var(--el-border-color);
+
+  --app-content-bg-color: var(--el-bg-color);
 }
