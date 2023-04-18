@@ -93,6 +93,7 @@ const toLogin = () => {
 @prefix-cls: ~'@{namespace}-login';
 
 .@{prefix-cls} {
+  overflow: auto;
   &__left {
     &::before {
       position: absolute;
