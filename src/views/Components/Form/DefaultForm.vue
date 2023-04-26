@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Form } from '@/components/Form'
-import { reactive, ref, onMounted, computed } from 'vue'
+import { reactive, ref, onMounted, computed, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
@@ -14,6 +14,8 @@ const appStore = useAppStore()
 const { t } = useI18n()
 
 const isMobile = computed(() => appStore.getMobile)
+
+const toggle = ref(false)
 
 const restaurants = ref<Recordable[]>([])
 const querySearch = (queryString: string, cb: Fn) => {
@@ -365,7 +367,9 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       suffixIcon: useIcon({ icon: 'ep:calendar' }),
-      prefixIcon: useIcon({ icon: 'ep:calendar' })
+      prefixIcon: () => {
+        return unref(toggle) ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
+      }
     }
   },
   {
@@ -374,662 +378,664 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        suffix: true,
-        prefix: true
+        suffix: () => {
+          return unref(toggle) ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
+        },
+        prefix: useIcon({ icon: 'ep:calendar' })
       }
     }
-  },
-  {
-    field: 'field5',
-    label: t('formDemo.mixed'),
-    component: 'Input',
-    componentProps: {
-      slots: {
-        prepend: true,
-        append: true
-      }
-    }
-  },
-  {
-    field: 'field6',
-    label: t('formDemo.textarea'),
-    component: 'Input',
-    componentProps: {
-      type: 'textarea',
-      rows: 1
-    }
-  },
-  {
-    field: 'field7',
-    label: t('formDemo.autocomplete'),
-    component: 'Divider'
-  },
-  {
-    field: 'field8',
-    label: t('formDemo.default'),
-    component: 'Autocomplete',
-    componentProps: {
-      fetchSuggestions: querySearch,
-      onSelect: handleSelect
-    }
-  },
-  {
-    field: 'field9',
-    label: t('formDemo.slot'),
-    component: 'Autocomplete',
-    componentProps: {
-      fetchSuggestions: querySearch,
-      onSelect: handleSelect,
-      slots: {
-        default: true
-      }
-    }
-  },
-  {
-    field: 'field10',
-    component: 'Divider',
-    label: t('formDemo.inputNumber')
-  },
-  {
-    field: 'field11',
-    label: t('formDemo.default'),
-    component: 'InputNumber',
-    value: 0
-  },
-  {
-    field: 'field12',
-    label: t('formDemo.position'),
-    component: 'InputNumber',
-    componentProps: {
-      controlsPosition: 'right'
-    },
-    value: 0
-  },
-  {
-    field: 'field13',
-    label: t('formDemo.select'),
-    component: 'Divider'
-  },
-  {
-    field: 'field14',
-    label: t('formDemo.default'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option1',
-          value: '1'
-        },
-        {
-          label: 'option2',
-          value: '2'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field15',
-    label: t('formDemo.slot'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          value: '1'
-        },
-        {
-          label: 'option2',
-          value: '2'
-        }
-      ],
-      optionsSlot: true
-    }
-  },
-  {
-    field: 'field16',
-    label: t('formDemo.selectGroup'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          options: [
-            {
-              disabled: true,
-              label: 'option1-1',
-              value: '1-1'
-            },
-            {
-              label: 'option1-2',
-              value: '1-2'
-            }
-          ]
-        },
-        {
-          label: 'option2',
-          options: [
-            {
-              label: 'option2-1',
-              value: '2-1'
-            },
-            {
-              label: 'option2-2',
-              value: '2-2'
-            }
-          ]
-        }
-      ]
-    }
-  },
-  {
-    field: 'field17',
-    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          options: [
-            {
-              label: 'option1-1',
-              value: '1-1',
-              disabled: true
-            },
-            {
-              label: 'option1-2',
-              value: '1-2'
-            }
-          ]
-        },
-        {
-          label: 'option2',
-          options: [
-            {
-              label: 'option2-1',
-              value: '2-1'
-            },
-            {
-              label: 'option2-2',
-              value: '2-2'
-            }
-          ]
-        }
-      ],
-      optionsSlot: true
-    }
-  },
-  {
-    field: 'field18',
-    label: `${t('formDemo.selectV2')}`,
-    component: 'Divider'
-  },
-  {
-    field: 'field19',
-    label: t('formDemo.default'),
-    component: 'SelectV2',
-    componentProps: {
-      options: options.value
-    }
-  },
-  {
-    field: 'field20',
-    label: t('formDemo.slot'),
-    component: 'SelectV2',
-    componentProps: {
-      options: options.value,
-      slots: {
-        default: true
-      }
-    }
-  },
-  {
-    field: 'field21',
-    label: t('formDemo.selectGroup'),
-    component: 'SelectV2',
-    componentProps: {
-      options: options2.value
-    }
-  },
-  {
-    field: 'field22',
-    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-    component: 'SelectV2',
-    componentProps: {
-      options: options2.value,
-      slots: {
-        default: true
-      }
-    }
-  },
-  {
-    field: 'field23',
-    label: t('formDemo.cascader'),
-    component: 'Divider'
-  },
-  {
-    field: 'field24',
-    label: t('formDemo.default'),
-    component: 'Cascader',
-    componentProps: {
-      options: options3
-    }
-  },
-  {
-    field: 'field25',
-    label: t('formDemo.slot'),
-    component: 'Cascader',
-    componentProps: {
-      options: options3,
-      slots: {
-        default: true
-      }
-    }
-  },
-  {
-    field: 'field26',
-    label: t('formDemo.switch'),
-    component: 'Divider'
-  },
-  {
-    field: 'field27',
-    label: t('formDemo.default'),
-    component: 'Switch',
-    value: false
-  },
-  {
-    field: 'field28',
-    label: t('formDemo.icon'),
-    component: 'Switch',
-    value: false,
-    componentProps: {
-      activeIcon: useIcon({ icon: 'ep:check' }),
-      inactiveIcon: useIcon({ icon: 'ep:close' })
-    }
-  },
-  {
-    field: 'field29',
-    label: t('formDemo.rate'),
-    component: 'Divider'
-  },
-  {
-    field: 'field30',
-    label: t('formDemo.default'),
-    component: 'Rate',
-    value: null
-  },
-  {
-    field: 'field31',
-    label: t('formDemo.icon'),
-    component: 'Rate',
-    value: null,
-    componentProps: {
-      voidIcon: useIcon({ icon: 'ep:chat-round' }),
-      icons: [
-        useIcon({ icon: 'ep:chat-round' }),
-        useIcon({ icon: 'ep:chat-line-round' }),
-        useIcon({ icon: 'ep:chat-dot-round' })
-      ]
-    }
-  },
-  {
-    field: 'field32',
-    label: t('formDemo.colorPicker'),
-    component: 'Divider'
-  },
-  {
-    field: 'field33',
-    label: t('formDemo.default'),
-    component: 'ColorPicker'
-  },
-  {
-    field: 'field34',
-    label: t('formDemo.transfer'),
-    component: 'Divider'
-  },
-  {
-    field: 'field35',
-    label: t('formDemo.default'),
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc',
-        disabled: 'disabled'
-      },
-      data: generateData()
-    },
-    value: [],
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field36',
-    label: t('formDemo.slot'),
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc',
-        disabled: 'disabled'
-      },
-      leftDefaultChecked: [2, 3],
-      rightDefaultChecked: [1],
-      data: generateData(),
-      slots: {
-        default: true
-      }
-    },
-    value: [1],
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field37',
-    label: `${t('formDemo.render')}`,
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc',
-        disabled: 'disabled'
-      },
-      leftDefaultChecked: [2, 3],
-      rightDefaultChecked: [1],
-      data: generateData(),
-      renderContent: (h: Fn, option: Recordable) => {
-        return h('span', null, `${option.value} - ${option.desc}`)
-      }
-    },
-    value: [1],
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field38',
-    label: t('formDemo.radio'),
-    component: 'Divider'
-  },
-  {
-    field: 'field39',
-    label: t('formDemo.default'),
-    component: 'Radio',
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field40',
-    label: t('formDemo.button'),
-    component: 'RadioButton',
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field41',
-    label: t('formDemo.checkbox'),
-    component: 'Divider'
-  },
-  {
-    field: 'field42',
-    label: t('formDemo.default'),
-    component: 'Checkbox',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '23'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field43',
-    label: t('formDemo.button'),
-    component: 'CheckboxButton',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '23'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field44',
-    component: 'Divider',
-    label: t('formDemo.slider')
-  },
-  {
-    field: 'field45',
-    component: 'Slider',
-    label: t('formDemo.default'),
-    value: 0
-  },
-  {
-    field: 'field46',
-    component: 'Divider',
-    label: t('formDemo.datePicker')
-  },
-  {
-    field: 'field47',
-    component: 'DatePicker',
-    label: t('formDemo.default'),
-    componentProps: {
-      type: 'date'
-    }
-  },
-  {
-    field: 'field48',
-    component: 'DatePicker',
-    label: t('formDemo.shortcuts'),
-    componentProps: {
-      type: 'date',
-      disabledDate: (time: Date) => {
-        return time.getTime() > Date.now()
-      },
-      shortcuts: [
-        {
-          text: t('formDemo.today'),
-          value: new Date()
-        },
-        {
-          text: t('formDemo.yesterday'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24)
-            return date
-          }
-        },
-        {
-          text: t('formDemo.aWeekAgo'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-            return date
-          }
-        }
-      ]
-    }
-  },
-  {
-    field: 'field49',
-    component: 'DatePicker',
-    label: t('formDemo.week'),
-    componentProps: {
-      type: 'week',
-      format: `[${t('formDemo.week')}] ww`
-    }
-  },
-  {
-    field: 'field50',
-    component: 'DatePicker',
-    label: t('formDemo.year'),
-    componentProps: {
-      type: 'year'
-    }
-  },
-  {
-    field: 'field51',
-    component: 'DatePicker',
-    label: t('formDemo.month'),
-    componentProps: {
-      type: 'month'
-    }
-  },
-  {
-    field: 'field52',
-    component: 'DatePicker',
-    label: t('formDemo.dates'),
-    componentProps: {
-      type: 'dates'
-    }
-  },
-  {
-    field: 'field53',
-    component: 'DatePicker',
-    label: t('formDemo.daterange'),
-    componentProps: {
-      type: 'daterange'
-    }
-  },
-  {
-    field: 'field54',
-    component: 'DatePicker',
-    label: t('formDemo.monthrange'),
-    componentProps: {
-      type: 'monthrange'
-    }
-  },
-  {
-    field: 'field55',
-    component: 'DatePicker',
-    label: t('formDemo.slot'),
-    componentProps: {
-      type: 'date',
-      format: 'YYYY/MM/DD',
-      valueFormat: 'YYYY-MM-DD',
-      slots: {
-        default: true
-      }
-    }
-  },
-  {
-    field: 'field56',
-    component: 'Divider',
-    label: t('formDemo.dateTimePicker')
-  },
-  {
-    field: 'field57',
-    component: 'DatePicker',
-    label: t('formDemo.default'),
-    componentProps: {
-      type: 'datetime'
-    }
-  },
-  {
-    field: 'field58',
-    component: 'DatePicker',
-    label: t('formDemo.shortcuts'),
-    componentProps: {
-      type: 'datetime',
-      shortcuts: [
-        {
-          text: t('formDemo.today'),
-          value: new Date()
-        },
-        {
-          text: t('formDemo.yesterday'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24)
-            return date
-          }
-        },
-        {
-          text: t('formDemo.aWeekAgo'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-            return date
-          }
-        }
-      ]
-    }
-  },
-  {
-    field: 'field59',
-    component: 'DatePicker',
-    label: t('formDemo.dateTimerange'),
-    componentProps: {
-      type: 'datetimerange'
-    }
-  },
-  {
-    field: 'field60',
-    component: 'Divider',
-    label: t('formDemo.timePicker')
-  },
-  {
-    field: 'field61',
-    component: 'TimePicker',
-    label: t('formDemo.default')
-  },
-  {
-    field: 'field62',
-    component: 'Divider',
-    label: t('formDemo.timeSelect')
-  },
-  {
-    field: 'field63',
-    component: 'TimeSelect',
-    label: t('formDemo.default')
   }
+  // {
+  //   field: 'field5',
+  //   label: t('formDemo.mixed'),
+  //   component: 'Input',
+  //   componentProps: {
+  //     slots: {
+  //       prepend: true,
+  //       append: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field6',
+  //   label: t('formDemo.textarea'),
+  //   component: 'Input',
+  //   componentProps: {
+  //     type: 'textarea',
+  //     rows: 1
+  //   }
+  // },
+  // {
+  //   field: 'field7',
+  //   label: t('formDemo.autocomplete'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field8',
+  //   label: t('formDemo.default'),
+  //   component: 'Autocomplete',
+  //   componentProps: {
+  //     fetchSuggestions: querySearch,
+  //     onSelect: handleSelect
+  //   }
+  // },
+  // {
+  //   field: 'field9',
+  //   label: t('formDemo.slot'),
+  //   component: 'Autocomplete',
+  //   componentProps: {
+  //     fetchSuggestions: querySearch,
+  //     onSelect: handleSelect,
+  //     slots: {
+  //       default: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field10',
+  //   component: 'Divider',
+  //   label: t('formDemo.inputNumber')
+  // },
+  // {
+  //   field: 'field11',
+  //   label: t('formDemo.default'),
+  //   component: 'InputNumber',
+  //   value: 0
+  // },
+  // {
+  //   field: 'field12',
+  //   label: t('formDemo.position'),
+  //   component: 'InputNumber',
+  //   componentProps: {
+  //     controlsPosition: 'right'
+  //   },
+  //   value: 0
+  // },
+  // {
+  //   field: 'field13',
+  //   label: t('formDemo.select'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field14',
+  //   label: t('formDemo.default'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field15',
+  //   label: t('formDemo.slot'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option2',
+  //         value: '2'
+  //       }
+  //     ],
+  //     optionsSlot: true
+  //   }
+  // },
+  // {
+  //   field: 'field16',
+  //   label: t('formDemo.selectGroup'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         options: [
+  //           {
+  //             disabled: true,
+  //             label: 'option1-1',
+  //             value: '1-1'
+  //           },
+  //           {
+  //             label: 'option1-2',
+  //             value: '1-2'
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         label: 'option2',
+  //         options: [
+  //           {
+  //             label: 'option2-1',
+  //             value: '2-1'
+  //           },
+  //           {
+  //             label: 'option2-2',
+  //             value: '2-2'
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field17',
+  //   label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         options: [
+  //           {
+  //             label: 'option1-1',
+  //             value: '1-1',
+  //             disabled: true
+  //           },
+  //           {
+  //             label: 'option1-2',
+  //             value: '1-2'
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         label: 'option2',
+  //         options: [
+  //           {
+  //             label: 'option2-1',
+  //             value: '2-1'
+  //           },
+  //           {
+  //             label: 'option2-2',
+  //             value: '2-2'
+  //           }
+  //         ]
+  //       }
+  //     ],
+  //     optionsSlot: true
+  //   }
+  // },
+  // {
+  //   field: 'field18',
+  //   label: `${t('formDemo.selectV2')}`,
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field19',
+  //   label: t('formDemo.default'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options.value
+  //   }
+  // },
+  // {
+  //   field: 'field20',
+  //   label: t('formDemo.slot'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options.value,
+  //     slots: {
+  //       default: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field21',
+  //   label: t('formDemo.selectGroup'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options2.value
+  //   }
+  // },
+  // {
+  //   field: 'field22',
+  //   label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options2.value,
+  //     slots: {
+  //       default: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field23',
+  //   label: t('formDemo.cascader'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field24',
+  //   label: t('formDemo.default'),
+  //   component: 'Cascader',
+  //   componentProps: {
+  //     options: options3
+  //   }
+  // },
+  // {
+  //   field: 'field25',
+  //   label: t('formDemo.slot'),
+  //   component: 'Cascader',
+  //   componentProps: {
+  //     options: options3,
+  //     slots: {
+  //       default: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field26',
+  //   label: t('formDemo.switch'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field27',
+  //   label: t('formDemo.default'),
+  //   component: 'Switch',
+  //   value: false
+  // },
+  // {
+  //   field: 'field28',
+  //   label: t('formDemo.icon'),
+  //   component: 'Switch',
+  //   value: false,
+  //   componentProps: {
+  //     activeIcon: useIcon({ icon: 'ep:check' }),
+  //     inactiveIcon: useIcon({ icon: 'ep:close' })
+  //   }
+  // },
+  // {
+  //   field: 'field29',
+  //   label: t('formDemo.rate'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field30',
+  //   label: t('formDemo.default'),
+  //   component: 'Rate',
+  //   value: null
+  // },
+  // {
+  //   field: 'field31',
+  //   label: t('formDemo.icon'),
+  //   component: 'Rate',
+  //   value: null,
+  //   componentProps: {
+  //     voidIcon: useIcon({ icon: 'ep:chat-round' }),
+  //     icons: [
+  //       useIcon({ icon: 'ep:chat-round' }),
+  //       useIcon({ icon: 'ep:chat-line-round' }),
+  //       useIcon({ icon: 'ep:chat-dot-round' })
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field32',
+  //   label: t('formDemo.colorPicker'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field33',
+  //   label: t('formDemo.default'),
+  //   component: 'ColorPicker'
+  // },
+  // {
+  //   field: 'field34',
+  //   label: t('formDemo.transfer'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field35',
+  //   label: t('formDemo.default'),
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc',
+  //       disabled: 'disabled'
+  //     },
+  //     data: generateData()
+  //   },
+  //   value: [],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field36',
+  //   label: t('formDemo.slot'),
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc',
+  //       disabled: 'disabled'
+  //     },
+  //     leftDefaultChecked: [2, 3],
+  //     rightDefaultChecked: [1],
+  //     data: generateData(),
+  //     slots: {
+  //       default: true
+  //     }
+  //   },
+  //   value: [1],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field37',
+  //   label: `${t('formDemo.render')}`,
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc',
+  //       disabled: 'disabled'
+  //     },
+  //     leftDefaultChecked: [2, 3],
+  //     rightDefaultChecked: [1],
+  //     data: generateData(),
+  //     renderContent: (h: Fn, option: Recordable) => {
+  //       return h('span', null, `${option.value} - ${option.desc}`)
+  //     }
+  //   },
+  //   value: [1],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field38',
+  //   label: t('formDemo.radio'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field39',
+  //   label: t('formDemo.default'),
+  //   component: 'Radio',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field40',
+  //   label: t('formDemo.button'),
+  //   component: 'RadioButton',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field41',
+  //   label: t('formDemo.checkbox'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field42',
+  //   label: t('formDemo.default'),
+  //   component: 'Checkbox',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '23'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field43',
+  //   label: t('formDemo.button'),
+  //   component: 'CheckboxButton',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '23'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field44',
+  //   component: 'Divider',
+  //   label: t('formDemo.slider')
+  // },
+  // {
+  //   field: 'field45',
+  //   component: 'Slider',
+  //   label: t('formDemo.default'),
+  //   value: 0
+  // },
+  // {
+  //   field: 'field46',
+  //   component: 'Divider',
+  //   label: t('formDemo.datePicker')
+  // },
+  // {
+  //   field: 'field47',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.default'),
+  //   componentProps: {
+  //     type: 'date'
+  //   }
+  // },
+  // {
+  //   field: 'field48',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.shortcuts'),
+  //   componentProps: {
+  //     type: 'date',
+  //     disabledDate: (time: Date) => {
+  //       return time.getTime() > Date.now()
+  //     },
+  //     shortcuts: [
+  //       {
+  //         text: t('formDemo.today'),
+  //         value: new Date()
+  //       },
+  //       {
+  //         text: t('formDemo.yesterday'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24)
+  //           return date
+  //         }
+  //       },
+  //       {
+  //         text: t('formDemo.aWeekAgo'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+  //           return date
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field49',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.week'),
+  //   componentProps: {
+  //     type: 'week',
+  //     format: `[${t('formDemo.week')}] ww`
+  //   }
+  // },
+  // {
+  //   field: 'field50',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.year'),
+  //   componentProps: {
+  //     type: 'year'
+  //   }
+  // },
+  // {
+  //   field: 'field51',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.month'),
+  //   componentProps: {
+  //     type: 'month'
+  //   }
+  // },
+  // {
+  //   field: 'field52',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.dates'),
+  //   componentProps: {
+  //     type: 'dates'
+  //   }
+  // },
+  // {
+  //   field: 'field53',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.daterange'),
+  //   componentProps: {
+  //     type: 'daterange'
+  //   }
+  // },
+  // {
+  //   field: 'field54',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.monthrange'),
+  //   componentProps: {
+  //     type: 'monthrange'
+  //   }
+  // },
+  // {
+  //   field: 'field55',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.slot'),
+  //   componentProps: {
+  //     type: 'date',
+  //     format: 'YYYY/MM/DD',
+  //     valueFormat: 'YYYY-MM-DD',
+  //     slots: {
+  //       default: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field56',
+  //   component: 'Divider',
+  //   label: t('formDemo.dateTimePicker')
+  // },
+  // {
+  //   field: 'field57',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.default'),
+  //   componentProps: {
+  //     type: 'datetime'
+  //   }
+  // },
+  // {
+  //   field: 'field58',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.shortcuts'),
+  //   componentProps: {
+  //     type: 'datetime',
+  //     shortcuts: [
+  //       {
+  //         text: t('formDemo.today'),
+  //         value: new Date()
+  //       },
+  //       {
+  //         text: t('formDemo.yesterday'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24)
+  //           return date
+  //         }
+  //       },
+  //       {
+  //         text: t('formDemo.aWeekAgo'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+  //           return date
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field59',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.dateTimerange'),
+  //   componentProps: {
+  //     type: 'datetimerange'
+  //   }
+  // },
+  // {
+  //   field: 'field60',
+  //   component: 'Divider',
+  //   label: t('formDemo.timePicker')
+  // },
+  // {
+  //   field: 'field61',
+  //   component: 'TimePicker',
+  //   label: t('formDemo.default')
+  // },
+  // {
+  //   field: 'field62',
+  //   component: 'Divider',
+  //   label: t('formDemo.timeSelect')
+  // },
+  // {
+  //   field: 'field63',
+  //   component: 'TimeSelect',
+  //   label: t('formDemo.default')
+  // }
 ])
 
 const { register, formRef, methods } = useForm({
@@ -1037,9 +1043,14 @@ const { register, formRef, methods } = useForm({
   labelWidth: 'auto',
   labelPosition: isMobile.value ? 'top' : 'right'
 })
+
+const changeToggle = () => {
+  toggle.value = !unref(toggle)
+}
 </script>
 
 <template>
+  <button @click="changeToggle">测试</button>
   <ContentWrap :title="t('formDemo.defaultForm')" :message="t('formDemo.formDes')">
     <!-- <Form :schema="schema" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
       <template #field4-prefix>

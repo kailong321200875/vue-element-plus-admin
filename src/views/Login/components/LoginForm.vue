@@ -119,6 +119,13 @@ watch(
 
 // 登录
 const signIn = async () => {
+  await permissionStore.generateRoutes('none').catch(() => {})
+  permissionStore.getAddRouters.forEach((route) => {
+    addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
+  })
+  permissionStore.setIsAddRouters(true)
+  push({ path: redirect.value || permissionStore.addRouters[0].path })
+
   const formRef = unref(elFormRef)
   await formRef?.validate(async (isValid) => {
     if (isValid) {

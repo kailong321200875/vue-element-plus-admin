@@ -1,5 +1,11 @@
 import type { CSSProperties } from 'vue'
-import { ColProps, ComponentProps, ComponentName } from '@/types/components'
+import {
+  ColProps,
+  ComponentProps,
+  ComponentName,
+  ComponentNameEnum,
+  InputComponentProps
+} from '@/types/components'
 import { FormValueType, FormValueType } from '@/types/form'
 import type { AxiosPromise } from 'axios'
 
@@ -21,7 +27,7 @@ export type FormItemProps = {
   style?: CSSProperties
 }
 
-export type FormSchema = {
+export interface FormSchema {
   // 唯一值
   field: string
   // 标题
@@ -31,7 +37,12 @@ export type FormSchema = {
   // col组件属性
   colProps?: ColProps
   // 表单组件属性，slots对应的是表单组件的插槽，规则：${field}-xxx，具体可以查看element-plus文档
-  componentProps?: { slots?: Recordable } & ComponentProps
+  // componentProps?: { slots?: Recordable } & ComponentProps
+
+  /**
+   * 表单组件属性，slots对应的是表单组件的插槽，规则：${field}-xxx，具体可以查看element-plus文档
+   */
+  componentProps?: InputComponentProps
   // formItem组件属性
   formItemProps?: FormItemProps
   // 渲染的组件
