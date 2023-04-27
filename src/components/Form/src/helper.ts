@@ -4,6 +4,7 @@ import { getSlot } from '@/utils/tsxHelper'
 import { PlaceholderMoel } from './types'
 import { FormSchema } from '@/types/form'
 import { ColProps } from '@/types/components'
+import { isFunction } from '@/utils/is'
 
 const { t } = useI18n()
 
@@ -84,21 +85,21 @@ export const setComponentProps = (item: FormSchema): Recordable => {
 
 /**
  *
- * @param slots 插槽
+ * @param formModel 表单数据
  * @param slotsProps 插槽属性
- * @param field 字段名
  */
-export const setItemComponentSlots = (
-  slots: Slots,
-  slotsProps: Recordable = {},
-  field: string
-): Recordable => {
+export const setItemComponentSlots = (formModel: any, slotsProps: Recordable = {}): Recordable => {
   const slotObj: Recordable = {}
   for (const key in slotsProps) {
     if (slotsProps[key]) {
-      // 由于组件有可能重复，需要有一个唯一的前缀
-      slotObj[key] = (data: Recordable) => {
-        return getSlot(slots, `${field}-${key}`, data)
+      if (isFunction(slotsProps[key])) {
+        slotObj[key] = () => {
+          return slotsProps[key]?.(formModel)
+        }
+      } else {
+        slotObj[key] = () => {
+          return slotsProps[key]
+        }
       }
     }
   }

@@ -39,6 +39,7 @@ export interface InputComponentProps {
   size?: InputProps['size']
   prefixIcon?: string | JSX.Element | (<T>(data: T | any) => string | JSX.Element)
   suffixIcon?: string | JSX.Element | (<T>(data: T | any) => string | JSX.Element)
+  type?: InputProps['type']
   rows?: number
   autosize?: boolean | { Pows?: numer; maxRows?: number }
   autocomplete?: string
