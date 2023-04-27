@@ -1,5 +1,5 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import type { Slots } from 'vue'
+import { unref, type Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import { PlaceholderMoel } from './types'
 import { FormSchema } from '@/types/form'
@@ -74,12 +74,14 @@ export const setGridProp = (col: ColProps = {}): ColProps => {
  */
 export const setComponentProps = (item: FormSchema): Recordable => {
   // const notNeedClearable = ['ColorPicker']
-  const componentProps = {
+  const componentProps: Recordable = {
     clearable: true,
     ...item.componentProps
   }
   // 需要删除额外的属性
-  delete componentProps?.slots
+  if (componentProps.slots) {
+    delete componentProps.slots
+  }
   return componentProps
 }
 
@@ -93,8 +95,8 @@ export const setItemComponentSlots = (formModel: any, slotsProps: Recordable = {
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       if (isFunction(slotsProps[key])) {
-        slotObj[key] = () => {
-          return slotsProps[key]?.(formModel)
+        slotObj[key] = (item: any) => {
+          return slotsProps[key]?.(unref(item?.item) || undefined, formModel)
         }
       } else {
         slotObj[key] = () => {
