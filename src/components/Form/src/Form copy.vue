@@ -21,7 +21,6 @@ import { set } from 'lodash-es'
 import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
 import { FormSchema, FormSetPropsType } from '@/types/form'
-import { ComponentNameEnum } from '@/types/components.d'
 
 const { getPrefixCls } = useDesign()
 
@@ -173,55 +172,47 @@ export default defineComponent({
     // 渲染formItem
     const renderFormItem = (item: FormSchema) => {
       // 单独给只有options属性的组件做判断
-      // const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
+      const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
       const componentSlots = (item?.componentProps as any)?.slots || {}
       const slotsMap: Recordable = {
         ...setItemComponentSlots(unref(formModel), componentSlots)
       }
-      // 如果是select组件，并且没有自定义模板，自动渲染options
-      if (item.component === ComponentNameEnum.SELECT) {
-        slotsMap.default = !componentSlots.default
-          ? () => renderOptions(item)
-          : (option: any) => {
-              console.log(option)
-              return componentSlots.default(option)
-            }
+      if (
+        item?.component !== 'SelectV2' &&
+        item?.component !== 'Cascader' &&
+        item?.componentProps?.options
+      ) {
+        slotsMap.default = () => renderOptions(item)
       }
-      // if (
-      //   item?.component !== 'SelectV2' &&
-      //   item?.component !== 'Cascader' &&
-      //   item?.componentProps?.options
-      // ) {
-      //   slotsMap.default = () => renderOptions(item)
-      // }
 
-      // const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
+      const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
       // 如果有 labelMessage，自动使用插槽渲染
-      // if (item?.labelMessage) {
-      //   formItemSlots.label = () => {
-      //     return (
-      //       <>
-      //         <span>{item.label}</span>
-      //         <ElTooltip placement="right" raw-content>
-      //           {{
-      //             content: () => <span v-html={item.labelMessage}></span>,
-      //             default: () => (
-      //               <Icon
-      //                 icon="ep:warning"
-      //                 size={16}
-      //                 color="var(--el-color-primary)"
-      //                 class="ml-2px relative top-1px"
-      //               ></Icon>
-      //             )
-      //           }}
-      //         </ElTooltip>
-      //       </>
-      //     )
-      //   }
-      // }
+      if (item?.labelMessage) {
+        formItemSlots.label = () => {
+          return (
+            <>
+              <span>{item.label}</span>
+              <ElTooltip placement="right" raw-content>
+                {{
+                  content: () => <span v-html={item.labelMessage}></span>,
+                  default: () => (
+                    <Icon
+                      icon="ep:warning"
+                      size={16}
+                      color="var(--el-color-primary)"
+                      class="ml-2px relative top-1px"
+                    ></Icon>
+                  )
+                }}
+              </ElTooltip>
+            </>
+          )
+        }
+      }
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {{
+            ...formItemSlots,
             default: () => {
               const Com = componentMap[item.component as string] as ReturnType<
                 typeof defineComponent
@@ -237,6 +228,10 @@ export default defineComponent({
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}
                   style={item.componentProps?.style}
+                  {...(notRenderOptions.includes(item?.component as string) &&
+                  item?.componentProps?.options
+                    ? { options: item?.componentProps?.options || [] }
+                    : {})}
                 >
                   {{ ...slotsMap }}
                 </Com>
@@ -250,7 +245,7 @@ export default defineComponent({
     // 渲染options
     const renderOptions = (item: FormSchema) => {
       switch (item.component) {
-        case ComponentNameEnum.SELECT:
+        case 'Select':
           const { renderSelectOptions } = useRenderSelect(slots)
           return renderSelectOptions(item)
         case 'Radio':

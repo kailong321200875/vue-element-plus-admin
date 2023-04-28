@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Form } from '@/components/Form'
 import { reactive, ref, onMounted, computed, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -24,6 +24,17 @@ const querySearch = (queryString: string, cb: Fn) => {
     : restaurants.value
   // call callback function to return suggestions
   cb(results)
+}
+let timeout: NodeJS.Timeout
+const querySearchAsync = (queryString: string, cb: (arg: any) => void) => {
+  const results = queryString
+    ? restaurants.value.filter(createFilter(queryString))
+    : restaurants.value
+
+  clearTimeout(timeout)
+  timeout = setTimeout(() => {
+    cb(results)
+  }, 3000 * Math.random())
 }
 const createFilter = (queryString: string) => {
   return (restaurant: Recordable) => {
@@ -359,7 +370,11 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field2',
     label: t('formDemo.default'),
-    component: 'Input'
+    component: 'Input',
+    componentProps: {
+      formatter: (value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+      parser: (value) => value.replace(/\$\s?|(,*)/g, '')
+    }
   },
   {
     field: 'field3',
@@ -378,7 +393,7 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        suffix: (data: any) => {
+        suffix: (_, data: any) => {
           return unref(toggle) && data.field4
             ? useIcon({ icon: 'ep:calendar' })
             : useIcon({ icon: 'ep:share' })
@@ -394,10 +409,18 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       slots: {
         prepend: useIcon({ icon: 'ep:calendar' }),
-        append: (data: any) => {
+        append: (_, data: any) => {
           return data.field5 ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
         }
       }
+    }
+  },
+  {
+    field: 'input-field7',
+    label: t('formDemo.password'),
+    component: 'Input',
+    componentProps: {
+      showPassword: true
     }
   },
   {
@@ -408,94 +431,132 @@ const schema = reactive<FormSchema[]>([
       type: 'textarea',
       rows: 2
     }
+  },
+  {
+    field: 'field7',
+    label: t('formDemo.autocomplete'),
+    component: 'Divider'
+  },
+  {
+    field: 'field8',
+    label: t('formDemo.default'),
+    component: 'Autocomplete',
+    componentProps: {
+      fetchSuggestions: querySearch,
+      on: {
+        select: handleSelect
+      }
+    }
+  },
+  {
+    field: 'field9',
+    label: t('formDemo.slot'),
+    component: 'Autocomplete',
+    componentProps: {
+      fetchSuggestions: querySearch,
+      on: {
+        select: handleSelect
+      },
+      slots: {
+        default: (item: any) => {
+          return (
+            <>
+              <div class="value">{item.value}</div>
+              <span class="link">{item.link}</span>
+            </>
+          )
+        }
+      }
+    }
+  },
+  {
+    field: 'autocomplete-field10',
+    label: t('formDemo.remoteSearch'),
+    component: 'Autocomplete',
+    componentProps: {
+      fetchSuggestions: querySearchAsync,
+      on: {
+        select: handleSelect
+      }
+    }
+  },
+  {
+    field: 'field10',
+    component: 'Divider',
+    label: t('formDemo.inputNumber')
+  },
+  {
+    field: 'field11',
+    label: t('formDemo.default'),
+    component: 'InputNumber',
+    value: 0
+  },
+  {
+    field: 'field12',
+    label: t('formDemo.position'),
+    component: 'InputNumber',
+    componentProps: {
+      controlsPosition: 'right'
+    },
+    value: 10
+  },
+  {
+    field: 'field13',
+    label: t('formDemo.select'),
+    component: 'Divider'
+  },
+  {
+    field: 'field14',
+    label: t('formDemo.default'),
+    component: 'Select',
+    componentProps: {
+      optionDisabled: (item: any, data: any) => {
+        console.log(item, data)
+        return false
+      },
+      options: [
+        {
+          disabled: true,
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field15',
+    label: t('formDemo.slot'),
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ],
+      slots: {
+        default: (item) => {
+          console.log(item)
+          return (
+            <>
+              <span style="float: left">{item.label}</span>
+              <span style=" float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+                {item.value}
+              </span>
+            </>
+          )
+        }
+      }
+    }
   }
-  // {
-  //   field: 'field7',
-  //   label: t('formDemo.autocomplete'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field8',
-  //   label: t('formDemo.default'),
-  //   component: 'Autocomplete',
-  //   componentProps: {
-  //     fetchSuggestions: querySearch,
-  //     onSelect: handleSelect
-  //   }
-  // },
-  // {
-  //   field: 'field9',
-  //   label: t('formDemo.slot'),
-  //   component: 'Autocomplete',
-  //   componentProps: {
-  //     fetchSuggestions: querySearch,
-  //     onSelect: handleSelect,
-  //     slots: {
-  //       default: true
-  //     }
-  //   }
-  // },
-  // {
-  //   field: 'field10',
-  //   component: 'Divider',
-  //   label: t('formDemo.inputNumber')
-  // },
-  // {
-  //   field: 'field11',
-  //   label: t('formDemo.default'),
-  //   component: 'InputNumber',
-  //   value: 0
-  // },
-  // {
-  //   field: 'field12',
-  //   label: t('formDemo.position'),
-  //   component: 'InputNumber',
-  //   componentProps: {
-  //     controlsPosition: 'right'
-  //   },
-  //   value: 0
-  // },
-  // {
-  //   field: 'field13',
-  //   label: t('formDemo.select'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field14',
-  //   label: t('formDemo.default'),
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         disabled: true,
-  //         label: 'option1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option2',
-  //         value: '2'
-  //       }
-  //     ]
-  //   }
-  // },
-  // {
-  //   field: 'field15',
-  //   label: t('formDemo.slot'),
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         label: 'option1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option2',
-  //         value: '2'
-  //       }
-  //     ],
-  //     optionsSlot: true
-  //   }
-  // },
   // {
   //   field: 'field16',
   //   label: t('formDemo.selectGroup'),
