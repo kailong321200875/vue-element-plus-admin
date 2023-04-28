@@ -1,18 +1,10 @@
-const config: {
-  base_url: {
-    base: string
-    dev: string
-    pro: string
-    test: string
-  }
-  result_code: number | string
-  default_headers: AxiosHeaders
-  request_timeout: number
-} = {
+import { AxiosConfig, AxiosResponse } from './type'
+
+const config: AxiosConfig = {
   /**
    * api请求基础路径
    */
-  base_url: {
+  baseUrl: {
     // 开发环境接口前缀
     base: '',
 
@@ -29,18 +21,28 @@ const config: {
   /**
    * 接口成功返回状态码
    */
-  result_code: '0000',
+  code: '0000',
 
   /**
    * 接口请求超时时间
    */
-  request_timeout: 60000,
+  timeout: 60000,
 
   /**
    * 默认接口请求类型
    * 可选值：application/x-www-form-urlencoded multipart/form-data
    */
-  default_headers: 'application/json'
+  defaultHeaders: 'application/json',
+
+  interceptors: {
+    requestInterceptors: (config) => {
+      return config
+    },
+    // 响应拦截器
+    responseInterceptors: (result: AxiosResponse) => {
+      return result
+    }
+  }
 }
 
-export { config }
+export default config
