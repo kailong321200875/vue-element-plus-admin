@@ -2,14 +2,15 @@ import { ElOption, ElOptionGroup } from 'element-plus'
 import { getSlot } from '@/utils/tsxHelper'
 import { Slots } from 'vue'
 import { FormSchema } from '@/types/form'
-import { ComponentOptions } from '@/types/components'
+import { SelectComponentProps, SelectOption } from '@/types/components'
 
 export const useRenderSelect = (slots: Slots) => {
   // 渲染 select options
   const renderSelectOptions = (item: FormSchema) => {
+    const componentsProps = item.componentProps as SelectComponentProps
     // 如果有别名，就取别名
-    const labelAlias = item?.componentProps?.optionsAlias?.labelField
-    return item?.componentProps?.options?.map((option) => {
+    const labelAlias = componentsProps?.labelAlias
+    return componentsProps?.options?.map((option) => {
       if (option?.options?.length) {
         return (
           <ElOptionGroup label={option[labelAlias || 'label']}>
@@ -27,10 +28,11 @@ export const useRenderSelect = (slots: Slots) => {
   }
 
   // 渲染 select option item
-  const renderSelectOptionItem = (item: FormSchema, option: ComponentOptions) => {
+  const renderSelectOptionItem = (item: FormSchema, option: SelectOption) => {
     // 如果有别名，就取别名
-    const labelAlias = item?.componentProps?.optionsAlias?.labelField
-    const valueAlias = item?.componentProps?.optionsAlias?.valueField
+    const componentsProps = item.componentProps as SelectComponentProps
+    const labelAlias = componentsProps?.labelAlias
+    const valueAlias = componentsProps?.valueAlias
 
     const { label, value, ...other } = option
 
@@ -43,7 +45,7 @@ export const useRenderSelect = (slots: Slots) => {
         {{
           default: () =>
             // option 插槽名规则，{field}-option
-            item?.componentProps?.optionsSlot
+            componentsProps?.optionsSlot
               ? getSlot(slots, `${item.field}-option`, { item: option })
               : undefined
         }}

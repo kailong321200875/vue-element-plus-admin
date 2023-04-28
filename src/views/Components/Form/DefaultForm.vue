@@ -499,48 +499,64 @@ const schema = reactive<FormSchema[]>([
       controlsPosition: 'right'
     },
     value: 10
+  },
+  {
+    field: 'field13',
+    label: t('formDemo.select'),
+    component: 'Divider'
+  },
+  {
+    field: 'field14',
+    label: t('formDemo.default'),
+    component: 'Select',
+    componentProps: {
+      optionDisabled: (item: any, data: any) => {
+        console.log(item, data)
+        return false
+      },
+      options: [
+        {
+          disabled: true,
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field15',
+    label: t('formDemo.slot'),
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          value: '1'
+        },
+        {
+          label: 'option2',
+          value: '2'
+        }
+      ],
+      slots: {
+        default: (item) => {
+          console.log(item)
+          return (
+            <>
+              <span style="float: left">{item.label}</span>
+              <span style=" float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+                {item.value}
+              </span>
+            </>
+          )
+        }
+      }
+    }
   }
-  // {
-  //   field: 'field13',
-  //   label: t('formDemo.select'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field14',
-  //   label: t('formDemo.default'),
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         disabled: true,
-  //         label: 'option1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option2',
-  //         value: '2'
-  //       }
-  //     ]
-  //   }
-  // },
-  // {
-  //   field: 'field15',
-  //   label: t('formDemo.slot'),
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         label: 'option1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option2',
-  //         value: '2'
-  //       }
-  //     ],
-  //     optionsSlot: true
-  //   }
-  // },
   // {
   //   field: 'field16',
   //   label: t('formDemo.selectGroup'),

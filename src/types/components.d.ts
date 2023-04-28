@@ -78,6 +78,7 @@ export interface InputComponentProps {
     prepend?: JSX.Element | ((item: any, data: any) => JSX.Element)
     append?: JSX.Element | ((item: any, data: any) => JSX.Element)
   }
+  style?: CSSProperties
 }
 
 export interface AutocompleteComponentProps {
@@ -110,6 +111,7 @@ export interface AutocompleteComponentProps {
     prepend?: JSX.Element | ((item: any, data: any) => JSX.Element)
     append?: JSX.Element | ((item: any, data: any) => JSX.Element)
   }
+  style?: CSSProperties
 }
 
 export interface InputNumberComponentProps {
@@ -135,6 +137,102 @@ export interface InputNumberComponentProps {
     blur?: (event: FocusEvent) => void
     focus?: (event: FocusEvent) => void
   }
+  style?: CSSProperties
+}
+
+interface SelectOption {
+  label?: string
+  disabled?: boolean
+  value?: any
+  key?: string | number
+  options?: SelectOption[]
+  [key: string]: any
+}
+
+export interface SelectComponentProps {
+  value?: Array | string | number | boolean | Object
+  multiple?: boolean
+  disabled?: boolean
+  valueKey?: string
+  size?: InputNumberProps['size']
+  clearable?: boolean
+  collapseTags?: boolean
+  collapseTagsTooltip?: number
+  multipleLimit?: number
+  name?: string
+  effect?: string
+  autocomplete?: string
+  placeholder?: string
+  filterable?: boolean
+  allowCreate?: boolean
+  filterMethod?: (query: string, item: any) => boolean
+  remote?: boolean
+  remoteMethod?: (query: string) => void
+  remoteShowSuffix?: boolean
+  loading?: boolean
+  loadingText?: string
+  noMatchText?: string
+  noDataText?: string
+  popperClass?: string
+  reserveKeyword?: boolean
+  defaultFirstOption?: boolean
+  popperAppendToBody?: boolean
+  teleported?: boolean
+  persistent?: boolean
+  automaticDropdown?: boolean
+  clearIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
+  fitInputWidth?: boolean
+  suffixIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
+  tagType?: 'success' | 'info' | 'warning' | 'danger'
+  validateEvent?: boolean
+  placement?:
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end'
+  maxCollapseTags?: number
+  /**
+   * label别名
+   */
+  labelAlias?: string
+
+  /**
+   * value别名
+   */
+  valueAlias?: string
+
+  /**
+   * key别名
+   */
+  keyAlias?: string
+
+  /**
+   * option是否禁用的统一拦截
+   */
+  optionDisabled?: (optin: any, data: any) => boolean
+  on?: {
+    change?: (value: string | number | boolean | Object) => void
+    visibleChange?: (visible: boolean) => void
+    removeTag?: (tag: any) => void
+    clear?: () => void
+    blur?: (event: FocusEvent) => void
+    focus?: (event: FocusEvent) => void
+  }
+  slots?: {
+    default?: (item: any) => JSX.Element
+    prefix?: JSX.Element | ((item: any, data: any) => JSX.Element)
+    empty?: JSX.Element | ((item: any, data: any) => JSX.Element)
+  }
+  options?: SelectOption[]
+  style?: CSSProperties
 }
 
 export interface ColProps {
@@ -149,7 +247,7 @@ export interface ColProps {
 
 export interface ComponentOptions extends Recordable {
   label?: string
-  value?: FormValueType
+  value?: any
   disabled?: boolean
   key?: string | number
   children?: ComponentOptions[]
