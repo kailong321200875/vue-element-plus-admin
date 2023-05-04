@@ -2,7 +2,9 @@ import type {
   InternalAxiosRequestConfig,
   AxiosResponse,
   AxiosRequestConfig,
-  AxiosInstance
+  AxiosInstance,
+  AxiosRequestHeaders,
+  AxiosError
 } from 'axios'
 
 interface RequestInterceptors<T> {
@@ -20,7 +22,7 @@ interface AxiosConfig<T = AxiosResponse> {
     pro: string
     test: string
   }
-  code: number | string
+  code: number
   defaultHeaders: AxiosHeaders
   timeout: number
   interceptors: RequestInterceptors<T>
@@ -36,5 +38,7 @@ export {
   RequestConfig,
   AxiosConfig,
   AxiosInstance,
-  InternalAxiosRequestConfig
+  InternalAxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosError
 }

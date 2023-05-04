@@ -1,37 +1,40 @@
-// import { service } from './service'
+import service from './service'
 
-// import { RequestConfig } from "./config"
+import config from './config'
 
-// import { config } from './config'
+const { defaultHeaders } = config
 
-// const { default_headers } = config
+const request = (option: any) => {
+  const { url, method, params, data, headersType, responseType } = option
+  return service.request({
+    url: url,
+    method,
+    params,
+    data,
+    responseType: responseType,
+    headers: {
+      'Content-Type': headersType || defaultHeaders
+    }
+  })
+}
 
-// const request = (option: any) => {
-//   const { url, method, params, data, headersType, responseType } = option
-//   return service({
-//     url: url,
-//     method,
-//     params,
-//     data,
-//     responseType: responseType,
-//     headers: {
-//       'Content-Type': headersType || default_headers
-//     }
-//   })
-// }
-// export default {
-//   get: <T = any>(option: any) => {
-//     return request({ method: 'get', ...option }) as unknown as T
-//   },
-//   post: <T = any>(option: any) => {
-//     return request({ method: 'post', ...option }) as unknown as T
-//   },
-//   delete: <T = any>(option: any) => {
-//     return request({ method: 'delete', ...option }) as unknown as T
-//   },
-//   put: <T = any>(option: any) => {
-//     return request({ method: 'put', ...option }) as unknown as T
-//   }
-// }
-
-export {}
+export default {
+  get: <T = any>(option: any) => {
+    return request({ method: 'get', ...option }) as unknown as T
+  },
+  post: <T = any>(option: any) => {
+    return request({ method: 'post', ...option }) as unknown as T
+  },
+  delete: <T = any>(option: any) => {
+    return request({ method: 'delete', ...option }) as unknown as T
+  },
+  put: <T = any>(option: any) => {
+    return request({ method: 'put', ...option }) as unknown as T
+  },
+  cancelRequest: (url: string | string[]) => {
+    return service.cancelRequest(url)
+  },
+  cancelAllRequest: () => {
+    return service.cancelAllRequest()
+  }
+}
