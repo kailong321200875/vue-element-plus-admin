@@ -1,7 +1,7 @@
-import { config } from '@/config/axios/config'
+import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
-const { result_code } = config
+const { code } = config
 
 const timeout = 1000
 
@@ -526,8 +526,10 @@ export default [
     response: ({ query }) => {
       const { roleName } = query
       return {
-        code: result_code,
-        data: roleName === 'admin' ? adminList : testList
+        data: {
+          code: code,
+          data: roleName === 'admin' ? adminList : testList
+        }
       }
     }
   }

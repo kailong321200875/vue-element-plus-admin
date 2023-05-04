@@ -1,7 +1,7 @@
-import { config } from '@/config/axios/config'
+import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 
-const { result_code } = config
+const { code } = config
 
 const timeout = 1000
 
@@ -45,10 +45,12 @@ export default [
       )
 
       return {
-        code: result_code,
         data: {
-          total: mockList.length,
-          list: pageList
+          code: code,
+          data: {
+            total: mockList.length,
+            list: pageList
+          }
         }
       }
     }
@@ -65,14 +67,16 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            code: result_code,
-            data: user
+            data: {
+              code: code,
+              data: user
+            }
           }
         }
       }
       if (!hasUser) {
         return {
-          code: '500',
+          code: 500,
           message: '账号或密码错误'
         }
       }
@@ -85,8 +89,10 @@ export default [
     timeout,
     response: () => {
       return {
-        code: result_code,
-        data: null
+        data: {
+          code: code,
+          data: null
+        }
       }
     }
   }

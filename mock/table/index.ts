@@ -1,9 +1,9 @@
-import { config } from '@/config/axios/config'
+import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 import { toAnyString } from '@/utils'
 import Mock from 'mockjs'
 
-const { result_code } = config
+const { code } = config
 
 const timeout = 1000
 
@@ -54,10 +54,12 @@ export default [
         (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
       )
       return {
-        code: result_code,
         data: {
-          total: mockList.length,
-          list: pageList
+          code: code,
+          data: {
+            total: mockList.length,
+            list: pageList
+          }
         }
       }
     }
@@ -75,8 +77,10 @@ export default [
           })
         ].concat(List)
         return {
-          code: result_code,
-          data: 'success'
+          data: {
+            code: code,
+            data: 'success'
+          }
         }
       } else {
         List.map((item) => {
@@ -87,8 +91,10 @@ export default [
           }
         })
         return {
-          code: result_code,
-          data: 'success'
+          data: {
+            code: code,
+            data: 'success'
+          }
         }
       }
     }
@@ -102,8 +108,10 @@ export default [
       for (const example of List) {
         if (example.id === id) {
           return {
-            code: result_code,
-            data: example
+            data: {
+              code: code,
+              data: example
+            }
           }
         }
       }
@@ -128,8 +136,10 @@ export default [
           }
         }
         return {
-          code: result_code,
-          data: 'success'
+          data: {
+            code: code,
+            data: 'success'
+          }
         }
       }
     }
