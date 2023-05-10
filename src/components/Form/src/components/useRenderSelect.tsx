@@ -8,16 +8,20 @@ export const useRenderSelect = (slots: Slots) => {
   // 渲染 select options
   const renderSelectOptions = (item: FormSchema) => {
     const componentsProps = item.componentProps as SelectComponentProps
+    const optionGroupDefaultSlot = componentsProps.slots?.optionGroupDefault
     // 如果有别名，就取别名
     const labelAlias = componentsProps?.labelAlias
     return componentsProps?.options?.map((option) => {
       if (option?.options?.length) {
-        return (
+        return optionGroupDefaultSlot ? (
+          optionGroupDefaultSlot(option)
+        ) : (
           <ElOptionGroup label={option[labelAlias || 'label']}>
-            {() => {
-              return option?.options?.map((v) => {
-                return renderSelectOptionItem(item, v)
-              })
+            {{
+              default: () =>
+                option?.options?.map((v) => {
+                  return renderSelectOptionItem(item, v)
+                })
             }}
           </ElOptionGroup>
         )
@@ -33,6 +37,7 @@ export const useRenderSelect = (slots: Slots) => {
     const componentsProps = item.componentProps as SelectComponentProps
     const labelAlias = componentsProps?.labelAlias
     const valueAlias = componentsProps?.valueAlias
+    const optionDefaultSlot = componentsProps.slots?.optionDefault
 
     const { label, value, ...other } = option
 
@@ -43,11 +48,7 @@ export const useRenderSelect = (slots: Slots) => {
         value={valueAlias ? option[valueAlias] : value}
       >
         {{
-          default: () =>
-            // option 插槽名规则，{field}-option
-            componentsProps?.optionsSlot
-              ? getSlot(slots, `${item.field}-option`, { item: option })
-              : undefined
+          default: () => (optionDefaultSlot ? optionDefaultSlot(option) : undefined)
         }}
       </ElOption>
     )

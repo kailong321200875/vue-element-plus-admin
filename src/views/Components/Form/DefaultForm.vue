@@ -6,8 +6,9 @@ import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
 import { FormSchema } from '@/types/form'
-import { ComponentOptions } from '@/types/components'
+import { ComponentOptions, SelectOption, SelectComponentProps } from '@/types/components'
 import { useForm } from '@/hooks/web/useForm'
+import { ElOption, ElOptionGroup } from 'element-plus'
 
 const appStore = useAppStore()
 
@@ -393,7 +394,7 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        suffix: (_, data: any) => {
+        suffix: (data: any) => {
           return unref(toggle) && data.field4
             ? useIcon({ icon: 'ep:calendar' })
             : useIcon({ icon: 'ep:share' })
@@ -409,7 +410,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       slots: {
         prepend: useIcon({ icon: 'ep:calendar' }),
-        append: (_, data: any) => {
+        append: (data: any) => {
           return data.field5 ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
         }
       }
@@ -510,10 +511,6 @@ const schema = reactive<FormSchema[]>([
     label: t('formDemo.default'),
     component: 'Select',
     componentProps: {
-      optionDisabled: (item: any, data: any) => {
-        console.log(item, data)
-        return false
-      },
       options: [
         {
           disabled: true,
@@ -543,93 +540,156 @@ const schema = reactive<FormSchema[]>([
         }
       ],
       slots: {
-        default: (item) => {
-          console.log(item)
+        default: (options: SelectOption[]) => {
+          if (options.length) {
+            return options?.map((v) => {
+              return <ElOption key={v.value} label={v.label} value={v.value} />
+            })
+          } else {
+            return null
+          }
+        },
+        prefix: useIcon({ icon: 'ep:calendar' }),
+        empty: (data: any) => {
+          return data.field5 ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
+        }
+      }
+    }
+  },
+  {
+    field: 'select-field18',
+    label: t('formDemo.optionSlot'),
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          value: 'Beijing',
+          label: 'Beijing'
+        },
+        {
+          value: 'Shanghai',
+          label: 'Shanghai'
+        },
+        {
+          value: 'Nanjing',
+          label: 'Nanjing'
+        },
+        {
+          value: 'Chengdu',
+          label: 'Chengdu'
+        },
+        {
+          value: 'Shenzhen',
+          label: 'Shenzhen'
+        },
+        {
+          value: 'Guangzhou',
+          label: 'Guangzhou'
+        }
+      ],
+      slots: {
+        optionDefault: (option: SelectOption) => {
           return (
             <>
-              <span style="float: left">{item.label}</span>
-              <span style=" float: right; color: var(--el-text-color-secondary); font-size: 13px;">
-                {item.value}
+              <span style="float: left">{option.label}</span>
+              <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+                {option.value}
               </span>
             </>
           )
         }
       }
     }
+  },
+  {
+    field: 'field16',
+    label: t('formDemo.selectGroup'),
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          options: [
+            {
+              disabled: true,
+              label: 'option1-1',
+              value: '1-1'
+            },
+            {
+              label: 'option1-2',
+              value: '1-2'
+            }
+          ]
+        },
+        {
+          label: 'option2',
+          options: [
+            {
+              label: 'option2-1',
+              value: '2-1'
+            },
+            {
+              label: 'option2-2',
+              value: '2-2'
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    field: 'field17',
+    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
+    component: 'Select',
+    componentProps: {
+      options: [
+        {
+          label: 'option1',
+          options: [
+            {
+              label: 'option1-1',
+              value: '1-1'
+            },
+            {
+              label: 'option1-2',
+              value: '1-2'
+            }
+          ]
+        },
+        {
+          label: 'option2',
+          options: [
+            {
+              label: 'option2-1',
+              value: '2-1'
+            },
+            {
+              label: 'option2-2',
+              value: '2-2'
+            }
+          ]
+        }
+      ],
+      slots: {
+        optionGroupDefault: (option: SelectOption) => {
+          return (
+            <ElOptionGroup key={option.label} label={`${option.label} ${option.label}`}>
+              {option?.options?.map((v) => {
+                return (
+                  <ElOption
+                    key={v.value}
+                    disabled={unref(toggle)}
+                    label={v.label}
+                    value={v.value}
+                  />
+                )
+              })}
+            </ElOptionGroup>
+          )
+        }
+      }
+    }
   }
-  // {
-  //   field: 'field16',
-  //   label: t('formDemo.selectGroup'),
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         label: 'option1',
-  //         options: [
-  //           {
-  //             disabled: true,
-  //             label: 'option1-1',
-  //             value: '1-1'
-  //           },
-  //           {
-  //             label: 'option1-2',
-  //             value: '1-2'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         label: 'option2',
-  //         options: [
-  //           {
-  //             label: 'option2-1',
-  //             value: '2-1'
-  //           },
-  //           {
-  //             label: 'option2-2',
-  //             value: '2-2'
-  //           }
-  //         ]
-  //       }
-  //     ]
-  //   }
-  // },
-  // {
-  //   field: 'field17',
-  //   label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-  //   component: 'Select',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         label: 'option1',
-  //         options: [
-  //           {
-  //             label: 'option1-1',
-  //             value: '1-1',
-  //             disabled: true
-  //           },
-  //           {
-  //             label: 'option1-2',
-  //             value: '1-2'
-  //           }
-  //         ]
-  //       },
-  //       {
-  //         label: 'option2',
-  //         options: [
-  //           {
-  //             label: 'option2-1',
-  //             value: '2-1'
-  //           },
-  //           {
-  //             label: 'option2-2',
-  //             value: '2-2'
-  //           }
-  //         ]
-  //       }
-  //     ],
-  //     optionsSlot: true
-  //   }
-  // },
   // {
   //   field: 'field18',
   //   label: `${t('formDemo.selectV2')}`,

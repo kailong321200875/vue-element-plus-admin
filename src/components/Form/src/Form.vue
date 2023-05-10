@@ -21,7 +21,7 @@ import { set } from 'lodash-es'
 import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
 import { FormSchema, FormSetPropsType } from '@/types/form'
-import { ComponentNameEnum } from '@/types/components.d'
+import { ComponentNameEnum, SelectComponentProps } from '@/types/components.d'
 
 const { getPrefixCls } = useDesign()
 
@@ -182,9 +182,10 @@ export default defineComponent({
       if (item.component === ComponentNameEnum.SELECT) {
         slotsMap.default = !componentSlots.default
           ? () => renderOptions(item)
-          : (option: any) => {
-              console.log(option)
-              return componentSlots.default(option)
+          : () => {
+              return componentSlots.default(
+                unref((item?.componentProps as SelectComponentProps)?.options)
+              )
             }
       }
       // if (

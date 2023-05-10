@@ -47,8 +47,8 @@ export interface InputComponentProps {
   showPassword?: boolean
   disabled?: boolean
   size?: InputProps['size']
-  prefixIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
-  suffixIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
+  prefixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  suffixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   type?: InputProps['type']
   rows?: number
   autosize?: boolean | { Pows?: numer; maxRows?: number }
@@ -73,10 +73,10 @@ export interface InputComponentProps {
     input?: (value: string | number) => void
   }
   slots?: {
-    prefix?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    suffix?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    prepend?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    append?: JSX.Element | ((item: any, data: any) => JSX.Element)
+    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    suffix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    prepend?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    append?: JSX.Element | null | ((formData: any) => JSX.Element | null)
   }
   style?: CSSProperties
 }
@@ -105,11 +105,11 @@ export interface AutocompleteComponentProps {
     change?: (value: string | number) => void
   }
   slots?: {
-    default?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    prefix?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    suffix?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    prepend?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    append?: JSX.Element | ((item: any, data: any) => JSX.Element)
+    default?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    suffix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    prepend?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    append?: JSX.Element | null | ((formData: any) => JSX.Element | null)
   }
   style?: CSSProperties
 }
@@ -180,9 +180,9 @@ export interface SelectComponentProps {
   teleported?: boolean
   persistent?: boolean
   automaticDropdown?: boolean
-  clearIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
+  clearIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   fitInputWidth?: boolean
-  suffixIcon?: string | JSX.Element | ((item: any, data: any) => string | JSX.Element)
+  suffixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   tagType?: 'success' | 'info' | 'warning' | 'danger'
   validateEvent?: boolean
   placement?:
@@ -213,11 +213,6 @@ export interface SelectComponentProps {
    * key别名
    */
   keyAlias?: string
-
-  /**
-   * option是否禁用的统一拦截
-   */
-  optionDisabled?: (optin: any, data: any) => boolean
   on?: {
     change?: (value: string | number | boolean | Object) => void
     visibleChange?: (visible: boolean) => void
@@ -227,9 +222,11 @@ export interface SelectComponentProps {
     focus?: (event: FocusEvent) => void
   }
   slots?: {
-    default?: (item: any) => JSX.Element
-    prefix?: JSX.Element | ((item: any, data: any) => JSX.Element)
-    empty?: JSX.Element | ((item: any, data: any) => JSX.Element)
+    default?: (options: SelectOption[]) => JSX.Element[] | null
+    optionGroupDefault?: (item: SelectOption) => JSX.Element
+    optionDefault?: (option: SelectOption) => JSX.Element | null
+    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    empty?: JSX.Element | null | ((formData: any) => JSX.Element | null)
   }
   options?: SelectOption[]
   style?: CSSProperties

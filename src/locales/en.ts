@@ -221,6 +221,7 @@ export default {
     position: 'Position',
     autocomplete: 'Autocomplete',
     select: 'Select',
+    optionSlot: 'Option Slot',
     selectGroup: 'Select Group',
     selectV2: 'SelectV2',
     cascader: 'Cascader',

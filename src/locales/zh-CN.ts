@@ -221,6 +221,7 @@ export default {
     position: '位置',
     autocomplete: '自动补全',
     select: '选择器',
+    optionSlot: '选项插槽',
     selectGroup: '选项分组',
     selectV2: '虚拟列表选择器',
     cascader: '级联选择器',

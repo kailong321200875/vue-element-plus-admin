@@ -95,8 +95,8 @@ export const setItemComponentSlots = (formModel: any, slotsProps: Recordable = {
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       if (isFunction(slotsProps[key])) {
-        slotObj[key] = (item: any) => {
-          return slotsProps[key]?.(unref(item?.item) || undefined, formModel)
+        slotObj[key] = () => {
+          return slotsProps[key]?.(formModel)
         }
       } else {
         slotObj[key] = () => {
