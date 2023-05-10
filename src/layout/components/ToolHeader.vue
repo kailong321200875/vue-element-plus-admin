@@ -66,7 +66,7 @@ export default defineComponent({
               color="var(--top-header-text-color)"
             ></LocaleDropdown>
           ) : undefined}
-          <UserInfo class="custom-hover"></UserInfo>
+          <UserInfo></UserInfo>
         </div>
       </div>
     )

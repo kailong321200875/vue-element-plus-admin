@@ -59,7 +59,7 @@ const toDocument = () => {
 </script>
 
 <template>
-  <ElDropdown :class="prefixCls" trigger="click">
+  <ElDropdown class="custom-hover" :class="prefixCls" trigger="click">
     <div class="flex items-center">
       <img
         src="@/assets/imgs/avatar.jpg"
