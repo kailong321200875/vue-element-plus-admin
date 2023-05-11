@@ -6,7 +6,8 @@ import {
   InputComponentProps,
   AutocompleteComponentProps,
   InputNumberComponentProps,
-  SelectComponentProps
+  SelectComponentProps,
+  SelectV2ComponentProps
 } from '@/types/components'
 import { FormValueType, FormValueType } from '@/types/form'
 import type { AxiosPromise } from 'axios'
@@ -58,6 +59,7 @@ export interface FormSchema {
     | AutocompleteComponentProps
     | InputNumberComponentProps
     | SelectComponentProps
+    | SelectV2ComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

@@ -108,3 +108,10 @@ export function toAnyString() {
   })
   return str
 }
+
+/**
+ * 首字母大写
+ */
+export function firstUpperCase(str: string) {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
+}

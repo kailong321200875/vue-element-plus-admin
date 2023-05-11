@@ -105,7 +105,7 @@ export interface AutocompleteComponentProps {
     change?: (value: string | number) => void
   }
   slots?: {
-    default?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    default?: JSX.Element | null | ((formData: any, ...args: any[]) => JSX.Element | null)
     prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
     suffix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
     prepend?: JSX.Element | null | ((formData: any) => JSX.Element | null)
@@ -150,7 +150,7 @@ interface SelectOption {
 }
 
 export interface SelectComponentProps {
-  value?: Array | string | number | boolean | Object
+  value?: string | number | boolean | Object
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -229,6 +229,52 @@ export interface SelectComponentProps {
     empty?: JSX.Element | null | ((formData: any) => JSX.Element | null)
   }
   options?: SelectOption[]
+  style?: CSSProperties
+  style?: CSSProperties
+}
+
+export interface SelectV2ComponentProps {
+  value?: string | number | boolean | Object
+  multiple?: boolean
+  disabled?: boolean
+  valueKey?: string
+  size?: InputNumberProps['size']
+  clearable?: boolean
+  clearIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  collapseTags?: boolean
+  multipleLimit?: number
+  name?: string
+  effect?: string
+  autocomplete?: string
+  placeholder?: string
+  filterable?: boolean
+  allowCreate?: boolean
+  reserveKeyword?: boolean
+  noDataText?: string
+  popperClass?: string
+  teleported?: boolean
+  persistent?: boolean
+  popperOptions?: any
+  automaticDropdown?: boolean
+  height?: number
+  scrollbarAlwaysOn?: boolean
+  remote?: boolean
+  remoteMethod?: (query: string) => void
+  validateEvent?: boolean
+  placement?: AutocompleteProps['placement']
+  collapseTagsTooltip?: boolean
+  on?: {
+    change?: (value: string | number | boolean | Object) => void
+    visibleChange?: (visible: boolean) => void
+    removeTag?: (tag: any) => void
+    clear?: () => void
+    blur?: (event: FocusEvent) => void
+    focus?: (event: FocusEvent) => void
+  }
+  options?: SelectOption[]
+  slots?: {
+    default?: (option: SelectOption) => JSX.Element | null
+  }
   style?: CSSProperties
 }
 

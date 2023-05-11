@@ -2,9 +2,10 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { unref, type Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import { PlaceholderMoel } from './types'
-import { FormSchema } from '@/types/form'
-import { ColProps } from '@/types/components'
+import { FormSchema } from '@/types/form.d'
+import { ColProps, ComponentNameEnum } from '@/types/components.d'
 import { isFunction } from '@/utils/is'
+import { firstUpperCase } from '@/utils'
 
 const { t } = useI18n()
 
@@ -15,14 +16,25 @@ const { t } = useI18n()
  * @description 用于自动设置placeholder
  */
 export const setTextPlaceholder = (schema: FormSchema): PlaceholderMoel => {
-  const textMap = ['Input', 'Autocomplete', 'InputNumber', 'InputPassword']
-  const selectMap = ['Select', 'TimePicker', 'DatePicker', 'TimeSelect', 'TimeSelect']
-  if (textMap.includes(schema?.component as string)) {
+  const textMap = [
+    ComponentNameEnum.INPUT,
+    ComponentNameEnum.AUTOCOMPLETE,
+    ComponentNameEnum.INPUT_NUMBER,
+    ComponentNameEnum.INPUT_PASSWORD
+  ]
+  const selectMap = [
+    ComponentNameEnum.SELECT,
+    ComponentNameEnum.TIME_PICKER,
+    ComponentNameEnum.DATE_PICKER,
+    ComponentNameEnum.TIME_SELECT,
+    ComponentNameEnum.SELECT_V2
+  ]
+  if (textMap.includes(schema?.component as ComponentNameEnum)) {
     return {
       placeholder: t('common.inputText')
     }
   }
-  if (selectMap.includes(schema?.component as string)) {
+  if (selectMap.includes(schema?.component as ComponentNameEnum)) {
     // 一些范围选择器
     const twoTextMap = ['datetimerange', 'daterange', 'monthrange', 'datetimerange', 'daterange']
     if (
@@ -74,13 +86,29 @@ export const setGridProp = (col: ColProps = {}): ColProps => {
  */
 export const setComponentProps = (item: FormSchema): Recordable => {
   // const notNeedClearable = ['ColorPicker']
+  // 拆分事件并组合
+  const onEvents = item?.componentProps?.on || {}
+  const newOnEvents: Recordable = {}
+
+  for (const key in onEvents) {
+    if (onEvents[key]) {
+      newOnEvents[`on${firstUpperCase(key)}`] = (...args: any[]) => {
+        onEvents[key](...args)
+      }
+    }
+  }
+
   const componentProps: Recordable = {
     clearable: true,
-    ...item.componentProps
+    ...item.componentProps,
+    ...newOnEvents
   }
   // 需要删除额外的属性
   if (componentProps.slots) {
     delete componentProps.slots
+  }
+  if (componentProps.on) {
+    delete componentProps.on
   }
   return componentProps
 }
@@ -95,8 +123,8 @@ export const setItemComponentSlots = (formModel: any, slotsProps: Recordable = {
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       if (isFunction(slotsProps[key])) {
-        slotObj[key] = () => {
-          return slotsProps[key]?.(formModel)
+        slotObj[key] = (...args: any[]) => {
+          return slotsProps[key]?.(formModel, ...args)
         }
       } else {
         slotObj[key] = () => {
@@ -124,7 +152,7 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
     } else if (v.component && v.component !== 'Divider') {
       const hasField = Reflect.has(model, v.field)
       // 如果先前已经有值存在，则不进行重新赋值，而是采用现有的值
-      model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : ''
+      model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : undefined
     }
   })
   return model

@@ -21,7 +21,7 @@ import { set } from 'lodash-es'
 import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
 import { FormSchema, FormSetPropsType } from '@/types/form'
-import { ComponentNameEnum, SelectComponentProps } from '@/types/components.d'
+import { ComponentNameEnum, SelectComponentProps, SelectOption } from '@/types/components.d'
 
 const { getPrefixCls } = useDesign()
 
@@ -188,6 +188,13 @@ export default defineComponent({
               )
             }
       }
+
+      // 虚拟列表
+      if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
+        slotsMap.default = ({ item }: any) => {
+          return componentSlots.default(item)
+        }
+      }
       // if (
       //   item?.component !== 'SelectV2' &&
       //   item?.component !== 'Cascader' &&
@@ -252,7 +259,7 @@ export default defineComponent({
     const renderOptions = (item: FormSchema) => {
       switch (item.component) {
         case ComponentNameEnum.SELECT:
-          const { renderSelectOptions } = useRenderSelect(slots)
+          const { renderSelectOptions } = useRenderSelect()
           return renderSelectOptions(item)
         case 'Radio':
         case 'RadioButton':
