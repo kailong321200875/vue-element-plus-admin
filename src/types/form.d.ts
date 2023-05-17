@@ -7,7 +7,12 @@ import {
   AutocompleteComponentProps,
   InputNumberComponentProps,
   SelectComponentProps,
-  SelectV2ComponentProps
+  SelectV2ComponentProps,
+  CascaderComponentProps,
+  SwitchComponentProps,
+  RateComponentProps,
+  ColorPickerComponentProps,
+  TransferComponentProps
 } from '@/types/components'
 import { FormValueType, FormValueType } from '@/types/form'
 import type { AxiosPromise } from 'axios'
@@ -60,6 +65,11 @@ export interface FormSchema {
     | InputNumberComponentProps
     | SelectComponentProps
     | SelectV2ComponentProps
+    | CascaderComponentProps
+    | SwitchComponentProps
+    | RateComponentProps
+    | ColorPickerComponentProps
+    | TransferComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

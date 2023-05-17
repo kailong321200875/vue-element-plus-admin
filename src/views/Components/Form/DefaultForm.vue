@@ -61,13 +61,13 @@ onMounted(() => {
 })
 
 const initials = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-const options = ref<ComponentOptions[]>(
+const options = ref(
   Array.from({ length: 1000 }).map((_, idx) => ({
     value: `Option ${idx + 1}`,
     label: `${initials[idx % 10]}${idx}`
   }))
 )
-const options2 = ref<ComponentOptions[]>(
+const options2 = ref(
   Array.from({ length: 10 }).map((_, idx) => {
     const label = idx + 1
     return {
@@ -81,7 +81,7 @@ const options2 = ref<ComponentOptions[]>(
   })
 )
 
-const options3: ComponentOptions[] = [
+const options3 = [
   {
     value: 'guide',
     label: 'Guide',
@@ -756,87 +756,97 @@ const schema = reactive<FormSchema[]>([
     field: 'field23',
     label: t('formDemo.cascader'),
     component: 'Divider'
+  },
+  {
+    field: 'field24',
+    label: t('formDemo.default'),
+    component: 'Cascader',
+    componentProps: {
+      options: options3,
+      props: {
+        multiple: true
+      }
+    }
+  },
+  {
+    field: 'field25',
+    label: t('formDemo.slot'),
+    component: 'Cascader',
+    componentProps: {
+      options: options3,
+      slots: {
+        default: (_, { data, node }) => {
+          return (
+            <>
+              <span>{data.label}</span>
+              {!node.isLeaf ? <span> ({data.children.length}) </span> : null}
+            </>
+          )
+        }
+      }
+    }
+  },
+  {
+    field: 'field26',
+    label: t('formDemo.switch'),
+    component: 'Divider'
+  },
+  {
+    field: 'field27',
+    label: t('formDemo.default'),
+    component: 'Switch',
+    value: false
+  },
+  {
+    field: 'field28',
+    label: t('formDemo.icon'),
+    component: 'Switch',
+    value: false,
+    componentProps: {
+      activeIcon: useIcon({ icon: 'ep:check' }),
+      inactiveIcon: useIcon({ icon: 'ep:close' })
+    }
+  },
+  {
+    field: 'field29',
+    label: t('formDemo.rate'),
+    component: 'Divider'
+  },
+  {
+    field: 'field30',
+    label: t('formDemo.default'),
+    component: 'Rate',
+    value: 0
+  },
+  {
+    field: 'field31',
+    label: t('formDemo.icon'),
+    component: 'Rate',
+    value: null,
+    componentProps: {
+      voidIcon: useIcon({ icon: 'ep:chat-round' }),
+      icons: [
+        useIcon({ icon: 'ep:chat-round' }),
+        useIcon({ icon: 'ep:chat-line-round' }),
+        useIcon({ icon: 'ep:chat-dot-round' })
+      ]
+    }
+  },
+  {
+    field: 'field32',
+    label: t('formDemo.colorPicker'),
+    component: 'Divider'
+  },
+  {
+    field: 'field33',
+    label: t('formDemo.default'),
+    component: 'ColorPicker'
+  },
+  {
+    field: 'field34',
+    label: t('formDemo.transfer'),
+    component: 'Divider'
   }
-  // {
-  //   field: 'field24',
-  //   label: t('formDemo.default'),
-  //   component: 'Cascader',
-  //   componentProps: {
-  //     options: options3
-  //   }
-  // },
-  // {
-  //   field: 'field25',
-  //   label: t('formDemo.slot'),
-  //   component: 'Cascader',
-  //   componentProps: {
-  //     options: options3,
-  //     slots: {
-  //       default: true
-  //     }
-  //   }
-  // },
-  // {
-  //   field: 'field26',
-  //   label: t('formDemo.switch'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field27',
-  //   label: t('formDemo.default'),
-  //   component: 'Switch',
-  //   value: false
-  // },
-  // {
-  //   field: 'field28',
-  //   label: t('formDemo.icon'),
-  //   component: 'Switch',
-  //   value: false,
-  //   componentProps: {
-  //     activeIcon: useIcon({ icon: 'ep:check' }),
-  //     inactiveIcon: useIcon({ icon: 'ep:close' })
-  //   }
-  // },
-  // {
-  //   field: 'field29',
-  //   label: t('formDemo.rate'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field30',
-  //   label: t('formDemo.default'),
-  //   component: 'Rate',
-  //   value: null
-  // },
-  // {
-  //   field: 'field31',
-  //   label: t('formDemo.icon'),
-  //   component: 'Rate',
-  //   value: null,
-  //   componentProps: {
-  //     voidIcon: useIcon({ icon: 'ep:chat-round' }),
-  //     icons: [
-  //       useIcon({ icon: 'ep:chat-round' }),
-  //       useIcon({ icon: 'ep:chat-line-round' }),
-  //       useIcon({ icon: 'ep:chat-dot-round' })
-  //     ]
-  //   }
-  // },
-  // {
-  //   field: 'field32',
-  //   label: t('formDemo.colorPicker'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field33',
-  //   label: t('formDemo.default'),
-  //   component: 'ColorPicker'
-  // },
-  // {
-  //   field: 'field34',
-  //   label: t('formDemo.transfer'),
-  //   component: 'Divider'
-  // },
   // {
   //   field: 'field35',
   //   label: t('formDemo.default'),

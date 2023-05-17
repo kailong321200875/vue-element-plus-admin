@@ -1,5 +1,13 @@
 import { CSSProperties } from 'vue'
-import { InputProps, AutocompleteProps, InputNumberProps } from 'element-plus'
+import {
+  InputProps,
+  AutocompleteProps,
+  InputNumberProps,
+  CascaderProps,
+  CascaderNode,
+  CascaderValue
+} from 'element-plus'
+import { ElementPlusSize, ElementPlusInfoType } from './elementPlus.d'
 
 export enum ComponentNameEnum {
   RADIO = 'Radio',
@@ -46,7 +54,7 @@ export interface InputComponentProps {
   parser?: (value: string) => string
   showPassword?: boolean
   disabled?: boolean
-  size?: InputProps['size']
+  size?: ElementPlusSize
   prefixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   suffixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   type?: InputProps['type']
@@ -121,7 +129,7 @@ export interface InputNumberComponentProps {
   step?: number
   stepStrictly?: boolean
   precision?: number
-  size?: InputNumberProps['size']
+  size?: ElementPlusSize
   readonly?: boolean
   disabled?: boolean
   controls?: boolean
@@ -154,7 +162,7 @@ export interface SelectComponentProps {
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
-  size?: InputNumberProps['size']
+  size?: ElementPlusSize
   clearable?: boolean
   collapseTags?: boolean
   collapseTagsTooltip?: number
@@ -230,7 +238,6 @@ export interface SelectComponentProps {
   }
   options?: SelectOption[]
   style?: CSSProperties
-  style?: CSSProperties
 }
 
 export interface SelectV2ComponentProps {
@@ -238,7 +245,7 @@ export interface SelectV2ComponentProps {
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
-  size?: InputNumberProps['size']
+  size?: ElementPlusSize
   clearable?: boolean
   clearIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
   collapseTags?: boolean
@@ -274,6 +281,144 @@ export interface SelectV2ComponentProps {
   options?: SelectOption[]
   slots?: {
     default?: (option: SelectOption) => JSX.Element | null
+  }
+  style?: CSSProperties
+}
+
+export interface CascaderComponentProps {
+  value?: string | number | string[] | number[] | any
+  options?: Record<string, unknown>[]
+  props?: CascaderProps
+  size?: ElementPlusSize
+  placeholder?: string
+  disabled?: boolean
+  clearable?: boolean
+  showAllLevels?: boolean
+  collapseTags?: boolean
+  collapseTagsTooltip?: boolean
+  separator?: string
+  filterable?: boolean
+  filterMethod?: (node: CascaderNode, keyword: string) => boolean
+  debounce?: number
+  beforeFilter?: (value: string) => boolean
+  popperClass?: string
+  teleported?: boolean
+  tagType?: ElementPlusInfoType
+  validateEvent?: boolean
+  on?: {
+    change?: (value: CascaderValue) => void
+    expandChange?: (value: CascaderValue) => void
+    blur?: (event: FocusEvent) => void
+    focus?: (event: FocusEvent) => void
+    visibleChange?: (value: boolean) => void
+    removeTag?: (value: CascaderNode['valueByOption']) => void
+  }
+  slots?: {
+    default?: (formData: any, { node: any, data: any }) => JSX.Element | null
+    empty?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+  }
+  style?: CSSProperties
+}
+
+export interface SwitchComponentProps {
+  value?: boolean | string | number
+  disabled?: boolean
+  loading?: boolean
+  size?: ElementPlusSize
+  width?: number | string
+  inlinePrompt?: boolean
+  activeIcon?: string | JSX.Element | null | ((formData: any) => string | JSX.Element | null)
+  inactiveIcon?: string | JSX.Element | null | ((formData: any) => string | JSX.Element | null)
+  activeText?: string
+  inactiveText?: string
+  activeValue?: boolean | string | number
+  inactiveValue?: boolean | string | number
+  name?: string
+  validateEvent?: boolean
+  beforeChange?: (value: boolean) => boolean | Promise<boolean>
+  on?: {
+    change?: (value: boolean | string | number) => void
+  }
+  style?: CSSProperties
+}
+
+export interface RateComponentProps {
+  value?: number
+  max?: number
+  size?: ElementPlusSize
+  disabled?: boolean
+  allowHalf?: boolean
+  lowThreshold?: number
+  highThreshold?: number
+  colors?: string[] | Record<number, string>
+  voidColor?: string
+  disabledVoidColor?: string
+  icons?: string[] | JSX.Element[] | Record<number, string | JSX.Element>
+  voidIcon?: string | JSX.Element
+  disabledVoidIcon?: string | JSX.Element
+  showText?: boolean
+  showScore?: boolean
+  textColor?: string
+  texts?: string[]
+  scoreTemplate?: string
+  clearable?: boolean
+  id?: string
+  label?: string
+  on?: {
+    change?: (value: number) => void
+  }
+  style?: CSSProperties
+}
+
+export interface ColorPickerComponentProps {
+  value?: string
+  disabled?: boolean
+  size?: ElementPlusSize
+  showAlpha?: boolean
+  colorFormat?: 'hsl' | 'hsv' | 'hex' | 'rgb' | 'hex' | 'rgb'
+  predefine?: string[]
+  validateEvent?: boolean
+  tabindex?: number | string
+  label?: string
+  id?: string
+  on?: {
+    change?: (value: string) => void
+    activeChange?: (value: string) => void
+  }
+  style?: CSSProperties
+}
+
+export interface TransferComponentProps {
+  value?: any[]
+  data?: Array<{ key; label; disabled }>
+  filterable?: boolean
+  filterPlaceholder?: string
+  filterMethod?: (query: string, item: any) => boolean
+  targetOrder?: string
+  titles?: string[]
+  buttonTexts?: string[]
+  renderContent?: (h: any, option: any) => JSX.Element
+  format?: {
+    noChecked?: string
+    hasChecked?: string
+  }
+  props?: {
+    label?: string
+    key?: string
+    disabled?: string
+  }
+  leftDefaultChecked?: any[]
+  rightDefaultChecked?: any[]
+  validateEvent?: boolean
+  on?: {
+    change?: (value: any[]) => void
+    leftCheckChange?: (value: any[]) => void
+    rightCheckChange?: (value: any[]) => void
+  }
+  slots?: {
+    default?: (formData: any, data: { option: any }) => JSX.Element | null
+    leftFooter?: (formData: any) => JSX.Element | null
+    rightFooter?: (formData: any) => JSX.Element | null
   }
   style?: CSSProperties
 }
