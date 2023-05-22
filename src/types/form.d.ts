@@ -82,7 +82,17 @@ export interface FormSchema {
   /**
    * 表单组件属性，具体可以查看element-plus文档
    */
-  componentProps?: ComponentPropsForComponent<ComponentName>
+  componentProps?:
+    | InputComponentProps
+    | AutocompleteComponentProps
+    | InputNumberComponentProps
+    | SelectComponentProps
+    | SelectV2ComponentProps
+    | CascaderComponentProps
+    | SwitchComponentProps
+    | RateComponentProps
+    | ColorPickerComponentProps
+    | TransferComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档
