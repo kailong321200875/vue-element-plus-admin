@@ -55,8 +55,8 @@ export interface InputComponentProps {
   showPassword?: boolean
   disabled?: boolean
   size?: ElementPlusSize
-  prefixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
-  suffixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  prefixIcon?: string | JSX.Element
+  suffixIcon?: string | JSX.Element
   type?: InputProps['type']
   rows?: number
   autosize?: boolean | { Pows?: numer; maxRows?: number }
@@ -81,10 +81,10 @@ export interface InputComponentProps {
     input?: (value: string | number) => void
   }
   slots?: {
-    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    suffix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    prepend?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    append?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    prefix?: (...args: any[]) => JSX.Element | null
+    suffix?: (...args: any[]) => JSX.Element | null
+    prepend?: (...args: any[]) => JSX.Element | null
+    append?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
 }
@@ -113,11 +113,11 @@ export interface AutocompleteComponentProps {
     change?: (value: string | number) => void
   }
   slots?: {
-    default?: JSX.Element | null | ((formData: any, ...args: any[]) => JSX.Element | null)
-    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    suffix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    prepend?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    append?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    default?: (...args: any[]) => JSX.Element | null
+    prefix?: (...args: any[]) => JSX.Element | null
+    suffix?: (...args: any[]) => JSX.Element | null
+    prepend?: (...args: any[]) => JSX.Element | null
+    append?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
 }
@@ -188,9 +188,9 @@ export interface SelectComponentProps {
   teleported?: boolean
   persistent?: boolean
   automaticDropdown?: boolean
-  clearIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  clearIcon?: string | JSX.Element | null
   fitInputWidth?: boolean
-  suffixIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  suffixIcon?: string | JSX.Element | null
   tagType?: 'success' | 'info' | 'warning' | 'danger'
   validateEvent?: boolean
   placement?:
@@ -233,8 +233,8 @@ export interface SelectComponentProps {
     default?: (options: SelectOption[]) => JSX.Element[] | null
     optionGroupDefault?: (item: SelectOption) => JSX.Element
     optionDefault?: (option: SelectOption) => JSX.Element | null
-    prefix?: JSX.Element | null | ((formData: any) => JSX.Element | null)
-    empty?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    prefix?: (...args: any[]) => JSX.Element | null
+    empty?: (...args: any[]) => JSX.Element | null
   }
   options?: SelectOption[]
   style?: CSSProperties
@@ -247,7 +247,7 @@ export interface SelectV2ComponentProps {
   valueKey?: string
   size?: ElementPlusSize
   clearable?: boolean
-  clearIcon?: string | JSX.Element | ((formData: any) => string | JSX.Element)
+  clearIcon?: string | JSX.Element | null
   collapseTags?: boolean
   multipleLimit?: number
   name?: string
@@ -314,8 +314,8 @@ export interface CascaderComponentProps {
     removeTag?: (value: CascaderNode['valueByOption']) => void
   }
   slots?: {
-    default?: (formData: any, { node: any, data: any }) => JSX.Element | null
-    empty?: JSX.Element | null | ((formData: any) => JSX.Element | null)
+    default?: (...args: any[]) => JSX.Element | null
+    empty?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
 }
@@ -327,8 +327,8 @@ export interface SwitchComponentProps {
   size?: ElementPlusSize
   width?: number | string
   inlinePrompt?: boolean
-  activeIcon?: string | JSX.Element | null | ((formData: any) => string | JSX.Element | null)
-  inactiveIcon?: string | JSX.Element | null | ((formData: any) => string | JSX.Element | null)
+  activeIcon?: string | JSX.Element | null
+  inactiveIcon?: string | JSX.Element | null
   activeText?: string
   inactiveText?: string
   activeValue?: boolean | string | number
@@ -416,9 +416,9 @@ export interface TransferComponentProps {
     rightCheckChange?: (value: any[]) => void
   }
   slots?: {
-    default?: (formData: any, data: { option: any }) => JSX.Element | null
-    leftFooter?: (formData: any) => JSX.Element | null
-    rightFooter?: (formData: any) => JSX.Element | null
+    default?: (...args: any[]) => JSX.Element | null
+    leftFooter?: (...args: any[]) => JSX.Element | null
+    rightFooter?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
 }

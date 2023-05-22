@@ -35,6 +35,29 @@ export type FormItemProps = {
   style?: CSSProperties
 }
 
+// 定义联合类型和条件类型
+type ComponentPropsForComponent<T extends ComponentName> = T extends 'input'
+  ? InputComponentProps
+  : T extends 'autocomplete'
+  ? AutocompleteComponentProps
+  : T extends 'inputNumber'
+  ? InputNumberComponentProps
+  : T extends 'select'
+  ? SelectComponentProps
+  : T extends 'selectV2'
+  ? SelectV2ComponentProps
+  : T extends 'cascader'
+  ? CascaderComponentProps
+  : T extends 'switch'
+  ? SwitchComponentProps
+  : T extends 'rate'
+  ? RateComponentProps
+  : T extends 'colorPicker'
+  ? ColorPickerComponentProps
+  : T extends 'transfer'
+  ? TransferComponentProps
+  : any
+
 export interface FormSchema {
   /**
    * 唯一标识
@@ -59,17 +82,7 @@ export interface FormSchema {
   /**
    * 表单组件属性，具体可以查看element-plus文档
    */
-  componentProps?:
-    | InputComponentProps
-    | AutocompleteComponentProps
-    | InputNumberComponentProps
-    | SelectComponentProps
-    | SelectV2ComponentProps
-    | CascaderComponentProps
-    | SwitchComponentProps
-    | RateComponentProps
-    | ColorPickerComponentProps
-    | TransferComponentProps
+  componentProps?: ComponentPropsForComponent<ComponentName>
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

@@ -383,9 +383,7 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       suffixIcon: useIcon({ icon: 'ep:calendar' }),
-      prefixIcon: () => {
-        return unref(toggle) ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
-      }
+      prefixIcon: useIcon({ icon: 'ep:share' })
     }
   },
   {
@@ -394,12 +392,10 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        suffix: (data: any) => {
-          return unref(toggle) && data.field4
-            ? useIcon({ icon: 'ep:calendar' })
-            : useIcon({ icon: 'ep:share' })
+        suffix: () => {
+          return useIcon({ icon: 'ep:share' })
         },
-        prefix: useIcon({ icon: 'ep:calendar' })
+        prefix: () => useIcon({ icon: 'ep:calendar' })
       }
     }
   },
@@ -409,10 +405,8 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        prepend: useIcon({ icon: 'ep:calendar' }),
-        append: (data: any) => {
-          return data.field5 ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
-        }
+        prepend: () => useIcon({ icon: 'ep:calendar' }),
+        append: () => useIcon({ icon: 'ep:share' })
       }
     }
   },
@@ -459,7 +453,7 @@ const schema = reactive<FormSchema[]>([
         select: handleSelect
       },
       slots: {
-        default: (_, { item }) => {
+        default: ({ item }) => {
           return (
             <>
               <div class="value">{item?.value}</div>
@@ -549,9 +543,9 @@ const schema = reactive<FormSchema[]>([
             return null
           }
         },
-        prefix: useIcon({ icon: 'ep:calendar' }),
-        empty: (data: any) => {
-          return data.field5 ? useIcon({ icon: 'ep:calendar' }) : useIcon({ icon: 'ep:share' })
+        prefix: () => useIcon({ icon: 'ep:calendar' }),
+        empty: () => {
+          return useIcon({ icon: 'ep:share' })
         }
       }
     }
@@ -775,7 +769,7 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       options: options3,
       slots: {
-        default: (_, { data, node }) => {
+        default: ({ data, node }) => {
           return (
             <>
               <span>{data.label}</span>

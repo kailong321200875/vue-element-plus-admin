@@ -176,7 +176,7 @@ export default defineComponent({
       // const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
       const componentSlots = (item?.componentProps as any)?.slots || {}
       const slotsMap: Recordable = {
-        ...setItemComponentSlots(unref(formModel), componentSlots)
+        ...setItemComponentSlots(componentSlots)
       }
       // 如果是select组件，并且没有自定义模板，自动渲染options
       if (item.component === ComponentNameEnum.SELECT) {

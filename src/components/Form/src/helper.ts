@@ -118,13 +118,13 @@ export const setComponentProps = (item: FormSchema): Recordable => {
  * @param formModel 表单数据
  * @param slotsProps 插槽属性
  */
-export const setItemComponentSlots = (formModel: any, slotsProps: Recordable = {}): Recordable => {
+export const setItemComponentSlots = (slotsProps: Recordable = {}): Recordable => {
   const slotObj: Recordable = {}
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       if (isFunction(slotsProps[key])) {
         slotObj[key] = (...args: any[]) => {
-          return slotsProps[key]?.(formModel, ...args)
+          return slotsProps[key]?.(...args)
         }
       } else {
         slotObj[key] = () => {
