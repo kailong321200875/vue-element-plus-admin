@@ -1,4 +1,4 @@
-import { CSSProperties } from 'vue'
+import { CSSProperties, VNodeProps, VNode } from 'vue'
 import {
   InputProps,
   AutocompleteProps,
@@ -148,7 +148,7 @@ export interface InputNumberComponentProps {
   style?: CSSProperties
 }
 
-interface SelectOption {
+export interface SelectOption {
   label?: string
   disabled?: boolean
   value?: any
@@ -208,19 +208,14 @@ export interface SelectComponentProps {
     | 'right-end'
   maxCollapseTags?: number
   /**
-   * label别名
+   * 数据源的字段别名
    */
-  labelAlias?: string
-
-  /**
-   * value别名
-   */
-  valueAlias?: string
-
-  /**
-   * key别名
-   */
-  keyAlias?: string
+  props?: {
+    key?: string
+    value?: string
+    label?: string
+    children?: string
+  }
   on?: {
     change?: (value: string | number | boolean | Object) => void
     visibleChange?: (visible: boolean) => void
@@ -390,14 +385,17 @@ export interface ColorPickerComponentProps {
 
 export interface TransferComponentProps {
   value?: any[]
-  data?: Array<{ key; label; disabled }>
+  data?: any[]
   filterable?: boolean
   filterPlaceholder?: string
   filterMethod?: (query: string, item: any) => boolean
   targetOrder?: string
   titles?: string[]
   buttonTexts?: string[]
-  renderContent?: (h: any, option: any) => JSX.Element
+  renderContent?: (
+    h: (type: string, props: VNodeProps | null, children?: string) => VNode,
+    option: any
+  ) => JSX.Element
   format?: {
     noChecked?: string
     hasChecked?: string
@@ -411,7 +409,11 @@ export interface TransferComponentProps {
   rightDefaultChecked?: any[]
   validateEvent?: boolean
   on?: {
-    change?: (value: any[]) => void
+    change?: (
+      value: number | string,
+      direction: 'left' | 'right',
+      movedKeys: string[] | number[]
+    ) => void
     leftCheckChange?: (value: any[]) => void
     rightCheckChange?: (value: any[]) => void
   }
@@ -421,6 +423,36 @@ export interface TransferComponentProps {
     rightFooter?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
+}
+
+export interface RadioOption {
+  label?: string
+  value?: string | number | boolean
+  disabled?: boolean
+  [key: string]: any
+}
+export interface RadioComponentProps {
+  value?: string | number | boolean
+  label?: string | number | boolean
+  disabled?: boolean
+  border?: boolean
+  size?: ElementPlusSize
+  options?: RadioOption[]
+  /**
+   * 数据源的字段别名
+   */
+  props: {
+    label?: string
+    value?: string
+    disabled?: string
+  }
+  name?: string
+  on?: {
+    change?: (value: string | number | boolean) => void
+  }
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+  }
 }
 
 export interface ColProps {

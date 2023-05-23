@@ -21,7 +21,16 @@ import { set } from 'lodash-es'
 import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
 import { FormSchema, FormSetPropsType } from '@/types/form'
-import { ComponentNameEnum, SelectComponentProps, SelectOption } from '@/types/components.d'
+import {
+  ComponentNameEnum,
+  SelectComponentProps,
+  SelectOption,
+  RadioComponentProps
+} from '@/types/components.d'
+
+const { renderSelectOptions } = useRenderSelect()
+const { renderRadioOptions } = useRenderRadio()
+const { renderCheckboxOptions } = useRenderCheckbox()
 
 const { getPrefixCls } = useDesign()
 
@@ -181,7 +190,7 @@ export default defineComponent({
       // 如果是select组件，并且没有自定义模板，自动渲染options
       if (item.component === ComponentNameEnum.SELECT) {
         slotsMap.default = !componentSlots.default
-          ? () => renderOptions(item)
+          ? () => renderSelectOptions(item)
           : () => {
               return componentSlots.default(
                 unref((item?.componentProps as SelectComponentProps)?.options)
@@ -231,24 +240,52 @@ export default defineComponent({
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {{
             default: () => {
-              const Com = componentMap[item.component as string] as ReturnType<
-                typeof defineComponent
-              >
-
-              const { autoSetPlaceholder } = unref(getProps)
-
-              return slots[item.field] ? (
-                getSlot(slots, item.field, formModel.value)
-              ) : (
-                <Com
-                  vModel={formModel.value[item.field]}
-                  {...(autoSetPlaceholder && setTextPlaceholder(item))}
-                  {...setComponentProps(item)}
-                  style={item.componentProps?.style}
+              if (slots[item.field]) {
+                return getSlot(slots, item.field, formModel.value)
+              } else {
+                const Com = componentMap[item.component as string] as ReturnType<
+                  typeof defineComponent
                 >
-                  {{ ...slotsMap }}
-                </Com>
-              )
+
+                const { autoSetPlaceholder } = unref(getProps)
+
+                // 需要特殊处理的组件
+                const specialComponents = [ComponentNameEnum.RADIO]
+
+                if (specialComponents.findIndex((v) => v === item.component) !== -1) {
+                  switch (item.component) {
+                    case ComponentNameEnum.RADIO:
+                      const componentProps = item.componentProps as RadioComponentProps
+                      const valueAlias = componentProps?.props?.value || 'value'
+                      const labelAlias = componentProps?.props?.label || 'label'
+                      const disabledAlias = componentProps?.props?.disabled || 'disabled'
+
+                      return componentProps?.options?.map((v) => {
+                        return (
+                          <Com
+                            vModel={formModel.value[item.field]}
+                            {...setComponentProps(item)}
+                            label={v[valueAlias]}
+                            disabled={v[disabledAlias]}
+                          >
+                            {v[labelAlias]}
+                          </Com>
+                        )
+                      })
+                  }
+                }
+
+                return (
+                  <Com
+                    vModel={formModel.value[item.field]}
+                    {...(autoSetPlaceholder && setTextPlaceholder(item))}
+                    {...setComponentProps(item)}
+                    style={item.componentProps?.style}
+                  >
+                    {{ ...slotsMap }}
+                  </Com>
+                )
+              }
             }
           }}
         </ElFormItem>
@@ -256,23 +293,20 @@ export default defineComponent({
     }
 
     // 渲染options
-    const renderOptions = (item: FormSchema) => {
-      switch (item.component) {
-        case ComponentNameEnum.SELECT:
-          const { renderSelectOptions } = useRenderSelect()
-          return renderSelectOptions(item)
-        case 'Radio':
-        case 'RadioButton':
-          const { renderRadioOptions } = useRenderRadio()
-          return renderRadioOptions(item)
-        case 'Checkbox':
-        case 'CheckboxButton':
-          const { renderCheckboxOptions } = useRenderCheckbox()
-          return renderCheckboxOptions(item)
-        default:
-          break
-      }
-    }
+    // const renderOptions = (item: FormSchema) => {
+    //   switch (item.component) {
+    //     case ComponentNameEnum.SELECT:
+    //       return renderSelectOptions(item)
+    //     case ComponentNameEnum.RADIO:
+    //     case 'RadioButton':
+    //       return renderRadioOptions(item)
+    //     case 'Checkbox':
+    //     case 'CheckboxButton':
+    //       return renderCheckboxOptions(item)
+    //     default:
+    //       break
+    //   }
+    // }
 
     // 过滤传入Form组件的属性
     const getFormBindValue = () => {

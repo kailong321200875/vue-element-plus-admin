@@ -36,7 +36,7 @@
     "dayjs": "^1.11.7",
     "echarts": "^5.4.2",
     "echarts-wordcloud": "^2.1.0",
-    "element-plus": "2.3.5",
+    "element-plus": "^2.3.5",
     "intro.js": "^7.0.1",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.0",

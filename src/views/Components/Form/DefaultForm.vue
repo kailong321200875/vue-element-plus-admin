@@ -8,7 +8,7 @@ import { useAppStore } from '@/store/modules/app'
 import { FormSchema } from '@/types/form'
 import { ComponentOptions, SelectOption, SelectComponentProps } from '@/types/components'
 import { useForm } from '@/hooks/web/useForm'
-import { ElOption, ElOptionGroup } from 'element-plus'
+import { ElOption, ElOptionGroup, ElButton } from 'element-plus'
 
 const appStore = useAppStore()
 
@@ -840,91 +840,116 @@ const schema = reactive<FormSchema[]>([
     field: 'field34',
     label: t('formDemo.transfer'),
     component: 'Divider'
+  },
+  {
+    field: 'field35',
+    label: t('formDemo.default'),
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc'
+      },
+      data: generateData()
+    },
+    value: [],
+    colProps: {
+      span: 24
+    }
+  },
+  {
+    field: 'field36',
+    label: t('formDemo.slot'),
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc'
+      },
+      filterable: true,
+      leftDefaultChecked: [2, 3],
+      rightDefaultChecked: [1],
+      titles: ['Source', 'Target'],
+      buttonTexts: ['To Left', 'To Right'],
+      format: {
+        noChecked: '${total}',
+        hasChecked: '${checked}/${total}'
+      },
+      data: generateData(),
+      slots: {
+        default: ({ option }) => {
+          return (
+            <span>
+              {option.value} - {option.desc}
+            </span>
+          )
+        },
+        leftFooter: () => {
+          return (
+            <ElButton class="transfer-footer" size="small">
+              Operation
+            </ElButton>
+          )
+        },
+        rightFooter: () => {
+          return (
+            <ElButton class="transfer-footer" size="small">
+              Operation
+            </ElButton>
+          )
+        }
+      }
+    },
+    value: [1],
+    colProps: {
+      span: 24
+    }
+  },
+  {
+    field: 'field37',
+    label: `${t('formDemo.render')}`,
+    component: 'Transfer',
+    componentProps: {
+      props: {
+        key: 'value',
+        label: 'desc',
+        disabled: 'disabled'
+      },
+      leftDefaultChecked: [2, 3],
+      rightDefaultChecked: [1],
+      data: generateData(),
+      renderContent: (h, option) => {
+        return h('span', null, `${option.value} - ${option.desc}`)
+      }
+    },
+    value: [1],
+    colProps: {
+      span: 24
+    }
+  },
+  {
+    field: 'field38',
+    label: t('formDemo.radio'),
+    component: 'Divider'
+  },
+  {
+    field: 'field39',
+    label: t('formDemo.default'),
+    component: 'Radio',
+    componentProps: {
+      options: [
+        {
+          // disabled: true,
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ]
+    }
   }
-  // {
-  //   field: 'field35',
-  //   label: t('formDemo.default'),
-  //   component: 'Transfer',
-  //   componentProps: {
-  //     props: {
-  //       key: 'value',
-  //       label: 'desc',
-  //       disabled: 'disabled'
-  //     },
-  //     data: generateData()
-  //   },
-  //   value: [],
-  //   colProps: {
-  //     span: 24
-  //   }
-  // },
-  // {
-  //   field: 'field36',
-  //   label: t('formDemo.slot'),
-  //   component: 'Transfer',
-  //   componentProps: {
-  //     props: {
-  //       key: 'value',
-  //       label: 'desc',
-  //       disabled: 'disabled'
-  //     },
-  //     leftDefaultChecked: [2, 3],
-  //     rightDefaultChecked: [1],
-  //     data: generateData(),
-  //     slots: {
-  //       default: true
-  //     }
-  //   },
-  //   value: [1],
-  //   colProps: {
-  //     span: 24
-  //   }
-  // },
-  // {
-  //   field: 'field37',
-  //   label: `${t('formDemo.render')}`,
-  //   component: 'Transfer',
-  //   componentProps: {
-  //     props: {
-  //       key: 'value',
-  //       label: 'desc',
-  //       disabled: 'disabled'
-  //     },
-  //     leftDefaultChecked: [2, 3],
-  //     rightDefaultChecked: [1],
-  //     data: generateData(),
-  //     renderContent: (h: Fn, option: Recordable) => {
-  //       return h('span', null, `${option.value} - ${option.desc}`)
-  //     }
-  //   },
-  //   value: [1],
-  //   colProps: {
-  //     span: 24
-  //   }
-  // },
-  // {
-  //   field: 'field38',
-  //   label: t('formDemo.radio'),
-  //   component: 'Divider'
-  // },
-  // {
-  //   field: 'field39',
-  //   label: t('formDemo.default'),
-  //   component: 'Radio',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         disabled: true,
-  //         label: 'option-1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option-2',
-  //         value: '2'
-  //       }
-  //     ]
-  //   }
-  // },
   // {
   //   field: 'field40',
   //   label: t('formDemo.button'),
@@ -1359,5 +1384,10 @@ const changeToggle = () => {
     border-radius: 50%;
     transform: translateX(-50%);
   }
+}
+
+.transfer-footer {
+  margin-left: 15px;
+  padding: 6px 5px;
 }
 </style>

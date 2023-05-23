@@ -8,8 +8,8 @@ export const useRenderSelect = () => {
     const componentsProps = item.componentProps as SelectComponentProps
     const optionGroupDefaultSlot = componentsProps.slots?.optionGroupDefault
     // 如果有别名，就取别名
-    const labelAlias = componentsProps?.labelAlias
-    const keyAlias = componentsProps?.keyAlias
+    const labelAlias = componentsProps?.props?.label
+    const keyAlias = componentsProps?.props?.key
     return componentsProps?.options?.map((option) => {
       if (option?.options?.length) {
         return optionGroupDefaultSlot ? (
@@ -34,9 +34,9 @@ export const useRenderSelect = () => {
   const renderSelectOptionItem = (item: FormSchema, option: SelectOption) => {
     // 如果有别名，就取别名
     const componentsProps = item.componentProps as SelectComponentProps
-    const labelAlias = componentsProps?.labelAlias
-    const valueAlias = componentsProps?.valueAlias
-    const keyAlias = componentsProps?.keyAlias
+    const labelAlias = componentsProps?.props?.label
+    const valueAlias = componentsProps?.props?.value
+    const keyAlias = componentsProps?.props?.key
     const optionDefaultSlot = componentsProps.slots?.optionDefault
 
     return (

@@ -5,7 +5,7 @@ import { PlaceholderMoel } from './types'
 import { FormSchema } from '@/types/form.d'
 import { ColProps, ComponentNameEnum } from '@/types/components.d'
 import { isFunction } from '@/utils/is'
-import { firstUpperCase } from '@/utils'
+import { firstUpperCase, humpToDash } from '@/utils'
 
 const { t } = useI18n()
 
@@ -123,11 +123,11 @@ export const setItemComponentSlots = (slotsProps: Recordable = {}): Recordable =
   for (const key in slotsProps) {
     if (slotsProps[key]) {
       if (isFunction(slotsProps[key])) {
-        slotObj[key] = (...args: any[]) => {
+        slotObj[humpToDash(key)] = (...args: any[]) => {
           return slotsProps[key]?.(...args)
         }
       } else {
-        slotObj[key] = () => {
+        slotObj[humpToDash(key)] = () => {
           return slotsProps[key]
         }
       }

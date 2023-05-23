@@ -1,9 +1,13 @@
 import { FormSchema } from '@/types/form'
 import { ElRadio, ElRadioButton } from 'element-plus'
 import { defineComponent } from 'vue'
+import { ComponentNameEnum } from '@/types/components.d'
 
 export const useRenderRadio = () => {
-  const renderRadioOptions = (item: FormSchema) => {
+  const renderRadioOptions = (
+    item: FormSchema,
+    type?: ComponentNameEnum.RADIO | ComponentNameEnum.RADIO_BUTTON = ComponentNameEnum.RADIO
+  ) => {
     // 如果有别名，就取别名
     const labelAlias = item?.componentProps?.optionsAlias?.labelField
     const valueAlias = item?.componentProps?.optionsAlias?.valueField
