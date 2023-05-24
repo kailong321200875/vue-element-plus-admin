@@ -183,27 +183,7 @@ export default defineComponent({
     const renderFormItem = (item: FormSchema) => {
       // 单独给只有options属性的组件做判断
       // const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
-      const componentSlots = (item?.componentProps as any)?.slots || {}
-      const slotsMap: Recordable = {
-        ...setItemComponentSlots(componentSlots)
-      }
-      // 如果是select组件，并且没有自定义模板，自动渲染options
-      if (item.component === ComponentNameEnum.SELECT) {
-        slotsMap.default = !componentSlots.default
-          ? () => renderSelectOptions(item)
-          : () => {
-              return componentSlots.default(
-                unref((item?.componentProps as SelectComponentProps)?.options)
-              )
-            }
-      }
 
-      // 虚拟列表
-      if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
-        slotsMap.default = ({ item }: any) => {
-          return componentSlots.default(item)
-        }
-      }
       // if (
       //   item?.component !== 'SelectV2' &&
       //   item?.component !== 'Cascader' &&
@@ -268,11 +248,48 @@ export default defineComponent({
                             label={v[valueAlias]}
                             disabled={v[disabledAlias]}
                           >
-                            {v[labelAlias]}
+                            {() =>
+                              componentProps?.slots?.default
+                                ? componentProps?.slots?.default({ option: v })
+                                : v[labelAlias]
+                            }
                           </Com>
                         )
                       })
                   }
+                }
+
+                const componentSlots = (item?.componentProps as any)?.slots || {}
+                const slotsMap: Recordable = {
+                  ...setItemComponentSlots(componentSlots)
+                }
+                // 如果是select组件，并且没有自定义模板，自动渲染options
+                if (item.component === ComponentNameEnum.SELECT) {
+                  slotsMap.default = !componentSlots.default
+                    ? () => renderSelectOptions(item)
+                    : () => {
+                        return componentSlots.default(
+                          unref((item?.componentProps as SelectComponentProps)?.options)
+                        )
+                      }
+                }
+
+                // 虚拟列表
+                if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
+                  slotsMap.default = ({ item }) => {
+                    return componentSlots.default(item)
+                  }
+                }
+
+                // 单选框组
+                if (item.component === ComponentNameEnum.RADIO_GROUP) {
+                  slotsMap.default = !componentSlots.default
+                    ? () => renderRadioOptions(item)
+                    : () => {
+                        return componentSlots.default(
+                          unref((item?.componentProps as RadioComponentProps)?.options)
+                        )
+                      }
                 }
 
                 return (
@@ -280,7 +297,7 @@ export default defineComponent({
                     vModel={formModel.value[item.field]}
                     {...(autoSetPlaceholder && setTextPlaceholder(item))}
                     {...setComponentProps(item)}
-                    style={item.componentProps?.style}
+                    style={item.componentProps?.style || {}}
                   >
                     {{ ...slotsMap }}
                   </Com>

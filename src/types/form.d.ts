@@ -13,7 +13,8 @@ import {
   RateComponentProps,
   ColorPickerComponentProps,
   TransferComponentProps,
-  RadioComponentProps
+  RadioComponentProps,
+  RadioGroupComponentProps
 } from '@/types/components'
 import { FormValueType, FormValueType } from '@/types/form'
 import type { AxiosPromise } from 'axios'
@@ -35,31 +36,6 @@ export type FormItemProps = {
   inlineMessage?: boolean
   style?: CSSProperties
 }
-
-// 定义联合类型和条件类型
-type ComponentPropsForComponent<T extends ComponentName> = T extends 'Input'
-  ? InputComponentProps
-  : T extends 'Autocomplete'
-  ? AutocompleteComponentProps
-  : T extends 'InputNumber'
-  ? InputNumberComponentProps
-  : T extends 'Select'
-  ? SelectComponentProps
-  : T extends 'SelectV2'
-  ? SelectV2ComponentProps
-  : T extends 'Cascader'
-  ? CascaderComponentProps
-  : T extends 'Switch'
-  ? SwitchComponentProps
-  : T extends 'Rate'
-  ? RateComponentProps
-  : T extends 'ColorPicker'
-  ? ColorPickerComponentProps
-  : T extends 'Transfer'
-  ? TransferComponentProps
-  : T extends 'Radio'
-  ? RadioComponentProps
-  : any
 
 export interface FormSchema {
   /**
@@ -97,6 +73,7 @@ export interface FormSchema {
     | ColorPickerComponentProps
     | TransferComponentProps
     | RadioComponentProps
+    | RadioGroupComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

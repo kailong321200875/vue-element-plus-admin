@@ -241,6 +241,7 @@ export default {
     transfer: '穿梭框',
     render: '渲染器',
     radio: '单选框',
+    radioGroup: '单选框组',
     button: '按钮',
     checkbox: '多选框',
     slider: '滑块',

@@ -25,7 +25,7 @@ import { ComponentName } from '@/types/components'
 
 const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadio,
-  // RadioGroup: ElRadioGroup,
+  RadioGroup: ElRadioGroup,
   Checkbox: ElCheckboxGroup,
   CheckboxButton: ElCheckboxGroup,
   Input: ElInput,

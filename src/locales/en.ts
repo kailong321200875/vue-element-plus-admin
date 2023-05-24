@@ -241,6 +241,7 @@ export default {
     transfer: 'Transfer',
     render: 'Render',
     radio: 'Radio',
+    radioGroup: 'Radio Group',
     button: 'Button',
     checkbox: 'Checkbox',
     slider: 'Slider',

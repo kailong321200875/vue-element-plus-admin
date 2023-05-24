@@ -6,9 +6,14 @@ import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
 import { FormSchema } from '@/types/form'
-import { ComponentOptions, SelectOption, SelectComponentProps } from '@/types/components'
+import {
+  ComponentOptions,
+  SelectOption,
+  SelectComponentProps,
+  RadioOption
+} from '@/types/components'
 import { useForm } from '@/hooks/web/useForm'
-import { ElOption, ElOptionGroup, ElButton } from 'element-plus'
+import { ElOption, ElOptionGroup, ElButton, ElRadio } from 'element-plus'
 
 const appStore = useAppStore()
 
@@ -948,6 +953,81 @@ const schema = reactive<FormSchema[]>([
           value: '2'
         }
       ]
+    }
+  },
+  {
+    field: 'field39-1',
+    label: t('formDemo.slot'),
+    component: 'Radio',
+    componentProps: {
+      options: [
+        {
+          // disabled: true,
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ],
+      slots: {
+        default: ({ option }) => {
+          return (
+            <>
+              <span>{option.label}</span>
+              <span> ({option.value}) </span>
+            </>
+          )
+        }
+      }
+    }
+  },
+  {
+    field: 'field39-2',
+    label: t('formDemo.radioGroup'),
+    component: 'RadioGroup',
+    componentProps: {
+      options: [
+        {
+          // disabled: true,
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field39-3',
+    label: `${t('formDemo.radioGroup')}${t('formDemo.slot')}`,
+    component: 'RadioGroup',
+    componentProps: {
+      options: [
+        {
+          // disabled: true,
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ],
+      slots: {
+        default: (options: RadioOption[]) => {
+          return options?.map((v) => {
+            return (
+              <ElRadio label={v.value}>
+                {v.label}({v.value})
+              </ElRadio>
+            )
+          })
+        }
+      }
     }
   }
   // {
