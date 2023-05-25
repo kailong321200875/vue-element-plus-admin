@@ -14,6 +14,7 @@ export enum ComponentNameEnum {
   RADIO_GROUP = 'RadioGroup',
   RADIO_BUTTON = 'RadioButton',
   CHECKBOX = 'Checkbox',
+  CHECKBOX_GROUP = 'CheckboxGroup',
   CHECKBOX_BUTTON = 'CheckboxButton',
   INPUT = 'Input',
   AUTOCOMPLETE = 'Autocomplete',
@@ -432,6 +433,7 @@ export interface RadioOption {
   disabled?: boolean
   [key: string]: any
 }
+
 export interface RadioComponentProps {
   value?: string | number | boolean
   label?: string | number | boolean
@@ -511,6 +513,50 @@ export interface RadioButtonComponentProps {
     default?: (...args: any[]) => JSX.Element | null
   }
   style?: CSSProperties
+}
+
+export interface CheckboxOption {
+  label?: string
+  value?: string | number | boolean
+  disabled?: boolean
+  [key: string]: any
+}
+
+export interface CheckboxComponentProps {
+  value?: string | number | boolean
+  label?: string | number | boolean | any
+  trueLabel?: string | number
+  falseLabel?: string | number
+  disabled?: boolean
+  border?: boolean
+  size?: ElementPlusSize
+  name?: string
+  checked?: boolean
+  indeterminate?: boolean
+  validateEvent?: boolean
+  tabindex?: number | string
+  id?: string
+  controls?: boolean
+  on?: {
+    change?: (value: string | number | boolean) => void
+  }
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+  }
+  options: CheckboxOption[]
+  /**
+   * 数据源的字段别名
+   */
+  props: {
+    label?: string
+    value?: string
+    disabled?: string
+  }
+  style?: CSSProperties
+}
+
+export interface CheckboxGroupComponentProps {
+  value?: string[] | number[]
 }
 
 export interface ColProps {

@@ -1003,7 +1003,7 @@ const schema = reactive<FormSchema[]>([
   },
   {
     field: 'field39-3',
-    label: `${t('formDemo.radioGroup')}${t('formDemo.slot')}`,
+    label: `${t('formDemo.radioGroup')} ${t('formDemo.slot')}`,
     component: 'RadioGroup',
     componentProps: {
       options: [
@@ -1048,8 +1048,8 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'field40',
-    label: `${t('formDemo.button')}${t('formDemo.slot')}`,
+    field: 'field40-1',
+    label: `${t('formDemo.button')} ${t('formDemo.slot')}`,
     component: 'RadioButton',
     componentProps: {
       options: [
@@ -1079,16 +1079,68 @@ const schema = reactive<FormSchema[]>([
     field: 'field41',
     label: t('formDemo.checkbox'),
     component: 'Divider'
+  },
+  {
+    field: 'field42',
+    label: t('formDemo.default'),
+    component: 'Checkbox',
+    componentProps: {
+      options: [
+        {
+          disabled: true,
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        },
+        {
+          label: 'option-3',
+          value: '3'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field42-1',
+    label: t('formDemo.slot'),
+    component: 'Checkbox',
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        },
+        {
+          label: 'option-3',
+          value: '3'
+        }
+      ],
+      slots: {
+        default: ({ option }) => {
+          return (
+            <>
+              <span>{option.label}</span>
+              <span> ({option.value}) </span>
+            </>
+          )
+        }
+      }
+    }
   }
   // {
-  //   field: 'field42',
-  //   label: t('formDemo.default'),
-  //   component: 'Checkbox',
+  //   field: 'field42-2',
+  //   label: t('formDemo.checkboxGroup'),
+  //   component: 'CheckboxGroup',
   //   value: [],
   //   componentProps: {
   //     options: [
   //       {
-  //         disabled: true,
   //         label: 'option-1',
   //         value: '1'
   //       },
@@ -1098,11 +1150,11 @@ const schema = reactive<FormSchema[]>([
   //       },
   //       {
   //         label: 'option-3',
-  //         value: '23'
+  //         value: '3'
   //       }
   //     ]
   //   }
-  // },
+  // }
   // {
   //   field: 'field43',
   //   label: t('formDemo.button'),

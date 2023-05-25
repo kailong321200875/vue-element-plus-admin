@@ -25,7 +25,8 @@ import {
   ComponentNameEnum,
   SelectComponentProps,
   SelectOption,
-  RadioComponentProps
+  RadioComponentProps,
+  CheckboxComponentProps
 } from '@/types/components.d'
 
 const { renderSelectOptions } = useRenderSelect()
@@ -230,33 +231,33 @@ export default defineComponent({
                 const { autoSetPlaceholder } = unref(getProps)
 
                 // 需要特殊处理的组件
-                const specialComponents = [ComponentNameEnum.RADIO]
+                const specialComponents = [ComponentNameEnum.RADIO, ComponentNameEnum.CHECKBOX]
 
                 if (specialComponents.findIndex((v) => v === item.component) !== -1) {
-                  switch (item.component) {
-                    case ComponentNameEnum.RADIO:
-                      const componentProps = item.componentProps as RadioComponentProps
-                      const valueAlias = componentProps?.props?.value || 'value'
-                      const labelAlias = componentProps?.props?.label || 'label'
-                      const disabledAlias = componentProps?.props?.disabled || 'disabled'
+                  const componentProps =
+                    item.component === ComponentNameEnum.RADIO
+                      ? (item.componentProps as RadioComponentProps)
+                      : (item.componentProps as CheckboxComponentProps)
 
-                      return componentProps?.options?.map((v) => {
-                        return (
-                          <Com
-                            vModel={formModel.value[item.field]}
-                            {...setComponentProps(item)}
-                            label={v[valueAlias]}
-                            disabled={v[disabledAlias]}
-                          >
-                            {() =>
-                              componentProps?.slots?.default
-                                ? componentProps?.slots?.default({ option: v })
-                                : v[labelAlias]
-                            }
-                          </Com>
-                        )
-                      })
-                  }
+                  const valueAlias = componentProps?.props?.value || 'value'
+                  const labelAlias = componentProps?.props?.label || 'label'
+                  const disabledAlias = componentProps?.props?.disabled || 'disabled'
+                  return componentProps?.options?.map((v) => {
+                    return (
+                      <Com
+                        vModel={formModel.value[item.field]}
+                        {...setComponentProps(item)}
+                        label={v[valueAlias]}
+                        disabled={v[disabledAlias]}
+                      >
+                        {() =>
+                          componentProps?.slots?.default
+                            ? componentProps?.slots?.default({ option: v })
+                            : v[labelAlias]
+                        }
+                      </Com>
+                    )
+                  })
                 }
 
                 const componentSlots = (item?.componentProps as any)?.slots || {}

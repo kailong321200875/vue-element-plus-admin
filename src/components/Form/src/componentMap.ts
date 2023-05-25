@@ -17,7 +17,8 @@ import {
   ElTransfer,
   ElAutocomplete,
   ElDivider,
-  ElRadio
+  ElRadio,
+  ElCheckbox
 } from 'element-plus'
 import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
@@ -27,7 +28,8 @@ const componentMap: Recordable<Component, ComponentName> = {
   Radio: ElRadio,
   RadioGroup: ElRadioGroup,
   RadioButton: ElRadioGroup,
-  Checkbox: ElCheckboxGroup,
+  Checkbox: ElCheckbox,
+  CheckboxGroup: ElCheckboxGroup,
   CheckboxButton: ElCheckboxGroup,
   Input: ElInput,
   Autocomplete: ElAutocomplete,

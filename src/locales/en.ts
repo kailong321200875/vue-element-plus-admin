@@ -244,6 +244,8 @@ export default {
     radioGroup: 'Radio Group',
     button: 'Button',
     checkbox: 'Checkbox',
+    checkboxButton: 'Checkbox Button',
+    checkboxGroup: 'Checkbox Group',
     slider: 'Slider',
     datePicker: 'Date Picker',
     shortcuts: 'Shortcuts',

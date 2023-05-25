@@ -15,7 +15,8 @@ import {
   TransferComponentProps,
   RadioComponentProps,
   RadioGroupComponentProps,
-  RadioButtonComponentProps
+  RadioButtonComponentProps,
+  CheckboxComponentProps
 } from '@/types/components'
 import { FormValueType, FormValueType } from '@/types/form'
 import type { AxiosPromise } from 'axios'
@@ -76,6 +77,7 @@ export interface FormSchema {
     | RadioComponentProps
     | RadioGroupComponentProps
     | RadioButtonComponentProps
+    | CheckboxComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

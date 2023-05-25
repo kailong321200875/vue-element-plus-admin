@@ -244,6 +244,8 @@ export default {
     radioGroup: '单选框组',
     button: '按钮',
     checkbox: '多选框',
+    checkboxButton: '多选框按钮',
+    checkboxGroup: '多选框组',
     slider: '滑块',
     datePicker: '日期选择器',
     shortcuts: '快捷选项',
