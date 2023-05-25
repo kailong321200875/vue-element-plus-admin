@@ -281,8 +281,11 @@ export default defineComponent({
                   }
                 }
 
-                // 单选框组
-                if (item.component === ComponentNameEnum.RADIO_GROUP) {
+                // 单选框组和按钮样式
+                if (
+                  item.component === ComponentNameEnum.RADIO_GROUP ||
+                  item.component === ComponentNameEnum.RADIO_BUTTON
+                ) {
                   slotsMap.default = !componentSlots.default
                     ? () => renderRadioOptions(item)
                     : () => {

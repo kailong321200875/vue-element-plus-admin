@@ -485,6 +485,34 @@ export interface RadioGroupComponentProps {
   style?: CSSProperties
 }
 
+export interface RadioButtonComponentProps {
+  value?: string | number | boolean
+  size?: ElementPlusSize
+  disabled?: boolean
+  textColor?: string
+  fill?: string
+  validateEvent?: boolean
+  label?: string
+  name?: string
+  id?: string
+  options?: RadioOption[]
+  /**
+   * 数据源的字段别名
+   */
+  props: {
+    label?: string
+    value?: string
+    disabled?: string
+  }
+  on?: {
+    change?: (value: string | number | boolean) => void
+  }
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+  }
+  style?: CSSProperties
+}
+
 export interface ColProps {
   span?: number
   xs?: number

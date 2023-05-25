@@ -13,7 +13,7 @@ import {
   RadioOption
 } from '@/types/components'
 import { useForm } from '@/hooks/web/useForm'
-import { ElOption, ElOptionGroup, ElButton, ElRadio } from 'element-plus'
+import { ElOption, ElOptionGroup, ElButton, ElRadio, ElRadioButton } from 'element-plus'
 
 const appStore = useAppStore()
 
@@ -1029,30 +1029,57 @@ const schema = reactive<FormSchema[]>([
         }
       }
     }
+  },
+  {
+    field: 'field40',
+    label: t('formDemo.button'),
+    component: 'RadioButton',
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ]
+    }
+  },
+  {
+    field: 'field40',
+    label: `${t('formDemo.button')}${t('formDemo.slot')}`,
+    component: 'RadioButton',
+    componentProps: {
+      options: [
+        {
+          label: 'option-1',
+          value: '1'
+        },
+        {
+          label: 'option-2',
+          value: '2'
+        }
+      ],
+      slots: {
+        default: (options: RadioOption[]) => {
+          return options?.map((v) => {
+            return (
+              <ElRadioButton label={v.value}>
+                {v.label}({v.value})
+              </ElRadioButton>
+            )
+          })
+        }
+      }
+    }
+  },
+  {
+    field: 'field41',
+    label: t('formDemo.checkbox'),
+    component: 'Divider'
   }
-  // {
-  //   field: 'field40',
-  //   label: t('formDemo.button'),
-  //   component: 'RadioButton',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         disabled: true,
-  //         label: 'option-1',
-  //         value: '1'
-  //       },
-  //       {
-  //         label: 'option-2',
-  //         value: '2'
-  //       }
-  //     ]
-  //   }
-  // },
-  // {
-  //   field: 'field41',
-  //   label: t('formDemo.checkbox'),
-  //   component: 'Divider'
-  // },
   // {
   //   field: 'field42',
   //   label: t('formDemo.default'),
