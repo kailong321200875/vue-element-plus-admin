@@ -1,4 +1,3 @@
-import { FormSchema } from '@/types/form'
 import { CSSProperties, VNodeProps, VNode } from 'vue'
 import {
   InputProps,
@@ -8,6 +7,7 @@ import {
   CascaderNode,
   CascaderValue
 } from 'element-plus'
+import type { AxiosPromise } from 'axios'
 
 export interface PlaceholderMoel {
   placeholder?: string
@@ -15,15 +15,6 @@ export interface PlaceholderMoel {
   endPlaceholder?: string
   rangeSeparator?: string
 }
-
-export type FormProps = {
-  schema?: FormSchema[]
-  isCol?: boolean
-  model?: Recordable
-  autoSetPlaceholder?: boolean
-  isCustom?: boolean
-  labelWidth?: string | number
-} & Recordable
 
 export enum ComponentNameEnum {
   RADIO_GROUP = 'RadioGroup',
@@ -750,8 +741,6 @@ export interface ColProps {
   tag?: string
 }
 
-import type { AxiosPromise } from 'axios'
-
 export type FormSetPropsType = {
   field: string
   path: string
@@ -837,3 +826,12 @@ export interface FormSchema {
    */
   api?: <T = any>() => AxiosPromise<T>
 }
+
+export type FormProps = {
+  schema?: FormSchema[]
+  isCol?: boolean
+  model?: Recordable
+  autoSetPlaceholder?: boolean
+  isCustom?: boolean
+  labelWidth?: string | number
+} & Recordable
