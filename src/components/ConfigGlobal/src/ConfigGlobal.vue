@@ -7,7 +7,6 @@ import { useWindowSize } from '@vueuse/core'
 import { useAppStore } from '@/store/modules/app'
 import { setCssVar } from '@/utils'
 import { useDesign } from '@/hooks/web/useDesign'
-import { ElementPlusSize } from '@/types/elementPlus'
 
 const { variables } = useDesign()
 

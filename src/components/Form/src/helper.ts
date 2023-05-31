@@ -1,9 +1,7 @@
 import { useI18n } from '@/hooks/web/useI18n'
 import { unref, type Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
-import { PlaceholderMoel } from './types'
-import { FormSchema } from '@/types/form.d'
-import { ColProps, ComponentNameEnum } from '@/types/components.d'
+import { PlaceholderMoel, FormSchema, ComponentNameEnum, ColProps } from './types'
 import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
 
@@ -39,7 +37,8 @@ export const setTextPlaceholder = (schema: FormSchema): PlaceholderMoel => {
     const twoTextMap = ['datetimerange', 'daterange', 'monthrange', 'datetimerange', 'daterange']
     if (
       twoTextMap.includes(
-        (schema?.componentProps?.type || schema?.componentProps?.isRange) as string
+        ((schema?.componentProps as any)?.type ||
+          (schema?.componentProps as any)?.isRange) as string
       )
     ) {
       return {

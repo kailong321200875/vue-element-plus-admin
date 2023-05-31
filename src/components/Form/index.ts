@@ -1,6 +1,6 @@
 import Form from './src/Form.vue'
 import { ElForm } from 'element-plus'
-import { FormSchema, FormSetPropsType } from '@/types/form'
+import { FormSchema, FormSetPropsType } from './src/types'
 
 export interface FormExpose {
   setValues: (data: Recordable) => void

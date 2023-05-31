@@ -1,6 +1,5 @@
 import { ElOption, ElOptionGroup } from 'element-plus'
-import { FormSchema } from '@/types/form'
-import { SelectComponentProps, SelectOption } from '@/types/components'
+import { FormSchema, SelectComponentProps, SelectOption } from '../types'
 
 export const useRenderSelect = () => {
   // 渲染 select options

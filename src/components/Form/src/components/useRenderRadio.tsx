@@ -1,7 +1,6 @@
-import { FormSchema } from '@/types/form'
+import { FormSchema, ComponentNameEnum, RadioGroupComponentProps } from '../types'
 import { ElRadio, ElRadioButton } from 'element-plus'
 import { defineComponent } from 'vue'
-import { ComponentNameEnum, RadioGroupComponentProps } from '@/types/components.d'
 
 export const useRenderRadio = () => {
   const renderRadioOptions = (item: FormSchema) => {

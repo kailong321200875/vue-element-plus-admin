@@ -20,14 +20,14 @@ import { findIndex } from '@/utils'
 import { set } from 'lodash-es'
 import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
-import { FormSchema, FormSetPropsType } from '@/types/form'
 import {
+  FormSchema,
+  FormSetPropsType,
   ComponentNameEnum,
   SelectComponentProps,
-  SelectOption,
-  RadioComponentProps,
-  CheckboxComponentProps
-} from '@/types/components.d'
+  RadioGroupComponentProps,
+  CheckboxGroupComponentProps
+} from './types'
 
 const { renderSelectOptions } = useRenderSelect()
 const { renderRadioOptions } = useRenderRadio()
@@ -230,36 +230,6 @@ export default defineComponent({
 
                 const { autoSetPlaceholder } = unref(getProps)
 
-                // 需要特殊处理的组件
-                const specialComponents = [ComponentNameEnum.RADIO, ComponentNameEnum.CHECKBOX]
-
-                if (specialComponents.findIndex((v) => v === item.component) !== -1) {
-                  const componentProps =
-                    item.component === ComponentNameEnum.RADIO
-                      ? (item.componentProps as RadioComponentProps)
-                      : (item.componentProps as CheckboxComponentProps)
-
-                  const valueAlias = componentProps?.props?.value || 'value'
-                  const labelAlias = componentProps?.props?.label || 'label'
-                  const disabledAlias = componentProps?.props?.disabled || 'disabled'
-                  return componentProps?.options?.map((v) => {
-                    return (
-                      <Com
-                        vModel={formModel.value[item.field]}
-                        {...setComponentProps(item)}
-                        label={v[valueAlias]}
-                        disabled={v[disabledAlias]}
-                      >
-                        {() =>
-                          componentProps?.slots?.default
-                            ? componentProps?.slots?.default({ option: v })
-                            : v[labelAlias]
-                        }
-                      </Com>
-                    )
-                  })
-                }
-
                 const componentSlots = (item?.componentProps as any)?.slots || {}
                 const slotsMap: Recordable = {
                   ...setItemComponentSlots(componentSlots)
@@ -291,7 +261,21 @@ export default defineComponent({
                     ? () => renderRadioOptions(item)
                     : () => {
                         return componentSlots.default(
-                          unref((item?.componentProps as RadioComponentProps)?.options)
+                          unref((item?.componentProps as CheckboxGroupComponentProps)?.options)
+                        )
+                      }
+                }
+
+                // 多选框组和按钮样式
+                if (
+                  item.component === ComponentNameEnum.CHECKBOX_GROUP ||
+                  item.component === ComponentNameEnum.CHECKBOX_BUTTON
+                ) {
+                  slotsMap.default = !componentSlots.default
+                    ? () => renderCheckboxOptions(item)
+                    : () => {
+                        return componentSlots.default(
+                          unref((item?.componentProps as RadioGroupComponentProps)?.options)
                         )
                       }
                 }
