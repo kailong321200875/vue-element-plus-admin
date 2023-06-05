@@ -280,7 +280,10 @@ export default {
     set: 'Set',
     subitem: 'Subitem',
     formValidation: 'Form validation',
-    verifyReset: 'Verify reset'
+    verifyReset: 'Verify reset',
+    // 富文本编辑器
+    richText: 'Rich text',
+    form: 'Form'
   },
   guideDemo: {
     guide: 'Guide',

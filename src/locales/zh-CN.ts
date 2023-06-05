@@ -279,7 +279,10 @@ export default {
     set: '设置',
     subitem: '子项',
     formValidation: '表单验证',
-    verifyReset: '验证重置'
+    verifyReset: '验证重置',
+    // 富文本编辑器
+    richText: '富文本编辑器',
+    form: '表单'
   },
   guideDemo: {
     guide: '引导页',

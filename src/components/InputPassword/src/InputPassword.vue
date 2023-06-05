@@ -53,19 +53,11 @@ const getPasswordStrength = computed(() => {
   const zxcvbnRef = zxcvbn(unref(valueRef)) as ZxcvbnResult
   return value ? zxcvbnRef.score : -1
 })
-
-const getIconName = computed(() =>
-  unref(textType) === 'password' ? 'ant-design:eye-invisible-outlined' : 'ant-design:eye-outlined'
-)
 </script>
 
 <template>
   <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
-    <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
-      <template #suffix>
-        <Icon class="el-input__icon cursor-pointer" :icon="getIconName" @click="changeTextType" />
-      </template>
-    </ElInput>
+    <ElInput v-bind="$attrs" v-model="valueRef" showPassword :type="textType" />
     <div
       v-if="strength"
       :class="`${prefixCls}__bar`"

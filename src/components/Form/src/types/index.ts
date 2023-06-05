@@ -5,9 +5,11 @@ import {
   InputNumberProps,
   CascaderProps,
   CascaderNode,
-  CascaderValue
+  CascaderValue,
+  FormItemRule
 } from 'element-plus'
 import type { AxiosPromise } from 'axios'
+import { IEditorConfig } from '@wangeditor/editor'
 
 export interface PlaceholderModel {
   placeholder?: string
@@ -731,6 +733,11 @@ export interface TimeSelectComponentProps {
   style?: CSSProperties
 }
 
+export interface EditorComponentProps {
+  editorConfig?: IEditorConfig
+  style?: CSSProperties
+}
+
 export interface ColProps {
   span?: number
   xs?: number
@@ -752,10 +759,13 @@ export type FormValueType = string | number | string[] | number[] | boolean | un
 export interface FormItemProps {
   labelWidth?: string | number
   required?: boolean
-  rules?: Recordable
+  rules?: FormItemRule | FormItemRule[]
   error?: string
   showMessage?: boolean
   inlineMessage?: boolean
+  size?: ElementPlusSize
+  for?: string
+  validateStatus?: '' | 'error' | 'validating' | 'success'
   style?: CSSProperties
 }
 
@@ -800,6 +810,7 @@ export interface FormSchema {
     | DatePickerComponentProps
     | DateTimePickerComponentProps
     | TimePickerComponentProps
+    | EditorComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

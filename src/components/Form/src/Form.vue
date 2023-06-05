@@ -182,41 +182,7 @@ export default defineComponent({
 
     // 渲染formItem
     const renderFormItem = (item: FormSchema) => {
-      // 单独给只有options属性的组件做判断
-      // const notRenderOptions = ['SelectV2', 'Cascader', 'Transfer']
-
-      // if (
-      //   item?.component !== 'SelectV2' &&
-      //   item?.component !== 'Cascader' &&
-      //   item?.componentProps?.options
-      // ) {
-      //   slotsMap.default = () => renderOptions(item)
-      // }
-
-      // const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
-      // 如果有 labelMessage，自动使用插槽渲染
-      // if (item?.labelMessage) {
-      //   formItemSlots.label = () => {
-      //     return (
-      //       <>
-      //         <span>{item.label}</span>
-      //         <ElTooltip placement="right" raw-content>
-      //           {{
-      //             content: () => <span v-html={item.labelMessage}></span>,
-      //             default: () => (
-      //               <Icon
-      //                 icon="ep:warning"
-      //                 size={16}
-      //                 color="var(--el-color-primary)"
-      //                 class="ml-2px relative top-1px"
-      //               ></Icon>
-      //             )
-      //           }}
-      //         </ElTooltip>
-      //       </>
-      //     )
-      //   }
-      // }
+      const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {{
@@ -291,7 +257,8 @@ export default defineComponent({
                   </Com>
                 )
               }
-            }
+            },
+            ...formItemSlots
           }}
         </ElFormItem>
       )

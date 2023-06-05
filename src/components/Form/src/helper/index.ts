@@ -86,7 +86,7 @@ export const setGridProp = (col: ColProps = {}): ColProps => {
 export const setComponentProps = (item: FormSchema): Recordable => {
   // const notNeedClearable = ['ColorPicker']
   // 拆分事件并组合
-  const onEvents = item?.componentProps?.on || {}
+  const onEvents = (item?.componentProps as any)?.on || {}
   const newOnEvents: Recordable = {}
 
   for (const key in onEvents) {
@@ -165,13 +165,13 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
 export const setFormItemSlots = (slots: Slots, field: string): Recordable => {
   const slotObj: Recordable = {}
   if (slots[`${field}-error`]) {
-    slotObj['error'] = (data: Recordable) => {
-      return getSlot(slots, `${field}-error`, data)
+    slotObj['error'] = (...args: any[]) => {
+      return getSlot(slots, `${field}-error`, args)
     }
   }
   if (slots[`${field}-label`]) {
-    slotObj['label'] = (data: Recordable) => {
-      return getSlot(slots, `${field}-label`, data)
+    slotObj['label'] = (...args: any[]) => {
+      return getSlot(slots, `${field}-label`, args)
     }
   }
   return slotObj

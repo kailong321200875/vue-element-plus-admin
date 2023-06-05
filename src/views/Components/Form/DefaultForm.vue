@@ -1343,7 +1343,50 @@ const schema = reactive<FormSchema[]>([
     field: 'field63',
     component: 'TimeSelect',
     label: t('formDemo.default')
-  }
+  },
+  {
+    field: 'field64',
+    component: 'Divider',
+    label: t('formDemo.richText')
+  },
+  {
+    field: 'field65',
+    component: 'Editor',
+    value: 'hello world',
+    label: t('formDemo.default'),
+    componentProps: {
+      editorConfig: {
+        placeholder: '请输入内容...'
+      }
+    },
+    colProps: {
+      span: 24
+    }
+  },
+  {
+    field: 'field66',
+    component: 'Divider',
+    label: t('formDemo.inputPassword')
+  },
+  {
+    field: 'field67',
+    component: 'InputPassword',
+    label: t('formDemo.default'),
+    componentProps: {
+      strength: true
+    }
+  },
+  {
+    field: 'field68',
+    component: 'Divider',
+    label: `${t('formDemo.form')} t('formDemo.slot')}`,
+  },
+  {
+    field: 'field69',
+    component: 'Input',
+    value: 'test',
+    label: `default`,
+  },
 ])
 
 const { register, formRef, methods } = useForm({
@@ -1360,68 +1403,8 @@ const changeToggle = () => {
 <template>
   <button @click="changeToggle">测试</button>
   <ContentWrap :title="t('formDemo.defaultForm')" :message="t('formDemo.formDes')">
-    <!-- <Form :schema="schema" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
-      <template #field4-prefix>
-        <Icon icon="ep:calendar" class="el-input__icon" />
-      </template>
-      <template #field4-suffix>
-        <Icon icon="ep:calendar" class="el-input__icon" />
-      </template>
-
-      <template #field5-prepend> Http:// </template>
-      <template #field5-append> .com </template>
-
-      <template #field9-default="{ item }">
-        <div class="value">{{ item.value }}</div>
-        <span class="link">{{ item.link }}</span>
-      </template>
-
-      <template #field15-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field17-option="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field20-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field22-default="{ item }">
-        <span style="float: left">{{ item.label }}</span>
-        <span style="float: right; font-size: 13px; color: var(--el-text-color-secondary)">
-          {{ item.value }}
-        </span>
-      </template>
-
-      <template #field25-default="{ node, data }">
-        <span>{{ data.label }}</span>
-        <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
-      </template>
-
-      <template #field36-default="{ option }">
-        <span>{{ option.value }} - {{ option.desc }}</span>
-      </template>
-
-      <template #field55-default="cell">
-        <div class="cell" :class="{ current: cell.isCurrent }">
-          <span class="text">{{ cell.text }}</span>
-          <span v-if="isHoliday(cell)" class="holiday"></span>
-        </div>
-      </template>
-    </Form> -->
-
-    <Form @register="register" />
+    <Form @register="register" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
+    </Form>
   </ContentWrap>
 </template>
 
