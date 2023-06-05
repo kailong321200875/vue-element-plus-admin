@@ -1,7 +1,7 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import { unref, type Slots } from 'vue'
+import { type Slots } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
-import { PlaceholderMoel, FormSchema, ComponentNameEnum, ColProps } from './types'
+import { PlaceholderModel, FormSchema, ComponentNameEnum, ColProps } from '../types'
 import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
 
@@ -13,7 +13,7 @@ const { t } = useI18n()
  * @returns 返回提示信息对象
  * @description 用于自动设置placeholder
  */
-export const setTextPlaceholder = (schema: FormSchema): PlaceholderMoel => {
+export const setTextPlaceholder = (schema: FormSchema): PlaceholderModel => {
   const textMap = [
     ComponentNameEnum.INPUT,
     ComponentNameEnum.AUTOCOMPLETE,

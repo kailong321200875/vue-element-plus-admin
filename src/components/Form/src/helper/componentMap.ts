@@ -20,7 +20,7 @@ import {
 } from 'element-plus'
 import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
-import { ComponentName } from './types'
+import { ComponentName } from '../types'
 
 const componentMap: Recordable<Component, ComponentName> = {
   RadioGroup: ElRadioGroup,

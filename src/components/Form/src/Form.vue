@@ -1,7 +1,7 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
 import { ElForm, ElFormItem, ElRow, ElCol, ElTooltip } from 'element-plus'
-import { componentMap } from './componentMap'
+import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
 import {
@@ -22,7 +22,7 @@ import { FormProps } from './types'
 import { Icon } from '@/components/Icon'
 import {
   FormSchema,
-  FormSetPropsType,
+  FormSetProps,
   ComponentNameEnum,
   SelectComponentProps,
   RadioGroupComponentProps,
@@ -110,7 +110,7 @@ export default defineComponent({
       schema.push(formSchema)
     }
 
-    const setSchema = (schemaProps: FormSetPropsType[]) => {
+    const setSchema = (schemaProps: FormSetProps[]) => {
       const { schema } = unref(getProps)
       for (const v of schema) {
         for (const item of schemaProps) {
@@ -296,22 +296,6 @@ export default defineComponent({
         </ElFormItem>
       )
     }
-
-    // 渲染options
-    // const renderOptions = (item: FormSchema) => {
-    //   switch (item.component) {
-    //     case ComponentNameEnum.SELECT:
-    //       return renderSelectOptions(item)
-    //     case ComponentNameEnum.RADIO:
-    //     case 'RadioButton':
-    //       return renderRadioOptions(item)
-    //     case 'Checkbox':
-    //     case 'CheckboxButton':
-    //       return renderCheckboxOptions(item)
-    //     default:
-    //       break
-    //   }
-    // }
 
     // 过滤传入Form组件的属性
     const getFormBindValue = () => {

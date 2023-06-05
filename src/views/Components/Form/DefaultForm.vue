@@ -5,7 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
-import { SelectOption, RadioOption, CheckboxOption, FormSchema } from '@/components/Form/src/types'
+import { SelectOption, RadioOption, CheckboxOption, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import {
   ElOption,

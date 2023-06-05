@@ -9,7 +9,7 @@ import {
 } from 'element-plus'
 import type { AxiosPromise } from 'axios'
 
-export interface PlaceholderMoel {
+export interface PlaceholderModel {
   placeholder?: string
   startPlaceholder?: string
   endPlaceholder?: string
@@ -66,7 +66,7 @@ export interface InputComponentProps {
   suffixIcon?: string | JSX.Element
   type?: InputProps['type']
   rows?: number
-  autosize?: boolean | { Pows?: numer; maxRows?: number }
+  autosize?: boolean | { Pows?: number; maxRows?: number }
   autocomplete?: string
   name?: string
   readonly?: boolean
@@ -741,7 +741,7 @@ export interface ColProps {
   tag?: string
 }
 
-export type FormSetPropsType = {
+export interface FormSetProps {
   field: string
   path: string
   value: any
@@ -749,7 +749,7 @@ export type FormSetPropsType = {
 
 export type FormValueType = string | number | string[] | number[] | boolean | undefined | null
 
-export type FormItemProps = {
+export interface FormItemProps {
   labelWidth?: string | number
   required?: boolean
   rules?: Recordable
@@ -827,11 +827,12 @@ export interface FormSchema {
   api?: <T = any>() => AxiosPromise<T>
 }
 
-export type FormProps = {
+export interface FormProps {
   schema?: FormSchema[]
   isCol?: boolean
   model?: Recordable
   autoSetPlaceholder?: boolean
   isCustom?: boolean
   labelWidth?: string | number
-} & Recordable
+  [key: string]: any
+}
