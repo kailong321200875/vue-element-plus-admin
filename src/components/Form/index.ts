@@ -1,8 +1,7 @@
 import Form from './src/Form.vue'
 import { ElForm } from 'element-plus'
-import { FormSchema, FormSetProps } from './src/types'
-export {
-  PlaceholderModel,
+import type { FormSchema, FormSetProps } from './src/types'
+export type {
   ComponentNameEnum,
   ComponentName,
   InputComponentProps,
@@ -31,7 +30,8 @@ export {
   FormValueType,
   FormItemProps,
   FormSchema,
-  FormProps
+  FormProps,
+  PlaceholderModel
 } from './src/types'
 
 export interface FormExpose {
