@@ -1,6 +1,4 @@
 import { useI18n } from '@/hooks/web/useI18n'
-import { type Slots } from 'vue'
-import { getSlot } from '@/utils/tsxHelper'
 import { PlaceholderModel, FormSchema, ComponentNameEnum, ColProps } from '../types'
 import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
@@ -155,24 +153,4 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
     }
   })
   return model
-}
-
-/**
- * @param slots 插槽
- * @param field 字段名
- * @returns 返回FormIiem插槽
- */
-export const setFormItemSlots = (slots: Slots, field: string): Recordable => {
-  const slotObj: Recordable = {}
-  if (slots[`${field}-error`]) {
-    slotObj['error'] = (...args: any[]) => {
-      return getSlot(slots, `${field}-error`, args)
-    }
-  }
-  if (slots[`${field}-label`]) {
-    slotObj['label'] = (...args: any[]) => {
-      return getSlot(slots, `${field}-label`, args)
-    }
-  }
-  return slotObj
 }

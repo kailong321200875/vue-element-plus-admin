@@ -182,11 +182,8 @@ export default defineComponent({
 
     // 渲染formItem
     const renderFormItem = (item: FormSchema) => {
-      const formItemSlots: Recordable = setFormItemSlots(slots, item.field)
-      return (
-        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
-          {{
-            default: () => {
+      const formItemSlots = {
+        default: () => {
               if (slots[item.field]) {
                 return getSlot(slots, item.field, formModel.value)
               } else {
@@ -257,7 +254,21 @@ export default defineComponent({
                   </Com>
                 )
               }
-            },
+            }
+      }
+      if (item?.formItemProps?.slots?.label) {
+        formItemSlots.label = (...args: any[]) => {
+          return item.formItemProps.slots.label(...args)
+        }
+      }
+      if (item?.formItemProps?.slots?.error) {
+        formItemSlots.error = (...args: any[]) => {
+          return item.formItemProps.slots.error(...args)
+        }
+      }
+      return (
+        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
+          {{
             ...formItemSlots
           }}
         </ElFormItem>

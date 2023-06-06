@@ -23,8 +23,6 @@ const { t } = useI18n()
 
 const isMobile = computed(() => appStore.getMobile)
 
-const toggle = ref(false)
-
 const restaurants = ref<Recordable[]>([])
 const querySearch = (queryString: string, cb: Fn) => {
   const results = queryString
@@ -679,7 +677,6 @@ const schema = reactive<FormSchema[]>([
                 return (
                   <ElOption
                     key={v.value}
-                    disabled={unref(toggle)}
                     label={v.label}
                     value={v.value}
                   />
@@ -1379,32 +1376,37 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field68',
     component: 'Divider',
-    label: `${t('formDemo.form')} t('formDemo.slot')}`,
+    label: `${t('formDemo.form')} ${t('formDemo.slot')}`,
   },
   {
     field: 'field69',
     component: 'Input',
-    value: 'test',
-    label: `default`,
+    label: `label`,
+    formItemProps: {
+      slots: {
+        label: ({ label }) => {
+          return (
+            <div class="custom-label">
+              <span class="label-text">custom {label}</span>
+            </div>
+          )
+        }
+      }
+    }
   },
 ])
 
-const { register, formRef, methods } = useForm({
-  schema,
-  labelWidth: 'auto',
-  labelPosition: isMobile.value ? 'top' : 'right'
-})
-
-const changeToggle = () => {
-  toggle.value = !unref(toggle)
-}
+const { register, formRef, methods } = useForm()
 </script>
 
 <template>
-  <button @click="changeToggle">测试</button>
   <ContentWrap :title="t('formDemo.defaultForm')" :message="t('formDemo.formDes')">
-    <Form @register="register" label-width="auto" :label-position="isMobile ? 'top' : 'right'">
-    </Form>
+    <Form
+      @register="register"
+      :schema="schema"
+      label-width="auto"
+      :label-position="isMobile ? 'top' : 'right'"
+    />
   </ContentWrap>
 </template>
 

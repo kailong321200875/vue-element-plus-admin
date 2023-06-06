@@ -27,7 +27,6 @@ export type {
   TimeSelectComponentProps,
   ColProps,
   FormSetProps,
-  FormValueType,
   FormItemProps,
   FormSchema,
   FormProps,

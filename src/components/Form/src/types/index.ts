@@ -53,7 +53,6 @@ type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
 export type ComponentName = CamelCaseComponentName
 
 export interface InputComponentProps {
-  value?: string | number
   maxlength?: number | string
   minlength?: number | string
   showWordLimit?: boolean
@@ -99,7 +98,6 @@ export interface InputComponentProps {
 }
 
 export interface AutocompleteComponentProps {
-  value?: string
   placeholder?: string
   clearable?: boolean
   disabled?: boolean
@@ -132,7 +130,6 @@ export interface AutocompleteComponentProps {
 }
 
 export interface InputNumberComponentProps {
-  value?: number
   min?: number
   max?: number
   step?: number
@@ -167,7 +164,6 @@ export interface SelectOption {
 }
 
 export interface SelectComponentProps {
-  value?: string | number | boolean | Object
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -245,7 +241,6 @@ export interface SelectComponentProps {
 }
 
 export interface SelectV2ComponentProps {
-  value?: string | number | boolean | Object
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -290,7 +285,6 @@ export interface SelectV2ComponentProps {
 }
 
 export interface CascaderComponentProps {
-  value?: string | number | string[] | number[] | any
   options?: Record<string, unknown>[]
   props?: CascaderProps
   size?: ElementPlusSize
@@ -325,7 +319,6 @@ export interface CascaderComponentProps {
 }
 
 export interface SwitchComponentProps {
-  value?: boolean | string | number
   disabled?: boolean
   loading?: boolean
   size?: ElementPlusSize
@@ -347,7 +340,6 @@ export interface SwitchComponentProps {
 }
 
 export interface RateComponentProps {
-  value?: number
   max?: number
   size?: ElementPlusSize
   disabled?: boolean
@@ -375,7 +367,6 @@ export interface RateComponentProps {
 }
 
 export interface ColorPickerComponentProps {
-  value?: string
   disabled?: boolean
   size?: ElementPlusSize
   showAlpha?: boolean
@@ -393,7 +384,6 @@ export interface ColorPickerComponentProps {
 }
 
 export interface TransferComponentProps {
-  value?: any[]
   data?: any[]
   filterable?: boolean
   filterPlaceholder?: string
@@ -444,7 +434,6 @@ export interface RadioOption {
   [key: string]: any
 }
 export interface RadioGroupComponentProps {
-  value?: string | number | boolean
   size?: ElementPlusSize
   disabled?: boolean
   textColor?: string
@@ -472,7 +461,6 @@ export interface RadioGroupComponentProps {
 }
 
 export interface RadioButtonComponentProps {
-  value?: string | number | boolean
   size?: ElementPlusSize
   disabled?: boolean
   textColor?: string
@@ -518,7 +506,6 @@ export interface CheckboxOption {
 }
 
 export interface CheckboxGroupComponentProps {
-  value?: string[] | number[]
   size?: ElementPlusSize
   disabled?: boolean
   min?: number
@@ -547,7 +534,6 @@ export interface CheckboxGroupComponentProps {
 }
 
 export interface DividerComponentProps {
-  value?: number | Array<number>
   min?: number
   max?: number
   disabled?: boolean
@@ -579,7 +565,6 @@ export interface DividerComponentProps {
 }
 
 export interface DatePickerComponentProps {
-  value?: string | Date | number | string[]
   readonly?: boolean
   disabled?: boolean
   size?: ElementPlusSize
@@ -631,7 +616,6 @@ export interface DatePickerComponentProps {
 }
 
 export interface DateTimePickerComponentProps {
-  value?: string | Date | number | string[]
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -672,7 +656,6 @@ export interface DateTimePickerComponentProps {
 }
 
 export interface TimePickerComponentProps {
-  value?: string | Date | number | [Date, Date] | [number, number] | [string, string]
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -709,7 +692,6 @@ export interface TimePickerComponentProps {
 }
 
 export interface TimeSelectComponentProps {
-  value?: string
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
@@ -754,8 +736,6 @@ export interface FormSetProps {
   value: any
 }
 
-export type FormValueType = string | number | string[] | number[] | boolean | undefined | null
-
 export interface FormItemProps {
   labelWidth?: string | number
   required?: boolean
@@ -767,6 +747,11 @@ export interface FormItemProps {
   for?: string
   validateStatus?: '' | 'error' | 'validating' | 'success'
   style?: CSSProperties
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+    label?: (...args: any[]) => JSX.Element | null
+    error?: (...args: any[]) => JSX.Element | null
+  }
 }
 
 export interface FormSchema {
@@ -825,7 +810,7 @@ export interface FormSchema {
   /**
    * 初始值
    */
-  value?: FormValueType
+  value?: any
 
   /**
    * 是否隐藏
