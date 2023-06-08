@@ -4,7 +4,7 @@ import {
   AxiosRequestHeaders,
   AxiosError,
   InternalAxiosRequestConfig
-} from './type'
+} from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
 

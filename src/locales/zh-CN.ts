@@ -282,7 +282,9 @@ export default {
     verifyReset: '验证重置',
     // 富文本编辑器
     richText: '富文本编辑器',
-    form: '表单'
+    form: '表单',
+    // 远程加载
+    remoteLoading: '远程加载'
   },
   guideDemo: {
     guide: '引导页',

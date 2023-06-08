@@ -32,10 +32,6 @@ const emit = defineEmits(['update:modelValue'])
 // 设置input的type属性
 const textType = ref<'password' | 'text'>('password')
 
-const changeTextType = () => {
-  textType.value = unref(textType) === 'text' ? 'password' : 'text'
-}
-
 // 输入框的值
 const valueRef = ref(props.modelValue)
 

@@ -16,6 +16,7 @@ import {
   ElCheckbox,
   ElCheckboxButton
 } from 'element-plus'
+import { getDictOneApi } from '@/api/common'
 
 const appStore = useAppStore()
 
@@ -382,1018 +383,1034 @@ const schema = reactive<FormSchema[]>([
       parser: (value) => value.replace(/\$\s?|(,*)/g, '')
     }
   },
+  // {
+  //   field: 'field3',
+  //   label: `${t('formDemo.icon')}1`,
+  //   component: 'Input',
+  //   componentProps: {
+  //     suffixIcon: useIcon({ icon: 'ep:calendar' }),
+  //     prefixIcon: useIcon({ icon: 'ep:share' })
+  //   }
+  // },
+  // {
+  //   field: 'field4',
+  //   label: `${t('formDemo.icon')}2`,
+  //   component: 'Input',
+  //   componentProps: {
+  //     slots: {
+  //       suffix: () => {
+  //         return useIcon({ icon: 'ep:share' })
+  //       },
+  //       prefix: () => useIcon({ icon: 'ep:calendar' })
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field5',
+  //   label: t('formDemo.mixed'),
+  //   component: 'Input',
+  //   componentProps: {
+  //     slots: {
+  //       prepend: () => useIcon({ icon: 'ep:calendar' }),
+  //       append: () => useIcon({ icon: 'ep:share' })
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'input-field7',
+  //   label: t('formDemo.password'),
+  //   component: 'Input',
+  //   componentProps: {
+  //     showPassword: true
+  //   }
+  // },
+  // {
+  //   field: 'field6',
+  //   label: t('formDemo.textarea'),
+  //   component: 'Input',
+  //   componentProps: {
+  //     type: 'textarea',
+  //     rows: 2
+  //   }
+  // },
+  // {
+  //   field: 'field7',
+  //   label: t('formDemo.autocomplete'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field8',
+  //   label: t('formDemo.default'),
+  //   component: 'Autocomplete',
+  //   componentProps: {
+  //     fetchSuggestions: querySearch,
+  //     on: {
+  //       select: handleSelect
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field9',
+  //   label: t('formDemo.slot'),
+  //   component: 'Autocomplete',
+  //   componentProps: {
+  //     fetchSuggestions: querySearch,
+  //     on: {
+  //       select: handleSelect
+  //     },
+  //     slots: {
+  //       default: ({ item }) => {
+  //         return (
+  //           <>
+  //             <div class="value">{item?.value}</div>
+  //             <span class="link">{item?.link}</span>
+  //           </>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'autocomplete-field10',
+  //   label: t('formDemo.remoteSearch'),
+  //   component: 'Autocomplete',
+  //   componentProps: {
+  //     fetchSuggestions: querySearchAsync,
+  //     on: {
+  //       select: handleSelect
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field10',
+  //   component: 'Divider',
+  //   label: t('formDemo.inputNumber')
+  // },
+  // {
+  //   field: 'field11',
+  //   label: t('formDemo.default'),
+  //   component: 'InputNumber',
+  //   value: 0
+  // },
+  // {
+  //   field: 'field12',
+  //   label: t('formDemo.position'),
+  //   component: 'InputNumber',
+  //   componentProps: {
+  //     controlsPosition: 'right'
+  //   },
+  //   value: 10
+  // },
+  // {
+  //   field: 'field13',
+  //   label: t('formDemo.select'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field14',
+  //   label: t('formDemo.default'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field15',
+  //   label: t('formDemo.slot'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option2',
+  //         value: '2'
+  //       }
+  //     ],
+  //     slots: {
+  //       default: (options: SelectOption[]) => {
+  //         if (options.length) {
+  //           return options?.map((v) => {
+  //             return <ElOption key={v.value} label={v.label} value={v.value} />
+  //           })
+  //         } else {
+  //           return null
+  //         }
+  //       },
+  //       prefix: () => useIcon({ icon: 'ep:calendar' }),
+  //       empty: () => {
+  //         return useIcon({ icon: 'ep:share' })
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'select-field18',
+  //   label: t('formDemo.optionSlot'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         value: 'Beijing',
+  //         label: 'Beijing'
+  //       },
+  //       {
+  //         value: 'Shanghai',
+  //         label: 'Shanghai'
+  //       },
+  //       {
+  //         value: 'Nanjing',
+  //         label: 'Nanjing'
+  //       },
+  //       {
+  //         value: 'Chengdu',
+  //         label: 'Chengdu'
+  //       },
+  //       {
+  //         value: 'Shenzhen',
+  //         label: 'Shenzhen'
+  //       },
+  //       {
+  //         value: 'Guangzhou',
+  //         label: 'Guangzhou'
+  //       }
+  //     ],
+  //     slots: {
+  //       optionDefault: (option: SelectOption) => {
+  //         return (
+  //           <>
+  //             <span style="float: left">{option.label}</span>
+  //             <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
+  //               {option.value}
+  //             </span>
+  //           </>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field16',
+  //   label: t('formDemo.selectGroup'),
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         options: [
+  //           {
+  //             disabled: true,
+  //             label: 'option1-1',
+  //             value: '1-1'
+  //           },
+  //           {
+  //             label: 'option1-2',
+  //             value: '1-2'
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         label: 'option2',
+  //         options: [
+  //           {
+  //             label: 'option2-1',
+  //             value: '2-1'
+  //           },
+  //           {
+  //             label: 'option2-2',
+  //             value: '2-2'
+  //           }
+  //         ]
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field17',
+  //   label: `${t('formDemo.selectGroup')} ${t('formDemo.slot')}`,
+  //   component: 'Select',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option1',
+  //         options: [
+  //           {
+  //             label: 'option1-1',
+  //             value: '1-1'
+  //           },
+  //           {
+  //             label: 'option1-2',
+  //             value: '1-2'
+  //           }
+  //         ]
+  //       },
+  //       {
+  //         label: 'option2',
+  //         options: [
+  //           {
+  //             label: 'option2-1',
+  //             value: '2-1'
+  //           },
+  //           {
+  //             label: 'option2-2',
+  //             value: '2-2'
+  //           }
+  //         ]
+  //       }
+  //     ],
+  //     slots: {
+  //       optionGroupDefault: (option: SelectOption) => {
+  //         return (
+  //           <ElOptionGroup key={option.label} label={`${option.label} ${option.label}`}>
+  //             {option?.options?.map((v) => {
+  //               return <ElOption key={v.value} label={v.label} value={v.value} />
+  //             })}
+  //           </ElOptionGroup>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field18',
+  //   label: `${t('formDemo.selectV2')}`,
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field19',
+  //   label: t('formDemo.default'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     value: undefined,
+  //     options: options.value
+  //   }
+  // },
+  // {
+  //   field: 'field20',
+  //   label: t('formDemo.slot'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options.value,
+  //     slots: {
+  //       default: (option: SelectOption) => {
+  //         return (
+  //           <>
+  //             <span style="margin-right: 8px">{option?.label}</span>
+  //             <span style="color: var(--el-text-color-secondary); font-size: 13px">
+  //               {option?.value}
+  //             </span>
+  //           </>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field21',
+  //   label: t('formDemo.selectGroup'),
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options2.value
+  //   }
+  // },
+  // {
+  //   field: 'field22',
+  //   label: `${t('formDemo.selectGroup')} ${t('formDemo.slot')}`,
+  //   component: 'SelectV2',
+  //   componentProps: {
+  //     options: options2.value,
+  //     slots: {
+  //       default: (option: SelectOption) => {
+  //         return (
+  //           <>
+  //             <span style="margin-right: 8px">{option?.label}</span>
+  //             <span style="color: var(--el-text-color-secondary); font-size: 13px">
+  //               {option?.value}
+  //             </span>
+  //           </>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field23',
+  //   label: t('formDemo.cascader'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field24',
+  //   label: t('formDemo.default'),
+  //   component: 'Cascader',
+  //   componentProps: {
+  //     options: options3,
+  //     props: {
+  //       multiple: true
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field25',
+  //   label: t('formDemo.slot'),
+  //   component: 'Cascader',
+  //   componentProps: {
+  //     options: options3,
+  //     slots: {
+  //       default: ({ data, node }) => {
+  //         return (
+  //           <>
+  //             <span>{data.label}</span>
+  //             {!node.isLeaf ? <span> ({data.children.length}) </span> : null}
+  //           </>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field26',
+  //   label: t('formDemo.switch'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field27',
+  //   label: t('formDemo.default'),
+  //   component: 'Switch',
+  //   value: false
+  // },
+  // {
+  //   field: 'field28',
+  //   label: t('formDemo.icon'),
+  //   component: 'Switch',
+  //   value: false,
+  //   componentProps: {
+  //     activeIcon: useIcon({ icon: 'ep:check' }),
+  //     inactiveIcon: useIcon({ icon: 'ep:close' })
+  //   }
+  // },
+  // {
+  //   field: 'field29',
+  //   label: t('formDemo.rate'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field30',
+  //   label: t('formDemo.default'),
+  //   component: 'Rate',
+  //   value: 0
+  // },
+  // {
+  //   field: 'field31',
+  //   label: t('formDemo.icon'),
+  //   component: 'Rate',
+  //   value: null,
+  //   componentProps: {
+  //     voidIcon: useIcon({ icon: 'ep:chat-round' }),
+  //     icons: [
+  //       useIcon({ icon: 'ep:chat-round' }),
+  //       useIcon({ icon: 'ep:chat-line-round' }),
+  //       useIcon({ icon: 'ep:chat-dot-round' })
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field32',
+  //   label: t('formDemo.colorPicker'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field33',
+  //   label: t('formDemo.default'),
+  //   component: 'ColorPicker'
+  // },
+  // {
+  //   field: 'field34',
+  //   label: t('formDemo.transfer'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field35',
+  //   label: t('formDemo.default'),
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc'
+  //     },
+  //     data: generateData()
+  //   },
+  //   value: [],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field36',
+  //   label: t('formDemo.slot'),
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc'
+  //     },
+  //     filterable: true,
+  //     leftDefaultChecked: [2, 3],
+  //     rightDefaultChecked: [1],
+  //     titles: ['Source', 'Target'],
+  //     buttonTexts: ['To Left', 'To Right'],
+  //     format: {
+  //       noChecked: '${total}',
+  //       hasChecked: '${checked}/${total}'
+  //     },
+  //     data: generateData(),
+  //     slots: {
+  //       default: ({ option }) => {
+  //         return (
+  //           <span>
+  //             {option.value} - {option.desc}
+  //           </span>
+  //         )
+  //       },
+  //       leftFooter: () => {
+  //         return (
+  //           <ElButton class="transfer-footer" size="small">
+  //             Operation
+  //           </ElButton>
+  //         )
+  //       },
+  //       rightFooter: () => {
+  //         return (
+  //           <ElButton class="transfer-footer" size="small">
+  //             Operation
+  //           </ElButton>
+  //         )
+  //       }
+  //     }
+  //   },
+  //   value: [1],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field37',
+  //   label: `${t('formDemo.render')}`,
+  //   component: 'Transfer',
+  //   componentProps: {
+  //     props: {
+  //       key: 'value',
+  //       label: 'desc',
+  //       disabled: 'disabled'
+  //     },
+  //     leftDefaultChecked: [2, 3],
+  //     rightDefaultChecked: [1],
+  //     data: generateData(),
+  //     renderContent: (h, option) => {
+  //       return h('span', null, `${option.value} - ${option.desc}`)
+  //     }
+  //   },
+  //   value: [1],
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field38',
+  //   label: t('formDemo.radio'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field39-2',
+  //   label: t('formDemo.radioGroup'),
+  //   component: 'RadioGroup',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         // disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field39-3',
+  //   label: `${t('formDemo.radioGroup')} ${t('formDemo.slot')}`,
+  //   component: 'RadioGroup',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         // disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ],
+  //     slots: {
+  //       default: (options: RadioOption[]) => {
+  //         return options?.map((v) => {
+  //           return (
+  //             <ElRadio label={v.value}>
+  //               {v.label}({v.value})
+  //             </ElRadio>
+  //           )
+  //         })
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field40',
+  //   label: t('formDemo.button'),
+  //   component: 'RadioButton',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field40-1',
+  //   label: `${t('formDemo.button')} ${t('formDemo.slot')}`,
+  //   component: 'RadioButton',
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       }
+  //     ],
+  //     slots: {
+  //       default: (options: RadioOption[]) => {
+  //         return options?.map((v) => {
+  //           return (
+  //             <ElRadioButton label={v.value}>
+  //               {v.label}({v.value})
+  //             </ElRadioButton>
+  //           )
+  //         })
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field41',
+  //   label: t('formDemo.checkbox'),
+  //   component: 'Divider'
+  // },
+  // {
+  //   field: 'field42-2',
+  //   label: t('formDemo.checkboxGroup'),
+  //   component: 'CheckboxGroup',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '3'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field42-3',
+  //   label: `${t('formDemo.checkboxGroup')} ${t('formDemo.slot')}`,
+  //   component: 'CheckboxGroup',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '3'
+  //       }
+  //     ],
+  //     slots: {
+  //       default: (options: CheckboxOption[]) => {
+  //         return options?.map((v) => {
+  //           return (
+  //             <ElCheckbox label={v.value}>
+  //               {v.label}({v.value})
+  //             </ElCheckbox>
+  //           )
+  //         })
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field43',
+  //   label: t('formDemo.button'),
+  //   component: 'CheckboxButton',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '23'
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field43-1',
+  //   label: `${t('formDemo.button')} ${t('formDemo.slot')}`,
+  //   component: 'CheckboxButton',
+  //   value: [],
+  //   componentProps: {
+  //     options: [
+  //       {
+  //         disabled: true,
+  //         label: 'option-1',
+  //         value: '1'
+  //       },
+  //       {
+  //         label: 'option-2',
+  //         value: '2'
+  //       },
+  //       {
+  //         label: 'option-3',
+  //         value: '23'
+  //       }
+  //     ],
+  //     slots: {
+  //       default: (options: CheckboxOption[]) => {
+  //         return options?.map((v) => {
+  //           return (
+  //             <ElCheckboxButton label={v.value}>
+  //               {v.label}({v.value})
+  //             </ElCheckboxButton>
+  //           )
+  //         })
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field44',
+  //   component: 'Divider',
+  //   label: t('formDemo.slider')
+  // },
+  // {
+  //   field: 'field45',
+  //   component: 'Slider',
+  //   label: t('formDemo.default'),
+  //   value: 0
+  // },
+  // {
+  //   field: 'field46',
+  //   component: 'Divider',
+  //   label: t('formDemo.datePicker')
+  // },
+  // {
+  //   field: 'field47',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.default'),
+  //   componentProps: {
+  //     type: 'date'
+  //   }
+  // },
+  // {
+  //   field: 'field48',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.shortcuts'),
+  //   componentProps: {
+  //     type: 'date',
+  //     disabledDate: (time: Date) => {
+  //       return time.getTime() > Date.now()
+  //     },
+  //     shortcuts: [
+  //       {
+  //         text: t('formDemo.today'),
+  //         value: new Date()
+  //       },
+  //       {
+  //         text: t('formDemo.yesterday'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24)
+  //           return date
+  //         }
+  //       },
+  //       {
+  //         text: t('formDemo.aWeekAgo'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+  //           return date
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field47-1',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.slot'),
+  //   value: '2021-10-29',
+  //   componentProps: {
+  //     type: 'date',
+  //     slots: {
+  //       default: (cell: any) => {
+  //         return (
+  //           <div class={{ cell: true, current: cell.isCurrent }}>
+  //             <span class="text">{cell.text}</span>
+  //             {isHoliday(cell) ? <span class="holiday" /> : null}
+  //           </div>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
+  // {
+  //   field: 'field49',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.week'),
+  //   componentProps: {
+  //     type: 'week',
+  //     format: `[${t('formDemo.week')}]`
+  //   }
+  // },
+  // {
+  //   field: 'field50',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.year'),
+  //   componentProps: {
+  //     type: 'year'
+  //   }
+  // },
+  // {
+  //   field: 'field51',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.month'),
+  //   componentProps: {
+  //     type: 'month'
+  //   }
+  // },
+  // {
+  //   field: 'field52',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.dates'),
+  //   componentProps: {
+  //     type: 'dates'
+  //   }
+  // },
+  // {
+  //   field: 'field53',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.daterange'),
+  //   componentProps: {
+  //     type: 'daterange'
+  //   }
+  // },
+  // {
+  //   field: 'field54',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.monthrange'),
+  //   componentProps: {
+  //     type: 'monthrange'
+  //   }
+  // },
+  // {
+  //   field: 'field56',
+  //   component: 'Divider',
+  //   label: t('formDemo.dateTimePicker')
+  // },
+  // {
+  //   field: 'field57',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.default'),
+  //   componentProps: {
+  //     type: 'datetime'
+  //   }
+  // },
+  // {
+  //   field: 'field58',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.shortcuts'),
+  //   componentProps: {
+  //     type: 'datetime',
+  //     shortcuts: [
+  //       {
+  //         text: t('formDemo.today'),
+  //         value: new Date()
+  //       },
+  //       {
+  //         text: t('formDemo.yesterday'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24)
+  //           return date
+  //         }
+  //       },
+  //       {
+  //         text: t('formDemo.aWeekAgo'),
+  //         value: () => {
+  //           const date = new Date()
+  //           date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+  //           return date
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
+  // {
+  //   field: 'field59',
+  //   component: 'DatePicker',
+  //   label: t('formDemo.dateTimerange'),
+  //   componentProps: {
+  //     type: 'datetimerange'
+  //   }
+  // },
+  // {
+  //   field: 'field60',
+  //   component: 'Divider',
+  //   label: t('formDemo.timePicker')
+  // },
+  // {
+  //   field: 'field61',
+  //   component: 'TimePicker',
+  //   label: t('formDemo.default')
+  // },
+  // {
+  //   field: 'field62',
+  //   component: 'Divider',
+  //   label: t('formDemo.timeSelect')
+  // },
+  // {
+  //   field: 'field63',
+  //   component: 'TimeSelect',
+  //   label: t('formDemo.default')
+  // },
+  // {
+  //   field: 'field64',
+  //   component: 'Divider',
+  //   label: t('formDemo.richText')
+  // },
+  // {
+  //   field: 'field65',
+  //   component: 'Editor',
+  //   value: 'hello world',
+  //   label: t('formDemo.default'),
+  //   colProps: {
+  //     span: 24
+  //   }
+  // },
+  // {
+  //   field: 'field66',
+  //   component: 'Divider',
+  //   label: t('formDemo.inputPassword')
+  // },
+  // {
+  //   field: 'field67',
+  //   component: 'InputPassword',
+  //   label: t('formDemo.default'),
+  //   componentProps: {
+  //     strength: true
+  //   }
+  // },
+  // {
+  //   field: 'field68',
+  //   component: 'Divider',
+  //   label: `${t('formDemo.form')} ${t('formDemo.slot')}`
+  // },
+  // {
+  //   field: 'field69',
+  //   component: 'Input',
+  //   label: `label`,
+  //   formItemProps: {
+  //     slots: {
+  //       label: ({ label }) => {
+  //         return (
+  //           <div class="custom-label">
+  //             <span class="label-text">custom {label}</span>
+  //           </div>
+  //         )
+  //       }
+  //     }
+  //   }
+  // },
   {
-    field: 'field3',
-    label: `${t('formDemo.icon')}1`,
-    component: 'Input',
-    componentProps: {
-      suffixIcon: useIcon({ icon: 'ep:calendar' }),
-      prefixIcon: useIcon({ icon: 'ep:share' })
-    }
-  },
-  {
-    field: 'field4',
-    label: `${t('formDemo.icon')}2`,
-    component: 'Input',
-    componentProps: {
-      slots: {
-        suffix: () => {
-          return useIcon({ icon: 'ep:share' })
-        },
-        prefix: () => useIcon({ icon: 'ep:calendar' })
-      }
-    }
-  },
-  {
-    field: 'field5',
-    label: t('formDemo.mixed'),
-    component: 'Input',
-    componentProps: {
-      slots: {
-        prepend: () => useIcon({ icon: 'ep:calendar' }),
-        append: () => useIcon({ icon: 'ep:share' })
-      }
-    }
-  },
-  {
-    field: 'input-field7',
-    label: t('formDemo.password'),
-    component: 'Input',
-    componentProps: {
-      showPassword: true
-    }
-  },
-  {
-    field: 'field6',
-    label: t('formDemo.textarea'),
-    component: 'Input',
-    componentProps: {
-      type: 'textarea',
-      rows: 2
-    }
-  },
-  {
-    field: 'field7',
-    label: t('formDemo.autocomplete'),
-    component: 'Divider'
-  },
-  {
-    field: 'field8',
-    label: t('formDemo.default'),
-    component: 'Autocomplete',
-    componentProps: {
-      fetchSuggestions: querySearch,
-      on: {
-        select: handleSelect
-      }
-    }
-  },
-  {
-    field: 'field9',
-    label: t('formDemo.slot'),
-    component: 'Autocomplete',
-    componentProps: {
-      fetchSuggestions: querySearch,
-      on: {
-        select: handleSelect
-      },
-      slots: {
-        default: ({ item }) => {
-          return (
-            <>
-              <div class="value">{item?.value}</div>
-              <span class="link">{item?.link}</span>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'autocomplete-field10',
-    label: t('formDemo.remoteSearch'),
-    component: 'Autocomplete',
-    componentProps: {
-      fetchSuggestions: querySearchAsync,
-      on: {
-        select: handleSelect
-      }
-    }
-  },
-  {
-    field: 'field10',
+    field: 'field70',
     component: 'Divider',
-    label: t('formDemo.inputNumber')
+    label: `${t('formDemo.remoteLoading')}`
   },
   {
-    field: 'field11',
-    label: t('formDemo.default'),
-    component: 'InputNumber',
-    value: 0
-  },
-  {
-    field: 'field12',
-    label: t('formDemo.position'),
-    component: 'InputNumber',
-    componentProps: {
-      controlsPosition: 'right'
-    },
-    value: 10
-  },
-  {
-    field: 'field13',
-    label: t('formDemo.select'),
-    component: 'Divider'
-  },
-  {
-    field: 'field14',
-    label: t('formDemo.default'),
+    field: 'field71',
+    label: `${t('formDemo.select')}`,
     component: 'Select',
     componentProps: {
       options: [
         {
-          disabled: true,
-          label: 'option1',
-          value: '1'
+          label: 'option1-1',
+          value: '1-1'
         },
         {
-          label: 'option2',
-          value: '2'
+          label: 'option1-2',
+          value: '1-2'
         }
       ]
-    }
-  },
-  {
-    field: 'field15',
-    label: t('formDemo.slot'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          value: '1'
-        },
-        {
-          label: 'option2',
-          value: '2'
-        }
-      ],
-      slots: {
-        default: (options: SelectOption[]) => {
-          if (options.length) {
-            return options?.map((v) => {
-              return <ElOption key={v.value} label={v.label} value={v.value} />
-            })
-          } else {
-            return null
-          }
-        },
-        prefix: () => useIcon({ icon: 'ep:calendar' }),
-        empty: () => {
-          return useIcon({ icon: 'ep:share' })
-        }
-      }
-    }
-  },
-  {
-    field: 'select-field18',
-    label: t('formDemo.optionSlot'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          value: 'Beijing',
-          label: 'Beijing'
-        },
-        {
-          value: 'Shanghai',
-          label: 'Shanghai'
-        },
-        {
-          value: 'Nanjing',
-          label: 'Nanjing'
-        },
-        {
-          value: 'Chengdu',
-          label: 'Chengdu'
-        },
-        {
-          value: 'Shenzhen',
-          label: 'Shenzhen'
-        },
-        {
-          value: 'Guangzhou',
-          label: 'Guangzhou'
-        }
-      ],
-      slots: {
-        optionDefault: (option: SelectOption) => {
-          return (
-            <>
-              <span style="float: left">{option.label}</span>
-              <span style="float: right; color: var(--el-text-color-secondary); font-size: 13px;">
-                {option.value}
-              </span>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field16',
-    label: t('formDemo.selectGroup'),
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          options: [
-            {
-              disabled: true,
-              label: 'option1-1',
-              value: '1-1'
-            },
-            {
-              label: 'option1-2',
-              value: '1-2'
-            }
-          ]
-        },
-        {
-          label: 'option2',
-          options: [
-            {
-              label: 'option2-1',
-              value: '2-1'
-            },
-            {
-              label: 'option2-2',
-              value: '2-2'
-            }
-          ]
-        }
-      ]
-    }
-  },
-  {
-    field: 'field17',
-    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-    component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          options: [
-            {
-              label: 'option1-1',
-              value: '1-1'
-            },
-            {
-              label: 'option1-2',
-              value: '1-2'
-            }
-          ]
-        },
-        {
-          label: 'option2',
-          options: [
-            {
-              label: 'option2-1',
-              value: '2-1'
-            },
-            {
-              label: 'option2-2',
-              value: '2-2'
-            }
-          ]
-        }
-      ],
-      slots: {
-        optionGroupDefault: (option: SelectOption) => {
-          return (
-            <ElOptionGroup key={option.label} label={`${option.label} ${option.label}`}>
-              {option?.options?.map((v) => {
-                return (
-                  <ElOption
-                    key={v.value}
-                    label={v.label}
-                    value={v.value}
-                  />
-                )
-              })}
-            </ElOptionGroup>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field18',
-    label: `${t('formDemo.selectV2')}`,
-    component: 'Divider'
-  },
-  {
-    field: 'field19',
-    label: t('formDemo.default'),
-    component: 'SelectV2',
-    componentProps: {
-      value: undefined,
-      options: options.value
-    }
-  },
-  {
-    field: 'field20',
-    label: t('formDemo.slot'),
-    component: 'SelectV2',
-    componentProps: {
-      options: options.value,
-      slots: {
-        default: (option: SelectOption) => {
-          return (
-            <>
-              <span style="margin-right: 8px">{option?.label}</span>
-              <span style="color: var(--el-text-color-secondary); font-size: 13px">
-                {option?.value}
-              </span>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field21',
-    label: t('formDemo.selectGroup'),
-    component: 'SelectV2',
-    componentProps: {
-      options: options2.value
-    }
-  },
-  {
-    field: 'field22',
-    label: `${t('formDemo.selectGroup')}${t('formDemo.slot')}`,
-    component: 'SelectV2',
-    componentProps: {
-      options: options2.value,
-      slots: {
-        default: (option: SelectOption) => {
-          return (
-            <>
-              <span style="margin-right: 8px">{option?.label}</span>
-              <span style="color: var(--el-text-color-secondary); font-size: 13px">
-                {option?.value}
-              </span>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field23',
-    label: t('formDemo.cascader'),
-    component: 'Divider'
-  },
-  {
-    field: 'field24',
-    label: t('formDemo.default'),
-    component: 'Cascader',
-    componentProps: {
-      options: options3,
-      props: {
-        multiple: true
-      }
-    }
-  },
-  {
-    field: 'field25',
-    label: t('formDemo.slot'),
-    component: 'Cascader',
-    componentProps: {
-      options: options3,
-      slots: {
-        default: ({ data, node }) => {
-          return (
-            <>
-              <span>{data.label}</span>
-              {!node.isLeaf ? <span> ({data.children.length}) </span> : null}
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field26',
-    label: t('formDemo.switch'),
-    component: 'Divider'
-  },
-  {
-    field: 'field27',
-    label: t('formDemo.default'),
-    component: 'Switch',
-    value: false
-  },
-  {
-    field: 'field28',
-    label: t('formDemo.icon'),
-    component: 'Switch',
-    value: false,
-    componentProps: {
-      activeIcon: useIcon({ icon: 'ep:check' }),
-      inactiveIcon: useIcon({ icon: 'ep:close' })
-    }
-  },
-  {
-    field: 'field29',
-    label: t('formDemo.rate'),
-    component: 'Divider'
-  },
-  {
-    field: 'field30',
-    label: t('formDemo.default'),
-    component: 'Rate',
-    value: 0
-  },
-  {
-    field: 'field31',
-    label: t('formDemo.icon'),
-    component: 'Rate',
-    value: null,
-    componentProps: {
-      voidIcon: useIcon({ icon: 'ep:chat-round' }),
-      icons: [
-        useIcon({ icon: 'ep:chat-round' }),
-        useIcon({ icon: 'ep:chat-line-round' }),
-        useIcon({ icon: 'ep:chat-dot-round' })
-      ]
-    }
-  },
-  {
-    field: 'field32',
-    label: t('formDemo.colorPicker'),
-    component: 'Divider'
-  },
-  {
-    field: 'field33',
-    label: t('formDemo.default'),
-    component: 'ColorPicker'
-  },
-  {
-    field: 'field34',
-    label: t('formDemo.transfer'),
-    component: 'Divider'
-  },
-  {
-    field: 'field35',
-    label: t('formDemo.default'),
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc'
-      },
-      data: generateData()
     },
-    value: [],
-    colProps: {
-      span: 24
+    // 远程加载option
+    optionApi: async () => {
+      const res = await getDictOneApi()
+      return res.data
     }
-  },
-  {
-    field: 'field36',
-    label: t('formDemo.slot'),
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc'
-      },
-      filterable: true,
-      leftDefaultChecked: [2, 3],
-      rightDefaultChecked: [1],
-      titles: ['Source', 'Target'],
-      buttonTexts: ['To Left', 'To Right'],
-      format: {
-        noChecked: '${total}',
-        hasChecked: '${checked}/${total}'
-      },
-      data: generateData(),
-      slots: {
-        default: ({ option }) => {
-          return (
-            <span>
-              {option.value} - {option.desc}
-            </span>
-          )
-        },
-        leftFooter: () => {
-          return (
-            <ElButton class="transfer-footer" size="small">
-              Operation
-            </ElButton>
-          )
-        },
-        rightFooter: () => {
-          return (
-            <ElButton class="transfer-footer" size="small">
-              Operation
-            </ElButton>
-          )
-        }
-      }
-    },
-    value: [1],
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field37',
-    label: `${t('formDemo.render')}`,
-    component: 'Transfer',
-    componentProps: {
-      props: {
-        key: 'value',
-        label: 'desc',
-        disabled: 'disabled'
-      },
-      leftDefaultChecked: [2, 3],
-      rightDefaultChecked: [1],
-      data: generateData(),
-      renderContent: (h, option) => {
-        return h('span', null, `${option.value} - ${option.desc}`)
-      }
-    },
-    value: [1],
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field38',
-    label: t('formDemo.radio'),
-    component: 'Divider'
-  },
-  {
-    field: 'field39-2',
-    label: t('formDemo.radioGroup'),
-    component: 'RadioGroup',
-    componentProps: {
-      options: [
-        {
-          // disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field39-3',
-    label: `${t('formDemo.radioGroup')} ${t('formDemo.slot')}`,
-    component: 'RadioGroup',
-    componentProps: {
-      options: [
-        {
-          // disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ],
-      slots: {
-        default: (options: RadioOption[]) => {
-          return options?.map((v) => {
-            return (
-              <ElRadio label={v.value}>
-                {v.label}({v.value})
-              </ElRadio>
-            )
-          })
-        }
-      }
-    }
-  },
-  {
-    field: 'field40',
-    label: t('formDemo.button'),
-    component: 'RadioButton',
-    componentProps: {
-      options: [
-        {
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field40-1',
-    label: `${t('formDemo.button')} ${t('formDemo.slot')}`,
-    component: 'RadioButton',
-    componentProps: {
-      options: [
-        {
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        }
-      ],
-      slots: {
-        default: (options: RadioOption[]) => {
-          return options?.map((v) => {
-            return (
-              <ElRadioButton label={v.value}>
-                {v.label}({v.value})
-              </ElRadioButton>
-            )
-          })
-        }
-      }
-    }
-  },
-  {
-    field: 'field41',
-    label: t('formDemo.checkbox'),
-    component: 'Divider'
-  },
-  {
-    field: 'field42-2',
-    label: t('formDemo.checkboxGroup'),
-    component: 'CheckboxGroup',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '3'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field42-3',
-    label: `${t('formDemo.checkboxGroup')} ${t('formDemo.slot')}`,
-    component: 'CheckboxGroup',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '3'
-        }
-      ],
-      slots: {
-        default: (options: CheckboxOption[]) => {
-          return options?.map((v) => {
-            return (
-              <ElCheckbox label={v.value}>
-                {v.label}({v.value})
-              </ElCheckbox>
-            )
-          })
-        }
-      }
-    }
-  },
-  {
-    field: 'field43',
-    label: t('formDemo.button'),
-    component: 'CheckboxButton',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '23'
-        }
-      ]
-    }
-  },
-  {
-    field: 'field43-1',
-    label: `${t('formDemo.button')} ${t('formDemo.slot')}`,
-    component: 'CheckboxButton',
-    value: [],
-    componentProps: {
-      options: [
-        {
-          disabled: true,
-          label: 'option-1',
-          value: '1'
-        },
-        {
-          label: 'option-2',
-          value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '23'
-        }
-      ],
-      slots: {
-        default: (options: CheckboxOption[]) => {
-          return options?.map((v) => {
-            return (
-              <ElCheckboxButton label={v.value}>
-                {v.label}({v.value})
-              </ElCheckboxButton>
-            )
-          })
-        }
-      }
-    }
-  },
-  {
-    field: 'field44',
-    component: 'Divider',
-    label: t('formDemo.slider')
-  },
-  {
-    field: 'field45',
-    component: 'Slider',
-    label: t('formDemo.default'),
-    value: 0
-  },
-  {
-    field: 'field46',
-    component: 'Divider',
-    label: t('formDemo.datePicker')
-  },
-  {
-    field: 'field47',
-    component: 'DatePicker',
-    label: t('formDemo.default'),
-    componentProps: {
-      type: 'date'
-    }
-  },
-  {
-    field: 'field48',
-    component: 'DatePicker',
-    label: t('formDemo.shortcuts'),
-    componentProps: {
-      type: 'date',
-      disabledDate: (time: Date) => {
-        return time.getTime() > Date.now()
-      },
-      shortcuts: [
-        {
-          text: t('formDemo.today'),
-          value: new Date()
-        },
-        {
-          text: t('formDemo.yesterday'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24)
-            return date
-          }
-        },
-        {
-          text: t('formDemo.aWeekAgo'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-            return date
-          }
-        }
-      ]
-    }
-  },
-  {
-    field: 'field47-1',
-    component: 'DatePicker',
-    label: t('formDemo.slot'),
-    value: '2021-10-29',
-    componentProps: {
-      type: 'date',
-      slots: {
-        default: (cell: any) => {
-          return (
-            <div class={{ cell: true, current: cell.isCurrent }}>
-              <span class="text">{cell.text}</span>
-              {isHoliday(cell) ? <span class="holiday" /> : null}
-            </div>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'field49',
-    component: 'DatePicker',
-    label: t('formDemo.week'),
-    componentProps: {
-      type: 'week',
-      format: `[${t('formDemo.week')}]`
-    }
-  },
-  {
-    field: 'field50',
-    component: 'DatePicker',
-    label: t('formDemo.year'),
-    componentProps: {
-      type: 'year'
-    }
-  },
-  {
-    field: 'field51',
-    component: 'DatePicker',
-    label: t('formDemo.month'),
-    componentProps: {
-      type: 'month'
-    }
-  },
-  {
-    field: 'field52',
-    component: 'DatePicker',
-    label: t('formDemo.dates'),
-    componentProps: {
-      type: 'dates'
-    }
-  },
-  {
-    field: 'field53',
-    component: 'DatePicker',
-    label: t('formDemo.daterange'),
-    componentProps: {
-      type: 'daterange'
-    }
-  },
-  {
-    field: 'field54',
-    component: 'DatePicker',
-    label: t('formDemo.monthrange'),
-    componentProps: {
-      type: 'monthrange'
-    }
-  },
-  {
-    field: 'field56',
-    component: 'Divider',
-    label: t('formDemo.dateTimePicker')
-  },
-  {
-    field: 'field57',
-    component: 'DatePicker',
-    label: t('formDemo.default'),
-    componentProps: {
-      type: 'datetime'
-    }
-  },
-  {
-    field: 'field58',
-    component: 'DatePicker',
-    label: t('formDemo.shortcuts'),
-    componentProps: {
-      type: 'datetime',
-      shortcuts: [
-        {
-          text: t('formDemo.today'),
-          value: new Date()
-        },
-        {
-          text: t('formDemo.yesterday'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24)
-            return date
-          }
-        },
-        {
-          text: t('formDemo.aWeekAgo'),
-          value: () => {
-            const date = new Date()
-            date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-            return date
-          }
-        }
-      ]
-    }
-  },
-  {
-    field: 'field59',
-    component: 'DatePicker',
-    label: t('formDemo.dateTimerange'),
-    componentProps: {
-      type: 'datetimerange'
-    }
-  },
-  {
-    field: 'field60',
-    component: 'Divider',
-    label: t('formDemo.timePicker')
-  },
-  {
-    field: 'field61',
-    component: 'TimePicker',
-    label: t('formDemo.default')
-  },
-  {
-    field: 'field62',
-    component: 'Divider',
-    label: t('formDemo.timeSelect')
-  },
-  {
-    field: 'field63',
-    component: 'TimeSelect',
-    label: t('formDemo.default')
-  },
-  {
-    field: 'field64',
-    component: 'Divider',
-    label: t('formDemo.richText')
-  },
-  {
-    field: 'field65',
-    component: 'Editor',
-    value: 'hello world',
-    label: t('formDemo.default'),
-    componentProps: {
-      editorConfig: {
-        placeholder: '请输入内容...'
-      }
-    },
-    colProps: {
-      span: 24
-    }
-  },
-  {
-    field: 'field66',
-    component: 'Divider',
-    label: t('formDemo.inputPassword')
-  },
-  {
-    field: 'field67',
-    component: 'InputPassword',
-    label: t('formDemo.default'),
-    componentProps: {
-      strength: true
-    }
-  },
-  {
-    field: 'field68',
-    component: 'Divider',
-    label: `${t('formDemo.form')} ${t('formDemo.slot')}`,
-  },
-  {
-    field: 'field69',
-    component: 'Input',
-    label: `label`,
-    formItemProps: {
-      slots: {
-        label: ({ label }) => {
-          return (
-            <div class="custom-label">
-              <span class="label-text">custom {label}</span>
-            </div>
-          )
-        }
-      }
-    }
-  },
+  }
 ])
 
 const { register, formRef, methods } = useForm()

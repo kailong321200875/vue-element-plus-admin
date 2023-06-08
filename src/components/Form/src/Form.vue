@@ -1,6 +1,15 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol, ElTooltip } from 'element-plus'
+import {
+  PropType,
+  defineComponent,
+  ref,
+  computed,
+  unref,
+  watch,
+  onMounted,
+  defineAsyncComponent
+} from 'vue'
+import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
@@ -9,8 +18,7 @@ import {
   setGridProp,
   setComponentProps,
   setItemComponentSlots,
-  initModel,
-  setFormItemSlots
+  initModel
 } from './helper'
 import { useRenderSelect } from './components/useRenderSelect'
 import { useRenderRadio } from './components/useRenderRadio'
@@ -19,7 +27,6 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { findIndex } from '@/utils'
 import { set } from 'lodash-es'
 import { FormProps } from './types'
-import { Icon } from '@/components/Icon'
 import {
   FormSchema,
   FormSetProps,
@@ -125,6 +132,11 @@ export default defineComponent({
       return unref(elFormRef) as ComponentRef<typeof ElForm>
     }
 
+    const getOptions = async (fn: Function) => {
+      const options = await fn()
+      console.log('=====：', options)
+    }
+
     expose({
       setValues,
       formModel,
@@ -139,6 +151,7 @@ export default defineComponent({
     watch(
       () => unref(getProps).schema,
       (schema = []) => {
+        console.log('@@####')
         formModel.value = initModel(schema, unref(formModel))
       },
       {
@@ -182,95 +195,108 @@ export default defineComponent({
 
     // 渲染formItem
     const renderFormItem = (item: FormSchema) => {
-      const formItemSlots = {
+      const formItemSlots: Recordable = {
         default: () => {
-              if (slots[item.field]) {
-                return getSlot(slots, item.field, formModel.value)
-              } else {
-                const Com = componentMap[item.component as string] as ReturnType<
-                  typeof defineComponent
-                >
+          if (slots[item.field]) {
+            return getSlot(slots, item.field, formModel.value)
+          } else {
+            console.log(item.field)
+            const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
 
-                const { autoSetPlaceholder } = unref(getProps)
+            const { autoSetPlaceholder } = unref(getProps)
 
-                const componentSlots = (item?.componentProps as any)?.slots || {}
-                const slotsMap: Recordable = {
-                  ...setItemComponentSlots(componentSlots)
-                }
-                // 如果是select组件，并且没有自定义模板，自动渲染options
-                if (item.component === ComponentNameEnum.SELECT) {
-                  slotsMap.default = !componentSlots.default
-                    ? () => renderSelectOptions(item)
-                    : () => {
-                        return componentSlots.default(
-                          unref((item?.componentProps as SelectComponentProps)?.options)
-                        )
-                      }
-                }
-
-                // 虚拟列表
-                if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
-                  slotsMap.default = ({ item }) => {
-                    return componentSlots.default(item)
+            const componentSlots = (item?.componentProps as any)?.slots || {}
+            const slotsMap: Recordable = {
+              ...setItemComponentSlots(componentSlots)
+            }
+            // // 如果是select组件，并且没有自定义模板，自动渲染options
+            if (item.component === ComponentNameEnum.SELECT) {
+              // 如果有optionApi，优先使用optionApi
+              if (item.optionApi) {
+                // 内部自动调用接口，不影响其他渲染
+                getOptions(item.optionApi)
+              }
+              slotsMap.default = !componentSlots.default
+                ? () => renderSelectOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as SelectComponentProps)?.options)
+                    )
                   }
-                }
+            }
 
-                // 单选框组和按钮样式
-                if (
-                  item.component === ComponentNameEnum.RADIO_GROUP ||
-                  item.component === ComponentNameEnum.RADIO_BUTTON
-                ) {
-                  slotsMap.default = !componentSlots.default
-                    ? () => renderRadioOptions(item)
-                    : () => {
-                        return componentSlots.default(
-                          unref((item?.componentProps as CheckboxGroupComponentProps)?.options)
-                        )
-                      }
-                }
-
-                // 多选框组和按钮样式
-                if (
-                  item.component === ComponentNameEnum.CHECKBOX_GROUP ||
-                  item.component === ComponentNameEnum.CHECKBOX_BUTTON
-                ) {
-                  slotsMap.default = !componentSlots.default
-                    ? () => renderCheckboxOptions(item)
-                    : () => {
-                        return componentSlots.default(
-                          unref((item?.componentProps as RadioGroupComponentProps)?.options)
-                        )
-                      }
-                }
-
-                return (
-                  <Com
-                    vModel={formModel.value[item.field]}
-                    {...(autoSetPlaceholder && setTextPlaceholder(item))}
-                    {...setComponentProps(item)}
-                    style={item.componentProps?.style || {}}
-                  >
-                    {{ ...slotsMap }}
-                  </Com>
-                )
+            // 虚拟列表
+            if (item.component === ComponentNameEnum.SELECT_V2 && componentSlots.default) {
+              slotsMap.default = ({ item }) => {
+                return componentSlots.default(item)
               }
             }
+
+            // 单选框组和按钮样式
+            if (
+              item.component === ComponentNameEnum.RADIO_GROUP ||
+              item.component === ComponentNameEnum.RADIO_BUTTON
+            ) {
+              slotsMap.default = !componentSlots.default
+                ? () => renderRadioOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as CheckboxGroupComponentProps)?.options)
+                    )
+                  }
+            }
+
+            // 多选框组和按钮样式
+            if (
+              item.component === ComponentNameEnum.CHECKBOX_GROUP ||
+              item.component === ComponentNameEnum.CHECKBOX_BUTTON
+            ) {
+              slotsMap.default = !componentSlots.default
+                ? () => renderCheckboxOptions(item)
+                : () => {
+                    return componentSlots.default(
+                      unref((item?.componentProps as RadioGroupComponentProps)?.options)
+                    )
+                  }
+            }
+
+            const Comp = () => {
+              return (
+                <Com
+                  vModel={formModel.value[item.field]}
+                  {...(autoSetPlaceholder && setTextPlaceholder(item))}
+                  {...setComponentProps(item)}
+                  style={item.componentProps?.style || {}}
+                >
+                  {{ ...slotsMap }}
+                </Com>
+              )
+            }
+
+            return <>{Comp()}</>
+          }
+        }
       }
       if (item?.formItemProps?.slots?.label) {
         formItemSlots.label = (...args: any[]) => {
-          return item.formItemProps.slots.label(...args)
+          return (item?.formItemProps?.slots as any)?.label(...args)
         }
       }
       if (item?.formItemProps?.slots?.error) {
         formItemSlots.error = (...args: any[]) => {
-          return item.formItemProps.slots.error(...args)
+          return (item?.formItemProps?.slots as any)?.error(...args)
         }
       }
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
-          {{
-            ...formItemSlots
-          }}
+          {formItemSlots}
+          {/* {{
+            default: () => {
+              console.log(item.field)
+
+              return '2222'
+            }
+          }} */}
         </ElFormItem>
       )
     }

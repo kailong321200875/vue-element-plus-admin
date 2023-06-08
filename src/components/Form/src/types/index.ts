@@ -820,7 +820,7 @@ export interface FormSchema {
   /**
    * @returns 远程加载下拉项
    */
-  api?: <T = any>() => AxiosPromise<T>
+  optionApi?: any
 }
 
 export interface FormProps {

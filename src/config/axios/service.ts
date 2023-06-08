@@ -1,10 +1,10 @@
 import axios from 'axios'
 import config, { defaultRequestInterceptors, defaultResponseInterceptors } from './config'
 
-import { AxiosInstance, InternalAxiosRequestConfig, RequestConfig, AxiosResponse } from './type'
+import { AxiosInstance, InternalAxiosRequestConfig, RequestConfig, AxiosResponse } from './types'
 
 const { interceptors, baseUrl } = config
-export const PATH_URL = baseUrl[import.meta.env.VITE_API_BASEPATH]
+export const PATH_URL = baseUrl[import.meta.env.VITE_API_BASE_PATH]
 
 const { requestInterceptors, responseInterceptors } = interceptors
 

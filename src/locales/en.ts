@@ -283,7 +283,9 @@ export default {
     verifyReset: 'Verify reset',
     // 富文本编辑器
     richText: 'Rich text',
-    form: 'Form'
+    form: 'Form',
+    // 远程加载
+    remoteLoading: 'Remote loading'
   },
   guideDemo: {
     guide: 'Guide',
