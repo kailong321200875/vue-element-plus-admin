@@ -53,6 +53,7 @@ type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
 export type ComponentName = CamelCaseComponentName
 
 export interface InputComponentProps {
+  ref?: any
   maxlength?: number | string
   minlength?: number | string
   showWordLimit?: boolean
@@ -98,6 +99,7 @@ export interface InputComponentProps {
 }
 
 export interface AutocompleteComponentProps {
+  ref?: any
   placeholder?: string
   clearable?: boolean
   disabled?: boolean
@@ -130,6 +132,7 @@ export interface AutocompleteComponentProps {
 }
 
 export interface InputNumberComponentProps {
+  ref?: any
   min?: number
   max?: number
   step?: number
@@ -164,6 +167,7 @@ export interface SelectOption {
 }
 
 export interface SelectComponentProps {
+  ref?: any
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -241,6 +245,7 @@ export interface SelectComponentProps {
 }
 
 export interface SelectV2ComponentProps {
+  ref?: any
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
@@ -285,6 +290,7 @@ export interface SelectV2ComponentProps {
 }
 
 export interface CascaderComponentProps {
+  ref?: any
   options?: Record<string, unknown>[]
   props?: CascaderProps
   size?: ElementPlusSize
@@ -319,6 +325,7 @@ export interface CascaderComponentProps {
 }
 
 export interface SwitchComponentProps {
+  ref?: any
   disabled?: boolean
   loading?: boolean
   size?: ElementPlusSize
@@ -340,6 +347,7 @@ export interface SwitchComponentProps {
 }
 
 export interface RateComponentProps {
+  ref?: any
   max?: number
   size?: ElementPlusSize
   disabled?: boolean
@@ -367,6 +375,7 @@ export interface RateComponentProps {
 }
 
 export interface ColorPickerComponentProps {
+  ref?: any
   disabled?: boolean
   size?: ElementPlusSize
   showAlpha?: boolean
@@ -384,6 +393,7 @@ export interface ColorPickerComponentProps {
 }
 
 export interface TransferComponentProps {
+  ref?: any
   data?: any[]
   filterable?: boolean
   filterPlaceholder?: string
@@ -434,6 +444,7 @@ export interface RadioOption {
   [key: string]: any
 }
 export interface RadioGroupComponentProps {
+  ref?: any
   size?: ElementPlusSize
   disabled?: boolean
   textColor?: string
@@ -461,6 +472,7 @@ export interface RadioGroupComponentProps {
 }
 
 export interface RadioButtonComponentProps {
+  ref?: any
   size?: ElementPlusSize
   disabled?: boolean
   textColor?: string
@@ -506,6 +518,7 @@ export interface CheckboxOption {
 }
 
 export interface CheckboxGroupComponentProps {
+  ref?: any
   size?: ElementPlusSize
   disabled?: boolean
   min?: number
@@ -534,6 +547,7 @@ export interface CheckboxGroupComponentProps {
 }
 
 export interface DividerComponentProps {
+  ref?: any
   min?: number
   max?: number
   disabled?: boolean
@@ -565,6 +579,7 @@ export interface DividerComponentProps {
 }
 
 export interface DatePickerComponentProps {
+  ref?: any
   readonly?: boolean
   disabled?: boolean
   size?: ElementPlusSize
@@ -616,6 +631,7 @@ export interface DatePickerComponentProps {
 }
 
 export interface DateTimePickerComponentProps {
+  ref?: any
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -656,6 +672,7 @@ export interface DateTimePickerComponentProps {
 }
 
 export interface TimePickerComponentProps {
+  ref?: any
   readonly?: boolean
   disabled?: boolean
   editable?: boolean
@@ -692,6 +709,7 @@ export interface TimePickerComponentProps {
 }
 
 export interface TimeSelectComponentProps {
+  ref?: any
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
@@ -716,6 +734,7 @@ export interface TimeSelectComponentProps {
 }
 
 export interface EditorComponentProps {
+  ref?: any
   editorConfig?: IEditorConfig
   style?: CSSProperties
 }
@@ -796,6 +815,7 @@ export interface FormSchema {
     | DateTimePickerComponentProps
     | TimePickerComponentProps
     | EditorComponentProps
+    | any
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

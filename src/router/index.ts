@@ -148,15 +148,15 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.defaultForm')
             }
+          },
+          {
+            path: 'use-form',
+            component: () => import('@/views/Components/Form/UseFormDemo.vue'),
+            name: 'UseForm',
+            meta: {
+              title: 'UseForm'
+            }
           }
-          // {
-          //   path: 'use-form',
-          //   component: () => import('@/views/Components/Form/UseFormDemo.vue'),
-          //   name: 'UseForm',
-          //   meta: {
-          //     title: 'UseForm'
-          //   }
-          // }
           // {
           //   path: 'ref-form',
           //   component: () => import('@/views/Components/Form/RefForm.vue'),

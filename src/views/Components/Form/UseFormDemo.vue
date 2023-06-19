@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Form } from '@/components/Form'
+import { Form, FormSchema } from '@/components/Form'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
@@ -7,7 +7,6 @@ import { reactive, unref, ref } from 'vue'
 import { ElButton } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
-import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 
@@ -42,7 +41,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field3',
     label: t('formDemo.radio'),
-    component: 'Radio',
+    component: 'RadioGroup',
     componentProps: {
       options: [
         {
@@ -59,7 +58,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field4',
     label: t('formDemo.checkbox'),
-    component: 'Checkbox',
+    component: 'CheckboxGroup',
     value: [],
     componentProps: {
       options: [
@@ -93,9 +92,7 @@ const schema = reactive<FormSchema[]>([
   }
 ])
 
-const { register, methods, elFormRef } = useForm({
-  schema
-})
+const { register, methods, elFormRef } = useForm()
 
 const changeLabelWidth = (width: number | string) => {
   const { setProps } = methods
@@ -241,7 +238,7 @@ const getDictOne = async () => {
 </script>
 
 <template>
-  <ContentWrap :title="`UseForm ${t('formDemo.operate')}`">
+  <ContentWrap :title="`UseForm ${t('formDemo.operate')}`" style="margin-bottom: 20px">
     <ElButton @click="changeLabelWidth(150)">{{ t('formDemo.change') }} labelWidth</ElButton>
     <ElButton @click="changeLabelWidth('auto')">{{ t('formDemo.restore') }} labelWidth</ElButton>
 
@@ -275,6 +272,12 @@ const getDictOne = async () => {
     </ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
-    <Form @register="register" />
+    <Form :schema="schema" @register="register" />
   </ContentWrap>
 </template>
+
+<style lang="less" scoped>
+.el-button + .el-button {
+  margin-top: 10px;
+}
+</style>

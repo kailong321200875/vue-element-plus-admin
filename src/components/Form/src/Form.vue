@@ -1,14 +1,5 @@
 <script lang="tsx">
-import {
-  PropType,
-  defineComponent,
-  ref,
-  computed,
-  unref,
-  watch,
-  onMounted,
-  defineAsyncComponent
-} from 'vue'
+import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
 import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
@@ -132,9 +123,9 @@ export default defineComponent({
       return unref(elFormRef) as ComponentRef<typeof ElForm>
     }
 
-    const getOptions = async (fn: Function) => {
+    const getOptions = async (fn: Function, field: string) => {
       const options = await fn()
-      console.log('=====：', options)
+      console.log(field, options)
     }
 
     expose({
@@ -195,12 +186,16 @@ export default defineComponent({
 
     // 渲染formItem
     const renderFormItem = (item: FormSchema) => {
+      // 如果有optionApi，优先使用optionApi
+      if (item.optionApi) {
+        // 内部自动调用接口，不影响其他渲染
+        getOptions(item.optionApi, item.field)
+      }
       const formItemSlots: Recordable = {
         default: () => {
           if (slots[item.field]) {
             return getSlot(slots, item.field, formModel.value)
           } else {
-            console.log(item.field)
             const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
 
             const { autoSetPlaceholder } = unref(getProps)
@@ -211,11 +206,6 @@ export default defineComponent({
             }
             // // 如果是select组件，并且没有自定义模板，自动渲染options
             if (item.component === ComponentNameEnum.SELECT) {
-              // 如果有optionApi，优先使用optionApi
-              if (item.optionApi) {
-                // 内部自动调用接口，不影响其他渲染
-                getOptions(item.optionApi)
-              }
               slotsMap.default = !componentSlots.default
                 ? () => renderSelectOptions(item)
                 : () => {
@@ -290,13 +280,6 @@ export default defineComponent({
       return (
         <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
           {formItemSlots}
-          {/* {{
-            default: () => {
-              console.log(item.field)
-
-              return '2222'
-            }
-          }} */}
         </ElFormItem>
       )
     }
