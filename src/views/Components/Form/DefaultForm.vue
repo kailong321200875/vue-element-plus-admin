@@ -14,7 +14,8 @@ import {
   ElRadio,
   ElRadioButton,
   ElCheckbox,
-  ElCheckboxButton
+  ElCheckboxButton,
+  ElInput
 } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
 
@@ -1385,6 +1386,18 @@ const schema = reactive<FormSchema[]>([
     }
   },
   {
+    field: 'field69-1',
+    component: 'Input',
+    label: `custom formItem`,
+    formItemProps: {
+      slots: {
+        default: (formModel: any) => {
+          return <ElInput v-model={formModel['field69-1']} />
+        }
+      }
+    }
+  },
+  {
     field: 'field70',
     component: 'Divider',
     label: `${t('formDemo.remoteLoading')}`
@@ -1393,6 +1406,45 @@ const schema = reactive<FormSchema[]>([
     field: 'field71',
     label: `${t('formDemo.select')}`,
     component: 'Select',
+    componentProps: {
+      options: []
+    },
+    // 远程加载option
+    optionApi: async () => {
+      const res = await getDictOneApi()
+      return res.data
+    }
+  },
+  {
+    field: 'field72',
+    label: `${t('formDemo.selectV2')}`,
+    component: 'SelectV2',
+    componentProps: {
+      options: []
+    },
+    // 远程加载option
+    optionApi: async () => {
+      const res = await getDictOneApi()
+      return res.data
+    }
+  },
+  {
+    field: 'field73',
+    label: `${t('formDemo.checkboxGroup')}`,
+    component: 'CheckboxGroup',
+    componentProps: {
+      options: []
+    },
+    // 远程加载option
+    optionApi: async () => {
+      const res = await getDictOneApi()
+      return res.data
+    }
+  },
+  {
+    field: 'field74',
+    label: `${t('formDemo.radioGroup')}`,
+    component: 'RadioGroup',
     componentProps: {
       options: []
     },

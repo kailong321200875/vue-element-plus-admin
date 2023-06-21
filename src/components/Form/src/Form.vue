@@ -73,6 +73,12 @@ export default defineComponent({
       return propsObj
     })
 
+    // 存储表单实例
+    const formComponents = ref({})
+
+    // 存储form-item实例
+    const formItemComponents = ref({})
+
     // 表单数据
     const formModel = ref<Recordable>({})
 
@@ -125,7 +131,37 @@ export default defineComponent({
 
     const getOptions = async (fn: Function, field: string) => {
       const options = await fn()
-      console.log(field, options)
+      setSchema([
+        {
+          field,
+          path: 'componentProps.options',
+          value: options
+        }
+      ])
+    }
+
+    /**
+     * @description: 获取表单组件实例
+     * @param filed 表单字段
+     */
+    const getComponentExpose = (filed: string) => {
+      return unref(formComponents)[filed]
+    }
+
+    /**
+     * @description: 获取formItem实例
+     * @param filed 表单字段
+     */
+    const getFormItemExpose = (filed: string) => {
+      return unref(formItemComponents)[filed]
+    }
+
+    const setComponentRefMap = (ref: any, filed: string) => {
+      formComponents.value[filed] = ref
+    }
+
+    const setFormItemRefMap = (ref: any, filed: string) => {
+      formItemComponents.value[filed] = ref
     }
 
     expose({
@@ -135,14 +171,15 @@ export default defineComponent({
       delSchema,
       addSchema,
       setSchema,
-      getElFormRef
+      getElFormRef,
+      getComponentExpose,
+      getFormItemExpose
     })
 
     // 监听表单结构化数组，重新生成formModel
     watch(
       () => unref(getProps).schema,
       (schema = []) => {
-        console.log('@@####')
         formModel.value = initModel(schema, unref(formModel))
       },
       {
@@ -193,8 +230,8 @@ export default defineComponent({
       }
       const formItemSlots: Recordable = {
         default: () => {
-          if (slots[item.field]) {
-            return getSlot(slots, item.field, formModel.value)
+          if (item?.formItemProps?.slots?.default) {
+            return item?.formItemProps?.slots?.default(formModel.value)
           } else {
             const Com = componentMap[item.component as string] as ReturnType<typeof defineComponent>
 
@@ -254,6 +291,7 @@ export default defineComponent({
               return (
                 <Com
                   vModel={formModel.value[item.field]}
+                  ref={(el: any) => setComponentRefMap(el, item.field)}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}
                   style={item.componentProps?.style || {}}
@@ -278,7 +316,12 @@ export default defineComponent({
         }
       }
       return (
-        <ElFormItem {...(item.formItemProps || {})} prop={item.field} label={item.label || ''}>
+        <ElFormItem
+          ref={(el: any) => setFormItemRefMap(el, item.field)}
+          {...(item.formItemProps || {})}
+          prop={item.field}
+          label={item.label || ''}
+        >
           {formItemSlots}
         </ElFormItem>
       )

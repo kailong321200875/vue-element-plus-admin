@@ -284,7 +284,9 @@ export default {
     richText: '富文本编辑器',
     form: '表单',
     // 远程加载
-    remoteLoading: '远程加载'
+    remoteLoading: '远程加载',
+    // 聚焦
+    focus: '聚焦'
   },
   guideDemo: {
     guide: '引导页',

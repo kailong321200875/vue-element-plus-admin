@@ -285,7 +285,9 @@ export default {
     richText: 'Rich text',
     form: 'Form',
     // 远程加载
-    remoteLoading: 'Remote loading'
+    remoteLoading: 'Remote loading',
+    // 聚焦
+    focus: 'Focus'
   },
   guideDemo: {
     guide: 'Guide',

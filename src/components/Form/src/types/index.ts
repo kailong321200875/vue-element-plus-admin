@@ -756,6 +756,7 @@ export interface FormSetProps {
 }
 
 export interface FormItemProps {
+  ref?: any
   labelWidth?: string | number
   required?: boolean
   rules?: FormItemRule | FormItemRule[]

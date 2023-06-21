@@ -41,6 +41,8 @@ export interface FormExpose {
   setSchema: (schemaProps: FormSetProps[]) => void
   formModel: Recordable
   getElFormRef: () => ComponentRef<typeof ElForm>
+  getComponentExpose: (field: string) => any
+  getFormItemExpose: (field: string) => any
 }
 
 export { Form }

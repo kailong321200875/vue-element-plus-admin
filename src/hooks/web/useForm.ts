@@ -1,5 +1,5 @@
 import type { Form, FormExpose } from '@/components/Form'
-import type { ElForm } from 'element-plus'
+import type { ElForm, ElFormItem } from 'element-plus'
 import { ref, unref, nextTick } from 'vue'
 import { FormSchema, FormSetProps, FormProps } from '@/components/Form'
 
@@ -74,12 +74,26 @@ export const useForm = () => {
     getFormData: async <T = Recordable>(): Promise<T> => {
       const form = await getForm()
       return form?.formModel as T
+    },
+
+    getComponentExpose: async (field: string) => {
+      const form = await getForm()
+      return form?.getComponentExpose(field)
+    },
+
+    getFormItemExpose: async (field: string) => {
+      const form = await getForm()
+      return form?.getFormItemExpose(field) as ComponentRef<typeof ElFormItem>
+    },
+
+    getElFormExpose: async () => {
+      await getForm()
+      return unref(elFormRef)
     }
   }
 
   return {
     register,
-    formRef: elFormRef,
     methods
   }
 }
