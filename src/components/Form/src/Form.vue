@@ -125,10 +125,6 @@ export default defineComponent({
       }
     }
 
-    const getElFormRef = (): ComponentRef<typeof ElForm> => {
-      return unref(elFormRef) as ComponentRef<typeof ElForm>
-    }
-
     const getOptions = async (fn: Function, field: string) => {
       const options = await fn()
       setSchema([
@@ -171,7 +167,6 @@ export default defineComponent({
       delSchema,
       addSchema,
       setSchema,
-      getElFormRef,
       getComponentExpose,
       getFormItemExpose
     })

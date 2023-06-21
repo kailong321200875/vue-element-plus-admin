@@ -30,6 +30,10 @@ export const useForm = () => {
 
   // 一些内置的方法
   const methods = {
+    /**
+     * @description 设置form组件的props
+     * @param field FormItem的field
+     */
     setProps: async (props: FormProps = {}) => {
       const form = await getForm()
       form?.setProps(props)
@@ -38,12 +42,17 @@ export const useForm = () => {
       }
     },
 
+    /**
+     * @description 设置form的值
+     * @param data 需要设置的数据
+     */
     setValues: async (data: Recordable) => {
       const form = await getForm()
       form?.setValues(data)
     },
 
     /**
+     * @description 设置schema
      * @param schemaProps 需要设置的schemaProps
      */
     setSchema: async (schemaProps: FormSetProps[]) => {
@@ -52,6 +61,7 @@ export const useForm = () => {
     },
 
     /**
+     * @description 新增schema
      * @param formSchema 需要新增数据
      * @param index 在哪里新增
      */
@@ -61,6 +71,7 @@ export const useForm = () => {
     },
 
     /**
+     * @description 删除schema
      * @param field 删除哪个数据
      */
     delSchema: async (field: string) => {
@@ -69,6 +80,7 @@ export const useForm = () => {
     },
 
     /**
+     * @description 获取表单数据
      * @returns form data
      */
     getFormData: async <T = Recordable>(): Promise<T> => {
@@ -76,16 +88,30 @@ export const useForm = () => {
       return form?.formModel as T
     },
 
+    /**
+     * @description 获取表单组件的实例
+     * @param field 表单项唯一标识
+     * @returns component instance
+     */
     getComponentExpose: async (field: string) => {
       const form = await getForm()
       return form?.getComponentExpose(field)
     },
 
+    /**
+     * @description 获取formItem组件的实例
+     * @param field 表单项唯一标识
+     * @returns formItem instance
+     */
     getFormItemExpose: async (field: string) => {
       const form = await getForm()
       return form?.getFormItemExpose(field) as ComponentRef<typeof ElFormItem>
     },
 
+    /**
+     * @description 获取ElForm组件的实例
+     * @returns ElForm instance
+     */
     getElFormExpose: async () => {
       await getForm()
       return unref(elFormRef)

@@ -292,7 +292,7 @@ const inoutValidation = async () => {
     <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
 
     <ElButton @click="getDictOne">
-      {{ t('searchDemo.dynamicOptions') }}
+      {{ `${t('formDemo.select')} ${t('searchDemo.dynamicOptions')}` }}
     </ElButton>
 
     <ElButton @click="inoutFocus">
