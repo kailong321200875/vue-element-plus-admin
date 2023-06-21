@@ -1,5 +1,4 @@
 import Form from './src/Form.vue'
-import { ElForm } from 'element-plus'
 import type { FormSchema, FormSetProps } from './src/types'
 export type {
   ComponentNameEnum,

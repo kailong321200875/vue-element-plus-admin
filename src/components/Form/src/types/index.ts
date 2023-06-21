@@ -786,11 +786,6 @@ export interface FormSchema {
   label?: string
 
   /**
-   * 提示信息
-   */
-  labelMessage?: string
-
-  /**
    * col组件属性
    */
   colProps?: ColProps
@@ -834,7 +829,12 @@ export interface FormSchema {
   value?: any
 
   /**
-   * 是否隐藏
+   * 是否隐藏，如果为true，会连同值一同删除，类似v-if
+   */
+  remove?: boolean
+
+  /**
+   * 样式隐藏，不会把值一同删掉，类似v-show
    */
   hidden?: boolean
 

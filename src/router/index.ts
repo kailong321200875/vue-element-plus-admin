@@ -157,14 +157,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
               title: 'UseForm'
             }
           }
-          // {
-          //   path: 'ref-form',
-          //   component: () => import('@/views/Components/Form/RefForm.vue'),
-          //   name: 'RefForm',
-          //   meta: {
-          //     title: 'RefForm'
-          //   }
-          // }
         ]
       },
       // {
@@ -222,15 +214,15 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             }
           }
         ]
+      },
+      {
+        path: 'search',
+        component: () => import('@/views/Components/Search.vue'),
+        name: 'Search',
+        meta: {
+          title: t('router.search')
+        }
       }
-      // {
-      //   path: 'search',
-      //   component: () => import('@/views/Components/Search.vue'),
-      //   name: 'Search',
-      //   meta: {
-      //     title: t('router.search')
-      //   }
-      // },
       // {
       //   path: 'descriptions',
       //   component: () => import('@/views/Components/Descriptions.vue'),

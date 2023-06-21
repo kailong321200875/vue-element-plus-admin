@@ -200,7 +200,7 @@ export default defineComponent({
       const { schema = [], isCol } = unref(getProps)
 
       return schema
-        .filter((v) => !v.hidden)
+        .filter((v) => !v.remove)
         .map((item) => {
           // 如果是 Divider 组件，需要自己占用一行
           const isDivider = item.component === 'Divider'
@@ -312,6 +312,7 @@ export default defineComponent({
       }
       return (
         <ElFormItem
+          v-show={!item.hidden}
           ref={(el: any) => setFormItemRefMap(el, item.field)}
           {...(item.formItemProps || {})}
           prop={item.field}

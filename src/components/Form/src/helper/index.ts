@@ -144,7 +144,7 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   const model: Recordable = { ...formModel }
   schema.map((v) => {
     // 如果是hidden，就删除对应的值
-    if (v.hidden) {
+    if (v.remove) {
       delete model[v.field]
     } else if (v.component && v.component !== 'Divider') {
       const hasField = Reflect.has(model, v.field)
