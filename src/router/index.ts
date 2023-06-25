@@ -238,71 +238,71 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.imageViewer')
         }
+      },
+      {
+        path: 'dialog',
+        component: () => import('@/views/Components/Dialog.vue'),
+        name: 'Dialog',
+        meta: {
+          title: t('router.dialog')
+        }
+      },
+      {
+        path: 'icon',
+        component: () => import('@/views/Components/Icon.vue'),
+        name: 'Icon',
+        meta: {
+          title: t('router.icon')
+        }
+      },
+      {
+        path: 'echart',
+        component: () => import('@/views/Components/Echart.vue'),
+        name: 'Echart',
+        meta: {
+          title: t('router.echart')
+        }
+      },
+      {
+        path: 'count-to',
+        component: () => import('@/views/Components/CountTo.vue'),
+        name: 'CountTo',
+        meta: {
+          title: t('router.countTo')
+        }
+      },
+      {
+        path: 'qrcode',
+        component: () => import('@/views/Components/Qrcode.vue'),
+        name: 'Qrcode',
+        meta: {
+          title: t('router.qrcode')
+        }
+      },
+      {
+        path: 'highlight',
+        component: () => import('@/views/Components/Highlight.vue'),
+        name: 'Highlight',
+        meta: {
+          title: t('router.highlight')
+        }
+      },
+      {
+        path: 'infotip',
+        component: () => import('@/views/Components/Infotip.vue'),
+        name: 'Infotip',
+        meta: {
+          title: t('router.infotip')
+        }
+      },
+      {
+        path: 'input-password',
+        component: () => import('@/views/Components/InputPassword.vue'),
+        name: 'InputPassword',
+        meta: {
+          title: t('router.inputPassword')
+        }
       }
-      // {
-      //   path: 'dialog',
-      //   component: () => import('@/views/Components/Dialog.vue'),
-      //   name: 'Dialog',
-      //   meta: {
-      //     title: t('router.dialog')
-      //   }
-      // },
-      // {
-      //   path: 'icon',
-      //   component: () => import('@/views/Components/Icon.vue'),
-      //   name: 'Icon',
-      //   meta: {
-      //     title: t('router.icon')
-      //   }
-      // },
-      // {
-      //   path: 'echart',
-      //   component: () => import('@/views/Components/Echart.vue'),
-      //   name: 'Echart',
-      //   meta: {
-      //     title: t('router.echart')
-      //   }
-      // },
-      // {
-      //   path: 'count-to',
-      //   component: () => import('@/views/Components/CountTo.vue'),
-      //   name: 'CountTo',
-      //   meta: {
-      //     title: t('router.countTo')
-      //   }
-      // },
-      // {
-      //   path: 'qrcode',
-      //   component: () => import('@/views/Components/Qrcode.vue'),
-      //   name: 'Qrcode',
-      //   meta: {
-      //     title: t('router.qrcode')
-      //   }
-      // },
-      // {
-      //   path: 'highlight',
-      //   component: () => import('@/views/Components/Highlight.vue'),
-      //   name: 'Highlight',
-      //   meta: {
-      //     title: t('router.highlight')
-      //   }
-      // },
-      // {
-      //   path: 'infotip',
-      //   component: () => import('@/views/Components/Infotip.vue'),
-      //   name: 'Infotip',
-      //   meta: {
-      //     title: t('router.infotip')
-      //   }
-      // },
-      // {
-      //   path: 'input-password',
-      //   component: () => import('@/views/Components/InputPassword.vue'),
-      //   name: 'InputPassword',
-      //   meta: {
-      //     title: t('router.inputPassword')
-      //   }
-      // },
       // {
       //   path: 'sticky',
       //   component: () => import('@/views/Components/Sticky.vue'),

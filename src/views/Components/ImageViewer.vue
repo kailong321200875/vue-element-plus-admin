@@ -9,12 +9,12 @@ const { t } = useI18n()
 const open = () => {
   createImageViewer({
     urlList: [
-      'https://img1.baidu.com/it/u=657828739,1486746195&fm=26&fmt=auto&gp=0.jpg',
-      'https://img0.baidu.com/it/u=3114228356,677481409&fm=26&fmt=auto&gp=0.jpg',
-      'https://img1.baidu.com/it/u=508846955,3814747122&fm=26&fmt=auto&gp=0.jpg',
-      'https://img1.baidu.com/it/u=3536647690,3616605490&fm=26&fmt=auto&gp=0.jpg',
-      'https://img1.baidu.com/it/u=4087287201,1148061266&fm=26&fmt=auto&gp=0.jpg',
-      'https://img2.baidu.com/it/u=3429163260,2974496379&fm=26&fmt=auto&gp=0.jpg'
+      'https://images6.alphacoders.com/657/thumbbig-657194.webp',
+      'https://images3.alphacoders.com/677/thumbbig-677688.webp',
+      'https://images4.alphacoders.com/200/thumbbig-200966.webp',
+      'https://images5.alphacoders.com/657/thumbbig-657248.webp',
+      'https://images3.alphacoders.com/679/thumbbig-679917.webp',
+      'https://images3.alphacoders.com/737/thumbbig-73785.webp'
     ]
   })
 }
