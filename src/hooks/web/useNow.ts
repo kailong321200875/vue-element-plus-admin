@@ -2,7 +2,7 @@ import { dateUtil } from '@/utils/dateUtil'
 import { reactive, toRefs } from 'vue'
 import { tryOnMounted, tryOnUnmounted } from '@vueuse/core'
 
-export function useNow(immediate = true) {
+export const useNow = (immediate = true) => {
   let timer: IntervalHandle
 
   const state = reactive({
