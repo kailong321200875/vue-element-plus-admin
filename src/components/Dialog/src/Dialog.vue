@@ -10,7 +10,7 @@ const props = defineProps({
   modelValue: propTypes.bool.def(false),
   title: propTypes.string.def('Dialog'),
   fullscreen: propTypes.bool.def(true),
-  maxHeight: propTypes.oneOfType([String, Number]).def('500px')
+  maxHeight: propTypes.oneOfType([String, Number]).def('300px')
 })
 
 const getBindValue = computed(() => {
@@ -92,28 +92,22 @@ const dialogStyle = computed(() => {
 </template>
 
 <style lang="less">
-.@{elNamespace}-dialog__header {
-  margin-right: 0 !important;
-  border-bottom: 1px solid var(--tags-view-border-color);
-}
-
-.@{elNamespace}-dialog__footer {
-  border-top: 1px solid var(--tags-view-border-color);
+.@{elNamespace}-dialog {
+  &__header {
+    margin-right: 0 !important;
+    border-bottom: 1px solid var(--el-border-color);
+  }
+  &__body {
+    padding: 0 !important;
+  }
+  &__footer {
+    border-top: 1px solid var(--el-border-color);
+  }
 }
 
 .is-hover {
   &:hover {
     color: var(--el-color-primary) !important;
-  }
-}
-
-.dark {
-  .@{elNamespace}-dialog__header {
-    border-bottom: 1px solid var(--el-border-color);
-  }
-
-  .@{elNamespace}-dialog__footer {
-    border-top: 1px solid var(--el-border-color);
   }
 }
 </style>
