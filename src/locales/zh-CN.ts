@@ -368,7 +368,13 @@ export default {
     left: '左',
     center: '中',
     right: '右',
-    dynamicOptions: '动态选项'
+    dynamicOptions: '动态选项',
+    // 删除单选框
+    deleteRadio: '删除单选框',
+    // 还原单选框
+    restoreRadio: '还原单选框',
+    loading: '加载中',
+    reset: '重置'
   },
   stickyDemo: {
     sticky: '黏性'

@@ -340,7 +340,7 @@ export default defineComponent({
       <ElForm
         ref={elFormRef}
         {...getFormBindValue()}
-        model={props.isCustom ? props.model : formModel}
+        model={unref(getProps).isCustom ? unref(getProps).model : formModel}
         class={prefixCls}
       >
         {{

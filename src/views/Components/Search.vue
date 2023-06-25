@@ -11,7 +11,7 @@ import { useSearch } from '@/hooks/web/useSearch'
 const { t } = useI18n()
 
 const { searchRegister, searchMethods } = useSearch()
-const { setSchema, setProps } = searchMethods
+const { setSchema, setProps, setValues } = searchMethods
 
 const schema = reactive<FormSchema[]>([
   {
@@ -166,6 +166,48 @@ const getDictOne = async () => {
 const handleSearch = (data: any) => {
   console.log(data)
 }
+
+const delRadio = () => {
+  setSchema([
+    {
+      field: 'field3',
+      path: 'remove',
+      value: true
+    }
+  ])
+}
+
+const restoreRadio = () => {
+  setSchema([
+    {
+      field: 'field3',
+      path: 'remove',
+      value: false
+    }
+  ])
+}
+
+const setValue = () => {
+  setValues({
+    field1: 'Joy'
+  })
+}
+
+const searchLoading = ref(false)
+const changeSearchLoading = () => {
+  searchLoading.value = true
+  setTimeout(() => {
+    searchLoading.value = false
+  }, 2000)
+}
+
+const resetLoading = ref(false)
+const changeResetLoading = () => {
+  resetLoading.value = true
+  setTimeout(() => {
+    resetLoading.value = false
+  }, 2000)
+}
 </script>
 
 <template>
@@ -192,7 +234,17 @@ const handleSearch = (data: any) => {
       {{ t('searchDemo.bottom') }} {{ t('searchDemo.position') }}-{{ t('searchDemo.right') }}
     </ElButton>
     <ElButton @click="getDictOne">
-      {{ t('searchDemo.dynamicOptions') }}
+      {{ t('formDemo.select') }} {{ t('searchDemo.dynamicOptions') }}
+    </ElButton>
+    <ElButton @click="delRadio">{{ t('searchDemo.deleteRadio') }}</ElButton>
+    <ElButton @click="restoreRadio">{{ t('searchDemo.restoreRadio') }}</ElButton>
+    <ElButton @click="setValue">{{ t('formDemo.setValue') }}</ElButton>
+
+    <ElButton @click="changeSearchLoading">
+      {{ t('searchDemo.search') }} {{ t('searchDemo.loading') }}
+    </ElButton>
+    <ElButton @click="changeResetLoading">
+      {{ t('searchDemo.reset') }} {{ t('searchDemo.loading') }}
     </ElButton>
   </ContentWrap>
 
@@ -202,6 +254,8 @@ const handleSearch = (data: any) => {
       :is-col="isGrid"
       :layout="layout"
       :button-position="buttonPosition"
+      :search-loading="searchLoading"
+      :reset-loading="resetLoading"
       show-expand
       expand-field="field6"
       @search="handleSearch"
@@ -210,3 +264,9 @@ const handleSearch = (data: any) => {
     />
   </ContentWrap>
 </template>
+
+<style lang="less" scoped>
+.el-button {
+  margin-top: 10px;
+}
+</style>

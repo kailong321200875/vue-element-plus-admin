@@ -115,6 +115,11 @@ export const useForm = () => {
     getElFormExpose: async () => {
       await getForm()
       return unref(elFormRef)
+    },
+
+    getFormExpose: async () => {
+      await getForm()
+      return unref(formRef)
     }
   }
 

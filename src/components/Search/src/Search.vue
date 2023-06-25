@@ -37,7 +37,9 @@ const props = defineProps({
   model: {
     type: Object as PropType<Recordable>,
     default: () => ({})
-  }
+  },
+  searchLoading: propTypes.bool.def(false),
+  resetLoading: propTypes.bool.def(false)
 })
 
 const emit = defineEmits(['search', 'reset', 'register'])
@@ -48,9 +50,10 @@ const visible = ref(true)
 const formModel = ref<Recordable>({})
 
 const newSchema = computed(() => {
-  let schema: FormSchema[] = cloneDeep(unref(getProps).schema)
-  if (unref(getProps).showExpand && unref(getProps).expandField && !unref(visible)) {
-    const index = findIndex(schema, (v: FormSchema) => v.field === unref(getProps).expandField)
+  const propsComputed = unref(getProps)
+  let schema: FormSchema[] = cloneDeep(propsComputed.schema)
+  if (propsComputed.showExpand && propsComputed.expandField && !unref(visible)) {
+    const index = findIndex(schema, (v: FormSchema) => v.field === propsComputed.expandField)
     schema.map((v, i) => {
       if (i >= index) {
         v.hidden = true
@@ -60,7 +63,7 @@ const newSchema = computed(() => {
       return v
     })
   }
-  if (unref(getProps).layout === 'inline') {
+  if (propsComputed.layout === 'inline') {
     schema = schema.concat([
       {
         field: 'action',
@@ -71,9 +74,11 @@ const newSchema = computed(() => {
               return (
                 <div>
                   <ActionButton
-                    showSearch={unref(getProps).showSearch}
-                    showReset={unref(getProps).showReset}
-                    showExpand={unref(getProps).showExpand}
+                    showSearch={propsComputed.showSearch}
+                    showReset={propsComputed.showReset}
+                    showExpand={propsComputed.showExpand}
+                    searchLoading={propsComputed.searchLoading}
+                    resetLoading={propsComputed.resetLoading}
                     visible={visible.value}
                     onExpand={setVisible}
                     onReset={reset}
@@ -91,7 +96,7 @@ const newSchema = computed(() => {
 })
 
 const { formRegister, formMethods } = useForm()
-const { getElFormExpose, getFormData } = formMethods
+const { getElFormExpose, getFormData, getFormExpose } = formMethods
 
 // useSearch传入的props
 const outsideProps = ref<SearchProps>({})
@@ -171,8 +176,10 @@ const setSchema = (schemaProps: FormSetProps[]) => {
 }
 
 // 对表单赋值
-const setValues = (data: Recordable = {}) => {
+const setValues = async (data: Recordable = {}) => {
   formModel.value = Object.assign(unref(formModel), data)
+  const formExpose = await getFormExpose()
+  formExpose?.setValues(data)
 }
 
 const delSchema = (field: string) => {
@@ -227,6 +234,8 @@ defineExpose(defaultExpose)
         :show-reset="getProps.showReset"
         :show-search="getProps.showSearch"
         :show-expand="getProps.showExpand"
+        :search-loading="getProps.searchLoading"
+        :reset-loading="getProps.resetLoading"
         @expand="setVisible"
         @reset="reset"
         @search="search"

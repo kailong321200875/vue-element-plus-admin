@@ -371,7 +371,13 @@ export default {
     left: 'left',
     center: 'center',
     right: 'right',
-    dynamicOptions: 'Dynamic options'
+    dynamicOptions: 'Dynamic options',
+    // 删除单选框
+    deleteRadio: 'Delete radio',
+    // 还原单选框
+    restoreRadio: 'Restore radio',
+    loading: 'Loading',
+    reset: 'Reset'
   },
   stickyDemo: {
     sticky: 'Sticky'
