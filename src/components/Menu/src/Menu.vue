@@ -7,7 +7,6 @@ import { useRenderMenuItem } from './components/useRenderMenuItem'
 import { useRouter } from 'vue-router'
 import { isUrl } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
-import { LayoutType } from '@/types/layout'
 
 const { getPrefixCls } = useDesign()
 
@@ -124,15 +123,15 @@ export default defineComponent({
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-menu';
 
-.is-active--after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background-color: var(--el-color-primary);
-  content: '';
-}
+// .is-active--after {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 4px;
+//   height: 100%;
+//   background-color: var(--el-color-primary);
+//   content: '';
+// }
 
 .@{prefix-cls} {
   position: relative;
@@ -182,9 +181,9 @@ export default defineComponent({
     .@{elNamespace}-menu-item.is-active {
       position: relative;
 
-      &:after {
-        .is-active--after;
-      }
+      // &:after {
+      //   .is-active--after;
+      // }
     }
 
     // 设置子菜单的背景颜色
@@ -205,9 +204,9 @@ export default defineComponent({
       position: relative;
       background-color: var(--left-menu-collapse-bg-active-color) !important;
 
-      &:after {
-        .is-active--after;
-      }
+      // &:after {
+      //   .is-active--after;
+      // }
     }
   }
 
@@ -255,15 +254,15 @@ export default defineComponent({
 <style lang="less">
 @prefix-cls: ~'@{namespace}-menu-popper';
 
-.is-active--after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background-color: var(--el-color-primary);
-  content: '';
-}
+// .is-active--after {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 4px;
+//   height: 100%;
+//   background-color: var(--el-color-primary);
+//   content: '';
+// }
 
 .@{prefix-cls}--vertical,
 .@{prefix-cls}--horizontal {
@@ -292,9 +291,9 @@ export default defineComponent({
       background-color: var(--left-menu-bg-active-color) !important;
     }
 
-    &:after {
-      .is-active--after;
-    }
+    // &:after {
+    //   .is-active--after;
+    // }
   }
 }
 </style>

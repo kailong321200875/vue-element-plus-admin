@@ -36,8 +36,6 @@
 
   --top-tool-p-x: 0;
 
-  --layout-border-color: #eee;
-
   --tags-view-height: 35px;
 
   --tags-view-border-color: #eee;
@@ -61,7 +59,5 @@
 }
 
 .dark {
-  --layout-border-color: var(--el-border-color);
-
   --app-content-bg-color: var(--el-bg-color);
 }
