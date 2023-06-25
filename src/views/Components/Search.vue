@@ -199,7 +199,7 @@ const handleSearch = (data: any) => {
       :is-col="isGrid"
       :layout="layout"
       :button-position="buttonPosition"
-      expand
+      show-expand
       expand-field="field6"
       @search="handleSearch"
       @reset="handleSearch"

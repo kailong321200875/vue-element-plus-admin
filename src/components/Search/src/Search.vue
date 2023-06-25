@@ -2,17 +2,14 @@
 import { Form, FormSchema } from '@/components/Form'
 import { PropType, computed, unref, ref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { ElButton } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
-import { useIcon } from '@/hooks/web/useIcon'
 import { findIndex } from '@/utils'
 import { cloneDeep } from 'lodash-es'
 import { initModel } from '@/components/Form/src/helper'
-
-const { t } = useI18n()
+import ActionButton from './components/ActiconButton.vue'
 
 const formExpose = ref<ComponentRef<typeof Form>>()
+const searchRef = ref()
 
 const props = defineProps({
   // 生成Form的布局结构数组
@@ -33,7 +30,7 @@ const props = defineProps({
   showSearch: propTypes.bool.def(true),
   showReset: propTypes.bool.def(true),
   // 是否显示伸缩
-  expand: propTypes.bool.def(false),
+  showExpand: propTypes.bool.def(false),
   // 伸缩的界限字段
   expandField: propTypes.string.def(''),
   inline: propTypes.bool.def(true),
@@ -54,7 +51,7 @@ const formModel = ref<Recordable>({})
 
 const newSchema = computed(() => {
   let schema: FormSchema[] = cloneDeep(props.schema)
-  if (props.expand && props.expandField && !unref(visible)) {
+  if (props.showExpand && props.expandField && !unref(visible)) {
     const index = findIndex(schema, (v: FormSchema) => v.field === props.expandField)
     schema.map((v, i) => {
       if (i >= index) {
@@ -75,27 +72,15 @@ const newSchema = computed(() => {
             default: () => {
               return (
                 <div>
-                  {props.showSearch ? (
-                    <ElButton type="primary" onClick={search} icon={useIcon({ icon: 'ep:search' })}>
-                      {t('common.query')}
-                    </ElButton>
-                  ) : null}
-                  {props.showReset ? (
-                    <ElButton onClick={reset} icon={useIcon({ icon: 'ep:refresh-right' })}>
-                      {t('common.reset')}
-                    </ElButton>
-                  ) : null}
-                  {props.expand ? (
-                    <ElButton
-                      text
-                      onClick={setVisible}
-                      icon={useIcon({
-                        icon: visible.value ? 'ant-design:up-outlined' : 'ant-design:down-outlined'
-                      })}
-                    >
-                      {t(visible.value ? 'common.shrink' : 'common.expand')}
-                    </ElButton>
-                  ) : null}
+                  <ActionButton
+                    showSearch={props.showSearch}
+                    showReset={props.showReset}
+                    showExpand={props.showExpand}
+                    visible={visible.value}
+                    onExpand={setVisible}
+                    onReset={reset}
+                    onSearch={search}
+                  />
                 </div>
               )
             }
@@ -164,42 +149,37 @@ onMounted(async () => {
   const elFormExpose = await getElFormExpose()
   emit('register', formExpose, elFormExpose)
 })
+
+defineExpose({
+  getElFormExpose
+})
 </script>
 
 <template>
-  <Form
-    ref="formExpose"
-    :model="formModel"
-    :is-custom="false"
-    :label-width="labelWidth"
-    hide-required-asterisk
-    :inline="inline"
-    :is-col="isCol"
-    :schema="newSchema"
-    @register="register"
-  />
+  <div ref="searchRef">
+    <Form
+      ref="formExpose"
+      :model="formModel"
+      :is-custom="false"
+      :label-width="labelWidth"
+      hide-required-asterisk
+      :inline="inline"
+      :is-col="isCol"
+      :schema="newSchema"
+      @register="register"
+    />
 
-  <template v-if="layout === 'bottom'">
-    <div :style="bottomButtonStyle">
-      <ElButton
-        v-if="showSearch"
-        type="primary"
-        :icon="useIcon({ icon: 'ep:search' })"
-        @click="search"
-      >
-        {{ t('common.query') }}
-      </ElButton>
-      <ElButton v-if="showReset" :icon="useIcon({ icon: 'ep:refresh-right' })" @click="reset">
-        {{ t('common.reset') }}
-      </ElButton>
-      <ElButton
-        v-if="expand"
-        :icon="useIcon({ icon: visible ? 'ant-design:up-outlined' : 'ant-design:down-outlined' })"
-        text
-        @click="setVisible"
-      >
-        {{ t(visible ? 'common.shrink' : 'common.expand') }}
-      </ElButton>
-    </div>
-  </template>
+    <template v-if="layout === 'bottom'">
+      <div :style="bottomButtonStyle">
+        <ActionButton
+          :show-reset="showReset"
+          :show-search="showSearch"
+          :show-expand="showExpand"
+          @expand="setVisible"
+          @reset="reset"
+          @search="search"
+        />
+      </div>
+    </template>
+  </div>
 </template>
