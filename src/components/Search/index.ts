@@ -1,8 +1,15 @@
+import { FormSchema, FormSetProps } from '../Form'
 import Search from './src/Search.vue'
-import { ElForm } from 'element-plus'
+
+export type { SearchProps } from './src/types'
 
 export interface SearchExpose {
-  getElFormExpose: () => Promise<ComponentRef<typeof ElForm>>
+  setValues: (data: Recordable) => void
+  setProps: (props: Recordable) => void
+  delSchema: (field: string) => void
+  addSchema: (formSchema: FormSchema, index?: number) => void
+  setSchema: (schemaProps: FormSetProps[]) => void
+  formModel: Recordable
 }
 
 export { Search }

@@ -1,44 +1,39 @@
-import type { Form, FormExpose } from '@/components/Form'
-import type { ElForm, ElFormItem } from 'element-plus'
 import { ref, unref, nextTick } from 'vue'
-import { FormSchema, FormSetProps, FormProps } from '@/components/Form'
+import { FormSchema, FormSetProps } from '@/components/Form'
+import { SearchExpose, SearchProps } from '@/components/Search'
 
 export const useSearch = () => {
   // Search实例
-  const formRef = ref<typeof Form & FormExpose>()
-
-  // ElForm实例
-  const elFormRef = ref<ComponentRef<typeof ElForm>>()
+  const searchRef = ref<SearchExpose>()
 
   /**
-   * @param ref Form实例
+   * @param ref Search实例
    * @param elRef ElForm实例
    */
-  const register = (ref: typeof Form & FormExpose, elRef: ComponentRef<typeof ElForm>) => {
-    formRef.value = ref
-    elFormRef.value = elRef
+  const register = (ref: SearchExpose) => {
+    searchRef.value = ref
   }
 
-  const getForm = async () => {
+  const getSearch = async () => {
     await nextTick()
-    const form = unref(formRef)
-    if (!form) {
+    const search = unref(searchRef)
+    if (!search) {
       console.error('The Search is not registered. Please use the register method to register')
     }
-    return form
+    return search
   }
 
   // 一些内置的方法
   const methods = {
     /**
-     * @description 设置form组件的props
+     * @description 设置search组件的props
      * @param field FormItem的field
      */
-    setProps: async (props: FormProps = {}) => {
-      const form = await getForm()
-      form?.setProps(props)
+    setProps: async (props: SearchProps = {}) => {
+      const search = await getSearch()
+      search?.setProps(props)
       if (props.model) {
-        form?.setValues(props.model)
+        search?.setValues(props.model)
       }
     },
 
@@ -47,8 +42,8 @@ export const useSearch = () => {
      * @param data 需要设置的数据
      */
     setValues: async (data: Recordable) => {
-      const form = await getForm()
-      form?.setValues(data)
+      const search = await getSearch()
+      search?.setValues(data)
     },
 
     /**
@@ -56,8 +51,8 @@ export const useSearch = () => {
      * @param schemaProps 需要设置的schemaProps
      */
     setSchema: async (schemaProps: FormSetProps[]) => {
-      const form = await getForm()
-      form?.setSchema(schemaProps)
+      const search = await getSearch()
+      search?.setSchema(schemaProps)
     },
 
     /**
@@ -66,8 +61,8 @@ export const useSearch = () => {
      * @param index 在哪里新增
      */
     addSchema: async (formSchema: FormSchema, index?: number) => {
-      const form = await getForm()
-      form?.addSchema(formSchema, index)
+      const search = await getSearch()
+      search?.addSchema(formSchema, index)
     },
 
     /**
@@ -75,8 +70,8 @@ export const useSearch = () => {
      * @param field 删除哪个数据
      */
     delSchema: async (field: string) => {
-      const form = await getForm()
-      form?.delSchema(field)
+      const search = await getSearch()
+      search?.delSchema(field)
     },
 
     /**
@@ -84,42 +79,13 @@ export const useSearch = () => {
      * @returns form data
      */
     getFormData: async <T = Recordable>(): Promise<T> => {
-      const form = await getForm()
-      return form?.formModel as T
-    },
-
-    /**
-     * @description 获取表单组件的实例
-     * @param field 表单项唯一标识
-     * @returns component instance
-     */
-    getComponentExpose: async (field: string) => {
-      const form = await getForm()
-      return form?.getComponentExpose(field)
-    },
-
-    /**
-     * @description 获取formItem组件的实例
-     * @param field 表单项唯一标识
-     * @returns formItem instance
-     */
-    getFormItemExpose: async (field: string) => {
-      const form = await getForm()
-      return form?.getFormItemExpose(field) as ComponentRef<typeof ElFormItem>
-    },
-
-    /**
-     * @description 获取ElForm组件的实例
-     * @returns ElForm instance
-     */
-    getElFormExpose: async () => {
-      await getForm()
-      return unref(elFormRef)
+      const search = await getSearch()
+      return search?.formModel as T
     }
   }
 
   return {
-    register,
-    methods
+    searchRegister: register,
+    searchMethods: methods
   }
 }

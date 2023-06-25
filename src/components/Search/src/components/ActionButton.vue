@@ -11,7 +11,6 @@ const { t } = useI18n()
 defineProps({
   showSearch: propTypes.bool.def(true),
   showReset: propTypes.bool.def(true),
-  // 是否显示伸缩
   showExpand: propTypes.bool.def(false),
   visible: propTypes.bool.def(true)
 })

@@ -10,8 +10,8 @@ import { useSearch } from '@/hooks/web/useSearch'
 
 const { t } = useI18n()
 
-const { register, methods } = useSearch()
-const { setSchema } = methods
+const { searchRegister, searchMethods } = useSearch()
+const { setSchema, setProps } = searchMethods
 
 const schema = reactive<FormSchema[]>([
   {
@@ -131,7 +131,10 @@ const schema = reactive<FormSchema[]>([
 const isGrid = ref(false)
 
 const changeGrid = (grid: boolean) => {
-  isGrid.value = grid
+  setProps({
+    isCol: grid
+  })
+  // isGrid.value = grid
 }
 
 const layout = ref('inline')
@@ -153,7 +156,7 @@ const getDictOne = async () => {
     setSchema([
       {
         field: 'field2',
-        path: 'componentPorps.options',
+        path: 'componentProps.options',
         value: res.data
       }
     ])
@@ -203,7 +206,7 @@ const handleSearch = (data: any) => {
       expand-field="field6"
       @search="handleSearch"
       @reset="handleSearch"
-      @register="register"
+      @register="searchRegister"
     />
   </ContentWrap>
 </template>

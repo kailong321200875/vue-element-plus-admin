@@ -95,7 +95,7 @@ const schema = reactive<FormSchema[]>([
   }
 ])
 
-const { register, methods } = useForm()
+const { formRegister, formMethods } = useForm()
 const {
   setProps,
   delSchema,
@@ -105,7 +105,7 @@ const {
   getComponentExpose,
   getFormItemExpose,
   getElFormExpose
-} = methods
+} = formMethods
 
 const changeLabelWidth = (width: number | string) => {
   setProps({
@@ -200,7 +200,6 @@ const setLabel = () => {
 }
 
 const addItem = () => {
-  const { addSchema } = methods
   if (unref(index) % 2 === 0) {
     addSchema({
       field: `field${unref(index)}`,
@@ -235,7 +234,6 @@ const verifyReset = async () => {
 const getDictOne = async () => {
   const res = await getDictOneApi()
   if (res) {
-    const { setSchema } = methods
     setSchema([
       {
         field: 'field2',
@@ -303,7 +301,7 @@ const inoutValidation = async () => {
     </ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
-    <Form :schema="schema" @register="register" />
+    <Form :schema="schema" @register="formRegister" />
   </ContentWrap>
 </template>
 

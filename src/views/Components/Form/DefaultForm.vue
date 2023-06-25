@@ -6,7 +6,6 @@ import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
 import { SelectOption, RadioOption, CheckboxOption, FormSchema } from '@/components/Form'
-import { useForm } from '@/hooks/web/useForm'
 import {
   ElOption,
   ElOptionGroup,
@@ -1455,18 +1454,11 @@ const schema = reactive<FormSchema[]>([
     }
   }
 ])
-
-const { register, formRef, methods } = useForm()
 </script>
 
 <template>
   <ContentWrap :title="t('formDemo.defaultForm')" :message="t('formDemo.formDes')">
-    <Form
-      @register="register"
-      :schema="schema"
-      label-width="auto"
-      :label-position="isMobile ? 'top' : 'right'"
-    />
+    <Form :schema="schema" label-width="auto" :label-position="isMobile ? 'top' : 'right'" />
   </ContentWrap>
 </template>
 
