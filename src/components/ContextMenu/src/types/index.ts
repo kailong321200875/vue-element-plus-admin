@@ -1,7 +1,7 @@
-export type contextMenuSchema = {
+export interface ContextMenuSchema {
   disabled?: boolean
   divided?: boolean
   icon?: string
   label: string
-  command?: (item: contextMenuSchema) => void
+  command?: (item: ContextMenuSchema) => void
 }

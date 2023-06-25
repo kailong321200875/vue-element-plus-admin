@@ -1,130 +1,135 @@
-<script setup lang="ts">
+<script lang="tsx">
 import { ElCollapseTransition, ElDescriptions, ElDescriptionsItem, ElTooltip } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
-import { ref, unref, PropType, computed, useAttrs, useSlots } from 'vue'
+import { ref, unref, PropType, computed, defineComponent } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { DescriptionsSchema } from './types'
+import { Icon } from '@/components/Icon'
 
 const appStore = useAppStore()
 
 const mobile = computed(() => appStore.getMobile)
 
-const attrs = useAttrs()
-
-const slots = useSlots()
-
-const props = defineProps({
-  title: propTypes.string.def(''),
-  message: propTypes.string.def(''),
-  collapse: propTypes.bool.def(true),
-  schema: {
-    type: Array as PropType<DescriptionsSchema[]>,
-    default: () => []
-  },
-  data: {
-    type: Object as PropType<any>,
-    default: () => ({})
-  }
-})
-
 const { getPrefixCls } = useDesign()
 
 const prefixCls = getPrefixCls('descriptions')
 
-const getBindValue = computed(() => {
-  const delArr: string[] = ['title', 'message', 'collapse', 'schema', 'data', 'class']
-  const obj = { ...attrs, ...props }
-  for (const key in obj) {
-    if (delArr.indexOf(key) !== -1) {
-      delete obj[key]
+export default defineComponent({
+  name: 'Descriptions',
+  props: {
+    title: propTypes.string.def(''),
+    message: propTypes.string.def(''),
+    collapse: propTypes.bool.def(true),
+    border: propTypes.bool.def(true),
+    column: propTypes.number.def(2),
+    size: propTypes.oneOf(['large', 'default', 'small']).def('default'),
+    direction: propTypes.oneOf(['horizontal', 'vertical']).def('horizontal'),
+    extra: propTypes.string.def(''),
+    schema: {
+      type: Array as PropType<DescriptionsSchema[]>,
+      default: () => []
+    },
+    data: {
+      type: Object as PropType<any>,
+      default: () => ({})
     }
-  }
-  return obj
-})
+  },
+  setup(props, { slots, attrs }) {
+    const getBindValue = computed((): any => {
+      const delArr: string[] = ['title', 'message', 'collapse', 'schema', 'data', 'class']
+      const obj = { ...attrs, ...props }
+      for (const key in obj) {
+        if (delArr.indexOf(key) !== -1) {
+          delete obj[key]
+        }
+      }
+      if (unref(mobile)) {
+        obj.direction = 'vertical'
+      }
+      return obj
+    })
 
-const getBindItemValue = (item: DescriptionsSchema) => {
-  const delArr: string[] = ['field']
-  const obj = { ...item }
-  for (const key in obj) {
-    if (delArr.indexOf(key) !== -1) {
-      delete obj[key]
+    const getBindItemValue = (item: DescriptionsSchema) => {
+      const delArr: string[] = ['field']
+      const obj = { ...item }
+      for (const key in obj) {
+        if (delArr.indexOf(key) !== -1) {
+          delete obj[key]
+        }
+      }
+      return obj
     }
-  }
-  return obj
-}
 
-// 折叠
-const show = ref(true)
+    // 折叠
+    const show = ref(true)
 
-const toggleClick = () => {
-  if (props.collapse) {
-    show.value = !unref(show)
-  }
-}
-</script>
+    const toggleClick = () => {
+      if (props.collapse) {
+        show.value = !unref(show)
+      }
+    }
 
-<template>
-  <div
-    :class="[
-      prefixCls,
-      'bg-[var(--el-color-white)] dark:bg-[var(--el-bg-color)] dark:border-[var(--el-border-color)] dark:border-1px'
-    ]"
-  >
-    <div
-      v-if="title"
-      :class="[
-        `${prefixCls}-header`,
-        'h-50px flex justify-between items-center b-b-1 border-solid border-[var(--tags-view-border-color)] px-10px cursor-pointer dark:border-[var(--el-border-color)]'
-      ]"
-      @click="toggleClick"
-    >
-      <div :class="[`${prefixCls}-header__title`, 'relative font-18px font-bold ml-10px']">
-        <div class="flex items-center">
-          {{ title }}
-          <ElTooltip v-if="message" :content="message" placement="right">
-            <Icon icon="ep:warning" class="ml-5px" />
-          </ElTooltip>
-        </div>
-      </div>
-      <Icon v-if="collapse" :icon="show ? 'ep:arrow-down' : 'ep:arrow-up'" />
-    </div>
-
-    <ElCollapseTransition>
-      <div v-show="show" :class="[`${prefixCls}-content`, 'p-10px']">
-        <ElDescriptions
-          :column="2"
-          border
-          :direction="mobile ? 'vertical' : 'horizontal'"
-          v-bind="getBindValue"
+    return () => {
+      return (
+        <div
+          class={[
+            prefixCls,
+            'bg-[var(--el-color-white)] dark:bg-[var(--el-bg-color)] dark:border-[var(--el-border-color)] dark:border-1px'
+          ]}
         >
-          <template v-if="slots['extra']" #extra>
-            <slot name="extra"></slot>
-          </template>
-          <ElDescriptionsItem
-            v-for="item in schema"
-            :key="item.field"
-            v-bind="getBindItemValue(item)"
-          >
-            <template #label>
-              <slot
-                :name="`${item.field}-label`"
-                :row="{
-                  label: item.label
-                }"
-                >{{ item.label }}</slot
-              >
-            </template>
+          {props.title ? (
+            <div
+              class={[
+                `${prefixCls}-header`,
+                'relative h-50px flex justify-between items-center layout-border__bottom px-10px cursor-pointer'
+              ]}
+              onClick={toggleClick}
+            >
+              <div class={[`${prefixCls}-header__title`, 'relative font-18px font-bold ml-10px']}>
+                <div class="flex items-center">
+                  {props.title}
+                  {props.message ? (
+                    <ElTooltip content={props.message} placement="right">
+                      <Icon icon="bi:question-circle-fill" class="ml-5px" size={14} />
+                    </ElTooltip>
+                  ) : null}
+                </div>
+              </div>
+              {props.collapse ? <Icon icon={show.value ? 'ep:arrow-down' : 'ep:arrow-up'} /> : null}
+            </div>
+          ) : null}
 
-            <template #default>
-              <slot :name="item.field" :row="data">{{ data[item.field] }}</slot>
-            </template>
-          </ElDescriptionsItem>
-        </ElDescriptions>
-      </div>
-    </ElCollapseTransition>
-  </div>
-</template>
+          <ElCollapseTransition>
+            <div v-show={unref(show)} class={[`${prefixCls}-content`, 'p-10px']}>
+              <ElDescriptions {...unref(getBindValue)}>
+                {{
+                  extra: () => (slots['extra'] ? slots['extra']() : props.extra),
+                  default: () => {
+                    return props.schema.map((item) => {
+                      return (
+                        <ElDescriptionsItem key={item.field} {...getBindItemValue(item)}>
+                          {{
+                            label: () => (item.slots?.label ? item.slots?.label(item) : item.label),
+                            default: () =>
+                              item.slots?.default
+                                ? item.slots?.default(item)
+                                : props.data[item.field]
+                          }}
+                        </ElDescriptionsItem>
+                      )
+                    })
+                  }
+                }}
+              </ElDescriptions>
+            </div>
+          </ElCollapseTransition>
+        </div>
+      )
+    }
+  }
+})
+</script>
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-descriptions';

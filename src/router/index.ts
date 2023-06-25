@@ -222,23 +222,23 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.search')
         }
+      },
+      {
+        path: 'descriptions',
+        component: () => import('@/views/Components/Descriptions.vue'),
+        name: 'Descriptions',
+        meta: {
+          title: t('router.descriptions')
+        }
+      },
+      {
+        path: 'image-viewer',
+        component: () => import('@/views/Components/ImageViewer.vue'),
+        name: 'ImageViewer',
+        meta: {
+          title: t('router.imageViewer')
+        }
       }
-      // {
-      //   path: 'descriptions',
-      //   component: () => import('@/views/Components/Descriptions.vue'),
-      //   name: 'Descriptions',
-      //   meta: {
-      //     title: t('router.descriptions')
-      //   }
-      // },
-      // {
-      //   path: 'image-viewer',
-      //   component: () => import('@/views/Components/ImageViewer.vue'),
-      //   name: 'ImageViewer',
-      //   meta: {
-      //     title: t('router.imageViewer')
-      //   }
-      // },
       // {
       //   path: 'dialog',
       //   component: () => import('@/views/Components/Dialog.vue'),

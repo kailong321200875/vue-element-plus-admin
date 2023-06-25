@@ -8,7 +8,6 @@ import {
   CascaderValue,
   FormItemRule
 } from 'element-plus'
-import type { AxiosPromise } from 'axios'
 import { IEditorConfig } from '@wangeditor/editor'
 
 export interface PlaceholderModel {

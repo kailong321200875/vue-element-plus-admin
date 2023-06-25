@@ -8,4 +8,8 @@ export interface DescriptionsSchema {
   labelAlign?: 'left' | 'center' | 'right'
   className?: string
   labelClassName?: string
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+    label?: (...args: any[]) => JSX.Element | null
+  }
 }

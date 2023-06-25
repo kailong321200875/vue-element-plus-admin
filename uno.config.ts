@@ -40,7 +40,7 @@ ${selector}:before {
   width: 1px;
   height: 100%;
   background-color: var(--layout-border-color);
-  z-index: 10;
+  z-index: 3;
 }
 `
       }
@@ -58,7 +58,7 @@ ${selector}:after {
   width: 1px;
   height: 100%;
   background-color: var(--layout-border-color);
-  z-index: 10;
+  z-index: 3;
 }
 `
       }
@@ -76,7 +76,7 @@ ${selector}:before {
   width: 100%;
   height: 1px;
   background-color: var(--layout-border-color);
-  z-index: 10;
+  z-index: 3;
 }
 `
       }
@@ -94,7 +94,7 @@ ${selector}:after {
   width: 100%;
   height: 1px;
   background-color: var(--layout-border-color);
-  z-index: 10;
+  z-index: 3;
 }
 `
       }
