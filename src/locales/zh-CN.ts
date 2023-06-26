@@ -286,7 +286,14 @@ export default {
     // 远程加载
     remoteLoading: '远程加载',
     // 聚焦
-    focus: '聚焦'
+    focus: '聚焦',
+    treeSelect: '树形选择器',
+    showCheckbox: '显示复选框',
+    selectAnyLevel: '选择任意级别',
+    multiple: '多选',
+    filterable: '可筛选',
+    customContent: '自定义内容',
+    lazyLoad: '懒加载'
   },
   guideDemo: {
     guide: '引导页',

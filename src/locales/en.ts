@@ -287,7 +287,16 @@ export default {
     // 远程加载
     remoteLoading: 'Remote loading',
     // 聚焦
-    focus: 'Focus'
+    focus: 'Focus',
+    treeSelect: 'Tree Select',
+    showCheckbox: 'Show Checkbox',
+    selectAnyLevel: 'Select Any Level',
+    multiple: 'Multiple',
+    filterable: 'Filterable',
+    // 自定义节点内容
+    customContent: 'Custom content',
+    // 懒加载
+    lazyLoad: 'Lazy load'
   },
   guideDemo: {
     guide: 'Guide',

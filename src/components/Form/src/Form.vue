@@ -125,12 +125,15 @@ export default defineComponent({
       }
     }
 
-    const getOptions = async (fn: Function, field: string) => {
+    const getOptions = async (fn: Function, item: FormSchema) => {
       const options = await fn()
       setSchema([
         {
-          field,
-          path: 'componentProps.options',
+          field: item.field,
+          path:
+            item.component === ComponentNameEnum.TREE_SELECT
+              ? 'componentProps.data'
+              : 'componentProps.options',
           value: options
         }
       ])
@@ -221,7 +224,7 @@ export default defineComponent({
       // 如果有optionApi，优先使用optionApi
       if (item.optionApi) {
         // 内部自动调用接口，不影响其他渲染
-        getOptions(item.optionApi, item.field)
+        getOptions(item.optionApi, item)
       }
       const formItemSlots: Recordable = {
         default: () => {

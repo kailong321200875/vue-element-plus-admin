@@ -16,7 +16,8 @@ import {
   ElTimeSelect,
   ElTransfer,
   ElAutocomplete,
-  ElDivider
+  ElDivider,
+  ElTreeSelect
 } from 'element-plus'
 import { InputPassword } from '@/components/InputPassword'
 import { Editor } from '@/components/Editor'
@@ -43,7 +44,8 @@ const componentMap: Recordable<Component, ComponentName> = {
   TimeSelect: ElTimeSelect,
   SelectV2: ElSelectV2,
   InputPassword: InputPassword,
-  Editor: Editor
+  Editor: Editor,
+  TreeSelect: ElTreeSelect
 }
 
 export { componentMap }

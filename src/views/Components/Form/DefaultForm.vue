@@ -368,6 +368,79 @@ const isHoliday = ({ dayjs }) => {
   return holidays.includes(dayjs.format('YYYY-MM-DD'))
 }
 
+const treeSelectData = [
+  {
+    value: '1',
+    label: 'Level one 1',
+    children: [
+      {
+        value: '1-1',
+        label: 'Level two 1-1',
+        children: [
+          {
+            value: '1-1-1',
+            label: 'Level three 1-1-1'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    value: '2',
+    label: 'Level one 2',
+    children: [
+      {
+        value: '2-1',
+        label: 'Level two 2-1',
+        children: [
+          {
+            value: '2-1-1',
+            label: 'Level three 2-1-1'
+          }
+        ]
+      },
+      {
+        value: '2-2',
+        label: 'Level two 2-2',
+        children: [
+          {
+            value: '2-2-1',
+            label: 'Level three 2-2-1'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    value: '3',
+    label: 'Level one 3',
+    children: [
+      {
+        value: '3-1',
+        label: 'Level two 3-1',
+        children: [
+          {
+            value: '3-1-1',
+            label: 'Level three 3-1-1'
+          }
+        ]
+      },
+      {
+        value: '3-2',
+        label: 'Level two 3-2',
+        children: [
+          {
+            value: '3-2-1',
+            label: 'Level three 3-2-1'
+          }
+        ]
+      }
+    ]
+  }
+]
+
+let id = 0
+
 const schema = reactive<FormSchema[]>([
   {
     field: 'field1',
@@ -1451,6 +1524,147 @@ const schema = reactive<FormSchema[]>([
     optionApi: async () => {
       const res = await getDictOneApi()
       return res.data
+    }
+  },
+  {
+    field: 'field82',
+    label: `${t('formDemo.treeSelect')}`,
+    component: 'TreeSelect',
+    // 远程加载option
+    optionApi: () => {
+      return treeSelectData
+    }
+  },
+  {
+    field: 'field75',
+    component: 'Divider',
+    label: `${t('formDemo.treeSelect')}`
+  },
+  {
+    field: 'field76',
+    component: 'TreeSelect',
+    label: `${t('formDemo.default')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field76',
+    component: 'TreeSelect',
+    label: `${t('formDemo.showCheckbox')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      showCheckbox: true,
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field77',
+    component: 'TreeSelect',
+    label: `${t('formDemo.selectAnyLevel')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      showCheckbox: true,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field78',
+    component: 'TreeSelect',
+    label: `${t('formDemo.multiple')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      multiple: true,
+      showCheckbox: true,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field79',
+    component: 'TreeSelect',
+    label: `${t('formDemo.filterable')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      multiple: true,
+      filterable: true,
+      showCheckbox: true,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      filterNodeMethod: (value, data) => data.label.includes(value),
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field80',
+    component: 'TreeSelect',
+    label: `${t('formDemo.customContent')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      multiple: true,
+      filterable: true,
+      showCheckbox: true,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      filterNodeMethod: (value, data) => data.label.includes(value),
+      slots: {
+        default: ({ data: { label } }) => {
+          return (
+            <>
+              {label}
+              <span style="color: gray">(suffix)</span>
+            </>
+          )
+        }
+      },
+      data: treeSelectData
+    }
+  },
+  {
+    field: 'field81',
+    component: 'TreeSelect',
+    label: `${t('formDemo.lazyLoad')}`,
+    componentProps: {
+      renderAfterExpand: false,
+      lazy: true,
+      load: (node, resolve) => {
+        if (node.isLeaf) return resolve([])
+
+        setTimeout(() => {
+          resolve([
+            {
+              value: ++id,
+              label: `lazy load node${id}`
+            },
+            {
+              value: ++id,
+              label: `lazy load node${id}`,
+              isLeaf: true
+            }
+          ])
+        }, 400)
+      },
+      multiple: true,
+      filterable: true,
+      showCheckbox: true,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      filterNodeMethod: (value, data) => data.label.includes(value),
+      slots: {
+        default: ({ data: { label } }) => {
+          return (
+            <>
+              {label}
+              <span style="color: gray">(suffix)</span>
+            </>
+          )
+        }
+      },
+      data: treeSelectData
     }
   }
 ])
