@@ -71,8 +71,6 @@ watch(
       <use :xlink:href="symbolId" />
     </svg>
 
-    <span v-else ref="elRef" :class="$attrs.class" :style="getIconifyStyle">
-      <span class="iconify" :data-icon="symbolId"></span>
-    </span>
+    <span v-else ref="elRef" class="iconify" :data-icon="symbolId" :style="getIconifyStyle"></span>
   </ElIcon>
 </template>

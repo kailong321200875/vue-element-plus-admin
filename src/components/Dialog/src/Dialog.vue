@@ -50,7 +50,6 @@ watch(
 )
 
 const dialogStyle = computed(() => {
-  console.log(unref(dialogHeight))
   return {
     height: unref(dialogHeight)
   }
@@ -64,20 +63,32 @@ const dialogStyle = computed(() => {
     destroy-on-close
     lock-scroll
     draggable
+    top="0"
     :close-on-click-modal="false"
+    :show-close="false"
   >
-    <template #header>
-      <div class="flex justify-between">
+    <template #header="{ close }">
+      <div class="flex justify-between items-center h-54px pl-15px pr-15px relative">
         <slot name="title">
           {{ title }}
         </slot>
-        <Icon
-          v-if="fullscreen"
-          class="mr-18px cursor-pointer is-hover mt-2px z-10"
-          :icon="isFullscreen ? 'zmdi:fullscreen-exit' : 'zmdi:fullscreen'"
-          color="var(--el-color-info)"
-          @click="toggleFull"
-        />
+        <div
+          class="h-54px flex justify-between items-center absolute top-[50%] right-15px translate-y-[-50%]"
+        >
+          <Icon
+            v-if="fullscreen"
+            class="cursor-pointer is-hover !h-54px mr-10px"
+            :icon="isFullscreen ? 'radix-icons:exit-full-screen' : 'radix-icons:enter-full-screen'"
+            color="var(--el-color-info)"
+            @click="toggleFull"
+          />
+          <Icon
+            class="cursor-pointer is-hover !h-54px"
+            icon="ep:close"
+            color="var(--el-color-info)"
+            @click="close"
+          />
+        </div>
       </div>
     </template>
 
@@ -92,16 +103,28 @@ const dialogStyle = computed(() => {
 </template>
 
 <style lang="less">
+.@{elNamespace}-overlay-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .@{elNamespace}-dialog {
+  margin: 0 !important;
   &__header {
     margin-right: 0 !important;
     border-bottom: 1px solid var(--el-border-color);
+    padding: 0;
+    height: 54px;
   }
   &__body {
     padding: 0 !important;
   }
   &__footer {
     border-top: 1px solid var(--el-border-color);
+  }
+  &__headerbtn {
+    top: 0;
   }
 }
 

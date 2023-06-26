@@ -502,7 +502,9 @@ watch(
     }
 
     &:hover {
-      :deep(span) {
+      :deep(span),
+      :deep(i),
+      :deep(svg) {
         color: var(--el-color-black) !important;
       }
     }
@@ -555,7 +557,9 @@ watch(
   .@{prefix-cls} {
     &__tool {
       &:hover {
-        :deep(span) {
+        :deep(span),
+        :deep(i),
+        :deep(svg) {
           color: #fff !important;
         }
       }
