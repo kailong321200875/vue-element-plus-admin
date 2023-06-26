@@ -2,10 +2,7 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage } from 'element-plus'
-import { ElementPlusSize } from '@/types/elementPlus'
 import { useCache } from '@/hooks/web/useCache'
-import { LayoutType } from '@/types/layout'
-import { ThemeTypes } from '@/types/theme'
 
 const { wsCache } = useCache()
 

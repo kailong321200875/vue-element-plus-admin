@@ -1,6 +1,6 @@
 import { Pagination, TableColumn } from '@/types/table'
 
-export type TableProps = {
+export interface TableProps {
   pageSize?: number
   currentPage?: number
   // 是否多选
@@ -23,4 +23,5 @@ export type TableProps = {
   headerAlign?: 'left' | 'center' | 'right'
   data?: Recordable
   expand?: boolean
-} & Recordable
+  [key: string]: any
+}
