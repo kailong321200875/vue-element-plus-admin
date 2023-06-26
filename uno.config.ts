@@ -98,19 +98,6 @@ ${selector}:after {
 }
 `
       }
-    ],
-    [
-      /^is-hover$/,
-      ([], { rawSelector }) => {
-        const selector = e(rawSelector)
-        return `
-${selector}:hover {
-  ${selector} span,i,svg {
-    color: var(--el-color-primary) !important;
-  }
-}
-`
-      }
     ]
   ],
   presets: [presetUno({ dark: 'class', attributify: false })],

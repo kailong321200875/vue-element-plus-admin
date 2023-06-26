@@ -130,7 +130,11 @@ const dialogStyle = computed(() => {
 
 .is-hover {
   &:hover {
-    color: var(--el-color-primary) !important;
+    span,
+    i,
+    svg {
+      color: var(--el-color-primary) !important;
+    }
   }
 }
 </style>
