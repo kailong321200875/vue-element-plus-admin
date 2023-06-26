@@ -5,7 +5,7 @@ import { defineComponent } from 'vue'
 export const useRenderRadio = () => {
   const renderRadioOptions = (item: FormSchema) => {
     // 如果有别名，就取别名
-    const componentProps = item.componentProps as RadioGroupComponentProps
+    const componentProps = item?.componentProps as RadioGroupComponentProps
     const valueAlias = componentProps?.props?.value || 'value'
     const labelAlias = componentProps?.props?.label || 'label'
     const disabledAlias = componentProps?.props?.disabled || 'disabled'

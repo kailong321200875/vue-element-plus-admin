@@ -118,7 +118,7 @@ const dialogStyle = computed(() => {
     height: 54px;
   }
   &__body {
-    padding: 0 !important;
+    padding: 15px !important;
   }
   &__footer {
     border-top: 1px solid var(--el-border-color);
