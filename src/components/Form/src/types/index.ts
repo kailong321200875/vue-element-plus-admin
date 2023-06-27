@@ -832,19 +832,5 @@ export interface FormProps {
   autoSetPlaceholder?: boolean
   isCustom?: boolean
   labelWidth?: string | number
-  rules?: FormItemRule
-  inline?: boolean
-  labelPosition?: 'left' | 'right' | 'top'
-  labelSuffix?: string
-  hideRequiredAsterisk?: boolean
-  requireAsteriskPosition?: 'left' | 'right'
-  showMessage?: boolean
-  inlineMessage?: boolean
-  statusIcon?: boolean
-  validateOnRuleChange?: boolean
-  size?: ComponentSize
-  disabled?: boolean
-  scrollToError?: boolean
-  scrollIntoViewOptions?: Record<string, any> | boolean
   [key: string]: any
 }

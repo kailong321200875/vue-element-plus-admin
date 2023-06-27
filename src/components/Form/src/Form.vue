@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol, FormItemRule } from 'element-plus'
+import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
 import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
@@ -55,24 +55,7 @@ export default defineComponent({
     // 是否自定义内容
     isCustom: propTypes.bool.def(false),
     // 表单label宽度
-    labelWidth: propTypes.oneOfType([String, Number]).def('auto'),
-    rules: {
-      type: Object as PropType<FormItemRule>,
-      default: () => undefined
-    },
-    inline: propTypes.bool.def(false),
-    labelPosition: propTypes.oneOf(['left', 'right', 'top']).def('right'),
-    labelSuffix: propTypes.string.def(''),
-    hideRequiredAsterisk: propTypes.bool.def(false),
-    requireAsteriskPosition: propTypes.oneOf(['left', 'right']).def('left'),
-    showMessage: propTypes.bool.def(true),
-    inlineMessage: propTypes.bool.def(false),
-    statusIcon: propTypes.bool.def(false),
-    validateOnRuleChange: propTypes.bool.def(true),
-    size: propTypes.oneOf(['default', 'small', 'large']).def('default'),
-    disabled: propTypes.bool.def(false),
-    scrollToError: propTypes.bool.def(false),
-    scrollIntoViewOptions: propTypes.oneOfType([Object, Boolean]).def(false)
+    labelWidth: propTypes.oneOfType([String, Number]).def('auto')
   },
   emits: ['register'],
   setup(props, { slots, expose, emit }) {
@@ -353,7 +336,7 @@ export default defineComponent({
           delete props[key]
         }
       }
-      return props as any
+      return props
     }
 
     return () => (
