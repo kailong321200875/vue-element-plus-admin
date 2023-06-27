@@ -182,7 +182,7 @@ export default defineComponent({
       ) : undefined
     }
 
-    const rnderTreeTableColumn = (columnsChildren: TableColumn[]) => {
+    const renderTreeTableColumn = (columnsChildren: TableColumn[]) => {
       const { align, headerAlign, showOverflowTooltip } = unref(getProps)
       return columnsChildren.map((v) => {
         const props = { ...v }
@@ -198,7 +198,7 @@ export default defineComponent({
             {{
               default: (data: TableSlotDefault) =>
                 v.children && v.children.length
-                  ? rnderTableColumn(v.children)
+                  ? renderTableColumn(v.children)
                   : // @ts-ignore
                     getSlot(slots, v.field, data) ||
                     v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
@@ -211,7 +211,7 @@ export default defineComponent({
       })
     }
 
-    const rnderTableColumn = (columnsChildren?: TableColumn[]) => {
+    const renderTableColumn = (columnsChildren?: TableColumn[]) => {
       const {
         columns,
         reserveIndex,
@@ -253,7 +253,7 @@ export default defineComponent({
                 {{
                   default: (data: TableSlotDefault) =>
                     v.children && v.children.length
-                      ? rnderTreeTableColumn(v.children)
+                      ? renderTreeTableColumn(v.children)
                       : // @ts-ignore
                         getSlot(slots, v.field, data) ||
                         v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
@@ -278,7 +278,7 @@ export default defineComponent({
           {...unref(getBindValue)}
         >
           {{
-            default: () => rnderTableColumn(),
+            default: () => renderTableColumn(),
             // @ts-ignore
             append: () => getSlot(slots, 'append')
           }}

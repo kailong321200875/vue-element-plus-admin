@@ -8,6 +8,7 @@ import { cloneDeep, set } from 'lodash-es'
 import { initModel } from '@/components/Form/src/helper'
 import ActionButton from './components/ActionButton.vue'
 import { SearchProps } from './types'
+import { FormItemProp } from 'element-plus'
 
 const props = defineProps({
   // 生成Form的布局结构数组
@@ -42,7 +43,7 @@ const props = defineProps({
   resetLoading: propTypes.bool.def(false)
 })
 
-const emit = defineEmits(['search', 'reset', 'register'])
+const emit = defineEmits(['search', 'reset', 'register', 'validate'])
 
 const visible = ref(true)
 
@@ -214,6 +215,10 @@ onMounted(() => {
 })
 
 defineExpose(defaultExpose)
+
+const onFormValidate = (prop: FormItemProp, isValid: boolean, message: string) => {
+  emit('validate', prop, isValid, message)
+}
 </script>
 
 <template>
@@ -226,6 +231,7 @@ defineExpose(defaultExpose)
     :is-col="getProps.isCol"
     :schema="newSchema"
     @register="formRegister"
+    @validate="onFormValidate"
   />
 
   <template v-if="layout === 'bottom'">

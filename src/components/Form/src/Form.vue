@@ -1,6 +1,6 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
+import { ElForm, ElFormItem, ElRow, ElCol, FormItemProp } from 'element-plus'
 import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
@@ -57,7 +57,7 @@ export default defineComponent({
     // 表单label宽度
     labelWidth: propTypes.oneOfType([String, Number]).def('auto')
   },
-  emits: ['register'],
+  emits: ['register', 'validate'],
   setup(props, { slots, expose, emit }) {
     // element form 实例
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
@@ -339,12 +339,17 @@ export default defineComponent({
       return props
     }
 
+    const onValidate = (prop: FormItemProp, isValid: boolean, message: string) => {
+      emit('validate', prop, isValid, message)
+    }
+
     return () => (
       <ElForm
         ref={elFormRef}
         {...getFormBindValue()}
         model={unref(getProps).isCustom ? unref(getProps).model : formModel}
         class={prefixCls}
+        onValidate={onValidate}
       >
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽

@@ -4,7 +4,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
-import { ElButton, ElInput } from 'element-plus'
+import { ElButton, ElInput, FormItemProp } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
 
@@ -257,6 +257,10 @@ const inoutValidation = async () => {
     console.log(val)
   })
 }
+
+const formValidate = (prop: FormItemProp, isValid: boolean, message: string) => {
+  console.log(prop, isValid, message)
+}
 </script>
 
 <template>
@@ -301,7 +305,7 @@ const inoutValidation = async () => {
     </ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
-    <Form :schema="schema" @register="formRegister" />
+    <Form :schema="schema" @register="formRegister" @validate="formValidate" />
   </ContentWrap>
 </template>
 

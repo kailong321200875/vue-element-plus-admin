@@ -159,42 +159,34 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           }
         ]
       },
-      // {
-      //   path: 'table',
-      //   component: getParentLayout(),
-      //   redirect: '/components/table/default-table',
-      //   name: 'TableDemo',
-      //   meta: {
-      //     title: t('router.table'),
-      //     alwaysShow: true
-      //   },
-      //   children: [
-      //     {
-      //       path: 'default-table',
-      //       component: () => import('@/views/Components/Table/DefaultTable.vue'),
-      //       name: 'DefaultTable',
-      //       meta: {
-      //         title: t('router.defaultTable')
-      //       }
-      //     },
-      //     {
-      //       path: 'use-table',
-      //       component: () => import('@/views/Components/Table/UseTableDemo.vue'),
-      //       name: 'UseTable',
-      //       meta: {
-      //         title: 'UseTable'
-      //       }
-      //     },
-      //     {
-      //       path: 'ref-table',
-      //       component: () => import('@/views/Components/Table/RefTable.vue'),
-      //       name: 'RefTable',
-      //       meta: {
-      //         title: 'RefTable'
-      //       }
-      //     }
-      //   ]
-      // },
+      {
+        path: 'table',
+        component: getParentLayout(),
+        redirect: '/components/table/default-table',
+        name: 'TableDemo',
+        meta: {
+          title: t('router.table'),
+          alwaysShow: true
+        },
+        children: [
+          {
+            path: 'default-table',
+            component: () => import('@/views/Components/Table/DefaultTable.vue'),
+            name: 'DefaultTable',
+            meta: {
+              title: t('router.defaultTable')
+            }
+          }
+          // {
+          //   path: 'use-table',
+          //   component: () => import('@/views/Components/Table/UseTableDemo.vue'),
+          //   name: 'UseTable',
+          //   meta: {
+          //     title: 'UseTable'
+          //   }
+          // }
+        ]
+      },
       {
         path: 'editor-demo',
         component: getParentLayout(),
