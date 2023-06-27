@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table } from '@/components/Table'
+import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { ref, h } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
-import { TableColumn, TableSlotDefault } from '@/types/table'
 
 interface Params {
   pageIndex?: number
@@ -16,11 +15,6 @@ interface Params {
 const { t } = useI18n()
 
 const columns: TableColumn[] = [
-  {
-    field: 'index',
-    label: t('tableDemo.index'),
-    type: 'index'
-  },
   {
     field: 'title',
     label: t('tableDemo.title')

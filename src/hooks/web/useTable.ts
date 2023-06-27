@@ -1,10 +1,8 @@
-import { Table, TableExpose } from '@/components/Table'
+import { Table, TableExpose, TableProps, TableSetProps } from '@/components/Table'
 import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
 import { ref, reactive, watch, computed, unref, nextTick } from 'vue'
 import { get } from 'lodash-es'
-import type { TableProps } from '@/components/Table/src/types'
 import { useI18n } from '@/hooks/web/useI18n'
-import { TableSetPropsType } from '@/types/table'
 
 const { t } = useI18n()
 
@@ -32,7 +30,7 @@ interface TableObject<T = any> {
   pageSize: number
   currentPage: number
   total: number
-  tableList: T[]
+  list: T[]
   params: any
   loading: boolean
   currentRow: Nullable<T>
@@ -47,7 +45,7 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
     // 总条数
     total: 10,
     // 表格数据
-    tableList: [],
+    list: [],
     // AxiosConfig 配置
     params: {
       ...(config?.defaultParams || {})
@@ -131,7 +129,7 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
         tableObject.loading = false
       })
       if (res) {
-        tableObject.tableList = get(res.data || {}, config?.response.list as string)
+        tableObject.list = get(res.data || {}, config?.response.list as string)
         tableObject.total = get(res.data || {}, config?.response?.total as string) || 0
       }
     },
@@ -139,7 +137,7 @@ export const useTable = <T = any>(config?: UseTableConfig<T>) => {
       const table = await getTable()
       table?.setProps(props)
     },
-    setColumn: async (columnProps: TableSetPropsType[]) => {
+    setColumn: async (columnProps: TableSetProps[]) => {
       const table = await getTable()
       table?.setColumn(columnProps)
     },

@@ -4,9 +4,8 @@ import { defineComponent, PropType, ref, computed, unref, watch, onMounted } fro
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import { getSlot } from '@/utils/tsxHelper'
-import type { TableProps } from './types'
+import type { TableProps, TableColumn, TableSlotDefault, Pagination, TableSetProps } from './types'
 import { set } from 'lodash-es'
-import { TableColumn, TableSlotDefault, Pagination, TableSetPropsType } from '../../../types/table'
 
 export default defineComponent({
   name: 'Table',
@@ -78,7 +77,7 @@ export default defineComponent({
       outsideProps.value = props
     }
 
-    const setColumn = (columnProps: TableSetPropsType[], columnsChildren?: TableColumn[]) => {
+    const setColumn = (columnProps: TableSetProps[], columnsChildren?: TableColumn[]) => {
       const { columns } = unref(getProps)
       for (const v of columnsChildren || columns) {
         for (const item of columnProps) {
