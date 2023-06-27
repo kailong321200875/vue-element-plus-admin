@@ -17,8 +17,6 @@ declare global {
   declare type TimeoutHandle = ReturnType<typeof setTimeout>
   declare type IntervalHandle = ReturnType<typeof setInterval>
 
-  declare type ElementPlusSize = 'default' | 'small' | 'large'
-
   declare type ElementPlusInfoType = 'success' | 'info' | 'warning' | 'danger'
 
   declare type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'

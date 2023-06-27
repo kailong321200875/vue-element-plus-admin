@@ -1,3 +1,5 @@
+import { ComponentSize } from 'element-plus'
+
 export interface ConfigGlobalTypes {
-  size?: ElementPlusSize
+  size?: ComponentSize
 }

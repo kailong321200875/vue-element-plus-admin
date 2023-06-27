@@ -6,7 +6,8 @@ import {
   CascaderProps,
   CascaderNode,
   CascaderValue,
-  FormItemRule
+  FormItemRule,
+  ComponentSize
 } from 'element-plus'
 import { IEditorConfig } from '@wangeditor/editor'
 
@@ -62,7 +63,7 @@ export interface InputComponentProps {
   parser?: (value: string) => string
   showPassword?: boolean
   disabled?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   prefixIcon?: string | JSX.Element
   suffixIcon?: string | JSX.Element
   type?: InputProps['type']
@@ -135,7 +136,7 @@ export interface InputNumberComponentProps {
   step?: number
   stepStrictly?: boolean
   precision?: number
-  size?: ElementPlusSize
+  size?: ComponentSize
   readonly?: boolean
   disabled?: boolean
   controls?: boolean
@@ -167,7 +168,7 @@ export interface SelectComponentProps {
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
-  size?: ElementPlusSize
+  size?: ComponentSize
   clearable?: boolean
   collapseTags?: boolean
   collapseTagsTooltip?: number
@@ -244,7 +245,7 @@ export interface SelectV2ComponentProps {
   multiple?: boolean
   disabled?: boolean
   valueKey?: string
-  size?: ElementPlusSize
+  size?: ComponentSize
   clearable?: boolean
   clearIcon?: string | JSX.Element | null
   collapseTags?: boolean
@@ -287,7 +288,7 @@ export interface SelectV2ComponentProps {
 export interface CascaderComponentProps {
   options?: Record<string, unknown>[]
   props?: CascaderProps
-  size?: ElementPlusSize
+  size?: ComponentSize
   placeholder?: string
   disabled?: boolean
   clearable?: boolean
@@ -321,7 +322,7 @@ export interface CascaderComponentProps {
 export interface SwitchComponentProps {
   disabled?: boolean
   loading?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   width?: number | string
   inlinePrompt?: boolean
   activeIcon?: string | JSX.Element | null
@@ -341,7 +342,7 @@ export interface SwitchComponentProps {
 
 export interface RateComponentProps {
   max?: number
-  size?: ElementPlusSize
+  size?: ComponentSize
   disabled?: boolean
   allowHalf?: boolean
   lowThreshold?: number
@@ -368,7 +369,7 @@ export interface RateComponentProps {
 
 export interface ColorPickerComponentProps {
   disabled?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   showAlpha?: boolean
   colorFormat?: 'hsl' | 'hsv' | 'hex' | 'rgb' | 'hex' | 'rgb'
   predefine?: string[]
@@ -429,12 +430,12 @@ export interface RadioOption {
   value?: string | number | boolean
   disabled?: boolean
   border?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   name?: string
   [key: string]: any
 }
 export interface RadioGroupComponentProps {
-  size?: ElementPlusSize
+  size?: ComponentSize
   disabled?: boolean
   textColor?: string
   fill?: string
@@ -461,7 +462,7 @@ export interface RadioGroupComponentProps {
 }
 
 export interface RadioButtonComponentProps {
-  size?: ElementPlusSize
+  size?: ComponentSize
   disabled?: boolean
   textColor?: string
   fill?: string
@@ -494,7 +495,7 @@ export interface CheckboxOption {
   trueLabel?: string | number
   falseLabel?: string | number
   border?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   name?: string
   checked?: boolean
   indeterminate?: boolean
@@ -506,7 +507,7 @@ export interface CheckboxOption {
 }
 
 export interface CheckboxGroupComponentProps {
-  size?: ElementPlusSize
+  size?: ComponentSize
   disabled?: boolean
   min?: number
   max?: number
@@ -540,8 +541,8 @@ export interface DividerComponentProps {
   step?: number
   showInput?: boolean
   showInputControls?: boolean
-  size?: ElementPlusSize
-  inputSize?: ElementPlusSize
+  size?: ComponentSize
+  inputSize?: ComponentSize
   showStops?: boolean
   showTooltip?: boolean
   formatTooltip?: (value: number) => string
@@ -567,7 +568,7 @@ export interface DividerComponentProps {
 export interface DatePickerComponentProps {
   readonly?: boolean
   disabled?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   editable?: boolean
   clearable?: boolean
   placeholder?: string
@@ -620,7 +621,7 @@ export interface DateTimePickerComponentProps {
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   placeholder?: string
   startPlaceholder?: string
   endPlaceholder?: string
@@ -660,7 +661,7 @@ export interface TimePickerComponentProps {
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   placeholder?: string
   startPlaceholder?: string
   endPlaceholder?: string
@@ -695,7 +696,7 @@ export interface TimeSelectComponentProps {
   disabled?: boolean
   editable?: boolean
   clearable?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   placeholder?: string
   name?: string
   effect?: string
@@ -743,7 +744,7 @@ export interface FormItemProps {
   error?: string
   showMessage?: boolean
   inlineMessage?: boolean
-  size?: ElementPlusSize
+  size?: ComponentSize
   for?: string
   validateStatus?: '' | 'error' | 'validating' | 'success'
   style?: CSSProperties
@@ -831,5 +832,19 @@ export interface FormProps {
   autoSetPlaceholder?: boolean
   isCustom?: boolean
   labelWidth?: string | number
+  rules?: FormItemRule
+  inline?: boolean
+  labelPosition?: 'left' | 'right' | 'top'
+  labelSuffix?: string
+  hideRequiredAsterisk?: boolean
+  requireAsteriskPosition?: 'left' | 'right'
+  showMessage?: boolean
+  inlineMessage?: boolean
+  statusIcon?: boolean
+  validateOnRuleChange?: boolean
+  size?: ComponentSize
+  disabled?: boolean
+  scrollToError?: boolean
+  scrollIntoViewOptions?: Record<string, any> | boolean
   [key: string]: any
 }

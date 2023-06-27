@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { provide, computed, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { ElConfigProvider } from 'element-plus'
+import { ComponentSize, ElConfigProvider } from 'element-plus'
 import { useLocaleStore } from '@/store/modules/locale'
 import { useWindowSize } from '@vueuse/core'
 import { useAppStore } from '@/store/modules/app'
@@ -13,7 +13,7 @@ const { variables } = useDesign()
 const appStore = useAppStore()
 
 const props = defineProps({
-  size: propTypes.oneOf<ElementPlusSize>(['default', 'small', 'large']).def('default')
+  size: propTypes.oneOf<ComponentSize>(['default', 'small', 'large']).def('default')
 })
 
 provide('configGlobal', props)

@@ -4,7 +4,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
-import { ElButton, ElInput, FormItemProp } from 'element-plus'
+import { ElButton, ElInput, FormItemProp, ComponentSize } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
 
@@ -113,7 +113,7 @@ const changeLabelWidth = (width: number | string) => {
   })
 }
 
-const changeSize = (size: string) => {
+const changeSize = (size: ComponentSize) => {
   setProps({
     size
   })
