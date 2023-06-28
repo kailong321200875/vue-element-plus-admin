@@ -22,7 +22,7 @@ export default defineComponent({
       default: () => []
     },
     // 展开行
-    expand: propTypes.bool.def(false),
+    // expand: propTypes.bool.def(false),
     // 是否展示分页
     pagination: {
       type: Object as PropType<Pagination>,
@@ -168,23 +168,23 @@ export default defineComponent({
       ) : undefined
     }
 
-    const renderTableExpand = () => {
-      const { align, headerAlign, expand } = unref(getProps)
-      // 渲染展开行
-      return expand ? (
-        <ElTableColumn type="expand" align={align} headerAlign={headerAlign}>
-          {{
-            // @ts-ignore
-            default: (data: TableSlotDefault) => getSlot(slots, 'expand', data)
-          }}
-        </ElTableColumn>
-      ) : undefined
-    }
+    // const renderTableExpand = () => {
+    //   const { align, headerAlign, expand } = unref(getProps)
+    //   // 渲染展开行
+    //   return expand ? (
+    //     <ElTableColumn type="expand" align={align} headerAlign={headerAlign}>
+    //       {{
+    //         // @ts-ignore
+    //         default: (data: TableSlotDefault) => getSlot(slots, 'expand', data)
+    //       }}
+    //     </ElTableColumn>
+    //   ) : undefined
+    // }
 
     const renderTreeTableColumn = (columnsChildren: TableColumn[]) => {
       const { align, headerAlign, showOverflowTooltip } = unref(getProps)
       return columnsChildren.map((v) => {
-        const props = { ...v }
+        const props = { ...v } as any
         if (props.children) delete props.children
         return (
           <ElTableColumn
@@ -220,7 +220,7 @@ export default defineComponent({
         headerAlign,
         showOverflowTooltip
       } = unref(getProps)
-      return [...[renderTableExpand()], ...[renderTableSelection()]].concat(
+      return [renderTableSelection()].concat(
         (columnsChildren || columns).map((v) => {
           // 自定生成序号
           if (v.type === 'index') {
@@ -239,7 +239,7 @@ export default defineComponent({
               ></ElTableColumn>
             )
           } else {
-            const props = { ...v }
+            const props = { ...v } as any
             if (props.children) delete props.children
             return (
               <ElTableColumn

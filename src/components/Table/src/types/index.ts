@@ -2,6 +2,34 @@ export interface TableColumn {
   field: string
   label?: string
   children?: TableColumn[]
+  slots?: {
+    defalut?: (...args: any[]) => JSX.Element | null
+    header?: (...args: any[]) => JSX.Element | null
+  }
+  index?: number | ((index: number) => number)
+  columnKey?: string
+  width?: string | number
+  minWidth?: string | number
+  fixed?: boolean | 'left' | 'right'
+  renderHeader?: (...args: any[]) => JSX.Element | null
+  sortable?: boolean | 'custom'
+  sortMethod?: (...args: any[]) => number
+  sortBy?: string | string[] | ((...args: any[]) => string | string[])
+  sortOrders?: (string | null)[]
+  resizable?: boolean
+  formatter?: (...args: any[]) => any
+  showOverflowTooltip?: boolean
+  align?: 'left' | 'center' | 'right'
+  headerAlign?: 'left' | 'center' | 'right'
+  className?: string
+  labelClassName?: string
+  selectable?: (...args: any[]) => boolean
+  reserveSelection?: boolean
+  filters?: Array<{ text: string; value: string }>
+  filterPlacement?: string
+  filterMultiple?: boolean
+  filterMethod?: (...args: any[]) => boolean
+  filteredValue?: string[]
   [key: string]: any
 }
 
