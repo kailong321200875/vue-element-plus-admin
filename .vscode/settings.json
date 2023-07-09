@@ -15,6 +15,5 @@
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.displayLanguage": "zh-CN",
   "i18n-ally.enabledFrameworks": ["vue", "react"],
-  "god.tsconfig": "./tsconfig.json",
-  "testing.automaticallyOpenPeekView": "never"
+  "god.tsconfig": "./tsconfig.json"
 }
