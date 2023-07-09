@@ -17,8 +17,7 @@ import {
   DatePickerProps,
   FormItemProps as ElFormItemProps,
   FormProps as ElFormProps,
-  TextareaProps,
-  CheckboxButtonProps
+  ISelectProps
 } from 'element-plus'
 import { IEditorConfig } from '@wangeditor/editor'
 import { CSSProperties } from 'vue'
@@ -121,55 +120,7 @@ export interface SelectOption {
   [key: string]: any
 }
 
-export interface SelectComponentProps {
-  multiple?: boolean
-  disabled?: boolean
-  valueKey?: string
-  size?: ComponentSize
-  clearable?: boolean
-  collapseTags?: boolean
-  collapseTagsTooltip?: number
-  multipleLimit?: number
-  name?: string
-  effect?: string
-  autocomplete?: string
-  placeholder?: string
-  filterable?: boolean
-  allowCreate?: boolean
-  filterMethod?: (query: string, item: any) => boolean
-  remote?: boolean
-  remoteMethod?: (query: string) => void
-  remoteShowSuffix?: boolean
-  loading?: boolean
-  loadingText?: string
-  noMatchText?: string
-  noDataText?: string
-  popperClass?: string
-  reserveKeyword?: boolean
-  defaultFirstOption?: boolean
-  popperAppendToBody?: boolean
-  teleported?: boolean
-  persistent?: boolean
-  automaticDropdown?: boolean
-  clearIcon?: string | JSX.Element | null
-  fitInputWidth?: boolean
-  suffixIcon?: string | JSX.Element | null
-  tagType?: 'success' | 'info' | 'warning' | 'danger'
-  validateEvent?: boolean
-  placement?:
-    | 'top'
-    | 'top-start'
-    | 'top-end'
-    | 'bottom'
-    | 'bottom-start'
-    | 'bottom-end'
-    | 'left'
-    | 'left-start'
-    | 'left-end'
-    | 'right'
-    | 'right-start'
-    | 'right-end'
-  maxCollapseTags?: number
+export interface SelectComponentProps extends Omit<Partial<ISelectProps>, 'options'> {
   /**
    * 数据源的字段别名
    */
@@ -400,25 +351,6 @@ export interface CheckboxGroupComponentProps extends Partial<CheckboxGroupProps>
   style?: CSSProperties
 }
 
-export interface CheckboxButtonComponentProps extends Partial<CheckboxButtonProps> {
-  options?: CheckboxOption[]
-  /**
-   * 数据源的字段别名
-   */
-  props?: {
-    label?: string
-    value?: string
-    disabled?: string
-  }
-  on?: {
-    change?: (value: string | number | boolean) => void
-  }
-  slots?: {
-    default?: (...args: any[]) => JSX.Element[] | null
-  }
-  style?: CSSProperties
-}
-
 export interface DividerComponentProps extends Partial<DividerProps> {
   on?: {
     change?: (value: number) => void
@@ -573,6 +505,70 @@ export interface FormItemProps extends Partial<ElFormItemProps> {
   }
 }
 
+export interface TreeSelectComponentProps
+  extends Omit<Partial<SelectComponentProps>, 'props' | 'on' | 'slots'> {
+  data?: any[]
+  emptyText?: string
+  nodeKey?: string
+  props?: {
+    children?: string
+    label?: string | ((...args: any[]) => string)
+    disabled?: string | ((...args: any[]) => string)
+    isLeaf?: string | ((...args: any[]) => string)
+    class?: string | ((...args: any[]) => string)
+  }
+  renderAfterExpand?: boolean
+  load?: (...args: any[]) => Promise<any>
+  renderContent?: (...args: any[]) => JSX.Element | null
+  highlightCurrent?: boolean
+  defaultExpandAll?: boolean
+  expandOnClickNode?: boolean
+  checkOnClickNode?: boolean
+  autoExpandParent?: boolean
+  defaultExpandedKeys?: any[]
+  showCheckbox?: boolean
+  checkStrictly?: boolean
+  defaultCheckedKeys?: any[]
+  currentNodeKey?: string | number
+  filterNodeMethod?: (...args: any[]) => boolean
+  accordion?: boolean
+  indent?: number
+  icon?: string | ((...args: any[]) => JSX.Element | null)
+  lazy?: boolean
+  draggable?: boolean
+  allowDrag?: (...args: any[]) => boolean
+  allowDrop?: (...args: any[]) => boolean
+  on?: {
+    change?: (value: string | number | boolean | Object) => void
+    visibleChange?: (visible: boolean) => void
+    removeTag?: (tag: any) => void
+    clear?: () => void
+    blur?: (event: FocusEvent) => void
+    focus?: (event: FocusEvent) => void
+    nodeClick?: (...args: any[]) => void
+    nodeContextMenu?: (...args: any[]) => void
+    checkChange?: (...args: any[]) => void
+    check?: (...args: any[]) => void
+    currentChange?: (...args: any[]) => void
+    nodeExpand?: (...args: any[]) => void
+    nodeCollapse?: (...args: any[]) => void
+    nodeDragStart?: (...args: any[]) => void
+    nodeDragEnter?: (...args: any[]) => void
+    nodeDragLeave?: (...args: any[]) => void
+    nodeDragOver?: (...args: any[]) => void
+    nodeDragEnd?: (...args: any[]) => void
+    nodeDrop?: (...args: any[]) => void
+  }
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+    optionGroupDefault?: (item: SelectOption) => JSX.Element
+    optionDefault?: (option: SelectOption) => JSX.Element | null
+    prefix?: (...args: any[]) => JSX.Element | null
+    empty?: (...args: any[]) => JSX.Element | null
+  }
+  style?: CSSProperties
+}
+
 export interface FormSchema {
   /**
    * 唯一标识
@@ -610,7 +606,7 @@ export interface FormSchema {
     | DateTimePickerComponentProps
     | TimePickerComponentProps
     | InputPasswordComponentProps
-    | CheckboxButtonComponentProps
+    | TreeSelectComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

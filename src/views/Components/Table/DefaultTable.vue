@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
@@ -52,7 +52,16 @@ const columns: TableColumn[] = [
   },
   {
     field: 'action',
-    label: t('tableDemo.action')
+    label: t('tableDemo.action'),
+    slots: {
+      default: (data) => {
+        return (
+          <ElButton type="primary" onClick={() => actionFn(data)}>
+            {t('tableDemo.action')}
+          </ElButton>
+        )
+      }
+    }
   }
 ]
 
@@ -90,12 +99,6 @@ const actionFn = (data: TableSlotDefault) => {
       :data="tableDataList"
       :loading="loading"
       :defaultSort="{ prop: 'display_time', order: 'descending' }"
-    >
-      <template #action="data">
-        <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">
-          {{ t('tableDemo.action') }}
-        </ElButton>
-      </template>
-    </Table>
+    />
   </ContentWrap>
 </template>

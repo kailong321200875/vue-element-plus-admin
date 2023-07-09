@@ -1,6 +1,14 @@
 <script lang="tsx">
 import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
-import { ElForm, ElFormItem, ElRow, ElCol } from 'element-plus'
+import {
+  ElForm,
+  ElFormItem,
+  ElRow,
+  ElCol,
+  FormRules,
+  ComponentSize
+  // FormItemProp
+} from 'element-plus'
 import { componentMap } from './helper/componentMap'
 import { propTypes } from '@/utils/propTypes'
 import { getSlot } from '@/utils/tsxHelper'
@@ -47,7 +55,7 @@ export default defineComponent({
     isCol: propTypes.bool.def(true),
     // 表单数据对象
     model: {
-      type: Object as PropType<Recordable>,
+      type: Object as PropType<any>,
       default: () => ({})
     },
     // 是否自动设置placeholder
@@ -55,7 +63,30 @@ export default defineComponent({
     // 是否自定义内容
     isCustom: propTypes.bool.def(false),
     // 表单label宽度
-    labelWidth: propTypes.oneOfType([String, Number]).def('auto')
+    labelWidth: propTypes.oneOfType([String, Number]).def('auto'),
+    rules: {
+      type: Object as PropType<FormRules>,
+      default: () => ({})
+    },
+    labelPosition: propTypes.oneOf(['left', 'right', 'top']).def('right'),
+    labelSuffix: propTypes.string.def(''),
+    hideRequiredAsterisk: propTypes.bool.def(false),
+    requireAsteriskPosition: propTypes.oneOf(['left', 'right']).def('left'),
+    showMessage: propTypes.bool.def(true),
+    inlineMessage: propTypes.bool.def(false),
+    statusIcon: propTypes.bool.def(false),
+    validateOnRuleChange: propTypes.bool.def(true),
+    size: {
+      type: String as PropType<ComponentSize>,
+      default: 'small'
+    },
+    disabled: propTypes.bool.def(false),
+    scrollToError: propTypes.bool.def(false),
+    scrollToErrorOffset: propTypes.oneOfType([Boolean, Object]).def(undefined)
+    // onValidate: {
+    //   type: Function as PropType<(prop: FormItemProp, isValid: boolean, message: string) => void>,
+    //   default: () => {}
+    // }
   },
   emits: ['register'],
   setup(props, { slots, expose, emit }) {
@@ -93,6 +124,7 @@ export default defineComponent({
 
     const setProps = (props: FormProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
+      // @ts-ignore
       outsideProps.value = props
     }
 
@@ -336,7 +368,7 @@ export default defineComponent({
           delete props[key]
         }
       }
-      return props
+      return props as FormProps
     }
 
     return () => (

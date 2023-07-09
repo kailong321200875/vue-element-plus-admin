@@ -112,6 +112,7 @@ const getProps = computed(() => {
 
 const setProps = (props: SearchProps = {}) => {
   mergeProps.value = Object.assign(unref(mergeProps), props)
+  // @ts-ignore
   outsideProps.value = props
 }
 

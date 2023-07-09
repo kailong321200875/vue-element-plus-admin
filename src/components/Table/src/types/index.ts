@@ -1,9 +1,10 @@
+import { TableProps as ElTableProps } from 'element-plus'
 export interface TableColumn {
   field: string
   label?: string
   children?: TableColumn[]
   slots?: {
-    defalut?: (...args: any[]) => JSX.Element | null
+    default?: (...args: any[]) => JSX.Element | JSX.Element[] | null
     header?: (...args: any[]) => JSX.Element | null
   }
   index?: number | ((index: number) => number)
@@ -65,7 +66,7 @@ export interface TableSetProps {
   value: any
 }
 
-export interface TableProps {
+export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
   pageSize?: number
   currentPage?: number
   // 是否多选
@@ -87,6 +88,4 @@ export interface TableProps {
   // 表头对齐方式
   headerAlign?: 'left' | 'center' | 'right'
   data?: Recordable
-  expand?: boolean
-  [key: string]: any
 }

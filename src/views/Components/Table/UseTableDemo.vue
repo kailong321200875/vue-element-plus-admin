@@ -1,41 +1,52 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table } from '@/components/Table'
+import { Table, Pagination, TableColumn, TableSlotDefault } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { ref, h, reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
-import { Pagination, TableColumn, TableSlotDefault } from '@/types/table'
 
-const { register, tableObject, methods, elTableRef } = useTable<TableData>({
-  getListApi: getTableListApi,
-  response: {
-    list: 'list',
-    total: 'total'
+const { tableRegister, tableObject, methods, elTableRef, tableState } = useTable({
+  fetchDataApi: async () => {
+    const { pageIndex, pageSize } = tableState
+    const res = await getTableListApi({
+      pageIndex: unref(pageIndex),
+      pageSize: unref(pageSize)
+    })
+    return {
+      list: res.data.list,
+      total: res.data.total
+    }
   }
+  // getListApi: getTableListApi,
+  // response: {
+  //   list: 'list',
+  //   total: 'total'
+  // }
 })
+const { loading, dataList, total, pageIndex, pageSize } = tableState
 
-const { getList } = methods
+// const { getList } = methods
 
-getList()
+// getList()
 
-const {
-  register: register2,
-  tableObject: tableObject2,
-  methods: methods2
-} = useTable<TableData>({
-  getListApi: getTableListApi,
-  response: {
-    list: 'list',
-    total: 'total'
-  }
-})
+// const {
+//   register: register2,
+//   tableObject: tableObject2,
+//   methods: methods2
+// } = useTable<TableData>({
+//   getListApi: getTableListApi,
+//   response: {
+//     list: 'list',
+//     total: 'total'
+//   }
+// })
 
-const { getList: getList2 } = methods2
+// const { getList: getList2 } = methods2
 
-getList2()
+// getList2()
 
 const { t } = useI18n()
 
@@ -65,17 +76,14 @@ const columns = reactive<TableColumn[]>([
         field: 'importance',
         label: t('tableDemo.importance'),
         formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
-          return h(
-            ElTag,
-            {
-              type: cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'
-            },
-            () =>
-              cellValue === 1
+          return (
+            <ElTag type={cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'}>
+              {cellValue === 1
                 ? t('tableDemo.important')
                 : cellValue === 2
                 ? t('tableDemo.good')
-                : t('tableDemo.commonly')
+                : t('tableDemo.commonly')}
+            </ElTag>
           )
         }
       },
@@ -87,7 +95,16 @@ const columns = reactive<TableColumn[]>([
   },
   {
     field: 'action',
-    label: t('tableDemo.action')
+    label: t('tableDemo.action'),
+    slots: {
+      default: (data) => {
+        return (
+          <ElButton type="primary" onClick={() => actionFn(data)}>
+            {t('tableDemo.action')}
+          </ElButton>
+        )
+      }
+    }
   }
 ])
 
@@ -171,20 +188,14 @@ const selectAllNone = () => {
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table
-      v-model:pageSize="tableObject.pageSize"
-      v-model:currentPage="tableObject.currentPage"
+      v-model:pageSize="pageSize"
+      v-model:currentPage="pageIndex"
       :columns="columns"
-      :data="tableObject.tableList"
-      :loading="tableObject.loading"
+      :data="dataList"
+      :loading="loading"
       :pagination="paginationObj"
-      @register="register"
+      @register="tableRegister"
     >
-      <template #action="data">
-        <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">
-          {{ t('tableDemo.action') }}
-        </ElButton>
-      </template>
-
       <template #expand="data">
         <div class="ml-30px">
           <div>{{ t('tableDemo.title') }}：{{ data.row.title }}</div>
@@ -195,7 +206,7 @@ const selectAllNone = () => {
     </Table>
   </ContentWrap>
 
-  <ContentWrap :title="`UseTable 2 ${t('tableDemo.example')}`">
+  <!-- <ContentWrap :title="`UseTable 2 ${t('tableDemo.example')}`">
     <Table
       v-model:pageSize="tableObject2.pageSize"
       v-model:currentPage="tableObject2.currentPage"
@@ -219,5 +230,5 @@ const selectAllNone = () => {
         </div>
       </template>
     </Table>
-  </ContentWrap>
+  </ContentWrap> -->
 </template>

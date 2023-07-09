@@ -1,11 +1,11 @@
 <script lang="tsx">
-import { ElTable, ElTableColumn, ElPagination } from 'element-plus'
+import { ElTable, ElTableColumn, ElPagination, ComponentSize, ElTooltipProps } from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
-import { getSlot } from '@/utils/tsxHelper'
-import type { TableProps, TableColumn, TableSlotDefault, Pagination, TableSetProps } from './types'
+import type { TableProps, TableColumn, Pagination, TableSetProps } from './types'
 import { set } from 'lodash-es'
+import { CSSProperties } from 'vue'
 
 export default defineComponent({
   name: 'Table',
@@ -45,10 +45,137 @@ export default defineComponent({
     data: {
       type: Array as PropType<Recordable[]>,
       default: () => []
-    }
+    },
+    height: propTypes.oneOfType([Number, String]),
+    maxHeight: propTypes.oneOfType([Number, String]),
+    stripe: propTypes.bool.def(false),
+    border: propTypes.bool.def(false),
+    size: {
+      type: String as PropType<ComponentSize>,
+      validator: (v: ComponentSize) => ['medium', 'small', 'mini'].includes(v)
+    },
+    fit: propTypes.bool.def(true),
+    showHeader: propTypes.bool.def(true),
+    highlightCurrentRow: propTypes.bool.def(false),
+    currentRowKey: propTypes.oneOfType([Number, String]),
+    // row-class-name, 类型为 (row: Recordable, rowIndex: number) => string | string
+    rowClassName: {
+      type: [Function, String] as PropType<(row: Recordable, rowIndex: number) => string | string>,
+      default: ''
+    },
+    rowStyle: {
+      type: [Function, Object] as PropType<
+        (row: Recordable, rowIndex: number) => Recordable | CSSProperties
+      >,
+      default: () => undefined
+    },
+    cellClassName: {
+      type: [Function, String] as PropType<
+        (row: Recordable, column: any, rowIndex: number) => string | string
+      >,
+      default: ''
+    },
+    cellStyle: {
+      type: [Function, Object] as PropType<
+        (row: Recordable, column: any, rowIndex: number) => Recordable | CSSProperties
+      >,
+      default: () => undefined
+    },
+    headerRowClassName: {
+      type: [Function, String] as PropType<(row: Recordable, rowIndex: number) => string | string>,
+      default: ''
+    },
+    headerRowStyle: {
+      type: [Function, Object] as PropType<
+        (row: Recordable, rowIndex: number) => Recordable | CSSProperties
+      >,
+      default: () => undefined
+    },
+    headerCellClassName: {
+      type: [Function, String] as PropType<
+        (row: Recordable, column: any, rowIndex: number) => string | string
+      >,
+      default: ''
+    },
+    headerCellStyle: {
+      type: [Function, Object] as PropType<
+        (row: Recordable, column: any, rowIndex: number) => Recordable | CSSProperties
+      >,
+      default: () => undefined
+    },
+    rowKey: {
+      type: [Function, String] as PropType<(row: Recordable) => string | string>,
+      default: () => 'id'
+    },
+    emptyText: propTypes.string.def('No Data'),
+    defaultExpandAll: propTypes.bool.def(false),
+    expandRowKeys: {
+      type: Array as PropType<string[]>,
+      default: () => []
+    },
+    defaultSort: {
+      type: Object as PropType<{ prop: string; order: string }>,
+      default: () => ({})
+    },
+    tooltipEffect: {
+      type: String as PropType<'dark' | 'light'>,
+      default: 'dark'
+    },
+    tooltipOptions: {
+      type: Object as PropType<
+        Pick<
+          ElTooltipProps,
+          | 'effect'
+          | 'enterable'
+          | 'hideAfter'
+          | 'offset'
+          | 'placement'
+          | 'popperClass'
+          | 'popperOptions'
+          | 'showAfter'
+          | 'showArrow'
+        >
+      >,
+      default: () => ({
+        enterable: true,
+        placement: 'top',
+        showArrow: true,
+        hideAfter: 200,
+        popperOptions: { strategy: 'fixed' }
+      })
+    },
+    showSummary: propTypes.bool.def(false),
+    sumText: propTypes.string.def('Sum'),
+    summaryMethod: {
+      type: Function as PropType<(param: { columns: any[]; data: any[] }) => any[]>,
+      default: () => undefined
+    },
+    spanMethod: {
+      type: Function as PropType<
+        (param: { row: any; column: any; rowIndex: number; columnIndex: number }) => any[]
+      >,
+      default: () => undefined
+    },
+    selectOnIndeterminate: propTypes.bool.def(true),
+    indent: propTypes.number.def(16),
+    lazy: propTypes.bool.def(false),
+    load: {
+      type: Function as PropType<(row: Recordable, treeNode: any, resolve: Function) => void>,
+      default: () => undefined
+    },
+    treeProps: {
+      type: Object as PropType<{ hasChildren: string; children: string; label: string }>,
+      default: () => ({ hasChildren: 'hasChildren', children: 'children', label: 'label' })
+    },
+    tableLayout: {
+      type: String as PropType<'auto' | 'fixed'>,
+      default: 'fixed'
+    },
+    scrollbarAlwaysOn: propTypes.bool.def(false),
+    flexible: propTypes.bool.def(false)
   },
   emits: ['update:pageSize', 'update:currentPage', 'register'],
-  setup(props, { attrs, slots, emit, expose }) {
+  setup(props, { attrs, emit, expose }) {
     const elTableRef = ref<ComponentRef<typeof ElTable>>()
 
     // 注册
@@ -74,7 +201,7 @@ export default defineComponent({
 
     const setProps = (props: TableProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
-      outsideProps.value = props
+      outsideProps.value = { ...props } as any
     }
 
     const setColumn = (columnProps: TableSetProps[], columnsChildren?: TableColumn[]) => {
@@ -186,6 +313,22 @@ export default defineComponent({
       return columnsChildren.map((v) => {
         const props = { ...v } as any
         if (props.children) delete props.children
+
+        const children = v.children
+
+        const slots = {
+          default: (...args: any[]) => {
+            if (props?.slots?.default) {
+              return slots.default(args)
+            } else if (children && children.length) {
+              return renderTreeTableColumn(children)
+            }
+          }
+        }
+        if (props?.slots?.header) {
+          slots['header'] = (...args: any[]) => props.slots.header(args)
+        }
+
         return (
           <ElTableColumn
             showOverflowTooltip={showOverflowTooltip}
@@ -194,17 +337,7 @@ export default defineComponent({
             {...props}
             prop={v.field}
           >
-            {{
-              default: (data: TableSlotDefault) =>
-                v.children && v.children.length
-                  ? renderTableColumn(v.children)
-                  : // @ts-ignore
-                    getSlot(slots, v.field, data) ||
-                    v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
-                    data.row[v.field],
-              // @ts-ignore
-              header: getSlot(slots, `${v.field}-header`)
-            }}
+            {slots}
           </ElTableColumn>
         )
       })
@@ -241,6 +374,22 @@ export default defineComponent({
           } else {
             const props = { ...v } as any
             if (props.children) delete props.children
+
+            const children = v.children
+
+            const slots = {
+              default: (...args: any[]) => {
+                if (props?.slots?.default) {
+                  return slots.default(args)
+                } else if (children && children.length) {
+                  return renderTreeTableColumn(children)
+                }
+              }
+            }
+            if (props?.slots?.header) {
+              slots['header'] = (...args: any[]) => props.slots.header(args)
+            }
+
             return (
               <ElTableColumn
                 showOverflowTooltip={showOverflowTooltip}
@@ -249,17 +398,7 @@ export default defineComponent({
                 {...props}
                 prop={v.field}
               >
-                {{
-                  default: (data: TableSlotDefault) =>
-                    v.children && v.children.length
-                      ? renderTreeTableColumn(v.children)
-                      : // @ts-ignore
-                        getSlot(slots, v.field, data) ||
-                        v?.formatter?.(data.row, data.column, data.row[v.field], data.$index) ||
-                        data.row[v.field],
-                  // @ts-ignore
-                  header: () => getSlot(slots, `${v.field}-header`) || v.label
-                }}
+                {slots}
               </ElTableColumn>
             )
           }
@@ -270,16 +409,13 @@ export default defineComponent({
     return () => (
       <div v-loading={unref(getProps).loading}>
         <ElTable
-          // @ts-ignore
           ref={elTableRef}
           data={unref(getProps).data}
           onSelection-change={selectionChange}
           {...unref(getBindValue)}
         >
           {{
-            default: () => renderTableColumn(),
-            // @ts-ignore
-            append: () => getSlot(slots, 'append')
+            default: () => renderTableColumn()
           }}
         </ElTable>
         {unref(getProps).pagination ? (

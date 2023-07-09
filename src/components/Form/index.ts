@@ -31,7 +31,7 @@ export type {
   FormProps,
   PlaceholderModel,
   InputPasswordComponentProps,
-  CheckboxButtonComponentProps
+  TreeSelectComponentProps
 } from './src/types'
 
 export interface FormExpose {
