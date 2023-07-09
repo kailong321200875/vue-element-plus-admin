@@ -1,15 +1,27 @@
-import { CSSProperties, VNodeProps, VNode } from 'vue'
 import {
-  InputProps,
   AutocompleteProps,
   InputNumberProps,
   CascaderProps,
   CascaderNode,
   CascaderValue,
-  FormItemRule,
-  ComponentSize
+  SwitchProps,
+  ComponentSize,
+  InputProps,
+  RateProps,
+  ColorPickerProps,
+  TransferProps,
+  RadioGroupProps,
+  RadioButtonProps,
+  CheckboxGroupProps,
+  DividerProps,
+  DatePickerProps,
+  FormItemProps as ElFormItemProps,
+  FormProps as ElFormProps,
+  TextareaProps,
+  CheckboxButtonProps
 } from 'element-plus'
 import { IEditorConfig } from '@wangeditor/editor'
+import { CSSProperties } from 'vue'
 
 export interface PlaceholderModel {
   placeholder?: string
@@ -53,35 +65,13 @@ type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
 
 export type ComponentName = CamelCaseComponentName
 
-export interface InputComponentProps {
-  maxlength?: number | string
-  minlength?: number | string
-  showWordLimit?: boolean
-  placeholder?: string
-  clearable?: boolean
-  formatter?: (value: string | number) => string
-  parser?: (value: string) => string
-  showPassword?: boolean
-  disabled?: boolean
-  size?: ComponentSize
-  prefixIcon?: string | JSX.Element
-  suffixIcon?: string | JSX.Element
-  type?: InputProps['type']
+export interface InputPasswordComponentProps {
+  strength?: boolean
+  style?: CSSProperties
+}
+
+export interface InputComponentProps extends Partial<InputProps> {
   rows?: number
-  autosize?: boolean | { Pows?: number; maxRows?: number }
-  autocomplete?: string
-  name?: string
-  readonly?: boolean
-  max?: number | string
-  min?: number | string
-  step?: number | string
-  resize?: InputProps['resize']
-  autofocus?: boolean
-  form?: string
-  label?: string
-  tabindex?: string | number
-  validateEvent?: boolean
-  inputStyle?: string | CSSProperties | CSSProperties[] | string[]
   on?: {
     blur?: (event: FocusEvent) => void
     focus?: (event: FocusEvent) => void
@@ -98,24 +88,7 @@ export interface InputComponentProps {
   style?: CSSProperties
 }
 
-export interface AutocompleteComponentProps {
-  placeholder?: string
-  clearable?: boolean
-  disabled?: boolean
-  valueKey?: string
-  debounce?: number
-  placement?: AutocompleteProps['placement']
-  fetchSuggestions?: (queryString: string, callback: (data: string[]) => void) => void
-  triggerOnFocus?: boolean
-  selectWhenUnmatched?: boolean
-  name?: string
-  label?: string
-  hideLoading?: boolean
-  popperClass?: string
-  popperAppendToBody?: boolean
-  teleported?: boolean
-  highlightFirstItem?: boolean
-  fitInputWidth?: boolean
+export interface AutocompleteComponentProps extends Partial<AutocompleteProps> {
   on?: {
     select?: (item: any) => void
     change?: (value: string | number) => void
@@ -130,23 +103,7 @@ export interface AutocompleteComponentProps {
   style?: CSSProperties
 }
 
-export interface InputNumberComponentProps {
-  min?: number
-  max?: number
-  step?: number
-  stepStrictly?: boolean
-  precision?: number
-  size?: ComponentSize
-  readonly?: boolean
-  disabled?: boolean
-  controls?: boolean
-  controlsPosition?: InputNumberProps['controlsPosition']
-  name?: string
-  label?: string
-  placeholder?: string
-  id?: string
-  valueOnClear?: number | null | 'min' | 'max'
-  validateEvent?: boolean
+export interface InputNumberComponentProps extends Partial<InputNumberProps> {
   on?: {
     change?: (currentValue: number | undefined, oldValue: number | undefined) => void
     blur?: (event: FocusEvent) => void
@@ -319,64 +276,21 @@ export interface CascaderComponentProps {
   style?: CSSProperties
 }
 
-export interface SwitchComponentProps {
-  disabled?: boolean
-  loading?: boolean
-  size?: ComponentSize
-  width?: number | string
-  inlinePrompt?: boolean
-  activeIcon?: string | JSX.Element | null
-  inactiveIcon?: string | JSX.Element | null
-  activeText?: string
-  inactiveText?: string
-  activeValue?: boolean | string | number
-  inactiveValue?: boolean | string | number
-  name?: string
-  validateEvent?: boolean
-  beforeChange?: (value: boolean) => boolean | Promise<boolean>
+export interface SwitchComponentProps extends Partial<SwitchProps> {
   on?: {
     change?: (value: boolean | string | number) => void
   }
   style?: CSSProperties
 }
 
-export interface RateComponentProps {
-  max?: number
-  size?: ComponentSize
-  disabled?: boolean
-  allowHalf?: boolean
-  lowThreshold?: number
-  highThreshold?: number
-  colors?: string[] | Record<number, string>
-  voidColor?: string
-  disabledVoidColor?: string
-  icons?: string[] | JSX.Element[] | Record<number, string | JSX.Element>
-  voidIcon?: string | JSX.Element
-  disabledVoidIcon?: string | JSX.Element
-  showText?: boolean
-  showScore?: boolean
-  textColor?: string
-  texts?: string[]
-  scoreTemplate?: string
-  clearable?: boolean
-  id?: string
-  label?: string
+export interface RateComponentProps extends Partial<RateProps> {
   on?: {
     change?: (value: number) => void
   }
   style?: CSSProperties
 }
 
-export interface ColorPickerComponentProps {
-  disabled?: boolean
-  size?: ComponentSize
-  showAlpha?: boolean
-  colorFormat?: 'hsl' | 'hsv' | 'hex' | 'rgb' | 'hex' | 'rgb'
-  predefine?: string[]
-  validateEvent?: boolean
-  tabindex?: number | string
-  label?: string
-  id?: string
+export interface ColorPickerComponentProps extends Partial<ColorPickerProps> {
   on?: {
     change?: (value: string) => void
     activeChange?: (value: string) => void
@@ -384,30 +298,7 @@ export interface ColorPickerComponentProps {
   style?: CSSProperties
 }
 
-export interface TransferComponentProps {
-  data?: any[]
-  filterable?: boolean
-  filterPlaceholder?: string
-  filterMethod?: (query: string, item: any) => boolean
-  targetOrder?: string
-  titles?: string[]
-  buttonTexts?: string[]
-  renderContent?: (
-    h: (type: string, props: VNodeProps | null, children?: string) => VNode,
-    option: any
-  ) => JSX.Element
-  format?: {
-    noChecked?: string
-    hasChecked?: string
-  }
-  props?: {
-    label?: string
-    key?: string
-    disabled?: string
-  }
-  leftDefaultChecked?: any[]
-  rightDefaultChecked?: any[]
-  validateEvent?: boolean
+export interface TransferComponentProps extends Partial<TransferProps> {
   on?: {
     change?: (
       value: number | string,
@@ -434,20 +325,12 @@ export interface RadioOption {
   name?: string
   [key: string]: any
 }
-export interface RadioGroupComponentProps {
-  size?: ComponentSize
-  disabled?: boolean
-  textColor?: string
-  fill?: string
-  validateEvent?: boolean
-  label?: string
-  name?: string
-  id?: string
+export interface RadioGroupComponentProps extends Partial<RadioGroupProps> {
   options?: RadioOption[]
   /**
    * 数据源的字段别名
    */
-  props: {
+  props?: {
     label?: string
     value?: string
     disabled?: string
@@ -456,25 +339,17 @@ export interface RadioGroupComponentProps {
     change?: (value: string | number | boolean) => void
   }
   slots?: {
-    default?: (...args: any[]) => JSX.Element | null
+    default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
 }
 
-export interface RadioButtonComponentProps {
-  size?: ComponentSize
-  disabled?: boolean
-  textColor?: string
-  fill?: string
-  validateEvent?: boolean
-  label?: string
-  name?: string
-  id?: string
+export interface RadioButtonComponentProps extends Partial<RadioButtonProps> {
   options?: RadioOption[]
   /**
    * 数据源的字段别名
    */
-  props: {
+  props?: {
     label?: string
     value?: string
     disabled?: string
@@ -483,7 +358,7 @@ export interface RadioButtonComponentProps {
     change?: (value: string | number | boolean) => void
   }
   slots?: {
-    default?: (...args: any[]) => JSX.Element | null
+    default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
 }
@@ -506,21 +381,12 @@ export interface CheckboxOption {
   [key: string]: any
 }
 
-export interface CheckboxGroupComponentProps {
-  size?: ComponentSize
-  disabled?: boolean
-  min?: number
-  max?: number
-  label?: string
-  textColor?: string
-  fill?: string
-  tag?: string
-  validateEvent?: boolean
+export interface CheckboxGroupComponentProps extends Partial<CheckboxGroupProps> {
   options?: CheckboxOption[]
   /**
    * 数据源的字段别名
    */
-  props: {
+  props?: {
     label?: string
     value?: string
     disabled?: string
@@ -529,35 +395,31 @@ export interface CheckboxGroupComponentProps {
     change?: (value: string | number | boolean) => void
   }
   slots?: {
-    default?: (...args: any[]) => JSX.Element | null
+    default?: (...args: any[]) => JSX.Element[] | null
   }
   style?: CSSProperties
 }
 
-export interface DividerComponentProps {
-  min?: number
-  max?: number
-  disabled?: boolean
-  step?: number
-  showInput?: boolean
-  showInputControls?: boolean
-  size?: ComponentSize
-  inputSize?: ComponentSize
-  showStops?: boolean
-  showTooltip?: boolean
-  formatTooltip?: (value: number) => string
-  range?: boolean
-  vertical?: boolean
-  height?: string
-  label?: string
-  rangeStartLabel?: string
-  rangeEndLabel?: string
-  formatValueText?: (value: number) => string
-  debounce?: number
-  tooltipClass?: string
-  placement?: string
-  marks?: Record<number, string>
-  validateEvent?: boolean
+export interface CheckboxButtonComponentProps extends Partial<CheckboxButtonProps> {
+  options?: CheckboxOption[]
+  /**
+   * 数据源的字段别名
+   */
+  props?: {
+    label?: string
+    value?: string
+    disabled?: string
+  }
+  on?: {
+    change?: (value: string | number | boolean) => void
+  }
+  slots?: {
+    default?: (...args: any[]) => JSX.Element[] | null
+  }
+  style?: CSSProperties
+}
+
+export interface DividerComponentProps extends Partial<DividerProps> {
   on?: {
     change?: (value: number) => void
     input?: (value: number) => void
@@ -565,42 +427,7 @@ export interface DividerComponentProps {
   style?: CSSProperties
 }
 
-export interface DatePickerComponentProps {
-  readonly?: boolean
-  disabled?: boolean
-  size?: ComponentSize
-  editable?: boolean
-  clearable?: boolean
-  placeholder?: string
-  startPlaceholder?: string
-  endPlaceholder?: string
-  type?:
-    | 'year'
-    | 'month'
-    | 'date'
-    | 'dates'
-    | 'week'
-    | 'datetime'
-    | 'datetimerange'
-    | 'daterange'
-    | 'monthrange'
-  format?: string
-  popperClass?: string
-  popperOptions?: Record<string, any>
-  rangeSeparator?: string
-  defaultValue?: Date | [Date, Date]
-  defaultTime?: Date | [Date, Date]
-  valueFormat?: string
-  id?: string
-  name?: string
-  unlinkPanels?: boolean
-  prefixIcon?: string | JSX.Element
-  clearIcon?: string | JSX.Element
-  validateEvent?: boolean
-  disabledDate?: (date: Date) => boolean
-  shortcuts?: Array<{ text: string; value: Date | Function }>
-  cellClassName?: string | ((date: Date) => string | undefined)
-  teleported?: boolean
+export interface DatePickerComponentProps extends Partial<DatePickerProps> {
   on?: {
     change?: (value: string | Date | number | string[]) => void
     blur?: (event: FocusEvent) => void
@@ -737,16 +564,7 @@ export interface FormSetProps {
   value: any
 }
 
-export interface FormItemProps {
-  labelWidth?: string | number
-  required?: boolean
-  rules?: FormItemRule | FormItemRule[]
-  error?: string
-  showMessage?: boolean
-  inlineMessage?: boolean
-  size?: ComponentSize
-  for?: string
-  validateStatus?: '' | 'error' | 'validating' | 'success'
+export interface FormItemProps extends Partial<ElFormItemProps> {
   style?: CSSProperties
   slots?: {
     default?: (...args: any[]) => JSX.Element | null
@@ -791,8 +609,8 @@ export interface FormSchema {
     | DatePickerComponentProps
     | DateTimePickerComponentProps
     | TimePickerComponentProps
-    | EditorComponentProps
-    | any
+    | InputPasswordComponentProps
+    | CheckboxButtonComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档
@@ -825,12 +643,11 @@ export interface FormSchema {
   optionApi?: any
 }
 
-export interface FormProps {
+export interface FormProps extends Partial<ElFormProps> {
   schema?: FormSchema[]
   isCol?: boolean
   model?: Recordable
   autoSetPlaceholder?: boolean
   isCustom?: boolean
-  labelWidth?: string | number
   [key: string]: any
 }

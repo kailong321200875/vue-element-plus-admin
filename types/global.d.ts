@@ -10,6 +10,10 @@ declare global {
 
   declare type Recordable<T = any, K = string> = Record<K extends null | undefined ? string : K, T>
 
+  declare type RemoveReadonly<T> = {
+    -readonly [P in keyof T]: T[P]
+  }
+
   declare type ComponentRef<T> = InstanceType<T>
 
   declare type LocaleType = 'zh-CN' | 'en'

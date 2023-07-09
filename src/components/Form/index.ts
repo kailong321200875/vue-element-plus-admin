@@ -29,7 +29,9 @@ export type {
   FormItemProps,
   FormSchema,
   FormProps,
-  PlaceholderModel
+  PlaceholderModel,
+  InputPasswordComponentProps,
+  CheckboxButtonComponentProps
 } from './src/types'
 
 export interface FormExpose {
