@@ -417,7 +417,7 @@ export default defineComponent({
         >
           {{
             default: () => renderTableColumn(),
-            empty: () => getSlot(slots, 'empty') || props.emptyText,
+            empty: () => getSlot(slots, 'empty') || unref(getProps).emptyText,
             append: () => getSlot(slots, 'append')
           }}
         </ElTable>
