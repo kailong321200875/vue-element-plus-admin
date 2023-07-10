@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import { reactive, ref, unref, watch } from 'vue'
-import { Form } from '@/components/Form'
+<script setup lang="tsx">
+import { reactive, ref, watch } from 'vue'
+import { Form, FormSchema } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
@@ -12,7 +12,7 @@ import { useRouter } from 'vue-router'
 import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
-import { FormSchema } from '@/types/form'
+import { Icon } from '@/components/Icon'
 
 const { required } = useValidator()
 
@@ -38,6 +38,13 @@ const schema = reactive<FormSchema[]>([
     field: 'title',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return <h2 class="text-2xl font-bold text-center w-[100%]">{t('login.login')}</h2>
+        }
+      }
     }
   },
   {
@@ -71,12 +78,48 @@ const schema = reactive<FormSchema[]>([
     field: 'tool',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="flex justify-between items-center w-[100%]">
+                <ElCheckbox v-model={remember.value} label={t('login.remember')} size="small" />
+                <ElLink type="primary" underline={false}>
+                  {t('login.forgetPassword')}
+                </ElLink>
+              </div>
+            </>
+          )
+        }
+      }
     }
   },
   {
     field: 'login',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="w-[100%]">
+                <ElButton loading={loading.value} type="primary" class="w-[100%]" onClick={signIn}>
+                  {t('login.login')}
+                </ElButton>
+              </div>
+              <div class="w-[100%] mt-15px">
+                <ElButton class="w-[100%]" onClick={toRegister}>
+                  {t('login.register')}
+                </ElButton>
+              </div>
+            </>
+          )
+        }
+      }
     }
   },
   {
@@ -91,6 +134,42 @@ const schema = reactive<FormSchema[]>([
     field: 'otherIcon',
     colProps: {
       span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          return (
+            <>
+              <div class="flex justify-between w-[100%]">
+                <Icon
+                  icon="ant-design:github-filled"
+                  size={iconSize}
+                  class="cursor-pointer ant-icon"
+                  color={iconColor}
+                />
+                <Icon
+                  icon="ant-design:wechat-filled"
+                  size={iconSize}
+                  class="cursor-pointer ant-icon"
+                  color={iconColor}
+                />
+                <Icon
+                  icon="ant-design:alipay-circle-filled"
+                  size={iconSize}
+                  color={iconColor}
+                  class="cursor-pointer ant-icon"
+                />
+                <Icon
+                  icon="ant-design:weibo-circle-filled"
+                  size={iconSize}
+                  color={iconColor}
+                  class="cursor-pointer ant-icon"
+                />
+              </div>
+            </>
+          )
+        }
+      }
     }
   }
 ])
@@ -99,7 +178,8 @@ const iconSize = 30
 
 const remember = ref(false)
 
-const { register, elFormRef, methods } = useForm()
+const { formRegister, formMethods } = useForm()
+const { getFormData, getElFormExpose } = formMethods
 
 const loading = ref(false)
 
@@ -126,11 +206,10 @@ const signIn = async () => {
   permissionStore.setIsAddRouters(true)
   push({ path: redirect.value || permissionStore.addRouters[0].path })
 
-  const formRef = unref(elFormRef)
+  const formRef = await getElFormExpose()
   await formRef?.validate(async (isValid) => {
     if (isValid) {
       loading.value = true
-      const { getFormData } = methods
       const formData = await getFormData<UserType>()
 
       try {
@@ -159,7 +238,6 @@ const signIn = async () => {
 
 // 获取角色信息
 const getRole = async () => {
-  const { getFormData } = methods
   const formData = await getFormData<UserType>()
   const params = {
     roleName: formData.username
@@ -199,66 +277,13 @@ const toRegister = () => {
     hide-required-asterisk
     size="large"
     class="dark:(border-1 border-[var(--el-border-color)] border-solid)"
-    @register="register"
-  >
-    <template #title>
-      <h2 class="text-2xl font-bold text-center w-[100%]">{{ t('login.login') }}</h2>
-    </template>
-
-    <template #tool>
-      <div class="flex justify-between items-center w-[100%]">
-        <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />
-        <ElLink type="primary" :underline="false">{{ t('login.forgetPassword') }}</ElLink>
-      </div>
-    </template>
-
-    <template #login>
-      <div class="w-[100%]">
-        <ElButton :loading="loading" type="primary" class="w-[100%]" @click="signIn">
-          {{ t('login.login') }}
-        </ElButton>
-      </div>
-      <div class="w-[100%] mt-15px">
-        <ElButton class="w-[100%]" @click="toRegister">
-          {{ t('login.register') }}
-        </ElButton>
-      </div>
-    </template>
-
-    <template #otherIcon>
-      <div class="flex justify-between w-[100%]">
-        <Icon
-          icon="ant-design:github-filled"
-          :size="iconSize"
-          class="cursor-pointer anticon"
-          :color="iconColor"
-        />
-        <Icon
-          icon="ant-design:wechat-filled"
-          :size="iconSize"
-          class="cursor-pointer anticon"
-          :color="iconColor"
-        />
-        <Icon
-          icon="ant-design:alipay-circle-filled"
-          :size="iconSize"
-          :color="iconColor"
-          class="cursor-pointer anticon"
-        />
-        <Icon
-          icon="ant-design:weibo-circle-filled"
-          :size="iconSize"
-          :color="iconColor"
-          class="cursor-pointer anticon"
-        />
-      </div>
-    </template>
-  </Form>
+    @register="formRegister"
+  />
 </template>
 
 <style lang="less" scoped>
-:deep(.anticon) {
-  &:hover {
+:deep(.ant-icon) {
+  & > svg:hover {
     color: var(--el-color-primary) !important;
   }
 }

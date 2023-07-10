@@ -144,15 +144,6 @@ export const useTable = (config: UseTableConfig) => {
     },
 
     /**
-     * @description 获取全选数据
-     * @returns
-     */
-    getSelections: async () => {
-      const table = await getTable()
-      return table?.selections || []
-    },
-
-    /**
      * @description 获取ElTable组件的实例
      * @returns ElTable instance
      */

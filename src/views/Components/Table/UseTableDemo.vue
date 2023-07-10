@@ -207,6 +207,12 @@ const fixedHeaderOrAuto = () => {
     height.value = 'auto'
   }
 }
+
+const getSelections = async () => {
+  const elTableRef = await getElTableExpose()
+  const selections = elTableRef?.getSelectionRows()
+  console.log(selections)
+}
 </script>
 
 <template>
@@ -236,6 +242,8 @@ const fixedHeaderOrAuto = () => {
     <ElButton @click="showOrHiddenStripe">{{ t('tableDemo.showOrHiddenStripe') }}</ElButton>
 
     <ElButton @click="fixedHeaderOrAuto">{{ t('tableDemo.fixedHeaderOrAuto') }}</ElButton>
+
+    <ElButton @click="getSelections">{{ t('tableDemo.getSelections') }}</ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table

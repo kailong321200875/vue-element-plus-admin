@@ -421,7 +421,8 @@ export default {
     delOrAddAction: 'Delete or add action',
     showOrHiddenStripe: 'Show or hidden stripe',
     showOrHiddenBorder: 'Show or hidden border',
-    fixedHeaderOrAuto: 'Fixed header or auto'
+    fixedHeaderOrAuto: 'Fixed header or auto',
+    getSelections: 'Get selections'
   },
   richText: {
     richText: 'Rich text',

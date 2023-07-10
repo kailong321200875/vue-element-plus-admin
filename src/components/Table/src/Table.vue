@@ -230,18 +230,11 @@ export default defineComponent({
       }
     }
 
-    const selections = ref<Recordable[]>([])
-
-    const selectionChange = (selection: Recordable[]) => {
-      selections.value = selection
-    }
-
     expose({
       setProps,
       setColumn,
       delColumn,
       addColumn,
-      selections,
       elTableRef
     })
 
@@ -409,12 +402,7 @@ export default defineComponent({
 
     return () => (
       <div v-loading={unref(getProps).loading}>
-        <ElTable
-          ref={elTableRef}
-          data={unref(getProps).data}
-          onSelection-change={selectionChange}
-          {...unref(getBindValue)}
-        >
+        <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
           {{
             default: () => renderTableColumn(),
             empty: () => getSlot(slots, 'empty') || unref(getProps).emptyText,
