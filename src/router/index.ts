@@ -184,6 +184,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: 'UseTable'
             }
+          },
+          {
+            path: 'tree-table',
+            component: () => import('@/views/Components/Table/TreeTable.vue'),
+            name: 'TreeTable',
+            meta: {
+              title: 'TreeTable'
+            }
           }
         ]
       },

@@ -32,7 +32,7 @@ export const useForm = () => {
   const methods = {
     /**
      * @description 设置form组件的props
-     * @param field FormItem的field
+     * @param props form组件的props
      */
     setProps: async (props: FormProps = {}) => {
       const form = await getForm()

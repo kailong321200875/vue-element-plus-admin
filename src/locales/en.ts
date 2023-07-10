@@ -417,7 +417,11 @@ export default {
     hiddenExpandedRows: 'Hidden expanded rows',
     changeTitle: 'Change title',
     header: 'Header',
-    selectAllNone: 'Select all / none'
+    selectAllNone: 'Select all / none',
+    delOrAddAction: 'Delete or add action',
+    showOrHiddenStripe: 'Show or hidden stripe',
+    showOrHiddenBorder: 'Show or hidden border',
+    fixedHeaderOrAuto: 'Fixed header or auto'
   },
   richText: {
     richText: 'Rich text',

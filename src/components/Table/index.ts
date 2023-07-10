@@ -1,6 +1,6 @@
 import Table from './src/Table.vue'
 import { ElTable } from 'element-plus'
-import { TableSetProps } from './src/types'
+import { TableColumn, TableSetProps } from './src/types'
 
 export type {
   TableColumn,
@@ -13,6 +13,8 @@ export type {
 export interface TableExpose {
   setProps: (props: Recordable) => void
   setColumn: (columnProps: TableSetProps[]) => void
+  addColumn: (column: TableColumn, index?: number) => void
+  delColumn: (field: string) => void
   selections: Recordable[]
   elTableRef: ComponentRef<typeof ElTable>
 }

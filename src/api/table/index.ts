@@ -5,6 +5,10 @@ export const getTableListApi = (params: any) => {
   return request.get({ url: '/example/list', params })
 }
 
+export const getTreeTableListApi = (params: any) => {
+  return request.get({ url: '/example/treeList', params })
+}
+
 export const saveTableApi = (data: Partial<TableData>): Promise<IResponse> => {
   return request.post({ url: '/example/save', data })
 }

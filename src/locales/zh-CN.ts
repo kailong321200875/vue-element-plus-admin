@@ -412,7 +412,11 @@ export default {
     hiddenExpandedRows: '隐藏展开行',
     changeTitle: '修改标题',
     header: '头部',
-    selectAllNone: '全选/全不选'
+    selectAllNone: '全选/全不选',
+    delOrAddAction: '删除/添加操作列',
+    showOrHiddenStripe: '显示/隐藏斑马纹',
+    showOrHiddenBorder: '显示/隐藏边框',
+    fixedHeaderOrAuto: '固定头部/自动'
   },
   richText: {
     richText: '富文本',

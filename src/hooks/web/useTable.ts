@@ -1,107 +1,46 @@
-import { Table, TableExpose, TableProps, TableSetProps } from '@/components/Table'
-import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
-import { ref, reactive, watch, computed, unref, nextTick, onMounted } from 'vue'
-import { get } from 'lodash-es'
-import { useI18n } from '@/hooks/web/useI18n'
-
-const { t } = useI18n()
-
-interface TableResponse<T = any> {
-  total: number
-  list: T[]
-  pageNumber: number
-  pageSize: number
-}
+import { Table, TableExpose, TableProps, TableSetProps, TableColumn } from '@/components/Table'
+import { ElTable } from 'element-plus'
+import { ref, watch, unref, nextTick, onMounted } from 'vue'
 
 interface UseTableConfig {
-  // 是否初始化请求一次
+  /**
+   * 是否初始化的时候请求一次
+   */
   immediate?: boolean
-  // 获取数据字段映射
-  props?: {
-    list?: string
-    total?: string
-  }
   fetchDataApi: () => Promise<{
     list: any[]
     total: number
   }>
-  // getListApi: (option: any) => Promise<IResponse<TableResponse<T>>>
-  // delListApi?: (option: any) => Promise<IResponse>
-  // 返回数据格式配置
-  // response: {
-  //   list: string
-  //   total?: string
-  // }
-  // 默认传递的参数
-  // defaultParams?: Recordable
-  // props?: TableProps
-}
-
-interface TableObject<T = any> {
-  pageSize: number
-  currentPage: number
-  total: number
-  list: T[]
-  params: any
-  loading: boolean
-  currentRow: Nullable<T>
 }
 
 export const useTable = (config: UseTableConfig) => {
   const { immediate = true } = config
 
   const loading = ref(false)
-  const pageIndex = ref(1)
+  const currentPage = ref(1)
   const pageSize = ref(10)
   const total = ref(0)
   const dataList = ref<any[]>([])
 
-  const tableObject = reactive<TableObject>({
-    // 页数
-    pageSize: 10,
-    // 当前页
-    currentPage: 1,
-    // 总条数
-    total: 10,
-    // 表格数据
-    list: [],
-    // AxiosConfig 配置
-    params: {
-      // ...(config?.defaultParams || {})
-    },
-    // 加载中
-    loading: true,
-    // 当前行的数据
-    currentRow: null
-  })
-
-  const paramsObj = computed(() => {
-    return {
-      ...tableObject.params,
-      pageSize: tableObject.pageSize,
-      pageIndex: tableObject.currentPage
+  watch(
+    () => currentPage.value,
+    () => {
+      methods.getList()
     }
-  })
+  )
 
-  // watch(
-  //   () => tableObject.currentPage,
-  //   () => {
-  //     methods.getList()
-  //   }
-  // )
-
-  // watch(
-  //   () => tableObject.pageSize,
-  //   () => {
-  //     // 当前页不为1时，修改页数后会导致多次调用getList方法
-  //     if (tableObject.currentPage === 1) {
-  //       methods.getList()
-  //     } else {
-  //       tableObject.currentPage = 1
-  //       methods.getList()
-  //     }
-  //   }
-  // )
+  watch(
+    () => pageSize.value,
+    () => {
+      // 当前页不为1时，修改页数后会导致多次调用getList方法
+      if (unref(currentPage) === 1) {
+        methods.getList()
+      } else {
+        currentPage.value = 1
+        methods.getList()
+      }
+    }
+  )
 
   onMounted(() => {
     if (immediate) {
@@ -148,6 +87,9 @@ export const useTable = (config: UseTableConfig) => {
   // }
 
   const methods = {
+    /**
+     * 获取表单数据
+     */
     getList: async () => {
       loading.value = true
       try {
@@ -162,36 +104,62 @@ export const useTable = (config: UseTableConfig) => {
       } finally {
         loading.value = false
       }
-      // const res = await config?.getListApi(unref(paramsObj)).finally(() => {
-      //   tableObject.loading = false
-      // })
-      // if (res) {
-      //   tableObject.list = get(res.data || {}, config?.response.list as string)
-      //   tableObject.total = get(res.data || {}, config?.response?.total as string) || 0
-      // }
+    },
+
+    /**
+     * @description 设置table组件的props
+     * @param props table组件的props
+     */
+    setProps: async (props: TableProps = {}) => {
+      const table = await getTable()
+      table?.setProps(props)
+    },
+
+    /**
+     * @description 设置column
+     * @param columnProps 需要设置的列
+     */
+    setColumn: async (columnProps: TableSetProps[]) => {
+      const table = await getTable()
+      table?.setColumn(columnProps)
+    },
+
+    /**
+     * @description 新增column
+     * @param tableColumn 需要新增数据
+     * @param index 在哪里新增
+     */
+    addColumn: async (tableColumn: TableColumn, index?: number) => {
+      const table = await getTable()
+      table?.addColumn(tableColumn, index)
+    },
+
+    /**
+     * @description 删除column
+     * @param field 删除哪个数据
+     */
+    delColumn: async (field: string) => {
+      const table = await getTable()
+      table?.delColumn(field)
+    },
+
+    /**
+     * @description 获取全选数据
+     * @returns
+     */
+    getSelections: async () => {
+      const table = await getTable()
+      return table?.selections || []
+    },
+
+    /**
+     * @description 获取ElTable组件的实例
+     * @returns ElTable instance
+     */
+    getElTableExpose: async () => {
+      await getTable()
+      return unref(elTableRef)
     }
-    // setProps: async (props: TableProps = {}) => {
-    //   const table = await getTable()
-    //   table?.setProps(props)
-    // },
-    // setColumn: async (columnProps: TableSetProps[]) => {
-    //   const table = await getTable()
-    //   table?.setColumn(columnProps)
-    // },
-    // getSelections: async () => {
-    //   const table = await getTable()
-    //   return (table?.selections || []) as T[]
-    // },
-    // // 与Search组件结合
-    // setSearchParams: (data: Recordable) => {
-    //   tableObject.currentPage = 1
-    //   tableObject.params = Object.assign(tableObject.params, {
-    //     pageSize: tableObject.pageSize,
-    //     pageIndex: tableObject.currentPage,
-    //     ...data
-    //   })
-    //   methods.getList()
-    // },
     // // 删除数据
     // delList: async (ids: string[] | number[], multiple: boolean, message = true) => {
     //   const tableRef = await getTable()
@@ -222,11 +190,9 @@ export const useTable = (config: UseTableConfig) => {
 
   return {
     tableRegister: register,
-    elTableRef,
-    tableObject,
-    methods,
+    tableMethods: methods,
     tableState: {
-      pageIndex,
+      currentPage,
       pageSize,
       total,
       dataList,

@@ -2,6 +2,11 @@ import { TableProps as ElTableProps } from 'element-plus'
 export interface TableColumn {
   field: string
   label?: string
+  type?: string
+  /**
+   * 是否隐藏
+   */
+  hidden?: boolean
   children?: TableColumn[]
   slots?: {
     default?: (...args: any[]) => JSX.Element | JSX.Element[] | null
@@ -69,8 +74,6 @@ export interface TableSetProps {
 export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
   pageSize?: number
   currentPage?: number
-  // 是否多选
-  selection?: boolean
   // 是否所有的超出隐藏，优先级低于schema中的showOverflowTooltip,
   showOverflowTooltip?: boolean
   // 表头

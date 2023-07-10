@@ -12,7 +12,7 @@ const count = 100
 const baseContent =
   '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
 
-let List: {
+interface ListProps {
   id: string
   author: string
   title: string
@@ -20,7 +20,20 @@ let List: {
   importance: number
   display_time: string
   pageviews: number
-}[] = []
+}
+
+interface TreeListProps {
+  id: string
+  author: string
+  title: string
+  content: string
+  importance: number
+  display_time: string
+  pageviews: number
+  children: TreeListProps[]
+}
+
+let List: ListProps[] = []
 
 for (let i = 0; i < count; i++) {
   List.push(
@@ -38,7 +51,114 @@ for (let i = 0; i < count; i++) {
   )
 }
 
+const treeList: TreeListProps[] = []
+
+for (let i = 0; i < count; i++) {
+  treeList.push(
+    Mock.mock({
+      id: toAnyString(),
+      // timestamp: +Mock.Random.date('T'),
+      author: '@first',
+      title: '@title(5, 10)',
+      content: baseContent,
+      importance: '@integer(1, 3)',
+      display_time: '@datetime',
+      pageviews: '@integer(300, 5000)',
+      children: [
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)',
+          children: [
+            {
+              id: toAnyString(),
+              // timestamp: +Mock.Random.date('T'),
+              author: '@first',
+              title: '@title(5, 10)',
+              content: baseContent,
+              importance: '@integer(1, 3)',
+              display_time: '@datetime',
+              pageviews: '@integer(300, 5000)'
+            },
+            {
+              id: toAnyString(),
+              // timestamp: +Mock.Random.date('T'),
+              author: '@first',
+              title: '@title(5, 10)',
+              content: baseContent,
+              importance: '@integer(1, 3)',
+              display_time: '@datetime',
+              pageviews: '@integer(300, 5000)'
+            }
+          ]
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        }
+      ]
+      // image_uri
+    })
+  )
+}
+
 export default [
+  // 树形列表接口
+  {
+    url: '/example/treeList',
+    method: 'get',
+    timeout,
+    response: ({ query }) => {
+      const { title, pageIndex, pageSize } = query
+      const mockList = treeList.filter((item) => {
+        if (title && item.title.indexOf(title) < 0) return false
+        return true
+      })
+      const pageList = mockList.filter(
+        (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
+      )
+      return {
+        data: {
+          code: code,
+          data: {
+            total: mockList.length,
+            list: pageList
+          }
+        }
+      }
+    }
+  },
   // 列表接口
   {
     url: '/example/list',

@@ -1,18 +1,17 @@
 <script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table, Pagination, TableColumn, TableSlotDefault } from '@/components/Table'
+import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
-import { TableData } from '@/api/table/types'
-import { ref, h, reactive, unref } from 'vue'
+import { ref, reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
 
-const { tableRegister, tableObject, methods, elTableRef, tableState } = useTable({
+const { tableRegister, tableMethods, tableState } = useTable({
   fetchDataApi: async () => {
-    const { pageIndex, pageSize } = tableState
+    const { currentPage, pageSize } = tableState
     const res = await getTableListApi({
-      pageIndex: unref(pageIndex),
+      pageIndex: unref(currentPage),
       pageSize: unref(pageSize)
     })
     return {
@@ -20,37 +19,39 @@ const { tableRegister, tableObject, methods, elTableRef, tableState } = useTable
       total: res.data.total
     }
   }
-  // getListApi: getTableListApi,
-  // response: {
-  //   list: 'list',
-  //   total: 'total'
-  // }
 })
-const { loading, dataList, total, pageIndex, pageSize } = tableState
-
-// const { getList } = methods
-
-// getList()
-
-// const {
-//   register: register2,
-//   tableObject: tableObject2,
-//   methods: methods2
-// } = useTable<TableData>({
-//   getListApi: getTableListApi,
-//   response: {
-//     list: 'list',
-//     total: 'total'
-//   }
-// })
-
-// const { getList: getList2 } = methods2
-
-// getList2()
+const { loading, dataList, total, currentPage, pageSize } = tableState
+const { setProps, setColumn, getElTableExpose, addColumn, delColumn } = tableMethods
 
 const { t } = useI18n()
 
 const columns = reactive<TableColumn[]>([
+  {
+    field: 'expand',
+    type: 'expand',
+    slots: {
+      default: (data: TableSlotDefault[]) => {
+        const { row } = data[0]
+        return (
+          <div class="ml-30px">
+            <div>
+              {t('tableDemo.title')}：{row.title}
+            </div>
+            <div>
+              {t('tableDemo.author')}：{row.author}
+            </div>
+            <div>
+              {t('tableDemo.displayTime')}：{row.display_time}
+            </div>
+          </div>
+        )
+      }
+    }
+  },
+  {
+    field: 'selection',
+    type: 'selection'
+  },
   {
     field: 'index',
     label: t('tableDemo.index'),
@@ -112,36 +113,30 @@ const actionFn = (data: TableSlotDefault) => {
   console.log(data)
 }
 
-const paginationObj = ref<Pagination>()
-
+const canShowPagination = ref(true)
 const showPagination = (show: boolean) => {
-  if (show) {
-    paginationObj.value = {
-      total: tableObject.total
-    }
-  } else {
-    paginationObj.value = undefined
-  }
+  canShowPagination.value = show
 }
 
 const reserveIndex = (custom: boolean) => {
-  const { setProps } = methods
   setProps({
     reserveIndex: custom
   })
 }
 
 const showSelections = (show: boolean) => {
-  const { setProps } = methods
-  setProps({
-    selection: show
-  })
+  setColumn([
+    {
+      field: 'selection',
+      path: 'hidden',
+      value: !show
+    }
+  ])
 }
 
 const index = ref(1)
 
 const changeTitle = () => {
-  const { setColumn } = methods
   setColumn([
     {
       field: 'title',
@@ -153,19 +148,69 @@ const changeTitle = () => {
 }
 
 const showExpandedRows = (show: boolean) => {
-  const { setProps } = methods
-  setProps({
-    expand: show
-  })
+  setColumn([
+    {
+      field: 'expand',
+      path: 'hidden',
+      value: !show
+    }
+  ])
 }
 
-const selectAllNone = () => {
-  unref(elTableRef)?.toggleAllSelection()
+const selectAllNone = async () => {
+  const elTableRef = await getElTableExpose()
+  elTableRef?.toggleAllSelection()
+}
+
+const showAction = ref(true)
+const delOrAddAction = () => {
+  if (unref(showAction)) {
+    delColumn('action')
+    showAction.value = false
+  } else {
+    addColumn({
+      field: 'action',
+      label: t('tableDemo.action'),
+      slots: {
+        default: (data) => {
+          return (
+            <ElButton type="primary" onClick={() => actionFn(data)}>
+              {t('tableDemo.action')}
+            </ElButton>
+          )
+        }
+      }
+    })
+    showAction.value = true
+  }
+}
+
+const showStripe = ref(false)
+const showOrHiddenStripe = () => {
+  setProps({
+    stripe: !unref(showStripe)
+  })
+  showStripe.value = !unref(showStripe)
+}
+
+const height = ref<string | number>('auto')
+const fixedHeaderOrAuto = () => {
+  if (unref(height) === 'auto') {
+    setProps({
+      height: 300
+    })
+    height.value = 300
+  } else {
+    setProps({
+      height: 'auto'
+    })
+    height.value = 'auto'
+  }
 }
 </script>
 
 <template>
-  <ContentWrap :title="`UseTable ${t('tableDemo.operate')}`">
+  <ContentWrap :title="`UseTable ${t('tableDemo.operate')}`" style="margin-bottom: 20px">
     <ElButton @click="showPagination(true)">
       {{ t('tableDemo.show') }} {{ t('tableDemo.pagination') }}
     </ElButton>
@@ -185,50 +230,34 @@ const selectAllNone = () => {
     <ElButton @click="showExpandedRows(false)">{{ t('tableDemo.hiddenExpandedRows') }}</ElButton>
 
     <ElButton @click="selectAllNone">{{ t('tableDemo.selectAllNone') }}</ElButton>
+
+    <ElButton @click="delOrAddAction">{{ t('tableDemo.delOrAddAction') }}</ElButton>
+
+    <ElButton @click="showOrHiddenStripe">{{ t('tableDemo.showOrHiddenStripe') }}</ElButton>
+
+    <ElButton @click="fixedHeaderOrAuto">{{ t('tableDemo.fixedHeaderOrAuto') }}</ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table
       v-model:pageSize="pageSize"
-      v-model:currentPage="pageIndex"
+      v-model:currentPage="currentPage"
       :columns="columns"
       :data="dataList"
       :loading="loading"
-      :pagination="paginationObj"
+      :pagination="
+        canShowPagination
+          ? {
+              total: total
+            }
+          : undefined
+      "
       @register="tableRegister"
-    >
-      <template #expand="data">
-        <div class="ml-30px">
-          <div>{{ t('tableDemo.title') }}：{{ data.row.title }}</div>
-          <div>{{ t('tableDemo.author') }}：{{ data.row.author }}</div>
-          <div>{{ t('tableDemo.displayTime') }}：{{ data.row.display_time }}</div>
-        </div>
-      </template>
-    </Table>
+    />
   </ContentWrap>
-
-  <!-- <ContentWrap :title="`UseTable 2 ${t('tableDemo.example')}`">
-    <Table
-      v-model:pageSize="tableObject2.pageSize"
-      v-model:currentPage="tableObject2.currentPage"
-      :columns="columns"
-      :data="tableObject2.tableList"
-      :loading="tableObject2.loading"
-      :pagination="paginationObj"
-      @register="register2"
-    >
-      <template #action="data">
-        <ElButton type="primary" @click="actionFn(data as TableSlotDefault)">
-          {{ t('tableDemo.action') }}
-        </ElButton>
-      </template>
-
-      <template #expand="data">
-        <div class="ml-30px">
-          <div>{{ t('tableDemo.title') }}：{{ data.row.title }}</div>
-          <div>{{ t('tableDemo.author') }}：{{ data.row.author }}</div>
-          <div>{{ t('tableDemo.displayTime') }}：{{ data.row.display_time }}</div>
-        </div>
-      </template>
-    </Table>
-  </ContentWrap> -->
 </template>
+
+<style lang="less" scoped>
+.el-button {
+  margin-top: 10px;
+}
+</style>

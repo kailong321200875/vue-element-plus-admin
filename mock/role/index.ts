@@ -143,6 +143,14 @@ const adminList = [
             }
           },
           {
+            path: 'tree-table',
+            component: 'views/Components/Table/TreeTable',
+            name: 'TreeTable',
+            meta: {
+              title: 'TreeTable'
+            }
+          },
+          {
             path: 'ref-table',
             component: 'views/Components/Table/RefTable',
             name: 'RefTable',
@@ -481,6 +489,7 @@ const testList: string[] = [
   '/components/table',
   '/components/table/default-table',
   '/components/table/use-table',
+  '/components/table/tree-table',
   '/components/table/ref-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',
