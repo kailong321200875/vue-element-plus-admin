@@ -293,7 +293,6 @@ export default defineComponent({
       const bindValue: Recordable = { ...attrs, ...unref(getProps) }
       delete bindValue.columns
       delete bindValue.data
-      console.log(bindValue)
       return bindValue
     })
 
