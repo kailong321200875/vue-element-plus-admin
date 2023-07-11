@@ -1,12 +1,5 @@
 <script lang="tsx">
-import {
-  ElTable,
-  ElTableColumn,
-  ElPagination,
-  ComponentSize,
-  ElTooltipProps,
-  ElTooltip
-} from 'element-plus'
+import { ElTable, ElTableColumn, ElPagination, ComponentSize, ElTooltipProps } from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
@@ -14,10 +7,7 @@ import type { TableProps, TableColumn, Pagination, TableSetProps } from './types
 import { set } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
-import { Icon } from '@/components/Icon'
-import { useI18n } from '@/hooks/web/useI18n'
-
-const { t } = useI18n()
+import TableActions from './components/TableActions.vue'
 
 export default defineComponent({
   name: 'Table',
@@ -247,6 +237,10 @@ export default defineComponent({
       emit('refresh')
     }
 
+    const changSize = (size: ComponentSize) => {
+      setProps({ size })
+    }
+
     expose({
       setProps,
       setColumn,
@@ -428,16 +422,7 @@ export default defineComponent({
       return (
         <div v-loading={unref(getProps).loading}>
           {unref(getProps).showAction ? (
-            <div class="text-right">
-              <ElTooltip content={t('common.refresh')} placement="top">
-                <Icon
-                  icon="ant-design:sync-outlined"
-                  class="cursor-pointer mr-8px"
-                  hover-color="var(--el-color-primary)"
-                  onClick={refresh}
-                />
-              </ElTooltip>
-            </div>
+            <TableActions onChangSize={changSize} onRefresh={refresh} />
           ) : null}
           <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
             {{

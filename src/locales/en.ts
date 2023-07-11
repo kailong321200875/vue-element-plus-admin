@@ -42,7 +42,9 @@ export default {
     delNoData: 'Please select the data to delete',
     delSuccess: 'Deleted successfully',
     refresh: 'Refresh',
-    fullscreen: 'Fullscreen'
+    fullscreen: 'Fullscreen',
+    size: 'Size',
+    columnSetting: 'Column setting'
   },
   lock: {
     lockScreen: 'Lock screen',

@@ -42,7 +42,9 @@ export default {
     delNoData: '请选择需要删除的数据',
     delSuccess: '删除成功',
     refresh: '刷新',
-    fullscreen: '全屏'
+    fullscreen: '全屏',
+    size: '尺寸',
+    columnSetting: '列设置'
   },
   lock: {
     lockScreen: '锁定屏幕',
