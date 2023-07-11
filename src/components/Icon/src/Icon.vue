@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, unref, ref, watch, nextTick } from 'vue'
+import { computed, unref } from 'vue'
 import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
-import Iconify from '@purge-icons/generated'
 import { useDesign } from '@/hooks/web/useDesign'
+import { Icon } from '@iconify/vue'
 
 const { getPrefixCls } = useDesign()
 
@@ -19,7 +19,7 @@ const props = defineProps({
   hoverColor: propTypes.string
 })
 
-const elRef = ref<ElRef>(null)
+const emit = defineEmits(['click'])
 
 const isLocal = computed(() => props.icon.startsWith('svg-icon:'))
 
@@ -35,53 +35,28 @@ const getIconifyStyle = computed(() => {
   }
 })
 
-const updateIcon = async (icon: string) => {
-  if (unref(isLocal)) return
-
-  const el = unref(elRef)
-  if (!el) return
-
-  await nextTick()
-
-  if (!icon) return
-
-  const svg = Iconify.renderSVG(icon, {})
-  if (svg) {
-    el.textContent = ''
-    el.appendChild(svg)
-  } else {
-    const span = document.createElement('span')
-    span.className = 'iconify'
-    span.dataset.icon = icon
-    el.textContent = ''
-    el.appendChild(span)
-  }
+const iconClick = () => {
+  emit('click')
 }
-
-watch(
-  () => props.icon,
-  (icon: string) => {
-    updateIcon(icon)
-  }
-)
 </script>
 
 <template>
-  <ElIcon :class="prefixCls" :size="size" :color="color">
+  <ElIcon :class="prefixCls" :size="size" :color="color" @click="iconClick">
     <svg v-if="isLocal" aria-hidden="true">
       <use :xlink:href="symbolId" />
     </svg>
 
-    <span v-else ref="elRef" class="iconify" :data-icon="symbolId" :style="getIconifyStyle"></span>
+    <Icon v-else :icon="icon" :style="getIconifyStyle" />
   </ElIcon>
 </template>
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-icon';
 
-.@{prefix-cls} {
+.@{prefix-cls},
+.iconify {
   &:hover {
-    svg {
+    :deep(svg) {
       color: v-bind(hoverColor) !important;
     }
   }

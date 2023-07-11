@@ -40,7 +40,9 @@ export default {
     delOk: '确定',
     delCancel: '取消',
     delNoData: '请选择需要删除的数据',
-    delSuccess: '删除成功'
+    delSuccess: '删除成功',
+    refresh: '刷新',
+    fullscreen: '全屏'
   },
   lock: {
     lockScreen: '锁定屏幕',

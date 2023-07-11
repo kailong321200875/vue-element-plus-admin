@@ -21,7 +21,7 @@ const { tableRegister, tableMethods, tableState } = useTable({
   }
 })
 const { loading, dataList, total, currentPage, pageSize } = tableState
-const { setProps, setColumn, getElTableExpose, addColumn, delColumn } = tableMethods
+const { setProps, setColumn, getElTableExpose, addColumn, delColumn, refresh } = tableMethods
 
 const { t } = useI18n()
 
@@ -249,6 +249,7 @@ const getSelections = async () => {
     <Table
       v-model:pageSize="pageSize"
       v-model:currentPage="currentPage"
+      showAction
       :columns="columns"
       :data="dataList"
       :loading="loading"
@@ -260,6 +261,7 @@ const getSelections = async () => {
           : undefined
       "
       @register="tableRegister"
+      @refresh="refresh"
     />
   </ContentWrap>
 </template>

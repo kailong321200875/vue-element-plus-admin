@@ -150,6 +150,10 @@ export const useTable = (config: UseTableConfig) => {
     getElTableExpose: async () => {
       await getTable()
       return unref(elTableRef)
+    },
+
+    refresh: () => {
+      methods.getList()
     }
     // // 删除数据
     // delList: async (ids: string[] | number[], multiple: boolean, message = true) => {

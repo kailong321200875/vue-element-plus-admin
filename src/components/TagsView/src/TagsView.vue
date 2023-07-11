@@ -371,7 +371,6 @@ watch(
                   <Icon
                     :class="`${prefixCls}__item--close`"
                     color="#333"
-                    hover-color="var(--el-color-white)"
                     icon="ant-design:close-outlined"
                     :size="12"
                     @click.prevent.stop="closeSelectedTag(item)"

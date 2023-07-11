@@ -74,6 +74,7 @@ export interface TableSetProps {
 export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
   pageSize?: number
   currentPage?: number
+  showAction?: boolean
   // 是否所有的超出隐藏，优先级低于schema中的showOverflowTooltip,
   showOverflowTooltip?: boolean
   // 表头

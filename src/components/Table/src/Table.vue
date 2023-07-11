@@ -1,5 +1,12 @@
 <script lang="tsx">
-import { ElTable, ElTableColumn, ElPagination, ComponentSize, ElTooltipProps } from 'element-plus'
+import {
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ComponentSize,
+  ElTooltipProps,
+  ElTooltip
+} from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
@@ -8,12 +15,17 @@ import { set } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import { Icon } from '@/components/Icon'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
 
 export default defineComponent({
   name: 'Table',
   props: {
     pageSize: propTypes.number.def(10),
     currentPage: propTypes.number.def(1),
+    // 是否展示表格的工具栏
+    showAction: propTypes.bool.def(false),
     // 是否所有的超出隐藏，优先级低于schema中的showOverflowTooltip,
     showOverflowTooltip: propTypes.bool.def(true),
     // 表头
@@ -171,7 +183,7 @@ export default defineComponent({
     scrollbarAlwaysOn: propTypes.bool.def(false),
     flexible: propTypes.bool.def(false)
   },
-  emits: ['update:pageSize', 'update:currentPage', 'register'],
+  emits: ['update:pageSize', 'update:currentPage', 'register', 'refresh'],
   setup(props, { attrs, emit, slots, expose }) {
     const elTableRef = ref<ComponentRef<typeof ElTable>>()
 
@@ -229,6 +241,10 @@ export default defineComponent({
       if (index > -1) {
         columns.splice(index, 1)
       }
+    }
+
+    const refresh = () => {
+      emit('refresh')
     }
 
     expose({
@@ -411,9 +427,18 @@ export default defineComponent({
       }
       return (
         <div v-loading={unref(getProps).loading}>
-          <div>
-            <Icon icon="ant-design:sync-outlined" class="cursor-pointer" />
-          </div>
+          {unref(getProps).showAction ? (
+            <div class="text-right">
+              <ElTooltip content={t('common.refresh')} placement="top">
+                <Icon
+                  icon="ant-design:sync-outlined"
+                  class="cursor-pointer mr-8px"
+                  hover-color="var(--el-color-primary)"
+                  onClick={refresh}
+                />
+              </ElTooltip>
+            </div>
+          ) : null}
           <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
             {{
               default: () => renderTableColumn(),

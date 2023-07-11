@@ -40,7 +40,9 @@ export default {
     delOk: 'OK',
     delCancel: 'Cancel',
     delNoData: 'Please select the data to delete',
-    delSuccess: 'Deleted successfully'
+    delSuccess: 'Deleted successfully',
+    refresh: 'Refresh',
+    fullscreen: 'Fullscreen'
   },
   lock: {
     lockScreen: 'Lock screen',
