@@ -146,23 +146,27 @@ const schema = reactive<FormSchema[]>([
                   size={iconSize}
                   class="cursor-pointer ant-icon"
                   color={iconColor}
+                  hoverColor={hoverColor}
                 />
                 <Icon
                   icon="ant-design:wechat-filled"
                   size={iconSize}
                   class="cursor-pointer ant-icon"
                   color={iconColor}
+                  hoverColor={hoverColor}
                 />
                 <Icon
                   icon="ant-design:alipay-circle-filled"
                   size={iconSize}
                   color={iconColor}
+                  hoverColor={hoverColor}
                   class="cursor-pointer ant-icon"
                 />
                 <Icon
                   icon="ant-design:weibo-circle-filled"
                   size={iconSize}
                   color={iconColor}
+                  hoverColor={hoverColor}
                   class="cursor-pointer ant-icon"
                 />
               </div>
@@ -184,6 +188,8 @@ const { getFormData, getElFormExpose } = formMethods
 const loading = ref(false)
 
 const iconColor = '#999'
+
+const hoverColor = 'var(--el-color-primary)'
 
 const redirect = ref<string>('')
 
@@ -280,11 +286,3 @@ const toRegister = () => {
     @register="formRegister"
   />
 </template>
-
-<style lang="less" scoped>
-:deep(.ant-icon) {
-  & > svg:hover {
-    color: var(--el-color-primary) !important;
-  }
-}
-</style>

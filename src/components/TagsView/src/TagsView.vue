@@ -35,6 +35,8 @@ const appStore = useAppStore()
 
 const tagsViewIcon = computed(() => appStore.getTagsViewIcon)
 
+const isDark = computed(() => appStore.getIsDark)
+
 // 初始化tag
 const initTags = () => {
   affixTagArr.value = filterAffixTags(unref(routers))
@@ -270,7 +272,8 @@ watch(
     >
       <Icon
         icon="ep:d-arrow-left"
-        :color="appStore.getIsDark ? 'var(--el-text-color-regular)' : '#333'"
+        color="var(--el-text-color-placeholder)"
+        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
       />
     </span>
     <div class="overflow-hidden flex-1">
@@ -368,6 +371,7 @@ watch(
                   <Icon
                     :class="`${prefixCls}__item--close`"
                     color="#333"
+                    hover-color="var(--el-color-white)"
                     icon="ant-design:close-outlined"
                     :size="12"
                     @click.prevent.stop="closeSelectedTag(item)"
@@ -386,7 +390,8 @@ watch(
     >
       <Icon
         icon="ep:d-arrow-right"
-        :color="appStore.getIsDark ? 'var(--el-text-color-regular)' : '#333'"
+        color="var(--el-text-color-placeholder)"
+        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
       />
     </span>
     <span
@@ -396,7 +401,8 @@ watch(
     >
       <Icon
         icon="ant-design:reload-outlined"
-        :color="appStore.getIsDark ? 'var(--el-text-color-regular)' : '#333'"
+        color="var(--el-text-color-placeholder)"
+        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
       />
     </span>
     <ContextMenu
@@ -459,7 +465,8 @@ watch(
       >
         <Icon
           icon="ant-design:setting-outlined"
-          :color="appStore.getIsDark ? 'var(--el-text-color-regular)' : '#333'"
+          color="var(--el-text-color-placeholder)"
+          :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
         />
       </span>
     </ContextMenu>
@@ -476,7 +483,7 @@ watch(
 
   &__tool {
     position: relative;
-    &:after {
+    &:before {
       position: absolute;
       top: 1px;
       left: 0;
@@ -487,25 +494,15 @@ watch(
     }
 
     &--first {
-      &:after {
-        display: none;
-      }
       &:before {
         position: absolute;
         top: 1px;
         left: 0;
         width: 100%;
         height: calc(~'100% - 1px');
+        border-left: none;
         border-right: 1px solid var(--el-border-color);
         content: '';
-      }
-    }
-
-    &:hover {
-      :deep(span),
-      :deep(i),
-      :deep(svg) {
-        color: var(--el-color-black) !important;
       }
     }
   }
@@ -546,7 +543,7 @@ watch(
     background-color: var(--el-color-primary);
     border: 1px solid var(--el-color-primary);
     .@{prefix-cls}__item--close {
-      :deep(span) {
+      :deep(svg) {
         color: var(--el-color-white) !important;
       }
     }
@@ -556,14 +553,6 @@ watch(
 .dark {
   .@{prefix-cls} {
     &__tool {
-      &:hover {
-        :deep(span),
-        :deep(i),
-        :deep(svg) {
-          color: #fff !important;
-        }
-      }
-
       &--first {
         &:after {
           display: none;
@@ -586,7 +575,7 @@ watch(
       background-color: var(--el-color-primary);
       border: 1px solid var(--el-color-primary);
       .@{prefix-cls}__item--close {
-        :deep(span) {
+        :deep(svg) {
           color: var(--el-color-white) !important;
         }
       }

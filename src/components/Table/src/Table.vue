@@ -7,6 +7,7 @@ import type { TableProps, TableColumn, Pagination, TableSetProps } from './types
 import { set } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
+import { Icon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'Table',
@@ -400,25 +401,36 @@ export default defineComponent({
       })
     }
 
-    return () => (
-      <div v-loading={unref(getProps).loading}>
-        <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
-          {{
-            default: () => renderTableColumn(),
-            empty: () => getSlot(slots, 'empty') || unref(getProps).emptyText,
-            append: () => getSlot(slots, 'append')
-          }}
-        </ElTable>
-        {unref(getProps).pagination ? (
-          <ElPagination
-            v-model:pageSize={pageSizeRef.value}
-            v-model:currentPage={currentPageRef.value}
-            class="mt-10px"
-            {...unref(pagination)}
-          ></ElPagination>
-        ) : undefined}
-      </div>
-    )
+    return () => {
+      const tableSlots = {}
+      if (getSlot(slots, 'empty')) {
+        tableSlots['empty'] = (...args: any[]) => getSlot(slots, 'empty', args)
+      }
+      if (getSlot(slots, 'append')) {
+        tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', args)
+      }
+      return (
+        <div v-loading={unref(getProps).loading}>
+          <div>
+            <Icon icon="ant-design:sync-outlined" class="cursor-pointer" />
+          </div>
+          <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
+            {{
+              default: () => renderTableColumn(),
+              ...tableSlots
+            }}
+          </ElTable>
+          {unref(getProps).pagination ? (
+            <ElPagination
+              v-model:pageSize={pageSizeRef.value}
+              v-model:currentPage={currentPageRef.value}
+              class="mt-10px"
+              {...unref(pagination)}
+            ></ElPagination>
+          ) : undefined}
+        </div>
+      )
+    }
   }
 })
 </script>

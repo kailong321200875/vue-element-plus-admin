@@ -15,7 +15,8 @@ const props = defineProps({
   // icon color
   color: propTypes.string,
   // icon size
-  size: propTypes.number.def(16)
+  size: propTypes.number.def(16),
+  hoverColor: propTypes.string
 })
 
 const elRef = ref<ElRef>(null)
@@ -74,3 +75,15 @@ watch(
     <span v-else ref="elRef" class="iconify" :data-icon="symbolId" :style="getIconifyStyle"></span>
   </ElIcon>
 </template>
+
+<style lang="less" scoped>
+@prefix-cls: ~'@{namespace}-icon';
+
+.@{prefix-cls} {
+  &:hover {
+    svg {
+      color: v-bind(hoverColor) !important;
+    }
+  }
+}
+</style>
