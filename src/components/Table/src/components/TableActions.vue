@@ -1,13 +1,12 @@
 <script lang="tsx">
-import { defineComponent, unref, computed, ref } from 'vue'
+import { defineComponent, unref, computed } from 'vue'
 import {
   ElTooltip,
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
   ComponentSize,
-  ElPopover,
-  ClickOutside as vClickOutside
+  ElPopover
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -20,9 +19,6 @@ const { t } = useI18n()
 
 export default defineComponent({
   name: 'TableActions',
-  directives: {
-    ClickOutside: vClickOutside
-  },
   emits: ['refresh', 'changSize'],
   setup(_, { emit }) {
     const refresh = () => {
@@ -33,23 +29,8 @@ export default defineComponent({
       emit('changSize', size)
     }
 
-    const popoverRef = ref()
-    const iconRef = ref()
-
-    const onClickOutside = () => {
-      unref(popoverRef)?.popperRef?.delayHide?.()
-    }
-
     return () => (
       <>
-        <ElPopover
-          ref={popoverRef.value}
-          virtualRef={iconRef.value}
-          trigger="click"
-          virtualTriggering
-        >
-          <span> Some content </span>
-        </ElPopover>
         <div class="text-right h-28px flex items-center justify-end">
           <ElTooltip content={t('common.refresh')} placement="top">
             <Icon
@@ -93,15 +74,24 @@ export default defineComponent({
             </ElDropdown>
           </ElTooltip>
 
-          <ElTooltip content={t('common.columnSetting')} placement="top">
-            <Icon
-              ref={iconRef.value}
-              icon="ant-design:setting-outlined"
-              class="cursor-pointer"
-              hoverColor="var(--el-color-primary)"
-              vClickOutside={onClickOutside}
-            />
-          </ElTooltip>
+          {/* <ElTooltip content={t('common.columnSetting')} placement="top"> */}
+          <ElPopover trigger="click" placement="bottom-end">
+            {{
+              default: () => {
+                return <div>假假按揭</div>
+              },
+              reference: () => {
+                return (
+                  <Icon
+                    icon="ant-design:setting-outlined"
+                    class="cursor-pointer"
+                    hoverColor="var(--el-color-primary)"
+                  />
+                )
+              }
+            }}
+          </ElPopover>
+          {/* </ElTooltip> */}
         </div>
       </>
     )

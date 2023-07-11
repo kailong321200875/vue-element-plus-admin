@@ -34,7 +34,7 @@ const toLogin = () => {
     class="h-[100%] relative lt-xl:bg-[var(--login-bg-color)] lt-sm:px-10px lt-xl:px-10px lt-md:px-10px"
   >
     <ElScrollbar class="h-full">
-      <div class="relative flex mx-auto">
+      <div class="relative flex mx-auto h-100vh">
         <div
           :class="`${prefixCls}__left flex-1 bg-gray-500 bg-opacity-20 relative p-30px lt-xl:hidden`"
         >
@@ -97,6 +97,7 @@ const toLogin = () => {
 
 .@{prefix-cls} {
   overflow: auto;
+
   &__left {
     &::before {
       position: absolute;

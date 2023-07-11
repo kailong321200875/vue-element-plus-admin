@@ -2,7 +2,6 @@
 import { Form } from '@/components/Form'
 import { reactive, ref, onMounted, computed } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
-import { useIcon } from '@/hooks/web/useIcon'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useAppStore } from '@/store/modules/app'
 import { SelectOption, RadioOption, CheckboxOption, FormSchema } from '@/components/Form'
@@ -17,6 +16,7 @@ import {
   ElInput
 } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
+import { Icon } from '@/components/Icon'
 
 const appStore = useAppStore()
 
@@ -461,8 +461,8 @@ const schema = reactive<FormSchema[]>([
     label: `${t('formDemo.icon')}1`,
     component: 'Input',
     componentProps: {
-      suffixIcon: useIcon({ icon: 'ep:calendar' }),
-      prefixIcon: useIcon({ icon: 'ep:share' })
+      suffixIcon: <Icon icon="ep:calendar" />,
+      prefixIcon: <Icon icon="ep:share" />
     }
   },
   {
@@ -472,9 +472,9 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       slots: {
         suffix: () => {
-          return useIcon({ icon: 'ep:share' })
+          return <Icon icon="ep:share" />
         },
-        prefix: () => useIcon({ icon: 'ep:calendar' })
+        prefix: () => <Icon icon="ep:calendar" />
       }
     }
   },
@@ -484,8 +484,8 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        prepend: () => useIcon({ icon: 'ep:calendar' }),
-        append: () => useIcon({ icon: 'ep:share' })
+        prepend: () => <Icon icon="ep:calendar" />,
+        append: () => <Icon icon="ep:share" />
       }
     }
   },
@@ -622,10 +622,7 @@ const schema = reactive<FormSchema[]>([
             return null
           }
         },
-        prefix: () => useIcon({ icon: 'ep:calendar' }),
-        empty: () => {
-          return useIcon({ icon: 'ep:share' })
-        }
+        prefix: () => <Icon icon="ep:calendar" />
       }
     }
   },
@@ -869,8 +866,8 @@ const schema = reactive<FormSchema[]>([
     component: 'Switch',
     value: false,
     componentProps: {
-      activeIcon: useIcon({ icon: 'ep:check' }),
-      inactiveIcon: useIcon({ icon: 'ep:close' })
+      activeIcon: <Icon icon="ep:check" />,
+      inactiveIcon: <Icon icon="ep:close" />
     }
   },
   {
@@ -890,11 +887,11 @@ const schema = reactive<FormSchema[]>([
     component: 'Rate',
     value: null,
     componentProps: {
-      voidIcon: useIcon({ icon: 'ep:chat-round' }),
+      voidIcon: <Icon icon="ep:chat-round" />,
       icons: [
-        useIcon({ icon: 'ep:chat-round' }),
-        useIcon({ icon: 'ep:chat-line-round' }),
-        useIcon({ icon: 'ep:chat-dot-round' })
+        <Icon icon="ep:chat-round" />,
+        <Icon icon="ep:chat-line-round" />,
+        <Icon icon="ep:chat-dot-round" />
       ]
     }
   },
@@ -1683,15 +1680,15 @@ const schema = reactive<FormSchema[]>([
   box-sizing: border-box;
 
   .text {
-    width: 24px;
-    height: 24px;
-    display: block;
-    margin: 0 auto;
-    line-height: 24px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    line-height: 24px;
     border-radius: 50%;
+    transform: translateX(-50%);
   }
 
   &.current {
@@ -1703,18 +1700,18 @@ const schema = reactive<FormSchema[]>([
 
   .holiday {
     position: absolute;
+    bottom: 0;
+    left: 50%;
     width: 6px;
     height: 6px;
     background: var(--el-color-danger);
     border-radius: 50%;
-    bottom: 0px;
-    left: 50%;
     transform: translateX(-50%);
   }
 }
 
 .transfer-footer {
-  margin-left: 15px;
   padding: 6px 5px;
+  margin-left: 15px;
 }
 </style>
