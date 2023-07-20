@@ -92,7 +92,7 @@ const actionFn = (data: TableSlotDefault) => {
 </script>
 
 <template>
-  <ContentWrap :title="`TreeTable ${t('tableDemo.example')}`">
+  <ContentWrap :title="`${t('router.treeTable')} ${t('tableDemo.example')}`">
     <Table
       v-model:pageSize="pageSize"
       v-model:currentPage="currentPage"

@@ -158,7 +158,9 @@ export default {
     role: 'Role management',
     document: 'Document',
     inputPassword: 'InputPassword',
-    sticky: 'Sticky'
+    sticky: 'Sticky',
+    treeTable: 'Tree table',
+    PicturePreview: 'Table Image Preview'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -426,7 +428,9 @@ export default {
     showOrHiddenStripe: 'Show or hidden stripe',
     showOrHiddenBorder: 'Show or hidden border',
     fixedHeaderOrAuto: 'Fixed header or auto',
-    getSelections: 'Get selections'
+    getSelections: 'Get selections',
+    preview: 'Preview',
+    showOrHiddenSortable: 'Show or hidden sortable'
   },
   richText: {
     richText: 'Rich text',

@@ -94,7 +94,9 @@ const toDocument = () => {
 <style scoped lang="less">
 .fade-bottom-enter-active,
 .fade-bottom-leave-active {
-  transition: opacity 0.25s, transform 0.3s;
+  transition:
+    opacity 0.25s,
+    transform 0.3s;
 }
 
 .fade-bottom-enter-from {

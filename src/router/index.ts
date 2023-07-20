@@ -190,7 +190,15 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             component: () => import('@/views/Components/Table/TreeTable.vue'),
             name: 'TreeTable',
             meta: {
-              title: 'TreeTable'
+              title: t('router.treeTable')
+            }
+          },
+          {
+            path: 'table-image-preview',
+            component: () => import('@/views/Components/Table/TableImagePreview.vue'),
+            name: 'TableImagePreview',
+            meta: {
+              title: t('router.PicturePreview')
             }
           }
         ]

@@ -154,6 +154,11 @@ export const useTable = (config: UseTableConfig) => {
 
     refresh: () => {
       methods.getList()
+    },
+
+    sortableChange: (e: any) => {
+      const { oldIndex, newIndex } = e
+      dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
     }
     // // 删除数据
     // delList: async (ids: string[] | number[], multiple: boolean, message = true) => {

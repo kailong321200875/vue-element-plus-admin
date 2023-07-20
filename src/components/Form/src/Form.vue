@@ -78,7 +78,7 @@ export default defineComponent({
     validateOnRuleChange: propTypes.bool.def(true),
     size: {
       type: String as PropType<ComponentSize>,
-      default: 'small'
+      default: undefined
     },
     disabled: propTypes.bool.def(false),
     scrollToError: propTypes.bool.def(false),

@@ -158,7 +158,9 @@ export default {
     role: '角色管理',
     document: '文档',
     inputPassword: '密码输入框',
-    sticky: '黏性'
+    sticky: '黏性',
+    treeTable: '树形表格',
+    PicturePreview: '表格图片预览'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -421,7 +423,9 @@ export default {
     showOrHiddenStripe: '显示/隐藏斑马纹',
     showOrHiddenBorder: '显示/隐藏边框',
     fixedHeaderOrAuto: '固定头部/自动',
-    getSelections: '获取多选数据'
+    getSelections: '获取多选数据',
+    preview: '封面',
+    showOrHiddenSortable: '显示/隐藏排序'
   },
   richText: {
     richText: '富文本',

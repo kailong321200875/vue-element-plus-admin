@@ -147,7 +147,15 @@ const adminList = [
             component: 'views/Components/Table/TreeTable',
             name: 'TreeTable',
             meta: {
-              title: 'TreeTable'
+              title: 'router.TreeTable'
+            }
+          },
+          {
+            path: 'table-image-preview',
+            component: 'views/Components/Table/TableImagePreview',
+            name: 'TableImagePreview',
+            meta: {
+              title: 'router.PicturePreview'
             }
           },
           {
@@ -490,6 +498,7 @@ const testList: string[] = [
   '/components/table/default-table',
   '/components/table/use-table',
   '/components/table/tree-table',
+  '/components/table/table-image-preview',
   '/components/table/ref-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',
