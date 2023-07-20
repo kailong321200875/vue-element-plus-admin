@@ -1,16 +1,19 @@
 <script lang="tsx">
-import { defineComponent, unref, computed } from 'vue'
+import { defineComponent, unref, computed, PropType } from 'vue'
 import {
   ElTooltip,
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
   ComponentSize,
-  ElPopover
+  ElPopover,
+  ElTree
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
+import { TableColumn } from '../types'
+import { cloneDeep } from 'lodash-es'
 
 const appStore = useAppStore()
 const sizeMap = computed(() => appStore.sizeMap)
@@ -19,8 +22,14 @@ const { t } = useI18n()
 
 export default defineComponent({
   name: 'TableActions',
+  props: {
+    columns: {
+      type: Array as PropType<TableColumn[]>,
+      default: () => []
+    }
+  },
   emits: ['refresh', 'changSize'],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     const refresh = () => {
       emit('refresh')
     }
@@ -28,6 +37,15 @@ export default defineComponent({
     const changSize = (size: ComponentSize) => {
       emit('changSize', size)
     }
+
+    const columns = computed(() => {
+      return cloneDeep(props.columns).filter((v) => {
+        // 去掉type为selection的列和expand的列
+        if (v.type !== 'selection' && v.type !== 'expand') {
+          return v
+        }
+      })
+    })
 
     return () => (
       <>
@@ -75,10 +93,26 @@ export default defineComponent({
           </ElTooltip>
 
           {/* <ElTooltip content={t('common.columnSetting')} placement="top"> */}
-          <ElPopover trigger="click" placement="bottom-end">
+          <ElPopover trigger="click" placement="left">
             {{
               default: () => {
-                return <div>假假按揭</div>
+                return (
+                  <div>
+                    <ElTree
+                      data={unref(columns)}
+                      show-checkbox
+                      draggable
+                      node-key="field"
+                      allow-drop={(_draggingNode: any, _dropNode: any, type: string) => {
+                        if (type === 'inner') {
+                          return false
+                        } else {
+                          return true
+                        }
+                      }}
+                    />
+                  </div>
+                )
               },
               reference: () => {
                 return (

@@ -512,7 +512,11 @@ export default defineComponent({
       return (
         <div v-loading={unref(getProps).loading}>
           {unref(getProps).showAction ? (
-            <TableActions onChangSize={changSize} onRefresh={refresh} />
+            <TableActions
+              columns={unref(getProps).columns}
+              onChangSize={changSize}
+              onRefresh={refresh}
+            />
           ) : null}
           <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
             {{
