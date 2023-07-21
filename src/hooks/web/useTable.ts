@@ -157,6 +157,7 @@ export const useTable = (config: UseTableConfig) => {
     },
 
     sortableChange: (e: any) => {
+      console.log('sortableChange', e)
       const { oldIndex, newIndex } = e
       dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
       // to do something
