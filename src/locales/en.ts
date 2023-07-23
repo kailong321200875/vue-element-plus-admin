@@ -487,7 +487,14 @@ export default {
     role: 'Role',
     remark: 'Remark',
     remarkMessage1: 'Back end control routing permission',
-    remarkMessage2: 'Front end control routing permission'
+    remarkMessage2: 'Front end control routing permission',
+    // 部门列表
+    departmentList: 'Department list',
+    // 搜索部门
+    searchDepartment: 'Search department',
+    account: 'Account',
+    email: 'Email',
+    createTime: 'Create time'
   },
   inputPasswordDemo: {
     title: 'InputPassword',

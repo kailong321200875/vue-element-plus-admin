@@ -311,14 +311,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           title: t('router.inputPassword')
         }
       }
-      // {
-      //   path: 'sticky',
-      //   component: () => import('@/views/Components/Sticky.vue'),
-      //   name: 'Sticky',
-      //   meta: {
-      //     title: t('router.sticky')
-      //   }
-      // }
     ]
   },
   {
@@ -339,15 +331,15 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useWatermark'
         }
-      },
-      {
-        path: 'useCrudSchemas',
-        component: () => import('@/views/hooks/useCrudSchemas.vue'),
-        name: 'UseCrudSchemas',
-        meta: {
-          title: 'useCrudSchemas'
-        }
       }
+      // {
+      //   path: 'useCrudSchemas',
+      //   component: () => import('@/views/hooks/useCrudSchemas.vue'),
+      //   name: 'UseCrudSchemas',
+      //   meta: {
+      //     title: 'useCrudSchemas'
+      //   }
+      // }
     ]
   },
   {
@@ -513,36 +505,36 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/authorization',
+    component: Layout,
+    redirect: '/authorization/user',
+    name: 'Authorization',
+    meta: {
+      title: t('router.authorization'),
+      icon: 'eos-icons:role-binding',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/Authorization/User.vue'),
+        name: 'User',
+        meta: {
+          title: t('router.user')
+        }
+      },
+      {
+        path: 'role',
+        component: () => import('@/views/Authorization/Role.vue'),
+        name: 'Role',
+        meta: {
+          title: t('router.role')
+        }
+      }
+    ]
   }
-  // {
-  //   path: '/authorization',
-  //   component: Layout,
-  //   redirect: '/authorization/user',
-  //   name: 'Authorization',
-  //   meta: {
-  //     title: t('router.authorization'),
-  //     icon: 'eos-icons:role-binding',
-  //     alwaysShow: true
-  //   },
-  //   children: [
-  //     {
-  //       path: 'user',
-  //       component: () => import('@/views/Authorization/User.vue'),
-  //       name: 'User',
-  //       meta: {
-  //         title: t('router.user')
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('@/views/Authorization/Role.vue'),
-  //       name: 'Role',
-  //       meta: {
-  //         title: t('router.role')
-  //       }
-  //     }
-  //   ]
-  // }
 ]
 
 const router = createRouter({

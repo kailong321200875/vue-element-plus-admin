@@ -17,7 +17,7 @@ export default {
     closeTab: '关闭标签页',
     closeTheLeftTab: '关闭左侧标签页',
     closeTheRightTab: '关闭右侧标签页',
-    closeOther: '关闭其他标签页',
+    closeOther: '关闭其它标签页',
     closeAll: '关闭全部标签页',
     prevLabel: '上一步',
     nextLabel: '下一步',
@@ -106,7 +106,7 @@ export default {
     register: '注册',
     checkPassword: '确认密码',
     login: '登录',
-    otherLogin: '其他登录方式',
+    otherLogin: '其它登录方式',
     remember: '记住我',
     hasUser: '已有账号？去登录',
     forgetPassword: '忘记密码',
@@ -480,7 +480,13 @@ export default {
     role: '角色',
     remark: '备注',
     remarkMessage1: '后端控制路由权限',
-    remarkMessage2: '前端控制路由权限'
+    remarkMessage2: '前端控制路由权限',
+    // 部门列表
+    departmentList: '部门列表',
+    searchDepartment: '搜索部门',
+    account: '账号',
+    email: '邮箱',
+    createTime: '创建时间'
   },
   inputPasswordDemo: {
     title: '密码输入框',

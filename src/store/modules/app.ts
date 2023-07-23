@@ -37,7 +37,7 @@ interface AppState {
 export const useAppStore = defineStore('app', {
   state: (): AppState => {
     return {
-      userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其他项目冲突
+      userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其它项目冲突
       sizeMap: ['default', 'large', 'small'],
       mobile: false, // 是否是移动端
       title: import.meta.env.VITE_APP_TITLE, // 标题
@@ -225,7 +225,7 @@ export const useAppStore = defineStore('app', {
     },
     setLayout(layout: LayoutType) {
       if (this.mobile && layout !== 'classic') {
-        ElMessage.warning('移动端模式下不支持切换其他布局')
+        ElMessage.warning('移动端模式下不支持切换其它布局')
         return
       }
       this.layout = layout

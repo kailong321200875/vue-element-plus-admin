@@ -75,7 +75,7 @@ const closeAllTags = () => {
   toLastView()
 }
 
-// 关闭其他
+// 关闭其它
 const closeOthersTags = () => {
   tagsViewStore.delOthersViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
 }
@@ -482,7 +482,8 @@ watch(
 
   &__tool {
     position: relative;
-    &:before {
+
+    &::before {
       position: absolute;
       top: 1px;
       left: 0;
@@ -493,14 +494,14 @@ watch(
     }
 
     &--first {
-      &:before {
+      &::before {
         position: absolute;
         top: 1px;
         left: 0;
         width: 100%;
         height: calc(~'100% - 1px');
-        border-left: none;
         border-right: 1px solid var(--el-border-color);
+        border-left: none;
         content: '';
       }
     }
@@ -553,7 +554,7 @@ watch(
   .@{prefix-cls} {
     &__tool {
       &--first {
-        &:after {
+        &::after {
           display: none;
         }
       }

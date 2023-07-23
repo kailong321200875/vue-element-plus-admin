@@ -255,7 +255,7 @@ export default defineComponent({
     const renderFormItem = (item: FormSchema) => {
       // 如果有optionApi，优先使用optionApi
       if (item.optionApi) {
-        // 内部自动调用接口，不影响其他渲染
+        // 内部自动调用接口，不影响其它渲染
         getOptions(item.optionApi, item)
       }
       const formItemSlots: Recordable = {
