@@ -1,10 +1,9 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { PropType, reactive } from 'vue'
 import type { TableData } from '@/api/table/types'
-import { Descriptions } from '@/components/Descriptions'
+import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElTag } from 'element-plus'
-import { DescriptionsSchema } from '@/types/descriptions'
 
 const { t } = useI18n()
 
@@ -31,7 +30,22 @@ const schema = reactive<DescriptionsSchema[]>([
   },
   {
     field: 'importance',
-    label: t('exampleDemo.importance')
+    label: t('exampleDemo.importance'),
+    slots: {
+      default: (data: any) => {
+        return (
+          <ElTag
+            type={data.importance === 1 ? 'success' : data.importance === 2 ? 'warning' : 'danger'}
+          >
+            {data.importance === 1
+              ? t('tableDemo.important')
+              : data.importance === 2
+              ? t('tableDemo.good')
+              : t('tableDemo.commonly')}
+          </ElTag>
+        )
+      }
+    }
   },
   {
     field: 'pageviews',
@@ -40,7 +54,12 @@ const schema = reactive<DescriptionsSchema[]>([
   {
     field: 'content',
     label: t('exampleDemo.content'),
-    span: 24
+    span: 24,
+    slots: {
+      default: (data: any) => {
+        return <div innerHTML={data.content}></div>
+      }
+    }
   }
 ])
 </script>

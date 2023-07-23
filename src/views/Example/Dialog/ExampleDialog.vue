@@ -1,10 +1,10 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { Search } from '@/components/Search'
 import { Dialog } from '@/components/Dialog'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElTag } from 'element-plus'
-import { Table } from '@/components/Table'
+import { Table, TableColumn } from '@/components/Table'
 import { getTableListApi, saveTableApi, delTableListApi } from '@/api/table'
 import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
@@ -12,27 +12,51 @@ import { h, ref, unref, reactive } from 'vue'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
-import { TableColumn } from '@/types/table'
 
-const { register, tableObject, methods } = useTable<TableData>({
-  getListApi: getTableListApi,
-  delListApi: delTableListApi,
-  response: {
-    list: 'list',
-    total: 'total'
+const ids = ref<string[]>([])
+
+const { tableRegister, tableState, tableMethods } = useTable({
+  fetchDataApi: async () => {
+    const { currentPage, pageSize } = tableState
+    const res = await getTableListApi({
+      pageIndex: unref(currentPage),
+      pageSize: unref(pageSize),
+      ...unref(searchParams)
+    })
+    return {
+      list: res.data.list,
+      total: res.data.total
+    }
   },
-  defaultParams: {
-    title: 's'
+  fetchDelApi: async () => {
+    const res = await delTableListApi(unref(ids))
+    return !!res
   }
 })
+const { loading, dataList, total, currentPage, pageSize } = tableState
+const { getList, getElTableExpose, delList } = tableMethods
 
-const { getList, setSearchParams } = methods
-
-getList()
+const searchParams = ref({})
+const setSearchParams = (params: any) => {
+  searchParams.value = params
+  getList()
+}
 
 const { t } = useI18n()
 
 const crudSchemas = reactive<CrudSchema[]>([
+  {
+    field: 'selection',
+    form: {
+      show: false
+    },
+    detail: {
+      show: false
+    },
+    table: {
+      type: 'selection'
+    }
+  },
   {
     field: 'index',
     label: t('tableDemo.index'),
@@ -48,9 +72,12 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'title',
     label: t('tableDemo.title'),
     search: {
-      show: true
+      show: true,
+      component: 'Input'
     },
     form: {
+      show: true,
+      component: 'Input',
       colProps: {
         span: 24
       }
@@ -67,6 +94,7 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'display_time',
     label: t('tableDemo.displayTime'),
     form: {
+      show: true,
       component: 'DatePicker',
       componentProps: {
         type: 'datetime',
@@ -92,6 +120,7 @@ const crudSchemas = reactive<CrudSchema[]>([
       )
     },
     form: {
+      show: true,
       component: 'Select',
       componentProps: {
         style: {
@@ -112,12 +141,32 @@ const crudSchemas = reactive<CrudSchema[]>([
           }
         ]
       }
+    },
+    detail: {
+      slots: {
+        default: (data: any) => {
+          return (
+            <ElTag
+              type={
+                data.importance === 1 ? 'success' : data.importance === 2 ? 'warning' : 'danger'
+              }
+            >
+              {data.importance === 1
+                ? t('tableDemo.important')
+                : data.importance === 2
+                ? t('tableDemo.good')
+                : t('tableDemo.commonly')}
+            </ElTag>
+          )
+        }
+      }
     }
   },
   {
     field: 'pageviews',
     label: t('tableDemo.pageviews'),
     form: {
+      show: true,
       component: 'InputNumber',
       value: 0
     }
@@ -129,13 +178,19 @@ const crudSchemas = reactive<CrudSchema[]>([
       show: false
     },
     form: {
+      show: true,
       component: 'Editor',
       colProps: {
         span: 24
       }
     },
     detail: {
-      span: 24
+      span: 24,
+      slots: {
+        default: (data: any) => {
+          return <div innerHTML={data.content}></div>
+        }
+      }
     }
   },
   {
@@ -147,115 +202,108 @@ const crudSchemas = reactive<CrudSchema[]>([
     },
     detail: {
       show: false
+    },
+    table: {
+      slots: {
+        default: (data: any) => {
+          return (
+            <>
+              <ElButton type="primary" onClick={() => action(data[0].row, 'edit')}>
+                {t('exampleDemo.edit')}
+              </ElButton>
+              <ElButton type="success" onClick={() => action(data[0].row, 'detail')}>
+                {t('exampleDemo.detail')}
+              </ElButton>
+              <ElButton type="danger" onClick={() => delData(data[0].row)}>
+                {t('exampleDemo.del')}
+              </ElButton>
+            </>
+          )
+        }
+      }
     }
   }
 ])
 
+// @ts-ignore
 const { allSchemas } = useCrudSchemas(crudSchemas)
 
 const dialogVisible = ref(false)
-
 const dialogTitle = ref('')
+
+const currentRow = ref<TableData | null>(null)
+const actionType = ref('')
 
 const AddAction = () => {
   dialogTitle.value = t('exampleDemo.add')
-  tableObject.currentRow = null
+  currentRow.value = null
   dialogVisible.value = true
   actionType.value = ''
 }
 
 const delLoading = ref(false)
 
-const delData = async (row: TableData | null, multiple: boolean) => {
-  tableObject.currentRow = row
-  const { delList, getSelections } = methods
-  const selections = await getSelections()
+const delData = async (row: TableData | null) => {
+  const elTableExpose = await getElTableExpose()
+  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableData) => v.id) || []
   delLoading.value = true
-  await delList(
-    multiple ? selections.map((v) => v.id) : [tableObject.currentRow?.id as string],
-    multiple
-  ).finally(() => {
+  await delList(unref(ids).length).finally(() => {
     delLoading.value = false
   })
 }
 
-const actionType = ref('')
-
 const action = (row: TableData, type: string) => {
   dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
   actionType.value = type
-  tableObject.currentRow = row
+  currentRow.value = row
   dialogVisible.value = true
 }
 
 const writeRef = ref<ComponentRef<typeof Write>>()
 
-const loading = ref(false)
+const saveLoading = ref(false)
 
 const save = async () => {
   const write = unref(writeRef)
-  await write?.elFormRef?.validate(async (isValid) => {
-    if (isValid) {
-      loading.value = true
-      const data = (await write?.getFormData()) as TableData
-      const res = await saveTableApi(data)
-        .catch(() => {})
-        .finally(() => {
-          loading.value = false
-        })
-      if (res) {
-        dialogVisible.value = false
-        tableObject.currentPage = 1
-        getList()
-      }
+  const formData = await write?.submit()
+  if (formData) {
+    saveLoading.value = true
+    const res = await saveTableApi(formData)
+      .catch(() => {})
+      .finally(() => {
+        saveLoading.value = false
+      })
+    if (res) {
+      dialogVisible.value = false
+      currentPage.value = 1
+      getList()
     }
-  })
+  }
 }
 </script>
 
 <template>
   <ContentWrap>
-    <Search
-      :model="{ title: 's' }"
-      :schema="allSchemas.searchSchema"
-      @search="setSearchParams"
-      @reset="setSearchParams"
-    />
+    <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
 
     <div class="mb-10px">
       <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
-      <ElButton :loading="delLoading" type="danger" @click="delData(null, true)">
+      <ElButton :loading="delLoading" type="danger" @click="delData(null)">
         {{ t('exampleDemo.del') }}
       </ElButton>
     </div>
 
     <Table
-      v-model:pageSize="tableObject.pageSize"
-      v-model:currentPage="tableObject.currentPage"
+      v-model:pageSize="pageSize"
+      v-model:currentPage="currentPage"
       :columns="allSchemas.tableColumns"
-      :data="tableObject.tableList"
-      :loading="tableObject.loading"
+      :data="dataList"
+      :loading="loading"
       :pagination="{
-        total: tableObject.total
+        total: total
       }"
-      @register="register"
-    >
-      <template #action="{ row }">
-        <ElButton type="primary" v-hasPermi="['example:dialog:edit']" @click="action(row, 'edit')">
-          {{ t('exampleDemo.edit') }}
-        </ElButton>
-        <ElButton
-          type="success"
-          v-hasPermi="['example:dialog:view']"
-          @click="action(row, 'detail')"
-        >
-          {{ t('exampleDemo.detail') }}
-        </ElButton>
-        <ElButton type="danger" v-hasPermi="['example:dialog:delete']" @click="delData(row, false)">
-          {{ t('exampleDemo.del') }}
-        </ElButton>
-      </template>
-    </Table>
+      @register="tableRegister"
+    />
   </ContentWrap>
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
@@ -263,17 +311,17 @@ const save = async () => {
       v-if="actionType !== 'detail'"
       ref="writeRef"
       :form-schema="allSchemas.formSchema"
-      :current-row="tableObject.currentRow"
+      :current-row="currentRow"
     />
 
     <Detail
       v-if="actionType === 'detail'"
       :detail-schema="allSchemas.detailSchema"
-      :current-row="tableObject.currentRow"
+      :current-row="currentRow"
     />
 
     <template #footer>
-      <ElButton v-if="actionType !== 'detail'" type="primary" :loading="loading" @click="save">
+      <ElButton v-if="actionType !== 'detail'" type="primary" :loading="saveLoading" @click="save">
         {{ t('exampleDemo.save') }}
       </ElButton>
       <ElButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>

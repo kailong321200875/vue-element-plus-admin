@@ -111,7 +111,7 @@ export default defineComponent({
     const formItemComponents = ref({})
 
     // 表单数据
-    const formModel = ref<Recordable>({})
+    const formModel = ref<Recordable>(props.model)
 
     onMounted(() => {
       emit('register', unref(elFormRef)?.$parent, unref(elFormRef))

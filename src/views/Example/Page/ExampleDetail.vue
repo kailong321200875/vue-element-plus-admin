@@ -6,8 +6,9 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
 import { getTableDetApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
+import { ElButton } from 'element-plus'
 
-const { push } = useRouter()
+const { push, go } = useRouter()
 
 const { query } = useRoute()
 
@@ -27,6 +28,11 @@ getTableDet()
 
 <template>
   <ContentDetailWrap :title="t('exampleDemo.detail')" @back="push('/example/example-page')">
+    <template #header>
+      <ElButton @click="go(-1)">
+        {{ t('common.back') }}
+      </ElButton>
+    </template>
     <Detail :current-row="currentRow" />
   </ContentDetailWrap>
 </template>

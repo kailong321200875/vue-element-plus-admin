@@ -1,6 +1,9 @@
+import { useI18n } from '@/hooks/web/useI18n'
 import { Table, TableExpose, TableProps, TableSetProps, TableColumn } from '@/components/Table'
-import { ElTable } from 'element-plus'
+import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
 import { ref, watch, unref, nextTick, onMounted } from 'vue'
+
+const { t } = useI18n()
 
 interface UseTableConfig {
   /**
@@ -11,6 +14,7 @@ interface UseTableConfig {
     list: any[]
     total: number
   }>
+  fetchDelApi?: () => Promise<boolean>
 }
 
 export const useTable = (config: UseTableConfig) => {
@@ -67,24 +71,6 @@ export const useTable = (config: UseTableConfig) => {
     }
     return table
   }
-
-  // const delData = async (ids: string[] | number[]) => {
-  //   const res = await (config?.delListApi && config?.delListApi(ids))
-  //   if (res) {
-  //     ElMessage.success(t('common.delSuccess'))
-
-  //     // 计算出临界点
-  //     const currentPage =
-  //       tableObject.total % tableObject.pageSize === ids.length || tableObject.pageSize === 1
-  //         ? tableObject.currentPage > 1
-  //           ? tableObject.currentPage - 1
-  //           : tableObject.currentPage
-  //         : tableObject.currentPage
-
-  //     tableObject.currentPage = currentPage
-  //     methods.getList()
-  //   }
-  // }
 
   const methods = {
     /**
@@ -154,7 +140,7 @@ export const useTable = (config: UseTableConfig) => {
 
     refresh: () => {
       methods.getList()
-    }
+    },
 
     // sortableChange: (e: any) => {
     //   console.log('sortableChange', e)
@@ -162,32 +148,35 @@ export const useTable = (config: UseTableConfig) => {
     //   dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
     //   // to do something
     // }
-    // // 删除数据
-    // delList: async (ids: string[] | number[], multiple: boolean, message = true) => {
-    //   const tableRef = await getTable()
-    //   if (multiple) {
-    //     if (!tableRef?.selections.length) {
-    //       ElMessage.warning(t('common.delNoData'))
-    //       return
-    //     }
-    //   } else {
-    //     if (!tableObject.currentRow) {
-    //       ElMessage.warning(t('common.delNoData'))
-    //       return
-    //     }
-    //   }
-    //   if (message) {
-    //     ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
-    //       confirmButtonText: t('common.delOk'),
-    //       cancelButtonText: t('common.delCancel'),
-    //       type: 'warning'
-    //     }).then(async () => {
-    //       await delData(ids)
-    //     })
-    //   } else {
-    //     await delData(ids)
-    //   }
-    // }
+    // 删除数据
+    delList: async (idsLength: number) => {
+      const { fetchDelApi } = config
+      if (!fetchDelApi) {
+        console.warn('fetchDelApi is undefined')
+        return
+      }
+      ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
+        confirmButtonText: t('common.delOk'),
+        cancelButtonText: t('common.delCancel'),
+        type: 'warning'
+      }).then(async () => {
+        const res = await fetchDelApi()
+        if (res) {
+          ElMessage.success(t('common.delSuccess'))
+
+          // 计算出临界点
+          const current =
+            unref(total) % unref(pageSize) === idsLength || unref(pageSize) === 1
+              ? unref(currentPage) > 1
+                ? unref(currentPage) - 1
+                : unref(currentPage)
+              : unref(currentPage)
+
+          currentPage.value = current
+          methods.getList()
+        }
+      })
+    }
   }
 
   return {

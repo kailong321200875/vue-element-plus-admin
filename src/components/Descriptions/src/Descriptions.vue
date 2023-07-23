@@ -113,7 +113,7 @@ export default defineComponent({
                             label: () => (item.slots?.label ? item.slots?.label(item) : item.label),
                             default: () =>
                               item.slots?.default
-                                ? item.slots?.default(item)
+                                ? item.slots?.default(props.data)
                                 : props.data[item.field]
                           }}
                         </ElDescriptionsItem>

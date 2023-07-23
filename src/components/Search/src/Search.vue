@@ -48,7 +48,7 @@ const emit = defineEmits(['search', 'reset', 'register', 'validate'])
 const visible = ref(true)
 
 // 表单数据
-const formModel = ref<Recordable>({})
+const formModel = ref<Recordable>(props.model)
 
 const newSchema = computed(() => {
   const propsComputed = unref(getProps)
@@ -179,7 +179,7 @@ const setSchema = (schemaProps: FormSetProps[]) => {
 
 // 对表单赋值
 const setValues = async (data: Recordable = {}) => {
-  formModel.value = Object.assign(unref(formModel), data)
+  formModel.value = Object.assign(props.model, unref(formModel), data)
   const formExpose = await getFormExpose()
   formExpose?.setValues(data)
 }

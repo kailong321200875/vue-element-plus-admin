@@ -1,12 +1,8 @@
 import { reactive } from 'vue'
 import { eachTree, treeMap, filter } from '@/utils/tree'
-import { findIndex } from '@/utils'
-import { useDictStoreWithOut } from '@/store/modules/dict'
-import { useI18n } from '@/hooks/web/useI18n'
-import type { AxiosPromise } from 'axios'
-import { FormSchema } from '@/types/form'
-import { TableColumn } from '@/types/table'
-import { DescriptionsSchema } from '@/types/descriptions'
+import { FormSchema } from '@/components/Form'
+import { TableColumn } from '@/components/Table'
+import { DescriptionsSchema } from '@/components/Descriptions'
 
 export type CrudSchema = Omit<TableColumn, 'children'> & {
   search?: CrudSearchParams
@@ -16,39 +12,25 @@ export type CrudSchema = Omit<TableColumn, 'children'> & {
   children?: CrudSchema[]
 }
 
-type CrudSearchParams = {
+interface CrudSearchParams extends Omit<FormSchema, 'field'> {
   // 是否显示在查询项
   show?: boolean
-  // 字典名称，会去取全局的字典
-  dictName?: string
-  // 接口
-  api?: () => Promise<any>
-  // 搜索字段
-  field?: string
-} & Omit<FormSchema, 'field'>
+}
 
-type CrudTableParams = {
+interface CrudTableParams extends Omit<TableColumn, 'field'> {
   // 是否显示表头
   show?: boolean
-} & Omit<FormSchema, 'field'>
+}
 
-type CrudFormParams = {
-  // 字典名称，会去取全局的字典
-  dictName?: string
-  // 接口
-  api?: () => Promise<any>
+interface CrudFormParams extends Omit<FormSchema, 'field'> {
   // 是否显示表单项
   show?: boolean
-} & Omit<FormSchema, 'field'>
+}
 
-type CrudDescriptionsParams = {
+interface CrudDescriptionsParams extends Omit<DescriptionsSchema, 'field'> {
   // 是否显示表单项
   show?: boolean
-} & Omit<DescriptionsSchema, 'field'>
-
-const dictStore = useDictStoreWithOut()
-
-const { t } = useI18n()
+}
 
 interface AllSchemas {
   searchSchema: FormSchema[]
@@ -71,13 +53,14 @@ export const useCrudSchemas = (
     detailSchema: []
   })
 
-  const searchSchema = filterSearchSchema(crudSchema, allSchemas)
+  const searchSchema = filterSearchSchema(crudSchema)
+  // @ts-ignore
   allSchemas.searchSchema = searchSchema || []
 
   const tableColumns = filterTableSchema(crudSchema)
   allSchemas.tableColumns = tableColumns || []
 
-  const formSchema = filterFormSchema(crudSchema, allSchemas)
+  const formSchema = filterFormSchema(crudSchema)
   allSchemas.formSchema = formSchema
 
   const detailSchema = filterDescriptionsSchema(crudSchema)
@@ -89,55 +72,26 @@ export const useCrudSchemas = (
 }
 
 // 过滤 Search 结构
-const filterSearchSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): FormSchema[] => {
+const filterSearchSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
   const searchSchema: FormSchema[] = []
+  const length = crudSchema.length
 
-  // 获取字典列表队列
-  const searchRequestTask: Array<() => Promise<void>> = []
-
-  eachTree(crudSchema, (schemaItem: CrudSchema) => {
+  for (let i = 0; i < length; i++) {
+    const schemaItem = crudSchema[i]
     // 判断是否显示
     if (schemaItem?.search?.show) {
       const searchSchemaItem = {
-        // 默认为 input
-        component: schemaItem.search.component || 'Input',
-        componentProps: {},
+        component: schemaItem.search.component,
         ...schemaItem.search,
-        field: schemaItem?.search?.field || schemaItem.field,
-        label: schemaItem.search?.label || schemaItem.label
-      }
-
-      if (searchSchemaItem.dictName) {
-        // 如果有 dictName 则证明是从字典中获取数据
-        const dictArr = dictStore.getDictObj[searchSchemaItem.dictName]
-        searchSchemaItem.componentProps!.options = filterOptions(dictArr)
-      } else if (searchSchemaItem.api) {
-        searchRequestTask.push(async () => {
-          const res = await (searchSchemaItem.api as () => AxiosPromise)()
-          if (res) {
-            const index = findIndex(allSchemas.searchSchema, (v: FormSchema) => {
-              return v.field === searchSchemaItem.field
-            })
-            if (index !== -1) {
-              allSchemas.searchSchema[index]!.componentProps!.options = filterOptions(
-                res,
-                searchSchemaItem.componentProps.optionsAlias?.labelField
-              )
-            }
-          }
-        })
+        field: schemaItem.field,
+        label: schemaItem.label
       }
 
       // 删除不必要的字段
       delete searchSchemaItem.show
-      delete searchSchemaItem.dictName
 
       searchSchema.push(searchSchemaItem)
     }
-  })
-
-  for (const task of searchRequestTask) {
-    task()
   }
 
   return searchSchema
@@ -166,56 +120,28 @@ const filterTableSchema = (crudSchema: CrudSchema[]): TableColumn[] => {
 }
 
 // 过滤 form 结构
-const filterFormSchema = (crudSchema: CrudSchema[], allSchemas: AllSchemas): FormSchema[] => {
+const filterFormSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
   const formSchema: FormSchema[] = []
+  const length = crudSchema.length
 
-  // 获取字典列表队列
-  const formRequestTask: Array<() => Promise<void>> = []
-
-  eachTree(crudSchema, (schemaItem: CrudSchema) => {
+  for (let i = 0; i < length; i++) {
+    const formItem = crudSchema[i]
     // 判断是否显示
-    if (schemaItem?.form?.show !== false) {
+    if (formItem?.form?.show) {
       const formSchemaItem = {
-        // 默认为 input
-        component: schemaItem?.form?.component || 'Input',
-        componentProps: {},
-        ...schemaItem.form,
-        field: schemaItem.field,
-        label: schemaItem.search?.label || schemaItem.label
-      }
-
-      if (formSchemaItem.dictName) {
-        // 如果有 dictName 则证明是从字典中获取数据
-        const dictArr = dictStore.getDictObj[formSchemaItem.dictName]
-        formSchemaItem.componentProps!.options = filterOptions(dictArr)
-      } else if (formSchemaItem.api) {
-        formRequestTask.push(async () => {
-          const res = await (formSchemaItem.api as () => AxiosPromise)()
-          if (res) {
-            const index = findIndex(allSchemas.formSchema, (v: FormSchema) => {
-              return v.field === formSchemaItem.field
-            })
-            if (index !== -1) {
-              allSchemas.formSchema[index]!.componentProps!.options = filterOptions(
-                res,
-                formSchemaItem.componentProps.optionsAlias?.labelField
-              )
-            }
-          }
-        })
+        component: formItem.form.component,
+        ...formItem.form,
+        field: formItem.field,
+        label: formItem.label
       }
 
       // 删除不必要的字段
       delete formSchemaItem.show
-      delete formSchemaItem.dictName
 
       formSchema.push(formSchemaItem)
     }
-  })
-
-  for (const task of formRequestTask) {
-    task()
   }
+
   return formSchema
 }
 
@@ -240,16 +166,4 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
   })
 
   return descriptionsSchema
-}
-
-// 给options添加国际化
-const filterOptions = (options: Recordable, labelField?: string) => {
-  return options?.map((v: Recordable) => {
-    if (labelField) {
-      v['labelField'] = t(v.labelField)
-    } else {
-      v['label'] = t(v.label)
-    }
-    return v
-  })
 }
