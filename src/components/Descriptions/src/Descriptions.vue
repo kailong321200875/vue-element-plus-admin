@@ -101,7 +101,7 @@ export default defineComponent({
           ) : null}
 
           <ElCollapseTransition>
-            <div v-show={unref(show)} class={[`${prefixCls}-content`, 'p-10px']}>
+            <div v-show={unref(show)} class={[`${prefixCls}-content`]}>
               <ElDescriptions {...unref(getBindValue)}>
                 {{
                   extra: () => (slots['extra'] ? slots['extra']() : props.extra),
@@ -133,6 +133,10 @@ export default defineComponent({
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-descriptions';
+
+:deep(.@{elNamespace}-descriptions__header) {
+  display: none !important;
+}
 
 .@{prefix-cls}-header {
   &__title {
