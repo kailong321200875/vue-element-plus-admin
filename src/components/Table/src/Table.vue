@@ -7,7 +7,7 @@ import {
   ElTooltipProps,
   ElImage
 } from 'element-plus'
-import { defineComponent, PropType, ref, computed, unref, watch, onMounted, nextTick } from 'vue'
+import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import type { TableProps, TableColumn, Pagination, TableSetProps } from './types'
@@ -15,8 +15,8 @@ import { set } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
-import Sortable from 'sortablejs'
-import { Icon } from '@/components/Icon'
+// import Sortable from 'sortablejs'
+// import { Icon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'Table',
@@ -62,7 +62,7 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       default: () => []
     },
-    sortable: propTypes.bool.def(false),
+    // sortable: propTypes.bool.def(false),
     height: propTypes.oneOfType([Number, String]),
     maxHeight: propTypes.oneOfType([Number, String]),
     stripe: propTypes.bool.def(false),
@@ -213,32 +213,32 @@ export default defineComponent({
       return propsObj
     })
 
-    const sortableEl = ref()
+    // const sortableEl = ref()
     // 初始化拖拽
-    const initDropTable = () => {
-      const el = unref(elTableRef)?.$el.querySelector('.el-table__body tbody')
-      if (!el) return
-      if (unref(sortableEl)) unref(sortableEl).destroy()
+    // const initDropTable = () => {
+    //   const el = unref(elTableRef)?.$el.querySelector('.el-table__body tbody')
+    //   if (!el) return
+    //   if (unref(sortableEl)) unref(sortableEl).destroy()
 
-      sortableEl.value = Sortable.create(el, {
-        handle: '.table-move',
-        animation: 180,
-        onEnd(e: any) {
-          emit('sortable-change', e)
-        }
-      })
-    }
+    //   sortableEl.value = Sortable.create(el, {
+    //     handle: '.table-move',
+    //     animation: 180,
+    //     onEnd(e: any) {
+    //       emit('sortable-change', e)
+    //     }
+    //   })
+    // }
 
-    watch(
-      () => getProps.value.sortable,
-      async (v) => {
-        await nextTick()
-        v && initDropTable()
-      },
-      {
-        immediate: true
-      }
-    )
+    // watch(
+    //   () => getProps.value.sortable,
+    //   async (v) => {
+    //     await nextTick()
+    //     v && initDropTable()
+    //   },
+    //   {
+    //     immediate: true
+    //   }
+    // )
 
     const setProps = (props: TableProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
@@ -495,19 +495,19 @@ export default defineComponent({
         tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', args)
       }
 
-      const { sortable } = unref(getProps)
+      // const { sortable } = unref(getProps)
 
-      const sortableEl = sortable ? (
-        <ElTableColumn
-          className="table-move cursor-move"
-          type="sortable"
-          prop="sortable"
-          width="60px"
-          align="center"
-        >
-          <Icon icon="ant-design:drag-outlined" />
-        </ElTableColumn>
-      ) : null
+      // const sortableEl = sortable ? (
+      //   <ElTableColumn
+      //     className="table-move cursor-move"
+      //     type="sortable"
+      //     prop="sortable"
+      //     width="60px"
+      //     align="center"
+      //   >
+      //     <Icon icon="ant-design:drag-outlined" />
+      //   </ElTableColumn>
+      // ) : null
 
       return (
         <div v-loading={unref(getProps).loading}>
@@ -520,7 +520,7 @@ export default defineComponent({
           ) : null}
           <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
             {{
-              default: () => [sortableEl, ...renderTableColumn()],
+              default: () => renderTableColumn(),
               ...tableSlots
             }}
           </ElTable>

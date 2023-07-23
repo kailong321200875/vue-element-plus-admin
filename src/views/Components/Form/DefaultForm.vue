@@ -13,7 +13,10 @@ import {
   ElRadioButton,
   ElCheckbox,
   ElCheckboxButton,
-  ElInput
+  ElInput,
+  ElMessage,
+  ElMessageBox,
+  ElIcon
 } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
 import { Icon } from '@/components/Icon'
@@ -440,6 +443,8 @@ const treeSelectData = [
 ]
 
 let id = 0
+
+const imageUrl = ref('')
 
 const schema = reactive<FormSchema[]>([
   {
@@ -1663,6 +1668,88 @@ const schema = reactive<FormSchema[]>([
       },
       data: treeSelectData
     }
+  },
+  {
+    field: 'field82',
+    component: 'Divider',
+    label: `${t('formDemo.upload')}`
+  },
+  {
+    field: 'field83',
+    component: 'Upload',
+    label: `${t('formDemo.default')}`,
+    componentProps: {
+      limit: 3,
+      action: 'https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15',
+      fileList: [
+        {
+          name: 'element-plus-logo.svg',
+          url: 'https://element-plus.org/images/element-plus-logo.svg'
+        },
+        {
+          name: 'element-plus-logo2.svg',
+          url: 'https://element-plus.org/images/element-plus-logo.svg'
+        }
+      ],
+      multiple: true,
+      onPreview: (uploadFile) => {
+        console.log(uploadFile)
+      },
+      onRemove: (file) => {
+        console.log(file)
+      },
+      beforeRemove: (uploadFile) => {
+        return ElMessageBox.confirm(`Cancel the transfer of ${uploadFile.name} ?`).then(
+          () => true,
+          () => false
+        )
+      },
+      onExceed: (files, uploadFiles) => {
+        ElMessage.warning(
+          `The limit is 3, you selected ${files.length} files this time, add up to ${
+            files.length + uploadFiles.length
+          } totally`
+        )
+      },
+      slots: {
+        default: () => <ElButton type="primary">Click to upload</ElButton>,
+        tip: () => <div class="el-upload__tip">jpg/png files with a size less than 500KB.</div>
+      }
+    }
+  },
+  {
+    field: 'field84',
+    component: 'Upload',
+    label: `${t('formDemo.userAvatar')}`,
+    componentProps: {
+      action: 'https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15',
+      showFileList: false,
+      onSuccess: (_response, uploadFile) => {
+        imageUrl.value = URL.createObjectURL(uploadFile.raw!)
+      },
+      beforeUpload: (rawFile) => {
+        if (rawFile.type !== 'image/jpeg') {
+          ElMessage.error('Avatar picture must be JPG format!')
+          return false
+        } else if (rawFile.size / 1024 / 1024 > 2) {
+          ElMessage.error('Avatar picture size can not exceed 2MB!')
+          return false
+        }
+        return true
+      },
+      slots: {
+        default: () => (
+          <>
+            {imageUrl.value ? <img src={imageUrl.value} class="avatar" /> : null}
+            {!imageUrl.value ? (
+              <ElIcon class="avatar-uploader-icon" size="large">
+                add
+              </ElIcon>
+            ) : null}
+          </>
+        )
+      }
+    }
   }
 ])
 </script>
@@ -1713,5 +1800,26 @@ const schema = reactive<FormSchema[]>([
 .transfer-footer {
   padding: 6px 5px;
   margin-left: 15px;
+}
+
+.el-upload {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px dashed var(--el-border-color);
+  border-radius: 6px;
+  transition: var(--el-transition-duration-fast);
+}
+
+.el-upload:hover {
+  border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+  width: 178px;
+  height: 178px;
+  font-size: 28px;
+  color: #8c939d;
+  text-align: center;
 }
 </style>

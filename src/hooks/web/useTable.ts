@@ -154,14 +154,14 @@ export const useTable = (config: UseTableConfig) => {
 
     refresh: () => {
       methods.getList()
-    },
-
-    sortableChange: (e: any) => {
-      console.log('sortableChange', e)
-      const { oldIndex, newIndex } = e
-      dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
-      // to do something
     }
+
+    // sortableChange: (e: any) => {
+    //   console.log('sortableChange', e)
+    //   const { oldIndex, newIndex } = e
+    //   dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
+    //   // to do something
+    // }
     // // 删除数据
     // delList: async (ids: string[] | number[], multiple: boolean, message = true) => {
     //   const tableRef = await getTable()

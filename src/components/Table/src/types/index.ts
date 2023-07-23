@@ -18,7 +18,7 @@ export interface TableColumn {
   minWidth?: string | number
   fixed?: boolean | 'left' | 'right'
   renderHeader?: (...args: any[]) => JSX.Element | null
-  sortable?: boolean | 'custom'
+  // sortable?: boolean
   sortMethod?: (...args: any[]) => number
   sortBy?: string | string[] | ((...args: any[]) => string | string[])
   sortOrders?: (string | null)[]

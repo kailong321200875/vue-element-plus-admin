@@ -21,8 +21,7 @@ const { tableRegister, tableMethods, tableState } = useTable({
   }
 })
 const { loading, dataList, total, currentPage, pageSize } = tableState
-const { setProps, setColumn, getElTableExpose, addColumn, delColumn, refresh, sortableChange } =
-  tableMethods
+const { setProps, setColumn, getElTableExpose, addColumn, delColumn, refresh } = tableMethods
 
 const { t } = useI18n()
 
@@ -214,11 +213,6 @@ const getSelections = async () => {
   const selections = elTableRef?.getSelectionRows()
   console.log(selections)
 }
-
-const sortable = ref(false)
-const showOrHiddenSortable = () => {
-  sortable.value = !unref(sortable)
-}
 </script>
 
 <template>
@@ -251,7 +245,7 @@ const showOrHiddenSortable = () => {
 
     <ElButton @click="getSelections">{{ t('tableDemo.getSelections') }}</ElButton>
 
-    <ElButton @click="showOrHiddenSortable">{{ t('tableDemo.showOrHiddenSortable') }}</ElButton>
+    <!-- <ElButton @click="showOrHiddenSortable">{{ t('tableDemo.showOrHiddenSortable') }}</ElButton> -->
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table
@@ -261,7 +255,6 @@ const showOrHiddenSortable = () => {
       :columns="columns"
       :data="dataList"
       :loading="loading"
-      :sortable="sortable"
       :pagination="
         canShowPagination
           ? {
@@ -271,7 +264,6 @@ const showOrHiddenSortable = () => {
       "
       @register="tableRegister"
       @refresh="refresh"
-      @sortable-change="sortableChange"
     />
   </ContentWrap>
 </template>

@@ -17,7 +17,8 @@ import {
   DatePickerProps,
   FormItemProps as ElFormItemProps,
   FormProps as ElFormProps,
-  ISelectProps
+  ISelectProps,
+  UploadProps
 } from 'element-plus'
 import { IEditorConfig } from '@wangeditor/editor'
 import { CSSProperties } from 'vue'
@@ -51,7 +52,8 @@ export enum ComponentNameEnum {
   SELECT_V2 = 'SelectV2',
   INPUT_PASSWORD = 'InputPassword',
   EDITOR = 'Editor',
-  TREE_SELECT = 'TreeSelect'
+  TREE_SELECT = 'TreeSelect',
+  UPLOAD = 'Upload'
 }
 
 type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
@@ -505,6 +507,16 @@ export interface FormItemProps extends Partial<ElFormItemProps> {
   }
 }
 
+export interface UploadComponentProps extends Partial<UploadProps> {
+  slots?: {
+    default?: (...args: any[]) => JSX.Element | null
+    trigger?: (...args: any[]) => JSX.Element | null
+    tip?: (...args: any[]) => JSX.Element | null
+    file?: (...args: any[]) => JSX.Element | null
+  }
+  style?: CSSProperties
+}
+
 export interface TreeSelectComponentProps
   extends Omit<Partial<SelectComponentProps>, 'props' | 'on' | 'slots'> {
   data?: any[]
@@ -607,6 +619,7 @@ export interface FormSchema {
     | TimePickerComponentProps
     | InputPasswordComponentProps
     | TreeSelectComponentProps
+    | UploadComponentProps
 
   /**
    * formItem组件属性，具体可以查看element-plus文档

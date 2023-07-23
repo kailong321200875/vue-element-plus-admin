@@ -299,7 +299,9 @@ export default {
     multiple: '多选',
     filterable: '可筛选',
     customContent: '自定义内容',
-    lazyLoad: '懒加载'
+    lazyLoad: '懒加载',
+    upload: '上传',
+    userAvatar: '用户头像'
   },
   guideDemo: {
     guide: '引导页',

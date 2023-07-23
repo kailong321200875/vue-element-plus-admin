@@ -302,7 +302,10 @@ export default {
     // 自定义节点内容
     customContent: 'Custom content',
     // 懒加载
-    lazyLoad: 'Lazy load'
+    lazyLoad: 'Lazy load',
+    upload: 'Upload',
+    // 用户头像
+    userAvatar: 'User avatar'
   },
   guideDemo: {
     guide: 'Guide',
