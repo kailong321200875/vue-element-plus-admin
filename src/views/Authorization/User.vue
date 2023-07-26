@@ -156,13 +156,8 @@ const filterNode = (value: string, data: DepartmentItem) => {
         @current-change="currentChange"
       />
     </ContentWrap>
-    <ContentWrap class="flex-[2] ml-20px">
-      <Search
-        :schema="searchSchema"
-        @reset="setSearchParams"
-        @search="setSearchParams"
-        :search-loading="loading"
-      />
+    <ContentWrap class="flex-[3] ml-20px">
+      <Search :schema="searchSchema" @reset="setSearchParams" @search="setSearchParams" />
       <div>
         <Table
           v-model:current-page="currentPage"
