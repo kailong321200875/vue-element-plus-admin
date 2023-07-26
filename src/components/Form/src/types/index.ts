@@ -620,6 +620,7 @@ export interface FormSchema {
     | InputPasswordComponentProps
     | TreeSelectComponentProps
     | UploadComponentProps
+    | any
 
   /**
    * formItem组件属性，具体可以查看element-plus文档
