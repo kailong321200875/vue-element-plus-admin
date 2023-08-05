@@ -161,7 +161,8 @@ export default {
     sticky: '黏性',
     treeTable: '树形表格',
     PicturePreview: '表格图片预览',
-    department: '部门管理'
+    department: '部门管理',
+    menuManagement: '菜单管理'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -498,6 +499,23 @@ export default {
     disable: '禁用',
     // 上级部门
     superiorDepartment: '上级部门'
+  },
+  menu: {
+    menuName: '菜单名称',
+    icon: '图标',
+    permission: '权限标识',
+    component: '组件',
+    path: '路径',
+    status: '状态',
+    hidden: '是否隐藏',
+    alwaysShow: '是否一直显示',
+    noCache: '是否清除缓存',
+    breadcrumb: '是否显示面包屑',
+    affix: '是否固定在标签页',
+    noTagsView: '是否隐藏标签页',
+    activeMenu: '高亮菜单',
+    canTo: '是否可跳转',
+    name: '组件名称'
   },
   inputPasswordDemo: {
     title: '密码输入框',

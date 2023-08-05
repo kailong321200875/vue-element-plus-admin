@@ -105,14 +105,6 @@ const adminList = [
             meta: {
               title: 'UseForm'
             }
-          },
-          {
-            path: 'ref-form',
-            component: 'views/Components/Form/RefForm',
-            name: 'RefForm',
-            meta: {
-              title: 'RefForm'
-            }
           }
         ]
       },

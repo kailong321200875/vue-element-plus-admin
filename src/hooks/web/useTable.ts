@@ -12,7 +12,7 @@ interface UseTableConfig {
   immediate?: boolean
   fetchDataApi: () => Promise<{
     list: any[]
-    total: number
+    total?: number
   }>
   fetchDelApi?: () => Promise<boolean>
 }
@@ -83,7 +83,7 @@ export const useTable = (config: UseTableConfig) => {
         console.log('fetchDataApi res', res)
         if (res) {
           dataList.value = res.list
-          total.value = res.total
+          total.value = res.total || 0
         }
       } catch (err) {
         console.log('fetchDataApi error')
