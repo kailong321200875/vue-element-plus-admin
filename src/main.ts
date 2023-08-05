@@ -25,9 +25,6 @@ import '@/plugins/animate.css'
 // 路由
 import { setupRouter } from './router'
 
-// 权限
-import { setupPermission } from './directives'
-
 import { createApp } from 'vue'
 
 import App from './App.vue'
@@ -47,8 +44,6 @@ const setupAll = async () => {
   setupElementPlus(app)
 
   setupRouter(app)
-
-  setupPermission(app)
 
   app.mount('#app')
 }
