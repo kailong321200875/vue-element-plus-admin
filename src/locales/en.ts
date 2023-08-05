@@ -523,6 +523,12 @@ export default {
     canTo: 'Can to',
     name: 'Name'
   },
+  role: {
+    roleName: 'Role name',
+    role: 'Role',
+    // 菜单分配
+    menu: 'Menu allocation'
+  },
   inputPasswordDemo: {
     title: 'InputPassword',
     inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'

@@ -173,6 +173,7 @@ export default [
                     id: toAnyString(),
                     meta: {
                       title: '综合示例-弹窗',
+                      currentPermission: ['edit', 'add'],
                       permission: ['edit', 'add', 'delete']
                     }
                   },
@@ -184,6 +185,7 @@ export default [
                     id: toAnyString(),
                     meta: {
                       title: '综合示例-页面',
+                      currentPermission: ['edit', 'add'],
                       permission: ['edit', 'add', 'delete']
                     }
                   },
@@ -200,6 +202,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
+                      currentPermission: ['delete', 'add'],
                       permission: ['edit', 'add', 'delete']
                     }
                   },
@@ -216,6 +219,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
+                      currentPermission: ['delete', 'add'],
                       permission: ['edit', 'add', 'delete']
                     }
                   },
@@ -232,6 +236,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
+                      currentPermission: ['delete', 'edit'],
                       permission: ['edit', 'add', 'delete']
                     }
                   }

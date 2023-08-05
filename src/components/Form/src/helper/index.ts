@@ -146,7 +146,7 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   schema.map((v) => {
     if (v.remove) {
       delete model[v.field]
-    } else if (v.component && v.component !== 'Divider') {
+    } else if (v.component !== 'Divider') {
       // const hasField = Reflect.has(model, v.field)
       const hasField = get(model, v.field)
       // 如果先前已经有值存在，则不进行重新赋值，而是采用现有的值

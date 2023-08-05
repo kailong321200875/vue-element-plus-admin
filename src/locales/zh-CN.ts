@@ -517,6 +517,11 @@ export default {
     canTo: '是否可跳转',
     name: '组件名称'
   },
+  role: {
+    roleName: '角色名称',
+    role: '角色',
+    menu: '菜单分配'
+  },
   inputPasswordDemo: {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'

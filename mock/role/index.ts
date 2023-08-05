@@ -1,5 +1,7 @@
 import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
+import Mock from 'mockjs'
+import { toAnyString } from '@/utils'
 
 const { code } = config
 
@@ -527,6 +529,24 @@ const testList: string[] = [
   '/error/500-demo'
 ]
 
+const List: any[] = []
+
+const roleNames = ['超级管理员', '管理员', '普通用户', '游客', '测试用户']
+
+for (let i = 0; i < 5; i++) {
+  List.push(
+    Mock.mock({
+      id: toAnyString(),
+      // timestamp: +Mock.Random.date('T'),
+      roleName: roleNames[i],
+      role: '@first',
+      status: Mock.Random.integer(0, 1),
+      createTime: '@datetime',
+      remark: '@cword(10, 15)'
+    })
+  )
+}
+
 export default [
   // 列表接口
   {
@@ -539,6 +559,22 @@ export default [
         data: {
           code: code,
           data: roleName === 'admin' ? adminList : testList
+        }
+      }
+    }
+  },
+  {
+    url: '/role/table',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: {
+            list: List,
+            total: 5
+          }
         }
       }
     }
