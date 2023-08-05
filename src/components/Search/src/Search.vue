@@ -9,6 +9,7 @@ import { initModel } from '@/components/Form/src/helper'
 import ActionButton from './components/ActionButton.vue'
 import { SearchProps } from './types'
 import { FormItemProp } from 'element-plus'
+import { isObject, isEmptyVal } from '@/utils/is'
 
 const props = defineProps({
   // 生成Form的布局结构数组
@@ -130,12 +131,22 @@ watch(
 
 const filterModel = async () => {
   const model = await getFormData()
-  unref(getProps).removeNoValueItem &&
-    Object.keys(model).forEach((key) => {
-      if (model[key] === void 0 || model[key] === '') {
-        delete model[key]
+  if (unref(getProps).removeNoValueItem) {
+    // 使用reduce过滤空值，并返回一个新对象
+    return Object.keys(model).reduce((prev, next) => {
+      const value = model[next]
+      if (!isEmptyVal(value)) {
+        if (isObject(value)) {
+          if (Object.keys(value).length > 0) {
+            prev[next] = value
+          }
+        } else {
+          prev[next] = value
+        }
       }
-    })
+      return prev
+    }, {})
+  }
   return model
 }
 

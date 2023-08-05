@@ -108,3 +108,7 @@ export const isDark = (): boolean => {
 export const isImgPath = (path: string): boolean => {
   return /(https?:\/\/|data:image\/).*?\.(png|jpg|jpeg|gif|svg|webp|ico)/gi.test(path)
 }
+
+export const isEmptyVal = (val: any): boolean => {
+  return val === '' || val === null || val === undefined
+}

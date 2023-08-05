@@ -160,7 +160,8 @@ export default {
     inputPassword: '密码输入框',
     sticky: '黏性',
     treeTable: '树形表格',
-    PicturePreview: '表格图片预览'
+    PicturePreview: '表格图片预览',
+    department: '部门管理'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -488,7 +489,15 @@ export default {
     email: '邮箱',
     createTime: '创建时间',
     // 所属部门
-    department: '所属部门'
+    department: '所属部门',
+    departmentName: '部门名称',
+    status: '状态',
+    // 启用
+    enable: '启用',
+    // 禁用
+    disable: '禁用',
+    // 上级部门
+    superiorDepartment: '上级部门'
   },
   inputPasswordDemo: {
     title: '密码输入框',

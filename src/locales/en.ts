@@ -160,7 +160,8 @@ export default {
     inputPassword: 'InputPassword',
     sticky: 'Sticky',
     treeTable: 'Tree table',
-    PicturePreview: 'Table Image Preview'
+    PicturePreview: 'Table Image Preview',
+    department: 'Department management'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -496,7 +497,12 @@ export default {
     email: 'Email',
     createTime: 'Create time',
     // 所属部门
-    department: 'Department'
+    department: 'Department',
+    departmentName: 'Department name',
+    status: 'Status',
+    enable: 'Enable',
+    disable: 'Disable',
+    superiorDepartment: 'Superior department'
   },
   inputPasswordDemo: {
     title: 'InputPassword',

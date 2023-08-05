@@ -14,36 +14,65 @@ for (let i = 0; i < 5; i++) {
     // 部门名称
     departmentName: citys[i],
     id: toAnyString(),
+    createTime: '@datetime',
+    // 状态
+    status: Mock.Random.integer(0, 1),
+    // 备注
+    remark: '@cword(10, 15)',
     children: [
       {
         // 部门名称
         departmentName: '研发部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '产品部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '运营部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '市场部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '销售部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '客服部',
-        id: toAnyString()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        id: toAnyString(),
+        remark: '@cword(10, 15)'
       }
     ]
   })
@@ -60,6 +89,21 @@ export default [
           code: code,
           data: {
             list: departmentList
+          }
+        }
+      }
+    }
+  },
+  {
+    url: '/department/table/list',
+    method: 'get',
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: {
+            list: departmentList,
+            total: 5
           }
         }
       }
@@ -119,6 +163,41 @@ export default [
   // 删除接口
   {
     url: '/department/user/delete',
+    method: 'post',
+    response: ({ body }) => {
+      const ids = body.ids
+      if (!ids) {
+        return {
+          code: '500',
+          message: '请选择需要删除的数据'
+        }
+      } else {
+        return {
+          data: {
+            code: code,
+            data: 'success'
+          }
+        }
+      }
+    }
+  },
+  // 保存接口
+  {
+    url: '/department/save',
+    method: 'post',
+    timeout: 1000,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: 'success'
+        }
+      }
+    }
+  },
+  // 删除接口
+  {
+    url: '/department/delete',
     method: 'post',
     response: ({ body }) => {
       const ids = body.ids
