@@ -27,9 +27,9 @@ import { defineComponent } from 'vue'
 
     activeMenu: '/dashboard'  显示高亮的路由路径
 
-    followAuth: '/dashboard'  跟随哪个路由进行权限过滤
-
     canTo: true               设置为true即使hidden为true，也依然可以进行路由跳转(默认 false)
+
+    permission: ['edit','add', 'delete']    设置该路由的权限
   }
 **/
 declare module 'vue-router' {
@@ -45,6 +45,7 @@ declare module 'vue-router' {
     noTagsView?: boolean
     followAuth?: string
     canTo?: boolean
+    permission?: string[]
   }
 }
 

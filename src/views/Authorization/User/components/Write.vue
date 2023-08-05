@@ -21,6 +21,7 @@ const props = defineProps({
 const rules = reactive({
   username: [required()],
   account: [required()],
+  'department.id': [required()],
   role: [required()],
   email: [required()],
   createTime: [required()]

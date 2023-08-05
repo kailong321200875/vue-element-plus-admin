@@ -11,8 +11,8 @@ import {
   saveDepartmentApi,
   deleteDepartmentApi
 } from '@/api/department'
+import type { DepartmentItem } from '@/api/department/types'
 import { useTable } from '@/hooks/web/useTable'
-import { TableData } from '@/api/table/types'
 import { ref, unref, reactive } from 'vue'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
@@ -238,7 +238,7 @@ const { allSchemas } = useCrudSchemas(crudSchemas)
 const dialogVisible = ref(false)
 const dialogTitle = ref('')
 
-const currentRow = ref<TableData | null>(null)
+const currentRow = ref<DepartmentItem | null>(null)
 const actionType = ref('')
 
 const AddAction = () => {
@@ -250,16 +250,18 @@ const AddAction = () => {
 
 const delLoading = ref(false)
 
-const delData = async (row: TableData | null) => {
+const delData = async (row: DepartmentItem | null) => {
   const elTableExpose = await getElTableExpose()
-  ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableData) => v.id) || []
+  ids.value = row
+    ? [row.id]
+    : elTableExpose?.getSelectionRows().map((v: DepartmentItem) => v.id) || []
   delLoading.value = true
   await delList(unref(ids).length).finally(() => {
     delLoading.value = false
   })
 }
 
-const action = (row: TableData, type: string) => {
+const action = (row: DepartmentItem, type: string) => {
   dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
   actionType.value = type
   currentRow.value = row

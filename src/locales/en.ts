@@ -161,7 +161,8 @@ export default {
     sticky: 'Sticky',
     treeTable: 'Tree table',
     PicturePreview: 'Table Image Preview',
-    department: 'Department management'
+    department: 'Department management',
+    menuManagement: 'Menu management'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -503,6 +504,24 @@ export default {
     enable: 'Enable',
     disable: 'Disable',
     superiorDepartment: 'Superior department'
+  },
+  menu: {
+    menuName: 'Menu name',
+    icon: 'Icon',
+    // 权限
+    permission: 'Permission',
+    component: 'Component',
+    path: 'Path',
+    status: 'Status',
+    hidden: 'Hidden',
+    alwaysShow: 'Always show',
+    noCache: 'No cache',
+    breadcrumb: 'Breadcrumb',
+    affix: 'Affix',
+    noTagsView: 'No tags view',
+    activeMenu: 'Active menu',
+    canTo: 'Can to',
+    name: 'Name'
   },
   inputPasswordDemo: {
     title: 'InputPassword',

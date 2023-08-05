@@ -518,6 +518,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     },
     children: [
       {
+        path: 'department',
+        component: () => import('@/views/Authorization/Department/Department.vue'),
+        name: 'Department',
+        meta: {
+          title: t('router.department')
+        }
+      },
+      {
         path: 'user',
         component: () => import('@/views/Authorization/User/User.vue'),
         name: 'User',
@@ -526,19 +534,19 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
-        path: 'role',
-        component: () => import('@/views/Authorization/Role.vue'),
-        name: 'Role',
+        path: 'menu',
+        component: () => import('@/views/Authorization/Menu/Menu.vue'),
+        name: 'Menu',
         meta: {
-          title: t('router.role')
+          title: t('router.menuManagement')
         }
       },
       {
-        path: 'department',
-        component: () => import('@/views/Authorization/Department/Department.vue'),
-        name: 'Department',
+        path: 'role',
+        component: () => import('@/views/Authorization/Role/Role.vue'),
+        name: 'Role',
         meta: {
-          title: t('router.department')
+          title: t('router.role')
         }
       }
     ]
