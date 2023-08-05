@@ -5,7 +5,12 @@ import { Dialog } from '@/components/Dialog'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElTag } from 'element-plus'
 import { Table } from '@/components/Table'
-import { getTableListApi, saveTableApi, delTableListApi } from '@/api/table'
+import {
+  getDepartmentApi,
+  getDepartmentTableApi,
+  saveDepartmentApi,
+  deleteDepartmentApi
+} from '@/api/department'
 import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
 import { ref, unref, reactive } from 'vue'
@@ -18,7 +23,7 @@ const ids = ref<string[]>([])
 const { tableRegister, tableState, tableMethods } = useTable({
   fetchDataApi: async () => {
     const { currentPage, pageSize } = tableState
-    const res = await getTableListApi({
+    const res = await getDepartmentTableApi({
       pageIndex: unref(currentPage),
       pageSize: unref(pageSize),
       ...unref(searchParams)
@@ -29,7 +34,7 @@ const { tableRegister, tableState, tableMethods } = useTable({
     }
   },
   fetchDelApi: async () => {
-    const res = await delTableListApi(unref(ids))
+    const res = await deleteDepartmentApi(unref(ids))
     return !!res
   }
 })
@@ -75,30 +80,87 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    field: 'title',
-    label: t('tableDemo.title'),
-    search: {
-      component: 'Input'
+    field: 'id',
+    label: t('userDemo.departmentName'),
+    table: {
+      slots: {
+        default: (data: any) => {
+          return <>{data[0].row.departmentName}</>
+        }
+      }
     },
     form: {
-      component: 'Input',
-      colProps: {
-        span: 24
+      component: 'TreeSelect',
+      componentProps: {
+        nodeKey: 'id',
+        props: {
+          label: 'departmentName'
+        }
+      },
+      optionApi: async () => {
+        const res = await getDepartmentApi()
+        return res.data.list
       }
     },
     detail: {
-      span: 24
+      slots: {
+        default: (data: any) => {
+          return <>{data.departmentName}</>
+        }
+      }
     }
   },
   {
-    field: 'author',
-    label: t('tableDemo.author'),
+    field: 'status',
+    label: t('userDemo.status'),
     search: {
       hidden: true
+    },
+    table: {
+      slots: {
+        default: (data: any) => {
+          const status = data[0].row.status
+          return (
+            <>
+              <ElTag type={status === 0 ? 'danger' : 'success'}>
+                {status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+              </ElTag>
+            </>
+          )
+        }
+      }
+    },
+    form: {
+      component: 'Select',
+      componentProps: {
+        options: [
+          {
+            value: 0,
+            label: t('userDemo.disable')
+          },
+          {
+            value: 1,
+            label: t('userDemo.enable')
+          }
+        ]
+      }
+    },
+    detail: {
+      slots: {
+        default: (data: any) => {
+          return (
+            <>
+              <ElTag type={data.status === 0 ? 'danger' : 'success'}>
+                {data.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+              </ElTag>
+            </>
+          )
+        }
+      }
     }
   },
   {
-    field: 'display_time',
+    field: 'createTime',
     label: t('tableDemo.displayTime'),
     search: {
       hidden: true
@@ -112,84 +174,25 @@ const crudSchemas = reactive<CrudSchema[]>([
     }
   },
   {
-    field: 'importance',
-    label: t('tableDemo.importance'),
+    field: 'remark',
+    label: t('userDemo.remark'),
     search: {
       hidden: true
     },
     form: {
-      component: 'Select',
+      component: 'Input',
       componentProps: {
-        style: {
-          width: '100%'
-        },
-        options: [
-          {
-            label: '重要',
-            value: 3
-          },
-          {
-            label: '良好',
-            value: 2
-          },
-          {
-            label: '一般',
-            value: 1
-          }
-        ]
-      }
-    },
-    detail: {
-      slots: {
-        default: (data: any) => {
-          return (
-            <ElTag
-              type={
-                data.importance === 1 ? 'success' : data.importance === 2 ? 'warning' : 'danger'
-              }
-            >
-              {data.importance === 1
-                ? t('tableDemo.important')
-                : data.importance === 2
-                ? t('tableDemo.good')
-                : t('tableDemo.commonly')}
-            </ElTag>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'pageviews',
-    label: t('tableDemo.pageviews'),
-    search: {
-      hidden: true
-    },
-    form: {
-      component: 'InputNumber',
-      value: 0
-    }
-  },
-  {
-    field: 'content',
-    label: t('exampleDemo.content'),
-    search: {
-      hidden: true
-    },
-    table: {
-      show: false
-    },
-    form: {
-      component: 'Editor',
+        type: 'textarea',
+        rows: 5
+      },
       colProps: {
         span: 24
       }
     },
     detail: {
-      span: 24,
       slots: {
         default: (data: any) => {
-          return <div innerHTML={data.content}></div>
+          return <>{data.remark}</>
         }
       }
     }
@@ -272,7 +275,7 @@ const save = async () => {
   const formData = await write?.submit()
   if (formData) {
     saveLoading.value = true
-    const res = await saveTableApi(formData)
+    const res = await saveDepartmentApi(formData)
       .catch(() => {})
       .finally(() => {
         saveLoading.value = false

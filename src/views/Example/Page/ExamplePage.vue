@@ -3,11 +3,11 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { Search } from '@/components/Search'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElTag } from 'element-plus'
-import { Table, TableColumn } from '@/components/Table'
+import { Table } from '@/components/Table'
 import { getTableListApi, delTableListApi } from '@/api/table'
 import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
-import { h, reactive, ref, unref } from 'vue'
+import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useEmitt } from '@/hooks/event/useEmitt'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
@@ -64,6 +64,9 @@ const { t } = useI18n()
 const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'selection',
+    search: {
+      hidden: true
+    },
     form: {
       hidden: true
     },
@@ -78,6 +81,9 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'index',
     label: t('tableDemo.index'),
     type: 'index',
+    search: {
+      hidden: true
+    },
     form: {
       hidden: true
     },
@@ -103,11 +109,17 @@ const crudSchemas = reactive<CrudSchema[]>([
   },
   {
     field: 'author',
-    label: t('tableDemo.author')
+    label: t('tableDemo.author'),
+    search: {
+      hidden: true
+    }
   },
   {
     field: 'display_time',
     label: t('tableDemo.displayTime'),
+    search: {
+      hidden: true
+    },
     form: {
       component: 'DatePicker',
       componentProps: {
@@ -119,19 +131,8 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'importance',
     label: t('tableDemo.importance'),
-    formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
-      return h(
-        ElTag,
-        {
-          type: cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'
-        },
-        () =>
-          cellValue === 1
-            ? t('tableDemo.important')
-            : cellValue === 2
-            ? t('tableDemo.good')
-            : t('tableDemo.commonly')
-      )
+    search: {
+      hidden: true
     },
     form: {
       component: 'Select',
@@ -154,11 +155,33 @@ const crudSchemas = reactive<CrudSchema[]>([
           }
         ]
       }
+    },
+    detail: {
+      slots: {
+        default: (data: any) => {
+          return (
+            <ElTag
+              type={
+                data.importance === 1 ? 'success' : data.importance === 2 ? 'warning' : 'danger'
+              }
+            >
+              {data.importance === 1
+                ? t('tableDemo.important')
+                : data.importance === 2
+                ? t('tableDemo.good')
+                : t('tableDemo.commonly')}
+            </ElTag>
+          )
+        }
+      }
     }
   },
   {
     field: 'pageviews',
     label: t('tableDemo.pageviews'),
+    search: {
+      hidden: true
+    },
     form: {
       component: 'InputNumber',
       value: 0
@@ -167,8 +190,11 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'content',
     label: t('exampleDemo.content'),
-    table: {
+    search: {
       hidden: true
+    },
+    table: {
+      show: false
     },
     form: {
       component: 'Editor',
@@ -177,13 +203,21 @@ const crudSchemas = reactive<CrudSchema[]>([
       }
     },
     detail: {
-      span: 24
+      span: 24,
+      slots: {
+        default: (data: any) => {
+          return <div innerHTML={data.content}></div>
+        }
+      }
     }
   },
   {
     field: 'action',
     width: '260px',
     label: t('tableDemo.action'),
+    search: {
+      hidden: true
+    },
     form: {
       hidden: true
     },

@@ -24,7 +24,7 @@ import { useRenderRadio } from './components/useRenderRadio'
 import { useRenderCheckbox } from './components/useRenderCheckbox'
 import { useDesign } from '@/hooks/web/useDesign'
 import { findIndex } from '@/utils'
-import { set } from 'lodash-es'
+import { get, set } from 'lodash-es'
 import { FormProps } from './types'
 import {
   FormSchema,
@@ -319,18 +319,18 @@ export default defineComponent({
 
             const Comp = () => {
               // 如果field是多层路径，需要转换成对象
-              const fields = item.field.split('.')
-              // 循环fields，绑定v-model
-              const vModel = fields.reduce((prev, next, index) => {
-                if (index === 0) {
-                  return formModel.value[next]
+              const itemVal = computed({
+                get: () => {
+                  return get(formModel.value, item.field)
+                },
+                set: (val) => {
+                  set(formModel.value, item.field, val)
                 }
-                return prev[next]
-              }, {})
+              })
 
               return (
                 <Com
-                  vModel={vModel}
+                  vModel={itemVal.value}
                   ref={(el: any) => setComponentRefMap(el, item.field)}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}
