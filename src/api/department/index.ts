@@ -8,3 +8,11 @@ export const getDepartmentApi = () => {
 export const getUserByIdApi = (params: DepartmentUserParams) => {
   return request.get<DepartmentUserResponse>({ url: '/department/users', params })
 }
+
+export const deleteUserByIdApi = (ids: string[] | number[]) => {
+  return request.post({ url: '/department/user/delete', data: { ids } })
+}
+
+export const saveUserApi = (data: any) => {
+  return request.post({ url: '/department/user/save', data })
+}

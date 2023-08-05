@@ -101,5 +101,40 @@ export default [
         }
       }
     }
+  },
+  // 保存接口
+  {
+    url: '/department/user/save',
+    method: 'post',
+    timeout: 1000,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: 'success'
+        }
+      }
+    }
+  },
+  // 删除接口
+  {
+    url: '/department/user/delete',
+    method: 'post',
+    response: ({ body }) => {
+      const ids = body.ids
+      if (!ids) {
+        return {
+          code: '500',
+          message: '请选择需要删除的数据'
+        }
+      } else {
+        return {
+          data: {
+            code: code,
+            data: 'success'
+          }
+        }
+      }
+    }
   }
 ] as MockMethod[]

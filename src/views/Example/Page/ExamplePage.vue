@@ -65,10 +65,10 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'selection',
     form: {
-      show: false
+      hidden: true
     },
     detail: {
-      show: false
+      hidden: true
     },
     table: {
       type: 'selection'
@@ -79,21 +79,19 @@ const crudSchemas = reactive<CrudSchema[]>([
     label: t('tableDemo.index'),
     type: 'index',
     form: {
-      show: false
+      hidden: true
     },
     detail: {
-      show: false
+      hidden: true
     }
   },
   {
     field: 'title',
     label: t('tableDemo.title'),
     search: {
-      show: true,
       component: 'Input'
     },
     form: {
-      show: true,
       component: 'Input',
       colProps: {
         span: 24
@@ -111,7 +109,6 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'display_time',
     label: t('tableDemo.displayTime'),
     form: {
-      show: true,
       component: 'DatePicker',
       componentProps: {
         type: 'datetime',
@@ -137,7 +134,6 @@ const crudSchemas = reactive<CrudSchema[]>([
       )
     },
     form: {
-      show: true,
       component: 'Select',
       componentProps: {
         style: {
@@ -164,7 +160,6 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'pageviews',
     label: t('tableDemo.pageviews'),
     form: {
-      show: true,
       component: 'InputNumber',
       value: 0
     }
@@ -173,10 +168,9 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'content',
     label: t('exampleDemo.content'),
     table: {
-      show: false
+      hidden: true
     },
     form: {
-      show: true,
       component: 'Editor',
       colProps: {
         span: 24
@@ -191,10 +185,10 @@ const crudSchemas = reactive<CrudSchema[]>([
     width: '260px',
     label: t('tableDemo.action'),
     form: {
-      show: false
+      hidden: true
     },
     detail: {
-      show: false
+      hidden: true
     },
     table: {
       slots: {

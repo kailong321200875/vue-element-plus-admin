@@ -65,21 +65,5 @@ const schema = reactive<DescriptionsSchema[]>([
 </script>
 
 <template>
-  <Descriptions :schema="schema" :data="currentRow || {}">
-    <template #importance="{ row }: { row: TableData }">
-      <ElTag :type="row.importance === 1 ? 'success' : row.importance === 2 ? 'warning' : 'danger'">
-        {{
-          row.importance === 1
-            ? t('tableDemo.important')
-            : row.importance === 2
-            ? t('tableDemo.good')
-            : t('tableDemo.commonly')
-        }}
-      </ElTag>
-    </template>
-
-    <template #content="{ row }: { row: TableData }">
-      <div v-html="row.content"></div>
-    </template>
-  </Descriptions>
+  <Descriptions :schema="schema" :data="currentRow || {}" />
 </template>

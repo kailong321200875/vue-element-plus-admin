@@ -6,6 +6,7 @@ import { ref, unref, PropType, computed, defineComponent } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { DescriptionsSchema } from './types'
 import { Icon } from '@/components/Icon'
+import { get } from 'lodash-es'
 
 const appStore = useAppStore()
 
@@ -114,7 +115,7 @@ export default defineComponent({
                             default: () =>
                               item.slots?.default
                                 ? item.slots?.default(props.data)
-                                : props.data[item.field]
+                                : get(props.data, item.field)
                           }}
                         </ElDescriptionsItem>
                       )

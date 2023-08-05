@@ -486,7 +486,9 @@ export default {
     searchDepartment: '搜索部门',
     account: '账号',
     email: '邮箱',
-    createTime: '创建时间'
+    createTime: '创建时间',
+    // 所属部门
+    department: '所属部门'
   },
   inputPasswordDemo: {
     title: '密码输入框',

@@ -13,23 +13,23 @@ export type CrudSchema = Omit<TableColumn, 'children'> & {
 }
 
 interface CrudSearchParams extends Omit<FormSchema, 'field'> {
-  // 是否显示在查询项
-  show?: boolean
+  // 是否隐藏在查询项
+  hidden?: boolean
 }
 
 interface CrudTableParams extends Omit<TableColumn, 'field'> {
-  // 是否显示表头
-  show?: boolean
+  // 是否隐藏表头
+  hidden?: boolean
 }
 
 interface CrudFormParams extends Omit<FormSchema, 'field'> {
-  // 是否显示表单项
-  show?: boolean
+  // 是否隐藏表单项
+  hidden?: boolean
 }
 
 interface CrudDescriptionsParams extends Omit<DescriptionsSchema, 'field'> {
-  // 是否显示表单项
-  show?: boolean
+  // 是否隐藏表单项
+  hidden?: boolean
 }
 
 interface AllSchemas {
@@ -78,17 +78,17 @@ const filterSearchSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
 
   for (let i = 0; i < length; i++) {
     const schemaItem = crudSchema[i]
-    // 判断是否显示
-    if (schemaItem?.search?.show) {
+    // 判断是否隐藏
+    if (!schemaItem?.search?.hidden) {
       const searchSchemaItem = {
-        component: schemaItem.search.component,
+        component: schemaItem?.search?.component || 'Input',
         ...schemaItem.search,
         field: schemaItem.field,
         label: schemaItem.label
       }
 
       // 删除不必要的字段
-      delete searchSchemaItem.show
+      delete searchSchemaItem.hidden
 
       searchSchema.push(searchSchemaItem)
     }
@@ -101,7 +101,7 @@ const filterSearchSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
 const filterTableSchema = (crudSchema: CrudSchema[]): TableColumn[] => {
   const tableColumns = treeMap<CrudSchema>(crudSchema, {
     conversion: (schema: CrudSchema) => {
-      if (schema?.table?.show !== false) {
+      if (!schema?.table?.hidden) {
         return {
           ...schema.table,
           ...schema
@@ -126,17 +126,17 @@ const filterFormSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
 
   for (let i = 0; i < length; i++) {
     const formItem = crudSchema[i]
-    // 判断是否显示
-    if (formItem?.form?.show) {
+    // 判断是否隐藏
+    if (!formItem?.form?.hidden) {
       const formSchemaItem = {
-        component: formItem.form.component,
+        component: formItem?.form?.component || 'Input',
         ...formItem.form,
         field: formItem.field,
         label: formItem.label
       }
 
       // 删除不必要的字段
-      delete formSchemaItem.show
+      delete formSchemaItem.hidden
 
       formSchema.push(formSchemaItem)
     }
@@ -150,8 +150,8 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
   const descriptionsSchema: FormSchema[] = []
 
   eachTree(crudSchema, (schemaItem: CrudSchema) => {
-    // 判断是否显示
-    if (schemaItem?.detail?.show !== false) {
+    // 判断是否隐藏
+    if (!schemaItem?.detail?.hidden) {
       const descriptionsSchemaItem = {
         ...schemaItem.detail,
         field: schemaItem.field,
@@ -159,7 +159,7 @@ const filterDescriptionsSchema = (crudSchema: CrudSchema[]): DescriptionsSchema[
       }
 
       // 删除不必要的字段
-      delete descriptionsSchemaItem.show
+      delete descriptionsSchemaItem.hidden
 
       descriptionsSchema.push(descriptionsSchemaItem)
     }

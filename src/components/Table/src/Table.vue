@@ -11,7 +11,7 @@ import { defineComponent, PropType, ref, computed, unref, watch, onMounted } fro
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import type { TableProps, TableColumn, Pagination, TableSetProps } from './types'
-import { set } from 'lodash-es'
+import { set, get } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
@@ -364,10 +364,10 @@ export default defineComponent({
               : props?.slots?.default
               ? props.slots.default(args)
               : v?.formatter
-              ? v?.formatter?.(data.row, data.column, data.row[v.field], data.$index)
+              ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
               : isImageUrl
-              ? renderPreview(data.row[v.field])
-              : data.row[v.field]
+              ? renderPreview(get(data.row, v.field))
+              : get(data.row, v.field)
           }
         }
         if (props?.slots?.header) {
@@ -461,10 +461,10 @@ export default defineComponent({
                 : props?.slots?.default
                 ? props.slots.default(args)
                 : v?.formatter
-                ? v?.formatter?.(data.row, data.column, data.row[v.field], data.$index)
+                ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
                 : isImageUrl
-                ? renderPreview(data.row[v.field])
-                : data.row[v.field]
+                ? renderPreview(get(data.row, v.field))
+                : get(data.row, v.field)
             }
           }
           if (props?.slots?.header) {

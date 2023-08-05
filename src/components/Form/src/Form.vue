@@ -318,9 +318,19 @@ export default defineComponent({
             }
 
             const Comp = () => {
+              // 如果field是多层路径，需要转换成对象
+              const fields = item.field.split('.')
+              // 循环fields，绑定v-model
+              const vModel = fields.reduce((prev, next, index) => {
+                if (index === 0) {
+                  return formModel.value[next]
+                }
+                return prev[next]
+              }, {})
+
               return (
                 <Com
-                  vModel={formModel.value[item.field]}
+                  vModel={vModel}
                   ref={(el: any) => setComponentRefMap(el, item.field)}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}

@@ -23,6 +23,7 @@ export interface DepartmentUserItem {
   email: string
   createTime: string
   role: string
+  department: DepartmentItem
 }
 
 export interface DepartmentUserResponse {

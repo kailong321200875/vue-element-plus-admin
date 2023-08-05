@@ -62,12 +62,13 @@ export default defineComponent({
       <>
         <div class="text-right h-28px flex items-center justify-end">
           <ElTooltip content={t('common.refresh')} placement="top">
-            <Icon
-              icon="ant-design:sync-outlined"
-              class="cursor-pointer"
-              hover-color="var(--el-color-primary)"
-              onClick={refresh}
-            />
+            <span onClick={refresh}>
+              <Icon
+                icon="ant-design:sync-outlined"
+                class="cursor-pointer"
+                hover-color="var(--el-color-primary)"
+              />
+            </span>
           </ElTooltip>
 
           <ElTooltip content={t('common.size')} placement="top">

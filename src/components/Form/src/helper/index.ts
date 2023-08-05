@@ -2,6 +2,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { PlaceholderModel, FormSchema, ComponentNameEnum, ColProps } from '../types'
 import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
+import { set, get } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -143,13 +144,14 @@ export const setItemComponentSlots = (slotsProps: Recordable = {}): Recordable =
 export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   const model: Recordable = { ...formModel }
   schema.map((v) => {
-    // 如果是hidden，就删除对应的值
     if (v.remove) {
       delete model[v.field]
     } else if (v.component && v.component !== 'Divider') {
-      const hasField = Reflect.has(model, v.field)
+      // const hasField = Reflect.has(model, v.field)
+      const hasField = get(model, v.field)
       // 如果先前已经有值存在，则不进行重新赋值，而是采用现有的值
-      model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : undefined
+      set(model, v.field, hasField ? get(model, v.field) : v.value !== void 0 ? v.value : undefined)
+      // model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : undefined
     }
   })
   return model

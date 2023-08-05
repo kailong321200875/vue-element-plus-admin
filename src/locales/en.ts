@@ -494,7 +494,9 @@ export default {
     searchDepartment: 'Search department',
     account: 'Account',
     email: 'Email',
-    createTime: 'Create time'
+    createTime: 'Create time',
+    // 所属部门
+    department: 'Department'
   },
   inputPasswordDemo: {
     title: 'InputPassword',

@@ -19,8 +19,6 @@ const props = defineProps({
   hoverColor: propTypes.string
 })
 
-const emit = defineEmits(['click'])
-
 const isLocal = computed(() => props.icon.startsWith('svg-icon:'))
 
 const symbolId = computed(() => {
@@ -34,14 +32,10 @@ const getIconifyStyle = computed(() => {
     color
   }
 })
-
-const iconClick = () => {
-  emit('click')
-}
 </script>
 
 <template>
-  <ElIcon :class="prefixCls" :size="size" :color="color" @click="iconClick">
+  <ElIcon :class="prefixCls" :size="size" :color="color">
     <svg v-if="isLocal" aria-hidden="true">
       <use :xlink:href="symbolId" />
     </svg>
@@ -57,7 +51,7 @@ const iconClick = () => {
 .iconify {
   &:hover {
     :deep(svg) {
-      color: v-bind(hoverColor) !important;
+      color: v-bind(hovercolor) !important;
     }
   }
 }
