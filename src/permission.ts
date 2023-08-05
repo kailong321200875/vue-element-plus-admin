@@ -1,6 +1,6 @@
 import router from './router'
 import { useAppStoreWithOut } from '@/store/modules/app'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import type { RouteRecordRaw } from 'vue-router'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
@@ -15,7 +15,7 @@ const appStore = useAppStoreWithOut()
 
 const dictStore = useDictStoreWithOut()
 
-const { wsCache } = useCache()
+const { getStorage } = useStorage()
 
 const { start, done } = useNProgress()
 
@@ -26,7 +26,7 @@ const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
-  if (wsCache.get(appStore.getUserInfo)) {
+  if (getStorage(appStore.getUserInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
@@ -44,8 +44,8 @@ router.beforeEach(async (to, from, next) => {
       }
 
       // 开发者可根据实际情况进行修改
-      const roleRouters = wsCache.get('roleRouters') || []
-      const userInfo = wsCache.get(appStore.getUserInfo)
+      const roleRouters = getStorage('roleRouters') || []
+      const userInfo = getStorage(appStore.getUserInfo)
 
       // 是否使用动态路由
       if (appStore.getDynamicRouter) {

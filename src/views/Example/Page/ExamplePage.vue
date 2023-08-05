@@ -9,7 +9,7 @@ import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
 import { h, reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { useEmitt } from '@/hooks/event/useEmitt'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 defineOptions({
@@ -265,3 +265,4 @@ const action = (row: TableData, type: string) => {
     />
   </ContentWrap>
 </template>
+@/hooks/event/useEmitt

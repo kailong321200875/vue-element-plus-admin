@@ -7,7 +7,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
 import { saveTableApi, getTableDetApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { emitter } = useEmitt()
 
@@ -64,3 +64,4 @@ const save = async () => {
     </template>
   </ContentDetailWrap>
 </template>
+@/hooks/event/useEmitt

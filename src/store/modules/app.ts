@@ -2,9 +2,9 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage, ComponentSize } from 'element-plus'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 
-const { wsCache } = useCache()
+const { getStorage, setStorage } = useStorage()
 
 interface AppState {
   breadcrumb: boolean
@@ -57,13 +57,13 @@ export const useAppStore = defineStore('app', {
       fixedHeader: true, // 固定toolheader
       footer: true, // 显示页脚
       greyMode: false, // 是否开始灰色模式，用于特殊悼念日
-      dynamicRouter: wsCache.get('dynamicRouter') || false, // 是否动态路由
-      fixedMenu: wsCache.get('fixedMenu') || false, // 是否固定菜单
+      dynamicRouter: getStorage('dynamicRouter') || false, // 是否动态路由
+      fixedMenu: getStorage('fixedMenu') || false, // 是否固定菜单
 
-      layout: wsCache.get('layout') || 'classic', // layout布局
-      isDark: wsCache.get('isDark') || false, // 是否是暗黑模式
-      currentSize: wsCache.get('default') || 'default', // 组件尺寸
-      theme: wsCache.get('theme') || {
+      layout: getStorage('layout') || 'classic', // layout布局
+      isDark: getStorage('isDark') || false, // 是否是暗黑模式
+      currentSize: getStorage('default') || 'default', // 组件尺寸
+      theme: getStorage('theme') || {
         // 主题色
         elColorPrimary: '#409eff',
         // 左侧菜单边框颜色
@@ -213,11 +213,11 @@ export const useAppStore = defineStore('app', {
       this.greyMode = greyMode
     },
     setDynamicRouter(dynamicRouter: boolean) {
-      wsCache.set('dynamicRouter', dynamicRouter)
+      setStorage('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
     },
     setFixedMenu(fixedMenu: boolean) {
-      wsCache.set('fixedMenu', fixedMenu)
+      setStorage('fixedMenu', fixedMenu)
       this.fixedMenu = fixedMenu
     },
     setPageLoading(pageLoading: boolean) {
@@ -229,7 +229,7 @@ export const useAppStore = defineStore('app', {
         return
       }
       this.layout = layout
-      wsCache.set('layout', this.layout)
+      setStorage('layout', this.layout)
     },
     setTitle(title: string) {
       this.title = title
@@ -243,18 +243,18 @@ export const useAppStore = defineStore('app', {
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
       }
-      wsCache.set('isDark', this.isDark)
+      setStorage('isDark', this.isDark)
     },
     setCurrentSize(currentSize: ComponentSize) {
       this.currentSize = currentSize
-      wsCache.set('currentSize', this.currentSize)
+      setStorage('currentSize', this.currentSize)
     },
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
     setTheme(theme: ThemeTypes) {
       this.theme = Object.assign(this.theme, theme)
-      wsCache.set('theme', this.theme)
+      setStorage('theme', this.theme)
     },
     setCssVarTheme() {
       for (const key in this.theme) {

@@ -16,6 +16,7 @@ module.exports = {
         ignoreAtRules: ['function', 'if', 'each', 'include', 'mixin']
       }
     ],
+    'media-query-no-invalid': null,
     'no-empty-source': null,
     'named-grid-areas-no-invalid': null,
     'unicode-bom': 'never',

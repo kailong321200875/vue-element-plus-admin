@@ -6,7 +6,7 @@ import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter } from 'vue-router'
 import { saveTableApi } from '@/api/table'
-import { useEmitt } from '@/hooks/web/useEmitt'
+import { useEmitt } from '@/hooks/event/useEmitt'
 
 const { emitter } = useEmitt()
 
@@ -50,3 +50,4 @@ const save = async () => {
     </template>
   </ContentDetailWrap>
 </template>
+@/hooks/event/useEmitt

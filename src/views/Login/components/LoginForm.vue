@@ -5,7 +5,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
@@ -24,7 +24,7 @@ const permissionStore = usePermissionStore()
 
 const { currentRoute, addRoute, push } = useRouter()
 
-const { wsCache } = useCache()
+const { setStorage } = useStorage()
 
 const { t } = useI18n()
 
@@ -222,7 +222,7 @@ const signIn = async () => {
         const res = await loginApi(formData)
 
         if (res) {
-          wsCache.set(appStore.getUserInfo, res.data)
+          setStorage(appStore.getUserInfo, res.data)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
             getRole()
@@ -253,9 +253,8 @@ const getRole = async () => {
   const res =
     formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
   if (res) {
-    const { wsCache } = useCache()
     const routers = res.data || []
-    wsCache.set('roleRouters', routers)
+    setStorage('roleRouters', routers)
 
     formData.username === 'admin'
       ? await permissionStore.generateRoutes('admin', routers).catch(() => {})

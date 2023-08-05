@@ -10,9 +10,11 @@ import { trim, setCssVar } from '@/utils'
 import ColorRadioPicker from './components/ColorRadioPicker.vue'
 import InterfaceDisplay from './components/InterfaceDisplay.vue'
 import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { useClipboard } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
+
+const { removeStorage } = useStorage()
 
 const { getPrefixCls } = useDesign()
 
@@ -186,10 +188,9 @@ const copyConfig = async () => {
 
 // 清空缓存
 const clear = () => {
-  const { wsCache } = useCache()
-  wsCache.delete('layout')
-  wsCache.delete('theme')
-  wsCache.delete('isDark')
+  removeStorage('layout')
+  removeStorage('theme')
+  removeStorage('isDark')
   window.location.reload()
 }
 </script>

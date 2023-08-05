@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { ElInput, ElButton } from 'element-plus'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { useLockStore } from '@/store/modules/lock'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useNow } from '@/hooks/web/useNow'
@@ -14,7 +14,7 @@ import { useTagsViewStore } from '@/store/modules/tagsView'
 
 const tagsViewStore = useTagsViewStore()
 
-const { wsCache } = useCache()
+const { clear } = useStorage()
 
 const { replace } = useRouter()
 
@@ -51,7 +51,7 @@ async function unLock() {
 async function goLogin() {
   const res = await loginOutApi().catch(() => {})
   if (res) {
-    wsCache.clear()
+    clear()
     tagsViewStore.delAllViews()
     resetRouter() // 重置静态路由表
     lockStore.resetLockInfo()
