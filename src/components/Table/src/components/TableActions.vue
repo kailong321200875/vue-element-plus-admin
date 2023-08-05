@@ -76,11 +76,13 @@ export default defineComponent({
               {{
                 default: () => {
                   return (
-                    <Icon
-                      icon="ant-design:column-height-outlined"
-                      class="cursor-pointer mr-8px ml-8px"
-                      hover-color="var(--el-color-primary)"
-                    />
+                    <span>
+                      <Icon
+                        icon="ant-design:column-height-outlined"
+                        class="cursor-pointer mr-8px ml-8px"
+                        hover-color="var(--el-color-primary)"
+                      />
+                    </span>
                   )
                 },
                 dropdown: () => {
