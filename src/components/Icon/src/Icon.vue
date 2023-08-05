@@ -51,7 +51,7 @@ const getIconifyStyle = computed(() => {
 .iconify {
   &:hover {
     :deep(svg) {
-      // @stylelint-disable-next-line
+      // prettier-ignore
       color: v-bind(hovercolor) !important;
     }
   }
