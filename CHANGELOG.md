@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.10.0...v2.0.0) (2023-08-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* 重构完成
+
+### Features
+
+* 重构完成 ([76e971e](https://github.com/kailong321200875/vue-element-plus-admin/commit/76e971ef96ad4f5cc7df58abd0559898ce70207d))
+
+
+### Code Refactoring
+
+* 重构完成 ([85f8cda](https://github.com/kailong321200875/vue-element-plus-admin/commit/85f8cda19d8cafb951f211b845aad970a661dd1e))
+* 重构完成 ([5d55597](https://github.com/kailong321200875/vue-element-plus-admin/commit/5d55597cca6c9d2bc6cb6211a01c161fa5f086ba))
+
 ## [1.10.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.9.9...v1.10.0) (2023-08-06)
 
 
