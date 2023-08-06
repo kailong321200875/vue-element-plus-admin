@@ -567,25 +567,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
     ]
-  },
-  {
-    path: '/dynamic',
-    component: Layout,
-    redirect: '/404',
-    name: 'Dynamic',
-    meta: {
-      hidden: true
-    },
-    children: [
-      {
-        path: 'tab/:id',
-        component: () => import('@/components/Dynamic/src/Dynamic.vue'),
-        name: 'Dynamic',
-        meta: {
-          title: '详情页'
-        }
-      }
-    ]
   }
 ]
 
