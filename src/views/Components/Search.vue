@@ -3,23 +3,21 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Search } from '@/components/Search'
 import { reactive, ref, unref } from 'vue'
-import { useValidator } from '@/hooks/web/useValidator'
 import { ElButton } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
-import { FormSchema } from '@/types/form'
-
-const { required } = useValidator()
+import { FormSchema } from '@/components/Form'
+import { useSearch } from '@/hooks/web/useSearch'
 
 const { t } = useI18n()
+
+const { searchRegister, searchMethods } = useSearch()
+const { setSchema, setProps, setValues } = searchMethods
 
 const schema = reactive<FormSchema[]>([
   {
     field: 'field1',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field2',
@@ -36,15 +34,17 @@ const schema = reactive<FormSchema[]>([
           value: '2'
         }
       ],
-      onChange: (value: string) => {
-        console.log(value)
+      on: {
+        change: (value: string) => {
+          console.log(value)
+        }
       }
     }
   },
   {
     field: 'field3',
     label: t('formDemo.radio'),
-    component: 'Radio',
+    component: 'RadioGroup',
     componentProps: {
       options: [
         {
@@ -74,97 +74,67 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field8',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field9',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field10',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field11',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field12',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field13',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field14',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field15',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field16',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field17',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   },
   {
     field: 'field18',
     label: t('formDemo.input'),
-    component: 'Input',
-    formItemProps: {
-      rules: [required()]
-    }
+    component: 'Input'
   }
 ])
 
 const isGrid = ref(false)
 
 const changeGrid = (grid: boolean) => {
-  isGrid.value = grid
+  setProps({
+    isCol: grid
+  })
+  // isGrid.value = grid
 }
 
 const layout = ref('inline')
@@ -173,24 +143,78 @@ const changeLayout = () => {
   layout.value = unref(layout) === 'inline' ? 'bottom' : 'inline'
 }
 
-const buttomPosition = ref('left')
+const buttonPosition = ref('left')
 
 const changePosition = (position: string) => {
   layout.value = 'bottom'
-  buttomPosition.value = position
+  buttonPosition.value = position
 }
 
 const getDictOne = async () => {
   const res = await getDictOneApi()
   if (res) {
-    schema[1].componentProps!.options = res.data
-    console.log(res.data)
+    setSchema([
+      {
+        field: 'field2',
+        path: 'componentProps.options',
+        value: res.data
+      }
+    ])
   }
+}
+
+const handleSearch = (data: any) => {
+  console.log(data)
+}
+
+const delRadio = () => {
+  setSchema([
+    {
+      field: 'field3',
+      path: 'remove',
+      value: true
+    }
+  ])
+}
+
+const restoreRadio = () => {
+  setSchema([
+    {
+      field: 'field3',
+      path: 'remove',
+      value: false
+    }
+  ])
+}
+
+const setValue = () => {
+  setValues({
+    field1: 'Joy'
+  })
+}
+
+const searchLoading = ref(false)
+const changeSearchLoading = () => {
+  searchLoading.value = true
+  setTimeout(() => {
+    searchLoading.value = false
+  }, 2000)
+}
+
+const resetLoading = ref(false)
+const changeResetLoading = () => {
+  resetLoading.value = true
+  setTimeout(() => {
+    resetLoading.value = false
+  }, 2000)
 }
 </script>
 
 <template>
-  <ContentWrap :title="`${t('searchDemo.search')} ${t('searchDemo.operate')}`">
+  <ContentWrap
+    :title="`${t('searchDemo.search')} ${t('searchDemo.operate')}`"
+    style="margin-bottom: 20px"
+  >
     <ElButton @click="changeGrid(true)">{{ t('searchDemo.grid') }}</ElButton>
     <ElButton @click="changeGrid(false)">
       {{ t('searchDemo.restore') }} {{ t('searchDemo.grid') }}
@@ -210,7 +234,17 @@ const getDictOne = async () => {
       {{ t('searchDemo.bottom') }} {{ t('searchDemo.position') }}-{{ t('searchDemo.right') }}
     </ElButton>
     <ElButton @click="getDictOne">
-      {{ t('searchDemo.dynamicOptions') }}
+      {{ t('formDemo.select') }} {{ t('searchDemo.dynamicOptions') }}
+    </ElButton>
+    <ElButton @click="delRadio">{{ t('searchDemo.deleteRadio') }}</ElButton>
+    <ElButton @click="restoreRadio">{{ t('searchDemo.restoreRadio') }}</ElButton>
+    <ElButton @click="setValue">{{ t('formDemo.setValue') }}</ElButton>
+
+    <ElButton @click="changeSearchLoading">
+      {{ t('searchDemo.search') }} {{ t('searchDemo.loading') }}
+    </ElButton>
+    <ElButton @click="changeResetLoading">
+      {{ t('searchDemo.reset') }} {{ t('searchDemo.loading') }}
     </ElButton>
   </ContentWrap>
 
@@ -219,9 +253,20 @@ const getDictOne = async () => {
       :schema="schema"
       :is-col="isGrid"
       :layout="layout"
-      :buttom-position="buttomPosition"
-      expand
+      :button-position="buttonPosition"
+      :search-loading="searchLoading"
+      :reset-loading="resetLoading"
+      show-expand
       expand-field="field6"
+      @search="handleSearch"
+      @reset="handleSearch"
+      @register="searchRegister"
     />
   </ContentWrap>
 </template>
+
+<style lang="less" scoped>
+.el-button {
+  margin-top: 10px;
+}
+</style>

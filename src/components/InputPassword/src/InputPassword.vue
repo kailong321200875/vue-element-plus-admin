@@ -32,10 +32,6 @@ const emit = defineEmits(['update:modelValue'])
 // 设置input的type属性
 const textType = ref<'password' | 'text'>('password')
 
-const changeTextType = () => {
-  textType.value = unref(textType) === 'text' ? 'password' : 'text'
-}
-
 // 输入框的值
 const valueRef = ref(props.modelValue)
 
@@ -53,19 +49,11 @@ const getPasswordStrength = computed(() => {
   const zxcvbnRef = zxcvbn(unref(valueRef)) as ZxcvbnResult
   return value ? zxcvbnRef.score : -1
 })
-
-const getIconName = computed(() =>
-  unref(textType) === 'password' ? 'ant-design:eye-invisible-outlined' : 'ant-design:eye-outlined'
-)
 </script>
 
 <template>
   <div :class="[prefixCls, `${prefixCls}--${configGlobal?.size}`]">
-    <ElInput v-bind="$attrs" v-model="valueRef" :type="textType">
-      <template #suffix>
-        <Icon class="el-input__icon cursor-pointer" :icon="getIconName" @click="changeTextType" />
-      </template>
-    </ElInput>
+    <ElInput v-bind="$attrs" v-model="valueRef" showPassword :type="textType" />
     <div
       v-if="strength"
       :class="`${prefixCls}__bar`"
@@ -116,7 +104,9 @@ const getIconName = computed(() =>
       height: inherit;
       background-color: transparent;
       border-radius: inherit;
-      transition: width 0.5s ease-in-out, background 0.25s;
+      transition:
+        width 0.5s ease-in-out,
+        background 0.25s;
 
       &[data-score='0'] {
         width: 20%;

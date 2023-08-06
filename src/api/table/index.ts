@@ -1,8 +1,12 @@
 import request from '@/config/axios'
 import type { TableData } from './types'
 
-export const getTableListApi = (params: any): Promise<IResponse> => {
+export const getTableListApi = (params: any) => {
   return request.get({ url: '/example/list', params })
+}
+
+export const getTreeTableListApi = (params: any) => {
+  return request.get({ url: '/example/treeList', params })
 }
 
 export const saveTableApi = (data: Partial<TableData>): Promise<IResponse> => {

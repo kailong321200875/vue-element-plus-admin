@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { Form } from '@/components/Form'
+import { Form, FormSchema } from '@/components/Form'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
-import { ElButton } from 'element-plus'
+import { ElButton, ElInput, FormItemProp, ComponentSize } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
-import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 
@@ -37,12 +36,15 @@ const schema = reactive<FormSchema[]>([
           value: '2'
         }
       ]
+    },
+    formItemProps: {
+      rules: [required()]
     }
   },
   {
     field: 'field3',
     label: t('formDemo.radio'),
-    component: 'Radio',
+    component: 'RadioGroup',
     componentProps: {
       options: [
         {
@@ -59,7 +61,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field4',
     label: t('formDemo.checkbox'),
-    component: 'Checkbox',
+    component: 'CheckboxGroup',
     value: [],
     componentProps: {
       options: [
@@ -93,33 +95,37 @@ const schema = reactive<FormSchema[]>([
   }
 ])
 
-const { register, methods, elFormRef } = useForm({
-  schema
-})
+const { formRegister, formMethods } = useForm()
+const {
+  setProps,
+  delSchema,
+  addSchema,
+  setValues,
+  setSchema,
+  getComponentExpose,
+  getFormItemExpose,
+  getElFormExpose
+} = formMethods
 
 const changeLabelWidth = (width: number | string) => {
-  const { setProps } = methods
   setProps({
     labelWidth: width
   })
 }
 
-const changeSize = (size: string) => {
-  const { setProps } = methods
+const changeSize = (size: ComponentSize) => {
   setProps({
     size
   })
 }
 
 const changeDisabled = (bool: boolean) => {
-  const { setProps } = methods
   setProps({
     disabled: bool
   })
 }
 
 const changeSchema = (del: boolean) => {
-  const { delSchema, addSchema } = methods
   if (del) {
     delSchema('field2')
   } else if (!del && schema[1].field !== 'field2') {
@@ -146,10 +152,10 @@ const changeSchema = (del: boolean) => {
   }
 }
 
-const setValue = (reset: boolean) => {
-  const { setValues } = methods
+const setValue = async (reset: boolean) => {
+  const elFormExpose = await getElFormExpose()
   if (reset) {
-    unref(elFormRef)?.resetFields()
+    elFormExpose?.resetFields()
   } else {
     setValues({
       field1: 'field1',
@@ -165,7 +171,6 @@ const setValue = (reset: boolean) => {
 const index = ref(7)
 
 const setLabel = () => {
-  const { setSchema } = methods
   setSchema([
     {
       field: 'field2',
@@ -195,7 +200,6 @@ const setLabel = () => {
 }
 
 const addItem = () => {
-  const { addSchema } = methods
   if (unref(index) % 2 === 0) {
     addSchema({
       field: `field${unref(index)}`,
@@ -215,20 +219,21 @@ const addItem = () => {
   index.value++
 }
 
-const formValidation = () => {
-  unref(elFormRef)!.validate((isValid) => {
+const formValidation = async () => {
+  const elFormExpose = await getElFormExpose()
+  elFormExpose?.validate((isValid) => {
     console.log(isValid)
   })
 }
 
-const verifyReset = () => {
-  unref(elFormRef)?.resetFields()
+const verifyReset = async () => {
+  const elFormExpose = await getElFormExpose()
+  elFormExpose?.resetFields()
 }
 
 const getDictOne = async () => {
   const res = await getDictOneApi()
   if (res) {
-    const { setSchema } = methods
     setSchema([
       {
         field: 'field2',
@@ -238,10 +243,28 @@ const getDictOne = async () => {
     ])
   }
 }
+
+const inoutFocus = async () => {
+  const inputEl: ComponentRef<typeof ElInput> = await getComponentExpose('field1')
+  inputEl?.focus()
+}
+
+const inoutValidation = async () => {
+  const formItem = await getFormItemExpose('field1')
+  const inputEl: ComponentRef<typeof ElInput> = await getComponentExpose('field1')
+  inputEl?.focus()
+  formItem?.validate('focus', (val: boolean) => {
+    console.log(val)
+  })
+}
+
+const formValidate = (prop: FormItemProp, isValid: boolean, message: string) => {
+  console.log(prop, isValid, message)
+}
 </script>
 
 <template>
-  <ContentWrap :title="`UseForm ${t('formDemo.operate')}`">
+  <ContentWrap :title="`UseForm ${t('formDemo.operate')}`" style="margin-bottom: 20px">
     <ElButton @click="changeLabelWidth(150)">{{ t('formDemo.change') }} labelWidth</ElButton>
     <ElButton @click="changeLabelWidth('auto')">{{ t('formDemo.restore') }} labelWidth</ElButton>
 
@@ -271,10 +294,23 @@ const getDictOne = async () => {
     <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
 
     <ElButton @click="getDictOne">
-      {{ t('searchDemo.dynamicOptions') }}
+      {{ `${t('formDemo.select')} ${t('searchDemo.dynamicOptions')}` }}
+    </ElButton>
+
+    <ElButton @click="inoutFocus">
+      {{ `${t('formDemo.input')} ${t('formDemo.focus')}` }}
+    </ElButton>
+    <ElButton @click="inoutValidation">
+      {{ `${t('formDemo.input')} ${t('formDemo.formValidation')}` }}
     </ElButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
-    <Form @register="register" />
+    <Form :schema="schema" @register="formRegister" @validate="formValidate" />
   </ContentWrap>
 </template>
+
+<style lang="less" scoped>
+.el-button {
+  margin-top: 10px;
+}
+</style>

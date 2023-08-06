@@ -1,4 +1,4 @@
-import { ConfigGlobalTypes } from '@/types/configGlobal'
+import { ConfigGlobalTypes } from '@/components/ConfigGlobal'
 import { inject } from 'vue'
 
 export const useConfigGlobal = () => {

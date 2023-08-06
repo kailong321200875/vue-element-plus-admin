@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { loginOutApi } from '@/api/login'
@@ -24,7 +24,7 @@ const prefixCls = getPrefixCls('user-info')
 
 const { t } = useI18n()
 
-const { wsCache } = useCache()
+const { clear } = useStorage()
 
 const { replace } = useRouter()
 
@@ -37,7 +37,7 @@ const loginOut = () => {
     .then(async () => {
       const res = await loginOutApi().catch(() => {})
       if (res) {
-        wsCache.clear()
+        clear()
         tagsViewStore.delAllViews()
         resetRouter() // 重置静态路由表
         replace('/login')
@@ -94,7 +94,9 @@ const toDocument = () => {
 <style scoped lang="less">
 .fade-bottom-enter-active,
 .fade-bottom-leave-active {
-  transition: opacity 0.25s, transform 0.3s;
+  transition:
+    opacity 0.25s,
+    transform 0.3s;
 }
 
 .fade-bottom-enter-from {

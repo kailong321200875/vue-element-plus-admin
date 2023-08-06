@@ -87,12 +87,12 @@ export const useTagsViewStore = defineStore('tagsView', {
       // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
       this.visitedViews = []
     },
-    // 删除其他
+    // 删除其它
     delOthersViews(view: RouteLocationNormalizedLoaded) {
       this.delOthersVisitedViews(view)
       this.addCachedView()
     },
-    // 删除其他tag
+    // 删除其它tag
     delOthersVisitedViews(view: RouteLocationNormalizedLoaded) {
       this.visitedViews = this.visitedViews.filter((v) => {
         return v?.meta?.affix || v.path === view.path

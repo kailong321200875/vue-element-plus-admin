@@ -3,7 +3,7 @@ import { PropType } from 'vue'
 import { Highlight } from '@/components/Highlight'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
-import { TipSchema } from '@/types/infoTip'
+import { InfoTipSchema } from './types'
 
 const { getPrefixCls } = useDesign()
 
@@ -12,7 +12,7 @@ const prefixCls = getPrefixCls('infotip')
 defineProps({
   title: propTypes.string.def(''),
   schema: {
-    type: Array as PropType<Array<string | TipSchema>>,
+    type: Array as PropType<Array<string | InfoTipSchema>>,
     required: true,
     default: () => []
   },

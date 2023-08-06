@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { Form } from '@/components/Form'
+import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useValidator } from '@/hooks/web/useValidator'
 import { IDomEditor } from '@wangeditor/editor'
-import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 
@@ -18,6 +17,9 @@ const props = defineProps({
 })
 
 const { t } = useI18n()
+
+const { formRegister, formMethods } = useForm()
+const { setValues, getFormData, getElFormExpose, setSchema } = formMethods
 
 const schema = reactive<FormSchema[]>([
   {
@@ -92,8 +94,8 @@ const schema = reactive<FormSchema[]>([
     },
     componentProps: {
       defaultHtml: '',
+      // @ts-ignore
       onChange: (edit: IDomEditor) => {
-        const { setValues } = methods
         setValues({
           content: edit.getHtml()
         })
@@ -112,15 +114,21 @@ const rules = reactive({
   content: [required()]
 })
 
-const { register, methods, elFormRef } = useForm({
-  schema
-})
+const submit = async () => {
+  const elForm = await getElFormExpose()
+  const valid = await elForm?.validate().catch((err) => {
+    console.log(err)
+  })
+  if (valid) {
+    const formData = await getFormData()
+    return formData
+  }
+}
 
 watch(
   () => props.currentRow,
   (currentRow) => {
     if (!currentRow) return
-    const { setValues, setSchema } = methods
     setValues(currentRow)
     setSchema([
       {
@@ -137,11 +145,10 @@ watch(
 )
 
 defineExpose({
-  elFormRef,
-  getFormData: methods.getFormData
+  submit
 })
 </script>
 
 <template>
-  <Form :rules="rules" @register="register" />
+  <Form :rules="rules" @register="formRegister" :schema="schema" />
 </template>

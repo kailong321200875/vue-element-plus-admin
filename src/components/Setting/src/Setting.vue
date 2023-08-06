@@ -10,9 +10,11 @@ import { trim, setCssVar } from '@/utils'
 import ColorRadioPicker from './components/ColorRadioPicker.vue'
 import InterfaceDisplay from './components/InterfaceDisplay.vue'
 import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
-import { useCache } from '@/hooks/web/useCache'
+import { useStorage } from '@/hooks/web/useStorage'
 import { useClipboard } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
+
+const { removeStorage } = useStorage()
 
 const { getPrefixCls } = useDesign()
 
@@ -47,7 +49,6 @@ const setHeaderTheme = (color: string) => {
   setCssVar('--top-header-bg-color', color)
   setCssVar('--top-header-text-color', textColor)
   setCssVar('--top-header-hover-color', textHoverColor)
-  setCssVar('--layout-border-color', topToolBorderColor)
   appStore.setTheme({
     topHeaderBgColor: color,
     topHeaderTextColor: textColor,
@@ -91,10 +92,6 @@ const setMenuTheme = (color: string) => {
   }
   appStore.setTheme(theme)
   appStore.setCssVarTheme()
-}
-if (layout.value === 'top' && !appStore.getIsDark) {
-  headerTheme.value = '#fff'
-  setHeaderTheme('#fff')
 }
 
 // 监听layout变化，重置一些主题色
@@ -191,10 +188,9 @@ const copyConfig = async () => {
 
 // 清空缓存
 const clear = () => {
-  const { wsCache } = useCache()
-  wsCache.delete('layout')
-  wsCache.delete('theme')
-  wsCache.delete('isDark')
+  removeStorage('layout')
+  removeStorage('theme')
+  removeStorage('isDark')
   window.location.reload()
 }
 </script>
@@ -202,7 +198,7 @@ const clear = () => {
 <template>
   <div
     :class="prefixCls"
-    class="fixed top-[45%] right-0 w-40px h-40px flex items-center justify-center bg-[var(--el-color-primary)] cursor-pointer"
+    class="fixed top-[45%] right-0 w-40px h-40px flex items-center justify-center bg-[var(--el-color-primary)] cursor-pointer z-10"
     @click="drawer = true"
   >
     <Icon icon="ant-design:setting-outlined" color="#fff" />

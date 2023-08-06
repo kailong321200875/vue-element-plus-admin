@@ -17,7 +17,7 @@ export default {
     closeTab: '关闭标签页',
     closeTheLeftTab: '关闭左侧标签页',
     closeTheRightTab: '关闭右侧标签页',
-    closeOther: '关闭其他标签页',
+    closeOther: '关闭其它标签页',
     closeAll: '关闭全部标签页',
     prevLabel: '上一步',
     nextLabel: '下一步',
@@ -40,7 +40,11 @@ export default {
     delOk: '确定',
     delCancel: '取消',
     delNoData: '请选择需要删除的数据',
-    delSuccess: '删除成功'
+    delSuccess: '删除成功',
+    refresh: '刷新',
+    fullscreen: '全屏',
+    size: '尺寸',
+    columnSetting: '列设置'
   },
   lock: {
     lockScreen: '锁定屏幕',
@@ -102,7 +106,7 @@ export default {
     register: '注册',
     checkPassword: '确认密码',
     login: '登录',
-    otherLogin: '其他登录方式',
+    otherLogin: '其它登录方式',
     remember: '记住我',
     hasUser: '已有账号？去登录',
     forgetPassword: '忘记密码',
@@ -154,7 +158,12 @@ export default {
     role: '角色管理',
     document: '文档',
     inputPassword: '密码输入框',
-    sticky: '黏性'
+    sticky: '黏性',
+    treeTable: '树形表格',
+    PicturePreview: '表格图片预览',
+    department: '部门管理',
+    menuManagement: '菜单管理',
+    permission: '权限测试页'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -241,8 +250,11 @@ export default {
     transfer: '穿梭框',
     render: '渲染器',
     radio: '单选框',
+    radioGroup: '单选框组',
     button: '按钮',
     checkbox: '多选框',
+    checkboxButton: '多选框按钮',
+    checkboxGroup: '多选框组',
     slider: '滑块',
     datePicker: '日期选择器',
     shortcuts: '快捷选项',
@@ -276,7 +288,23 @@ export default {
     set: '设置',
     subitem: '子项',
     formValidation: '表单验证',
-    verifyReset: '验证重置'
+    verifyReset: '验证重置',
+    // 富文本编辑器
+    richText: '富文本编辑器',
+    form: '表单',
+    // 远程加载
+    remoteLoading: '远程加载',
+    // 聚焦
+    focus: '聚焦',
+    treeSelect: '树形选择器',
+    showCheckbox: '显示复选框',
+    selectAnyLevel: '选择任意级别',
+    multiple: '多选',
+    filterable: '可筛选',
+    customContent: '自定义内容',
+    lazyLoad: '懒加载',
+    upload: '上传',
+    userAvatar: '用户头像'
   },
   guideDemo: {
     guide: '引导页',
@@ -358,7 +386,13 @@ export default {
     left: '左',
     center: '中',
     right: '右',
-    dynamicOptions: '动态选项'
+    dynamicOptions: '动态选项',
+    // 删除单选框
+    deleteRadio: '删除单选框',
+    // 还原单选框
+    restoreRadio: '还原单选框',
+    loading: '加载中',
+    reset: '重置'
   },
   stickyDemo: {
     sticky: '黏性'
@@ -389,7 +423,14 @@ export default {
     hiddenExpandedRows: '隐藏展开行',
     changeTitle: '修改标题',
     header: '头部',
-    selectAllNone: '全选/全不选'
+    selectAllNone: '全选/全不选',
+    delOrAddAction: '删除/添加操作列',
+    showOrHiddenStripe: '显示/隐藏斑马纹',
+    showOrHiddenBorder: '显示/隐藏边框',
+    fixedHeaderOrAuto: '固定头部/自动',
+    getSelections: '获取多选数据',
+    preview: '封面',
+    showOrHiddenSortable: '显示/隐藏排序'
   },
   richText: {
     richText: '富文本',
@@ -442,7 +483,45 @@ export default {
     role: '角色',
     remark: '备注',
     remarkMessage1: '后端控制路由权限',
-    remarkMessage2: '前端控制路由权限'
+    remarkMessage2: '前端控制路由权限',
+    // 部门列表
+    departmentList: '部门列表',
+    searchDepartment: '搜索部门',
+    account: '账号',
+    email: '邮箱',
+    createTime: '创建时间',
+    // 所属部门
+    department: '所属部门',
+    departmentName: '部门名称',
+    status: '状态',
+    // 启用
+    enable: '启用',
+    // 禁用
+    disable: '禁用',
+    // 上级部门
+    superiorDepartment: '上级部门'
+  },
+  menu: {
+    menuName: '菜单名称',
+    icon: '图标',
+    permission: '权限标识',
+    component: '组件',
+    path: '路径',
+    status: '状态',
+    hidden: '是否隐藏',
+    alwaysShow: '是否一直显示',
+    noCache: '是否清除缓存',
+    breadcrumb: '是否显示面包屑',
+    affix: '是否固定在标签页',
+    noTagsView: '是否隐藏标签页',
+    activeMenu: '高亮菜单',
+    canTo: '是否可跳转',
+    name: '组件名称'
+  },
+  role: {
+    roleName: '角色名称',
+    role: '角色',
+    menu: '菜单分配'
   },
   inputPasswordDemo: {
     title: '密码输入框',

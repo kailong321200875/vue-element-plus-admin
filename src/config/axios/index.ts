@@ -4,7 +4,7 @@ import config from './config'
 
 const { defaultHeaders } = config
 
-const request = (option: any) => {
+const request = (option: AxiosConfig) => {
   const { url, method, params, data, headersType, responseType } = option
   return service.request({
     url: url,
@@ -19,17 +19,17 @@ const request = (option: any) => {
 }
 
 export default {
-  get: <T = any>(option: any) => {
-    return request({ method: 'get', ...option }) as unknown as T
+  get: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'get', ...option }) as Promise<IResponse<T>>
   },
-  post: <T = any>(option: any) => {
-    return request({ method: 'post', ...option }) as unknown as T
+  post: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'post', ...option }) as Promise<IResponse<T>>
   },
-  delete: <T = any>(option: any) => {
-    return request({ method: 'delete', ...option }) as unknown as T
+  delete: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'delete', ...option }) as Promise<IResponse<T>>
   },
-  put: <T = any>(option: any) => {
-    return request({ method: 'put', ...option }) as unknown as T
+  put: <T = any>(option: AxiosConfig) => {
+    return request({ method: 'put', ...option }) as Promise<IResponse<T>>
   },
   cancelRequest: (url: string | string[]) => {
     return service.cancelRequest(url)

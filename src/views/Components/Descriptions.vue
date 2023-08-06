@@ -1,12 +1,12 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Descriptions } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
-import { reactive, unref } from 'vue'
+import { reactive } from 'vue'
 import { Form } from '@/components/Form'
 import { ElFormItem, ElInput, ElButton } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useForm } from '@/hooks/web/useForm'
-import { DescriptionsSchema } from '@/types/descriptions'
+import { DescriptionsSchema } from '@/components/Descriptions'
 
 const { required } = useValidator()
 
@@ -42,8 +42,90 @@ const schema = reactive<DescriptionsSchema[]>([
   },
   {
     field: 'addr',
+    label: t('descriptionsDemo.addr')
+  }
+])
+
+const schema2 = reactive<DescriptionsSchema[]>([
+  {
+    field: 'username',
+    label: t('descriptionsDemo.username'),
+    slots: {
+      label: (row) => {
+        return <span class="is-required--item">{row.label}</span>
+      },
+      default: () => {
+        return (
+          <ElFormItem prop="username">
+            <ElInput v-model={form.username} />
+          </ElFormItem>
+        )
+      }
+    }
+  },
+  {
+    field: 'nickName',
+    label: t('descriptionsDemo.nickName'),
+    slots: {
+      label: (row) => {
+        return <span class="is-required--item">{row.label}</span>
+      },
+      default: () => {
+        return (
+          <ElFormItem prop="nickName">
+            <ElInput v-model={form.nickName} />
+          </ElFormItem>
+        )
+      }
+    }
+  },
+  {
+    field: 'phone',
+    label: t('descriptionsDemo.phone'),
+    slots: {
+      label: (row) => {
+        return <span class="is-required--item">{row.label}</span>
+      },
+      default: () => {
+        return (
+          <ElFormItem prop="phone">
+            <ElInput v-model={form.phone} />
+          </ElFormItem>
+        )
+      }
+    }
+  },
+  {
+    field: 'email',
+    label: t('descriptionsDemo.email'),
+    slots: {
+      label: (row) => {
+        return <span class="is-required--item">{row.label}</span>
+      },
+      default: () => {
+        return (
+          <ElFormItem prop="email">
+            <ElInput v-model={form.email} />
+          </ElFormItem>
+        )
+      }
+    }
+  },
+  {
+    field: 'addr',
     label: t('descriptionsDemo.addr'),
-    span: 24
+    slots: {
+      label: (row) => {
+        return <span class="is-required--item">{row.label}</span>
+      },
+      default: () => {
+        return (
+          <ElFormItem prop="addr">
+            <ElInput v-model={form.addr} />
+          </ElFormItem>
+        )
+      }
+    }
   }
 ])
 
@@ -63,10 +145,12 @@ const rules = reactive({
   addr: [required()]
 })
 
-const { register, elFormRef } = useForm()
+const { formRegister, formMethods } = useForm()
+const { getElFormExpose } = formMethods
 
-const formValidation = () => {
-  unref(elFormRef)!.validate((isValid) => {
+const formValidation = async () => {
+  const elFormExpose = await getElFormExpose()
+  elFormExpose?.validate((isValid) => {
     console.log(isValid)
   })
 }
@@ -80,50 +164,13 @@ const formValidation = () => {
     :schema="schema"
   />
 
-  <Form is-custom :model="form" :rules="rules" @register="register">
-    <Descriptions :title="t('descriptionsDemo.form')" :data="data" :schema="schema" class="mt-20px">
-      <template #username-label="{ row }">
-        <span class="is-required--item">{{ row.label }}</span>
-      </template>
-      <template #nickName-label="{ row }">
-        <span class="is-required--item">{{ row.label }}</span>
-      </template>
-      <template #phone-label="{ row }">
-        <span class="is-required--item">{{ row.label }}</span>
-      </template>
-      <template #email-label="{ row }">
-        <span class="is-required--item">{{ row.label }}</span>
-      </template>
-      <template #addr-label="{ row }">
-        <span class="is-required--item">{{ row.label }}</span>
-      </template>
-
-      <template #username>
-        <ElFormItem prop="username">
-          <ElInput v-model="form.username" />
-        </ElFormItem>
-      </template>
-      <template #nickName>
-        <ElFormItem prop="nickName">
-          <ElInput v-model="form.nickName" />
-        </ElFormItem>
-      </template>
-      <template #phone>
-        <ElFormItem prop="phone">
-          <ElInput v-model="form.phone" />
-        </ElFormItem>
-      </template>
-      <template #email>
-        <ElFormItem prop="email">
-          <ElInput v-model="form.email" />
-        </ElFormItem>
-      </template>
-      <template #addr>
-        <ElFormItem prop="addr">
-          <ElInput v-model="form.addr" />
-        </ElFormItem>
-      </template>
-    </Descriptions>
+  <Form is-custom :model="form" :rules="rules" @register="formRegister">
+    <Descriptions
+      :title="t('descriptionsDemo.form')"
+      :data="data"
+      :schema="schema2"
+      class="mt-20px"
+    />
     <div class="text-center mt-10px">
       <ElButton @click="formValidation"> {{ t('formDemo.formValidation') }} </ElButton>
     </div>
@@ -131,7 +178,7 @@ const formValidation = () => {
 </template>
 
 <style lang="less" scoped>
-.is-required--item {
+:deep(.is-required--item) {
   position: relative;
 
   &::before {

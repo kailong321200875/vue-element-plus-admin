@@ -40,7 +40,11 @@ export default {
     delOk: 'OK',
     delCancel: 'Cancel',
     delNoData: 'Please select the data to delete',
-    delSuccess: 'Deleted successfully'
+    delSuccess: 'Deleted successfully',
+    refresh: 'Refresh',
+    fullscreen: 'Fullscreen',
+    size: 'Size',
+    columnSetting: 'Column setting'
   },
   lock: {
     lockScreen: 'Lock screen',
@@ -154,7 +158,13 @@ export default {
     role: 'Role management',
     document: 'Document',
     inputPassword: 'InputPassword',
-    sticky: 'Sticky'
+    sticky: 'Sticky',
+    treeTable: 'Tree table',
+    PicturePreview: 'Table Image Preview',
+    department: 'Department management',
+    menuManagement: 'Menu management',
+    // 权限测试页面
+    permission: 'Permission test page'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -241,8 +251,11 @@ export default {
     transfer: 'Transfer',
     render: 'Render',
     radio: 'Radio',
+    radioGroup: 'Radio Group',
     button: 'Button',
     checkbox: 'Checkbox',
+    checkboxButton: 'Checkbox Button',
+    checkboxGroup: 'Checkbox Group',
     slider: 'Slider',
     datePicker: 'Date Picker',
     shortcuts: 'Shortcuts',
@@ -277,7 +290,26 @@ export default {
     set: 'Set',
     subitem: 'Subitem',
     formValidation: 'Form validation',
-    verifyReset: 'Verify reset'
+    verifyReset: 'Verify reset',
+    // 富文本编辑器
+    richText: 'Rich text',
+    form: 'Form',
+    // 远程加载
+    remoteLoading: 'Remote loading',
+    // 聚焦
+    focus: 'Focus',
+    treeSelect: 'Tree Select',
+    showCheckbox: 'Show Checkbox',
+    selectAnyLevel: 'Select Any Level',
+    multiple: 'Multiple',
+    filterable: 'Filterable',
+    // 自定义节点内容
+    customContent: 'Custom content',
+    // 懒加载
+    lazyLoad: 'Lazy load',
+    upload: 'Upload',
+    // 用户头像
+    userAvatar: 'User avatar'
   },
   guideDemo: {
     guide: 'Guide',
@@ -361,7 +393,13 @@ export default {
     left: 'left',
     center: 'center',
     right: 'right',
-    dynamicOptions: 'Dynamic options'
+    dynamicOptions: 'Dynamic options',
+    // 删除单选框
+    deleteRadio: 'Delete radio',
+    // 还原单选框
+    restoreRadio: 'Restore radio',
+    loading: 'Loading',
+    reset: 'Reset'
   },
   stickyDemo: {
     sticky: 'Sticky'
@@ -392,7 +430,14 @@ export default {
     hiddenExpandedRows: 'Hidden expanded rows',
     changeTitle: 'Change title',
     header: 'Header',
-    selectAllNone: 'Select all / none'
+    selectAllNone: 'Select all / none',
+    delOrAddAction: 'Delete or add action',
+    showOrHiddenStripe: 'Show or hidden stripe',
+    showOrHiddenBorder: 'Show or hidden border',
+    fixedHeaderOrAuto: 'Fixed header or auto',
+    getSelections: 'Get selections',
+    preview: 'Preview',
+    showOrHiddenSortable: 'Show or hidden sortable'
   },
   richText: {
     richText: 'Rich text',
@@ -446,7 +491,45 @@ export default {
     role: 'Role',
     remark: 'Remark',
     remarkMessage1: 'Back end control routing permission',
-    remarkMessage2: 'Front end control routing permission'
+    remarkMessage2: 'Front end control routing permission',
+    // 部门列表
+    departmentList: 'Department list',
+    // 搜索部门
+    searchDepartment: 'Search department',
+    account: 'Account',
+    email: 'Email',
+    createTime: 'Create time',
+    // 所属部门
+    department: 'Department',
+    departmentName: 'Department name',
+    status: 'Status',
+    enable: 'Enable',
+    disable: 'Disable',
+    superiorDepartment: 'Superior department'
+  },
+  menu: {
+    menuName: 'Menu name',
+    icon: 'Icon',
+    // 权限
+    permission: 'Permission',
+    component: 'Component',
+    path: 'Path',
+    status: 'Status',
+    hidden: 'Hidden',
+    alwaysShow: 'Always show',
+    noCache: 'No cache',
+    breadcrumb: 'Breadcrumb',
+    affix: 'Affix',
+    noTagsView: 'No tags view',
+    activeMenu: 'Active menu',
+    canTo: 'Can to',
+    name: 'Name'
+  },
+  role: {
+    roleName: 'Role name',
+    role: 'Role',
+    // 菜单分配
+    menu: 'Menu allocation'
   },
   inputPasswordDemo: {
     title: 'InputPassword',

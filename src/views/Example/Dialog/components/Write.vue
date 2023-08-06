@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { Form } from '@/components/Form'
+import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { TableData } from '@/api/table/types'
 import { useValidator } from '@/hooks/web/useValidator'
-import { FormSchema } from '@/types/form'
 
 const { required } = useValidator()
 
@@ -28,15 +27,24 @@ const rules = reactive({
   content: [required()]
 })
 
-const { register, methods, elFormRef } = useForm({
-  schema: props.formSchema
-})
+const { formRegister, formMethods } = useForm()
+const { setValues, getFormData, getElFormExpose } = formMethods
+
+const submit = async () => {
+  const elForm = await getElFormExpose()
+  const valid = await elForm?.validate().catch((err) => {
+    console.log(err)
+  })
+  if (valid) {
+    const formData = await getFormData()
+    return formData
+  }
+}
 
 watch(
   () => props.currentRow,
   (currentRow) => {
     if (!currentRow) return
-    const { setValues } = methods
     setValues(currentRow)
   },
   {
@@ -46,11 +54,10 @@ watch(
 )
 
 defineExpose({
-  elFormRef,
-  getFormData: methods.getFormData
+  submit
 })
 </script>
 
 <template>
-  <Form :rules="rules" @register="register" />
+  <Form :rules="rules" @register="formRegister" :schema="formSchema" />
 </template>

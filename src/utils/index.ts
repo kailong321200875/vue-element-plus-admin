@@ -36,6 +36,13 @@ export const underlineToHump = (str: string): string => {
   })
 }
 
+/**
+ * 驼峰转横杠
+ */
+export const humpToDash = (str: string): string => {
+  return str.replace(/([A-Z])/g, '-$1').toLowerCase()
+}
+
 export const setCssVar = (prop: string, val: any, dom = document.documentElement) => {
   dom.style.setProperty(prop, val)
 }
@@ -107,4 +114,11 @@ export function toAnyString() {
     return v.toString()
   })
   return str
+}
+
+/**
+ * 首字母大写
+ */
+export function firstUpperCase(str: string) {
+  return str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase())
 }

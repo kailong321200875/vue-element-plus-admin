@@ -26,18 +26,80 @@ ${selector}:hover {
 }
 `
       }
+    ],
+    [
+      /^layout-border__left$/,
+      ([], { rawSelector }) => {
+        const selector = e(rawSelector)
+        return `
+${selector}:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--el-border-color);
+  z-index: 3;
+}
+`
+      }
+    ],
+    [
+      /^layout-border__right$/,
+      ([], { rawSelector }) => {
+        const selector = e(rawSelector)
+        return `
+${selector}:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: var(--el-border-color);
+  z-index: 3;
+}
+`
+      }
+    ],
+    [
+      /^layout-border__top$/,
+      ([], { rawSelector }) => {
+        const selector = e(rawSelector)
+        return `
+${selector}:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--el-border-color);
+  z-index: 3;
+}
+`
+      }
+    ],
+    [
+      /^layout-border__bottom$/,
+      ([], { rawSelector }) => {
+        const selector = e(rawSelector)
+        return `
+${selector}:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--el-border-color);
+  z-index: 3;
+}
+`
+      }
     ]
   ],
   presets: [presetUno({ dark: 'class', attributify: false })],
-  transformers: [transformerVariantGroup()],
-  shortcuts: {
-    'layout-border__left':
-      'before:(content-none absolute top-0 left-0 w-1px h-full bg-[var(--layout-border-color)]) z-10',
-    'layout-border__right':
-      'after:(content-none absolute top-0 right-0 w-1px h-full bg-[var(--layout-border-color)]) z-10',
-    'layout-border__top':
-      'before:(content-none absolute top-0 left-0 w-full h-1px bg-[var(--layout-border-color)]) z-10',
-    'layout-border__bottom':
-      'after:(content-none absolute bottom-0 left-0 w-full h-1px bg-[var(--layout-border-color)]) z-10'
-  }
+  transformers: [transformerVariantGroup()]
 })

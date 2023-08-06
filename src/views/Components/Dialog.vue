@@ -3,11 +3,11 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { Dialog } from '@/components/Dialog'
 import { ElButton } from 'element-plus'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ref, reactive, unref } from 'vue'
-import { Form, FormExpose } from '@/components/Form'
+import { ref, reactive } from 'vue'
+import { Form, FormSchema } from '@/components/Form'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
-import { FormSchema } from '@/types/form'
+import { useForm } from '@/hooks/web/useForm'
 
 const { required } = useValidator()
 
@@ -16,6 +16,9 @@ const { t } = useI18n()
 const dialogVisible = ref(false)
 
 const dialogVisible2 = ref(false)
+
+const { formRegister, formMethods } = useForm()
+const { getElFormExpose } = formMethods
 
 const schema = reactive<FormSchema[]>([
   {
@@ -30,23 +33,18 @@ const schema = reactive<FormSchema[]>([
     field: 'field2',
     label: t('formDemo.select'),
     component: 'Select',
-    componentProps: {
-      options: [
-        {
-          label: 'option1',
-          value: '1'
-        },
-        {
-          label: 'option2',
-          value: '2'
-        }
-      ]
+    // componentProps: {
+    //   options: []
+    // },
+    optionApi: async () => {
+      const res = await getDictOneApi()
+      return res.data
     }
   },
   {
     field: 'field3',
     label: t('formDemo.radio'),
-    component: 'Radio',
+    component: 'RadioGroup',
     componentProps: {
       options: [
         {
@@ -63,7 +61,7 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'field4',
     label: t('formDemo.checkbox'),
-    component: 'Checkbox',
+    component: 'CheckboxGroup',
     value: [],
     componentProps: {
       options: [
@@ -74,10 +72,6 @@ const schema = reactive<FormSchema[]>([
         {
           label: 'option-2',
           value: '2'
-        },
-        {
-          label: 'option-3',
-          value: '3'
         }
       ]
     }
@@ -97,26 +91,15 @@ const schema = reactive<FormSchema[]>([
   }
 ])
 
-const getDictOne = async () => {
-  const res = await getDictOneApi()
-  if (res) {
-    schema[1].componentProps!.options = res.data
-  }
-}
-getDictOne()
-
-const formRef = ref<FormExpose>()
-
-const formSubmit = () => {
-  unref(formRef)
-    ?.getElFormRef()
-    ?.validate((valid) => {
-      if (valid) {
-        console.log('submit success')
-      } else {
-        console.log('submit fail')
-      }
-    })
+const formSubmit = async () => {
+  const elFormExpose = await getElFormExpose()
+  elFormExpose?.validate((valid) => {
+    if (valid) {
+      console.log('submit success')
+    } else {
+      console.log('submit fail')
+    }
+  })
 }
 </script>
 
@@ -138,7 +121,7 @@ const formSubmit = () => {
     </Dialog>
 
     <Dialog v-model="dialogVisible2" :title="t('dialogDemo.dialog')">
-      <Form ref="formRef" :schema="schema" />
+      <Form :schema="schema" @register="formRegister" />
       <template #footer>
         <ElButton type="primary" @click="formSubmit">{{ t('dialogDemo.submit') }}</ElButton>
         <ElButton @click="dialogVisible2 = false">{{ t('dialogDemo.close') }}</ElButton>

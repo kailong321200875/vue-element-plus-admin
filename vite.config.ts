@@ -10,7 +10,6 @@ import { viteMockServe } from 'vite-plugin-mock'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-// @ts-expect-error
 import DefineOptions from "unplugin-vue-define-options/vite"
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
@@ -43,14 +42,17 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           libraryName: 'element-plus',
           esModule: true,
           resolveStyle: (name) => {
+            if (name === 'click-outside') {
+              return ''
+            }
             return `element-plus/es/components/${name.substring(3)}/style/css`
           }
         }]
       }),
-      // EslintPlugin({
-      //   cache: false,
-      //   include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-      // }),
+      EslintPlugin({
+        cache: false,
+        include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
+      }),
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,

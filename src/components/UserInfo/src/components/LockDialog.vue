@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useI18n } from '@/hooks/web/useI18n'
-import { ref, unref } from 'vue'
+import { ref } from 'vue'
 import { Dialog } from '@/components/Dialog'
 import { Form } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, computed } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
-import { FormSchema } from '@/types/form'
+import { FormSchema } from '@/components/Form'
 import { ElButton } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { useLockStore } from '@/store/modules/lock'
@@ -54,14 +54,13 @@ const schema: FormSchema[] = reactive([
   }
 ])
 
-const { register, formRef, methods } = useForm({
-  schema
-})
+const { formRegister, formMethods } = useForm()
 
-const { getFormData } = methods
+const { getFormData, getElFormExpose } = formMethods
 
-const handleLock = () => {
-  unref(formRef)?.validate(async (valid) => {
+const handleLock = async () => {
+  const formExpose = await getElFormExpose()
+  formExpose?.validate(async (valid) => {
     if (valid) {
       dialogVisible.value = false
       const formData = await getFormData()
@@ -86,7 +85,7 @@ const handleLock = () => {
       <img src="@/assets/imgs/avatar.jpg" alt="" class="w-70px h-70px rounded-[50%]" />
       <span class="text-14px my-10px text-[var(--top-header-text-color)]">Archer</span>
     </div>
-    <Form :is-col="false" :rules="rules" @register="register" />
+    <Form :is-col="false" :schema="schema" :rules="rules" @register="formRegister" />
     <template #footer>
       <ElButton type="primary" @click="handleLock">{{ t('lock.lock') }}</ElButton>
     </template>

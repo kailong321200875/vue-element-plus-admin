@@ -99,7 +99,6 @@ const handleChange = (editor: IDomEditor) => {
 // 组件销毁时，及时销毁编辑器
 onBeforeUnmount(() => {
   const editor = unref(editorRef.value)
-  if (editor === null) return
 
   // 销毁，并移除 editor
   editor?.destroy()
@@ -116,12 +115,12 @@ defineExpose({
 </script>
 
 <template>
-  <div class="border-1 border-solid border-[var(--tags-view-border-color)] z-99">
+  <div class="border-1 border-solid border-[var(--el-border-color)] z-10">
     <!-- 工具栏 -->
     <Toolbar
       :editor="editorRef"
       :editorId="editorId"
-      class="b-b-1 border-solid border-[var(--tags-view-border-color)]"
+      class="border-0 b-b-1 border-solid border-[var(--el-border-color)]"
     />
     <!-- 编辑器 -->
     <Editor
