@@ -129,6 +129,16 @@ Support modern browsers, not IE
 | :-: | :-: | :-: | :-: | :-: |
 | not support | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
 
+## Donate
+
+If you find this project helpful, welcome sponsorship to show your support~
+
+<img src="https://github.com/kailong321200875/my-image/raw/master/pay.jpg" />
+
+## Group
+
+<img src="https://github.com/kailong321200875/my-image/raw/master/chat.jpg" />
+
 ## License
 
 [MIT](./LICENSE)
