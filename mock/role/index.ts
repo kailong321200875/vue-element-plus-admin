@@ -141,7 +141,7 @@ const adminList = [
             component: 'views/Components/Table/TreeTable',
             name: 'TreeTable',
             meta: {
-              title: 'router.TreeTable'
+              title: 'TreeTable'
             }
           },
           {
@@ -151,15 +151,15 @@ const adminList = [
             meta: {
               title: 'router.PicturePreview'
             }
-          },
-          {
-            path: 'ref-table',
-            component: 'views/Components/Table/RefTable',
-            name: 'RefTable',
-            meta: {
-              title: 'RefTable'
-            }
           }
+          // {
+          //   path: 'ref-table',
+          //   component: 'views/Components/Table/RefTable',
+          //   name: 'RefTable',
+          //   meta: {
+          //     title: 'RefTable'
+          //   }
+          // }
         ]
       },
       {
@@ -268,14 +268,6 @@ const adminList = [
         name: 'InputPassword',
         meta: {
           title: 'router.inputPassword'
-        }
-      },
-      {
-        path: 'sticky',
-        component: 'views/Components/Sticky',
-        name: 'Sticky',
-        meta: {
-          title: 'router.sticky'
         }
       }
     ]
@@ -472,6 +464,59 @@ const adminList = [
         }
       }
     ]
+  },
+  {
+    path: '/authorization',
+    component: '#',
+    redirect: '/authorization/user',
+    name: 'Authorization',
+    meta: {
+      title: 'router.authorization',
+      icon: 'eos-icons:role-binding',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'department',
+        component: 'views/Authorization/Department/Department',
+        name: 'Department',
+        meta: {
+          title: 'router.department'
+        }
+      },
+      {
+        path: 'user',
+        component: 'views/Authorization/User/User',
+        name: 'User',
+        meta: {
+          title: 'router.user'
+        }
+      },
+      {
+        path: 'menu',
+        component: 'views/Authorization/Menu/Menu',
+        name: 'Menu',
+        meta: {
+          title: 'router.menuManagement'
+        }
+      },
+      {
+        path: 'role',
+        component: 'views/Authorization/Role/Role',
+        name: 'Role',
+        meta: {
+          title: 'router.role'
+        }
+      },
+      {
+        path: 'test',
+        component: 'views/Authorization/Test/Test',
+        name: 'Test',
+        meta: {
+          title: 'router.permission'
+        }
+      }
+    ]
   }
 ]
 
@@ -523,6 +568,12 @@ const testList: string[] = [
   '/example/example-add',
   '/example/example-edit',
   '/example/example-detail',
+  '/authorization',
+  '/authorization/department',
+  '/authorization/user',
+  '/authorization/role',
+  '/authorization/menu',
+  '/authorization/test',
   '/error',
   '/error/404-demo',
   '/error/403-demo',

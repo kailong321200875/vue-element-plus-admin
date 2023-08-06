@@ -162,7 +162,8 @@ export default {
     treeTable: '树形表格',
     PicturePreview: '表格图片预览',
     department: '部门管理',
-    menuManagement: '菜单管理'
+    menuManagement: '菜单管理',
+    permission: '权限测试页'
   },
   permission: {
     hasPermission: '请设置操作权限值'
