@@ -292,13 +292,21 @@ const adminList = [
         }
       },
       {
-        path: 'useCrudSchemas',
-        component: 'views/hooks/useCrudSchemas',
-        name: 'UseCrudSchemas',
+        path: 'useOpenTab',
+        component: 'views/hooks/useOpenTab',
+        name: 'UseOpenTab',
         meta: {
-          title: 'useCrudSchemas'
+          title: 'useOpenTab'
         }
       }
+      // {
+      //   path: 'useCrudSchemas',
+      //   component: 'views/hooks/useCrudSchemas',
+      //   name: 'UseCrudSchemas',
+      //   meta: {
+      //     title: 'useCrudSchemas'
+      //   }
+      // }
     ]
   },
   {
@@ -555,7 +563,8 @@ const testList: string[] = [
   '/Components/Sticky',
   '/hooks',
   '/hooks/useWatermark',
-  '/hooks/useCrudSchemas',
+  '/hooks/useOpenTab',
+  // '/hooks/useCrudSchemas',
   '/level',
   '/level/menu1',
   '/level/menu1/menu1-1',

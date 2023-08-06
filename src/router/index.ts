@@ -333,6 +333,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       }
       // {
+      //   path: 'useOpenTab',
+      //   component: () => import('@/views/hooks/useOpenTab.vue'),
+      //   name: 'UseOpenTab',
+      //   meta: {
+      //     title: 'useOpenTab'
+      //   }
+      // }
+      // {
       //   path: 'useCrudSchemas',
       //   component: () => import('@/views/hooks/useCrudSchemas.vue'),
       //   name: 'UseCrudSchemas',
@@ -556,6 +564,25 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.permission'),
           permission: ['add', 'edit', 'delete']
+        }
+      }
+    ]
+  },
+  {
+    path: '/dynamic',
+    component: Layout,
+    redirect: '/404',
+    name: 'Dynamic',
+    meta: {
+      hidden: true
+    },
+    children: [
+      {
+        path: 'tab/:id',
+        component: () => import('@/components/Dynamic/src/Dynamic.vue'),
+        name: 'Dynamic',
+        meta: {
+          title: '详情页'
         }
       }
     ]
