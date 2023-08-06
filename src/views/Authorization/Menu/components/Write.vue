@@ -64,27 +64,27 @@ const formSchema = reactive<FormSchema[]>([
     label: t('menu.activeMenu'),
     component: 'Input'
   },
-  // {
-  //   field: 'meta.permission',
-  //   label: t('menu.permission'),
-  //   component: 'CheckboxGroup',
-  //   componentProps: {
-  //     options: [
-  //       {
-  //         label: 'add',
-  //         value: 'add'
-  //       },
-  //       {
-  //         label: 'edit',
-  //         value: 'edit'
-  //       },
-  //       {
-  //         label: 'delete',
-  //         value: 'delete'
-  //       }
-  //     ]
-  //   }
-  // },
+  {
+    field: 'permission',
+    label: t('menu.permission'),
+    component: 'CheckboxGroup',
+    componentProps: {
+      options: [
+        {
+          label: 'add',
+          value: 'add'
+        },
+        {
+          label: 'edit',
+          value: 'edit'
+        },
+        {
+          label: 'delete',
+          value: 'delete'
+        }
+      ]
+    }
+  },
   {
     field: 'meta.hidden',
     label: t('menu.hidden'),

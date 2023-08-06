@@ -1,7 +1,6 @@
 import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
-import { toAnyString } from '@/utils'
 
 const { code } = config
 
@@ -25,7 +24,7 @@ export default [
                 redirect: '/dashboard/analysis',
                 name: 'Dashboard',
                 status: Mock.Random.integer(0, 1),
-                id: toAnyString(),
+                id: 1,
                 meta: {
                   title: '首页',
                   icon: 'ant-design:dashboard-filled',
@@ -37,7 +36,7 @@ export default [
                     component: 'views/Dashboard/Analysis',
                     name: 'Analysis',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 2,
                     meta: {
                       title: '分析页',
                       noCache: true
@@ -48,7 +47,7 @@ export default [
                     component: 'views/Dashboard/Workplace',
                     name: 'Workplace',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 3,
                     meta: {
                       title: '工作台',
                       noCache: true
@@ -65,13 +64,13 @@ export default [
                 },
                 name: 'ExternalLink',
                 status: Mock.Random.integer(0, 1),
-                id: toAnyString(),
+                id: 4,
                 children: [
                   {
                     path: 'https://element-plus-admin-doc.cn/',
                     name: 'DocumentLink',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 5,
                     meta: {
                       title: '文档'
                     }
@@ -84,7 +83,7 @@ export default [
                 redirect: '/level/menu1/menu1-1/menu1-1-1',
                 name: 'Level',
                 status: Mock.Random.integer(0, 1),
-                id: toAnyString(),
+                id: 6,
                 meta: {
                   title: '菜单',
                   icon: 'carbon:skill-level-advanced'
@@ -95,7 +94,7 @@ export default [
                     name: 'Menu1',
                     component: '##',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 7,
                     redirect: '/level/menu1/menu1-1/menu1-1-1',
                     meta: {
                       title: '菜单1'
@@ -106,7 +105,7 @@ export default [
                         name: 'Menu11',
                         component: '##',
                         status: Mock.Random.integer(0, 1),
-                        id: toAnyString(),
+                        id: 8,
                         redirect: '/level/menu1/menu1-1/menu1-1-1',
                         meta: {
                           title: '菜单1-1',
@@ -118,10 +117,10 @@ export default [
                             name: 'Menu111',
                             component: 'views/Level/Menu111',
                             status: Mock.Random.integer(0, 1),
-                            id: toAnyString(),
+                            id: 9,
+                            permission: ['edit', 'add', 'delete'],
                             meta: {
-                              title: '菜单1-1-1',
-                              permission: ['edit', 'add']
+                              title: '菜单1-1-1'
                             }
                           }
                         ]
@@ -131,10 +130,10 @@ export default [
                         name: 'Menu12',
                         component: 'views/Level/Menu12',
                         status: Mock.Random.integer(0, 1),
-                        id: toAnyString(),
+                        id: 10,
+                        permission: ['edit', 'add', 'delete'],
                         meta: {
-                          title: '菜单1-2',
-                          permission: ['edit', 'add']
+                          title: '菜单1-2'
                         }
                       }
                     ]
@@ -144,10 +143,10 @@ export default [
                     name: 'Menu2Demo',
                     component: 'views/Level/Menu2',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 11,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
-                      title: '菜单2',
-                      permission: ['edit', 'add']
+                      title: '菜单2'
                     }
                   }
                 ]
@@ -158,7 +157,7 @@ export default [
                 redirect: '/example/example-dialog',
                 name: 'Example',
                 status: Mock.Random.integer(0, 1),
-                id: toAnyString(),
+                id: 12,
                 meta: {
                   title: '综合示例',
                   icon: 'ep:management',
@@ -170,11 +169,11 @@ export default [
                     component: 'views/Example/Dialog/ExampleDialog',
                     name: 'ExampleDialog',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 13,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
                       title: '综合示例-弹窗',
-                      currentPermission: ['edit', 'add'],
-                      permission: ['edit', 'add', 'delete']
+                      permission: ['edit', 'add']
                     }
                   },
                   {
@@ -182,11 +181,11 @@ export default [
                     component: 'views/Example/Page/ExamplePage',
                     name: 'ExamplePage',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 14,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
                       title: '综合示例-页面',
-                      currentPermission: ['edit', 'add'],
-                      permission: ['edit', 'add', 'delete']
+                      permission: ['edit', 'add']
                     }
                   },
                   {
@@ -194,7 +193,8 @@ export default [
                     component: 'views/Example/Page/ExampleAdd',
                     name: 'ExampleAdd',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 15,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
                       title: '综合示例-新增',
                       noTagsView: true,
@@ -202,8 +202,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
-                      currentPermission: ['delete', 'add'],
-                      permission: ['edit', 'add', 'delete']
+                      permission: ['delete', 'add']
                     }
                   },
                   {
@@ -211,7 +210,8 @@ export default [
                     component: 'views/Example/Page/ExampleEdit',
                     name: 'ExampleEdit',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 16,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
                       title: '综合示例-编辑',
                       noTagsView: true,
@@ -219,8 +219,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
-                      currentPermission: ['delete', 'add'],
-                      permission: ['edit', 'add', 'delete']
+                      permission: ['delete', 'add']
                     }
                   },
                   {
@@ -228,7 +227,8 @@ export default [
                     component: 'views/Example/Page/ExampleDetail',
                     name: 'ExampleDetail',
                     status: Mock.Random.integer(0, 1),
-                    id: toAnyString(),
+                    id: 17,
+                    permission: ['edit', 'add', 'delete'],
                     meta: {
                       title: '综合示例-详情',
                       noTagsView: true,
@@ -236,8 +236,7 @@ export default [
                       hidden: true,
                       showMainRoute: true,
                       activeMenu: '/example/example-page',
-                      currentPermission: ['delete', 'edit'],
-                      permission: ['edit', 'add', 'delete']
+                      permission: ['delete', 'edit']
                     }
                   }
                 ]

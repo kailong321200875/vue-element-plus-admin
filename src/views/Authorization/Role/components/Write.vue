@@ -1,12 +1,13 @@
 <script setup lang="tsx">
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
-import { PropType, reactive, watch, ref, unref } from 'vue'
+import { PropType, reactive, watch, ref, unref, nextTick } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElTree, ElCheckboxGroup, ElCheckbox } from 'element-plus'
 import { getMenuListApi } from '@/api/menu'
-import { filter } from '@/utils/tree'
+import { filter, eachTree } from '@/utils/tree'
+import { findIndex } from '@/utils'
 
 const { t } = useI18n()
 
@@ -57,8 +58,7 @@ const formSchema = ref<FormSchema[]>([
     },
     formItemProps: {
       slots: {
-        default: (formData: any) => {
-          console.log(formData)
+        default: () => {
           return (
             <>
               <div class="flex w-full">
@@ -68,6 +68,7 @@ const formSchema = ref<FormSchema[]>([
                     show-checkbox
                     node-key="id"
                     highlight-current
+                    expand-on-click-node={false}
                     data={treeData.value}
                     onNode-click={nodeClick}
                   >
@@ -79,9 +80,9 @@ const formSchema = ref<FormSchema[]>([
                   </ElTree>
                 </div>
                 <div class="flex-1">
-                  {unref(currentTreeData) && unref(currentTreeData)?.meta?.permission ? (
-                    <ElCheckboxGroup v-model={unref(currentTreeData).meta.currentPermission}>
-                      {unref(currentTreeData)?.meta?.permission.map((v: string) => {
+                  {unref(currentTreeData) && unref(currentTreeData)?.permission ? (
+                    <ElCheckboxGroup v-model={unref(currentTreeData).meta.permission}>
+                      {unref(currentTreeData)?.permission.map((v: string) => {
                         return <ElCheckbox label={v} />
                       })}
                     </ElCheckboxGroup>
@@ -115,6 +116,32 @@ const getMenuList = async () => {
   const res = await getMenuListApi()
   if (res) {
     treeData.value = res.data.list
+    if (!props.currentRow) return
+    await nextTick()
+    const checked: any[] = []
+    eachTree(props.currentRow.menu, (v) => {
+      checked.push({
+        id: v.id,
+        permission: v.meta?.permission || []
+      })
+    })
+    eachTree(treeData.value, (v) => {
+      const index = findIndex(checked, (item) => {
+        return item.id === v.id
+      })
+      if (index > -1) {
+        const meta = { ...(v.meta || {}) }
+        meta.permission = checked[index].permission
+        v.meta = meta
+      }
+    })
+    for (const item of checked) {
+      unref(treeRef)?.setChecked(item.id, true, false)
+    }
+    // unref(treeRef)?.setCheckedKeys(
+    //   checked.map((v) => v.id),
+    //   false
+    // )
   }
 }
 getMenuList()
@@ -134,6 +161,7 @@ const submit = async () => {
       return checkedKeys.includes(item.id)
     })
     formData.menu = data || []
+    console.log(formData)
     return formData
   }
 }
