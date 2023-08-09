@@ -45,7 +45,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             if (name === 'click-outside') {
               return ''
             }
-            return `element-plus/es/components/${name.substring(3)}/style/css`
+            return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
           }
         }]
       }),
