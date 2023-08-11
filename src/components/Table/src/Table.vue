@@ -371,7 +371,7 @@ export default defineComponent({
           }
         }
         if (props?.slots?.header) {
-          slots['header'] = (...args: any[]) => props.slots.header(args)
+          slots['header'] = (...args: any[]) => props.slots.header(...args)
         }
 
         return (
@@ -468,7 +468,7 @@ export default defineComponent({
             }
           }
           if (props?.slots?.header) {
-            slots['header'] = (...args: any[]) => props.slots.header(args)
+            slots['header'] = (...args: any[]) => props.slots.header(...args)
           }
 
           return (
