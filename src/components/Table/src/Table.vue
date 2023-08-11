@@ -362,7 +362,7 @@ export default defineComponent({
             return children && children.length
               ? renderTreeTableColumn(children)
               : props?.slots?.default
-              ? props.slots.default(args)
+              ? props.slots.default(...args)
               : v?.formatter
               ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
               : isImageUrl
@@ -371,7 +371,7 @@ export default defineComponent({
           }
         }
         if (props?.slots?.header) {
-          slots['header'] = (...args: any[]) => props.slots.header(args)
+          slots['header'] = (...args: any[]) => props.slots.header(...args)
         }
 
         return (
@@ -459,7 +459,7 @@ export default defineComponent({
               return children && children.length
                 ? renderTreeTableColumn(children)
                 : props?.slots?.default
-                ? props.slots.default(args)
+                ? props.slots.default(...args)
                 : v?.formatter
                 ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
                 : isImageUrl
@@ -468,7 +468,7 @@ export default defineComponent({
             }
           }
           if (props?.slots?.header) {
-            slots['header'] = (...args: any[]) => props.slots.header(args)
+            slots['header'] = (...args: any[]) => props.slots.header(...args)
           }
 
           return (
@@ -489,10 +489,10 @@ export default defineComponent({
     return () => {
       const tableSlots = {}
       if (getSlot(slots, 'empty')) {
-        tableSlots['empty'] = (...args: any[]) => getSlot(slots, 'empty', args)
+        tableSlots['empty'] = (...args: any[]) => getSlot(slots, 'empty', ...args)
       }
       if (getSlot(slots, 'append')) {
-        tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', args)
+        tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', ...args)
       }
 
       // const { sortable } = unref(getProps)
