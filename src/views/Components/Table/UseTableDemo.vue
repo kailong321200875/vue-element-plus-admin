@@ -30,8 +30,8 @@ const columns = reactive<TableColumn[]>([
     field: 'expand',
     type: 'expand',
     slots: {
-      default: (data: TableSlotDefault[]) => {
-        const { row } = data[0]
+      default: (data: TableSlotDefault) => {
+        const { row } = data
         return (
           <div class="ml-30px">
             <div>

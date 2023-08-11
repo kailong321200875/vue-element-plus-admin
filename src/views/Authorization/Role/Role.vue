@@ -47,8 +47,8 @@ const tableColumns = reactive<TableColumn[]>([
       default: (data: any) => {
         return (
           <>
-            <ElTag type={data[0].row.status === 0 ? 'danger' : 'success'}>
-              {data[0].row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+            <ElTag type={data.row.status === 0 ? 'danger' : 'success'}>
+              {data.row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
             </ElTag>
           </>
         )
@@ -69,7 +69,7 @@ const tableColumns = reactive<TableColumn[]>([
     width: 240,
     slots: {
       default: (data: any) => {
-        const row = data[0].row
+        const row = data.row
         return (
           <>
             <ElButton type="primary" onClick={() => action(row, 'edit')}>

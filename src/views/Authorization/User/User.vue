@@ -150,7 +150,7 @@ const crudSchemas = reactive<CrudSchema[]>([
       width: 240,
       slots: {
         default: (data: any) => {
-          const row = data[0].row as DepartmentUserItem
+          const row = data.row as DepartmentUserItem
           return (
             <>
               <ElButton type="primary" onClick={() => action(row, 'edit')}>

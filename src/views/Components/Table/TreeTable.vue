@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
+import { Table, TableColumn } from '@/components/Table'
 import { getTreeTableListApi } from '@/api/table'
 import { reactive, unref } from 'vue'
 import { ElTag, ElButton } from 'element-plus'
@@ -86,7 +86,7 @@ const columns = reactive<TableColumn[]>([
   }
 ])
 
-const actionFn = (data: TableSlotDefault) => {
+const actionFn = (data) => {
   console.log(data)
 }
 </script>
