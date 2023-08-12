@@ -164,7 +164,10 @@ export default {
     department: 'Department management',
     menuManagement: 'Menu management',
     // 权限测试页面
-    permission: 'Permission test page'
+    permission: 'Permission test page',
+    function: 'Function',
+    multipleTabs: 'Multiple tabs',
+    details: 'Details'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'

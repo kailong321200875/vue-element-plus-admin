@@ -362,7 +362,7 @@ export default defineComponent({
             return children && children.length
               ? renderTreeTableColumn(children)
               : props?.slots?.default
-              ? props.slots.default(args)
+              ? props.slots.default(...args)
               : v?.formatter
               ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
               : isImageUrl
@@ -371,7 +371,7 @@ export default defineComponent({
           }
         }
         if (props?.slots?.header) {
-          slots['header'] = (...args: any[]) => props.slots.header(args)
+          slots['header'] = (...args: any[]) => props.slots.header(...args)
         }
 
         return (
@@ -459,7 +459,7 @@ export default defineComponent({
               return children && children.length
                 ? renderTreeTableColumn(children)
                 : props?.slots?.default
-                ? props.slots.default(args)
+                ? props.slots.default(...args)
                 : v?.formatter
                 ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
                 : isImageUrl
@@ -468,7 +468,7 @@ export default defineComponent({
             }
           }
           if (props?.slots?.header) {
-            slots['header'] = (...args: any[]) => props.slots.header(args)
+            slots['header'] = (...args: any[]) => props.slots.header(...args)
           }
 
           return (

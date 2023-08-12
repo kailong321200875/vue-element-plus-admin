@@ -212,13 +212,13 @@ const crudSchemas = reactive<CrudSchema[]>([
         default: (data: any) => {
           return (
             <>
-              <ElButton type="primary" onClick={() => action(data[0].row, 'edit')}>
+              <ElButton type="primary" onClick={() => action(data.row, 'edit')}>
                 {t('exampleDemo.edit')}
               </ElButton>
-              <ElButton type="success" onClick={() => action(data[0].row, 'detail')}>
+              <ElButton type="success" onClick={() => action(data.row, 'detail')}>
                 {t('exampleDemo.detail')}
               </ElButton>
-              <ElButton type="danger" onClick={() => delData(data[0].row)}>
+              <ElButton type="danger" onClick={() => delData(data.row)}>
                 {t('exampleDemo.del')}
               </ElButton>
             </>

@@ -273,6 +273,37 @@ const adminList = [
     ]
   },
   {
+    path: '/function',
+    component: '#',
+    redirect: '/function/multipleTabs',
+    name: 'Function',
+    meta: {
+      title: 'router.function',
+      icon: 'ri:function-fill',
+      alwaysShow: true
+    },
+    children: [
+      {
+        path: 'multipleTabs',
+        component: 'views/Function/MultipleTabs',
+        name: 'MultipleTabs',
+        meta: {
+          title: 'router.multipleTabs'
+        }
+      },
+      {
+        path: 'multipleTabs-demo/:id',
+        component: 'views/Function/MultipleTabsDemo',
+        name: 'MultipleTabsDemo',
+        meta: {
+          hidden: true,
+          title: 'router.details',
+          canTo: true
+        }
+      }
+    ]
+  },
+  {
     path: '/hooks',
     component: '#',
     redirect: '/hooks/useWatermark',
@@ -561,6 +592,9 @@ const testList: string[] = [
   '/components/infotip',
   '/Components/InputPassword',
   '/Components/Sticky',
+  'function',
+  '/function/multiple-tabs',
+  '/function/multiple-tabs-demo/:id',
   '/hooks',
   '/hooks/useWatermark',
   '/hooks/useOpenTab',

@@ -41,7 +41,7 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('menu.icon'),
     slots: {
       default: (data: any) => {
-        const icon = data[0].row.meta.icon
+        const icon = data.row.meta.icon
         if (icon) {
           return (
             <>
@@ -59,7 +59,7 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('menu.permission'),
     slots: {
       default: (data: any) => {
-        const permission = data[0].row.meta.permission
+        const permission = data.row.meta.permission
         return permission ? <>{permission.join(', ')}</> : null
       }
     }
@@ -69,7 +69,7 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('menu.component'),
     slots: {
       default: (data: any) => {
-        const component = data[0].row.component
+        const component = data.row.component
         return <>{component === '#' ? '顶级目录' : component === '##' ? '子目录' : component}</>
       }
     }
@@ -85,8 +85,8 @@ const tableColumns = reactive<TableColumn[]>([
       default: (data: any) => {
         return (
           <>
-            <ElTag type={data[0].row.status === 0 ? 'danger' : 'success'}>
-              {data[0].row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+            <ElTag type={data.row.status === 0 ? 'danger' : 'success'}>
+              {data.row.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
             </ElTag>
           </>
         )
@@ -99,7 +99,7 @@ const tableColumns = reactive<TableColumn[]>([
     width: 240,
     slots: {
       default: (data: any) => {
-        const row = data[0].row
+        const row = data.row
         return (
           <>
             <ElButton type="primary" onClick={() => action(row, 'edit')}>

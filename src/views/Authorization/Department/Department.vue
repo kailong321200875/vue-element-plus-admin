@@ -85,7 +85,7 @@ const crudSchemas = reactive<CrudSchema[]>([
     table: {
       slots: {
         default: (data: any) => {
-          return <>{data[0].row.departmentName}</>
+          return <>{data.row.departmentName}</>
         }
       }
     },
@@ -119,7 +119,7 @@ const crudSchemas = reactive<CrudSchema[]>([
     table: {
       slots: {
         default: (data: any) => {
-          const status = data[0].row.status
+          const status = data.row.status
           return (
             <>
               <ElTag type={status === 0 ? 'danger' : 'success'}>
@@ -215,13 +215,13 @@ const crudSchemas = reactive<CrudSchema[]>([
         default: (data: any) => {
           return (
             <>
-              <ElButton type="primary" onClick={() => action(data[0].row, 'edit')}>
+              <ElButton type="primary" onClick={() => action(data.row, 'edit')}>
                 {t('exampleDemo.edit')}
               </ElButton>
-              <ElButton type="success" onClick={() => action(data[0].row, 'detail')}>
+              <ElButton type="success" onClick={() => action(data.row, 'detail')}>
                 {t('exampleDemo.detail')}
               </ElButton>
-              <ElButton type="danger" onClick={() => delData(data[0].row)}>
+              <ElButton type="danger" onClick={() => delData(data.row)}>
                 {t('exampleDemo.del')}
               </ElButton>
             </>

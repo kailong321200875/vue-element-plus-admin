@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
+import { Table, TableColumn } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { ref, h } from 'vue'
@@ -87,7 +87,7 @@ const getTableList = async (params?: Params) => {
 
 getTableList()
 
-const actionFn = (data: TableSlotDefault) => {
+const actionFn = (data: any) => {
   console.log(data)
 }
 </script>
