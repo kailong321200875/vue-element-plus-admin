@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 const { push } = useRouter()
 
 const openTab = (item: number) => {
-  push(`/function/multipleTabs-demo/${item}`)
+  push(`/function/multiple-tabs-demo/${item}`)
 }
 </script>
 

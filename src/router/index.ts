@@ -325,7 +325,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     },
     children: [
       {
-        path: 'multipleTabs',
+        path: 'multiple-tabs',
         component: () => import('@/views/Function/MultipleTabs.vue'),
         name: 'MultipleTabs',
         meta: {
@@ -333,7 +333,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
-        path: 'multipleTabs-demo/:id',
+        path: 'multiple-tabs-demo/:id',
         component: () => import('@/views/Function/MultipleTabsDemo.vue'),
         name: 'MultipleTabsDemo',
         meta: {
@@ -361,14 +361,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'UseWatermark',
         meta: {
           title: 'useWatermark'
-        }
-      },
-      {
-        path: 'useTab',
-        component: () => import('@/views/hooks/useTab.vue'),
-        name: 'UseTab',
-        meta: {
-          title: 'useTab'
         }
       }
       // {
