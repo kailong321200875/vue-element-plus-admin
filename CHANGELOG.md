@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.0.0...v2.1.0) (2023-08-12)
+
+
+### Features
+
+* 新增多开标签页Demo ([5c253ce](https://github.com/kailong321200875/vue-element-plus-admin/commit/5c253ce803a9ef7ce03534ddd5f0865db4602378))
+
+
+### Bug Fixes
+
+* [#307](https://github.com/kailong321200875/vue-element-plus-admin/issues/307) ([4ce07e1](https://github.com/kailong321200875/vue-element-plus-admin/commit/4ce07e150c0bd3903cc5f43fcd88c2cb292d7690))
+* [#311](https://github.com/kailong321200875/vue-element-plus-admin/issues/311) ([bdde4cc](https://github.com/kailong321200875/vue-element-plus-admin/commit/bdde4ccd39d5d698d68b299c6e80546d4a8be89f))
+* 修复eslint错误 ([b5e47e0](https://github.com/kailong321200875/vue-element-plus-admin/commit/b5e47e04d8f5f889e0c46a2dced108d058ded94e))
+* 修复Table插槽传参错误 ([97344e6](https://github.com/kailong321200875/vue-element-plus-admin/commit/97344e68f5abb144d9e5d4ad273108858dbcfba2))
+* 修复Table组件插槽传参错误 ([c83a026](https://github.com/kailong321200875/vue-element-plus-admin/commit/c83a026d559e2854fead17d2e28fbebcf25490de))
+
+
+### Docs
+
+* 修改Readme ([ee059b7](https://github.com/kailong321200875/vue-element-plus-admin/commit/ee059b7619ad01ded9d3be20287086ddbcce3253))
+* 修改Readme ([e05f5a7](https://github.com/kailong321200875/vue-element-plus-admin/commit/e05f5a77edc175daa267e4fc6abbcfc8fec2e291))
+* 修改Readme ([b0e561d](https://github.com/kailong321200875/vue-element-plus-admin/commit/b0e561d8acd36e8780087e317cc34257956981fd))
+* 修改Readme ([fced2e0](https://github.com/kailong321200875/vue-element-plus-admin/commit/fced2e0087694445a89cf360e5e3e3013d8ca604))
+* 修改README ([dce76f0](https://github.com/kailong321200875/vue-element-plus-admin/commit/dce76f042d5243039540828a3fd982af25f37531))
+* 更新群二维码 ([607ef58](https://github.com/kailong321200875/vue-element-plus-admin/commit/607ef585d010c9ade6f54d96c2a12b36099ece74))
+
+
+### Styling
+
+* 修改TabMenu样式 ([e8cd6f9](https://github.com/kailong321200875/vue-element-plus-admin/commit/e8cd6f9e1c4387c582e461cde4d59796bf17c1bd))
+
 ## [2.0.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v1.10.0...v2.0.0) (2023-08-06)
 
 
