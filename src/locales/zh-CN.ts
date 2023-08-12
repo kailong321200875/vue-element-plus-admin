@@ -163,7 +163,10 @@ export default {
     PicturePreview: '表格图片预览',
     department: '部门管理',
     menuManagement: '菜单管理',
-    permission: '权限测试页'
+    permission: '权限测试页',
+    function: '功能',
+    multipleTabs: '多开标签页',
+    details: '详情页'
   },
   permission: {
     hasPermission: '请设置操作权限值'
