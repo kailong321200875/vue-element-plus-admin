@@ -137,7 +137,7 @@ pnpm run build:pro
 
 ## 交流群
 
-<img src="https://gitee.com/kailong110120130/my-image/raw/master/chat.jpg" />
+<img src="https://gitee.com/kailong110120130/my-image/raw/master/chat-0820.jpg" />
 
 ## 许可证
 
