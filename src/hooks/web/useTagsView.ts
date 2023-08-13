@@ -47,8 +47,8 @@ export const useTagsView = () => {
     callback?.()
   }
 
-  const setTitle = (title: string) => {
-    tagsViewStore.setTitle(title)
+  const setTitle = (title: string, path?: string) => {
+    tagsViewStore.setTitle(title, path)
   }
 
   return {

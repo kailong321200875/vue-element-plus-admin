@@ -13,6 +13,7 @@ import { useTemplateRefsList } from '@vueuse/core'
 import { ElScrollbar } from 'element-plus'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
 import { useTagsView } from '@/hooks/web/useTagsView'
+import { cloneDeep } from 'lodash-es'
 
 const { getPrefixCls } = useDesign()
 
@@ -50,7 +51,7 @@ const initTags = () => {
   for (const tag of unref(affixTagArr)) {
     // Must have tag name
     if (tag.name) {
-      tagsViewStore.addVisitedView(tag)
+      tagsViewStore.addVisitedView(cloneDeep(tag))
     }
   }
 }

@@ -141,9 +141,9 @@ export const useTagsViewStore = defineStore('tagsView', {
     setSelectedTag(tag: RouteLocationNormalizedLoaded) {
       this.selectedTag = tag
     },
-    setTitle(title: string) {
+    setTitle(title: string, path?: string) {
       for (const v of this.visitedViews) {
-        if (v.path === this.selectedTag?.path) {
+        if (v.path === (path ?? this.selectedTag?.path)) {
           v.meta.title = title
           break
         }
