@@ -6,6 +6,8 @@ import { useRenderMenuTitle } from './useRenderMenuTitle'
 import { useDesign } from '@/hooks/web/useDesign'
 import { pathResolve } from '@/utils/routerHelper'
 
+const { renderMenuTitle } = useRenderMenuTitle()
+
 export const useRenderMenuItem = (
   // allRouters: AppRouteRecordRaw[] = [],
   menuMode: 'vertical' | 'horizontal'
@@ -16,8 +18,6 @@ export const useRenderMenuItem = (
       if (!meta.hidden) {
         const { oneShowingChild, onlyOneChild } = hasOneShowingChild(v.children, v)
         const fullPath = isUrl(v.path) ? v.path : pathResolve(parentPath, v.path) // getAllParentPath<AppRouteRecordRaw>(allRouters, v.path).join('/')
-
-        const { renderMenuTitle } = useRenderMenuTitle()
 
         if (
           oneShowingChild &&

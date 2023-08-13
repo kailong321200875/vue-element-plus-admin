@@ -362,6 +362,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useWatermark'
         }
+      },
+      {
+        path: 'useTagsView',
+        component: () => import('@/views/hooks/useTagsView.vue'),
+        name: 'UseTagsView',
+        meta: {
+          title: 'useTagsView'
+        }
       }
       // {
       //   path: 'useCrudSchemas',

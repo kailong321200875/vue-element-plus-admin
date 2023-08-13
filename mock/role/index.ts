@@ -323,11 +323,11 @@ const adminList = [
         }
       },
       {
-        path: 'useOpenTab',
-        component: 'views/hooks/useOpenTab',
-        name: 'UseOpenTab',
+        path: 'useTagsView',
+        component: 'views/hooks/useTagsView',
+        name: 'UseTagsView',
         meta: {
-          title: 'useOpenTab'
+          title: 'useTagsView'
         }
       }
       // {
@@ -597,7 +597,7 @@ const testList: string[] = [
   '/function/multiple-tabs-demo/:id',
   '/hooks',
   '/hooks/useWatermark',
-  '/hooks/useOpenTab',
+  '/hooks/useTagsView',
   // '/hooks/useCrudSchemas',
   '/level',
   '/level/menu1',

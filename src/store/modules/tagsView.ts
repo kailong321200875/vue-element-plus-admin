@@ -8,12 +8,14 @@ import { findIndex } from '@/utils'
 export interface TagsViewState {
   visitedViews: RouteLocationNormalizedLoaded[]
   cachedViews: Set<string>
+  selectedTag?: RouteLocationNormalizedLoaded
 }
 
 export const useTagsViewStore = defineStore('tagsView', {
   state: (): TagsViewState => ({
     visitedViews: [],
-    cachedViews: new Set()
+    cachedViews: new Set(),
+    selectedTag: undefined
   }),
   getters: {
     getVisitedViews(): RouteLocationNormalizedLoaded[] {
@@ -21,6 +23,9 @@ export const useTagsViewStore = defineStore('tagsView', {
     },
     getCachedViews(): string[] {
       return Array.from(this.cachedViews)
+    },
+    getSelectedTag(): RouteLocationNormalizedLoaded | undefined {
+      return this.selectedTag
     }
   },
   actions: {
@@ -85,7 +90,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     // 删除所有tag
     delAllVisitedViews() {
       // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
-      this.visitedViews = []
+      this.visitedViews = this.visitedViews.filter((tag) => tag.meta?.affix)
     },
     // 删除其它
     delOthersViews(view: RouteLocationNormalizedLoaded) {
@@ -131,6 +136,10 @@ export const useTagsViewStore = defineStore('tagsView', {
           break
         }
       }
+    },
+    // 设置当前选中的tag
+    setSelectedTag(tag: RouteLocationNormalizedLoaded) {
+      this.selectedTag = tag
     }
   }
 })

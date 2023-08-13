@@ -12,6 +12,7 @@ import { useDesign } from '@/hooks/web/useDesign'
 import { useTemplateRefsList } from '@vueuse/core'
 import { ElScrollbar } from 'element-plus'
 import { useScrollTo } from '@/hooks/event/useScrollTo'
+import { useTagsView } from '@/hooks/web/useTagsView'
 
 const { getPrefixCls } = useDesign()
 
@@ -19,7 +20,9 @@ const prefixCls = getPrefixCls('tags-view')
 
 const { t } = useI18n()
 
-const { currentRoute, push, replace } = useRouter()
+const { currentRoute, push } = useRouter()
+
+const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage } = useTagsView()
 
 const permissionStore = usePermissionStore()
 
@@ -30,6 +33,10 @@ const tagsViewStore = useTagsViewStore()
 const visitedViews = computed(() => tagsViewStore.getVisitedViews)
 
 const affixTagArr = ref<RouteLocationNormalizedLoaded[]>([])
+
+const selectedTag = computed(() => tagsViewStore.getSelectedTag)
+
+const setSelectTag = tagsViewStore.setSelectedTag
 
 const appStore = useAppStore()
 
@@ -48,61 +55,25 @@ const initTags = () => {
   }
 }
 
-const selectedTag = ref<RouteLocationNormalizedLoaded>()
-
 // 新增tag
 const addTags = () => {
   const { name } = unref(currentRoute)
   if (name) {
-    selectedTag.value = unref(currentRoute)
+    setSelectTag(unref(currentRoute))
     tagsViewStore.addView(unref(currentRoute))
   }
-  return false
 }
 
 // 关闭选中的tag
 const closeSelectedTag = (view: RouteLocationNormalizedLoaded) => {
-  if (view?.meta?.affix) return
-  tagsViewStore.delView(view)
-  if (isActive(view)) {
-    toLastView()
-  }
-}
-
-// 关闭全部
-const closeAllTags = () => {
-  tagsViewStore.delAllViews()
-  toLastView()
-}
-
-// 关闭其它
-const closeOthersTags = () => {
-  tagsViewStore.delOthersViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
-}
-
-// 重新加载
-const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
-  if (!view) return
-  tagsViewStore.delCachedView()
-  const { path, query } = view
-  await nextTick()
-  replace({
-    path: '/redirect' + path,
-    query: query
+  closeCurrent(view, () => {
+    if (isActive(view)) {
+      toLastView()
+    }
   })
 }
 
-// 关闭左侧
-const closeLeftTags = () => {
-  tagsViewStore.delLeftViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
-}
-
-// 关闭右侧
-const closeRightTags = () => {
-  tagsViewStore.delRightViews(unref(selectedTag) as RouteLocationNormalizedLoaded)
-}
-
-// 跳转到最后一个
+// 去最后一个
 const toLastView = () => {
   const visitedViews = tagsViewStore.getVisitedViews
   const latestView = visitedViews.slice(-1)[0]
@@ -119,6 +90,33 @@ const toLastView = () => {
     // You can set another route
     push(permissionStore.getAddRouters[0].path)
   }
+}
+
+// 关闭全部
+const closeAllTags = () => {
+  closeAll(() => {
+    toLastView()
+  })
+}
+
+// 关闭其它
+const closeOthersTags = () => {
+  closeOther()
+}
+
+// 重新加载
+const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
+  refreshPage(view)
+}
+
+// 关闭左侧
+const closeLeftTags = () => {
+  closeLeft()
+}
+
+// 关闭右侧
+const closeRightTags = () => {
+  closeRight()
 }
 
 // 滚动到选中的tag
@@ -583,3 +581,4 @@ watch(
   }
 }
 </style>
+@/hooks/web/useTagsView
