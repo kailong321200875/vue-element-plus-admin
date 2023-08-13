@@ -339,7 +339,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           hidden: true,
           title: t('router.details'),
-          canTo: true
+          canTo: true,
+          activeMenu: '/function/multiple-tabs'
         }
       }
     ]

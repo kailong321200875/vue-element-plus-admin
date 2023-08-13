@@ -47,12 +47,17 @@ export const useTagsView = () => {
     callback?.()
   }
 
+  const setTitle = (title: string) => {
+    tagsViewStore.setTitle(title)
+  }
+
   return {
     closeAll,
     closeLeft,
     closeRight,
     closeOther,
     closeCurrent,
-    refreshPage
+    refreshPage,
+    setTitle
   }
 }

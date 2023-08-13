@@ -6,7 +6,8 @@ import { useRouter } from 'vue-router'
 
 const { push } = useRouter()
 
-const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage } = useTagsView()
+const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage, setTitle } =
+  useTagsView()
 
 const closeAllTabs = () => {
   closeAll(() => {
@@ -35,6 +36,10 @@ const closeCurrentTab = () => {
     push('/dashboard/analysis')
   })
 }
+
+const setTabTitle = () => {
+  setTitle(new Date().getTime().toString())
+}
 </script>
 
 <template>
@@ -45,6 +50,6 @@ const closeCurrentTab = () => {
     <ElButton @click="closeOtherTabs"> 关闭其他标签页 </ElButton>
     <ElButton @click="closeCurrentTab"> 关闭当前标签页 </ElButton>
     <ElButton @click="refresh"> 刷新当前标签页 </ElButton>
+    <ElButton @click="setTabTitle"> 修改当前标题 </ElButton>
   </ContentWrap>
 </template>
-@/hooks/web/useTagsView

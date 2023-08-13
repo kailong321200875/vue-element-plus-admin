@@ -140,6 +140,14 @@ export const useTagsViewStore = defineStore('tagsView', {
     // 设置当前选中的tag
     setSelectedTag(tag: RouteLocationNormalizedLoaded) {
       this.selectedTag = tag
+    },
+    setTitle(title: string) {
+      for (const v of this.visitedViews) {
+        if (v.path === this.selectedTag?.path) {
+          v.meta.title = title
+          break
+        }
+      }
     }
   }
 })
