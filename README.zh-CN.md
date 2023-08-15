@@ -133,6 +133,8 @@ pnpm run build:pro
 
 如果你觉得这个项目有帮助，欢迎赞助以示支持~
 
+[Paypal Me](https://www.paypal.com/paypalme/ckl94)
+
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/pay.jpg" />
 
 ## 交流群

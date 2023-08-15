@@ -133,6 +133,8 @@ Support modern browsers, not IE
 
 If you find this project helpful, welcome sponsorship to show your support~
 
+[Paypal Me](https://www.paypal.com/paypalme/ckl94)
+
 <img src="https://github.com/kailong321200875/my-image/raw/master/pay.jpg" />
 
 ## Group
