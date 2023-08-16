@@ -313,7 +313,7 @@ export default {
     guide: '引导页',
     start: '开始',
     message:
-      '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 intro.js'
+      '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 driver.js'
   },
   iconDemo: {
     icon: '图标',
