@@ -44,7 +44,11 @@ export default {
     refresh: 'Refresh',
     fullscreen: 'Fullscreen',
     size: 'Size',
-    columnSetting: 'Column setting'
+    columnSetting: 'Column setting',
+    lengthRange: 'The length should be between {min} and {max}',
+    notSpace: 'Spaces are not allowed',
+    notSpecialCharacters: 'Special characters are not allowed',
+    isEqual: 'The two are not equal'
   },
   lock: {
     lockScreen: 'Lock screen',

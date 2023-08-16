@@ -44,7 +44,11 @@ export default {
     refresh: '刷新',
     fullscreen: '全屏',
     size: '尺寸',
-    columnSetting: '列设置'
+    columnSetting: '列设置',
+    lengthRange: '长度在 {min} 到 {max} 个字符',
+    notSpace: '不能包含空格',
+    notSpecialCharacters: '不能包含特殊字符',
+    isEqual: '两次输入不一致'
   },
   lock: {
     lockScreen: '锁定屏幕',

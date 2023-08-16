@@ -371,6 +371,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useTagsView'
         }
+      },
+      {
+        path: 'useValidator',
+        component: () => import('@/views/hooks/useValidator.vue'),
+        name: 'UseValidator',
+        meta: {
+          title: 'useValidator'
+        }
       }
       // {
       //   path: 'useCrudSchemas',

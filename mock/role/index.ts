@@ -329,6 +329,14 @@ const adminList = [
         meta: {
           title: 'useTagsView'
         }
+      },
+      {
+        path: 'useValidator',
+        component: 'views/hooks/useValidator',
+        name: 'UseValidator',
+        meta: {
+          title: 'useValidator'
+        }
       }
       // {
       //   path: 'useCrudSchemas',
@@ -598,6 +606,7 @@ const testList: string[] = [
   '/hooks',
   '/hooks/useWatermark',
   '/hooks/useTagsView',
+  '/hooks/useValidator',
   // '/hooks/useCrudSchemas',
   '/level',
   '/level/menu1',
