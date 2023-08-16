@@ -30,7 +30,7 @@ export const useValidator = () => {
   const notSpace = (message?: string): FormItemRule => {
     return {
       validator: (_, val, callback) => {
-        if (val.indexOf(' ') !== -1) {
+        if (val?.indexOf(' ') !== -1) {
           callback(new Error(message || t('common.notSpace')))
         } else {
           callback()
