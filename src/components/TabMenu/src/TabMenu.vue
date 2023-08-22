@@ -105,7 +105,8 @@ export default defineComponent({
       tabActive.value = item.children ? item.path : item.path.split('/')[0]
       if (item.children) {
         if (newPath === oldPath || !unref(showMenu)) {
-          showMenu.value = unref(fixedMenu) ? true : !unref(showMenu)
+          // showMenu.value = unref(fixedMenu) ? true : !unref(showMenu)
+          showMenu.value = !unref(showMenu)
         }
         if (unref(showMenu)) {
           permissionStore.setMenuTabRouters(
@@ -131,11 +132,6 @@ export default defineComponent({
       return false
     }
 
-    const mouseleave = () => {
-      if (!unref(showMenu) || unref(fixedMenu)) return
-      showMenu.value = false
-    }
-
     return () => (
       <div
         id={`${variables.namespace}-menu`}
@@ -147,7 +143,6 @@ export default defineComponent({
             'w-[var(--tab-menu-min-width)]': unref(collapse)
           }
         ]}
-        onMouseleave={mouseleave}
       >
         <ElScrollbar class="!h-[calc(100%-var(--tab-menu-collapse-height)-1px)]">
           <div>
@@ -197,11 +192,11 @@ export default defineComponent({
         </div>
         <Menu
           class={[
-            '!absolute top-0',
+            '!absolute top-0 z-4000',
             {
               '!left-[var(--tab-menu-min-width)]': unref(collapse),
               '!left-[var(--tab-menu-max-width)]': !unref(collapse),
-              '!w-[calc(var(--left-menu-max-width)+1px)]': unref(showMenu) || unref(fixedMenu),
+              '!w-[var(--left-menu-max-width)]': unref(showMenu) || unref(fixedMenu),
               '!w-0': !unref(showMenu) && !unref(fixedMenu)
             }
           ]}
