@@ -3,7 +3,6 @@ import type {
   Router,
   RouteLocationNormalized,
   RouteRecordNormalized,
-  RouteMeta,
   RouteRecordRaw
 } from 'vue-router'
 import { isUrl } from '@/utils/is'
@@ -47,7 +46,7 @@ export const generateRoutesFn1 = (
   const res: AppRouteRecordRaw[] = []
 
   for (const route of routes) {
-    const meta = route.meta as RouteMeta
+    const meta = route.meta ?? {}
     // skip some route
     if (meta.hidden && !meta.canTo) {
       continue

@@ -1,4 +1,3 @@
-import type { RouteMeta } from 'vue-router'
 import { ref, unref } from 'vue'
 import { findPath } from '@/utils/tree'
 
@@ -21,7 +20,7 @@ export const hasOneShowingChild = (
   const onlyOneChild = ref<OnlyOneChildType>()
 
   const showingChildren = children.filter((v) => {
-    const meta = (v.meta ?? {}) as RouteMeta
+    const meta = v.meta ?? {}
     if (meta.hidden) {
       return false
     } else {
