@@ -147,6 +147,7 @@ export default {
     defaultTable: 'Basic example',
     editor: 'Editor',
     richText: 'Rich text',
+    jsonEditor: 'JSON Editor',
     dialog: 'Dialog',
     imageViewer: 'Image viewer',
     descriptions: 'Descriptions',
@@ -300,6 +301,7 @@ export default {
     verifyReset: 'Verify reset',
     // 富文本编辑器
     richText: 'Rich text',
+    jsonEditor: 'JSON Editor',
     form: 'Form',
     // 远程加载
     remoteLoading: 'Remote loading',
@@ -448,7 +450,9 @@ export default {
   },
   richText: {
     richText: 'Rich text',
-    richTextDes: 'Secondary packaging based on wangeditor'
+    richTextDes: 'Secondary packaging based on wangeditor',
+    jsonEditor: 'JSON Editor',
+    jsonEditorDes: 'Secondary packaging based on vue-json-pretty'
   },
   dialogDemo: {
     dialog: 'Dialog',

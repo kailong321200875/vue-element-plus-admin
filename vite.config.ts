@@ -31,7 +31,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
-      Vue(),
+      Vue({
+        script: {
+          // 开启defineModel
+          defineModel: true
+        }
+      }),
       VueJsx(),
       // WindiCSS(),
       progress(),
@@ -145,7 +150,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'intro.js',
         'qrcode',
         '@wangeditor/editor',
-        '@wangeditor/editor-for-vue'
+        '@wangeditor/editor-for-vue',
+        'vue-json-pretty'
       ]
     }
   }

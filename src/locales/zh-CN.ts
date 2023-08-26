@@ -147,6 +147,7 @@ export default {
     defaultTable: '基础示例',
     editor: '编辑器',
     richText: '富文本',
+    jsonEditor: 'JSON编辑器',
     dialog: '弹窗',
     imageViewer: '图片预览',
     descriptions: '描述',
@@ -298,6 +299,8 @@ export default {
     verifyReset: '验证重置',
     // 富文本编辑器
     richText: '富文本编辑器',
+    // JSON编辑器
+    jsonEditor: 'JSON编辑器',
     form: '表单',
     // 远程加载
     remoteLoading: '远程加载',
@@ -441,7 +444,9 @@ export default {
   },
   richText: {
     richText: '富文本',
-    richTextDes: '基于 wangeditor 二次封装'
+    richTextDes: '基于 wangeditor 二次封装',
+    jsonEditor: 'JSON编辑器',
+    jsonEditorDes: '基于 vue-json-pretty 二次封装'
   },
   dialogDemo: {
     dialog: '弹窗',

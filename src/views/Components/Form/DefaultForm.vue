@@ -1760,6 +1760,20 @@ const schema = reactive<FormSchema[]>([
         )
       }
     }
+  },
+  {
+    field: 'field85',
+    component: 'Divider',
+    label: t('formDemo.jsonEditor')
+  },
+  {
+    field: 'field86',
+    component: 'JsonEditor',
+    label: t('formDemo.default'),
+    value: {
+      a: 1,
+      b: 2
+    }
   }
 ])
 </script>

@@ -179,6 +179,14 @@ const adminList = [
             meta: {
               title: 'router.richText'
             }
+          },
+          {
+            path: 'json-editor',
+            component: 'views/Components/Editor/JsonEditor',
+            name: 'JsonEditor',
+            meta: {
+              title: 'router.jsonEditor'
+            }
           }
         ]
       },
@@ -588,6 +596,7 @@ const testList: string[] = [
   '/components/table/ref-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',
+  '/components/editor-demo/json-editor',
   '/components/search',
   '/components/descriptions',
   '/components/image-viewer',

@@ -220,6 +220,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.richText')
             }
+          },
+          {
+            path: 'json-editor',
+            component: () => import('@/views/Components/Editor/JsonEditor.vue'),
+            name: 'JsonEditor',
+            meta: {
+              title: t('router.jsonEditor')
+            }
           }
         ]
       },
