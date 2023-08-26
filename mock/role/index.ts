@@ -345,15 +345,15 @@ const adminList = [
         meta: {
           title: 'useValidator'
         }
+      },
+      {
+        path: 'useCrudSchemas',
+        component: 'views/hooks/useCrudSchemas',
+        name: 'UseCrudSchemas',
+        meta: {
+          title: 'useCrudSchemas'
+        }
       }
-      // {
-      //   path: 'useCrudSchemas',
-      //   component: 'views/hooks/useCrudSchemas',
-      //   name: 'UseCrudSchemas',
-      //   meta: {
-      //     title: 'useCrudSchemas'
-      //   }
-      // }
     ]
   },
   {
@@ -616,7 +616,7 @@ const testList: string[] = [
   '/hooks/useWatermark',
   '/hooks/useTagsView',
   '/hooks/useValidator',
-  // '/hooks/useCrudSchemas',
+  '/hooks/useCrudSchemas',
   '/level',
   '/level/menu1',
   '/level/menu1/menu1-1',

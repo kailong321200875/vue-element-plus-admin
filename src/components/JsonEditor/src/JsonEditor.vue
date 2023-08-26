@@ -17,7 +17,7 @@ const props = defineProps({
     type: Object,
     default: () => ({})
   },
-  deep: propTypes.number.def(1),
+  deep: propTypes.number.def(5),
   showLength: propTypes.bool.def(true),
   showLineNumbers: propTypes.bool.def(true),
   showLineNumber: propTypes.bool.def(true),
