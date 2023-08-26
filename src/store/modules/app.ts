@@ -57,7 +57,7 @@ export const useAppStore = defineStore('app', {
       fixedHeader: true, // 固定toolheader
       footer: true, // 显示页脚
       greyMode: false, // 是否开始灰色模式，用于特殊悼念日
-      dynamicRouter: getStorage('dynamicRouter') || false, // 是否动态路由
+      dynamicRouter: getStorage('dynamicRouter') || true, // 是否动态路由
       fixedMenu: getStorage('fixedMenu') || false, // 是否固定菜单
 
       layout: getStorage('layout') || 'classic', // layout布局
