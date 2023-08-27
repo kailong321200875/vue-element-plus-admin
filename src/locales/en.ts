@@ -93,7 +93,9 @@ export default {
     footer: 'Footer',
     uniqueOpened: 'Unique opened',
     tagsViewIcon: 'Tags view icon',
-    dynamicRouter: 'Dynamic router',
+    // 开启动态路由
+    dynamicRouter: 'Enable dynamic router',
+    serverDynamicRouter: 'Server dynamic router',
     reExperienced: 'Please exit the login experience again',
     fixedMenu: 'Fixed menu'
   },

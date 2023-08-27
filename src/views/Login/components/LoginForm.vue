@@ -220,7 +220,7 @@ const signIn = async () => {
           if (appStore.getDynamicRouter) {
             getRole()
           } else {
-            await permissionStore.generateRoutes('none').catch(() => {})
+            await permissionStore.generateRoutes('static').catch(() => {})
             permissionStore.getAddRouters.forEach((route) => {
               addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
             })
@@ -241,17 +241,16 @@ const getRole = async () => {
   const params = {
     roleName: formData.username
   }
-  // admin - 模拟后端过滤菜单
-  // test - 模拟前端过滤菜单
   const res =
-    formData.username === 'admin' ? await getAdminRoleApi(params) : await getTestRoleApi(params)
+    appStore.getDynamicRouter && appStore.getServerDynamicRouter
+      ? await getAdminRoleApi(params)
+      : await getTestRoleApi(params)
   if (res) {
     const routers = res.data || []
     setStorage('roleRouters', routers)
-
-    formData.username === 'admin'
-      ? await permissionStore.generateRoutes('admin', routers).catch(() => {})
-      : await permissionStore.generateRoutes('test', routers).catch(() => {})
+    appStore.getDynamicRouter && appStore.getServerDynamicRouter
+      ? await permissionStore.generateRoutes('server', routers).catch(() => {})
+      : await permissionStore.generateRoutes('frontEnd', routers).catch(() => {})
 
     permissionStore.getAddRouters.forEach((route) => {
       addRoute(route as RouteRecordRaw) // 动态添加可访问路由表

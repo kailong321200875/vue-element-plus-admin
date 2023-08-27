@@ -1070,12 +1070,41 @@ export default [
     url: '/role/list',
     method: 'get',
     timeout,
-    response: ({ query }) => {
-      const { roleName } = query
+    response: () => {
       return {
         data: {
           code: code,
-          data: roleName === 'admin' ? adminList : testList
+          data: adminList
+        }
+      }
+    }
+  },
+  {
+    url: '/role/table',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: {
+            list: List,
+            total: 4
+          }
+        }
+      }
+    }
+  },
+  // 列表接口
+  {
+    url: '/role/list2',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: testList
         }
       }
     }
