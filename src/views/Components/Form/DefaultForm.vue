@@ -442,6 +442,15 @@ const treeSelectData = [
   }
 ]
 
+// 模拟远程加载
+const getTreeSelectData = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(treeSelectData)
+    }, 3000)
+  })
+}
+
 let id = 0
 
 const imageUrl = ref('')
@@ -1533,8 +1542,9 @@ const schema = reactive<FormSchema[]>([
     label: `${t('formDemo.treeSelect')}`,
     component: 'TreeSelect',
     // 远程加载option
-    optionApi: () => {
-      return treeSelectData
+    optionApi: async () => {
+      const res = await getTreeSelectData()
+      return res
     }
   },
   {
@@ -1749,6 +1759,20 @@ const schema = reactive<FormSchema[]>([
           </>
         )
       }
+    }
+  },
+  {
+    field: 'field85',
+    component: 'Divider',
+    label: t('formDemo.jsonEditor')
+  },
+  {
+    field: 'field86',
+    component: 'JsonEditor',
+    label: t('formDemo.default'),
+    value: {
+      a: 1,
+      b: 2
     }
   }
 ])

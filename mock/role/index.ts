@@ -179,6 +179,14 @@ const adminList = [
             meta: {
               title: 'router.richText'
             }
+          },
+          {
+            path: 'json-editor',
+            component: 'views/Components/Editor/JsonEditor',
+            name: 'JsonEditor',
+            meta: {
+              title: 'router.jsonEditor'
+            }
           }
         ]
       },
@@ -323,21 +331,29 @@ const adminList = [
         }
       },
       {
-        path: 'useOpenTab',
-        component: 'views/hooks/useOpenTab',
-        name: 'UseOpenTab',
+        path: 'useTagsView',
+        component: 'views/hooks/useTagsView',
+        name: 'UseTagsView',
         meta: {
-          title: 'useOpenTab'
+          title: 'useTagsView'
+        }
+      },
+      {
+        path: 'useValidator',
+        component: 'views/hooks/useValidator',
+        name: 'UseValidator',
+        meta: {
+          title: 'useValidator'
+        }
+      },
+      {
+        path: 'useCrudSchemas',
+        component: 'views/hooks/useCrudSchemas',
+        name: 'UseCrudSchemas',
+        meta: {
+          title: 'useCrudSchemas'
         }
       }
-      // {
-      //   path: 'useCrudSchemas',
-      //   component: 'views/hooks/useCrudSchemas',
-      //   name: 'UseCrudSchemas',
-      //   meta: {
-      //     title: 'useCrudSchemas'
-      //   }
-      // }
     ]
   },
   {
@@ -580,6 +596,7 @@ const testList: string[] = [
   '/components/table/ref-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',
+  '/components/editor-demo/json-editor',
   '/components/search',
   '/components/descriptions',
   '/components/image-viewer',
@@ -597,8 +614,9 @@ const testList: string[] = [
   '/function/multiple-tabs-demo/:id',
   '/hooks',
   '/hooks/useWatermark',
-  '/hooks/useOpenTab',
-  // '/hooks/useCrudSchemas',
+  '/hooks/useTagsView',
+  '/hooks/useValidator',
+  '/hooks/useCrudSchemas',
   '/level',
   '/level/menu1',
   '/level/menu1/menu1-1',
@@ -1052,12 +1070,41 @@ export default [
     url: '/role/list',
     method: 'get',
     timeout,
-    response: ({ query }) => {
-      const { roleName } = query
+    response: () => {
       return {
         data: {
           code: code,
-          data: roleName === 'admin' ? adminList : testList
+          data: adminList
+        }
+      }
+    }
+  },
+  {
+    url: '/role/table',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: {
+            list: List,
+            total: 4
+          }
+        }
+      }
+    }
+  },
+  // 列表接口
+  {
+    url: '/role/list2',
+    method: 'get',
+    timeout,
+    response: () => {
+      return {
+        data: {
+          code: code,
+          data: testList
         }
       }
     }

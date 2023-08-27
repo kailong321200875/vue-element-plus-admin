@@ -76,8 +76,10 @@ export default [
       }
       if (!hasUser) {
         return {
-          code: 500,
-          message: '账号或密码错误'
+          data: {
+            code: 500,
+            message: '账号或密码错误'
+          }
         }
       }
     }

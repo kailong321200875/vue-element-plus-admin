@@ -44,7 +44,11 @@ export default {
     refresh: 'Refresh',
     fullscreen: 'Fullscreen',
     size: 'Size',
-    columnSetting: 'Column setting'
+    columnSetting: 'Column setting',
+    lengthRange: 'The length should be between {min} and {max}',
+    notSpace: 'Spaces are not allowed',
+    notSpecialCharacters: 'Special characters are not allowed',
+    isEqual: 'The two are not equal'
   },
   lock: {
     lockScreen: 'Lock screen',
@@ -89,7 +93,9 @@ export default {
     footer: 'Footer',
     uniqueOpened: 'Unique opened',
     tagsViewIcon: 'Tags view icon',
-    dynamicRouter: 'Dynamic router',
+    // 开启动态路由
+    dynamicRouter: 'Enable dynamic router',
+    serverDynamicRouter: 'Server dynamic router',
     reExperienced: 'Please exit the login experience again',
     fixedMenu: 'Fixed menu'
   },
@@ -143,6 +149,7 @@ export default {
     defaultTable: 'Basic example',
     editor: 'Editor',
     richText: 'Rich text',
+    jsonEditor: 'JSON Editor',
     dialog: 'Dialog',
     imageViewer: 'Image viewer',
     descriptions: 'Descriptions',
@@ -296,6 +303,7 @@ export default {
     verifyReset: 'Verify reset',
     // 富文本编辑器
     richText: 'Rich text',
+    jsonEditor: 'JSON Editor',
     form: 'Form',
     // 远程加载
     remoteLoading: 'Remote loading',
@@ -318,7 +326,7 @@ export default {
     guide: 'Guide',
     start: 'Start',
     message:
-      'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on intro js'
+      'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on driver.js'
   },
   iconDemo: {
     icon: 'Icon',
@@ -444,7 +452,9 @@ export default {
   },
   richText: {
     richText: 'Rich text',
-    richTextDes: 'Secondary packaging based on wangeditor'
+    richTextDes: 'Secondary packaging based on wangeditor',
+    jsonEditor: 'JSON Editor',
+    jsonEditorDes: 'Secondary packaging based on vue-json-pretty'
   },
   dialogDemo: {
     dialog: 'Dialog',

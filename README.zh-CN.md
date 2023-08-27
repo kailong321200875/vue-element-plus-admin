@@ -31,11 +31,7 @@ vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模
 - [vue-element-plus-admin](https://element-plus-admin.cn/) - 完整版 github 站点
 - [vue-element-plus-admin](https://kailong110120130.gitee.io/vue-element-plus-admin) - 完整版 gitee 站点
 
-帐号：**admin/admin test/test**
-
-`admin` 帐号用于模拟服务端控制权限，服务端返回什么就渲染什么
-
-`test` 帐号用于模拟前端控制权限，服务端只返回需要显示的菜单 key，前端进行匹配渲染
+帐号：**admin/admin**
 
 在线例子默认不适用菜单过滤，而是直接使用静态路由表
 
@@ -133,11 +129,13 @@ pnpm run build:pro
 
 如果你觉得这个项目有帮助，欢迎赞助以示支持~
 
+[Paypal Me](https://www.paypal.com/paypalme/ckl94)
+
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/pay.jpg" />
 
 ## 交流群
 
-<img src="https://gitee.com/kailong110120130/my-image/raw/master/chat-0820.jpg" />
+<img src="https://gitee.com/kailong110120130/my-image/raw/master/chat-0903.jpg" />
 
 ## 许可证
 

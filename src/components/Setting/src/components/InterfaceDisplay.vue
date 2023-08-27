@@ -115,6 +115,14 @@ const dynamicRouterChange = (show: boolean) => {
   appStore.setDynamicRouter(show)
 }
 
+// 服务端动态路由
+const serverDynamicRouter = ref(appStore.getServerDynamicRouter)
+
+const serverDynamicRouterChange = (show: boolean) => {
+  ElMessage.info(t('setting.reExperienced'))
+  appStore.setServerDynamicRouter(show)
+}
+
 // 固定菜单
 const fixedMenu = ref(appStore.getFixedMenu)
 
@@ -204,6 +212,11 @@ watch(
     <div class="flex justify-between items-center">
       <span class="text-14px">{{ t('setting.dynamicRouter') }}</span>
       <ElSwitch v-model="dynamicRouter" @change="dynamicRouterChange" />
+    </div>
+
+    <div class="flex justify-between items-center">
+      <span class="text-14px">{{ t('setting.serverDynamicRouter') }}</span>
+      <ElSwitch v-model="serverDynamicRouter" @change="serverDynamicRouterChange" />
     </div>
 
     <div class="flex justify-between items-center">

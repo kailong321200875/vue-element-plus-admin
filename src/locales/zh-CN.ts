@@ -44,7 +44,11 @@ export default {
     refresh: '刷新',
     fullscreen: '全屏',
     size: '尺寸',
-    columnSetting: '列设置'
+    columnSetting: '列设置',
+    lengthRange: '长度在 {min} 到 {max} 个字符',
+    notSpace: '不能包含空格',
+    notSpecialCharacters: '不能包含特殊字符',
+    isEqual: '两次输入不一致'
   },
   lock: {
     lockScreen: '锁定屏幕',
@@ -89,7 +93,8 @@ export default {
     footer: '页脚',
     uniqueOpened: '菜单手风琴',
     tagsViewIcon: '标签页图标',
-    dynamicRouter: '动态路由',
+    dynamicRouter: '开启动态路由',
+    serverDynamicRouter: '服务端动态路由',
     reExperienced: '请重新退出登录体验',
     fixedMenu: '固定菜单'
   },
@@ -143,6 +148,7 @@ export default {
     defaultTable: '基础示例',
     editor: '编辑器',
     richText: '富文本',
+    jsonEditor: 'JSON编辑器',
     dialog: '弹窗',
     imageViewer: '图片预览',
     descriptions: '描述',
@@ -294,6 +300,8 @@ export default {
     verifyReset: '验证重置',
     // 富文本编辑器
     richText: '富文本编辑器',
+    // JSON编辑器
+    jsonEditor: 'JSON编辑器',
     form: '表单',
     // 远程加载
     remoteLoading: '远程加载',
@@ -313,7 +321,7 @@ export default {
     guide: '引导页',
     start: '开始',
     message:
-      '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 intro.js'
+      '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。引导页基于 driver.js'
   },
   iconDemo: {
     icon: '图标',
@@ -437,7 +445,9 @@ export default {
   },
   richText: {
     richText: '富文本',
-    richTextDes: '基于 wangeditor 二次封装'
+    richTextDes: '基于 wangeditor 二次封装',
+    jsonEditor: 'JSON编辑器',
+    jsonEditorDes: '基于 vue-json-pretty 二次封装'
   },
   dialogDemo: {
     dialog: '弹窗',

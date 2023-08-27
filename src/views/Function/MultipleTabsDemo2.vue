@@ -7,11 +7,11 @@ import { useTagsView } from '@/hooks/web/useTagsView'
 
 const { setTitle } = useTagsView()
 
-const { params } = useRoute()
+const { query } = useRoute()
 
-const val = ref(params.id as string)
+const val = ref(query.id as string)
 
-setTitle(`详情页-${val.value}`)
+setTitle(`详情页query-${val.value}`)
 </script>
 
 <template>

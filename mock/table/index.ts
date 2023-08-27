@@ -246,8 +246,10 @@ export default [
       const ids = body.ids
       if (!ids) {
         return {
-          code: '500',
-          message: '请选择需要删除的数据'
+          data: {
+            code: 500,
+            message: '请选择需要删除的数据'
+          }
         }
       } else {
         let i = List.length

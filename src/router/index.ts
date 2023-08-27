@@ -220,6 +220,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.richText')
             }
+          },
+          {
+            path: 'json-editor',
+            component: () => import('@/views/Components/Editor/JsonEditor.vue'),
+            name: 'JsonEditor',
+            meta: {
+              title: t('router.jsonEditor')
+            }
           }
         ]
       },
@@ -339,7 +347,8 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           hidden: true,
           title: t('router.details'),
-          canTo: true
+          canTo: true,
+          activeMenu: '/function/multiple-tabs'
         }
       }
     ]
@@ -362,15 +371,31 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useWatermark'
         }
+      },
+      {
+        path: 'useTagsView',
+        component: () => import('@/views/hooks/useTagsView.vue'),
+        name: 'UseTagsView',
+        meta: {
+          title: 'useTagsView'
+        }
+      },
+      {
+        path: 'useValidator',
+        component: () => import('@/views/hooks/useValidator.vue'),
+        name: 'UseValidator',
+        meta: {
+          title: 'useValidator'
+        }
+      },
+      {
+        path: 'useCrudSchemas',
+        component: () => import('@/views/hooks/useCrudSchemas.vue'),
+        name: 'UseCrudSchemas',
+        meta: {
+          title: 'useCrudSchemas'
+        }
       }
-      // {
-      //   path: 'useCrudSchemas',
-      //   component: () => import('@/views/hooks/useCrudSchemas.vue'),
-      //   name: 'UseCrudSchemas',
-      //   meta: {
-      //     title: 'useCrudSchemas'
-      //   }
-      // }
     ]
   },
   {

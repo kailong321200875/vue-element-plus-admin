@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { useIntro } from '@/hooks/web/useIntro'
 import { ElButton } from 'element-plus'
+import { useGuide } from '@/hooks/web/useGuide'
 
 const { t } = useI18n()
 
-const { introRef } = useIntro()
+const { drive } = useGuide()
 
 const guideStart = () => {
-  introRef.start()
+  drive()
 }
 </script>
 

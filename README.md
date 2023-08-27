@@ -31,11 +31,7 @@ If you need a basic template, please switch to the `mini` branch. `mini` simply 
 - [vue-element-plus-admin](https://element-plus-admin.cn/) - Full version of the github site
 - [vue-element-plus-admin](https://kailong110120130.gitee.io/vue-element-plus-admin) - Full version of the gitee site
 
-account: **admin/admin test/test**
-
-`admin` account is used to simulate the control permission of the server, and render whatever the server returns
-
-`test` account is used to simulate the front-end control authority. The server only returns the menu key to be displayed, and the front-end performs matching rendering
+account: **admin/admin**
 
 Online examples do not apply to menu filtering by default, but directly use Static routing
 
@@ -133,11 +129,13 @@ Support modern browsers, not IE
 
 If you find this project helpful, welcome sponsorship to show your support~
 
+[Paypal Me](https://www.paypal.com/paypalme/ckl94)
+
 <img src="https://github.com/kailong321200875/my-image/raw/master/pay.jpg" />
 
 ## Group
 
-<img src="https://github.com/kailong321200875/my-image/raw/master/chat-0820.jpg" />
+<img src="https://github.com/kailong321200875/my-image/raw/master/chat-0903.jpg" />
 
 ## License
 
