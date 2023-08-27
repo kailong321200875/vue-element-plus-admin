@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.1.0...v2.2.0) (2023-08-27)
+
+
+### Features
+
+* JsonEditor ([c0f4517](https://github.com/kailong321200875/vue-element-plus-admin/commit/c0f4517b87de5a0172a057fb9da141f758cca1fa))
+* 新增 useCrudSchemas demo ([ae0628e](https://github.com/kailong321200875/vue-element-plus-admin/commit/ae0628e3af3466c7c9d7b593b825f776843de5ec))
+* 新增useTagsView ([a869a45](https://github.com/kailong321200875/vue-element-plus-admin/commit/a869a457e6a8052531ce3040ae0d332d7afbb478))
+
+
+### Bug Fixes
+
+* [#316](https://github.com/kailong321200875/vue-element-plus-admin/issues/316) ([7582e4d](https://github.com/kailong321200875/vue-element-plus-admin/commit/7582e4d12f18ae86f5ef4ff36211c364afca5763))
+* [#317](https://github.com/kailong321200875/vue-element-plus-admin/issues/317) ([2095caa](https://github.com/kailong321200875/vue-element-plus-admin/commit/2095caaa854b686b57f47ee183419f42563a5a95))
+* [#318](https://github.com/kailong321200875/vue-element-plus-admin/issues/318) ([4169e52](https://github.com/kailong321200875/vue-element-plus-admin/commit/4169e52baaaa43765848c29c5ce222d019e81c35))
+* [#319](https://github.com/kailong321200875/vue-element-plus-admin/issues/319) ([b6ee4e5](https://github.com/kailong321200875/vue-element-plus-admin/commit/b6ee4e5d48deb3a07f289366ed3700baa3674cd6))
+* 修复useValidator报错 ([4912f6c](https://github.com/kailong321200875/vue-element-plus-admin/commit/4912f6c0586249b3de7ac7d365c8ea98af7923c7))
+* 修复动态路由无效 ([1452a1a](https://github.com/kailong321200875/vue-element-plus-admin/commit/1452a1afc77eb3f64cd3de91a05ddc15e40f4a06))
+
+
+### Docs
+
+* 更新README ([5b4defa](https://github.com/kailong321200875/vue-element-plus-admin/commit/5b4defa8c4be2de894b2cb50ae9ea739a10cf7d9))
+* 更新群二维码 ([13aa71c](https://github.com/kailong321200875/vue-element-plus-admin/commit/13aa71c5bd5b5076599501961a24a171a9133c57))
+* 更新群二维码 ([ae29e97](https://github.com/kailong321200875/vue-element-plus-admin/commit/ae29e974bfed2214d1beda703b976cdfa63070ab))
+
+
+### Styling
+
+* 修改Descriptions样式 ([cd0e05a](https://github.com/kailong321200875/vue-element-plus-admin/commit/cd0e05a6b9146af7ae64be62613724cd58e6c2a3))
+
+
+### Code Refactoring
+
+* 重构useValidator ([b8849da](https://github.com/kailong321200875/vue-element-plus-admin/commit/b8849dabe2b306831f69e84db167a367570d992a))
+
+
+### Performance Improvements
+
+* 优化动态路由 ([8793588](https://github.com/kailong321200875/vue-element-plus-admin/commit/879358821d02d5e4575dfee0d189b9fee7f2e217))
+* 完善useTagsView ([e0c55f4](https://github.com/kailong321200875/vue-element-plus-admin/commit/e0c55f40d4c1c47e29de6c4c7e9433efa978bf7f))
+* 完善useTagsView ([175abd0](https://github.com/kailong321200875/vue-element-plus-admin/commit/175abd0aa3388e8473f6ecbf63e28133fce55bd3))
+* 更新demo ([2c99cd2](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c99cd20f0c25a740ac7a3a8319f7a112e69c0d3))
+
 ## [2.1.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.0.0...v2.1.0) (2023-08-12)
 
 
