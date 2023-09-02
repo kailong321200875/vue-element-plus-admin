@@ -108,7 +108,7 @@ const greyModeChange = (show: boolean) => {
 }
 
 // 动态路由
-const dynamicRouter = ref(appStore.getDynamicRouter)
+const dynamicRouter = ref(!!appStore.getDynamicRouter)
 
 const dynamicRouterChange = (show: boolean) => {
   ElMessage.info(t('setting.reExperienced'))

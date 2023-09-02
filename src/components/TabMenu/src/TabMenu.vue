@@ -3,7 +3,7 @@ import { usePermissionStore } from '@/store/modules/permission'
 import { useAppStore } from '@/store/modules/app'
 import { computed, unref, defineComponent, watch, ref, onMounted } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElScrollbar } from 'element-plus'
+import { ElScrollbar, ClickOutside } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { Menu } from '@/components/Menu'
 import { useRouter } from 'vue-router'
@@ -19,6 +19,9 @@ const prefixCls = getPrefixCls('tab-menu')
 
 export default defineComponent({
   name: 'TabMenu',
+  directives: {
+    ClickOutside
+  },
   setup() {
     const { push, currentRoute } = useRouter()
 
@@ -132,9 +135,16 @@ export default defineComponent({
       return false
     }
 
+    const clickOut = () => {
+      if (!unref(fixedMenu)) {
+        showMenu.value = false
+      }
+    }
+
     return () => (
       <div
         id={`${variables.namespace}-menu`}
+        v-click-outside={clickOut}
         class={[
           prefixCls,
           'relative bg-[var(--left-menu-bg-color)] top-1px layout-border__right',
