@@ -38,7 +38,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         }
       }),
       VueJsx(),
-      // WindiCSS(),
       progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
