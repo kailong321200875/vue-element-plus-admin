@@ -53,7 +53,8 @@
     "vue-i18n": "9.2.2",
     "vue-json-pretty": "^2.2.4",
     "vue-router": "^4.2.4",
-    "vue-types": "^5.1.1"
+    "vue-types": "^5.1.1",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
@@ -83,6 +84,7 @@
     "husky": "^8.0.3",
     "less": "^4.2.0",
     "lint-staged": "^13.2.3",
+    "lodash": "^4.17.21",
     "plop": "^3.1.2",
     "postcss": "^8.4.27",
     "postcss-html": "^1.5.0",

@@ -4,9 +4,9 @@ export interface TableColumn {
   label?: string
   type?: string
   /**
-   * 是否隐藏
+   * 是否显示，必填
    */
-  hidden?: boolean
+  show: boolean
   children?: TableColumn[]
   slots?: {
     default?: (...args: any[]) => JSX.Element | JSX.Element[] | null

@@ -1,23 +1,31 @@
 <script lang="tsx">
-import { defineComponent, unref, computed, PropType, watch } from 'vue'
+import { defineComponent, unref, computed, PropType, watch, ref, nextTick } from 'vue'
 import {
   ElTooltip,
   ElDropdown,
   ElDropdownMenu,
   ElDropdownItem,
-  ComponentSize
-  // ElPopover,
-  // ElTree
+  ComponentSize,
+  ElPopover,
+  ElCheckbox,
+  ElScrollbar,
+  ElButton,
+  ElTable
 } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
 import { TableColumn } from '../types'
-import { cloneDeep } from 'lodash-es'
-// import { eachTree } from '@/utils/tree'
+import Draggable from 'vuedraggable'
+import { useRouter } from 'vue-router'
+import { useStorage } from '@/hooks/web/useStorage'
+import cloneDeep from 'lodash/cloneDeep'
+import { propTypes } from '@/utils/propTypes'
 
 const appStore = useAppStore()
 const sizeMap = computed(() => appStore.sizeMap)
+
+const { setStorage, getStorage, removeStorage } = useStorage()
 
 const { t } = useI18n()
 
@@ -27,7 +35,13 @@ export default defineComponent({
     columns: {
       type: Array as PropType<TableColumn[]>,
       default: () => []
-    }
+    },
+    elTableRef: {
+      type: Object as PropType<ComponentRef<typeof ElTable>>,
+      default: () => {}
+    },
+    // 表格工具栏缓存唯一标识符
+    activeUID: propTypes.string.def('')
   },
   emits: ['refresh', 'changSize'],
   setup(props, { emit }) {
@@ -39,24 +53,68 @@ export default defineComponent({
       emit('changSize', size)
     }
 
-    const columns = computed(() => {
-      return cloneDeep(props.columns).filter((v) => {
-        // 去掉type为selection的列和expand的列
-        if (v.type !== 'selection' && v.type !== 'expand') {
-          return v
+    const tableColumns = ref(props.columns)
+    const elTableRef = ref(props.elTableRef)
+    const activeUID = ref(props.activeUID)
+
+    const oldTableColumns = cloneDeep(tableColumns.value)
+
+    const checkAll = ref(false)
+    const isIndeterminate = ref(true) // 如果为True，则表示为半选状态
+    const handleCheckAllChange = (val: boolean) => {
+      tableColumns.value.forEach((item) => {
+        if (item.disabled !== true) {
+          item.show = val
         }
       })
-    })
+      isIndeterminate.value = false
+    }
+
+    const handleCheckChange = () => {
+      checkAll.value = tableColumns.value.every((item) => item.show)
+      if (checkAll.value) {
+        isIndeterminate.value = false
+      } else {
+        isIndeterminate.value = tableColumns.value.some((item) => item.show)
+      }
+    }
+    handleCheckChange()
+
+    const { currentRoute } = useRouter()
+    const fullPath = currentRoute.value.fullPath
+    const cacheTableHeadersKey = `${fullPath}_${activeUID.value}`
+
+    if (cacheTableHeadersKey) {
+      const showField = JSON.parse(getStorage(cacheTableHeadersKey))
+      if (showField) {
+        tableColumns.value.forEach((item) => {
+          if (showField.includes(item.field)) {
+            item.show = true
+          } else {
+            item.show = false
+          }
+        })
+      }
+    }
 
     watch(
-      () => columns.value,
-      (newColumns) => {
-        console.log('columns change：', newColumns)
+      () => tableColumns.value,
+      async (val) => {
+        const showField = val.filter((item) => item.show).map((item) => item.field)
+        setStorage(cacheTableHeadersKey, JSON.stringify(showField))
+        await nextTick()
+        elTableRef.value?.doLayout()
       },
       {
         deep: true
       }
     )
+
+    const resetTableColumns = async () => {
+      Object.assign(tableColumns.value, cloneDeep(oldTableColumns))
+      await nextTick()
+      removeStorage(cacheTableHeadersKey)
+    }
 
     return () => (
       <>
@@ -71,7 +129,7 @@ export default defineComponent({
             </span>
           </ElTooltip>
 
-          <ElTooltip content={t('common.size')} placement="top">
+          <ElTooltip content={t('common.density')} placement="top">
             <ElDropdown trigger="click" onCommand={changSize}>
               {{
                 default: () => {
@@ -106,43 +164,61 @@ export default defineComponent({
             </ElDropdown>
           </ElTooltip>
 
-          {/* <ElTooltip content={t('common.columnSetting')} placement="top"> */}
-          {/* <ElPopover trigger="click" placement="left">
-            {{
-              default: () => {
-                return (
-                  <div>
-                    <ElTree
-                      data={unref(columns)}
-                      show-checkbox
-                      default-checked-keys={unref(defaultCheckeds)}
-                      draggable
-                      node-key="field"
-                      allow-drop={(_draggingNode: any, _dropNode: any, type: string) => {
-                        if (type === 'inner') {
-                          return false
-                        } else {
-                          return true
-                        }
-                      }}
-                      onNode-drag-end={onNodeDragEnd}
-                      onCheck-change={onCheckChange}
+          <ElTooltip content={t('common.columnSetting')} placement="top">
+            <ElPopover trigger="click" placement="bottom">
+              {{
+                default: () => {
+                  return (
+                    <div>
+                      <div style="border-bottom: 1px solid #d4d7de" class="flex justify-between">
+                        <ElCheckbox
+                          v-model={checkAll.value}
+                          indeterminate={isIndeterminate.value}
+                          onChange={handleCheckAllChange}
+                        >
+                          全选
+                        </ElCheckbox>
+                        <ElButton link onClick={resetTableColumns}>
+                          重置
+                        </ElButton>
+                      </div>
+                      <ElScrollbar max-height="400px">
+                        <Draggable
+                          list={tableColumns.value}
+                          item-key="field"
+                          v-slots={{
+                            item: ({ element }) => (
+                              <div>
+                                <span class="cursor-move mr-10px">
+                                  <Icon icon="akar-icons:drag-vertical" />
+                                </span>
+                                <ElCheckbox
+                                  v-model={element.show}
+                                  disabled={element.disabled === true}
+                                  onChange={handleCheckChange}
+                                >
+                                  {element.label}
+                                </ElCheckbox>
+                              </div>
+                            )
+                          }}
+                        ></Draggable>
+                      </ElScrollbar>
+                    </div>
+                  )
+                },
+                reference: () => {
+                  return (
+                    <Icon
+                      icon="ant-design:setting-outlined"
+                      class="cursor-pointer"
+                      hoverColor="var(--el-color-primary)"
                     />
-                  </div>
-                )
-              },
-              reference: () => {
-                return (
-                  <Icon
-                    icon="ant-design:setting-outlined"
-                    class="cursor-pointer"
-                    hoverColor="var(--el-color-primary)"
-                  />
-                )
-              }
-            }}
-          </ElPopover> */}
-          {/* </ElTooltip> */}
+                  )
+                }
+              }}
+            </ElPopover>
+          </ElTooltip>
         </div>
       </>
     )
