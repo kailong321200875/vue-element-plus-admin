@@ -137,7 +137,7 @@ pnpm run build:pro
 
 如果你想进入技术交流群讨论，请添加我为好友
 
-<img src="https://github.com/kailong321200875/my-image/raw/master/me.jpg" />
+<img src="https://gitee.com/kailong110120130/my-image/raw/master/me.jpg" />
 
 ## 许可证
 
