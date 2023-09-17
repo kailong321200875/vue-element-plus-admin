@@ -106,9 +106,7 @@
     "vite-plugin-purge-icons": "^0.9.2",
     "vite-plugin-style-import": "2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vue-tsc": "^1.8.8",
-    "vue-draggable-plus": "^0.2.6",
-    "lodash": "^4.17.21"
+    "vue-tsc": "^1.8.8"
   },
   "engines": {
     "node": ">= 14.18.0"

@@ -17,9 +17,6 @@ import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
 // import Sortable from 'sortablejs'
 // import { Icon } from '@/components/Icon'
-import { useAppStore } from '@/store/modules/app'
-
-const appStore = useAppStore()
 
 export default defineComponent({
   name: 'Table',
@@ -124,9 +121,7 @@ export default defineComponent({
       default: () => undefined
     },
     rowKey: propTypes.string.def('id'),
-    emptyText: propTypes.string.def('暂无数据'),
-    // 表格工具栏缓存唯一标识符
-    activeUID: propTypes.string.def(''),
+    emptyText: propTypes.string.def('No Data'),
     defaultExpandAll: propTypes.bool.def(false),
     expandRowKeys: {
       type: Array as PropType<string[]>,
@@ -350,7 +345,7 @@ export default defineComponent({
     const renderTreeTableColumn = (columnsChildren: TableColumn[]) => {
       const { align, headerAlign, showOverflowTooltip, preview } = unref(getProps)
       return columnsChildren.map((v) => {
-        if (v.show === false) return null
+        if (v.hidden) return null
         const props = { ...v } as any
         if (props.children) delete props.children
 
@@ -422,7 +417,7 @@ export default defineComponent({
       } = unref(getProps)
 
       return (columnsChildren || columns).map((v) => {
-        if (v.show === false) return null
+        if (v.hidden) return null
         if (v.type === 'index') {
           return (
             <ElTableColumn
@@ -434,7 +429,6 @@ export default defineComponent({
               headerAlign={v.headerAlign || headerAlign}
               label={v.label}
               width="65px"
-              fixed="left"
             ></ElTableColumn>
           )
         } else if (v.type === 'selection') {
@@ -500,7 +494,6 @@ export default defineComponent({
       if (getSlot(slots, 'append')) {
         tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', args)
       }
-      const toolbar = getSlot(slots, 'toolbar')
 
       // const { sortable } = unref(getProps)
 
@@ -518,31 +511,14 @@ export default defineComponent({
 
       return (
         <div v-loading={unref(getProps).loading}>
-          <div class="flex justify-between mb-1">
-            <div>{toolbar}</div>
-            <div class="pt-2">
-              {unref(getProps).showAction ? (
-                <TableActions
-                  activeUID={unref(getProps).activeUID}
-                  columns={unref(getProps).columns}
-                  el-table-ref={elTableRef}
-                  onChangSize={changSize}
-                  onRefresh={refresh}
-                />
-              ) : null}
-            </div>
-          </div>
-
-          <ElTable
-            ref={elTableRef}
-            data={unref(getProps).data}
-            {...unref(getBindValue)}
-            header-cell-style={
-              appStore.getIsDark
-                ? { color: '#CFD3DC', 'background-color': '#000' }
-                : { color: '#000', 'background-color': '#f5f7fa' }
-            }
-          >
+          {unref(getProps).showAction ? (
+            <TableActions
+              columns={unref(getProps).columns}
+              onChangSize={changSize}
+              onRefresh={refresh}
+            />
+          ) : null}
+          <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
             {{
               default: () => renderTableColumn(),
               ...tableSlots
