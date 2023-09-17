@@ -135,7 +135,9 @@ If you find this project helpful, welcome sponsorship to show your support~
 
 ## Group
 
-<img src="https://github.com/kailong321200875/my-image/raw/master/chat-0910.jpg" />
+If you want to join the technical communication group for discussion, please add me as a friend
+
+<img src="https://github.com/kailong321200875/my-image/raw/master/me.jpg" />
 
 ## License
 
