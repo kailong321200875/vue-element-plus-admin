@@ -30,10 +30,8 @@ export default [
     timeout,
     response: () => {
       return {
-        data: {
-          code: code,
-          data: dictObj
-        }
+        code: code,
+        data: dictObj
       }
     }
   },
@@ -44,23 +42,21 @@ export default [
     timeout,
     response: () => {
       return {
-        data: {
-          code: code,
-          data: [
-            {
-              label: 'test1',
-              value: 0
-            },
-            {
-              label: 'test2',
-              value: 1
-            },
-            {
-              label: 'test3',
-              value: 2
-            }
-          ]
-        }
+        code: code,
+        data: [
+          {
+            label: 'test1',
+            value: 0
+          },
+          {
+            label: 'test2',
+            value: 1
+          },
+          {
+            label: 'test3',
+            value: 2
+          }
+        ]
       }
     }
   }
