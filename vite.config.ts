@@ -146,11 +146,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'qs',
         'echarts',
         'echarts-wordcloud',
-        'intro.js',
         'qrcode',
         '@wangeditor/editor',
         '@wangeditor/editor-for-vue',
-        'vue-json-pretty'
+        'vue-json-pretty',
+        '@zxcvbn-ts/core',
+        'dayjs'
       ]
     }
   }
