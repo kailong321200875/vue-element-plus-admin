@@ -85,11 +85,9 @@ export default [
     method: 'get',
     response: () => {
       return {
+        code: code,
         data: {
-          code: code,
-          data: {
-            list: departmentList
-          }
+          list: departmentList
         }
       }
     }
@@ -99,12 +97,10 @@ export default [
     method: 'get',
     response: () => {
       return {
+        code: code,
         data: {
-          code: code,
-          data: {
-            list: departmentList,
-            total: 5
-          }
+          list: departmentList,
+          total: 5
         }
       }
     }
@@ -136,12 +132,10 @@ export default [
         )
       }
       return {
+        code: code,
         data: {
-          code: code,
-          data: {
-            total: 100,
-            list: mockList
-          }
+          total: 100,
+          list: mockList
         }
       }
     }
@@ -153,10 +147,8 @@ export default [
     timeout: 1000,
     response: () => {
       return {
-        data: {
-          code: code,
-          data: 'success'
-        }
+        code: code,
+        data: 'success'
       }
     }
   },
@@ -168,17 +160,13 @@ export default [
       const ids = body.ids
       if (!ids) {
         return {
-          data: {
-            code: 500,
-            message: '请选择需要删除的数据'
-          }
+          code: 500,
+          message: '请选择需要删除的数据'
         }
       } else {
         return {
-          data: {
-            code: code,
-            data: 'success'
-          }
+          code: code,
+          data: 'success'
         }
       }
     }
@@ -190,10 +178,8 @@ export default [
     timeout: 1000,
     response: () => {
       return {
-        data: {
-          code: code,
-          data: 'success'
-        }
+        code: code,
+        data: 'success'
       }
     }
   },
@@ -205,17 +191,13 @@ export default [
       const ids = body.ids
       if (!ids) {
         return {
-          data: {
-            code: 500,
-            message: '请选择需要删除的数据'
-          }
+          code: 500,
+          message: '请选择需要删除的数据'
         }
       } else {
         return {
-          data: {
-            code: code,
-            data: 'success'
-          }
+          code: code,
+          data: 'success'
         }
       }
     }
