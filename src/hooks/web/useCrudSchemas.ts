@@ -84,7 +84,7 @@ const filterSearchSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
         component: schemaItem?.search?.component || 'Input',
         ...schemaItem.search,
         field: schemaItem.field,
-        label: schemaItem.label
+        label: schemaItem.search?.label || schemaItem.label
       }
 
       // 删除不必要的字段
@@ -103,8 +103,8 @@ const filterTableSchema = (crudSchema: CrudSchema[]): TableColumn[] => {
     conversion: (schema: CrudSchema) => {
       if (!schema?.table?.hidden) {
         return {
-          ...schema.table,
-          ...schema
+          ...schema,
+          ...schema.table
         }
       }
     }
@@ -132,7 +132,7 @@ const filterFormSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
         component: formItem?.form?.component || 'Input',
         ...formItem.form,
         field: formItem.field,
-        label: formItem.label
+        label: formItem.form?.label || formItem.label
       }
 
       // 删除不必要的字段
