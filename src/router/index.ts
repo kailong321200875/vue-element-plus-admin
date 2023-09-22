@@ -272,6 +272,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         }
       },
       {
+        path: 'icon-picker',
+        component: () => import('@/views/Components/IconPicker.vue'),
+        name: 'IconPicker',
+        meta: {
+          title: t('router.iconPicker')
+        }
+      },
+      {
         path: 'echart',
         component: () => import('@/views/Components/Echart.vue'),
         name: 'Echart',

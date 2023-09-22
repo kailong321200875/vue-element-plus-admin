@@ -231,6 +231,14 @@ const adminList = [
         }
       },
       {
+        path: 'icon-picker',
+        component: 'views/Components/IconPicker',
+        name: 'IconPicker',
+        meta: {
+          title: 'router.iconPicker'
+        }
+      },
+      {
         path: 'echart',
         component: 'views/Components/Echart',
         name: 'Echart',
@@ -602,6 +610,7 @@ const testList: string[] = [
   '/components/image-viewer',
   '/components/dialog',
   '/components/icon',
+  '/components/iconPicker',
   '/components/echart',
   '/components/count-to',
   '/components/qrcode',
