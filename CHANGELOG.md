@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.2.0...v2.3.0) (2023-09-24)
+
+
+### Features
+
+* IconPicker ([4490d5e](https://github.com/kailong321200875/vue-element-plus-admin/commit/4490d5eeeb4389f94f90c9c45a30343324db2250))
+* 表格工具栏新增列设置功能 ([9d10ba8](https://github.com/kailong321200875/vue-element-plus-admin/commit/9d10ba821feca414b9b020322859ca4a47291005))
+
+
+### Bug Fixes
+
+* [#326](https://github.com/kailong321200875/vue-element-plus-admin/issues/326) ([c95a4e0](https://github.com/kailong321200875/vue-element-plus-admin/commit/c95a4e0763838e843cf5ce174110a01f2baa8000))
+* default interceptor response return ([c3d8540](https://github.com/kailong321200875/vue-element-plus-admin/commit/c3d8540ab284312f24d9355072f6fb4506ed6d1d))
+* 修复IconPicker BUG ([1e3aa78](https://github.com/kailong321200875/vue-element-plus-admin/commit/1e3aa789260773b1caecdaa32e1cafede22733e3))
+* 修复useCrudSchemas无法自定义label ([aa5deb1](https://github.com/kailong321200875/vue-element-plus-admin/commit/aa5deb13904e45e7cb6ec7285e936b9ebae57273))
+
+
+### Docs
+
+* 更新README ([4947c82](https://github.com/kailong321200875/vue-element-plus-admin/commit/4947c82d6770f0dce2845682f0c41d853268cf82))
+* 更新README ([c3624ce](https://github.com/kailong321200875/vue-element-plus-admin/commit/c3624cee588457e7fedaab360746500337c1b2a7))
+* 更新群二维码 ([ead1ab8](https://github.com/kailong321200875/vue-element-plus-admin/commit/ead1ab8c88c05593d539b56a811809382675faf5))
+
+
+### Styling
+
+* 修复样式层级问题 ([f92d2b6](https://github.com/kailong321200875/vue-element-plus-admin/commit/f92d2b60a956e1963b63e23b446a9d42096704e0))
+* 修改登录样式 ([bdd31f0](https://github.com/kailong321200875/vue-element-plus-admin/commit/bdd31f0621712af89d89b87ac439c3e0b398605a))
+
 ## [2.2.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.1.0...v2.2.0) (2023-08-27)
 
 
