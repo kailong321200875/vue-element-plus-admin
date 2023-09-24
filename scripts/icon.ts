@@ -29,9 +29,9 @@ async function generateIcon() {
       //   name: 'useType',
       //   choices: [
       //     { key: 'local', value: 'local', name: 'Local' },
-      //     { key: 'onLine', value: 'onLine', name: 'OnLine' },
+      //     { key: 'onLine', value: 'onLine', name: 'OnLine' }
       //   ],
-      //   message: 'How to use icons?',
+      //   message: 'How to use icons?'
       // },
       {
         type: 'list',
@@ -39,16 +39,11 @@ async function generateIcon() {
         choices: choices,
         message: 'Select the icon set that needs to be generated?'
       }
-      // {
-      //   type: 'input',
-      //   name: 'output',
-      //   message: 'Select the icon set that needs to be generated?',
-      //   default: 'src/components/Icon/data',
-      // },
     ])
     // ↓命令行问答的答案
     .then(async (answers) => {
       const { iconSet } = answers
+      // const isOnLine = useType === 'onLine'
       const outputDir = path.resolve(process.cwd(), 'src/components/IconPicker/src/data')
       fs.ensureDir(outputDir)
       const genCollections = collections.filter((item) => [iconSet].includes(item.id))
@@ -67,8 +62,6 @@ async function generateIcon() {
           prefixSet.push(prefix)
         }
       }
-      // 将vite的缓存清空
-      // fs.emptyDir(path.join(process.cwd(), 'node_modules/.vite'))
       console.log(
         `✨ ${chalk.cyan(`[${pkg.name}]`)}` + ' - Icon generated successfully:' + `[${prefixSet}]`
       )
