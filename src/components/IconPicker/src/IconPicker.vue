@@ -104,8 +104,8 @@ const iconSelect = (icon: string) => {
       @show="popoverShow"
     >
       <template #reference>
-        <div v-if="modelValue" :style="iconWrapStyle">
-          <Icon :icon="modelValue" />
+        <div :style="iconWrapStyle">
+          <Icon v-if="modelValue" :icon="modelValue" />
         </div>
       </template>
       <ElScrollbar class="h-[calc(100%-50px)]!">
