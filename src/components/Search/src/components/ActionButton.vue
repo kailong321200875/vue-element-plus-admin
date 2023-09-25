@@ -50,7 +50,7 @@ const onExpand = () => {
   </ElButton>
   <ElButton
     v-if="showExpand"
-    :icon="useIcon({ icon: visible ? 'ep:arrow-down' : 'ep:arrow-up' })"
+    :icon="useIcon({ icon: visible ? 'ep:arrow-up' : 'ep:arrow-down' })"
     text
     @click="onExpand"
   >
