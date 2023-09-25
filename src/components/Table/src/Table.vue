@@ -406,6 +406,7 @@ export default defineComponent({
               reserveSelection={reserveSelection}
               align={align}
               headerAlign={headerAlign}
+              selectable={v.selectable}
               width="50"
             ></ElTableColumn>
           )
