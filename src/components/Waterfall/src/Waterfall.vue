@@ -6,7 +6,7 @@ const { getPrefixCls } = useDesign()
 
 const prefixCls = getPrefixCls('waterfall')
 
-const props = defineProps({
+defineProps({
   data: propTypes.array.def([]),
   reset: propTypes.bool.def(false),
   width: propTypes.number.def(200),
