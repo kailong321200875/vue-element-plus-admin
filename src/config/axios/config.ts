@@ -2,7 +2,6 @@ import {
   AxiosConfig,
   AxiosResponse,
   AxiosRequestHeaders,
-  AxiosError,
   InternalAxiosRequestConfig
 } from './types'
 import { ElMessage } from 'element-plus'
@@ -76,15 +75,8 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   }
   return config
 }
-;(error: AxiosError) => {
-  console.log(error)
-  Promise.reject(error)
-}
 
 const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
-  if ((response as any).code === 'ERR_CANCELED') {
-    return Promise.reject(response)
-  }
   if (response?.config?.responseType === 'blob') {
     // 如果是文件流，直接过
     return response
@@ -93,11 +85,6 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
   } else {
     ElMessage.error((response as any).message)
   }
-}
-;(error: AxiosError) => {
-  console.log('err' + error) // for debug
-  ElMessage.error(error.message)
-  return Promise.reject(error)
 }
 
 export { defaultResponseInterceptors, defaultRequestInterceptors }
