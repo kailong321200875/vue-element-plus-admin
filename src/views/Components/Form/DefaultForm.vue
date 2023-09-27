@@ -1774,6 +1774,17 @@ const schema = reactive<FormSchema[]>([
       a: 1,
       b: 2
     }
+  },
+  {
+    field: 'field87',
+    component: 'Divider',
+    label: t('formDemo.iconPicker')
+  },
+  {
+    field: 'field88',
+    component: 'IconPicker',
+    label: t('formDemo.default'),
+    value: 'tdesign:archway'
   }
 ])
 </script>
