@@ -175,7 +175,8 @@ export default {
     function: 'Function',
     multipleTabs: 'Multiple tabs',
     details: 'Details',
-    iconPicker: 'Icon picker'
+    iconPicker: 'Icon picker',
+    request: 'Request'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'

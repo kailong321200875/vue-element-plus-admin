@@ -1,9 +1,9 @@
-export type UserLoginType = {
+export interface UserLoginType {
   username: string
   password: string
 }
 
-export type UserType = {
+export interface UserType {
   username: string
   password: string
   role: string

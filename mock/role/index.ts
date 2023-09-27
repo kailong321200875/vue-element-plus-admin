@@ -316,6 +316,14 @@ const adminList = [
           title: 'router.details',
           canTo: true
         }
+      },
+      {
+        path: 'request',
+        component: 'views/Function/Request',
+        name: 'Request',
+        meta: {
+          title: 'router.request'
+        }
       }
     ]
   },
@@ -637,6 +645,7 @@ const testList: string[] = [
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',
+  '/function/request',
   '/hooks',
   '/hooks/useWatermark',
   '/hooks/useTagsView',

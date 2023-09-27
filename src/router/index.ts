@@ -358,6 +358,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
           canTo: true,
           activeMenu: '/function/multiple-tabs'
         }
+      },
+      {
+        path: 'request',
+        component: () => import('@/views/Function/Request.vue'),
+        name: 'Request',
+        meta: {
+          title: t('router.request')
+        }
       }
     ]
   },

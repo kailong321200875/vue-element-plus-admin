@@ -82,13 +82,16 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
 }
 
 const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
+  if ((response as any).code === 'ERR_CANCELED') {
+    return Promise.reject(response)
+  }
   if (response?.config?.responseType === 'blob') {
     // 如果是文件流，直接过
     return response
   } else if (response.data.code === config.code) {
     return response.data
   } else {
-    ElMessage.error(response.data.message)
+    ElMessage.error((response as any).message)
   }
 }
 ;(error: AxiosError) => {
