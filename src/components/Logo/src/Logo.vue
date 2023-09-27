@@ -28,13 +28,7 @@ watch(
       show.value = true
       return
     }
-    if (!collapse) {
-      setTimeout(() => {
-        show.value = !collapse
-      }, 400)
-    } else {
-      show.value = !collapse
-    }
+    show.value = !collapse
   }
 )
 
