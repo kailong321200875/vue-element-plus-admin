@@ -15,17 +15,17 @@ const appStore = useAppStore()
 const size = computed(() => appStore.getCurrentSize)
 
 const iconSize = computed(() => {
-  return size.value === 'small'
+  return unref(size) === 'small'
     ? 'var(--el-component-size-small)'
-    : size.value === 'large'
+    : unref(size) === 'large'
     ? 'var(--el-component-size-large)'
     : 'var(--el-component-size)'
 })
 
 const iconWrapStyle = computed((): CSSProperties => {
   return {
-    width: iconSize.value,
-    height: iconSize.value,
+    width: unref(iconSize),
+    height: unref(iconSize),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -45,7 +45,7 @@ const icons = [epIcons, antIcons, tIcons]
 const iconName = ref(icons[0].prefix)
 
 const currentIconNameIndex = computed(() => {
-  return icons.findIndex((item) => item.prefix === iconName.value)
+  return icons.findIndex((item) => item.prefix === unref(iconName))
 })
 
 const tabChange = () => {
@@ -57,8 +57,8 @@ const pageSize = ref(63)
 const currentPage = ref(1)
 
 const filterIcons = (icons: string[]) => {
-  const start = (currentPage.value - 1) * pageSize.value
-  const end = currentPage.value * pageSize.value
+  const start = (unref(currentPage) - 1) * unref(pageSize)
+  const end = unref(currentPage) * unref(pageSize)
   return icons.slice(start, end)
 }
 
@@ -81,7 +81,7 @@ async function init(icon?: string) {
   const index = icons[wrapIndex].icons.findIndex((item) => item === icon)
   // 计算当前icon的页码
   await nextTick()
-  currentPage.value = Math.ceil((index + 1) / pageSize.value)
+  currentPage.value = Math.ceil((index + 1) / unref(pageSize))
 }
 
 const popoverShow = () => {

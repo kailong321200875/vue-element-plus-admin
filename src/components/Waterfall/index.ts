@@ -1,3 +1,3 @@
-import Waterfall from './Waterfall.vue'
+import Waterfall from './src/Waterfall.vue'
 
 export { Waterfall }

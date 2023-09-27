@@ -326,6 +326,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.inputPassword')
         }
+      },
+      {
+        path: 'waterfall',
+        component: () => import('@/views/Components/Waterfall.vue'),
+        name: 'waterfall',
+        meta: {
+          title: t('router.waterfall')
+        }
       }
     ]
   },

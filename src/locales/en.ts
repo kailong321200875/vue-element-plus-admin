@@ -176,7 +176,8 @@ export default {
     multipleTabs: 'Multiple tabs',
     details: 'Details',
     iconPicker: 'Icon picker',
-    request: 'Request'
+    request: 'Request',
+    waterfall: 'Waterfall'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'

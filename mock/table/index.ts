@@ -46,8 +46,8 @@ for (let i = 0; i < count; i++) {
       content: baseContent,
       importance: '@integer(1, 3)',
       display_time: '@datetime',
-      pageviews: '@integer(300, 5000)',
-      image_uri: Mock.Random.image('@integer(300, 5000)x@integer(300, 5000)')
+      pageviews: '@integer(100, 500)',
+      image_uri: Mock.Random.image('@integer(100, 500)x@integer(100, 500)')
     })
   )
 }

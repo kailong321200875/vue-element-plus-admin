@@ -285,6 +285,14 @@ const adminList = [
         meta: {
           title: 'router.inputPassword'
         }
+      },
+      {
+        path: 'waterfall',
+        component: 'views/Components/Waterfall',
+        name: 'Waterfall',
+        meta: {
+          title: 'router.waterfall'
+        }
       }
     ]
   },
@@ -640,8 +648,8 @@ const testList: string[] = [
   '/components/qrcode',
   '/components/highlight',
   '/components/infotip',
-  '/Components/InputPassword',
-  '/Components/Sticky',
+  '/components/input-password',
+  '/components/waterfall',
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',

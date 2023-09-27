@@ -174,7 +174,8 @@ export default {
     multipleTabs: '多开标签页',
     details: '详情页',
     iconPicker: '图标选择器',
-    request: '请求'
+    request: '请求',
+    waterfall: '瀑布流'
   },
   permission: {
     hasPermission: '请设置操作权限值'
