@@ -151,7 +151,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '@wangeditor/editor-for-vue',
         'vue-json-pretty',
         '@zxcvbn-ts/core',
-        'dayjs'
+        'dayjs',
+        'mockjs'
       ]
     }
   }

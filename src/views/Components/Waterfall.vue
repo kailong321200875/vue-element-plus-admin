@@ -28,6 +28,12 @@ const { t } = useI18n()
 
 <template>
   <ContentWrap :title="t('router.waterfall')">
-    <Waterfall :data="data" />
+    <Waterfall
+      :data="data"
+      :props="{
+        src: 'image_uri',
+        height: 'height'
+      }"
+    />
   </ContentWrap>
 </template>
