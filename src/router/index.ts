@@ -403,6 +403,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useCrudSchemas'
         }
+      },
+      {
+        path: 'useClipboard',
+        component: () => import('@/views/hooks/useClipboard.vue'),
+        name: 'UseClipboard',
+        meta: {
+          title: 'useClipboard'
+        }
       }
     ]
   },
