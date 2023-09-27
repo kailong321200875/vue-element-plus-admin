@@ -20,6 +20,8 @@ const getRequest1 = async () => {
     console.log('【res】：', res)
   } catch (error) {
     console.log('【error】：', error)
+  } finally {
+    pending.value.delete('/request/1')
   }
 }
 
@@ -33,6 +35,8 @@ const getRequest2 = async () => {
     console.log('【res】：', res)
   } catch (error) {
     console.log('【error】：', error)
+  } finally {
+    pending.value.delete('/request/2')
   }
 }
 
@@ -46,6 +50,8 @@ const getRequest3 = async () => {
     console.log('【res】：', res)
   } catch (error) {
     console.log('【error】：', error)
+  } finally {
+    pending.value.delete('/request/3')
   }
 }
 
@@ -59,6 +65,8 @@ const getRequest4 = async () => {
     console.log('【res】：', res)
   } catch (error) {
     console.log('【error】：', error)
+  } finally {
+    pending.value.delete('/request/4')
   }
 }
 
@@ -72,6 +80,8 @@ const getRequest5 = async () => {
     console.log('【res】：', res)
   } catch (error) {
     console.log('【error】：', error)
+  } finally {
+    pending.value.delete('/request/5')
   }
 }
 
