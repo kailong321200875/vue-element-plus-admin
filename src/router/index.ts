@@ -411,6 +411,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: 'useClipboard'
         }
+      },
+      {
+        path: 'useNetwork',
+        component: () => import('@/views/hooks/useNetwork.vue'),
+        name: 'UseNetwork',
+        meta: {
+          title: 'useNetwork'
+        }
       }
     ]
   },

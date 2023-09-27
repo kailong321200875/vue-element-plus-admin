@@ -369,6 +369,14 @@ const adminList = [
         meta: {
           title: 'useClipboard'
         }
+      },
+      {
+        path: 'useNetwork',
+        component: 'views/hooks/useNetwork',
+        name: 'UseNetwork',
+        meta: {
+          title: 'useNetwork'
+        }
       }
     ]
   },
@@ -635,6 +643,7 @@ const testList: string[] = [
   '/hooks/useValidator',
   '/hooks/useCrudSchemas',
   '/hooks/useClipboard',
+  '/hooks/useNetwork',
   '/level',
   '/level/menu1',
   '/level/menu1/menu1-1',
