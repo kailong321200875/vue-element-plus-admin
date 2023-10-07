@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
     return res
   },
   (error: AxiosError) => {
-    console.log('err' + error) // for debug
+    console.log('err： ' + error) // for debug
     ElMessage.error(error.message)
     return Promise.reject(error)
   }
