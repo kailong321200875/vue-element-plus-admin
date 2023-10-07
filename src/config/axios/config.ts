@@ -2,7 +2,6 @@ import {
   AxiosConfig,
   AxiosResponse,
   AxiosRequestHeaders,
-  AxiosError,
   InternalAxiosRequestConfig
 } from './types'
 import { ElMessage } from 'element-plus'
@@ -76,10 +75,6 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   }
   return config
 }
-;(error: AxiosError) => {
-  console.log(error)
-  Promise.reject(error)
-}
 
 const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
   if (response?.config?.responseType === 'blob') {
@@ -90,11 +85,6 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
   } else {
     ElMessage.error(response.data.message)
   }
-}
-;(error: AxiosError) => {
-  console.log('err' + error) // for debug
-  ElMessage.error(error.message)
-  return Promise.reject(error)
 }
 
 export { defaultResponseInterceptors, defaultRequestInterceptors }

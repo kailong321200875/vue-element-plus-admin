@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import config, { defaultRequestInterceptors, defaultResponseInterceptors } from './config'
 
 import { AxiosInstance, InternalAxiosRequestConfig, RequestConfig, AxiosResponse } from './types'
+import { ElMessage } from 'element-plus'
 
 const { interceptors, baseUrl } = config
 export const PATH_URL = baseUrl[import.meta.env.VITE_API_BASE_PATH]
@@ -27,9 +28,13 @@ axiosInstance.interceptors.response.use(
   (res: AxiosResponse) => {
     const url = res.config.url || ''
     abortControllerMap.delete(url)
-    return res.data
+    return res
   },
-  (err: any) => err
+  (error: AxiosError) => {
+    console.log('err： ' + error) // for debug
+    ElMessage.error(error.message)
+    return Promise.reject(error)
+  }
 )
 
 axiosInstance.interceptors.request.use(requestInterceptors || defaultRequestInterceptors)
