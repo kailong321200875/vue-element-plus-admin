@@ -16,6 +16,8 @@ const { getPrefixCls } = useDesign()
 
 const prefixCls = getPrefixCls('descriptions')
 
+const defaultData = '-'
+
 export default defineComponent({
   name: 'Descriptions',
   props: {
@@ -115,7 +117,7 @@ export default defineComponent({
                             default: () =>
                               item.slots?.default
                                 ? item.slots?.default(props.data)
-                                : get(props.data, item.field)
+                                : get(props.data, item.field) ?? defaultData
                           }}
                         </ElDescriptionsItem>
                       )
