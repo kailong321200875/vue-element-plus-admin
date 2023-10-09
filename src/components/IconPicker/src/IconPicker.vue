@@ -52,7 +52,7 @@ const tabChange = () => {
   currentPage.value = 1
 }
 
-const pageSize = ref(63)
+const pageSize = ref(49)
 
 const currentPage = ref(1)
 
@@ -78,7 +78,7 @@ async function init(icon?: string) {
   iconName.value = iconInfo[0]
   const wrapIndex = icons.findIndex((item) => item.prefix === iconInfo[0])
   // 查询当前icon的索引
-  const index = icons[wrapIndex].icons.findIndex((item) => item === icon)
+  const index = filterItemIcons(icons[wrapIndex].icons).findIndex((item) => item === icon)
   // 计算当前icon的页码
   await nextTick()
   currentPage.value = Math.ceil((index + 1) / unref(pageSize))
@@ -91,6 +91,16 @@ const popoverShow = () => {
 const iconSelect = (icon: string) => {
   modelValue.value = icon
 }
+
+const search = ref('')
+
+const filterItemIcons = (icons: string[]) => {
+  return icons.filter((item) => item.includes(unref(search)))
+}
+
+const inputClear = () => {
+  init(unref(modelValue))
+}
 </script>
 
 <template>
@@ -100,7 +110,7 @@ const iconSelect = (icon: string) => {
       placement="bottom"
       trigger="click"
       :width="450"
-      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; height: 400px;"
+      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; height: 380px;"
       @show="popoverShow"
     >
       <template #reference>
@@ -109,11 +119,18 @@ const iconSelect = (icon: string) => {
         </div>
       </template>
       <ElScrollbar class="h-[calc(100%-50px)]!">
+        <ElInput
+          v-model="search"
+          class="mb-20px"
+          clearable
+          placeholder="搜索图标"
+          @clear="inputClear"
+        />
         <ElTabs tab-position="left" v-model="iconName" @tab-change="tabChange">
           <ElTabPane v-for="item in icons" :key="item.name" :label="item.name" :name="item.prefix">
             <div class="flex flex-wrap box-border">
               <div
-                v-for="icon in filterIcons(item.icons)"
+                v-for="icon in filterIcons(filterItemIcons(item.icons))"
                 :key="icon"
                 :style="{
                   width: iconSize,
@@ -149,7 +166,7 @@ const iconSelect = (icon: string) => {
           small
           :page-sizes="[100, 200, 300, 400]"
           layout="total, prev, pager, next, jumper"
-          :total="icons[currentIconNameIndex].icons.length"
+          :total="filterItemIcons(icons[currentIconNameIndex].icons).length"
         />
       </div>
     </ElPopover>
