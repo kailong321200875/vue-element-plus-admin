@@ -93,9 +93,6 @@ export default defineComponent({
     // element form 实例
     const elFormRef = ref<ComponentRef<typeof ElForm>>()
 
-    // useForm传入的props
-    const outsideProps = ref<FormProps>({})
-
     const mergeProps = ref<FormProps>({})
 
     const getProps = computed(() => {
@@ -124,8 +121,6 @@ export default defineComponent({
 
     const setProps = (props: FormProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
-      // @ts-ignore
-      outsideProps.value = props
     }
 
     const delSchema = (field: string) => {
