@@ -228,7 +228,7 @@ export default defineComponent({
 
     const addColumn = (column: TableColumn, index?: number) => {
       const { columns } = unref(getProps)
-      if (index) {
+      if (index || index === 0) {
         columns.splice(index, 0, column)
       } else {
         columns.push(column)
