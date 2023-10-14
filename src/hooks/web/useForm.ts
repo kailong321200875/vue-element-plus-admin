@@ -2,6 +2,7 @@ import type { Form, FormExpose } from '@/components/Form'
 import type { ElForm, ElFormItem } from 'element-plus'
 import { ref, unref, nextTick } from 'vue'
 import { FormSchema, FormSetProps, FormProps } from '@/components/Form'
+import { isEmptyVal, isObject } from '@/utils/is'
 
 export const useForm = () => {
   // From实例
@@ -83,9 +84,27 @@ export const useForm = () => {
      * @description 获取表单数据
      * @returns form data
      */
-    getFormData: async <T = Recordable>(): Promise<T> => {
+    getFormData: async <T = Recordable>(filterEmptyVal = true): Promise<T> => {
       const form = await getForm()
-      return form?.formModel as T
+      const model = form?.formModel as any
+      if (filterEmptyVal) {
+        // 使用reduce过滤空值，并返回一个新对象
+        return Object.keys(model).reduce((prev, next) => {
+          const value = model[next]
+          if (!isEmptyVal(value)) {
+            if (isObject(value)) {
+              if (Object.keys(value).length > 0) {
+                prev[next] = value
+              }
+            } else {
+              prev[next] = value
+            }
+          }
+          return prev
+        }, {}) as T
+      } else {
+        return model as T
+      }
     },
 
     /**

@@ -68,6 +68,7 @@ const formSchema = ref<FormSchema[]>([
                     show-checkbox
                     node-key="id"
                     highlight-current
+                    check-strictly
                     expand-on-click-node={false}
                     data={treeData.value}
                     onNode-click={nodeClick}
@@ -153,10 +154,7 @@ const submit = async () => {
   })
   if (valid) {
     const formData = await getFormData()
-    const checkedKeys = [
-      ...(unref(treeRef)?.getCheckedKeys() || []),
-      ...(unref(treeRef)?.getHalfCheckedKeys() || [])
-    ]
+    const checkedKeys = unref(treeRef)?.getCheckedKeys() || []
     const data = filter(unref(treeData), (item: any) => {
       return checkedKeys.includes(item.id)
     })

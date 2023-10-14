@@ -159,6 +159,12 @@ export default defineComponent({
 }
 
 :deep(.@{prefix-cls}-label) {
-  width: 150px;
+  width: 150px !important;
 }
+
+// .@{prefix-cls}-content {
+//   :deep(.@{elNamespace}-descriptions__cell) {
+//     width: 0;
+//   }
+// }
 </style>

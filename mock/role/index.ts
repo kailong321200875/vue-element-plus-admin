@@ -332,6 +332,15 @@ const adminList = [
         meta: {
           title: 'router.request'
         }
+      },
+      {
+        path: 'test',
+        component: () => 'views/Function/Test',
+        name: 'Test',
+        meta: {
+          title: 'router.permission',
+          permission: ['add', 'edit', 'delete']
+        }
       }
     ]
   },
@@ -602,14 +611,6 @@ const adminList = [
         meta: {
           title: 'router.role'
         }
-      },
-      {
-        path: 'test',
-        component: 'views/Authorization/Test/Test',
-        name: 'Test',
-        meta: {
-          title: 'router.permission'
-        }
       }
     ]
   }
@@ -654,6 +655,7 @@ const testList: string[] = [
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',
   '/function/request',
+  '/function/test',
   '/hooks',
   '/hooks/useWatermark',
   '/hooks/useTagsView',
@@ -678,7 +680,6 @@ const testList: string[] = [
   '/authorization/user',
   '/authorization/role',
   '/authorization/menu',
-  '/authorization/test',
   '/error',
   '/error/404-demo',
   '/error/403-demo',

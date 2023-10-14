@@ -1,9 +1,11 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Form, FormSchema } from '@/components/Form'
 import { useForm } from '@/hooks/web/useForm'
 import { PropType, reactive, watch } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
+import { getMenuListApi } from '@/api/menu'
+import { ElTag, ElButton } from 'element-plus'
 
 const { t } = useI18n()
 
@@ -18,14 +20,115 @@ const props = defineProps({
 
 const formSchema = reactive<FormSchema[]>([
   {
+    field: 'type',
+    label: '菜单类型',
+    component: 'RadioButton',
+    value: 0,
+    colProps: {
+      span: 24
+    },
+    componentProps: {
+      options: [
+        {
+          label: '目录',
+          value: 0
+        },
+        {
+          label: '菜单',
+          value: 1
+        }
+      ],
+      on: {
+        change: async (val: number) => {
+          const formData = await getFormData()
+          if (val === 1) {
+            setSchema([
+              {
+                field: 'component',
+                path: 'componentProps.disabled',
+                value: false
+              }
+            ])
+            setValues({
+              component: ''
+            })
+          } else {
+            setSchema([
+              {
+                field: 'component',
+                path: 'componentProps.disabled',
+                value: true
+              }
+            ])
+
+            if (formData.parentId === void 0) {
+              setValues({
+                component: '#'
+              })
+            } else {
+              setValues({
+                component: '##'
+              })
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    field: 'parentId',
+    label: '父级菜单',
+    component: 'TreeSelect',
+    componentProps: {
+      nodeKey: 'id',
+      props: {
+        label: 'title',
+        value: 'id',
+        children: 'children'
+      },
+      highlightCurrent: true,
+      expandOnClickNode: false,
+      checkStrictly: true,
+      checkOnClickNode: true,
+      clearable: true,
+      on: {
+        change: async (val: number) => {
+          const formData = await getFormData()
+          if (val && formData.type === 0) {
+            setValues({
+              component: '##'
+            })
+          } else if (!val && formData.type === 0) {
+            setValues({
+              component: '#'
+            })
+          } else if (formData.type === 1) {
+            setValues({
+              component: ''
+            })
+          }
+        }
+      }
+    },
+    optionApi: async () => {
+      const res = await getMenuListApi()
+      return res.data.list || []
+    }
+  },
+  {
     field: 'meta.title',
     label: t('menu.menuName'),
     component: 'Input'
   },
   {
     field: 'component',
-    label: t('menu.component'),
-    component: 'Input'
+    label: '组件',
+    component: 'Input',
+    value: '#',
+    componentProps: {
+      disabled: true,
+      placeholder: '#为顶级目录，##为子目录'
+    }
   },
   {
     field: 'name',
@@ -40,6 +143,11 @@ const formSchema = reactive<FormSchema[]>([
   {
     field: 'path',
     label: t('menu.path'),
+    component: 'Input'
+  },
+  {
+    field: 'meta.activeMenu',
+    label: t('menu.activeMenu'),
     component: 'Input'
   },
   {
@@ -60,29 +168,31 @@ const formSchema = reactive<FormSchema[]>([
     }
   },
   {
-    field: 'meta.activeMenu',
-    label: t('menu.activeMenu'),
-    component: 'Input'
-  },
-  {
-    field: 'permission',
+    field: 'permissionList',
     label: t('menu.permission'),
     component: 'CheckboxGroup',
-    componentProps: {
-      options: [
-        {
-          label: 'add',
-          value: 'add'
-        },
-        {
-          label: 'edit',
-          value: 'edit'
-        },
-        {
-          label: 'delete',
-          value: 'delete'
-        }
-      ]
+    colProps: {
+      span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => (
+          <>
+            <ElTag class="mx-1" closable disableTransitions={false}>
+              新增
+            </ElTag>
+            <ElTag class="mx-1" closable disableTransitions={false}>
+              编辑
+            </ElTag>
+            <ElTag class="mx-1" closable disableTransitions={false}>
+              删除
+            </ElTag>
+            <ElButton type="primary" size="small" onClick={() => console.log('添加权限')}>
+              添加权限
+            </ElButton>
+          </>
+        )
+      }
     }
   },
   {
@@ -116,7 +226,7 @@ const formSchema = reactive<FormSchema[]>([
     component: 'Switch'
   },
   {
-    field: 'canTo',
+    field: 'meta.canTo',
     label: t('menu.canTo'),
     component: 'Switch'
   }
@@ -129,7 +239,7 @@ const rules = reactive({
 })
 
 const { formRegister, formMethods } = useForm()
-const { setValues, getFormData, getElFormExpose } = formMethods
+const { setValues, getFormData, getElFormExpose, setSchema } = formMethods
 
 const submit = async () => {
   const elForm = await getElFormExpose()

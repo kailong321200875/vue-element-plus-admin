@@ -10,6 +10,7 @@ import { Search } from '@/components/Search'
 import { FormSchema } from '@/components/Form'
 import { ContentWrap } from '@/components/ContentWrap'
 import Write from './components/Write.vue'
+import Detail from './components/Detail.vue'
 import { Dialog } from '@/components/Dialog'
 
 const { t } = useI18n()
@@ -54,16 +55,16 @@ const tableColumns = reactive<TableColumn[]>([
       }
     }
   },
-  {
-    field: 'meta.permission',
-    label: t('menu.permission'),
-    slots: {
-      default: (data: any) => {
-        const permission = data.row.meta.permission
-        return permission ? <>{permission.join(', ')}</> : null
-      }
-    }
-  },
+  // {
+  //   field: 'meta.permission',
+  //   label: t('menu.permission'),
+  //   slots: {
+  //     default: (data: any) => {
+  //       const permission = data.row.meta.permission
+  //       return permission ? <>{permission.join(', ')}</> : null
+  //     }
+  //   }
+  // },
   {
     field: 'component',
     label: t('menu.component'),
@@ -104,6 +105,9 @@ const tableColumns = reactive<TableColumn[]>([
           <>
             <ElButton type="primary" onClick={() => action(row, 'edit')}>
               {t('exampleDemo.edit')}
+            </ElButton>
+            <ElButton type="success" onClick={() => action(row, 'detail')}>
+              {t('exampleDemo.detail')}
             </ElButton>
             <ElButton type="danger">{t('exampleDemo.del')}</ElButton>
           </>
@@ -154,6 +158,7 @@ const AddAction = () => {
 const save = async () => {
   const write = unref(writeRef)
   const formData = await write?.submit()
+  console.log(formData)
   if (formData) {
     saveLoading.value = true
     setTimeout(() => {
@@ -182,6 +187,8 @@ const save = async () => {
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
     <Write v-if="actionType !== 'detail'" ref="writeRef" :current-row="currentRow" />
+
+    <Detail v-if="actionType === 'detail'" :current-row="currentRow" />
 
     <template #footer>
       <ElButton v-if="actionType !== 'detail'" type="primary" :loading="saveLoading" @click="save">

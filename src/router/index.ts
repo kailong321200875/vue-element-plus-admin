@@ -374,6 +374,15 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.request')
         }
+      },
+      {
+        path: 'test',
+        component: () => import('@/views/Function/Test.vue'),
+        name: 'Test',
+        meta: {
+          title: t('router.permission'),
+          permission: ['add', 'edit', 'delete']
+        }
       }
     ]
   },
@@ -643,15 +652,6 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'Role',
         meta: {
           title: t('router.role')
-        }
-      },
-      {
-        path: 'test',
-        component: () => import('@/views/Authorization/Test/Test.vue'),
-        name: 'Test',
-        meta: {
-          title: t('router.permission'),
-          permission: ['add', 'edit', 'delete']
         }
       }
     ]

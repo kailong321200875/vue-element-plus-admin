@@ -81,11 +81,12 @@ const crudSchemas = reactive<CrudSchema[]>([
     field: 'department.id',
     label: t('userDemo.department'),
     detail: {
-      slots: {
-        default: (data: DepartmentUserItem) => {
-          return <>{data.department.departmentName}</>
-        }
-      }
+      hidden: true
+      // slots: {
+      //   default: (data: DepartmentUserItem) => {
+      //     return <>{data.department.departmentName}</>
+      //   }
+      // }
     },
     search: {
       hidden: true
@@ -104,7 +105,7 @@ const crudSchemas = reactive<CrudSchema[]>([
       }
     },
     table: {
-      type: 'index'
+      hidden: true
     }
   },
   {
@@ -202,7 +203,7 @@ watch(
 )
 
 const currentChange = (data: DepartmentItem) => {
-  if (data.children) return
+  // if (data.children) return
   currentNodeKey.value = data.id
   currentPage.value = 1
   getList()
@@ -290,6 +291,7 @@ const save = async () => {
         ref="treeEl"
         :data="departmentList"
         default-expand-all
+        :expand-on-click-node="false"
         node-key="id"
         :current-node-key="currentNodeKey"
         :props="{
