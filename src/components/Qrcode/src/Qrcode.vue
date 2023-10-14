@@ -242,7 +242,7 @@ const disabledClick = () => {
 
 .@{prefix-cls} {
   &--disabled {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgb(255 255 255 / 95%);
 
     & > div {
       transform: translate(-50%, -50%);

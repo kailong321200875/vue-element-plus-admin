@@ -61,7 +61,10 @@ export default defineComponent({
           delete obj[key]
         }
       }
-      return obj
+      return {
+        labelClassName: `${prefixCls}-label`,
+        ...obj
+      }
     }
 
     // 折叠
@@ -155,9 +158,7 @@ export default defineComponent({
   }
 }
 
-.@{prefix-cls}-content {
-  :deep(.@{elNamespace}-descriptions__cell) {
-    width: 0;
-  }
+:deep(.@{prefix-cls}-label) {
+  width: 150px;
 }
 </style>

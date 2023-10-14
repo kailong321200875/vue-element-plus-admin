@@ -94,7 +94,7 @@ const handleLock = async () => {
 
 <style lang="less" scoped>
 :global(.v-lock-dialog) {
-  @media (max-width: 767px) {
+  @media (width <= 767px) {
     max-width: calc(100vw - 16px);
   }
 }
