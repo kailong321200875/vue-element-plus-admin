@@ -42,6 +42,7 @@ const cols = ref(0)
 const filterData = ref<any[]>([])
 
 const filterWaterfall = async () => {
+  filterData.value = []
   const { props, width, gap } = prop
   const data = prop.data as any[]
   await nextTick()
@@ -65,7 +66,7 @@ const filterWaterfall = async () => {
       let minHeight = heights.value[0]
       let index = 0
       // 找出最小高度
-      for (let j = 1; j < cols.value; j++) {
+      for (let j = 1; j < unref(cols); j++) {
         if (unref(heights)[j] < minHeight) {
           minHeight = unref(heights)[j]
           index = j
