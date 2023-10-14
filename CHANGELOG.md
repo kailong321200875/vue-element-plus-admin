@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.3.0...v2.4.0) (2023-10-14)
+
+
+### Types
+
+* 修改类型错误 ([4760733](https://github.com/kailong321200875/vue-element-plus-admin/commit/4760733bbe39b547285894555754bae6539190f9))
+
+
+### Features
+
+* Waterfall ([d543e56](https://github.com/kailong321200875/vue-element-plus-admin/commit/d543e56efb3b3e5800ab3ec24eda25565311eda2))
+
+
+### Bug Fixes
+
+* [#342](https://github.com/kailong321200875/vue-element-plus-admin/issues/342) ([1c51221](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c512216453b17c64a09f97263fd481816badf7c))
+* [#346](https://github.com/kailong321200875/vue-element-plus-admin/issues/346) ([d392868](https://github.com/kailong321200875/vue-element-plus-admin/commit/d392868c2799c2066ba606b0cdad95c011399559))
+* [#355](https://github.com/kailong321200875/vue-element-plus-admin/issues/355) ([03d5e13](https://github.com/kailong321200875/vue-element-plus-admin/commit/03d5e130146a662a8a312e6c49f995f85ea0f9d3))
+* **Descriptions:** Add a default value ([83b09f0](https://github.com/kailong321200875/vue-element-plus-admin/commit/83b09f09ffafb2a6273a1c5274e22f842c202c32))
+* table column 中定义 selectable 无效 ([b8e043c](https://github.com/kailong321200875/vue-element-plus-admin/commit/b8e043c09c74fe00521ac0d7390331b9f223c797))
+* Table的addColumn不能添加首列 ([240178f](https://github.com/kailong321200875/vue-element-plus-admin/commit/240178fd380402571fc056ddb9c8ae44ccb1e265))
+* 修复Waterfall列数错误BUG ([1c2befa](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c2befa4ddc76c625774100e3f5dd5a68a6faa45))
+* 去除控制台警告 ([4d14246](https://github.com/kailong321200875/vue-element-plus-admin/commit/4d14246de50d2ba9d652ec5ef038f4fd3597006a))
+
+
+### Styling
+
+* Descriptions样式调整 ([be73f4d](https://github.com/kailong321200875/vue-element-plus-admin/commit/be73f4da3e4bbbacf3f748f7ebfd70f825e0d15e))
+* formDemo集成图标选择器 ([99ffe6a](https://github.com/kailong321200875/vue-element-plus-admin/commit/99ffe6a86ac9961ad5b9be0171b01acdfa0cf994))
+* 修改 Search 组件图标错误 ([7c93b74](https://github.com/kailong321200875/vue-element-plus-admin/commit/7c93b74e8f3e69d6c88ef2891eb6accc99a6a1e8))
+
+
+### Performance Improvements
+
+* IconPicker新增搜索功能 ([a4d1391](https://github.com/kailong321200875/vue-element-plus-admin/commit/a4d1391390bb33d498f2ec2cc64965f1a0b0aaab))
+* useClipboard ([1db2248](https://github.com/kailong321200875/vue-element-plus-admin/commit/1db22482b43f6fb7ca8321b838fb41a5b0aff62e))
+* useNetwork ([88be3ee](https://github.com/kailong321200875/vue-element-plus-admin/commit/88be3eea10196054596945af0eb9910e998dfd42))
+* 优化请求例子 ([6b3d2e1](https://github.com/kailong321200875/vue-element-plus-admin/commit/6b3d2e14985c1a7a3c68001e17820d0e7a833a56))
+* 完善demo ([2c4ff7d](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c4ff7d190c816a92d92f9c2dbe048436b2bf964))
+* 新增请求示例 ([2762aaf](https://github.com/kailong321200875/vue-element-plus-admin/commit/2762aaf09b3616944476797a6e112c350c12a0ec))
+
 ## [2.3.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.2.0...v2.3.0) (2023-09-24)
 
 
