@@ -47,10 +47,8 @@ export default [
       return {
         data: {
           code: code,
-          data: {
-            total: mockList.length,
-            list: pageList
-          }
+          total: mockList.length,
+          list: pageList
         }
       }
     }
@@ -67,10 +65,8 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            data: {
-              code: code,
-              data: user
-            }
+            code: code,
+            data: user
           }
         }
       }
@@ -89,10 +85,8 @@ export default [
     timeout,
     response: () => {
       return {
-        data: {
-          code: code,
-          data: null
-        }
+        code: code,
+        data: null
       }
     }
   }

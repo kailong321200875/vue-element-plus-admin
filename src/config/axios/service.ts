@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
   (res: AxiosResponse) => {
     const url = res.config.url || ''
     abortControllerMap.delete(url)
-    return res.data
+    return res
   },
   (error: AxiosError) => {
     console.log('err： ' + error) // for debug
