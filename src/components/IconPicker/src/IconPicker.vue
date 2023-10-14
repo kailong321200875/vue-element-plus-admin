@@ -8,6 +8,18 @@ import { useAppStore } from '@/store/modules/app'
 import { computed, CSSProperties, ref, unref, watch } from 'vue'
 import { nextTick } from 'vue'
 
+const init = async (icon?: string) => {
+  if (!icon) return
+  const iconInfo = icon.split(':')
+  iconName.value = iconInfo[0]
+  const wrapIndex = icons.findIndex((item) => item.prefix === iconInfo[0])
+  // 查询当前icon的索引
+  const index = filterItemIcons(icons[wrapIndex].icons).findIndex((item) => item === icon)
+  // 计算当前icon的页码
+  await nextTick()
+  currentPage.value = Math.ceil((index + 1) / unref(pageSize))
+}
+
 const modelValue = defineModel<string>()
 
 const appStore = useAppStore()
@@ -64,25 +76,14 @@ const filterIcons = (icons: string[]) => {
 
 watch(
   () => modelValue.value,
-  (val) => {
-    init(val)
+  async (val) => {
+    await nextTick()
+    val && init(val)
   },
   {
     immediate: true
   }
 )
-
-async function init(icon?: string) {
-  if (!icon) return
-  const iconInfo = icon.split(':')
-  iconName.value = iconInfo[0]
-  const wrapIndex = icons.findIndex((item) => item.prefix === iconInfo[0])
-  // 查询当前icon的索引
-  const index = filterItemIcons(icons[wrapIndex].icons).findIndex((item) => item === icon)
-  // 计算当前icon的页码
-  await nextTick()
-  currentPage.value = Math.ceil((index + 1) / unref(pageSize))
-}
 
 const popoverShow = () => {
   init(unref(modelValue))
