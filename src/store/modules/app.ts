@@ -63,7 +63,7 @@ export const useAppStore = defineStore('app', {
 
       layout: getStorage('layout') || 'classic', // layout布局
       isDark: getStorage('isDark'), // 是否是暗黑模式
-      currentSize: getStorage('default') || 'default', // 组件尺寸
+      currentSize: getStorage('currentSize') || 'default', // 组件尺寸
       theme: getStorage('theme') || {
         // 主题色
         elColorPrimary: '#409eff',
