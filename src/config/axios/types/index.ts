@@ -16,12 +16,6 @@ interface RequestInterceptors<T> {
   responseInterceptorsCatch?: (err: any) => any
 }
 interface AxiosConfig<T = AxiosResponse> {
-  baseUrl: {
-    base: string
-    dev: string
-    pro: string
-    test: string
-  }
   code: number
   defaultHeaders: AxiosHeaders
   timeout: number
