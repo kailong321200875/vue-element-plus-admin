@@ -7,7 +7,7 @@ import {
   ElTooltipProps,
   ElImage
 } from 'element-plus'
-import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
+import { defineComponent, PropType, ref, computed, reactive, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { setIndex } from './helper'
 import type { TableProps, TableColumn, Pagination, TableSetProps } from './types'
@@ -205,7 +205,7 @@ export default defineComponent({
     const getProps = computed(() => {
       const propsObj = { ...props }
       Object.assign(propsObj, unref(mergeProps))
-      return propsObj
+      return reactive(propsObj)
     })
 
     const setProps = (props: TableProps = {}) => {
