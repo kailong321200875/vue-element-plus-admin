@@ -29,11 +29,6 @@ const formSchema = ref<FormSchema[]>([
     component: 'Input'
   },
   {
-    field: 'role',
-    label: t('role.role'),
-    component: 'Input'
-  },
-  {
     field: 'status',
     label: t('menu.status'),
     component: 'Select',

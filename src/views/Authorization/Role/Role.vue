@@ -37,10 +37,6 @@ const tableColumns = reactive<TableColumn[]>([
     label: t('role.roleName')
   },
   {
-    field: 'role',
-    label: t('role.role')
-  },
-  {
     field: 'status',
     label: t('menu.status'),
     slots: {

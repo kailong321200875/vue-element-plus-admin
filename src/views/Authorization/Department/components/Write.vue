@@ -20,9 +20,7 @@ const props = defineProps({
 
 const rules = reactive({
   id: [required()],
-  status: [required()],
-  createTime: [required()],
-  remark: [required()]
+  status: [required()]
 })
 
 const { formRegister, formMethods } = useForm()
