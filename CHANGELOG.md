@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.4.0...v2.4.1) (2023-11-12)
+
+
+### Bug Fixes
+
+* [#361](https://github.com/kailong321200875/vue-element-plus-admin/issues/361) ([2e7797b](https://github.com/kailong321200875/vue-element-plus-admin/commit/2e7797be68b2469d979231e6588b43d0b5bdb88b))
+* Default currentSize ([af583c7](https://github.com/kailong321200875/vue-element-plus-admin/commit/af583c71b0d1760ba4ed4cfa12458820c3f4db52))
+* 修复瀑布流示例图片无法展示 ([3477173](https://github.com/kailong321200875/vue-element-plus-admin/commit/3477173b7649eb43a1e64c91135b0e657a3c7888))
+* 修复自动格式化无效 ([bd82108](https://github.com/kailong321200875/vue-element-plus-admin/commit/bd8210858126f945bad31b3f1e0416aa178afef1))
+
+
+### Styling
+
+* 修改样式 ([92d436b](https://github.com/kailong321200875/vue-element-plus-admin/commit/92d436b8bb95c94831fcfe30678d384c3debc052))
+
+
+### Performance Improvements
+
+* 优化权限管理 ([efc1c25](https://github.com/kailong321200875/vue-element-plus-admin/commit/efc1c25db86d28438a2c324a3dc302501e1fdf8f))
+* 优化瀑布流组件 ([82eb7f1](https://github.com/kailong321200875/vue-element-plus-admin/commit/82eb7f16ad3f663be602a747b55a78f6b986da30))
+
 ## [2.4.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.3.0...v2.4.0) (2023-10-14)
 
 
