@@ -24,6 +24,8 @@ export default [
               name: 'Dashboard',
               status: Mock.Random.integer(0, 1),
               id: 1,
+              type: 0,
+              parentId: undefined,
               title: '首页',
               meta: {
                 title: '首页',
@@ -37,10 +39,23 @@ export default [
                   name: 'Analysis',
                   status: Mock.Random.integer(0, 1),
                   id: 2,
+                  type: 1,
+                  parentId: 1,
                   title: '分析页',
+                  permissionList: [
+                    {
+                      label: '新增',
+                      value: 'add'
+                    },
+                    {
+                      label: '编辑',
+                      value: 'edit'
+                    }
+                  ],
                   meta: {
                     title: '分析页',
-                    noCache: true
+                    noCache: true,
+                    permission: ['add', 'edit']
                   }
                 },
                 {
@@ -49,7 +64,23 @@ export default [
                   name: 'Workplace',
                   status: Mock.Random.integer(0, 1),
                   id: 3,
+                  type: 1,
+                  parentId: 1,
                   title: '工作台',
+                  permissionList: [
+                    {
+                      label: '新增',
+                      value: 'add'
+                    },
+                    {
+                      label: '编辑',
+                      value: 'edit'
+                    },
+                    {
+                      label: '删除',
+                      value: 'delete'
+                    }
+                  ],
                   meta: {
                     title: '工作台',
                     noCache: true
@@ -60,7 +91,6 @@ export default [
             {
               path: '/external-link',
               component: '#',
-              title: '文档',
               meta: {
                 title: '文档',
                 icon: 'clarity:document-solid'
@@ -68,12 +98,17 @@ export default [
               name: 'ExternalLink',
               status: Mock.Random.integer(0, 1),
               id: 4,
+              type: 0,
+              parentId: undefined,
+              title: '文档',
               children: [
                 {
                   path: 'https://element-plus-admin-doc.cn/',
                   name: 'DocumentLink',
                   status: Mock.Random.integer(0, 1),
                   id: 5,
+                  type: 1,
+                  parentId: 4,
                   title: '文档',
                   meta: {
                     title: '文档'
@@ -88,6 +123,8 @@ export default [
               name: 'Level',
               status: Mock.Random.integer(0, 1),
               id: 6,
+              type: 0,
+              parentId: undefined,
               title: '菜单',
               meta: {
                 title: '菜单',
@@ -100,8 +137,10 @@ export default [
                   component: '##',
                   status: Mock.Random.integer(0, 1),
                   id: 7,
-                  redirect: '/level/menu1/menu1-1/menu1-1-1',
+                  type: 0,
+                  parentId: 6,
                   title: '菜单1',
+                  redirect: '/level/menu1/menu1-1/menu1-1-1',
                   meta: {
                     title: '菜单1'
                   },
@@ -112,8 +151,10 @@ export default [
                       component: '##',
                       status: Mock.Random.integer(0, 1),
                       id: 8,
-                      redirect: '/level/menu1/menu1-1/menu1-1-1',
+                      type: 0,
+                      parentId: 7,
                       title: '菜单1-1',
+                      redirect: '/level/menu1/menu1-1/menu1-1-1',
                       meta: {
                         title: '菜单1-1',
                         alwaysShow: true
@@ -125,7 +166,8 @@ export default [
                           component: 'views/Level/Menu111',
                           status: Mock.Random.integer(0, 1),
                           id: 9,
-                          permission: ['edit', 'add', 'delete'],
+                          type: 1,
+                          parentId: 8,
                           title: '菜单1-1-1',
                           meta: {
                             title: '菜单1-1-1'
@@ -139,7 +181,8 @@ export default [
                       component: 'views/Level/Menu12',
                       status: Mock.Random.integer(0, 1),
                       id: 10,
-                      permission: ['edit', 'add', 'delete'],
+                      type: 1,
+                      parentId: 7,
                       title: '菜单1-2',
                       meta: {
                         title: '菜单1-2'
@@ -153,7 +196,8 @@ export default [
                   component: 'views/Level/Menu2',
                   status: Mock.Random.integer(0, 1),
                   id: 11,
-                  permission: ['edit', 'add', 'delete'],
+                  type: 1,
+                  parentId: 6,
                   title: '菜单2',
                   meta: {
                     title: '菜单2'
@@ -168,6 +212,8 @@ export default [
               name: 'Example',
               status: Mock.Random.integer(0, 1),
               id: 12,
+              type: 0,
+              parentId: undefined,
               title: '综合示例',
               meta: {
                 title: '综合示例',
@@ -181,11 +227,29 @@ export default [
                   name: 'ExampleDialog',
                   status: Mock.Random.integer(0, 1),
                   id: 13,
+                  type: 1,
+                  parentId: 12,
                   title: '综合示例-弹窗',
-                  permission: ['edit', 'add', 'delete'],
+                  permissionList: [
+                    {
+                      label: '新增',
+                      value: 'add'
+                    },
+                    {
+                      label: '编辑',
+                      value: 'edit'
+                    },
+                    {
+                      label: '删除',
+                      value: 'delete'
+                    },
+                    {
+                      label: '查看',
+                      value: 'view'
+                    }
+                  ],
                   meta: {
-                    title: '综合示例-弹窗',
-                    permission: ['edit', 'add']
+                    title: '综合示例-弹窗'
                   }
                 },
                 {
@@ -194,11 +258,29 @@ export default [
                   name: 'ExamplePage',
                   status: Mock.Random.integer(0, 1),
                   id: 14,
-                  permission: ['edit', 'add', 'delete'],
+                  type: 1,
+                  parentId: 12,
                   title: '综合示例-页面',
+                  permissionList: [
+                    {
+                      label: '新增',
+                      value: 'edit'
+                    },
+                    {
+                      label: '编辑',
+                      value: 'edit'
+                    },
+                    {
+                      label: '删除',
+                      value: 'delete'
+                    },
+                    {
+                      label: '查看',
+                      value: 'view'
+                    }
+                  ],
                   meta: {
-                    title: '综合示例-页面',
-                    permission: ['edit', 'add']
+                    title: '综合示例-页面'
                   }
                 },
                 {
@@ -207,7 +289,8 @@ export default [
                   name: 'ExampleAdd',
                   status: Mock.Random.integer(0, 1),
                   id: 15,
-                  permission: ['edit', 'add', 'delete'],
+                  type: 1,
+                  parentId: 12,
                   title: '综合示例-新增',
                   meta: {
                     title: '综合示例-新增',
@@ -215,8 +298,7 @@ export default [
                     noCache: true,
                     hidden: true,
                     showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'add']
+                    activeMenu: '/example/example-page'
                   }
                 },
                 {
@@ -225,7 +307,8 @@ export default [
                   name: 'ExampleEdit',
                   status: Mock.Random.integer(0, 1),
                   id: 16,
-                  permission: ['edit', 'add', 'delete'],
+                  type: 1,
+                  parentId: 12,
                   title: '综合示例-编辑',
                   meta: {
                     title: '综合示例-编辑',
@@ -233,8 +316,7 @@ export default [
                     noCache: true,
                     hidden: true,
                     showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'add']
+                    activeMenu: '/example/example-page'
                   }
                 },
                 {
@@ -243,7 +325,8 @@ export default [
                   name: 'ExampleDetail',
                   status: Mock.Random.integer(0, 1),
                   id: 17,
-                  permission: ['edit', 'add', 'delete'],
+                  type: 1,
+                  parentId: 12,
                   title: '综合示例-详情',
                   meta: {
                     title: '综合示例-详情',
@@ -251,8 +334,7 @@ export default [
                     noCache: true,
                     hidden: true,
                     showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'edit']
+                    activeMenu: '/example/example-page'
                   }
                 }
               ]

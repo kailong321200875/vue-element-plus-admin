@@ -35,7 +35,13 @@ const tableColumns = reactive<TableColumn[]>([
   },
   {
     field: 'meta.title',
-    label: t('menu.menuName')
+    label: t('menu.menuName'),
+    slots: {
+      default: (data: any) => {
+        const title = data.row.meta.title
+        return <>{title}</>
+      }
+    }
   },
   {
     field: 'meta.icon',

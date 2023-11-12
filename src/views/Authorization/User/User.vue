@@ -11,6 +11,7 @@ import { Search } from '@/components/Search'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
 import { Dialog } from '@/components/Dialog'
+import { getRoleListApi } from '@/api/role'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 const { t } = useI18n()
@@ -113,6 +114,22 @@ const crudSchemas = reactive<CrudSchema[]>([
     label: t('userDemo.role'),
     search: {
       hidden: true
+    },
+    form: {
+      component: 'Select',
+      value: [],
+      componentProps: {
+        multiple: true,
+        collapseTags: true,
+        maxCollapseTags: 1
+      },
+      optionApi: async () => {
+        const res = await getRoleListApi()
+        return res.data?.list?.map((v) => ({
+          label: v.roleName,
+          value: v.id
+        }))
+      }
     }
   },
   {

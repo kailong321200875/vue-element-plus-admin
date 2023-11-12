@@ -76,6 +76,24 @@ const detailSchema = ref<DescriptionsSchema[]>([
     label: '高亮菜单'
   },
   {
+    field: 'permissionList',
+    label: '按钮权限',
+    span: 24,
+    slots: {
+      default: (data: any) => (
+        <>
+          {data?.permissionList?.map((v) => {
+            return (
+              <ElTag class="mr-1" key={v.value}>
+                {v.label}
+              </ElTag>
+            )
+          })}
+        </>
+      )
+    }
+  },
+  {
     field: 'menuState',
     label: '菜单状态',
     slots: {

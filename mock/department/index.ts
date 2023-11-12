@@ -124,8 +124,6 @@ export default [
             email: '@EMAIL',
             // 创建时间
             createTime: '@datetime',
-            // 角色
-            role: '@first',
             // 用户id
             id: toAnyString()
           })
