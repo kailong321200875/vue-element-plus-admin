@@ -9,23 +9,6 @@ import qs from 'qs'
 
 const config: AxiosConfig = {
   /**
-   * api请求基础路径
-   */
-  baseUrl: {
-    // 开发环境接口前缀
-    base: '',
-
-    // 打包开发环境接口前缀
-    dev: '',
-
-    // 打包生产环境接口前缀
-    pro: '',
-
-    // 打包测试环境接口前缀
-    test: ''
-  },
-
-  /**
    * 接口成功返回状态码
    */
   code: 0,

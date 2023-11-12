@@ -166,11 +166,7 @@ const crudSchemas = reactive<CrudSchema[]>([
       hidden: true
     },
     form: {
-      component: 'DatePicker',
-      componentProps: {
-        type: 'datetime',
-        valueFormat: 'YYYY-MM-DD HH:mm:ss'
-      }
+      hidden: true
     }
   },
   {

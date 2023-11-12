@@ -9,6 +9,7 @@ import { Search } from '@/components/Search'
 import { FormSchema } from '@/components/Form'
 import { ContentWrap } from '@/components/ContentWrap'
 import Write from './components/Write.vue'
+import Detail from './components/Detail.vue'
 import { Dialog } from '@/components/Dialog'
 
 const { t } = useI18n()
@@ -35,10 +36,6 @@ const tableColumns = reactive<TableColumn[]>([
   {
     field: 'roleName',
     label: t('role.roleName')
-  },
-  {
-    field: 'role',
-    label: t('role.role')
   },
   {
     field: 'status',
@@ -74,6 +71,9 @@ const tableColumns = reactive<TableColumn[]>([
           <>
             <ElButton type="primary" onClick={() => action(row, 'edit')}>
               {t('exampleDemo.edit')}
+            </ElButton>
+            <ElButton type="success" onClick={() => action(row, 'detail')}>
+              {t('exampleDemo.detail')}
             </ElButton>
             <ElButton type="danger">{t('exampleDemo.del')}</ElButton>
           </>
@@ -155,6 +155,7 @@ const save = async () => {
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
     <Write v-if="actionType !== 'detail'" ref="writeRef" :current-row="currentRow" />
+    <Detail v-else :current-row="currentRow" />
 
     <template #footer>
       <ElButton v-if="actionType !== 'detail'" type="primary" :loading="saveLoading" @click="save">

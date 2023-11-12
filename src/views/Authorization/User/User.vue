@@ -11,6 +11,7 @@ import { Search } from '@/components/Search'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
 import { Dialog } from '@/components/Dialog'
+import { getRoleListApi } from '@/api/role'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 
 const { t } = useI18n()
@@ -113,6 +114,22 @@ const crudSchemas = reactive<CrudSchema[]>([
     label: t('userDemo.role'),
     search: {
       hidden: true
+    },
+    form: {
+      component: 'Select',
+      value: [],
+      componentProps: {
+        multiple: true,
+        collapseTags: true,
+        maxCollapseTags: 1
+      },
+      optionApi: async () => {
+        const res = await getRoleListApi()
+        return res.data?.list?.map((v) => ({
+          label: v.roleName,
+          value: v.id
+        }))
+      }
     }
   },
   {
@@ -276,7 +293,7 @@ const save = async () => {
 
 <template>
   <div class="flex w-100% h-100%">
-    <ContentWrap class="flex-1">
+    <ContentWrap class="w-250px">
       <div class="flex justify-center items-center">
         <div class="flex-1">{{ t('userDemo.departmentList') }}</div>
         <ElInput
@@ -299,7 +316,16 @@ const save = async () => {
         }"
         :filter-node-method="filterNode"
         @current-change="currentChange"
-      />
+      >
+        <template #default="{ data }">
+          <div
+            :title="data.departmentName"
+            class="whitespace-nowrap overflow-ellipsis overflow-hidden"
+          >
+            {{ data.departmentName }}
+          </div>
+        </template>
+      </ElTree>
     </ContentWrap>
     <ContentWrap class="flex-[3] ml-20px">
       <Search

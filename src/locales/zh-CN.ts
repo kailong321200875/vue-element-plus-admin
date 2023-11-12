@@ -521,7 +521,7 @@ export default {
   menu: {
     menuName: '菜单名称',
     icon: '图标',
-    permission: '权限标识',
+    permission: '按钮权限',
     component: '组件',
     path: '路径',
     status: '状态',

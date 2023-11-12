@@ -5,6 +5,17 @@ export default defineConfig({
   // ...UnoCSS options
   rules: [
     [
+      /^overflow-ellipsis$/,
+      ([], { rawSelector }) => {
+        const selector = e(rawSelector)
+        return `
+${selector} {
+  text-overflow: ellipsis;
+}
+`
+      }
+    ],
+    [
       /^custom-hover$/,
       ([], { rawSelector }) => {
         const selector = e(rawSelector)

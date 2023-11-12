@@ -29,11 +29,6 @@ const formSchema = ref<FormSchema[]>([
     component: 'Input'
   },
   {
-    field: 'role',
-    label: t('role.role'),
-    component: 'Input'
-  },
-  {
     field: 'status',
     label: t('menu.status'),
     component: 'Select',
@@ -81,10 +76,10 @@ const formSchema = ref<FormSchema[]>([
                   </ElTree>
                 </div>
                 <div class="flex-1">
-                  {unref(currentTreeData) && unref(currentTreeData)?.permission ? (
+                  {unref(currentTreeData) && unref(currentTreeData)?.permissionList ? (
                     <ElCheckboxGroup v-model={unref(currentTreeData).meta.permission}>
-                      {unref(currentTreeData)?.permission.map((v: string) => {
-                        return <ElCheckbox label={v} />
+                      {unref(currentTreeData)?.permissionList.map((v: any) => {
+                        return <ElCheckbox label={v.value}>{v.label}</ElCheckbox>
                       })}
                     </ElCheckboxGroup>
                   ) : null}
