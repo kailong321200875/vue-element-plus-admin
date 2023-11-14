@@ -334,6 +334,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.waterfall')
         }
+      },
+      {
+        path: 'image-cropping',
+        component: () => import('@/views/Components/ImageCropping.vue'),
+        name: 'ImageCropping',
+        meta: {
+          title: t('router.imageCropping')
+        }
       }
     ]
   },

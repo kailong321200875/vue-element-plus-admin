@@ -177,7 +177,8 @@ export default {
     details: 'Details',
     iconPicker: 'Icon picker',
     request: 'Request',
-    waterfall: 'Waterfall'
+    waterfall: 'Waterfall',
+    imageCropping: 'Image cropping'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'

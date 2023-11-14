@@ -175,7 +175,8 @@ export default {
     details: '详情页',
     iconPicker: '图标选择器',
     request: '请求',
-    waterfall: '瀑布流'
+    waterfall: '瀑布流',
+    imageCropping: '图片裁剪'
   },
   permission: {
     hasPermission: '请设置操作权限值'

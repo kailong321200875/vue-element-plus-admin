@@ -293,6 +293,14 @@ const adminList = [
         meta: {
           title: 'router.waterfall'
         }
+      },
+      {
+        path: 'image-cropping',
+        component: 'views/Components/ImageCropping',
+        name: 'ImageCropping',
+        meta: {
+          title: 'router.imageCropping'
+        }
       }
     ]
   },
@@ -651,6 +659,7 @@ const testList: string[] = [
   '/components/infotip',
   '/components/input-password',
   '/components/waterfall',
+  '/components/image-cropping',
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',
