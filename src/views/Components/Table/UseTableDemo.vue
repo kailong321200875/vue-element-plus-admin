@@ -82,8 +82,8 @@ const columns = reactive<TableColumn[]>([
               {cellValue === 1
                 ? t('tableDemo.important')
                 : cellValue === 2
-                ? t('tableDemo.good')
-                : t('tableDemo.commonly')}
+                  ? t('tableDemo.good')
+                  : t('tableDemo.commonly')}
             </ElTag>
           )
         }

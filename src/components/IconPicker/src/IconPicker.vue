@@ -30,8 +30,8 @@ const iconSize = computed(() => {
   return unref(size) === 'small'
     ? 'var(--el-component-size-small)'
     : unref(size) === 'large'
-    ? 'var(--el-component-size-large)'
-    : 'var(--el-component-size)'
+      ? 'var(--el-component-size-large)'
+      : 'var(--el-component-size)'
 })
 
 const iconWrapStyle = computed((): CSSProperties => {
