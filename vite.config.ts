@@ -152,7 +152,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'vue-json-pretty',
         '@zxcvbn-ts/core',
         'dayjs',
-        'mockjs'
+        'mockjs',
+        'cropperjs'
       ]
     }
   }
