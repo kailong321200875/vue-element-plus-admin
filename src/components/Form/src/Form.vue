@@ -329,7 +329,11 @@ export default defineComponent({
                   ref={(el: any) => setComponentRefMap(el, item.field)}
                   {...(autoSetPlaceholder && setTextPlaceholder(item))}
                   {...setComponentProps(item)}
-                  style={item.componentProps?.style || {}}
+                  style={
+                    item.componentProps?.style || {
+                      width: '100%'
+                    }
+                  }
                 >
                   {{ ...slotsMap }}
                 </Com>
