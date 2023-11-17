@@ -60,5 +60,16 @@ export default [
         data: 'request-5'
       }
     }
+  },
+  {
+    url: '/request/expired',
+    method: 'get',
+    timeout: 0,
+    response: () => {
+      return {
+        code: 401,
+        message: 'token expired'
+      }
+    }
   }
 ] as MockMethod[]

@@ -1,3 +1,4 @@
+import router from '@/router'
 import {
   AxiosConfig,
   AxiosResponse,
@@ -6,6 +7,9 @@ import {
 } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
+import { useStorage } from '@/hooks/web/useStorage'
+
+const { clear } = useStorage()
 
 const config: AxiosConfig = {
   /**
@@ -66,7 +70,12 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
   } else if (response.data.code === config.code) {
     return response.data
   } else {
-    ElMessage.error((response as any).message)
+    ElMessage.error(response?.data?.message)
+    if (response?.data?.code === 401) {
+      // token过期
+      clear()
+      router.push('/login')
+    }
   }
 }
 

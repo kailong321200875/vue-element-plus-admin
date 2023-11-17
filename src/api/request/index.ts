@@ -30,3 +30,9 @@ export const request5 = () => {
     url: '/request/5'
   })
 }
+
+export const expired = () => {
+  return request.get<IResponse<RequestResponse>>({
+    url: '/request/expired'
+  })
+}

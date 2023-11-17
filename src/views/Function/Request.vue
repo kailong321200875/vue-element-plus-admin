@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton } from 'element-plus'
-import { request1, request2, request3, request4, request5 } from '@/api/request'
+import { ElButton, ElDivider } from 'element-plus'
+import { request1, request2, request3, request4, request5, expired } from '@/api/request'
 import { ref } from 'vue'
 import request from '@/config/axios'
 
@@ -151,6 +151,10 @@ const clickRequest5 = () => {
   }
   getRequest5()
 }
+
+const tokenExpired = () => {
+  expired()
+}
 </script>
 
 <template>
@@ -163,5 +167,7 @@ const clickRequest5 = () => {
     <ElButton type="primary" @click="clickRequest5">请求/取消request5</ElButton>
     <ElButton type="primary" @click="getAll">发送五个请求</ElButton>
     <ElButton type="primary" @click="cancelAll">关闭所有请求</ElButton>
+    <ElDivider />
+    <ElButton type="primary" @click="tokenExpired">token过期</ElButton>
   </ContentWrap>
 </template>
