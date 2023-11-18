@@ -1,4 +1,3 @@
-import router from '@/router'
 import {
   AxiosConfig,
   AxiosResponse,
@@ -7,6 +6,7 @@ import {
 } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
+
 import { useStorage } from '@/hooks/web/useStorage'
 
 const { clear } = useStorage()
@@ -74,7 +74,7 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
     if (response?.data?.code === 401) {
       // token过期
       clear()
-      router.push('/login')
+      window.location.reload()
     }
   }
 }
