@@ -342,6 +342,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.imageCropping')
         }
+      },
+      {
+        path: 'video-player',
+        component: () => import('@/views/Components/VideoPlayer.vue'),
+        name: 'VideoPlayer',
+        meta: {
+          title: t('router.videoPlayer')
+        }
       }
     ]
   },

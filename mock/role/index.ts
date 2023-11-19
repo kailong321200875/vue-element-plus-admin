@@ -301,6 +301,14 @@ const adminList = [
         meta: {
           title: 'router.imageCropping'
         }
+      },
+      {
+        path: 'video-player',
+        component: 'views/Components/VideoPlayer',
+        name: 'VideoPlayer',
+        meta: {
+          title: 'router.videoPlayer'
+        }
       }
     ]
   },
@@ -660,6 +668,7 @@ const testList: string[] = [
   '/components/input-password',
   '/components/waterfall',
   '/components/image-cropping',
+  '/components/video-player',
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',

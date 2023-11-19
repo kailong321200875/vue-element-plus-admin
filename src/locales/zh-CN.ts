@@ -176,7 +176,8 @@ export default {
     iconPicker: '图标选择器',
     request: '请求',
     waterfall: '瀑布流',
-    imageCropping: '图片裁剪'
+    imageCropping: '图片裁剪',
+    videoPlayer: '视频播放器'
   },
   permission: {
     hasPermission: '请设置操作权限值'

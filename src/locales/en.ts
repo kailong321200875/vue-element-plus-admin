@@ -178,7 +178,8 @@ export default {
     iconPicker: 'Icon picker',
     request: 'Request',
     waterfall: 'Waterfall',
-    imageCropping: 'Image cropping'
+    imageCropping: 'Image cropping',
+    videoPlayer: 'Video player'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
