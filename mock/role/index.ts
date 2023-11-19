@@ -151,6 +151,14 @@ const adminList = [
             meta: {
               title: 'router.PicturePreview'
             }
+          },
+          {
+            path: 'table-video-preview',
+            component: 'views/Components/Table/TableVideoPreview',
+            name: 'TableVideoPreview',
+            meta: {
+              title: 'router.tableVideoPreview'
+            }
           }
           // {
           //   path: 'ref-table',
@@ -650,6 +658,7 @@ const testList: string[] = [
   '/components/table/use-table',
   '/components/table/tree-table',
   '/components/table/table-image-preview',
+  '/components/table/table-video-preview',
   '/components/table/ref-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',

@@ -200,6 +200,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.PicturePreview')
             }
+          },
+          {
+            path: 'table-video-preview',
+            component: () => import('@/views/Components/Table/TableVideoPreview.vue'),
+            name: 'TableVideoPreview',
+            meta: {
+              title: t('router.tableVideoPreview')
+            }
           }
         ]
       },

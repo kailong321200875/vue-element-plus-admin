@@ -179,7 +179,9 @@ export default {
     request: 'Request',
     waterfall: 'Waterfall',
     imageCropping: 'Image cropping',
-    videoPlayer: 'Video player'
+    videoPlayer: 'Video player',
+    // 表格视频预览
+    tableVideoPreview: 'Table video preview'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -454,7 +456,8 @@ export default {
     fixedHeaderOrAuto: 'Fixed header or auto',
     getSelections: 'Get selections',
     preview: 'Preview',
-    showOrHiddenSortable: 'Show or hidden sortable'
+    showOrHiddenSortable: 'Show or hidden sortable',
+    videoPreview: 'Video preview'
   },
   richText: {
     richText: 'Rich text',

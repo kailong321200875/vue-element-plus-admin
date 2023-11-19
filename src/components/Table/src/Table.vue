@@ -15,6 +15,8 @@ import { set, get } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
+import { isImgPath } from '@/utils/is'
+import { VideoPlayer } from '@/components/VideoPlayer'
 
 export default defineComponent({
   name: 'Table',
@@ -359,14 +361,18 @@ export default defineComponent({
     const renderPreview = (url: string) => {
       return (
         <div class="flex items-center">
-          <ElImage
-            src={url}
-            fit="cover"
-            class="w-[100%] h-100px"
-            lazy
-            preview-src-list={[url]}
-            preview-teleported
-          />
+          {isImgPath(url) ? (
+            <ElImage
+              src={url}
+              fit="cover"
+              class="w-[100%]"
+              lazy
+              preview-src-list={[url]}
+              preview-teleported
+            />
+          ) : (
+            <VideoPlayer url={url} class="w-full h-full" />
+          )}
         </div>
       )
     }

@@ -47,7 +47,9 @@ for (let i = 0; i < count; i++) {
       importance: '@integer(1, 3)',
       display_time: '@datetime',
       pageviews: '@integer(100, 500)',
-      image_uri: Mock.Random.image('@integer(100, 500)x@integer(100, 500)')
+      image_uri: Mock.Random.image('@integer(100, 500)x@integer(100, 500)'),
+      video_uri:
+        '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
     })
   )
 }
