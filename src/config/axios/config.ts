@@ -6,6 +6,9 @@ import {
 } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
+import { useStorage } from '@/hooks/web/useStorage'
+
+const { clear } = useStorage()
 
 const config: AxiosConfig = {
   /**
@@ -83,7 +86,12 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
   } else if (response.data.code === config.code) {
     return response.data
   } else {
-    ElMessage.error(response.data.message)
+    ElMessage.error(response?.data?.message)
+    if (response?.data?.code === 401) {
+      // token过期
+      clear()
+      window.location.reload()
+    }
   }
 }
 

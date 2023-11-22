@@ -362,12 +362,12 @@ export default defineComponent({
             return children && children.length
               ? renderTreeTableColumn(children)
               : props?.slots?.default
-              ? props.slots.default(...args)
-              : v?.formatter
-              ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
-              : isImageUrl
-              ? renderPreview(get(data.row, v.field))
-              : get(data.row, v.field)
+                ? props.slots.default(...args)
+                : v?.formatter
+                  ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
+                  : isImageUrl
+                    ? renderPreview(get(data.row, v.field))
+                    : get(data.row, v.field)
           }
         }
         if (props?.slots?.header) {
@@ -459,12 +459,12 @@ export default defineComponent({
               return children && children.length
                 ? renderTreeTableColumn(children)
                 : props?.slots?.default
-                ? props.slots.default(...args)
-                : v?.formatter
-                ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
-                : isImageUrl
-                ? renderPreview(get(data.row, v.field))
-                : get(data.row, v.field)
+                  ? props.slots.default(...args)
+                  : v?.formatter
+                    ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
+                    : isImageUrl
+                      ? renderPreview(get(data.row, v.field))
+                      : get(data.row, v.field)
             }
           }
           if (props?.slots?.header) {
