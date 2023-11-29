@@ -40,10 +40,7 @@ export const useLockStore = defineStore('lock', {
       }
     }
   },
-  persist: {
-    enabled: true,
-    strategies: [{ key: 'lock', storage: localStorage }]
-  }
+  persist: true
 })
 
 export const useLockStoreWithOut = () => {

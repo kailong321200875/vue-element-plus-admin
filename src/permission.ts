@@ -7,10 +7,6 @@ import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
 
-const permissionStore = usePermissionStoreWithOut()
-
-const appStore = useAppStoreWithOut()
-
 const { getStorage } = useStorage()
 
 const { start, done } = useNProgress()
@@ -22,6 +18,8 @@ const whiteList = ['/login'] // 不重定向白名单
 router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
+  const permissionStore = usePermissionStoreWithOut()
+  const appStore = useAppStoreWithOut()
   if (getStorage(appStore.getUserInfo)) {
     if (to.path === '/login') {
       next({ path: '/' })

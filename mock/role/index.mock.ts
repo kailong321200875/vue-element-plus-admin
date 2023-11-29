@@ -25,7 +25,8 @@ const adminList = [
         name: 'Analysis',
         meta: {
           title: 'router.analysis',
-          noCache: true
+          noCache: true,
+          affix: true
         }
       },
       {
@@ -34,7 +35,8 @@ const adminList = [
         name: 'Workplace',
         meta: {
           title: 'router.workplace',
-          noCache: true
+          noCache: true,
+          affix: true
         }
       }
     ]
@@ -359,7 +361,7 @@ const adminList = [
       },
       {
         path: 'test',
-        component: () => 'views/Function/Test',
+        component: 'views/Function/Test',
         name: 'Test',
         meta: {
           title: 'router.permission',
