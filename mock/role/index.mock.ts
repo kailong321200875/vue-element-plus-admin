@@ -1,6 +1,6 @@
 import config from '@/config/axios/config'
+import { faker } from '@faker-js/faker'
 
-import Mock from 'mockjs'
 import { toAnyString } from '@/utils'
 
 const { code } = config
@@ -723,7 +723,7 @@ const menus = [
       component: '#',
       redirect: '/dashboard/analysis',
       name: 'Dashboard',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 1,
       meta: {
         title: '首页',
@@ -735,7 +735,7 @@ const menus = [
           path: 'analysis',
           component: 'views/Dashboard/Analysis',
           name: 'Analysis',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 2,
           meta: {
             title: '分析页',
@@ -746,7 +746,7 @@ const menus = [
           path: 'workplace',
           component: 'views/Dashboard/Workplace',
           name: 'Workplace',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 3,
           meta: {
             title: '工作台',
@@ -763,13 +763,13 @@ const menus = [
         icon: 'clarity:document-solid'
       },
       name: 'ExternalLink',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 4,
       children: [
         {
           path: 'https://element-plus-admin-doc.cn/',
           name: 'DocumentLink',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 5,
           meta: {
             title: '文档'
@@ -782,7 +782,7 @@ const menus = [
       component: '#',
       redirect: '/level/menu1/menu1-1/menu1-1-1',
       name: 'Level',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 6,
       meta: {
         title: '菜单',
@@ -793,7 +793,7 @@ const menus = [
           path: 'menu1',
           name: 'Menu1',
           component: '##',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 7,
           redirect: '/level/menu1/menu1-1/menu1-1-1',
           meta: {
@@ -804,7 +804,7 @@ const menus = [
               path: 'menu1-1',
               name: 'Menu11',
               component: '##',
-              status: Mock.Random.integer(0, 1),
+              status: faker.number.int({ min: 0, max: 1 }),
               id: 8,
               redirect: '/level/menu1/menu1-1/menu1-1-1',
               meta: {
@@ -816,7 +816,7 @@ const menus = [
                   path: 'menu1-1-1',
                   name: 'Menu111',
                   component: 'views/Level/Menu111',
-                  status: Mock.Random.integer(0, 1),
+                  status: faker.number.int({ min: 0, max: 1 }),
                   id: 9,
                   permission: ['edit', 'add', 'delete'],
                   meta: {
@@ -830,7 +830,7 @@ const menus = [
               path: 'menu1-2',
               name: 'Menu12',
               component: 'views/Level/Menu12',
-              status: Mock.Random.integer(0, 1),
+              status: faker.number.int({ min: 0, max: 1 }),
               id: 10,
               permission: ['edit', 'add', 'delete'],
               meta: {
@@ -844,7 +844,7 @@ const menus = [
           path: 'menu2',
           name: 'Menu2Demo',
           component: 'views/Level/Menu2',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 11,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -859,7 +859,7 @@ const menus = [
       component: '#',
       redirect: '/example/example-dialog',
       name: 'Example',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 12,
       meta: {
         title: '综合示例',
@@ -871,7 +871,7 @@ const menus = [
           path: 'example-dialog',
           component: 'views/Example/Dialog/ExampleDialog',
           name: 'ExampleDialog',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 13,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -883,7 +883,7 @@ const menus = [
           path: 'example-page',
           component: 'views/Example/Page/ExamplePage',
           name: 'ExamplePage',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 14,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -895,7 +895,7 @@ const menus = [
           path: 'example-add',
           component: 'views/Example/Page/ExampleAdd',
           name: 'ExampleAdd',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 15,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -912,7 +912,7 @@ const menus = [
           path: 'example-edit',
           component: 'views/Example/Page/ExampleEdit',
           name: 'ExampleEdit',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 16,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -929,7 +929,7 @@ const menus = [
           path: 'example-detail',
           component: 'views/Example/Page/ExampleDetail',
           name: 'ExampleDetail',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 17,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -951,7 +951,7 @@ const menus = [
       component: '#',
       redirect: '/dashboard/analysis',
       name: 'Dashboard',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 1,
       meta: {
         title: '首页',
@@ -963,7 +963,7 @@ const menus = [
           path: 'analysis',
           component: 'views/Dashboard/Analysis',
           name: 'Analysis',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 2,
           meta: {
             title: '分析页',
@@ -974,7 +974,7 @@ const menus = [
           path: 'workplace',
           component: 'views/Dashboard/Workplace',
           name: 'Workplace',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 3,
           meta: {
             title: '工作台',
@@ -993,13 +993,13 @@ const menus = [
         icon: 'clarity:document-solid'
       },
       name: 'ExternalLink',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 4,
       children: [
         {
           path: 'https://element-plus-admin-doc.cn/',
           name: 'DocumentLink',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 5,
           meta: {
             title: '文档'
@@ -1012,7 +1012,7 @@ const menus = [
       component: '#',
       redirect: '/level/menu1/menu1-1/menu1-1-1',
       name: 'Level',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 6,
       meta: {
         title: '菜单',
@@ -1023,7 +1023,7 @@ const menus = [
           path: 'menu1',
           name: 'Menu1',
           component: '##',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 7,
           redirect: '/level/menu1/menu1-1/menu1-1-1',
           meta: {
@@ -1034,7 +1034,7 @@ const menus = [
               path: 'menu1-1',
               name: 'Menu11',
               component: '##',
-              status: Mock.Random.integer(0, 1),
+              status: faker.number.int({ min: 0, max: 1 }),
               id: 8,
               redirect: '/level/menu1/menu1-1/menu1-1-1',
               meta: {
@@ -1046,7 +1046,7 @@ const menus = [
                   path: 'menu1-1-1',
                   name: 'Menu111',
                   component: 'views/Level/Menu111',
-                  status: Mock.Random.integer(0, 1),
+                  status: faker.number.int({ min: 0, max: 1 }),
                   id: 9,
                   permission: ['edit', 'add', 'delete'],
                   meta: {
@@ -1060,7 +1060,7 @@ const menus = [
               path: 'menu1-2',
               name: 'Menu12',
               component: 'views/Level/Menu12',
-              status: Mock.Random.integer(0, 1),
+              status: faker.number.int({ min: 0, max: 1 }),
               id: 10,
               permission: ['edit', 'add', 'delete'],
               meta: {
@@ -1074,7 +1074,7 @@ const menus = [
           path: 'menu2',
           name: 'Menu2Demo',
           component: 'views/Level/Menu2',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 11,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -1091,7 +1091,7 @@ const menus = [
       component: '#',
       redirect: '/example/example-dialog',
       name: 'Example',
-      status: Mock.Random.integer(0, 1),
+      status: faker.number.int({ min: 0, max: 1 }),
       id: 12,
       meta: {
         title: '综合示例',
@@ -1103,7 +1103,7 @@ const menus = [
           path: 'example-detail',
           component: 'views/Example/Page/ExampleDetail',
           name: 'ExampleDetail',
-          status: Mock.Random.integer(0, 1),
+          status: faker.number.int({ min: 0, max: 1 }),
           id: 17,
           permission: ['edit', 'add', 'delete'],
           meta: {
@@ -1122,18 +1122,16 @@ const menus = [
 ]
 
 for (let i = 0; i < 4; i++) {
-  List.push(
-    Mock.mock({
-      id: toAnyString(),
-      // timestamp: +Mock.Random.date('T'),
-      roleName: roleNames[i],
-      role: '@first',
-      status: Mock.Random.integer(0, 1),
-      createTime: '@datetime',
-      remark: '@cword(10, 15)',
-      menu: menus[i]
-    })
-  )
+  List.push({
+    id: toAnyString(),
+    // timestamp: +Mock.Random.date('T'),
+    roleName: roleNames[i],
+    role: faker.lorem.sentence(1),
+    status: faker.number.int({ min: 0, max: 1 }),
+    createTime: faker.date.anytime(),
+    remark: faker.lorem.sentence(),
+    menu: menus[i]
+  })
 }
 
 export default [
