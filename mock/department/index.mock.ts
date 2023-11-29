@@ -1,5 +1,5 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
+
 import { toAnyString } from '@/utils'
 import Mock from 'mockjs'
 
@@ -81,9 +81,9 @@ for (let i = 0; i < 5; i++) {
 export default [
   // 列表接口
   {
-    url: '/department/list',
-    method: 'get',
-    response: () => {
+    url: '/mock/department/list',
+    method: 'GET',
+    body: () => {
       return {
         code: code,
         data: {
@@ -93,9 +93,9 @@ export default [
     }
   },
   {
-    url: '/department/table/list',
-    method: 'get',
-    response: () => {
+    url: '/mock/department/table/list',
+    method: 'GET',
+    body: () => {
       return {
         code: code,
         data: {
@@ -106,10 +106,10 @@ export default [
     }
   },
   {
-    url: '/department/users',
-    method: 'get',
-    timeout: 1000,
-    response: ({ query }) => {
+    url: '/mock/department/users',
+    method: 'GET',
+    delay: 1000,
+    body: ({ query }) => {
       const { pageSize } = query
       // 根据pageSize来创建数据
       const mockList: any = []
@@ -140,10 +140,10 @@ export default [
   },
   // 保存接口
   {
-    url: '/department/user/save',
-    method: 'post',
-    timeout: 1000,
-    response: () => {
+    url: '/mock/department/user/save',
+    method: 'POST',
+    delay: 1000,
+    body: () => {
       return {
         code: code,
         data: 'success'
@@ -152,9 +152,9 @@ export default [
   },
   // 删除接口
   {
-    url: '/department/user/delete',
-    method: 'post',
-    response: ({ body }) => {
+    url: '/mock/department/user/delete',
+    method: 'POST',
+    body: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
@@ -171,10 +171,10 @@ export default [
   },
   // 保存接口
   {
-    url: '/department/save',
-    method: 'post',
-    timeout: 1000,
-    response: () => {
+    url: '/mock/department/save',
+    method: 'POST',
+    delay: 1000,
+    body: () => {
       return {
         code: code,
         data: 'success'
@@ -183,9 +183,9 @@ export default [
   },
   // 删除接口
   {
-    url: '/department/delete',
-    method: 'post',
-    response: ({ body }) => {
+    url: '/mock/department/delete',
+    method: 'POST',
+    body: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
@@ -200,4 +200,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]

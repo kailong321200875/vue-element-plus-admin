@@ -1,11 +1,11 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
+
 import { toAnyString } from '@/utils'
 import Mock from 'mockjs'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 const count = 100
 
@@ -139,10 +139,10 @@ for (let i = 0; i < count; i++) {
 export default [
   // 树形列表接口
   {
-    url: '/example/treeList',
-    method: 'get',
-    timeout,
-    response: ({ query }) => {
+    url: '/mock/example/treeList',
+    method: 'GET',
+    delay,
+    body: ({ query }) => {
       const { title, pageIndex, pageSize } = query
       const mockList = treeList.filter((item) => {
         if (title && item.title.indexOf(title) < 0) return false
@@ -162,10 +162,10 @@ export default [
   },
   // 列表接口
   {
-    url: '/example/list',
-    method: 'get',
-    timeout,
-    response: ({ query }) => {
+    url: '/mock/example/list',
+    method: 'GET',
+    delay,
+    body: ({ query }) => {
       const { title, pageIndex, pageSize } = query
       const mockList = List.filter((item) => {
         if (title && item.title.indexOf(title) < 0) return false
@@ -185,10 +185,10 @@ export default [
   },
   // 保存接口
   {
-    url: '/example/save',
-    method: 'post',
-    timeout,
-    response: ({ body }) => {
+    url: '/mock/example/save',
+    method: 'POST',
+    delay,
+    body: ({ body }) => {
       if (!body.id) {
         List = [
           Object.assign(body, {
@@ -216,9 +216,9 @@ export default [
   },
   // 详情接口
   {
-    url: '/example/detail',
-    method: 'get',
-    response: ({ query }) => {
+    url: '/mock/example/detail',
+    method: 'GET',
+    body: ({ query }) => {
       const { id } = query
       for (const example of List) {
         if (example.id === id) {
@@ -232,9 +232,9 @@ export default [
   },
   // 删除接口
   {
-    url: '/example/delete',
-    method: 'post',
-    response: ({ body }) => {
+    url: '/mock/example/delete',
+    method: 'POST',
+    body: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
@@ -255,4 +255,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]

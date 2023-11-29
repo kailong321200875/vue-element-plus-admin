@@ -1,11 +1,11 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
+
 import Mock from 'mockjs'
 import { toAnyString } from '@/utils'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 const adminList = [
   {
@@ -1139,10 +1139,10 @@ for (let i = 0; i < 4; i++) {
 export default [
   // 列表接口
   {
-    url: '/role/list',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/role/list',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: adminList
@@ -1150,10 +1150,10 @@ export default [
     }
   },
   {
-    url: '/role/table',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/role/table',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: {
@@ -1165,10 +1165,10 @@ export default [
   },
   // 列表接口
   {
-    url: '/role/list2',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/role/list2',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: testList
@@ -1176,10 +1176,10 @@ export default [
     }
   },
   {
-    url: '/role/table',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/role/table',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: {
@@ -1189,4 +1189,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]

@@ -1,18 +1,18 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
+
 import Mock from 'mockjs'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 export default [
   // 列表接口
   {
-    url: '/menu/list',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/menu/list',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: {
@@ -344,4 +344,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]

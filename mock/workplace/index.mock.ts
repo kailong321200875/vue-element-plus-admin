@@ -1,17 +1,16 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 export default [
   // 获取统计
   {
-    url: '/workplace/total',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/workplace/total',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: {
@@ -24,10 +23,10 @@ export default [
   },
   // 获取项目
   {
-    url: '/workplace/project',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/workplace/project',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -79,10 +78,10 @@ export default [
   },
   // 获取动态
   {
-    url: '/workplace/dynamic',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/workplace/dynamic',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -116,10 +115,10 @@ export default [
   },
   // 获取团队信息
   {
-    url: '/workplace/team',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/workplace/team',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -153,10 +152,10 @@ export default [
   },
   // 获取指数
   {
-    url: '/workplace/radar',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/workplace/radar',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -169,4 +168,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]

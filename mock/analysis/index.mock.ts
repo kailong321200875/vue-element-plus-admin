@@ -1,17 +1,17 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
+import { defineMock } from 'vite-plugin-mock-dev-server'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
-export default [
+export default defineMock([
   // 分析页统计接口
   {
-    url: '/analysis/total',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/analysis/total',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: {
@@ -25,10 +25,10 @@ export default [
   },
   // 用户来源
   {
-    url: '/analysis/userAccessSource',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/analysis/userAccessSource',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -43,10 +43,10 @@ export default [
   },
   // 每周用户活跃量
   {
-    url: '/analysis/weeklyUserActivity',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/analysis/weeklyUserActivity',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -63,10 +63,10 @@ export default [
   },
   // 每月销售额
   {
-    url: '/analysis/monthlySales',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/analysis/monthlySales',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -86,4 +86,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+])

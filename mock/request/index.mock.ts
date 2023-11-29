@@ -1,16 +1,15 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
 
-const timeout = 600000
+const delay = 600000
 
 const { code } = config
 
 export default [
   {
-    url: '/request/1',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/request/1',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: 'request-1'
@@ -18,10 +17,10 @@ export default [
     }
   },
   {
-    url: '/request/2',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/request/2',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: 'request-2'
@@ -29,10 +28,10 @@ export default [
     }
   },
   {
-    url: '/request/3',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/request/3',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: 'request-3'
@@ -40,10 +39,10 @@ export default [
     }
   },
   {
-    url: '/request/4',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/request/4',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: 'request-4'
@@ -51,10 +50,10 @@ export default [
     }
   },
   {
-    url: '/request/5',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/request/5',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: 'request-5'
@@ -62,14 +61,14 @@ export default [
     }
   },
   {
-    url: '/request/expired',
-    method: 'get',
-    timeout: 0,
-    response: () => {
+    url: '/mock/request/expired',
+    method: 'GET',
+    delay: 0,
+    body: () => {
       return {
         code: 401,
         message: 'token expired'
       }
     }
   }
-] as MockMethod[]
+]

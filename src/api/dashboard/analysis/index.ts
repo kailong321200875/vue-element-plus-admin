@@ -7,17 +7,17 @@ import type {
 } from './types'
 
 export const getCountApi = (): Promise<IResponse<AnalysisTotalTypes[]>> => {
-  return request.get({ url: '/analysis/total' })
+  return request.get({ url: '/mock/analysis/total' })
 }
 
 export const getUserAccessSourceApi = (): Promise<IResponse<UserAccessSource[]>> => {
-  return request.get({ url: '/analysis/userAccessSource' })
+  return request.get({ url: '/mock/analysis/userAccessSource' })
 }
 
 export const getWeeklyUserActivityApi = (): Promise<IResponse<WeeklyUserActivity[]>> => {
-  return request.get({ url: '/analysis/weeklyUserActivity' })
+  return request.get({ url: '/mock/analysis/weeklyUserActivity' })
 }
 
 export const getMonthlySalesApi = (): Promise<IResponse<MonthlySales[]>> => {
-  return request.get({ url: '/analysis/monthlySales' })
+  return request.get({ url: '/mock/analysis/monthlySales' })
 }

@@ -1,9 +1,8 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 const List: {
   username: string
@@ -31,9 +30,9 @@ const List: {
 export default [
   // 列表接口
   {
-    url: '/user/list',
-    method: 'get',
-    response: ({ query }) => {
+    url: '/mock/user/list',
+    method: 'GET',
+    body: ({ query }) => {
       const { username, pageIndex, pageSize } = query
 
       const mockList = List.filter((item) => {
@@ -55,10 +54,10 @@ export default [
   },
   // 登录接口
   {
-    url: '/user/login',
-    method: 'post',
-    timeout,
-    response: ({ body }) => {
+    url: '/mock/user/login',
+    method: 'POST',
+    delay,
+    body: ({ body }) => {
       const data = body
       let hasUser = false
       for (const user of List) {
@@ -80,14 +79,14 @@ export default [
   },
   // 退出接口
   {
-    url: '/user/loginOut',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/user/loginOut',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: null
       }
     }
   }
-] as MockMethod[]
+]

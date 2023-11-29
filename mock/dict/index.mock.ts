@@ -1,9 +1,8 @@
 import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
 
 const { code } = config
 
-const timeout = 1000
+const delay = 1000
 
 const dictObj: Recordable = {
   importance: [
@@ -25,10 +24,10 @@ const dictObj: Recordable = {
 export default [
   // 字典接口
   {
-    url: '/dict/list',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/dict/list',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: dictObj
@@ -37,10 +36,10 @@ export default [
   },
   // 获取某个字典
   {
-    url: '/dict/one',
-    method: 'get',
-    timeout,
-    response: () => {
+    url: '/mock/dict/one',
+    method: 'GET',
+    delay,
+    body: () => {
       return {
         code: code,
         data: [
@@ -60,4 +59,4 @@ export default [
       }
     }
   }
-] as MockMethod[]
+]
