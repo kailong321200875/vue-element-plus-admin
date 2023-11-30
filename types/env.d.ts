@@ -15,9 +15,6 @@ interface ImportMetaEnv {
   readonly VITE_DROP_CONSOLE: string
   readonly VITE_SOURCEMAP: string
   readonly VITE_OUT_DIR: string
-  readonly VITE_AXIOS_CONTENT_TYPE: string
-  readonly VITE_AXIOS_TIMEOUT: number
-  readonly VITE_AXIOS_SUCCESS_CODE: number
 }
 
 declare global {
