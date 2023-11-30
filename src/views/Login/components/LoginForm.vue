@@ -5,7 +5,6 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import { useStorage } from '@/hooks/web/useStorage'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 import { useRouter } from 'vue-router'
@@ -13,6 +12,7 @@ import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
 import { Icon } from '@/components/Icon'
+import { useUserStore } from '@/store/modules/user'
 
 const { required } = useValidator()
 
@@ -20,11 +20,11 @@ const emit = defineEmits(['to-register'])
 
 const appStore = useAppStore()
 
+const userStore = useUserStore()
+
 const permissionStore = usePermissionStore()
 
 const { currentRoute, addRoute, push } = useRouter()
-
-const { setStorage } = useStorage()
 
 const { t } = useI18n()
 
@@ -215,7 +215,7 @@ const signIn = async () => {
         const res = await loginApi(formData)
 
         if (res) {
-          setStorage(appStore.getUserInfo, res.data)
+          userStore.setUserInfo(res.data)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
             getRole()
@@ -247,7 +247,7 @@ const getRole = async () => {
       : await getTestRoleApi(params)
   if (res) {
     const routers = res.data || []
-    setStorage('roleRouters', routers)
+    userStore.setRoleRouters(routers)
     appStore.getDynamicRouter && appStore.getServerDynamicRouter
       ? await permissionStore.generateRoutes('server', routers).catch(() => {})
       : await permissionStore.generateRoutes('frontEnd', routers).catch(() => {})

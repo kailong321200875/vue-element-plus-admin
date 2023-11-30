@@ -77,7 +77,9 @@ export const usePermissionStore = defineStore('permission', {
       this.menuTabRouters = routers
     }
   },
-  persist: false
+  persist: {
+    paths: ['routers', 'addRouters', 'menuTabRouters']
+  }
 })
 
 export const usePermissionStoreWithOut = () => {

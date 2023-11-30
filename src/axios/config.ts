@@ -1,12 +1,8 @@
 import { AxiosResponse, AxiosRequestHeaders, InternalAxiosRequestConfig } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
-import router from '@/router'
 import { SUCCESS_CODE } from '@/constants'
-
-import { useStorage } from '@/hooks/web/useStorage'
-
-const { clear } = useStorage()
+import { useUserStoreWithOut } from '@/store/modules/user'
 
 const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   if (
@@ -40,9 +36,8 @@ const defaultResponseInterceptors = (response: AxiosResponse) => {
   } else {
     ElMessage.error(response?.data?.message)
     if (response?.data?.code === 401) {
-      // token过期
-      clear()
-      router.push('/login')
+      const userStore = useUserStoreWithOut()
+      userStore.logout()
     }
   }
 }

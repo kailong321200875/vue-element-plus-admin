@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
 import { Layout, getParentLayout } from '@/utils/routerHelper'
 import { useI18n } from '@/hooks/web/useI18n'
+import { NO_RESET_WHITE_LIST } from '@/constants'
 
 const { t } = useI18n()
 
@@ -690,10 +691,9 @@ const router = createRouter({
 })
 
 export const resetRouter = (): void => {
-  const resetWhiteNameList = ['Redirect', 'Login', 'NoFind', 'Root']
   router.getRoutes().forEach((route) => {
     const { name } = route
-    if (name && !resetWhiteNameList.includes(name as string)) {
+    if (name && !NO_RESET_WHITE_LIST.includes(name as string)) {
       router.hasRoute(name) && router.removeRoute(name)
     }
   })

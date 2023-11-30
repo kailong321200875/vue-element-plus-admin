@@ -8,5 +8,4 @@ export interface UserType {
   password: string
   role: string
   roleId: string
-  permissions: string | string[]
 }
