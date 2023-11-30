@@ -1,7 +1,4 @@
-import config from '@/config/axios/config'
 import { faker } from '@faker-js/faker'
-
-const { code } = config
 
 const delay = 1000
 
@@ -13,7 +10,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: {
           list: [
             {

@@ -1,9 +1,6 @@
-import config from '@/config/axios/config'
 import { faker } from '@faker-js/faker'
 
 import { toAnyString } from '@/utils'
-
-const { code } = config
 
 const delay = 1000
 
@@ -196,7 +193,7 @@ export default [
         (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
       )
       return {
-        code: code,
+        code: 0,
         data: {
           total: mockList.length,
           list: pageList
@@ -219,7 +216,7 @@ export default [
         (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
       )
       return {
-        code: code,
+        code: 0,
         data: {
           total: mockList.length,
           list: pageList
@@ -240,7 +237,7 @@ export default [
           })
         ].concat(List)
         return {
-          code: code,
+          code: 0,
           data: 'success'
         }
       } else {
@@ -252,7 +249,7 @@ export default [
           }
         })
         return {
-          code: code,
+          code: 0,
           data: 'success'
         }
       }
@@ -267,7 +264,7 @@ export default [
       for (const example of List) {
         if (example.id === id) {
           return {
-            code: code,
+            code: 0,
             data: example
           }
         }
@@ -293,7 +290,7 @@ export default [
           }
         }
         return {
-          code: code,
+          code: 0,
           data: 'success'
         }
       }

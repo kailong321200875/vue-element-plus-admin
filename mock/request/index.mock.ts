@@ -1,8 +1,4 @@
-import config from '@/config/axios/config'
-
 const delay = 600000
-
-const { code } = config
 
 export default [
   {
@@ -11,7 +7,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'request-1'
       }
     }
@@ -22,7 +18,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'request-2'
       }
     }
@@ -33,7 +29,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'request-3'
       }
     }
@@ -44,7 +40,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'request-4'
       }
     }
@@ -55,7 +51,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'request-5'
       }
     }

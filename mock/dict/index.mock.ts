@@ -1,7 +1,3 @@
-import config from '@/config/axios/config'
-
-const { code } = config
-
 const delay = 1000
 
 const dictObj: Recordable = {
@@ -29,7 +25,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: dictObj
       }
     }
@@ -41,7 +37,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: [
           {
             label: 'test1',

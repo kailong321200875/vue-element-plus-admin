@@ -1,7 +1,3 @@
-import config from '@/config/axios/config'
-
-const { code } = config
-
 const delay = 1000
 
 const List: {
@@ -44,7 +40,7 @@ export default [
       )
 
       return {
-        code: code,
+        code: 0,
         data: {
           total: mockList.length,
           list: pageList
@@ -64,7 +60,7 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            code: code,
+            code: 0,
             data: user
           }
         }
@@ -84,7 +80,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: null
       }
     }

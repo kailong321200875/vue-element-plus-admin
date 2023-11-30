@@ -1,9 +1,5 @@
-import config from '@/config/axios/config'
-
 import { toAnyString } from '@/utils'
 import { faker } from '@faker-js/faker'
-
-const { code } = config
 
 const departmentList: any = []
 
@@ -84,7 +80,7 @@ export default [
     method: 'GET',
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: {
           list: departmentList
         }
@@ -96,7 +92,7 @@ export default [
     method: 'GET',
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: {
           list: departmentList,
           total: 5
@@ -127,7 +123,7 @@ export default [
         })
       }
       return {
-        code: code,
+        code: 0,
         data: {
           total: 100,
           list: mockList
@@ -142,7 +138,7 @@ export default [
     delay: 1000,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'success'
       }
     }
@@ -160,7 +156,7 @@ export default [
         }
       } else {
         return {
-          code: code,
+          code: 0,
           data: 'success'
         }
       }
@@ -173,7 +169,7 @@ export default [
     delay: 1000,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: 'success'
       }
     }
@@ -191,7 +187,7 @@ export default [
         }
       } else {
         return {
-          code: code,
+          code: 0,
           data: 'success'
         }
       }

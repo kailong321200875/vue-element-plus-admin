@@ -1,7 +1,3 @@
-import config from '@/config/axios/config'
-
-const { code } = config
-
 const delay = 1000
 
 export default [
@@ -12,7 +8,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: {
           project: 40,
           access: 2340,
@@ -28,7 +24,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: [
           {
             name: 'Github',
@@ -83,7 +79,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: [
           {
             keys: ['workplace.push', 'Github'],
@@ -120,7 +116,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: [
           {
             name: 'Github',
@@ -157,7 +153,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: code,
+        code: 0,
         data: [
           { name: 'workplace.quote', max: 65, personal: 42, team: 50 },
           { name: 'workplace.contribution', max: 160, personal: 30, team: 140 },

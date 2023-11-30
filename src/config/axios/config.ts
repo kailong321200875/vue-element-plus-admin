@@ -6,7 +6,7 @@ import {
 } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
-// import router from '@/router'
+import router from '@/router'
 
 import { useStorage } from '@/hooks/web/useStorage'
 
@@ -75,8 +75,7 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
     if (response?.data?.code === 401) {
       // token过期
       clear()
-      window.location.reload()
-      // router.push('/login')
+      router.push('/login')
     }
   }
 }
