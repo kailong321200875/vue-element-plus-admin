@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker'
+import { SUCCESS_CODE } from '@/constants'
 
 const delay = 1000
 
@@ -10,7 +11,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           list: [
             {

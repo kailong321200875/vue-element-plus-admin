@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 
 // 获取所有字典
 export const getDictApi = () => {

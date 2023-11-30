@@ -4,7 +4,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { ElButton, ElDivider } from 'element-plus'
 import { request1, request2, request3, request4, request5, expired } from '@/api/request'
 import { ref } from 'vue'
-import request from '@/config/axios'
+import request from '@/axios'
 
 const { t } = useI18n()
 
@@ -171,3 +171,4 @@ const tokenExpired = () => {
     <ElButton type="primary" @click="tokenExpired">token过期</ElButton>
   </ContentWrap>
 </template>
+@/axios

@@ -1,11 +1,8 @@
 import service from './service'
-
-import config from './config'
-
-const { defaultHeaders } = config
+import { CONTENT_TYPE } from '@/constants'
 
 const request = (option: AxiosConfig) => {
-  const { url, method, params, data, headersType, responseType } = option
+  const { url, method, params, data, headers, responseType } = option
   return service.request({
     url: url,
     method,
@@ -13,7 +10,8 @@ const request = (option: AxiosConfig) => {
     data,
     responseType: responseType,
     headers: {
-      'Content-Type': headersType || defaultHeaders
+      'Content-Type': CONTENT_TYPE,
+      ...headers
     }
   })
 }

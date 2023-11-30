@@ -1,18 +1,16 @@
 import axios, { AxiosError } from 'axios'
-import config, { defaultRequestInterceptors, defaultResponseInterceptors } from './config'
+import { defaultRequestInterceptors, defaultResponseInterceptors } from './config'
 
 import { AxiosInstance, InternalAxiosRequestConfig, RequestConfig, AxiosResponse } from './types'
 import { ElMessage } from 'element-plus'
+import { REQUEST_TIMEOUT } from '@/constants'
 
-const { interceptors } = config
 export const PATH_URL = import.meta.env.VITE_API_BASE_PATH
-
-const { requestInterceptors, responseInterceptors } = interceptors
 
 const abortControllerMap: Map<string, AbortController> = new Map()
 
 const axiosInstance: AxiosInstance = axios.create({
-  ...config,
+  timeout: REQUEST_TIMEOUT,
   baseURL: PATH_URL
 })
 
@@ -38,8 +36,8 @@ axiosInstance.interceptors.response.use(
   }
 )
 
-axiosInstance.interceptors.request.use(requestInterceptors || defaultRequestInterceptors)
-axiosInstance.interceptors.response.use(responseInterceptors || defaultResponseInterceptors)
+axiosInstance.interceptors.request.use(defaultRequestInterceptors)
+axiosInstance.interceptors.response.use(defaultResponseInterceptors)
 
 const service = {
   request: (config: RequestConfig) => {

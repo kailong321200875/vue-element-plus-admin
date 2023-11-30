@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 import { RequestResponse } from './types'
 
 export const request1 = () => {

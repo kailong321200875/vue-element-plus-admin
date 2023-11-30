@@ -1,9 +1,8 @@
 import { faker } from '@faker-js/faker'
-
+import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 
 const delay = 1000
-
 const count = 100
 
 const baseContent =
@@ -193,7 +192,7 @@ export default [
         (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
       )
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           total: mockList.length,
           list: pageList
@@ -216,7 +215,7 @@ export default [
         (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
       )
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           total: mockList.length,
           list: pageList
@@ -237,7 +236,7 @@ export default [
           })
         ].concat(List)
         return {
-          code: 0,
+          code: SUCCESS_CODE,
           data: 'success'
         }
       } else {
@@ -249,7 +248,7 @@ export default [
           }
         })
         return {
-          code: 0,
+          code: SUCCESS_CODE,
           data: 'success'
         }
       }
@@ -264,7 +263,7 @@ export default [
       for (const example of List) {
         if (example.id === id) {
           return {
-            code: 0,
+            code: SUCCESS_CODE,
             data: example
           }
         }
@@ -290,7 +289,7 @@ export default [
           }
         }
         return {
-          code: 0,
+          code: SUCCESS_CODE,
           data: 'success'
         }
       }

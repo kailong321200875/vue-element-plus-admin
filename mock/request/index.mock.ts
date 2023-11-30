@@ -1,3 +1,5 @@
+import { SUCCESS_CODE } from '@/constants'
+
 const delay = 600000
 
 export default [
@@ -7,7 +9,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'request-1'
       }
     }
@@ -18,7 +20,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'request-2'
       }
     }
@@ -29,7 +31,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'request-3'
       }
     }
@@ -40,7 +42,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'request-4'
       }
     }
@@ -51,7 +53,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'request-5'
       }
     }

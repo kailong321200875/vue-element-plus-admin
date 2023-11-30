@@ -1,3 +1,5 @@
+import { SUCCESS_CODE } from '@/constants'
+
 const delay = 1000
 
 const dictObj: Recordable = {
@@ -25,7 +27,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: dictObj
       }
     }
@@ -37,7 +39,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: [
           {
             label: 'test1',

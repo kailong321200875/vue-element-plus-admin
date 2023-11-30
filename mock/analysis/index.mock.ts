@@ -1,4 +1,5 @@
 import { defineMock } from 'vite-plugin-mock-dev-server'
+import { SUCCESS_CODE } from '@/constants'
 
 const delay = 1000
 
@@ -10,7 +11,7 @@ export default defineMock([
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           users: 102400,
           messages: 81212,
@@ -27,7 +28,7 @@ export default defineMock([
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: [
           { value: 1000, name: 'analysis.directAccess' },
           { value: 310, name: 'analysis.mailMarketing' },
@@ -45,7 +46,7 @@ export default defineMock([
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: [
           { value: 13253, name: 'analysis.monday' },
           { value: 34235, name: 'analysis.tuesday' },
@@ -65,7 +66,7 @@ export default defineMock([
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: [
           { estimate: 100, actual: 120, name: 'analysis.january' },
           { estimate: 120, actual: 82, name: 'analysis.february' },

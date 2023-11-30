@@ -1,5 +1,6 @@
 import { toAnyString } from '@/utils'
 import { faker } from '@faker-js/faker'
+import { SUCCESS_CODE } from '@/constants'
 
 const departmentList: any = []
 
@@ -80,7 +81,7 @@ export default [
     method: 'GET',
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           list: departmentList
         }
@@ -92,7 +93,7 @@ export default [
     method: 'GET',
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           list: departmentList,
           total: 5
@@ -123,7 +124,7 @@ export default [
         })
       }
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           total: 100,
           list: mockList
@@ -138,7 +139,7 @@ export default [
     delay: 1000,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'success'
       }
     }
@@ -156,7 +157,7 @@ export default [
         }
       } else {
         return {
-          code: 0,
+          code: SUCCESS_CODE,
           data: 'success'
         }
       }
@@ -169,7 +170,7 @@ export default [
     delay: 1000,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: 'success'
       }
     }
@@ -187,7 +188,7 @@ export default [
         }
       } else {
         return {
-          code: 0,
+          code: SUCCESS_CODE,
           data: 'success'
         }
       }

@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 import { DepartmentListResponse, DepartmentUserParams, DepartmentUserResponse } from './types'
 
 export const getDepartmentApi = () => {

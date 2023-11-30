@@ -1,45 +1,12 @@
-import {
-  AxiosConfig,
-  AxiosResponse,
-  AxiosRequestHeaders,
-  InternalAxiosRequestConfig
-} from './types'
+import { AxiosResponse, AxiosRequestHeaders, InternalAxiosRequestConfig } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
 import router from '@/router'
+import { SUCCESS_CODE } from '@/constants'
 
 import { useStorage } from '@/hooks/web/useStorage'
 
 const { clear } = useStorage()
-
-const config: AxiosConfig = {
-  /**
-   * 接口成功返回状态码
-   */
-  code: 0,
-
-  /**
-   * 接口请求超时时间
-   */
-  timeout: 60000,
-
-  /**
-   * 默认接口请求类型
-   * 可选值：application/x-www-form-urlencoded multipart/form-data
-   */
-  defaultHeaders: 'application/json',
-
-  interceptors: {
-    //请求拦截
-    // requestInterceptors: (config) => {
-    //   return config
-    // },
-    // 响应拦截器
-    // responseInterceptors: (result: AxiosResponse) => {
-    //   return result
-    // }
-  }
-}
 
 const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   if (
@@ -64,11 +31,11 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   return config
 }
 
-const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
+const defaultResponseInterceptors = (response: AxiosResponse) => {
   if (response?.config?.responseType === 'blob') {
     // 如果是文件流，直接过
     return response
-  } else if (response.data.code === config.code) {
+  } else if (response.data.code === SUCCESS_CODE) {
     return response.data
   } else {
     ElMessage.error(response?.data?.message)
@@ -81,4 +48,3 @@ const defaultResponseInterceptors = (response: AxiosResponse<any>) => {
 }
 
 export { defaultResponseInterceptors, defaultRequestInterceptors }
-export default config

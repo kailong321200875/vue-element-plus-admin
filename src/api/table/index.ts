@@ -1,4 +1,4 @@
-import request from '@/config/axios'
+import request from '@/axios'
 import type { TableData } from './types'
 
 export const getTableListApi = (params: any) => {

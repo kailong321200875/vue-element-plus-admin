@@ -1,3 +1,5 @@
+import { SUCCESS_CODE } from '@/constants'
+
 const delay = 1000
 
 const List: {
@@ -40,7 +42,7 @@ export default [
       )
 
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: {
           total: mockList.length,
           list: pageList
@@ -60,7 +62,7 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            code: 0,
+            code: SUCCESS_CODE,
             data: user
           }
         }
@@ -80,7 +82,7 @@ export default [
     delay,
     body: () => {
       return {
-        code: 0,
+        code: SUCCESS_CODE,
         data: null
       }
     }
