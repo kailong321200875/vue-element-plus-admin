@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.4.1...v2.5.0) (2023-12-03)
+
+
+### Types
+
+* 删除无用类型 ([30e4214](https://github.com/kailong321200875/vue-element-plus-admin/commit/30e421438793b8283a0113ba50eb9aef90cfed4e))
+
+
+### Features
+
+* VideoPlayer ([7b5bbed](https://github.com/kailong321200875/vue-element-plus-admin/commit/7b5bbedbccf56049ff611005ba17a0f07b07034d))
+* 持久化缓存 ([893459d](https://github.com/kailong321200875/vue-element-plus-admin/commit/893459da7cf819b6b94477cd76fdfeeecacc287f))
+* 新增ImageCropping ([b0a43a7](https://github.com/kailong321200875/vue-element-plus-admin/commit/b0a43a70e6c93690ba4b0779527316f40297a45d))
+* 新增userStore ([77c962e](https://github.com/kailong321200875/vue-element-plus-admin/commit/77c962ea91de68299a01680a7941cf7a73c7e4a7))
+* 新增表格视频预览 ([cfc2d54](https://github.com/kailong321200875/vue-element-plus-admin/commit/cfc2d54586e73353295e7b73e2bf39e4e4d03c96))
+* 替换mock-server插件 ([b8f9a99](https://github.com/kailong321200875/vue-element-plus-admin/commit/b8f9a9940d5eb3f532421b1b85aeb1f3d9afb4b1))
+* 替换mockjs ([7c76d94](https://github.com/kailong321200875/vue-element-plus-admin/commit/7c76d945be8c46b427fe65c728ae0e70ab7a5e91))
+* 重新整理目录结构,mock请求 ([179ab26](https://github.com/kailong321200875/vue-element-plus-admin/commit/179ab2672fe7fff55c8a9c55fae22a4b6c362623))
+
+
+### Bug Fixes
+
+* [#367](https://github.com/kailong321200875/vue-element-plus-admin/issues/367) ([c8400ab](https://github.com/kailong321200875/vue-element-plus-admin/commit/c8400abd9f37405127890be1c9a559edf9f251f8))
+
+
+### Styling
+
+* 格式化代码 ([31ea31d](https://github.com/kailong321200875/vue-element-plus-admin/commit/31ea31dde8a149f4fc805c08e4fca4e755c36752))
+* 表单项宽度默认100% ([416de2b](https://github.com/kailong321200875/vue-element-plus-admin/commit/416de2b4d644f68d7db379c7cb1139c8a17f64d7))
+
+
+### Performance Improvements
+
+* 新增token过期示例 ([bdc8d35](https://github.com/kailong321200875/vue-element-plus-admin/commit/bdc8d358a1ca8f5fc6b43990899834791364e4f2))
+
 ## [2.4.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.4.0...v2.4.1) (2023-11-12)
 
 
