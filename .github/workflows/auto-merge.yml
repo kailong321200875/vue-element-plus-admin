@@ -41,10 +41,10 @@ jobs:
         with:
           version: latest
 
-      - name: use Node.js 16
+      - name: use Node.js 18
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - name: Set SSH Environment
         env:
@@ -85,10 +85,10 @@ jobs:
         with:
           version: latest
 
-      - name: use Node.js 16
+      - name: use Node.js 18
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: '16.x'
+          node-version: '18.x'
 
       - name: Set SSH Environment
         env:
