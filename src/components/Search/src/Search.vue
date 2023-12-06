@@ -88,6 +88,9 @@ const newSchema = computed(() => {
                   />
                 </div>
               )
+            },
+            label: () => {
+              return <span>&nbsp;</span>
             }
           }
         }
