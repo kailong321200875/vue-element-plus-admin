@@ -386,6 +386,10 @@ export default defineComponent({
         {...getFormBindValue()}
         model={unref(getProps).isCustom ? unref(getProps).model : formModel}
         class={prefixCls}
+        // @ts-ignore
+        onSubmit={(e: Event) => {
+          e.preventDefault()
+        }}
       >
         {{
           // 如果需要自定义，就什么都不渲染，而是提供默认插槽
