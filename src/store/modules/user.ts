@@ -18,7 +18,7 @@ export const useUserStore = defineStore('user', {
   state: (): UserState => {
     return {
       userInfo: undefined,
-      tokenKey: 'Token',
+      tokenKey: 'Authorization',
       token: '',
       roleRouters: undefined
     }
