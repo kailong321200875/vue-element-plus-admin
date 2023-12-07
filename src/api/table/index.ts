@@ -5,6 +5,10 @@ export const getTableListApi = (params: any) => {
   return request.get({ url: '/mock/example/list', params })
 }
 
+export const getCardTableListApi = (params: any) => {
+  return request.get({ url: '/mock/card/list', params })
+}
+
 export const getTreeTableListApi = (params: any) => {
   return request.get({ url: '/mock/example/treeList', params })
 }

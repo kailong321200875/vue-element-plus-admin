@@ -176,6 +176,39 @@ for (let i = 0; i < count; i++) {
   })
 }
 
+const cardList = [
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
+    name: 'Alipay',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  },
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
+    name: 'Angular',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  },
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
+    name: 'Bootstrap',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  },
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png',
+    name: 'React',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  },
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png',
+    name: 'Vue',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  },
+  {
+    logo: 'https://gw.alipayobjects.com/zos/rmsportal/nxkuOJlFJuAUhzlMTCEe.png',
+    name: 'Webpack',
+    desc: '在中台产品的研发过程中，会出现不同的设计规范和实现方式，但其中往往存在很多类似的页面和组件，这些类似的组件会被抽离成一套标准规范。'
+  }
+]
+
 export default [
   // 树形列表接口
   {
@@ -291,6 +324,28 @@ export default [
         return {
           code: SUCCESS_CODE,
           data: 'success'
+        }
+      }
+    }
+  },
+  {
+    url: '/mock/card/list',
+    method: 'GET',
+    delay,
+    body: ({ query }) => {
+      const { name, pageIndex, pageSize } = query
+      const mockList = cardList.filter((item) => {
+        if (name && item.name.indexOf(name) < 0) return false
+        return true
+      })
+      const pageList = mockList.filter(
+        (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
+      )
+      return {
+        code: SUCCESS_CODE,
+        data: {
+          total: mockList.length,
+          list: pageList
         }
       }
     }

@@ -181,7 +181,8 @@ export default {
     imageCropping: 'Image cropping',
     videoPlayer: 'Video player',
     // 表格视频预览
-    tableVideoPreview: 'Table video preview'
+    tableVideoPreview: 'Table video preview',
+    cardTable: 'Card table'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -457,7 +458,8 @@ export default {
     getSelections: 'Get selections',
     preview: 'Preview',
     showOrHiddenSortable: 'Show or hidden sortable',
-    videoPreview: 'Video preview'
+    videoPreview: 'Video preview',
+    cardTable: 'Card table'
   },
   richText: {
     richText: 'Rich text',

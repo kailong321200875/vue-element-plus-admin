@@ -178,7 +178,8 @@ export default {
     waterfall: '瀑布流',
     imageCropping: '图片裁剪',
     videoPlayer: '视频播放器',
-    tableVideoPreview: '表格视频预览'
+    tableVideoPreview: '表格视频预览',
+    cardTable: '卡片表格'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -449,7 +450,8 @@ export default {
     getSelections: '获取多选数据',
     preview: '封面',
     showOrHiddenSortable: '显示/隐藏排序',
-    videoPreview: '视频预览'
+    videoPreview: '视频预览',
+    cardTable: '卡片表格'
   },
   richText: {
     richText: '富文本',

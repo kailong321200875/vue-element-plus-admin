@@ -158,6 +158,14 @@ const adminList = [
             meta: {
               title: 'router.tableVideoPreview'
             }
+          },
+          {
+            path: 'card-table',
+            component: 'views/Components/Table/CardTable',
+            name: 'CardTable',
+            meta: {
+              title: 'router.cardTable'
+            }
           }
           // {
           //   path: 'ref-table',
@@ -659,6 +667,7 @@ const testList: string[] = [
   '/components/table/table-image-preview',
   '/components/table/table-video-preview',
   '/components/table/ref-table',
+  '/components/table/card-table',
   '/components/editor-demo',
   '/components/editor-demo/editor',
   '/components/editor-demo/json-editor',

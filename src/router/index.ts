@@ -209,6 +209,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
             meta: {
               title: t('router.tableVideoPreview')
             }
+          },
+          {
+            path: 'card-table',
+            component: () => import('@/views/Components/Table/CardTable.vue'),
+            name: 'CardTable',
+            meta: {
+              title: t('router.cardTable')
+            }
           }
         ]
       },

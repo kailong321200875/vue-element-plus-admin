@@ -6,7 +6,9 @@ import {
   ComponentSize,
   ElTooltipProps,
   ElImage,
-  ElButton
+  ElButton,
+  ElEmpty,
+  ElCard
 } from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
@@ -185,7 +187,25 @@ export default defineComponent({
       default: 'fixed'
     },
     scrollbarAlwaysOn: propTypes.bool.def(false),
-    flexible: propTypes.bool.def(false)
+    flexible: propTypes.bool.def(false),
+    // 自定义内容
+    customContent: propTypes.bool.def(false),
+    cardBodyStyle: {
+      type: Object as PropType<CSSProperties>,
+      default: () => ({})
+    },
+    cardBodyClass: {
+      type: String as PropType<string>,
+      default: ''
+    },
+    cardWrapStyle: {
+      type: Object as PropType<CSSProperties>,
+      default: () => ({})
+    },
+    cardWrapClass: {
+      type: String as PropType<string>,
+      default: ''
+    }
   },
   emits: ['update:pageSize', 'update:currentPage', 'register', 'refresh'],
   setup(props, { attrs, emit, slots, expose }) {
@@ -484,19 +504,60 @@ export default defineComponent({
 
       return (
         <div v-loading={unref(getProps).loading}>
-          {unref(getProps).showAction ? (
-            <TableActions
-              columns={unref(getProps).columns}
-              onChangSize={changSize}
-              onRefresh={refresh}
-            />
-          ) : null}
-          <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
-            {{
-              default: () => renderTableColumn(),
-              ...tableSlots
-            }}
-          </ElTable>
+          {unref(getProps).customContent ? (
+            <div class="flex flex-wrap">
+              {unref(getProps)?.data?.length ? (
+                unref(getProps)?.data.map((item) => {
+                  const cardSlots = {
+                    default: () => {
+                      return getSlot(slots, 'content', item)
+                    }
+                  }
+                  if (getSlot(slots, 'content-header')) {
+                    cardSlots['header'] = () => {
+                      return getSlot(slots, 'content-header', item)
+                    }
+                  }
+                  if (getSlot(slots, 'content-footer')) {
+                    cardSlots['footer'] = () => {
+                      return getSlot(slots, 'content-footer', item)
+                    }
+                  }
+                  return (
+                    <ElCard
+                      shadow="hover"
+                      class={unref(getProps).cardWrapClass}
+                      style={unref(getProps).cardWrapStyle}
+                      bodyClass={unref(getProps).cardBodyClass}
+                      bodyStyle={unref(getProps).cardBodyStyle}
+                    >
+                      {cardSlots}
+                    </ElCard>
+                  )
+                })
+              ) : (
+                <div class="flex flex-1 justify-center">
+                  <ElEmpty description="暂无数据" />
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              {unref(getProps).showAction ? (
+                <TableActions
+                  columns={unref(getProps).columns}
+                  onChangSize={changSize}
+                  onRefresh={refresh}
+                />
+              ) : null}
+              <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
+                {{
+                  default: () => renderTableColumn(),
+                  ...tableSlots
+                }}
+              </ElTable>
+            </>
+          )}
           {unref(getProps).pagination ? (
             <ElPagination
               v-model:pageSize={pageSizeRef.value}
