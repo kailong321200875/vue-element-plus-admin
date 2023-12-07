@@ -20,8 +20,7 @@ const columns: TableColumn[] = [
   },
   {
     field: 'video_uri',
-    label: t('tableDemo.videoPreview'),
-    width: 400
+    label: t('tableDemo.videoPreview')
   },
   {
     field: 'author',

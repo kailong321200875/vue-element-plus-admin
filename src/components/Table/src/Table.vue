@@ -5,7 +5,8 @@ import {
   ElPagination,
   ComponentSize,
   ElTooltipProps,
-  ElImage
+  ElImage,
+  ElButton
 } from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
@@ -16,7 +17,8 @@ import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
 import { isImgPath } from '@/utils/is'
-import { VideoPlayer } from '@/components/VideoPlayer'
+import { createVideoViewer } from '@/components/VideoPlayer'
+import { Icon } from '@/components/Icon'
 
 export default defineComponent({
   name: 'Table',
@@ -371,7 +373,17 @@ export default defineComponent({
               preview-teleported
             />
           ) : (
-            <VideoPlayer url={url} class="w-full h-full" />
+            <ElButton
+              type="primary"
+              icon={<Icon icon="ep:video-play" />}
+              onClick={() => {
+                createVideoViewer({
+                  url
+                })
+              }}
+            >
+              预览
+            </ElButton>
           )}
         </div>
       )
