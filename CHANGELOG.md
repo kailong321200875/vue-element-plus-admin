@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.1...v2.5.2) (2023-12-10)
+
+
+### Bug Fixes
+
+* 修复mock无法使用问题 ([319aaef](https://github.com/kailong321200875/vue-element-plus-admin/commit/319aaef7eec6287a0e80f25a479918d43c051810))
+
 ## [2.5.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.0...v2.5.1) (2023-12-10)
 
 
