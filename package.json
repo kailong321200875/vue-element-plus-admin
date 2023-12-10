@@ -27,6 +27,7 @@
     "icon": "esno ./scripts/icon.ts"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.3.1",
     "@iconify/iconify": "^3.1.1",
     "@iconify/vue": "^4.1.1",
     "@vueuse/core": "^10.7.0",
@@ -59,7 +60,6 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@faker-js/faker": "^8.3.1",
     "@iconify/json": "^2.2.153",
     "@intlify/unplugin-vue-i18n": "^1.5.0",
     "@purge-icons/generated": "^0.10.0",
@@ -109,7 +109,7 @@
     "vite": "5.0.6",
     "vite-plugin-ejs": "^1.7.0",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-plugin-mock-dev-server": "^1.4.0",
+    "vite-plugin-mock": "^2.9.6",
     "vite-plugin-progress": "^0.0.7",
     "vite-plugin-purge-icons": "^0.10.0",
     "vite-plugin-style-import": "2.0.0",

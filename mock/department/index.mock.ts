@@ -78,8 +78,8 @@ export default [
   // 列表接口
   {
     url: '/mock/department/list',
-    method: 'GET',
-    body: () => {
+    method: 'get',
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {
@@ -90,8 +90,8 @@ export default [
   },
   {
     url: '/mock/department/table/list',
-    method: 'GET',
-    body: () => {
+    method: 'get',
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {
@@ -103,9 +103,9 @@ export default [
   },
   {
     url: '/mock/department/users',
-    method: 'GET',
-    delay: 1000,
-    body: ({ query }) => {
+    method: 'get',
+    timeout: 1000,
+    response: ({ query }) => {
       const { pageSize } = query
       // 根据pageSize来创建数据
       const mockList: any = []
@@ -135,9 +135,9 @@ export default [
   // 保存接口
   {
     url: '/mock/department/user/save',
-    method: 'POST',
-    delay: 1000,
-    body: () => {
+    method: 'post',
+    timeout: 1000,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'success'
@@ -147,8 +147,8 @@ export default [
   // 删除接口
   {
     url: '/mock/department/user/delete',
-    method: 'POST',
-    body: ({ body }) => {
+    method: 'post',
+    response: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
@@ -166,9 +166,9 @@ export default [
   // 保存接口
   {
     url: '/mock/department/save',
-    method: 'POST',
-    delay: 1000,
-    body: () => {
+    method: 'post',
+    timeout: 1000,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'success'
@@ -178,8 +178,8 @@ export default [
   // 删除接口
   {
     url: '/mock/department/delete',
-    method: 'POST',
-    body: ({ body }) => {
+    method: 'post',
+    response: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
