@@ -44,13 +44,13 @@ vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模
 ## 前序准备
 
 - [node](http://nodejs.org/) 和 [git](https://git-scm.com/) - 项目开发环境
-- [Vite4](https://vitejs.dev/) - 熟悉 vite 特性
+- [Vite](https://vitejs.dev/) - 熟悉 vite 特性
 - [Vue3](https://v3.vuejs.org/) - 熟悉 Vue 基础语法
 - [TypeScript](https://www.typescriptlang.org/) - 熟悉 `TypeScript` 基本语法
 - [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
 - [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
 - [Element-Plus](https://element-plus.org/) - element-plus 基本使用
-- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
+- [Faker.js](https://github.com/faker-js/faker#readme) - 生成大量伪造的上下文数据
 
 ## 安装和使用
 
