@@ -1,15 +1,15 @@
 import { faker } from '@faker-js/faker'
 import { SUCCESS_CODE } from '@/constants'
 
-const delay = 1000
+const timeout = 1000
 
 export default [
   // 列表接口
   {
     url: '/mock/menu/list',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {

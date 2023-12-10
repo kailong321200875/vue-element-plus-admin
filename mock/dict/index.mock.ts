@@ -1,6 +1,6 @@
 import { SUCCESS_CODE } from '@/constants'
 
-const delay = 1000
+const timeout = 1000
 
 const dictObj: Recordable = {
   importance: [
@@ -23,9 +23,9 @@ export default [
   // 字典接口
   {
     url: '/mock/dict/list',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: dictObj
@@ -35,9 +35,9 @@ export default [
   // 获取某个字典
   {
     url: '/mock/dict/one',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [

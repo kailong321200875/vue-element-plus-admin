@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 
-const delay = 1000
+const timeout = 1000
 
 const adminList = [
   {
@@ -1146,9 +1146,9 @@ export default [
   // 列表接口
   {
     url: '/mock/role/list',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: adminList
@@ -1157,9 +1157,9 @@ export default [
   },
   {
     url: '/mock/role/table',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {
@@ -1172,9 +1172,9 @@ export default [
   // 列表接口
   {
     url: '/mock/role/list2',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: testList
@@ -1183,9 +1183,9 @@ export default [
   },
   {
     url: '/mock/role/table',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {

@@ -1,15 +1,15 @@
-import { defineMock } from 'vite-plugin-mock-dev-server'
 import { SUCCESS_CODE } from '@/constants'
+import { MockMethod } from 'vite-plugin-mock'
 
-const delay = 1000
+const timeout = 1000
 
-export default defineMock([
+export default [
   // 分析页统计接口
   {
     url: '/mock/analysis/total',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {
@@ -24,9 +24,9 @@ export default defineMock([
   // 用户来源
   {
     url: '/mock/analysis/userAccessSource',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -42,9 +42,9 @@ export default defineMock([
   // 每周用户活跃量
   {
     url: '/mock/analysis/weeklyUserActivity',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -62,9 +62,9 @@ export default defineMock([
   // 每月销售额
   {
     url: '/mock/analysis/monthlySales',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -84,4 +84,4 @@ export default defineMock([
       }
     }
   }
-])
+] as MockMethod[]

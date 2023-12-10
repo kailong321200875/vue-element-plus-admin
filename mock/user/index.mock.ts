@@ -1,6 +1,6 @@
 import { SUCCESS_CODE } from '@/constants'
 
-const delay = 1000
+const timeout = 1000
 
 const List: {
   username: string
@@ -29,8 +29,8 @@ export default [
   // 列表接口
   {
     url: '/mock/user/list',
-    method: 'GET',
-    body: ({ query }) => {
+    method: 'get',
+    response: ({ query }) => {
       const { username, pageIndex, pageSize } = query
 
       const mockList = List.filter((item) => {
@@ -53,9 +53,9 @@ export default [
   // 登录接口
   {
     url: '/mock/user/login',
-    method: 'POST',
-    delay,
-    body: ({ body }) => {
+    method: 'post',
+    timeout,
+    response: ({ body }) => {
       const data = body
       let hasUser = false
       for (const user of List) {
@@ -78,9 +78,9 @@ export default [
   // 退出接口
   {
     url: '/mock/user/loginOut',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: null

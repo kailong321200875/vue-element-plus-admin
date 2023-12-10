@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker'
 import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 
-const delay = 1000
+const timeout = 1000
 const count = 100
 
 const baseContent =
@@ -213,9 +213,9 @@ export default [
   // 树形列表接口
   {
     url: '/mock/example/treeList',
-    method: 'GET',
-    delay,
-    body: ({ query }) => {
+    method: 'get',
+    timeout,
+    response: ({ query }) => {
       const { title, pageIndex, pageSize } = query
       const mockList = treeList.filter((item) => {
         if (title && item.title.indexOf(title) < 0) return false
@@ -236,9 +236,9 @@ export default [
   // 列表接口
   {
     url: '/mock/example/list',
-    method: 'GET',
-    delay,
-    body: ({ query }) => {
+    method: 'get',
+    timeout,
+    response: ({ query }) => {
       const { title, pageIndex, pageSize } = query
       const mockList = List.filter((item) => {
         if (title && item.title.indexOf(title) < 0) return false
@@ -259,9 +259,9 @@ export default [
   // 保存接口
   {
     url: '/mock/example/save',
-    method: 'POST',
-    delay,
-    body: ({ body }) => {
+    method: 'post',
+    timeout,
+    response: ({ body }) => {
       if (!body.id) {
         List = [
           Object.assign(body, {
@@ -290,8 +290,8 @@ export default [
   // 详情接口
   {
     url: '/mock/example/detail',
-    method: 'GET',
-    body: ({ query }) => {
+    method: 'get',
+    response: ({ query }) => {
       const { id } = query
       for (const example of List) {
         if (example.id === id) {
@@ -306,8 +306,8 @@ export default [
   // 删除接口
   {
     url: '/mock/example/delete',
-    method: 'POST',
-    body: ({ body }) => {
+    method: 'post',
+    response: ({ body }) => {
       const ids = body.ids
       if (!ids) {
         return {
@@ -330,9 +330,9 @@ export default [
   },
   {
     url: '/mock/card/list',
-    method: 'GET',
-    delay,
-    body: ({ query }) => {
+    method: 'get',
+    timeout,
+    response: ({ query }) => {
       const { name, pageIndex, pageSize } = query
       const mockList = cardList.filter((item) => {
         if (name && item.name.indexOf(name) < 0) return false

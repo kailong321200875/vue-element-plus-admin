@@ -1,13 +1,13 @@
 import { SUCCESS_CODE } from '@/constants'
 
-const delay = 600000
+const timeout = 600000
 
 export default [
   {
     url: '/mock/request/1',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'request-1'
@@ -16,9 +16,9 @@ export default [
   },
   {
     url: '/mock/request/2',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'request-2'
@@ -27,9 +27,9 @@ export default [
   },
   {
     url: '/mock/request/3',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'request-3'
@@ -38,9 +38,9 @@ export default [
   },
   {
     url: '/mock/request/4',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'request-4'
@@ -49,9 +49,9 @@ export default [
   },
   {
     url: '/mock/request/5',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: 'request-5'
@@ -60,9 +60,9 @@ export default [
   },
   {
     url: '/mock/request/expired',
-    method: 'GET',
-    delay: 0,
-    body: () => {
+    method: 'get',
+    timeout: 0,
+    response: () => {
       return {
         code: 401,
         message: 'token expired'

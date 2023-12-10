@@ -1,14 +1,14 @@
 import { SUCCESS_CODE } from '@/constants'
 
-const delay = 1000
+const timeout = 1000
 
 export default [
   // 获取统计
   {
     url: '/mock/workplace/total',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: {
@@ -22,9 +22,9 @@ export default [
   // 获取项目
   {
     url: '/mock/workplace/project',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -77,9 +77,9 @@ export default [
   // 获取动态
   {
     url: '/mock/workplace/dynamic',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -114,9 +114,9 @@ export default [
   // 获取团队信息
   {
     url: '/mock/workplace/team',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
@@ -151,9 +151,9 @@ export default [
   // 获取指数
   {
     url: '/mock/workplace/radar',
-    method: 'GET',
-    delay,
-    body: () => {
+    method: 'get',
+    timeout,
+    response: () => {
       return {
         code: SUCCESS_CODE,
         data: [
