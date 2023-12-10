@@ -3,7 +3,6 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Search } from '@/components/Search'
 import { reactive, ref, unref } from 'vue'
-import { ElButton } from 'element-plus'
 import { getDictOneApi } from '@/api/common'
 import { FormSchema } from '@/components/Form'
 import { useSearch } from '@/hooks/web/useSearch'
@@ -305,37 +304,37 @@ const changeResetLoading = () => {
     :title="`${t('searchDemo.search')} ${t('searchDemo.operate')}`"
     style="margin-bottom: 20px"
   >
-    <ElButton @click="changeGrid(true)">{{ t('searchDemo.grid') }}</ElButton>
-    <ElButton @click="changeGrid(false)">
+    <BaseButton @click="changeGrid(true)">{{ t('searchDemo.grid') }}</BaseButton>
+    <BaseButton @click="changeGrid(false)">
       {{ t('searchDemo.restore') }} {{ t('searchDemo.grid') }}
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="changeLayout">
+    <BaseButton @click="changeLayout">
       {{ t('searchDemo.button') }} {{ t('searchDemo.position') }}
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="changePosition('left')">
+    <BaseButton @click="changePosition('left')">
       {{ t('searchDemo.bottom') }} {{ t('searchDemo.position') }}-{{ t('searchDemo.left') }}
-    </ElButton>
-    <ElButton @click="changePosition('center')">
+    </BaseButton>
+    <BaseButton @click="changePosition('center')">
       {{ t('searchDemo.bottom') }} {{ t('searchDemo.position') }}-{{ t('searchDemo.center') }}
-    </ElButton>
-    <ElButton @click="changePosition('right')">
+    </BaseButton>
+    <BaseButton @click="changePosition('right')">
       {{ t('searchDemo.bottom') }} {{ t('searchDemo.position') }}-{{ t('searchDemo.right') }}
-    </ElButton>
-    <ElButton @click="getDictOne">
+    </BaseButton>
+    <BaseButton @click="getDictOne">
       {{ t('formDemo.select') }} {{ t('searchDemo.dynamicOptions') }}
-    </ElButton>
-    <ElButton @click="delRadio">{{ t('searchDemo.deleteRadio') }}</ElButton>
-    <ElButton @click="restoreRadio">{{ t('searchDemo.restoreRadio') }}</ElButton>
-    <ElButton @click="setValue">{{ t('formDemo.setValue') }}</ElButton>
+    </BaseButton>
+    <BaseButton @click="delRadio">{{ t('searchDemo.deleteRadio') }}</BaseButton>
+    <BaseButton @click="restoreRadio">{{ t('searchDemo.restoreRadio') }}</BaseButton>
+    <BaseButton @click="setValue">{{ t('formDemo.setValue') }}</BaseButton>
 
-    <ElButton @click="changeSearchLoading">
+    <BaseButton @click="changeSearchLoading">
       {{ t('searchDemo.search') }} {{ t('searchDemo.loading') }}
-    </ElButton>
-    <ElButton @click="changeResetLoading">
+    </BaseButton>
+    <BaseButton @click="changeResetLoading">
       {{ t('searchDemo.reset') }} {{ t('searchDemo.loading') }}
-    </ElButton>
+    </BaseButton>
   </ContentWrap>
 
   <ContentWrap :title="t('searchDemo.search')" :message="t('searchDemo.searchDes')">

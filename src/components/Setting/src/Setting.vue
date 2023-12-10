@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElDrawer, ElDivider, ElButton, ElMessage } from 'element-plus'
+import { ElDrawer, ElDivider, ElMessage } from 'element-plus'
 import { ref, unref, computed, watch } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
@@ -278,12 +278,14 @@ const clear = () => {
 
     <ElDivider />
     <div>
-      <ElButton type="primary" class="w-full" @click="copyConfig">{{ t('setting.copy') }}</ElButton>
+      <BaseButton type="primary" class="w-full" @click="copyConfig">{{
+        t('setting.copy')
+      }}</BaseButton>
     </div>
     <div class="mt-5px">
-      <ElButton type="danger" class="w-full" @click="clear">
+      <BaseButton type="danger" class="w-full" @click="clear">
         {{ t('setting.clearAndReset') }}
-      </ElButton>
+      </BaseButton>
     </div>
   </ElDrawer>
 </template>

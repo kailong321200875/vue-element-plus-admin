@@ -5,8 +5,9 @@ import { PropType, reactive, watch, ref, unref } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getMenuListApi } from '@/api/menu'
-import { ElTag, ElButton } from 'element-plus'
+import { ElTag } from 'element-plus'
 import AddButtonPermission from './AddButtonPermission.vue'
+import { BaseButton } from '@/components/Button'
 
 const { t } = useI18n()
 
@@ -201,9 +202,9 @@ const formSchema = reactive<FormSchema[]>([
                 </ElTag>
               )
             })}
-            <ElButton type="primary" size="small" onClick={() => (showDrawer.value = true)}>
+            <BaseButton type="primary" size="small" onClick={() => (showDrawer.value = true)}>
               添加权限
-            </ElButton>
+            </BaseButton>
           </>
         )
       }

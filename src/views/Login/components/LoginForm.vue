@@ -2,7 +2,7 @@
 import { reactive, ref, watch } from 'vue'
 import { Form, FormSchema } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton, ElCheckbox, ElLink } from 'element-plus'
+import { ElCheckbox, ElLink } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
 import { useAppStore } from '@/store/modules/app'
@@ -13,6 +13,7 @@ import { UserType } from '@/api/login/types'
 import { useValidator } from '@/hooks/web/useValidator'
 import { Icon } from '@/components/Icon'
 import { useUserStore } from '@/store/modules/user'
+import { BaseButton } from '@/components/Button'
 
 const { required } = useValidator()
 
@@ -107,14 +108,19 @@ const schema = reactive<FormSchema[]>([
           return (
             <>
               <div class="w-[100%]">
-                <ElButton loading={loading.value} type="primary" class="w-[100%]" onClick={signIn}>
+                <BaseButton
+                  loading={loading.value}
+                  type="primary"
+                  class="w-[100%]"
+                  onClick={signIn}
+                >
                   {t('login.login')}
-                </ElButton>
+                </BaseButton>
               </div>
               <div class="w-[100%] mt-15px">
-                <ElButton class="w-[100%]" onClick={toRegister}>
+                <BaseButton class="w-[100%]" onClick={toRegister}>
                   {t('login.register')}
-                </ElButton>
+                </BaseButton>
               </div>
             </>
           )

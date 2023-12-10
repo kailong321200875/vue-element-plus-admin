@@ -2,7 +2,7 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { CountTo } from '@/components/CountTo'
-import { ElRow, ElCol, ElInputNumber, ElInput, ElButton } from 'element-plus'
+import { ElRow, ElCol, ElInputNumber, ElInput } from 'element-plus'
 import { ref, unref } from 'vue'
 
 const { t } = useI18n()
@@ -89,10 +89,10 @@ const pauseResume = () => {
       </ElCol>
       <ElCol :span="24">
         <div class="text-center">
-          <ElButton type="primary" @click="start">{{ t('countToDemo.start') }}</ElButton>
-          <ElButton @click="pauseResume">
+          <BaseButton type="primary" @click="start">{{ t('countToDemo.start') }}</BaseButton>
+          <BaseButton @click="pauseResume">
             {{ t('countToDemo.pause') }}/{{ t('countToDemo.resume') }}
-          </ElButton>
+          </BaseButton>
         </div>
       </ElCol>
     </ElRow>

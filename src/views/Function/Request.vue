@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton, ElDivider } from 'element-plus'
+import { ElDivider } from 'element-plus'
 import { request1, request2, request3, request4, request5, expired } from '@/api/request'
 import { ref } from 'vue'
 import request from '@/axios'
@@ -160,15 +160,15 @@ const tokenExpired = () => {
 <template>
   <ContentWrap :title="t('router.request')">
     <p>正在请求的接口：{{ setToArray(pending) }}</p>
-    <ElButton type="primary" @click="clickRequest1">请求/取消request1</ElButton>
-    <ElButton type="primary" @click="clickRequest2">请求/取消request2</ElButton>
-    <ElButton type="primary" @click="clickRequest3">请求/取消request3</ElButton>
-    <ElButton type="primary" @click="clickRequest4">请求/取消request4</ElButton>
-    <ElButton type="primary" @click="clickRequest5">请求/取消request5</ElButton>
-    <ElButton type="primary" @click="getAll">发送五个请求</ElButton>
-    <ElButton type="primary" @click="cancelAll">关闭所有请求</ElButton>
+    <BaseButton type="primary" @click="clickRequest1">请求/取消request1</BaseButton>
+    <BaseButton type="primary" @click="clickRequest2">请求/取消request2</BaseButton>
+    <BaseButton type="primary" @click="clickRequest3">请求/取消request3</BaseButton>
+    <BaseButton type="primary" @click="clickRequest4">请求/取消request4</BaseButton>
+    <BaseButton type="primary" @click="clickRequest5">请求/取消request5</BaseButton>
+    <BaseButton type="primary" @click="getAll">发送五个请求</BaseButton>
+    <BaseButton type="primary" @click="cancelAll">关闭所有请求</BaseButton>
     <ElDivider />
-    <ElButton type="primary" @click="tokenExpired">token过期</ElButton>
+    <BaseButton type="primary" @click="tokenExpired">token过期</BaseButton>
   </ContentWrap>
 </template>
 @/axios

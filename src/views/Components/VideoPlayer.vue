@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { VideoPlayer, createVideoViewer } from '@/components/VideoPlayer'
 import { ContentWrap } from '@/components/ContentWrap'
-import { ElButton, ElDivider } from 'element-plus'
+import { ElDivider } from 'element-plus'
 
 const showVideo = () => {
   createVideoViewer({
@@ -19,6 +19,6 @@ const showVideo = () => {
     />
 
     <ElDivider />
-    <ElButton type="primary" @click="showVideo">弹窗展示</ElButton>
+    <BaseButton type="primary" @click="showVideo">弹窗展示</BaseButton>
   </ContentWrap>
 </template>

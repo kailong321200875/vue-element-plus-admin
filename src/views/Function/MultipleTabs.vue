@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ContentWrap } from '@/components/ContentWrap'
-import { ElButton } from 'element-plus'
 import { useRouter } from 'vue-router'
 
 const { push } = useRouter()
@@ -12,8 +11,8 @@ const openTab = (item: number) => {
 
 <template>
   <ContentWrap>
-    <ElButton v-for="item in 5" :key="item" type="primary" @click="openTab(item)">
+    <BaseButton v-for="item in 5" :key="item" type="primary" @click="openTab(item)">
       打开详情页{{ item }}
-    </ElButton>
+    </BaseButton>
   </ContentWrap>
 </template>

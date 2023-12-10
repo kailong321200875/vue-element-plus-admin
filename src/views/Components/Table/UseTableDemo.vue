@@ -4,8 +4,9 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { ref, reactive, unref } from 'vue'
-import { ElTag, ElButton } from 'element-plus'
+import { ElTag } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
+import { BaseButton } from '@/components/Button'
 
 const { tableRegister, tableMethods, tableState } = useTable({
   fetchDataApi: async () => {
@@ -100,9 +101,9 @@ const columns = reactive<TableColumn[]>([
     slots: {
       default: (data) => {
         return (
-          <ElButton type="primary" onClick={() => actionFn(data)}>
+          <BaseButton type="primary" onClick={() => actionFn(data)}>
             {t('tableDemo.action')}
-          </ElButton>
+          </BaseButton>
         )
       }
     }
@@ -174,9 +175,9 @@ const delOrAddAction = () => {
       slots: {
         default: (data) => {
           return (
-            <ElButton type="primary" onClick={() => actionFn(data)}>
+            <BaseButton type="primary" onClick={() => actionFn(data)}>
               {t('tableDemo.action')}
-            </ElButton>
+            </BaseButton>
           )
         }
       }
@@ -217,35 +218,37 @@ const getSelections = async () => {
 
 <template>
   <ContentWrap :title="`UseTable ${t('tableDemo.operate')}`" style="margin-bottom: 20px">
-    <ElButton @click="showPagination(true)">
+    <BaseButton @click="showPagination(true)">
       {{ t('tableDemo.show') }} {{ t('tableDemo.pagination') }}
-    </ElButton>
-    <ElButton @click="showPagination(false)">
+    </BaseButton>
+    <BaseButton @click="showPagination(false)">
       {{ t('tableDemo.hidden') }} {{ t('tableDemo.pagination') }}
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="reserveIndex(true)">{{ t('tableDemo.reserveIndex') }}</ElButton>
-    <ElButton @click="reserveIndex(false)">{{ t('tableDemo.restoreIndex') }}</ElButton>
+    <BaseButton @click="reserveIndex(true)">{{ t('tableDemo.reserveIndex') }}</BaseButton>
+    <BaseButton @click="reserveIndex(false)">{{ t('tableDemo.restoreIndex') }}</BaseButton>
 
-    <ElButton @click="showSelections(true)">{{ t('tableDemo.showSelections') }}</ElButton>
-    <ElButton @click="showSelections(false)">{{ t('tableDemo.hiddenSelections') }}</ElButton>
+    <BaseButton @click="showSelections(true)">{{ t('tableDemo.showSelections') }}</BaseButton>
+    <BaseButton @click="showSelections(false)">{{ t('tableDemo.hiddenSelections') }}</BaseButton>
 
-    <ElButton @click="changeTitle">{{ t('tableDemo.changeTitle') }}</ElButton>
+    <BaseButton @click="changeTitle">{{ t('tableDemo.changeTitle') }}</BaseButton>
 
-    <ElButton @click="showExpandedRows(true)">{{ t('tableDemo.showExpandedRows') }}</ElButton>
-    <ElButton @click="showExpandedRows(false)">{{ t('tableDemo.hiddenExpandedRows') }}</ElButton>
+    <BaseButton @click="showExpandedRows(true)">{{ t('tableDemo.showExpandedRows') }}</BaseButton>
+    <BaseButton @click="showExpandedRows(false)">{{
+      t('tableDemo.hiddenExpandedRows')
+    }}</BaseButton>
 
-    <ElButton @click="selectAllNone">{{ t('tableDemo.selectAllNone') }}</ElButton>
+    <BaseButton @click="selectAllNone">{{ t('tableDemo.selectAllNone') }}</BaseButton>
 
-    <ElButton @click="delOrAddAction">{{ t('tableDemo.delOrAddAction') }}</ElButton>
+    <BaseButton @click="delOrAddAction">{{ t('tableDemo.delOrAddAction') }}</BaseButton>
 
-    <ElButton @click="showOrHiddenStripe">{{ t('tableDemo.showOrHiddenStripe') }}</ElButton>
+    <BaseButton @click="showOrHiddenStripe">{{ t('tableDemo.showOrHiddenStripe') }}</BaseButton>
 
-    <ElButton @click="fixedHeaderOrAuto">{{ t('tableDemo.fixedHeaderOrAuto') }}</ElButton>
+    <BaseButton @click="fixedHeaderOrAuto">{{ t('tableDemo.fixedHeaderOrAuto') }}</BaseButton>
 
-    <ElButton @click="getSelections">{{ t('tableDemo.getSelections') }}</ElButton>
+    <BaseButton @click="getSelections">{{ t('tableDemo.getSelections') }}</BaseButton>
 
-    <!-- <ElButton @click="showOrHiddenSortable">{{ t('tableDemo.showOrHiddenSortable') }}</ElButton> -->
+    <!-- <BaseButton @click="showOrHiddenSortable">{{ t('tableDemo.showOrHiddenSortable') }}</BaseButton> -->
   </ContentWrap>
   <ContentWrap :title="`UseTable ${t('tableDemo.example')}`">
     <Table

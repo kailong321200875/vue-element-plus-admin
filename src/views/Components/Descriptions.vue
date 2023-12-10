@@ -3,7 +3,7 @@ import { Descriptions } from '@/components/Descriptions'
 import { useI18n } from '@/hooks/web/useI18n'
 import { reactive } from 'vue'
 import { Form } from '@/components/Form'
-import { ElFormItem, ElInput, ElButton } from 'element-plus'
+import { ElFormItem, ElInput } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useForm } from '@/hooks/web/useForm'
 import { DescriptionsSchema } from '@/components/Descriptions'
@@ -172,7 +172,7 @@ const formValidation = async () => {
       class="mt-20px"
     />
     <div class="text-center mt-10px">
-      <ElButton @click="formValidation"> {{ t('formDemo.formValidation') }} </ElButton>
+      <BaseButton @click="formValidation"> {{ t('formDemo.formValidation') }} </BaseButton>
     </div>
   </Form>
 </template>

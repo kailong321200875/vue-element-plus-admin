@@ -2,7 +2,7 @@
 import { ContentWrap } from '@/components/ContentWrap'
 import { Search } from '@/components/Search'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton, ElTag } from 'element-plus'
+import { ElTag } from 'element-plus'
 import { Table } from '@/components/Table'
 import { getTableListApi, delTableListApi } from '@/api/table'
 import { useTable } from '@/hooks/web/useTable'
@@ -11,6 +11,7 @@ import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useEmitt } from '@/hooks/event/useEmitt'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
+import { BaseButton } from '@/components/Button'
 
 defineOptions({
   name: 'ExamplePage'
@@ -229,15 +230,15 @@ const crudSchemas = reactive<CrudSchema[]>([
         default: (data: any) => {
           return (
             <>
-              <ElButton type="primary" onClick={() => action(data.row, 'edit')}>
+              <BaseButton type="primary" onClick={() => action(data.row, 'edit')}>
                 {t('exampleDemo.edit')}
-              </ElButton>
-              <ElButton type="success" onClick={() => action(data.row, 'detail')}>
+              </BaseButton>
+              <BaseButton type="success" onClick={() => action(data.row, 'detail')}>
                 {t('exampleDemo.detail')}
-              </ElButton>
-              <ElButton type="danger" onClick={() => delData(data.row)}>
+              </BaseButton>
+              <BaseButton type="danger" onClick={() => delData(data.row)}>
                 {t('exampleDemo.del')}
-              </ElButton>
+              </BaseButton>
             </>
           )
         }
@@ -274,10 +275,10 @@ const action = (row: TableData, type: string) => {
     <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
 
     <div class="mb-10px">
-      <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
-      <ElButton :loading="delLoading" type="danger" @click="delData(null)">
+      <BaseButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</BaseButton>
+      <BaseButton :loading="delLoading" type="danger" @click="delData(null)">
         {{ t('exampleDemo.del') }}
-      </ElButton>
+      </BaseButton>
     </div>
 
     <Table

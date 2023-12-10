@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { ElInput, ElButton } from 'element-plus'
+import { ElInput } from 'element-plus'
 import { resetRouter } from '@/router'
 import { useRouter } from 'vue-router'
 import { useStorage } from '@/hooks/web/useStorage'
@@ -107,7 +107,7 @@ function handleShowForm(show = false) {
             {{ t('lock.message') }}
           </span>
           <div :class="`${prefixCls}-entry__footer enter-x`">
-            <ElButton
+            <BaseButton
               type="primary"
               size="small"
               class="mt-2 mr-2 enter-x"
@@ -116,8 +116,8 @@ function handleShowForm(show = false) {
               @click="handleShowForm(true)"
             >
               {{ t('common.back') }}
-            </ElButton>
-            <ElButton
+            </BaseButton>
+            <BaseButton
               type="primary"
               size="small"
               class="mt-2 mr-2 enter-x"
@@ -126,8 +126,8 @@ function handleShowForm(show = false) {
               @click="goLogin"
             >
               {{ t('lock.backToLogin') }}
-            </ElButton>
-            <ElButton
+            </BaseButton>
+            <BaseButton
               type="primary"
               class="mt-2"
               size="small"
@@ -136,7 +136,7 @@ function handleShowForm(show = false) {
               :disabled="loading"
             >
               {{ t('lock.entrySystem') }}
-            </ElButton>
+            </BaseButton>
           </div>
         </div>
       </div>

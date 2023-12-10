@@ -4,7 +4,7 @@ import { getMenuListApi } from '@/api/menu'
 import { useTable } from '@/hooks/web/useTable'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Table, TableColumn } from '@/components/Table'
-import { ElButton, ElTag } from 'element-plus'
+import { ElTag } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { Search } from '@/components/Search'
 import { FormSchema } from '@/components/Form'
@@ -12,6 +12,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import Write from './components/Write.vue'
 import Detail from './components/Detail.vue'
 import { Dialog } from '@/components/Dialog'
+import { BaseButton } from '@/components/Button'
 
 const { t } = useI18n()
 
@@ -109,13 +110,13 @@ const tableColumns = reactive<TableColumn[]>([
         const row = data.row
         return (
           <>
-            <ElButton type="primary" onClick={() => action(row, 'edit')}>
+            <BaseButton type="primary" onClick={() => action(row, 'edit')}>
               {t('exampleDemo.edit')}
-            </ElButton>
-            <ElButton type="success" onClick={() => action(row, 'detail')}>
+            </BaseButton>
+            <BaseButton type="success" onClick={() => action(row, 'detail')}>
               {t('exampleDemo.detail')}
-            </ElButton>
-            <ElButton type="danger">{t('exampleDemo.del')}</ElButton>
+            </BaseButton>
+            <BaseButton type="danger">{t('exampleDemo.del')}</BaseButton>
           </>
         )
       }
@@ -179,7 +180,7 @@ const save = async () => {
   <ContentWrap>
     <Search :schema="searchSchema" @reset="setSearchParams" @search="setSearchParams" />
     <div class="mb-10px">
-      <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
+      <BaseButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</BaseButton>
     </div>
     <Table
       :columns="tableColumns"
@@ -197,10 +198,15 @@ const save = async () => {
     <Detail v-if="actionType === 'detail'" :current-row="currentRow" />
 
     <template #footer>
-      <ElButton v-if="actionType !== 'detail'" type="primary" :loading="saveLoading" @click="save">
+      <BaseButton
+        v-if="actionType !== 'detail'"
+        type="primary"
+        :loading="saveLoading"
+        @click="save"
+      >
         {{ t('exampleDemo.save') }}
-      </ElButton>
-      <ElButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>
+      </BaseButton>
+      <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
     </template>
   </Dialog>
 </template>

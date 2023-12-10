@@ -5,7 +5,8 @@ import { Table, TableColumn } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
 import { ref, h } from 'vue'
-import { ElTag, ElButton } from 'element-plus'
+import { ElTag } from 'element-plus'
+import { BaseButton } from '@/components/Button'
 
 interface Params {
   pageIndex?: number
@@ -56,9 +57,9 @@ const columns: TableColumn[] = [
     slots: {
       default: (data) => {
         return (
-          <ElButton type="primary" onClick={() => actionFn(data)}>
+          <BaseButton type="primary" onClick={() => actionFn(data)}>
             {t('tableDemo.action')}
-          </ElButton>
+          </BaseButton>
         )
       }
     }

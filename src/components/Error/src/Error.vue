@@ -4,7 +4,6 @@ import networkError from '@/assets/svgs/500.svg'
 import noPermission from '@/assets/svgs/403.svg'
 import { propTypes } from '@/utils/propTypes'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElButton } from 'element-plus'
 
 interface ErrorMap {
   url: string
@@ -51,7 +50,7 @@ const btnClick = () => {
       <img width="350" :src="errorMap[type].url" alt="" />
       <div class="text-14px text-[var(--el-color-info)]">{{ errorMap[type].message }}</div>
       <div class="mt-20px">
-        <ElButton type="primary" @click="btnClick">{{ errorMap[type].buttonText }}</ElButton>
+        <BaseButton type="primary" @click="btnClick">{{ errorMap[type].buttonText }}</BaseButton>
       </div>
     </div>
   </div>

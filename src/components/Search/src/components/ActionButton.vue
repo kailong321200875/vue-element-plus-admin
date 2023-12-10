@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ElButton } from 'element-plus'
 import { useIcon } from '@/hooks/web/useIcon'
 import { propTypes } from '@/utils/propTypes'
 import { useI18n } from '@/hooks/web/useI18n'
@@ -31,7 +30,7 @@ const onExpand = () => {
 </script>
 
 <template>
-  <ElButton
+  <BaseButton
     v-if="showSearch"
     type="primary"
     :loading="searchLoading"
@@ -39,21 +38,22 @@ const onExpand = () => {
     @click="onSearch"
   >
     {{ t('common.query') }}
-  </ElButton>
-  <ElButton
+  </BaseButton>
+  <BaseButton
     v-if="showReset"
     :loading="resetLoading"
+    plain
     :icon="useIcon({ icon: 'ep:refresh-right' })"
     @click="onReset"
   >
     {{ t('common.reset') }}
-  </ElButton>
-  <ElButton
+  </BaseButton>
+  <BaseButton
     v-if="showExpand"
     :icon="useIcon({ icon: visible ? 'ep:arrow-up' : 'ep:arrow-down' })"
     text
     @click="onExpand"
   >
     {{ t(visible ? 'common.shrink' : 'common.expand') }}
-  </ElButton>
+  </BaseButton>
 </template>

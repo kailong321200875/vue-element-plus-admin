@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FormSchema, Form } from '@/components/Form'
-import { ElDrawer, ElButton } from 'element-plus'
+import { ElDrawer } from 'element-plus'
 import { reactive } from 'vue'
 import { useForm } from '@/hooks/web/useForm'
 import { useValidator } from '@/hooks/web/useValidator'
@@ -59,8 +59,8 @@ const confirm = async () => {
     </template>
     <template #footer>
       <div>
-        <ElButton @click="() => (modelValue = false)">取消</ElButton>
-        <ElButton type="primary" @click="confirm">确认</ElButton>
+        <BaseButton @click="() => (modelValue = false)">取消</BaseButton>
+        <BaseButton type="primary" @click="confirm">确认</BaseButton>
       </div>
     </template>
   </ElDrawer>

@@ -6,7 +6,6 @@ import {
   ComponentSize,
   ElTooltipProps,
   ElImage,
-  ElButton,
   ElEmpty,
   ElCard
 } from 'element-plus'
@@ -21,6 +20,7 @@ import TableActions from './components/TableActions.vue'
 import { isImgPath } from '@/utils/is'
 import { createVideoViewer } from '@/components/VideoPlayer'
 import { Icon } from '@/components/Icon'
+import { BaseButton } from '@/components/Button'
 
 export default defineComponent({
   name: 'Table',
@@ -393,7 +393,7 @@ export default defineComponent({
               preview-teleported
             />
           ) : (
-            <ElButton
+            <BaseButton
               type="primary"
               icon={<Icon icon="ep:video-play" />}
               onClick={() => {
@@ -403,7 +403,7 @@ export default defineComponent({
               }}
             >
               预览
-            </ElButton>
+            </BaseButton>
           )}
         </div>
       )

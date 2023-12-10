@@ -3,8 +3,9 @@ import { Form, FormSchema } from '@/components/Form'
 import { reactive, ref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
-import { ElButton, ElInput, FormRules } from 'element-plus'
+import { ElInput, FormRules } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
+import { BaseButton } from '@/components/Button'
 
 const emit = defineEmits(['to-login'])
 
@@ -102,19 +103,19 @@ const schema = reactive<FormSchema[]>([
           return (
             <>
               <div class="w-[100%]">
-                <ElButton
+                <BaseButton
                   type="primary"
                   class="w-[100%]"
                   loading={loading.value}
                   onClick={loginRegister}
                 >
                   {t('login.register')}
-                </ElButton>
+                </BaseButton>
               </div>
               <div class="w-[100%] mt-15px">
-                <ElButton class="w-[100%]" onClick={toLogin}>
+                <BaseButton class="w-[100%]" onClick={toLogin}>
                   {t('login.hasUser')}
-                </ElButton>
+                </BaseButton>
               </div>
             </>
           )

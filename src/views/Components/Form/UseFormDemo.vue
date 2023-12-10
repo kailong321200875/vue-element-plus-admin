@@ -4,7 +4,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
-import { ElButton, ElInput, FormItemProp, ComponentSize } from 'element-plus'
+import { ElInput, FormItemProp, ComponentSize } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
 
@@ -355,44 +355,46 @@ const formValidate = (prop: FormItemProp, isValid: boolean, message: string) => 
 
 <template>
   <ContentWrap :title="`UseForm ${t('formDemo.operate')}`" style="margin-bottom: 20px">
-    <ElButton @click="changeLabelWidth(150)">{{ t('formDemo.change') }} labelWidth</ElButton>
-    <ElButton @click="changeLabelWidth('auto')">{{ t('formDemo.restore') }} labelWidth</ElButton>
+    <BaseButton @click="changeLabelWidth(150)">{{ t('formDemo.change') }} labelWidth</BaseButton>
+    <BaseButton @click="changeLabelWidth('auto')"
+      >{{ t('formDemo.restore') }} labelWidth</BaseButton
+    >
 
-    <ElButton @click="changeSize('large')">{{ t('formDemo.change') }} size</ElButton>
-    <ElButton @click="changeSize('default')">{{ t('formDemo.restore') }} size</ElButton>
+    <BaseButton @click="changeSize('large')">{{ t('formDemo.change') }} size</BaseButton>
+    <BaseButton @click="changeSize('default')">{{ t('formDemo.restore') }} size</BaseButton>
 
-    <ElButton @click="changeDisabled(true)">{{ t('formDemo.disabled') }}</ElButton>
-    <ElButton @click="changeDisabled(false)">{{ t('formDemo.disablement') }}</ElButton>
+    <BaseButton @click="changeDisabled(true)">{{ t('formDemo.disabled') }}</BaseButton>
+    <BaseButton @click="changeDisabled(false)">{{ t('formDemo.disablement') }}</BaseButton>
 
-    <ElButton @click="changeSchema(true)">
+    <BaseButton @click="changeSchema(true)">
       {{ t('formDemo.delete') }} {{ t('formDemo.select') }}
-    </ElButton>
-    <ElButton @click="changeSchema(false)">
+    </BaseButton>
+    <BaseButton @click="changeSchema(false)">
       {{ t('formDemo.add') }} {{ t('formDemo.select') }}
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="setValue(false)">{{ t('formDemo.setValue') }}</ElButton>
-    <ElButton @click="setValue(true)">{{ t('formDemo.resetValue') }}</ElButton>
+    <BaseButton @click="setValue(false)">{{ t('formDemo.setValue') }}</BaseButton>
+    <BaseButton @click="setValue(true)">{{ t('formDemo.resetValue') }}</BaseButton>
 
-    <ElButton @click="setLabel">
+    <BaseButton @click="setLabel">
       {{ t('formDemo.set') }} {{ t('formDemo.select') }} label
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="addItem"> {{ t('formDemo.add') }} {{ t('formDemo.subitem') }} </ElButton>
+    <BaseButton @click="addItem"> {{ t('formDemo.add') }} {{ t('formDemo.subitem') }} </BaseButton>
 
-    <ElButton @click="formValidation"> {{ t('formDemo.formValidation') }} </ElButton>
-    <ElButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </ElButton>
+    <BaseButton @click="formValidation"> {{ t('formDemo.formValidation') }} </BaseButton>
+    <BaseButton @click="verifyReset"> {{ t('formDemo.verifyReset') }} </BaseButton>
 
-    <ElButton @click="getDictOne">
+    <BaseButton @click="getDictOne">
       {{ `${t('formDemo.select')} ${t('searchDemo.dynamicOptions')}` }}
-    </ElButton>
+    </BaseButton>
 
-    <ElButton @click="inoutFocus">
+    <BaseButton @click="inoutFocus">
       {{ `${t('formDemo.input')} ${t('formDemo.focus')}` }}
-    </ElButton>
-    <ElButton @click="inoutValidation">
+    </BaseButton>
+    <BaseButton @click="inoutValidation">
       {{ `${t('formDemo.input')} ${t('formDemo.formValidation')}` }}
-    </ElButton>
+    </BaseButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
     <Form :schema="schema" @register="formRegister" @validate="formValidate" />
