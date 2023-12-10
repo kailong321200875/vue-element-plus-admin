@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.0...v2.5.1) (2023-12-10)
+
+
+### Bug Fixes
+
+* 修复表单回车刷新页面 ([2f64836](https://github.com/kailong321200875/vue-element-plus-admin/commit/2f6483652b5d130057b4422b0f3350542b4b4b1d))
+* 表单布局方式为top时，查询组件按钮位置错位 ([ca98359](https://github.com/kailong321200875/vue-element-plus-admin/commit/ca983590da72cb13392cb8897f4045fbacbc6c8d))
+
+
+### Docs
+
+* 更新Readme ([81d2dc6](https://github.com/kailong321200875/vue-element-plus-admin/commit/81d2dc6a43df8fd5799461cdafc1b7e6054cf1e1))
+
+
+### Styling
+
+* 修改视频表格样式 ([93767b6](https://github.com/kailong321200875/vue-element-plus-admin/commit/93767b65aa7c41e28a8a79a82edd2a91d20bd176))
+* 抽离BaseButton，支持按钮修改主题色 ([69539ee](https://github.com/kailong321200875/vue-element-plus-admin/commit/69539ee2d34ddfcb83cbfb25e218b94891196e76))
+
+
+### Performance Improvements
+
+* [#344](https://github.com/kailong321200875/vue-element-plus-admin/issues/344) ([7fa533b](https://github.com/kailong321200875/vue-element-plus-admin/commit/7fa533b8ba0d886c0009b350a3b5fe4b027a9126))
+
 ## [2.5.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.4.1...v2.5.0) (2023-12-03)
 
 
