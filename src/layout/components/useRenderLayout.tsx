@@ -195,8 +195,8 @@ export const useRenderLayout = () => {
             `${prefixCls}-content`,
             'w-full',
             {
-              'h-[calc(100%-var(--app-footer-height))]': !fixedHeader.value,
-              'h-[calc(100%-var(--tags-view-height)-var(--app-footer-height))]': fixedHeader.value
+              'h-[calc(100%-var(--top-tool-height))]': !fixedHeader.value,
+              'h-[calc(100%-var(--tags-view-height)-var(--top-tool-height))]': fixedHeader.value
             }
           ]}
         >
