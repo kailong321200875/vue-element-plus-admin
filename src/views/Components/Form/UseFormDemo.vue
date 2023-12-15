@@ -1,12 +1,13 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import { Form, FormSchema } from '@/components/Form'
 import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useForm } from '@/hooks/web/useForm'
 import { reactive, unref, ref } from 'vue'
-import { ElInput, FormItemProp, ComponentSize } from 'element-plus'
+import { ElInput, FormItemProp, ComponentSize, ElMessage, ElMessageBox } from 'element-plus'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
+import { BaseButton } from '@/components/Button'
 
 const { required } = useValidator()
 
@@ -182,6 +183,40 @@ const schema = reactive<FormSchema[]>([
       const res = await getTreeSelectData()
       return res
     }
+  },
+  {
+    field: 'field8',
+    component: 'Upload',
+    label: `${t('formDemo.default')}`,
+    componentProps: {
+      limit: 3,
+      action: 'https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15',
+      // fileList: ,
+      multiple: true,
+      onPreview: (uploadFile) => {
+        console.log(uploadFile)
+      },
+      onRemove: (file) => {
+        console.log(file)
+      },
+      beforeRemove: (uploadFile) => {
+        return ElMessageBox.confirm(`Cancel the transfer of ${uploadFile.name} ?`).then(
+          () => true,
+          () => false
+        )
+      },
+      onExceed: (files, uploadFiles) => {
+        ElMessage.warning(
+          `The limit is 3, you selected ${files.length} files this time, add up to ${
+            files.length + uploadFiles.length
+          } totally`
+        )
+      },
+      slots: {
+        default: () => <BaseButton type="primary">Click to upload</BaseButton>,
+        tip: () => <div class="el-upload__tip">jpg/png files with a size less than 500KB.</div>
+      }
+    }
   }
 ])
 
@@ -253,7 +288,17 @@ const setValue = async (reset: boolean) => {
       field3: '2',
       field4: ['1', '3'],
       field5: '2022-01-27',
-      field6: '17:00'
+      field6: '17:00',
+      field8: [
+        {
+          name: 'element-plus-logo.svg',
+          url: 'https://element-plus.org/images/element-plus-logo.svg'
+        },
+        {
+          name: 'element-plus-logo2.svg',
+          url: 'https://element-plus.org/images/element-plus-logo.svg'
+        }
+      ]
     })
   }
 }
