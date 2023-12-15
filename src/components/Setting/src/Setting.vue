@@ -14,7 +14,7 @@ import { useStorage } from '@/hooks/web/useStorage'
 import { useClipboard } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { removeStorage } = useStorage()
+const { clear: storageClear } = useStorage('localStorage')
 
 const { getPrefixCls } = useDesign()
 
@@ -188,9 +188,7 @@ const copyConfig = async () => {
 
 // 清空缓存
 const clear = () => {
-  removeStorage('layout')
-  removeStorage('theme')
-  removeStorage('isDark')
+  storageClear()
   window.location.reload()
 }
 </script>
