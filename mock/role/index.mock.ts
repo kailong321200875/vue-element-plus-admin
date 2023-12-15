@@ -347,7 +347,7 @@ const adminList = [
         }
       },
       {
-        path: 'multipleTabs-demo/:id',
+        path: 'multiple-tabs-demo/:id',
         component: 'views/Function/MultipleTabsDemo',
         name: 'MultipleTabsDemo',
         meta: {
