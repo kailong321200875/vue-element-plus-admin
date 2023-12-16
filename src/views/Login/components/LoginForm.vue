@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref, watch, onMounted, unref } from 'vue'
 import { Form, FormSchema } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ElCheckbox, ElLink } from 'element-plus'
@@ -51,19 +51,19 @@ const schema = reactive<FormSchema[]>([
   {
     field: 'username',
     label: t('login.username'),
-    value: 'admin',
+    // value: 'admin',
     component: 'Input',
     colProps: {
       span: 24
     },
     componentProps: {
-      placeholder: t('login.usernamePlaceholder')
+      placeholder: 'admin or test'
     }
   },
   {
     field: 'password',
     label: t('login.password'),
-    value: 'admin',
+    // value: 'admin',
     component: 'InputPassword',
     colProps: {
       span: 24
@@ -72,7 +72,7 @@ const schema = reactive<FormSchema[]>([
       style: {
         width: '100%'
       },
-      placeholder: t('login.passwordPlaceholder')
+      placeholder: 'admin or test'
     }
   },
   {
@@ -186,10 +186,21 @@ const schema = reactive<FormSchema[]>([
 
 const iconSize = 30
 
-const remember = ref(false)
+const remember = ref(userStore.getRememberMe)
+
+const initLoginInfo = () => {
+  const loginInfo = userStore.getLoginInfo
+  if (loginInfo) {
+    const { username, password } = loginInfo
+    setValues({ username, password })
+  }
+}
+onMounted(() => {
+  initLoginInfo()
+})
 
 const { formRegister, formMethods } = useForm()
-const { getFormData, getElFormExpose } = formMethods
+const { getFormData, getElFormExpose, setValues } = formMethods
 
 const loading = ref(false)
 
@@ -221,6 +232,16 @@ const signIn = async () => {
         const res = await loginApi(formData)
 
         if (res) {
+          // 是否记住我
+          if (unref(remember)) {
+            userStore.setLoginInfo({
+              username: formData.username,
+              password: formData.password
+            })
+          } else {
+            userStore.setLoginInfo(undefined)
+          }
+          userStore.setRememberMe(unref(remember))
           userStore.setUserInfo(res.data)
           // 是否使用动态路由
           if (appStore.getDynamicRouter) {
