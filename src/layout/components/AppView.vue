@@ -44,10 +44,10 @@ const tagsView = computed(() => appStore.getTagsView)
         // '!min-h-[calc(100%-var(--app-content-padding)-var(--app-content-padding)-var(--app-footer-height)-var(--tags-view-height)-var(--top-tool-height))]':
         //   !fixedHeader && layout === 'top' && footer,
 
-        '!min-h-[calc(100%-var(--top-tool-height)-var(--app-content-padding)-var(--app-content-padding))]':
+        '!min-h-[calc(100%-var(--app-footer-height)-var(--app-content-padding)-var(--app-content-padding))]':
           fixedHeader && layout === 'cutMenu' && footer,
 
-        '!min-h-[calc(100%-var(--top-tool-height)-var(--app-content-padding)-var(--app-content-padding)-var(--tags-view-height))]':
+        '!min-h-[calc(100%-var(--app-footer-height)-var(--app-content-padding)-var(--app-content-padding)-var(--tags-view-height))]':
           !fixedHeader && layout === 'cutMenu' && footer
       }
     ]"
