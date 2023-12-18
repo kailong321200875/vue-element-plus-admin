@@ -25,7 +25,7 @@ jobs:
         uses: 'pascalgn/automerge-action@v0.14.3'
         env:
           BASE_BRANCHES: 'release'
-          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           MERGE_LABELS: ''
           MERGE_FILTER_AUTHOR: 'kailong321200875'
 
