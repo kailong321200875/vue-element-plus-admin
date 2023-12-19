@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'vue'
-import { AxiosRequestHeaders } from 'axios'
+import { RawAxiosRequestHeaders } from 'axios'
 declare global {
   declare interface Fn<T = any> {
     (...arg: T[]): T
@@ -40,7 +40,7 @@ declare global {
     data?: any
     url?: string
     method?: AxiosMethod
-    headers?: AxiosRequestHeaders
+    headers?: RawAxiosRequestHeaders
     responseType?: AxiosResponseType
   }
 

@@ -1,4 +1,4 @@
-import { AxiosResponse, AxiosRequestHeaders, InternalAxiosRequestConfig } from './types'
+import { AxiosResponse, InternalAxiosRequestConfig } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
 import { SUCCESS_CODE } from '@/constants'
@@ -7,7 +7,7 @@ import { useUserStoreWithOut } from '@/store/modules/user'
 const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   if (
     config.method === 'post' &&
-    (config.headers as AxiosRequestHeaders)['Content-Type'] === 'application/x-www-form-urlencoded'
+    config.headers['Content-Type'] === 'application/x-www-form-urlencoded'
   ) {
     config.data = qs.stringify(config.data)
   }
