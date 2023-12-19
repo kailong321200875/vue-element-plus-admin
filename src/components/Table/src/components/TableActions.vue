@@ -23,7 +23,7 @@ export default defineComponent({
       default: () => []
     }
   },
-  emits: ['refresh', 'changSize'],
+  emits: ['refresh', 'changSize', 'confirm'],
   setup(props, { emit }) {
     const showSetting = ref(false)
 
@@ -33,6 +33,10 @@ export default defineComponent({
 
     const changSize = (size: ComponentSize) => {
       emit('changSize', size)
+    }
+
+    const confirm = (columns: TableColumn[]) => {
+      emit('confirm', columns)
     }
 
     const showColumnSetting = () => {
@@ -95,7 +99,7 @@ export default defineComponent({
             />
           </div>
         </div>
-        <ColumnSetting v-model={showSetting.value} columns={props.columns} />
+        <ColumnSetting v-model={showSetting.value} columns={props.columns} onConfirm={confirm} />
       </>
     )
   }

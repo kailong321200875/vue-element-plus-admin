@@ -275,6 +275,10 @@ export default defineComponent({
       setProps({ size })
     }
 
+    const confirmSetColumn = (columns: TableColumn[]) => {
+      setProps({ columns })
+    }
+
     expose({
       setProps,
       setColumn,
@@ -434,6 +438,7 @@ export default defineComponent({
               align={v.align || align}
               headerAlign={v.headerAlign || headerAlign}
               label={v.label}
+              fixed={v.fixed}
               width="65px"
             ></ElTableColumn>
           )
@@ -543,11 +548,12 @@ export default defineComponent({
             </div>
           ) : (
             <>
-              {unref(getProps).showAction ? (
+              {unref(getProps).showAction && !unref(getProps).customContent ? (
                 <TableActions
                   columns={unref(getProps).columns}
                   onChangSize={changSize}
                   onRefresh={refresh}
+                  onConfirm={confirmSetColumn}
                 />
               ) : null}
               <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
