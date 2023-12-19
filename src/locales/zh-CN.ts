@@ -48,7 +48,8 @@ export default {
     lengthRange: '长度在 {min} 到 {max} 个字符',
     notSpace: '不能包含空格',
     notSpecialCharacters: '不能包含特殊字符',
-    isEqual: '两次输入不一致'
+    isEqual: '两次输入不一致',
+    setting: '设置'
   },
   lock: {
     lockScreen: '锁定屏幕',

@@ -59,41 +59,35 @@ const columns = reactive<TableColumn[]>([
     type: 'index'
   },
   {
-    field: 'content',
-    label: t('tableDemo.header'),
-    children: [
-      {
-        field: 'title',
-        label: t('tableDemo.title')
-      },
-      {
-        field: 'author',
-        label: t('tableDemo.author')
-      },
-      {
-        field: 'display_time',
-        label: t('tableDemo.displayTime')
-      },
-      {
-        field: 'importance',
-        label: t('tableDemo.importance'),
-        formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
-          return (
-            <ElTag type={cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'}>
-              {cellValue === 1
-                ? t('tableDemo.important')
-                : cellValue === 2
-                  ? t('tableDemo.good')
-                  : t('tableDemo.commonly')}
-            </ElTag>
-          )
-        }
-      },
-      {
-        field: 'pageviews',
-        label: t('tableDemo.pageviews')
-      }
-    ]
+    field: 'title',
+    label: t('tableDemo.title')
+  },
+  {
+    field: 'author',
+    label: t('tableDemo.author')
+  },
+  {
+    field: 'display_time',
+    label: t('tableDemo.displayTime')
+  },
+  {
+    field: 'importance',
+    label: t('tableDemo.importance'),
+    formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
+      return (
+        <ElTag type={cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'}>
+          {cellValue === 1
+            ? t('tableDemo.important')
+            : cellValue === 2
+              ? t('tableDemo.good')
+              : t('tableDemo.commonly')}
+        </ElTag>
+      )
+    }
+  },
+  {
+    field: 'pageviews',
+    label: t('tableDemo.pageviews')
   },
   {
     field: 'action',
