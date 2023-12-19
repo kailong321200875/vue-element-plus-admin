@@ -5,7 +5,9 @@ import {
   ElPagination,
   ComponentSize,
   ElTooltipProps,
-  ElImage
+  ElImage,
+  ElEmpty,
+  ElCard
 } from 'element-plus'
 import { defineComponent, PropType, ref, computed, unref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
@@ -15,8 +17,10 @@ import { set, get } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
-// import Sortable from 'sortablejs'
-// import { Icon } from '@/components/Icon'
+import { isImgPath } from '@/utils/is'
+import { createVideoViewer } from '@/components/VideoPlayer'
+import { Icon } from '@/components/Icon'
+import { BaseButton } from '@/components/Button'
 
 export default defineComponent({
   name: 'Table',
@@ -32,8 +36,6 @@ export default defineComponent({
       type: Array as PropType<TableColumn[]>,
       default: () => []
     },
-    // 展开行
-    // expand: propTypes.bool.def(false),
     // 是否展示分页
     pagination: {
       type: Object as PropType<Pagination>,
@@ -62,7 +64,6 @@ export default defineComponent({
       type: Array as PropType<string[]>,
       default: () => []
     },
-    // sortable: propTypes.bool.def(false),
     height: propTypes.oneOfType([Number, String]),
     maxHeight: propTypes.oneOfType([Number, String]),
     stripe: propTypes.bool.def(false),
@@ -186,9 +187,27 @@ export default defineComponent({
       default: 'fixed'
     },
     scrollbarAlwaysOn: propTypes.bool.def(false),
-    flexible: propTypes.bool.def(false)
+    flexible: propTypes.bool.def(false),
+    // 自定义内容
+    customContent: propTypes.bool.def(false),
+    cardBodyStyle: {
+      type: Object as PropType<CSSProperties>,
+      default: () => ({})
+    },
+    cardBodyClass: {
+      type: String as PropType<string>,
+      default: ''
+    },
+    cardWrapStyle: {
+      type: Object as PropType<CSSProperties>,
+      default: () => ({})
+    },
+    cardWrapClass: {
+      type: String as PropType<string>,
+      default: ''
+    }
   },
-  emits: ['update:pageSize', 'update:currentPage', 'register', 'refresh', 'sortable-change'],
+  emits: ['update:pageSize', 'update:currentPage', 'register', 'refresh'],
   setup(props, { attrs, emit, slots, expose }) {
     const elTableRef = ref<ComponentRef<typeof ElTable>>()
 
@@ -213,33 +232,6 @@ export default defineComponent({
       return propsObj
     })
 
-    // const sortableEl = ref()
-    // 初始化拖拽
-    // const initDropTable = () => {
-    //   const el = unref(elTableRef)?.$el.querySelector('.el-table__body tbody')
-    //   if (!el) return
-    //   if (unref(sortableEl)) unref(sortableEl).destroy()
-
-    //   sortableEl.value = Sortable.create(el, {
-    //     handle: '.table-move',
-    //     animation: 180,
-    //     onEnd(e: any) {
-    //       emit('sortable-change', e)
-    //     }
-    //   })
-    // }
-
-    // watch(
-    //   () => getProps.value.sortable,
-    //   async (v) => {
-    //     await nextTick()
-    //     v && initDropTable()
-    //   },
-    //   {
-    //     immediate: true
-    //   }
-    // )
-
     const setProps = (props: TableProps = {}) => {
       mergeProps.value = Object.assign(unref(mergeProps), props)
       outsideProps.value = { ...props } as any
@@ -260,7 +252,7 @@ export default defineComponent({
 
     const addColumn = (column: TableColumn, index?: number) => {
       const { columns } = unref(getProps)
-      if (index) {
+      if (index !== void 0) {
         columns.splice(index, 0, column)
       } else {
         columns.push(column)
@@ -391,14 +383,28 @@ export default defineComponent({
     const renderPreview = (url: string) => {
       return (
         <div class="flex items-center">
-          <ElImage
-            src={url}
-            fit="cover"
-            class="w-[100%] h-100px"
-            lazy
-            preview-src-list={[url]}
-            preview-teleported
-          />
+          {isImgPath(url) ? (
+            <ElImage
+              src={url}
+              fit="cover"
+              class="w-[100%]"
+              lazy
+              preview-src-list={[url]}
+              preview-teleported
+            />
+          ) : (
+            <BaseButton
+              type="primary"
+              icon={<Icon icon="ep:video-play" />}
+              onClick={() => {
+                createVideoViewer({
+                  url
+                })
+              }}
+            >
+              预览
+            </BaseButton>
+          )}
         </div>
       )
     }
@@ -438,6 +444,7 @@ export default defineComponent({
               reserveSelection={reserveSelection}
               align={align}
               headerAlign={headerAlign}
+              selectable={v.selectable}
               width="50"
             ></ElTableColumn>
           )
@@ -489,41 +496,68 @@ export default defineComponent({
     return () => {
       const tableSlots = {}
       if (getSlot(slots, 'empty')) {
-        tableSlots['empty'] = (...args: any[]) => getSlot(slots, 'empty', ...args)
+        tableSlots['empty'] = (...args: any[]) => getSlot(slots, 'empty', args)
       }
       if (getSlot(slots, 'append')) {
-        tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', ...args)
+        tableSlots['append'] = (...args: any[]) => getSlot(slots, 'append', args)
       }
-
-      // const { sortable } = unref(getProps)
-
-      // const sortableEl = sortable ? (
-      //   <ElTableColumn
-      //     className="table-move cursor-move"
-      //     type="sortable"
-      //     prop="sortable"
-      //     width="60px"
-      //     align="center"
-      //   >
-      //     <Icon icon="ant-design:drag-outlined" />
-      //   </ElTableColumn>
-      // ) : null
 
       return (
         <div v-loading={unref(getProps).loading}>
-          {unref(getProps).showAction ? (
-            <TableActions
-              columns={unref(getProps).columns}
-              onChangSize={changSize}
-              onRefresh={refresh}
-            />
-          ) : null}
-          <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
-            {{
-              default: () => renderTableColumn(),
-              ...tableSlots
-            }}
-          </ElTable>
+          {unref(getProps).customContent ? (
+            <div class="flex flex-wrap">
+              {unref(getProps)?.data?.length ? (
+                unref(getProps)?.data.map((item) => {
+                  const cardSlots = {
+                    default: () => {
+                      return getSlot(slots, 'content', item)
+                    }
+                  }
+                  if (getSlot(slots, 'content-header')) {
+                    cardSlots['header'] = () => {
+                      return getSlot(slots, 'content-header', item)
+                    }
+                  }
+                  if (getSlot(slots, 'content-footer')) {
+                    cardSlots['footer'] = () => {
+                      return getSlot(slots, 'content-footer', item)
+                    }
+                  }
+                  return (
+                    <ElCard
+                      shadow="hover"
+                      class={unref(getProps).cardWrapClass}
+                      style={unref(getProps).cardWrapStyle}
+                      bodyClass={unref(getProps).cardBodyClass}
+                      bodyStyle={unref(getProps).cardBodyStyle}
+                    >
+                      {cardSlots}
+                    </ElCard>
+                  )
+                })
+              ) : (
+                <div class="flex flex-1 justify-center">
+                  <ElEmpty description="暂无数据" />
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              {unref(getProps).showAction ? (
+                <TableActions
+                  columns={unref(getProps).columns}
+                  onChangSize={changSize}
+                  onRefresh={refresh}
+                />
+              ) : null}
+              <ElTable ref={elTableRef} data={unref(getProps).data} {...unref(getBindValue)}>
+                {{
+                  default: () => renderTableColumn(),
+                  ...tableSlots
+                }}
+              </ElTable>
+            </>
+          )}
           {unref(getProps).pagination ? (
             <ElPagination
               v-model:pageSize={pageSizeRef.value}

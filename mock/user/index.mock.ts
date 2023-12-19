@@ -1,7 +1,4 @@
-import config from '@/config/axios/config'
-import { MockMethod } from 'vite-plugin-mock'
-
-const { code } = config
+import { SUCCESS_CODE } from '@/constants'
 
 const timeout = 1000
 
@@ -31,7 +28,7 @@ const List: {
 export default [
   // 列表接口
   {
-    url: '/user/list',
+    url: '/mock/user/list',
     method: 'get',
     response: ({ query }) => {
       const { username, pageIndex, pageSize } = query
@@ -45,8 +42,8 @@ export default [
       )
 
       return {
+        code: SUCCESS_CODE,
         data: {
-          code: code,
           total: mockList.length,
           list: pageList
         }
@@ -55,7 +52,7 @@ export default [
   },
   // 登录接口
   {
-    url: '/user/login',
+    url: '/mock/user/login',
     method: 'post',
     timeout,
     response: ({ body }) => {
@@ -65,7 +62,7 @@ export default [
         if (user.username === data.username && user.password === data.password) {
           hasUser = true
           return {
-            code: code,
+            code: SUCCESS_CODE,
             data: user
           }
         }
@@ -80,14 +77,14 @@ export default [
   },
   // 退出接口
   {
-    url: '/user/loginOut',
+    url: '/mock/user/loginOut',
     method: 'get',
     timeout,
     response: () => {
       return {
-        code: code,
+        code: SUCCESS_CODE,
         data: null
       }
     }
   }
-] as MockMethod[]
+]

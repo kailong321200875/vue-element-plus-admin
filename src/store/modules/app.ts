@@ -2,9 +2,6 @@ import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
 import { ElMessage, ComponentSize } from 'element-plus'
-import { useStorage } from '@/hooks/web/useStorage'
-
-const { getStorage, setStorage } = useStorage()
 
 interface AppState {
   breadcrumb: boolean
@@ -21,10 +18,10 @@ interface AppState {
   fixedHeader: boolean
   greyMode: boolean
   dynamicRouter: boolean
+  serverDynamicRouter: boolean
   pageLoading: boolean
   layout: LayoutType
   title: string
-  userInfo: string
   isDark: boolean
   currentSize: ComponentSize
   sizeMap: ComponentSize[]
@@ -37,12 +34,10 @@ interface AppState {
 export const useAppStore = defineStore('app', {
   state: (): AppState => {
     return {
-      userInfo: 'userInfo', // 登录信息存储字段-建议每个项目换一个字段，避免与其它项目冲突
       sizeMap: ['default', 'large', 'small'],
       mobile: false, // 是否是移动端
       title: import.meta.env.VITE_APP_TITLE, // 标题
       pageLoading: false, // 路由跳转loading
-
       breadcrumb: true, // 面包屑
       breadcrumbIcon: true, // 面包屑图标
       collapse: false, // 折叠菜单
@@ -57,13 +52,14 @@ export const useAppStore = defineStore('app', {
       fixedHeader: true, // 固定toolheader
       footer: true, // 显示页脚
       greyMode: false, // 是否开始灰色模式，用于特殊悼念日
-      dynamicRouter: getStorage('dynamicRouter') || false, // 是否动态路由
-      fixedMenu: getStorage('fixedMenu') || false, // 是否固定菜单
+      dynamicRouter: true, // 是否动态路由
+      serverDynamicRouter: true, // 是否服务端渲染动态路由
+      fixedMenu: false, // 是否固定菜单
 
-      layout: getStorage('layout') || 'classic', // layout布局
-      isDark: getStorage('isDark') || false, // 是否是暗黑模式
-      currentSize: getStorage('default') || 'default', // 组件尺寸
-      theme: getStorage('theme') || {
+      layout: 'classic', // layout布局
+      isDark: false, // 是否是暗黑模式
+      currentSize: 'default', // 组件尺寸
+      theme: {
         // 主题色
         elColorPrimary: '#409eff',
         // 左侧菜单边框颜色
@@ -138,6 +134,9 @@ export const useAppStore = defineStore('app', {
     getDynamicRouter(): boolean {
       return this.dynamicRouter
     },
+    getServerDynamicRouter(): boolean {
+      return this.serverDynamicRouter
+    },
     getFixedMenu(): boolean {
       return this.fixedMenu
     },
@@ -149,9 +148,6 @@ export const useAppStore = defineStore('app', {
     },
     getTitle(): string {
       return this.title
-    },
-    getUserInfo(): string {
-      return this.userInfo
     },
     getIsDark(): boolean {
       return this.isDark
@@ -213,11 +209,12 @@ export const useAppStore = defineStore('app', {
       this.greyMode = greyMode
     },
     setDynamicRouter(dynamicRouter: boolean) {
-      setStorage('dynamicRouter', dynamicRouter)
       this.dynamicRouter = dynamicRouter
     },
+    setServerDynamicRouter(serverDynamicRouter: boolean) {
+      this.serverDynamicRouter = serverDynamicRouter
+    },
     setFixedMenu(fixedMenu: boolean) {
-      setStorage('fixedMenu', fixedMenu)
       this.fixedMenu = fixedMenu
     },
     setPageLoading(pageLoading: boolean) {
@@ -229,7 +226,6 @@ export const useAppStore = defineStore('app', {
         return
       }
       this.layout = layout
-      setStorage('layout', this.layout)
     },
     setTitle(title: string) {
       this.title = title
@@ -243,18 +239,15 @@ export const useAppStore = defineStore('app', {
         document.documentElement.classList.add('light')
         document.documentElement.classList.remove('dark')
       }
-      setStorage('isDark', this.isDark)
     },
     setCurrentSize(currentSize: ComponentSize) {
       this.currentSize = currentSize
-      setStorage('currentSize', this.currentSize)
     },
     setMobile(mobile: boolean) {
       this.mobile = mobile
     },
     setTheme(theme: ThemeTypes) {
       this.theme = Object.assign(this.theme, theme)
-      setStorage('theme', this.theme)
     },
     setCssVarTheme() {
       for (const key in this.theme) {
@@ -264,7 +257,8 @@ export const useAppStore = defineStore('app', {
     setFooter(footer: boolean) {
       this.footer = footer
     }
-  }
+  },
+  persist: true
 })
 
 export const useAppStoreWithOut = () => {

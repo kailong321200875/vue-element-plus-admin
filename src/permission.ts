@@ -1,28 +1,24 @@
 import router from './router'
 import { useAppStoreWithOut } from '@/store/modules/app'
-import { useStorage } from '@/hooks/web/useStorage'
 import type { RouteRecordRaw } from 'vue-router'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
-
-const permissionStore = usePermissionStoreWithOut()
-
-const appStore = useAppStoreWithOut()
-
-const { getStorage } = useStorage()
+import { NO_REDIRECT_WHITE_LIST } from '@/constants'
+import { useUserStoreWithOut } from '@/store/modules/user'
 
 const { start, done } = useNProgress()
 
 const { loadStart, loadDone } = usePageLoading()
 
-const whiteList = ['/login'] // 不重定向白名单
-
 router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
-  if (getStorage(appStore.getUserInfo)) {
+  const permissionStore = usePermissionStoreWithOut()
+  const appStore = useAppStoreWithOut()
+  const userStore = useUserStoreWithOut()
+  if (userStore.getUserInfo) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
@@ -32,16 +28,15 @@ router.beforeEach(async (to, from, next) => {
       }
 
       // 开发者可根据实际情况进行修改
-      const roleRouters = getStorage('roleRouters') || []
-      const userInfo = getStorage(appStore.getUserInfo)
+      const roleRouters = userStore.getRoleRouters || []
 
       // 是否使用动态路由
       if (appStore.getDynamicRouter) {
-        userInfo.role === 'admin'
-          ? await permissionStore.generateRoutes('admin', roleRouters as AppCustomRouteRecordRaw[])
-          : await permissionStore.generateRoutes('test', roleRouters as string[])
+        appStore.serverDynamicRouter
+          ? await permissionStore.generateRoutes('server', roleRouters as AppCustomRouteRecordRaw[])
+          : await permissionStore.generateRoutes('frontEnd', roleRouters as string[])
       } else {
-        await permissionStore.generateRoutes('none')
+        await permissionStore.generateRoutes('static')
       }
 
       permissionStore.getAddRouters.forEach((route) => {
@@ -54,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
       next(nextData)
     }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
+    if (NO_REDIRECT_WHITE_LIST.indexOf(to.path) !== -1) {
       next()
     } else {
       next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页

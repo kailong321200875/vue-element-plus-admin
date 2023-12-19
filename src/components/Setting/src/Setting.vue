@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElDrawer, ElDivider, ElButton, ElMessage } from 'element-plus'
+import { ElDrawer, ElDivider, ElMessage } from 'element-plus'
 import { ref, unref, computed, watch } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
@@ -14,7 +14,7 @@ import { useStorage } from '@/hooks/web/useStorage'
 import { useClipboard } from '@vueuse/core'
 import { useDesign } from '@/hooks/web/useDesign'
 
-const { removeStorage } = useStorage()
+const { clear: storageClear } = useStorage('localStorage')
 
 const { getPrefixCls } = useDesign()
 
@@ -174,7 +174,8 @@ const copyConfig = async () => {
         // 头部边框颜色
         topToolBorderColor: '${appStore.getTheme.topToolBorderColor}'
       }
-    `
+    `,
+    legacy: true
   })
   if (!isSupported) {
     ElMessage.error(t('setting.copyFailed'))
@@ -188,9 +189,7 @@ const copyConfig = async () => {
 
 // 清空缓存
 const clear = () => {
-  removeStorage('layout')
-  removeStorage('theme')
-  removeStorage('isDark')
+  storageClear()
   window.location.reload()
 }
 </script>
@@ -278,12 +277,14 @@ const clear = () => {
 
     <ElDivider />
     <div>
-      <ElButton type="primary" class="w-full" @click="copyConfig">{{ t('setting.copy') }}</ElButton>
+      <BaseButton type="primary" class="w-full" @click="copyConfig">{{
+        t('setting.copy')
+      }}</BaseButton>
     </div>
     <div class="mt-5px">
-      <ElButton type="danger" class="w-full" @click="clear">
+      <BaseButton type="danger" class="w-full" @click="clear">
         {{ t('setting.clearAndReset') }}
-      </ElButton>
+      </BaseButton>
     </div>
   </ElDrawer>
 </template>

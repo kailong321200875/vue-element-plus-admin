@@ -15,18 +15,6 @@ interface RequestInterceptors<T> {
   responseInterceptors?: (config: T) => T
   responseInterceptorsCatch?: (err: any) => any
 }
-interface AxiosConfig<T = AxiosResponse> {
-  baseUrl: {
-    base: string
-    dev: string
-    pro: string
-    test: string
-  }
-  code: number
-  defaultHeaders: AxiosHeaders
-  timeout: number
-  interceptors: RequestInterceptors<T>
-}
 
 interface RequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
   interceptors?: RequestInterceptors<T>
@@ -36,7 +24,6 @@ export {
   AxiosResponse,
   RequestInterceptors,
   RequestConfig,
-  AxiosConfig,
   AxiosInstance,
   InternalAxiosRequestConfig,
   AxiosRequestHeaders,

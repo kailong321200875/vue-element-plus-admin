@@ -155,6 +155,7 @@ export default defineComponent({
     .is-active {
       & > .@{elNamespace}-sub-menu__title {
         color: var(--left-menu-text-active-color) !important;
+        // background-color: var(--left-menu-bg-color) !important;
       }
     }
 
@@ -168,7 +169,6 @@ export default defineComponent({
     }
 
     // 设置选中时的高亮背景和高亮颜色
-    .@{elNamespace}-sub-menu.is-active,
     .@{elNamespace}-menu-item.is-active {
       color: var(--left-menu-text-active-color) !important;
       background-color: var(--left-menu-bg-active-color) !important;
@@ -235,7 +235,7 @@ export default defineComponent({
       .@{elNamespace}-menu-item.is-active {
         position: relative;
 
-        &:after {
+        &::after {
           display: none !important;
         }
       }
@@ -270,6 +270,7 @@ export default defineComponent({
   .is-active {
     & > .el-sub-menu__title {
       color: var(--left-menu-text-active-color) !important;
+      // background-color: var(--left-menu-bg-color) !important;
     }
   }
 

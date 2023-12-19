@@ -215,6 +215,8 @@ module.exports = {
       extends: ['stylelint-config-recommended', 'stylelint-config-html'],
       rules: {
         'keyframes-name-pattern': null,
+        'selector-class-pattern': null,
+        'no-duplicate-selectors': null,
         'selector-pseudo-class-no-unknown': [
           true,
           {
