@@ -42,7 +42,8 @@ const schema = reactive<DescriptionsSchema[]>([
   },
   {
     field: 'addr',
-    label: t('descriptionsDemo.addr')
+    label: t('descriptionsDemo.addr'),
+    span: 24
   }
 ])
 
@@ -125,7 +126,8 @@ const schema2 = reactive<DescriptionsSchema[]>([
           </ElFormItem>
         )
       }
-    }
+    },
+    span: 24
   }
 ])
 

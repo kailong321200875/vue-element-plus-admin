@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { ElCollapseTransition, ElDescriptions, ElDescriptionsItem, ElTooltip } from 'element-plus'
+import { ElCollapseTransition, ElTooltip, ElRow, ElCol } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
 import { propTypes } from '@/utils/propTypes'
 import { ref, unref, PropType, computed, defineComponent } from 'vue'
@@ -38,7 +38,7 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props, { slots, attrs }) {
+  setup(props, { attrs }) {
     const getBindValue = computed((): any => {
       const delArr: string[] = ['title', 'message', 'collapse', 'schema', 'data', 'class']
       const obj = { ...attrs, ...props }
@@ -108,26 +108,51 @@ export default defineComponent({
 
           <ElCollapseTransition>
             <div v-show={unref(show)} class={[`${prefixCls}-content`, 'p-20px']}>
-              <ElDescriptions {...unref(getBindValue)}>
-                {{
-                  extra: () => (slots['extra'] ? slots['extra']() : props.extra),
-                  default: () => {
-                    return props.schema.map((item) => {
-                      return (
-                        <ElDescriptionsItem key={item.field} {...getBindItemValue(item)}>
-                          {{
-                            label: () => (item.slots?.label ? item.slots?.label(item) : item.label),
-                            default: () =>
-                              item.slots?.default
-                                ? item.slots?.default(props.data)
-                                : get(props.data, item.field) ?? defaultData
-                          }}
-                        </ElDescriptionsItem>
-                      )
-                    })
-                  }
-                }}
-              </ElDescriptions>
+              <ElRow
+                gutter={0}
+                {...unref(getBindValue)}
+                class="outline-1px outline-[var(--el-border-color-lighter)] outline-solid"
+              >
+                {props.schema.map((item) => {
+                  return (
+                    <ElCol
+                      key={item.field}
+                      span={item.span || 24 / props.column}
+                      class="flex items-stretch"
+                    >
+                      {props.direction === 'horizontal' ? (
+                        <div class="flex items-stretch bg-[var(--el-fill-color-light)] outline-1px outline-[var(--el-border-color-lighter)] outline-solid flex-1">
+                          <div
+                            {...getBindItemValue(item)}
+                            class="w-120px text-left px-8px py-11px font-700 color-[var(--el-text-color-regular)] border-r-1px border-r-[var(--el-border-color-lighter)] border-r-solid "
+                          >
+                            {item.label}
+                          </div>
+                          <div class="flex-1 px-8px py-11px bg-[var(--el-bg-color)] color-[var(--el-text-color-primary)] text-size-14px">
+                            {item.slots?.default
+                              ? item.slots?.default(props.data)
+                              : get(props.data, item.field) ?? defaultData}
+                          </div>
+                        </div>
+                      ) : (
+                        <div class="bg-[var(--el-fill-color-light)] outline-1px outline-[var(--el-border-color-lighter)] outline-solid flex-1">
+                          <div
+                            {...getBindItemValue(item)}
+                            class="text-left px-8px py-11px font-700 color-[var(--el-text-color-regular)] border-b-1px border-b-[var(--el-border-color-lighter)] border-b-solid"
+                          >
+                            {item.label}
+                          </div>
+                          <div class="flex-1 px-8px py-11px bg-[var(--el-bg-color)] color-[var(--el-text-color-primary)] text-size-14px">
+                            {item.slots?.default
+                              ? item.slots?.default(props.data)
+                              : get(props.data, item.field) ?? defaultData}
+                          </div>
+                        </div>
+                      )}
+                    </ElCol>
+                  )
+                })}
+              </ElRow>
             </div>
           </ElCollapseTransition>
         </div>
