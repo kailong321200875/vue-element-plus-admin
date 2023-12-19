@@ -56,8 +56,7 @@ const columns = reactive<TableColumn[]>([
   {
     field: 'index',
     label: t('tableDemo.index'),
-    type: 'index',
-    hidden: true
+    type: 'index'
   },
   {
     field: 'title',

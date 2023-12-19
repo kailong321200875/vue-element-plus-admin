@@ -11,6 +11,7 @@ import { TableColumn } from '../types'
 import { PropType, ref, watch, unref } from 'vue'
 import { cloneDeep } from 'lodash-es'
 import { DEFAULT_FILTER_COLUMN } from '@/constants'
+import { VueDraggable } from 'vue-draggable-plus'
 
 const modelValue = defineModel<boolean>()
 
@@ -50,7 +51,7 @@ const confirm = () => {
   const newColumns = cloneDeep(unref(settingColumns))?.map((item) => {
     const fixed = unref(settingColumns)?.find((col) => col.field === item.field)?.fixed
     item.hidden = !!!unref(checkColumns)?.includes(item.field)
-    item.fixed = fixed !== void 0 ? fixed : undefined
+    item.fixed = fixed ? fixed : undefined
     return item
   })
   emit('confirm', [...unref(hiddenColumns), ...(newColumns || [])])
@@ -58,21 +59,20 @@ const confirm = () => {
 }
 
 const restore = () => {
-  initColumns([...unref(hiddenColumns), ...(unref(oldColumns) || [])])
+  initColumns([...unref(hiddenColumns), ...(unref(oldColumns) || [])], true)
 }
 
-const initColumns = (columns: TableColumn[]) => {
-  const newColumns = cloneDeep(
-    columns?.filter((item) => {
+const initColumns = (columns: TableColumn[], isReStore = false) => {
+  const newColumns = columns?.filter((item) => {
+    if (!isReStore) {
       item.fixed = item.fixed !== void 0 ? item.fixed : undefined
-      return (item.type && !DEFAULT_FILTER_COLUMN.includes(item.type)) || !item.type
-    })
-  )
-  console.log(newColumns)
+    }
+    return (item.type && !DEFAULT_FILTER_COLUMN.includes(item.type)) || !item.type
+  })
   if (!unref(oldColumns)) {
-    oldColumns.value = newColumns
+    oldColumns.value = cloneDeep(newColumns)
   }
-  settingColumns.value = newColumns
+  settingColumns.value = cloneDeep(newColumns)
 
   hiddenColumns.value = cloneDeep(
     columns?.filter((item) => item.type && DEFAULT_FILTER_COLUMN.includes(item.type))
@@ -93,7 +93,6 @@ const initColumns = (columns: TableColumn[]) => {
 watch(
   () => props.columns,
   (columns) => {
-    console.log(columns)
     initColumns(columns)
   },
   {
@@ -104,40 +103,57 @@ watch(
 
 <template>
   <ElDrawer v-model="modelValue" title="列设置" size="350px">
-    <div class="flex items-center justify-between">
+    <div>
       <div class="flex items-center justify-between">
-        <ElCheckbox
-          v-model="checkAll"
-          :indeterminate="isIndeterminate"
-          @change="handleCheckAllChange"
-        />
-        <ElText class="ml-8px!">{{ checkColumns.length }} / {{ settingColumns?.length }}</ElText>
-      </div>
-      <ElText>固定 / 排序</ElText>
-    </div>
-    <div v-if="settingColumns?.length">
-      <ElCheckboxGroup v-model="checkColumns" @change="handleCheckedColumnsChange">
-        <div
-          v-for="item in settingColumns"
-          :key="item.field"
-          class="flex items-center justify-between mt-12px"
-        >
-          <ElCheckbox :label="item.field">
-            {{ item.label }}
-          </ElCheckbox>
-          <ElRadioGroup size="small" v-model="item.fixed">
-            <ElRadioButton label="left">
-              <Icon icon="ep:arrow-left" />
-            </ElRadioButton>
-            <ElRadioButton :label="undefined">
-              <Icon icon="ep:close" />
-            </ElRadioButton>
-            <ElRadioButton label="right">
-              <Icon icon="ep:arrow-right" />
-            </ElRadioButton>
-          </ElRadioGroup>
+        <div class="flex items-center justify-between">
+          <ElCheckbox
+            v-model="checkAll"
+            :indeterminate="isIndeterminate"
+            @change="handleCheckAllChange"
+          />
+          <ElText class="ml-8px!">{{ checkColumns.length }} / {{ settingColumns?.length }}</ElText>
         </div>
-      </ElCheckboxGroup>
+        <ElText>固定 / 排序</ElText>
+      </div>
+      <div v-if="settingColumns?.length">
+        <VueDraggable
+          v-model="settingColumns"
+          target=".el-checkbox-group"
+          handle=".handle"
+          :animation="150"
+        >
+          <ElCheckboxGroup
+            ref="draggableWrap"
+            v-model="checkColumns"
+            @change="handleCheckedColumnsChange"
+          >
+            <div
+              v-for="item in settingColumns"
+              :key="item.field"
+              class="flex items-center justify-between mt-12px"
+            >
+              <ElCheckbox :label="item.field">
+                {{ item.label }}
+              </ElCheckbox>
+              <div class="flex items-center">
+                <ElRadioGroup size="small" v-model="item.fixed">
+                  <ElRadioButton label="left">
+                    <Icon icon="ep:arrow-left" />
+                  </ElRadioButton>
+                  <ElRadioButton :label="undefined">
+                    <Icon icon="ep:close" />
+                  </ElRadioButton>
+                  <ElRadioButton label="right">
+                    <Icon icon="ep:arrow-right" />
+                  </ElRadioButton>
+                </ElRadioGroup>
+
+                <div class="ml-12px cursor-move handle"><Icon icon="ep:rank" /></div>
+              </div>
+            </div>
+          </ElCheckboxGroup>
+        </VueDraggable>
+      </div>
     </div>
     <template #footer>
       <div>
