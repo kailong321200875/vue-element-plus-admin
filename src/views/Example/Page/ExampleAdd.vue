@@ -5,9 +5,9 @@ import { ref, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter } from 'vue-router'
 import { saveTableApi } from '@/api/table'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus } from '@/hooks/event/useEventBus'
 
-const { emitter } = useEmitt()
+const { emit } = useEventBus()
 
 const { push, go } = useRouter()
 
@@ -28,7 +28,7 @@ const save = async () => {
         loading.value = false
       })
     if (res) {
-      emitter.emit('getList', 'add')
+      emit('getList', 'add')
       push('/example/example-page')
     }
   }
@@ -49,4 +49,4 @@ const save = async () => {
     </template>
   </ContentDetailWrap>
 </template>
-@/hooks/event/useEmitt
+@/hooks/event/useEventBus

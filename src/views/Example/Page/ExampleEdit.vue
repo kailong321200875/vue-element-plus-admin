@@ -6,9 +6,9 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { useRouter, useRoute } from 'vue-router'
 import { saveTableApi, getTableDetApi } from '@/api/table'
 import { TableData } from '@/api/table/types'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus } from '@/hooks/event/useEventBus'
 
-const { emitter } = useEmitt()
+const { emit } = useEventBus()
 
 const { push, go } = useRouter()
 
@@ -42,7 +42,7 @@ const save = async () => {
         loading.value = false
       })
     if (res) {
-      emitter.emit('getList', 'editor')
+      emit('getList', 'editor')
       push('/example/example-page')
     }
   }
@@ -63,4 +63,4 @@ const save = async () => {
     </template>
   </ContentDetailWrap>
 </template>
-@/hooks/event/useEmitt
+@/hooks/event/useEventBus
