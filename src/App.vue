@@ -2,9 +2,8 @@
 import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ConfigGlobal } from '@/components/ConfigGlobal'
-import { isDark } from '@/utils/is'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useStorage } from '@/hooks/web/useStorage'
+import { useDark } from '@vueuse/core'
 
 const { getPrefixCls } = useDesign()
 
@@ -16,19 +15,12 @@ const currentSize = computed(() => appStore.getCurrentSize)
 
 const greyMode = computed(() => appStore.getGreyMode)
 
-const { getStorage } = useStorage()
+const isDark = useDark({
+  valueDark: 'dark',
+  valueLight: 'light'
+})
 
-// 根据浏览器当前主题设置系统主题色
-const setDefaultTheme = () => {
-  if (getStorage('isDark') !== null) {
-    appStore.setIsDark(getStorage('isDark'))
-    return
-  }
-  const isDarkTheme = isDark()
-  appStore.setIsDark(isDarkTheme)
-}
-
-setDefaultTheme()
+isDark.value = appStore.getIsDark
 </script>
 
 <template>
