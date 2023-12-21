@@ -5,10 +5,10 @@ import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import progress from 'vite-plugin-progress'
 import EslintPlugin from 'vite-plugin-eslint'
-import { ViteEjsPlugin } from "vite-plugin-ejs"
+import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import { viteMockServe } from 'vite-plugin-mock'
 import PurgeIcons from 'vite-plugin-purge-icons'
-import VueI18nPlugin from "@intlify/unplugin-vue-i18n/vite"
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
@@ -24,7 +24,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
   let env = {} as any
   const isBuild = command === 'build'
   if (!isBuild) {
-    env = loadEnv((process.argv[3] === '--mode' ? process.argv[4] : process.argv[3]), root)
+    env = loadEnv(process.argv[3] === '--mode' ? process.argv[4] : process.argv[3], root)
   } else {
     env = loadEnv(mode, root)
   }
@@ -41,16 +41,18 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       progress(),
       createStyleImportPlugin({
         resolves: [ElementPlusResolve()],
-        libs: [{
-          libraryName: 'element-plus',
-          esModule: true,
-          resolveStyle: (name) => {
-            if (name === 'click-outside') {
-              return ''
+        libs: [
+          {
+            libraryName: 'element-plus',
+            esModule: true,
+            resolveStyle: (name) => {
+              if (name === 'click-outside') {
+                return ''
+              }
+              return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
             }
-            return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
           }
-        }]
+        ]
       }),
       EslintPlugin({
         cache: false,
@@ -81,8 +83,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       ViteEjsPlugin({
         title: env.VITE_APP_TITLE
       }),
-      UnoCSS(),
-      // sveltekit(),
+      UnoCSS()
     ],
 
     css: {
@@ -125,7 +126,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         '/api': {
           target: 'http://127.0.0.1:8000',
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '')
+          rewrite: (path) => path.replace(/^\/api/, '')
         }
       },
       hmr: {
