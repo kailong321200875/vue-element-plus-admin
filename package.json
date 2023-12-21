@@ -99,6 +99,7 @@
     "prettier": "^3.1.1",
     "rimraf": "^5.0.5",
     "rollup": "^4.9.1",
+    "rollup-plugin-visualizer": "^5.11.0",
     "stylelint": "^16.0.2",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-recommended": "^14.0.0",

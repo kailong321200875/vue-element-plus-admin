@@ -12,6 +12,7 @@ import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vitejs.dev/config/
 const root = process.cwd()
@@ -117,6 +118,9 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           drop_debugger: env.VITE_DROP_DEBUGGER === 'true',
           drop_console: env.VITE_DROP_CONSOLE === 'true'
         }
+      },
+      rollupOptions: {
+        plugins: env.NODE_ENV === 'production' ? [visualizer()] : undefined
       }
     },
     server: {

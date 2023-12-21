@@ -6,3 +6,5 @@ dist-ssr
 /dist*
 *-lock.*
 pnpm-debug
+stats.html
+
