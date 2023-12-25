@@ -27,7 +27,6 @@
     "icon": "esno ./scripts/icon.ts"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.3.1",
     "@iconify/iconify": "^3.1.1",
     "@iconify/vue": "^4.1.1",
     "@vueuse/core": "^10.7.0",
@@ -66,6 +65,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.7",
     "@types/lodash-es": "^4.17.12",
+    "@types/mockjs": "^1.0.10",
     "@types/node": "^20.10.5",
     "@types/nprogress": "^0.2.3",
     "@types/qrcode": "^1.5.5",
@@ -91,6 +91,7 @@
     "inquirer": "^9.2.12",
     "less": "^4.2.0",
     "lint-staged": "^15.2.0",
+    "mockjs": "^1.1.0",
     "plop": "^4.0.0",
     "postcss": "^8.4.32",
     "postcss-html": "^1.5.0",

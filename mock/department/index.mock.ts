@@ -1,5 +1,5 @@
 import { toAnyString } from '@/utils'
-import { faker } from '@faker-js/faker'
+import Mock from 'mockjs'
 import { SUCCESS_CODE } from '@/constants'
 
 const departmentList: any = []
@@ -11,64 +11,71 @@ for (let i = 0; i < 5; i++) {
     // 部门名称
     departmentName: citys[i],
     id: toAnyString(),
-    createTime: faker.date.anytime(),
-    status: faker.number.int({ min: 0, max: 1 }),
+    createTime: '@datetime',
+    // 状态
+    status: Mock.Random.integer(0, 1),
     // 备注
-    remark: faker.lorem.sentence(),
+    remark: '@cword(10, 15)',
     children: [
       {
         // 部门名称
         departmentName: '研发部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '产品部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '运营部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '市场部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '销售部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       },
       {
         // 部门名称
         departmentName: '客服部',
-        createTime: faker.date.anytime(),
-        // 状态
-        status: faker.number.int({ min: 0, max: 1 }),
         id: toAnyString(),
-        remark: faker.lorem.sentence()
+        createTime: '@datetime',
+        // 状态
+        status: Mock.Random.integer(0, 1),
+        // 备注
+        remark: '@cword(10, 15)'
       }
     ]
   })
@@ -110,18 +117,20 @@ export default [
       // 根据pageSize来创建数据
       const mockList: any = []
       for (let i = 0; i < pageSize; i++) {
-        mockList.push({
-          // 用户名
-          username: faker.person.firstName(),
-          // 账号
-          account: faker.person.lastName(),
-          // 邮箱
-          email: faker.internet.email(),
-          // 创建时间
-          createTime: faker.date.anytime(),
-          // 用户id
-          id: toAnyString()
-        })
+        mockList.push(
+          Mock.mock({
+            // 用户名
+            username: '@cname',
+            // 账号
+            account: '@first',
+            // 邮箱
+            email: '@EMAIL',
+            // 创建时间
+            createTime: '@datetime',
+            // 用户id
+            id: toAnyString()
+          })
+        )
       }
       return {
         code: SUCCESS_CODE,

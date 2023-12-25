@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker'
+import Mock from 'mockjs'
 import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 
@@ -36,144 +36,103 @@ interface TreeListProps {
 let List: ListProps[] = []
 
 for (let i = 0; i < count; i++) {
-  List.push({
-    id: toAnyString(),
-    // timestamp: +Mock.Random.date('T'),
-    author: faker.person.firstName(),
-    title: faker.lorem.sentence(),
-    content: baseContent,
-    importance: faker.number.int({ min: 1, max: 3 }),
-    display_time: faker.date.anytime(),
-    pageviews: faker.number.int({ min: 300, max: 5000 }),
-    image_uri: faker.image.url({
-      width: faker.number.int({ min: 200, max: 400 }),
-      height: faker.number.int({ min: 200, max: 400 })
-    }),
-    video_uri:
-      '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-  })
+  List.push(
+    Mock.mock({
+      id: toAnyString(),
+      // timestamp: +Mock.Random.date('T'),
+      author: '@first',
+      title: '@title(5, 10)',
+      content: baseContent,
+      importance: '@integer(1, 3)',
+      display_time: '@datetime',
+      pageviews: '@integer(100, 500)',
+      image_uri: Mock.Random.image('@integer(100, 500)x@integer(100, 500)'),
+      video_uri:
+        '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
+    })
+  )
 }
 
 const treeList: TreeListProps[] = []
 
 for (let i = 0; i < count; i++) {
-  treeList.push({
-    id: toAnyString(),
-    // timestamp: +Mock.Random.date('T'),
-    author: faker.person.firstName(),
-    title: faker.lorem.sentence(),
-    content: baseContent,
-    importance: faker.number.int({ min: 1, max: 3 }),
-    display_time: faker.date.anytime(),
-    pageviews: faker.number.int({ min: 300, max: 5000 }),
-    image_uri: faker.image.url({
-      width: faker.number.int({ min: 200, max: 400 }),
-      height: faker.number.int({ min: 200, max: 400 })
-    }),
-    video_uri:
-      '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4',
-    children: [
-      {
-        id: toAnyString(),
-        // timestamp: +Mock.Random.date('T'),
-        author: faker.person.firstName(),
-        title: faker.lorem.sentence(),
-        content: baseContent,
-        importance: faker.number.int({ min: 1, max: 3 }),
-        display_time: faker.date.anytime(),
-        pageviews: faker.number.int({ min: 300, max: 5000 }),
-        image_uri: faker.image.url({
-          width: faker.number.int({ min: 200, max: 400 }),
-          height: faker.number.int({ min: 200, max: 400 })
-        }),
-        video_uri:
-          '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4',
-        children: [
-          {
-            id: toAnyString(),
-            // timestamp: +Mock.Random.date('T'),
-            author: faker.person.firstName(),
-            title: faker.lorem.sentence(),
-            content: baseContent,
-            importance: faker.number.int({ min: 1, max: 3 }),
-            display_time: faker.date.anytime(),
-            pageviews: faker.number.int({ min: 300, max: 5000 }),
-            image_uri: faker.image.url({
-              width: faker.number.int({ min: 200, max: 400 }),
-              height: faker.number.int({ min: 200, max: 400 })
-            }),
-            video_uri:
-              '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-          },
-          {
-            id: toAnyString(),
-            // timestamp: +Mock.Random.date('T'),
-            author: faker.person.firstName(),
-            title: faker.lorem.sentence(),
-            content: baseContent,
-            importance: faker.number.int({ min: 1, max: 3 }),
-            display_time: faker.date.anytime(),
-            pageviews: faker.number.int({ min: 300, max: 5000 }),
-            image_uri: faker.image.url({
-              width: faker.number.int({ min: 200, max: 400 }),
-              height: faker.number.int({ min: 200, max: 400 })
-            }),
-            video_uri:
-              '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-          }
-        ]
-      },
-      {
-        id: toAnyString(),
-        // timestamp: +Mock.Random.date('T'),
-        author: faker.person.firstName(),
-        title: faker.lorem.sentence(),
-        content: baseContent,
-        importance: faker.number.int({ min: 1, max: 3 }),
-        display_time: faker.date.anytime(),
-        pageviews: faker.number.int({ min: 300, max: 5000 }),
-        image_uri: faker.image.url({
-          width: faker.number.int({ min: 200, max: 400 }),
-          height: faker.number.int({ min: 200, max: 400 })
-        }),
-        video_uri:
-          '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-      },
-      {
-        id: toAnyString(),
-        // timestamp: +Mock.Random.date('T'),
-        author: faker.person.firstName(),
-        title: faker.lorem.sentence(),
-        content: baseContent,
-        importance: faker.number.int({ min: 1, max: 3 }),
-        display_time: faker.date.anytime(),
-        pageviews: faker.number.int({ min: 300, max: 5000 }),
-        image_uri: faker.image.url({
-          width: faker.number.int({ min: 200, max: 400 }),
-          height: faker.number.int({ min: 200, max: 400 })
-        }),
-        video_uri:
-          '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-      },
-      {
-        id: toAnyString(),
-        // timestamp: +Mock.Random.date('T'),
-        author: faker.person.firstName(),
-        title: faker.lorem.sentence(),
-        content: baseContent,
-        importance: faker.number.int({ min: 1, max: 3 }),
-        display_time: faker.date.anytime(),
-        pageviews: faker.number.int({ min: 300, max: 5000 }),
-        image_uri: faker.image.url({
-          width: faker.number.int({ min: 200, max: 400 }),
-          height: faker.number.int({ min: 200, max: 400 })
-        }),
-        video_uri:
-          '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/mp4/xgplayer-demo-720p.mp4'
-      }
-    ]
-    // image_uri
-  })
+  treeList.push(
+    Mock.mock({
+      id: toAnyString(),
+      // timestamp: +Mock.Random.date('T'),
+      author: '@first',
+      title: '@title(5, 10)',
+      content: baseContent,
+      importance: '@integer(1, 3)',
+      display_time: '@datetime',
+      pageviews: '@integer(300, 5000)',
+      children: [
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)',
+          children: [
+            {
+              id: toAnyString(),
+              // timestamp: +Mock.Random.date('T'),
+              author: '@first',
+              title: '@title(5, 10)',
+              content: baseContent,
+              importance: '@integer(1, 3)',
+              display_time: '@datetime',
+              pageviews: '@integer(300, 5000)'
+            },
+            {
+              id: toAnyString(),
+              // timestamp: +Mock.Random.date('T'),
+              author: '@first',
+              title: '@title(5, 10)',
+              content: baseContent,
+              importance: '@integer(1, 3)',
+              display_time: '@datetime',
+              pageviews: '@integer(300, 5000)'
+            }
+          ]
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        },
+        {
+          id: toAnyString(),
+          // timestamp: +Mock.Random.date('T'),
+          author: '@first',
+          title: '@title(5, 10)',
+          content: baseContent,
+          importance: '@integer(1, 3)',
+          display_time: '@datetime',
+          pageviews: '@integer(300, 5000)'
+        }
+      ]
+      // image_uri
+    })
+  )
 }
 
 const cardList = [
