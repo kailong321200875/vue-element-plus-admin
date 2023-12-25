@@ -132,7 +132,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             echarts: ['echarts', 'echarts-wordcloud']
           }
         }
-      }
+      },
+      cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false')
     },
     server: {
       port: 4000,

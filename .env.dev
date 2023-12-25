@@ -30,3 +30,6 @@ VITE_USE_ALL_ELEMENT_PLUS_STYLE=false
 
 # 是否开启mock
 VITE_USE_MOCK=true
+
+# 是否切割css
+VITE_USE_CSS_SPLIT=false
