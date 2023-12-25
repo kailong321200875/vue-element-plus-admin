@@ -40,21 +40,23 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }),
       VueJsx(),
       progress(),
-      createStyleImportPlugin({
-        resolves: [ElementPlusResolve()],
-        libs: [
-          {
-            libraryName: 'element-plus',
-            esModule: true,
-            resolveStyle: (name) => {
-              if (name === 'click-outside') {
-                return ''
+      env.VITE_USE_ALL_ELEMENT_PLUS_STYLE === 'false'
+        ? createStyleImportPlugin({
+            resolves: [ElementPlusResolve()],
+            libs: [
+              {
+                libraryName: 'element-plus',
+                esModule: true,
+                resolveStyle: (name) => {
+                  if (name === 'click-outside') {
+                    return ''
+                  }
+                  return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
+                }
               }
-              return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
-            }
-          }
-        ]
-      }),
+            ]
+          })
+        : undefined,
       EslintPlugin({
         cache: false,
         include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
@@ -120,7 +122,16 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         }
       },
       rollupOptions: {
-        plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined
+        plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined,
+        // 拆包
+        output: {
+          manualChunks: {
+            vue: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+            'element-plus': ['element-plus'],
+            'wang-editor': ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
+            echarts: ['echarts', 'echarts-wordcloud']
+          }
+        }
       }
     },
     server: {

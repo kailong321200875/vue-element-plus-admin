@@ -1,5 +1,5 @@
 # 环境
-NODE_ENV=production
+VITE_NODE_ENV=production
 
 # 接口前缀
 VITE_API_BASE_PATH=
@@ -24,3 +24,6 @@ VITE_APP_TITLE=ElementAdmin
 
 # 是否包分析
 VITE_USE_BUNDLE_ANALYZER=true
+
+# 是否全量引入element-plus样式
+VITE_USE_ALL_ELEMENT_PLUS_STYLE=false
