@@ -111,7 +111,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     build: {
       minify: 'terser',
       outDir: env.VITE_OUT_DIR || 'dist',
-      sourcemap: env.VITE_SOURCEMAP === 'true' ? 'inline' : false,
+      sourcemap: env.VITE_SOURCEMAP === 'true',
       // brotliSize: false,
       terserOptions: {
         compress: {
@@ -120,7 +120,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         }
       },
       rollupOptions: {
-        plugins: env.NODE_ENV === 'production' ? [visualizer()] : undefined
+        plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined
       }
     },
     server: {
