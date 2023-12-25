@@ -27,3 +27,6 @@ VITE_USE_BUNDLE_ANALYZER=true
 
 # 是否全量引入element-plus样式
 VITE_USE_ALL_ELEMENT_PLUS_STYLE=false
+
+# 是否开启mock
+VITE_USE_MOCK=true

@@ -63,7 +63,6 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@iconify/json": "^2.2.160",
     "@intlify/unplugin-vue-i18n": "^2.0.0",
-    "@purge-icons/generated": "^0.10.0",
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.7",
     "@types/lodash-es": "^4.17.12",
