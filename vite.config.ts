@@ -112,17 +112,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         }
       ]
     },
+    esbuild: {
+      pure: env.VITE_DROP_CONSOLE === 'true' ? ['console.log'] : undefined,
+      drop: env.VITE_DROP_DEBUGGER === 'true' ? ['debugger'] : undefined
+    },
     build: {
-      minify: 'terser',
+      target: 'es2015',
       outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true',
       // brotliSize: false,
-      terserOptions: {
-        compress: {
-          drop_debugger: env.VITE_DROP_DEBUGGER === 'true',
-          drop_console: env.VITE_DROP_CONSOLE === 'true'
-        }
-      },
       rollupOptions: {
         plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined,
         // 拆包
