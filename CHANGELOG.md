@@ -2,6 +2,61 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.3...v2.5.4) (2023-12-26)
+
+
+### Types
+
+* 修复全局组件属性类型无法推导 ([94160c0](https://github.com/kailong321200875/vue-element-plus-admin/commit/94160c0418816e560f440e259e1f0fd4742e0143))
+
+
+### Bug Fixes
+
+* Menu菜单组件显示bug，renderMenuItem返回的数组存在undefined数据，导致省略菜单显示问题 ([1c63757](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c63757d55076d15ffdf21d647de393ca3c6b0be))
+* useClipboard在ip地址下不能使用问题 ([f3593c4](https://github.com/kailong321200875/vue-element-plus-admin/commit/f3593c453a8b8d5eb8cbd0ed5402132b027461b9))
+* 修复request请求自定义headers类型错误 ([bf2cd72](https://github.com/kailong321200875/vue-element-plus-admin/commit/bf2cd720d0e5801603848a0b1520a928443ac549))
+* 修复切换主题色缓存失败 ([1074520](https://github.com/kailong321200875/vue-element-plus-admin/commit/10745207e64d2d444636cb9d877cec9a0bebf1eb))
+* 修复非正式环境打包报错 ([3a5db42](https://github.com/kailong321200875/vue-element-plus-admin/commit/3a5db42c97f382f3fc701b8f113385b38a214583))
+
+
+### Styling
+
+* 本地化图标 ([608bf50](https://github.com/kailong321200875/vue-element-plus-admin/commit/608bf50e1cae49b7f97587395f794ae351f833f0))
+* 添加常见问题链接 ([16b9375](https://github.com/kailong321200875/vue-element-plus-admin/commit/16b93757d32c8ce2f611a62d6015072b0ecfc09a))
+
+
+### Code Refactoring
+
+* 新增列设置 ([7314065](https://github.com/kailong321200875/vue-element-plus-admin/commit/7314065c907f8ef4d184c1f3c724b67c30410ab9))
+* 重写useEventBus ([8035151](https://github.com/kailong321200875/vue-element-plus-admin/commit/80351516ced0ec2d67c30405d4a644aca8ca4bc2))
+
+
+### Performance Improvements
+
+* 优化启动速度 ([379b340](https://github.com/kailong321200875/vue-element-plus-admin/commit/379b340750eb0d4f7816f5d7c25cbd2983fd33b9))
+* 还原mock.js ([83de387](https://github.com/kailong321200875/vue-element-plus-admin/commit/83de387e2a0124804a9c99080ac841a9d6676fca))
+
+## [2.5.3](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.2...v2.5.3) (2023-12-17)
+
+
+### Bug Fixes
+
+* [#374](https://github.com/kailong321200875/vue-element-plus-admin/issues/374) ([30fb2de](https://github.com/kailong321200875/vue-element-plus-admin/commit/30fb2de6f37fe0bb00b0f364da31b07a292d59a1))
+* 修复cutMenu布局和top布局内容高度计算错误问题 ([8badd48](https://github.com/kailong321200875/vue-element-plus-admin/commit/8badd48a699aabd8fe510052d098fa6848ff5cbd))
+* 修复动态路由多开标签页404问题 ([1c5b16f](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c5b16f529d2e60a1eefcadf3f416585d1adb93b))
+* 修复类型推导错误 ([649fb17](https://github.com/kailong321200875/vue-element-plus-admin/commit/649fb17d000c0d500ffcfe1f9ab6ddd73ab7ecfa))
+* 修复项目配置清楚缓存无效 ([a09ee60](https://github.com/kailong321200875/vue-element-plus-admin/commit/a09ee60bb123f5bc4bbe6d80539145d5c4b94cb8))
+
+
+### Code Refactoring
+
+* 重构描述组件样式 ([c7658d8](https://github.com/kailong321200875/vue-element-plus-admin/commit/c7658d8c70618045a7527156444ba1d564963325))
+
+
+### Performance Improvements
+
+* 优化登录记住我流程 ([2009594](https://github.com/kailong321200875/vue-element-plus-admin/commit/2009594f089722151b739598dbad5ee7fb062b6e))
+
 ## [2.5.2](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.1...v2.5.2) (2023-12-10)
 
 
