@@ -3,7 +3,6 @@ import { computed, unref } from 'vue'
 import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useDesign } from '@/hooks/web/useDesign'
-import { Icon } from '@iconify/vue'
 
 const { getPrefixCls } = useDesign()
 
@@ -40,20 +39,25 @@ const getIconifyStyle = computed(() => {
       <use :xlink:href="symbolId" />
     </svg>
 
-    <Icon v-else :icon="icon" :style="getIconifyStyle" />
+    <!-- <Icon v-else :icon="icon" :style="getIconifyStyle" /> -->
+    <div :class="`${icon} iconify`" :style="getIconifyStyle"></div>
   </ElIcon>
 </template>
 
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-icon';
 
-.@{prefix-cls},
+.@{prefix-cls} {
+  :deep(svg) {
+    &:hover {
+      color: v-bind(hovercolor) !important;
+    }
+  }
+}
+
 .iconify {
   &:hover {
-    :deep(svg) {
-      // stylelint-disable-next-line
-      color: v-bind(hoverColor) !important;
-    }
+    color: v-bind(hovercolor) !important;
   }
 }
 </style>
