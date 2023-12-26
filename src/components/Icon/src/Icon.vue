@@ -50,14 +50,16 @@ const getIconifyStyle = computed(() => {
 .@{prefix-cls} {
   :deep(svg) {
     &:hover {
-      color: v-bind(hovercolor) !important;
+      // stylelint-disable-next-line
+      color: v-bind(hoverColor) !important;
     }
   }
 }
 
 .iconify {
   &:hover {
-    color: v-bind(hovercolor) !important;
+    // stylelint-disable-next-line
+    color: v-bind(hoverColor) !important;
   }
 }
 </style>
