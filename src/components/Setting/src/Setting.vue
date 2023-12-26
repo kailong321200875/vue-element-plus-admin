@@ -174,7 +174,8 @@ const copyConfig = async () => {
         // 头部边框颜色
         topToolBorderColor: '${appStore.getTheme.topToolBorderColor}'
       }
-    `
+    `,
+    legacy: true
   })
   if (!isSupported) {
     ElMessage.error(t('setting.copyFailed'))

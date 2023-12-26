@@ -9,7 +9,7 @@ import { useTable } from '@/hooks/web/useTable'
 import { TableData } from '@/api/table/types'
 import { reactive, ref, unref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useEmitt } from '@/hooks/event/useEmitt'
+import { useEventBus } from '@/hooks/event/useEventBus'
 import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
 import { BaseButton } from '@/components/Button'
 
@@ -50,7 +50,7 @@ const { getList, getElTableExpose, delList } = tableMethods
 
 getList()
 
-useEmitt({
+useEventBus({
   name: 'getList',
   callback: (type: string) => {
     if (type === 'add') {
@@ -294,4 +294,4 @@ const action = (row: TableData, type: string) => {
     />
   </ContentWrap>
 </template>
-@/hooks/event/useEmitt
+@/hooks/event/useEventBus

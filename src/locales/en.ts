@@ -48,7 +48,9 @@ export default {
     lengthRange: 'The length should be between {min} and {max}',
     notSpace: 'Spaces are not allowed',
     notSpecialCharacters: 'Special characters are not allowed',
-    isEqual: 'The two are not equal'
+    isEqual: 'The two are not equal',
+    // 列设置
+    setting: 'Setting'
   },
   lock: {
     lockScreen: 'Lock screen',

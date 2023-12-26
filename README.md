@@ -50,7 +50,7 @@ Online examples do not apply to menu filtering by default, but directly use Stat
 - [Es6+](http://es6.ruanyifeng.com/) - Familiar with es6 basic syntax
 - [Vue-Router-Next](https://next.router.vuejs.org/) - Familiar with the basic use of vue-router
 - [Element-Plus](https://element-plus.org/) - Familiar with the basic use of element-plus
-- [Faker.js](https://github.com/faker-js/faker#readme) - Generate massive amounts of fake contextual data
+- [Mock.js](https://github.com/nuysoft/Mock) - mockjs basic syntax
 
 ## Install and use
 

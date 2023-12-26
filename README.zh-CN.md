@@ -50,7 +50,7 @@ vue-element-plus-admin 的定位是后台集成方案，不太适合当基础模
 - [Es6+](http://es6.ruanyifeng.com/) - 熟悉 es6 基本语法
 - [Vue-Router-Next](https://next.router.vuejs.org/) - 熟悉 vue-router 基本使用
 - [Element-Plus](https://element-plus.org/) - element-plus 基本使用
-- [Faker.js](https://github.com/faker-js/faker#readme) - 生成大量伪造的上下文数据
+- [Mock.js](https://github.com/nuysoft/Mock) - mockjs 基本语法
 
 ## 安装和使用
 
