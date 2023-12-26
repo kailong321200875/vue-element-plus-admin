@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ElDrawer, ElDivider, ElMessage } from 'element-plus'
-import { ref, unref, computed, watch } from 'vue'
+import { ref, unref, computed } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { colorIsDark, lighten, hexToRGB } from '@/utils/color'
 import { useCssVar } from '@vueuse/core'
 import { useAppStore } from '@/store/modules/app'
-import { trim, setCssVar } from '@/utils'
+import { trim, setCssVar, getCssVar } from '@/utils'
 import ColorRadioPicker from './components/ColorRadioPicker.vue'
 import InterfaceDisplay from './components/InterfaceDisplay.vue'
 import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
@@ -95,17 +95,17 @@ const setMenuTheme = (color: string) => {
 }
 
 // 监听layout变化，重置一些主题色
-watch(
-  () => layout.value,
-  (n) => {
-    if (n === 'top' && !appStore.getIsDark) {
-      headerTheme.value = '#fff'
-      setHeaderTheme('#fff')
-    } else {
-      setMenuTheme(unref(menuTheme))
-    }
-  }
-)
+// watch(
+//   () => layout.value,
+//   (n) => {
+//     if (n === 'top' && !appStore.getIsDark) {
+//       headerTheme.value = '#fff'
+//       setHeaderTheme('#fff')
+//     } else {
+//       setMenuTheme(unref(menuTheme))
+//     }
+//   }
+// )
 
 // 拷贝
 const copyConfig = async () => {
@@ -192,6 +192,12 @@ const clear = () => {
   storageClear()
   window.location.reload()
 }
+
+const themeChange = () => {
+  const color = getCssVar('--el-bg-color')
+  setMenuTheme(color)
+  setHeaderTheme(color)
+}
 </script>
 
 <template>
@@ -211,7 +217,7 @@ const clear = () => {
     <div class="text-center">
       <!-- 主题 -->
       <ElDivider>{{ t('setting.theme') }}</ElDivider>
-      <ThemeSwitch />
+      <ThemeSwitch @change="themeChange" />
 
       <!-- 布局 -->
       <ElDivider>{{ t('setting.layout') }}</ElDivider>

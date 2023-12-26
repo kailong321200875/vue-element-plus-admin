@@ -45,6 +45,10 @@ export const setCssVar = (prop: string, val: any, dom = document.documentElement
   dom.style.setProperty(prop, val)
 }
 
+export const getCssVar = (prop: string, dom = document.documentElement) => {
+  return getComputedStyle(dom).getPropertyValue(prop)
+}
+
 /**
  * 查找数组对象的某个下标
  * @param {Array} ary 查找的数组
