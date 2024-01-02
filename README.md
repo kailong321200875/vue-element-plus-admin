@@ -86,7 +86,9 @@ pnpm run build:pro
 [CHANGELOG](./CHANGELOG.md)
 
 ## How to contribute
-
+<a href="https://github.com/kailong321200875/vue-element-plus-admin/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=kailong321200875/vue-element-plus-admin" />
+</a>
 You can [Raise an issue](https://github.com/kailong321200875/vue-element-plus-admin/issues/new) Or submit a Pull Request.
 
 **Pull Request:**
