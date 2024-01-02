@@ -86,7 +86,9 @@ pnpm run build:pro
 [更新日志](./CHANGELOG.md)
 
 ## 如何贡献
-
+<a href="https://github.com/kailong321200875/vue-element-plus-admin/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=kailong321200875/vue-element-plus-admin" />
+</a>
 你可以[提一个 issue](https://github.com/kailong321200875/vue-element-plus-admin/issues/new) 或者提交一个 Pull Request。
 
 **Pull Request:**
