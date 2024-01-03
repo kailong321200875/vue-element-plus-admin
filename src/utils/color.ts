@@ -151,3 +151,22 @@ const subtractLight = (color: string, amount: number) => {
   const c = cc < 0 ? 0 : cc
   return c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`
 }
+
+/**
+ * Mixes two colors.
+ *
+ * @param {string} color1 - The first color, should be a 6-digit hexadecimal color code starting with `#`.
+ * @param {string} color2 - The second color, should be a 6-digit hexadecimal color code starting with `#`.
+ * @param {number} [weight=0.5] - The weight of color1 in the mix, should be a number between 0 and 1, where 0 represents 100% of color2, and 1 represents 100% of color1.
+ * @returns {string} The mixed color, a 6-digit hexadecimal color code starting with `#`.
+ */
+export const mix = (color1: string, color2: string, weight: number = 0.5): string => {
+  let color = '#'
+  for (let i = 0; i <= 2; i++) {
+    const c1 = parseInt(color1.substring(1 + i * 2, 3 + i * 2), 16)
+    const c2 = parseInt(color2.substring(1 + i * 2, 3 + i * 2), 16)
+    const c = Math.round(c1 * weight + c2 * (1 - weight))
+    color += c.toString(16).padStart(2, '0')
+  }
+  return color
+}

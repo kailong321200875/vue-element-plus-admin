@@ -25,6 +25,11 @@ const symbolId = computed(() => {
   return unref(isLocal) ? `#icon-${props.icon.split('svg-icon:')[1]}` : props.icon
 })
 
+// 是否使用在线图标
+const isUseOnline = computed(() => {
+  return import.meta.env.VITE_USE_ONLINE_ICON === 'true'
+})
+
 const getIconifyStyle = computed(() => {
   const { color, size } = props
   return {
@@ -40,7 +45,10 @@ const getIconifyStyle = computed(() => {
       <use :xlink:href="symbolId" />
     </svg>
 
-    <Icon v-else :icon="icon" :style="getIconifyStyle" />
+    <template v-else>
+      <Icon v-if="isUseOnline" :icon="icon" :style="getIconifyStyle" />
+      <div v-else :class="`${icon} iconify`" :style="getIconifyStyle"></div>
+    </template>
   </ElIcon>
 </template>
 
@@ -49,11 +57,18 @@ const getIconifyStyle = computed(() => {
 
 .@{prefix-cls},
 .iconify {
-  &:hover {
-    :deep(svg) {
+  :deep(svg) {
+    &:hover {
       // stylelint-disable-next-line
       color: v-bind(hoverColor) !important;
     }
+  }
+}
+
+.iconify {
+  &:hover {
+    // stylelint-disable-next-line
+    color: v-bind(hoverColor) !important;
   }
 }
 </style>
