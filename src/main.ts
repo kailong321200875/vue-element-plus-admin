@@ -1,3 +1,5 @@
+import 'vue/jsx'
+
 // 引入windi css
 import '@/plugins/unocss'
 
