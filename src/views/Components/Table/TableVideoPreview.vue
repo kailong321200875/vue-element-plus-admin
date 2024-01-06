@@ -65,7 +65,7 @@ getTableList()
       :columns="columns"
       :data="tableDataList"
       :loading="loading"
-      :preview="['image_uri', 'video_uri']"
+      :video-preview="['image_uri', 'video_uri']"
     />
   </ContentWrap>
 </template>

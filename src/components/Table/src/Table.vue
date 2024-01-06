@@ -17,7 +17,6 @@ import { set, get } from 'lodash-es'
 import { CSSProperties } from 'vue'
 import { getSlot } from '@/utils/tsxHelper'
 import TableActions from './components/TableActions.vue'
-import { isImgPath } from '@/utils/is'
 import { createVideoViewer } from '@/components/VideoPlayer'
 import { Icon } from '@/components/Icon'
 import { BaseButton } from '@/components/Button'
@@ -59,8 +58,13 @@ export default defineComponent({
       type: Array as PropType<Recordable[]>,
       default: () => []
     },
-    // 是否自动预览
-    preview: {
+    // 图片自动预览字段数组
+    imagePreview: {
+      type: Array as PropType<string[]>,
+      default: () => []
+    },
+    // 视频自动预览字段数组
+    videoPreview: {
       type: Array as PropType<string[]>,
       default: () => []
     },
@@ -339,7 +343,8 @@ export default defineComponent({
     })
 
     const renderTreeTableColumn = (columnsChildren: TableColumn[]) => {
-      const { align, headerAlign, showOverflowTooltip, preview } = unref(getProps)
+      const { align, headerAlign, showOverflowTooltip, imagePreview, videoPreview } =
+        unref(getProps)
       return columnsChildren.map((v) => {
         if (v.hidden) return null
         const props = { ...v } as any
@@ -350,10 +355,10 @@ export default defineComponent({
         const slots = {
           default: (...args: any[]) => {
             const data = args[0]
-            let isImageUrl = false
-            if (preview.length) {
-              isImageUrl = preview.some((item) => (item as string) === v.field)
-            }
+            let isPreview = false
+            isPreview =
+              imagePreview.some((item) => (item as string) === v.field) ||
+              videoPreview.some((item) => (item as string) === v.field)
 
             return children && children.length
               ? renderTreeTableColumn(children)
@@ -361,8 +366,8 @@ export default defineComponent({
                 ? props.slots.default(...args)
                 : v?.formatter
                   ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
-                  : isImageUrl
-                    ? renderPreview(get(data.row, v.field))
+                  : isPreview
+                    ? renderPreview(get(data.row, v.field), v.field)
                     : get(data.row, v.field)
           }
         }
@@ -384,10 +389,11 @@ export default defineComponent({
       })
     }
 
-    const renderPreview = (url: string) => {
+    const renderPreview = (url: string, field: string) => {
+      const { imagePreview, videoPreview } = unref(getProps)
       return (
         <div class="flex items-center">
-          {isImgPath(url) ? (
+          {imagePreview.includes(field) ? (
             <ElImage
               src={url}
               fit="cover"
@@ -396,7 +402,7 @@ export default defineComponent({
               preview-src-list={[url]}
               preview-teleported
             />
-          ) : (
+          ) : videoPreview.includes(field) ? (
             <BaseButton
               type="primary"
               icon={<Icon icon="ep:video-play" />}
@@ -408,7 +414,7 @@ export default defineComponent({
             >
               预览
             </BaseButton>
-          )}
+          ) : null}
         </div>
       )
     }
@@ -423,7 +429,8 @@ export default defineComponent({
         headerAlign,
         showOverflowTooltip,
         reserveSelection,
-        preview
+        imagePreview,
+        videoPreview
       } = unref(getProps)
 
       return (columnsChildren || columns).map((v) => {
@@ -463,10 +470,10 @@ export default defineComponent({
             default: (...args: any[]) => {
               const data = args[0]
 
-              let isImageUrl = false
-              if (preview.length) {
-                isImageUrl = preview.some((item) => (item as string) === v.field)
-              }
+              let isPreview = false
+              isPreview =
+                imagePreview.some((item) => (item as string) === v.field) ||
+                videoPreview.some((item) => (item as string) === v.field)
 
               return children && children.length
                 ? renderTreeTableColumn(children)
@@ -474,8 +481,8 @@ export default defineComponent({
                   ? props.slots.default(...args)
                   : v?.formatter
                     ? v?.formatter?.(data.row, data.column, get(data.row, v.field), data.$index)
-                    : isImageUrl
-                      ? renderPreview(get(data.row, v.field))
+                    : isPreview
+                      ? renderPreview(get(data.row, v.field), v.field)
                       : get(data.row, v.field)
             }
           }
