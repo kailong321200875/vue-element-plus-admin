@@ -90,6 +90,11 @@ const popoverShow = () => {
 }
 
 const iconSelect = (icon: string) => {
+  // 如果是同一个icon则不做处理，则相当于点击了清空按钮
+  if (icon === unref(modelValue)) {
+    modelValue.value = ''
+    return
+  }
   modelValue.value = icon
 }
 
@@ -106,7 +111,7 @@ const inputClear = () => {
 
 <template>
   <div :class="prefixCls" class="flex justify-center items-center box">
-    <ElInput disabled v-model="modelValue" />
+    <ElInput disabled v-model="modelValue" clearable />
     <ElPopover
       placement="bottom"
       trigger="click"
@@ -144,8 +149,10 @@ const inputClear = () => {
                     icon === modelValue ? 'var(--el-color-primary)' : 'var(--el-border-color)'
                   }`,
                   boxSizing: 'border-box',
-                  margin: '2px'
+                  margin: '2px',
+                  transition: 'all 0.3s'
                 }"
+                class="hover:border-color-[var(--el-color-primary)]!"
                 @click="iconSelect(icon)"
               >
                 <Icon
