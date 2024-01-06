@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.4...v2.5.5) (2024-01-06)
+
+
+### Bug Fixes
+
+* [#276](https://github.com/kailong321200875/vue-element-plus-admin/issues/276) ([6fbc2b0](https://github.com/kailong321200875/vue-element-plus-admin/commit/6fbc2b0243e4aec0463a734c37591dc3de40f7db))
+* el-button组件和其他部分使用到相关变量的组件无法适配主题色变化问题 ([00cac6a](https://github.com/kailong321200875/vue-element-plus-admin/commit/00cac6a831c2a0bb2f8a9df8b9264f1cad13ddde))
+
+
+### Styling
+
+* 菜单支持超出省略号 ([a926c56](https://github.com/kailong321200875/vue-element-plus-admin/commit/a926c5607a162145f77d35762b3d6730d67b23f6))
+* 菜单背景支持跟随暗黑模式 ([b34aeba](https://github.com/kailong321200875/vue-element-plus-admin/commit/b34aeba10a464a0f92752fc966386286443df53a))
+
+
+### Performance Improvements
+
+* 优化ImageCropping ([069777c](https://github.com/kailong321200875/vue-element-plus-admin/commit/069777c8801c51ab28c070b2ba3f10000e9c91b4))
+* 图标选择器逻辑优化 ([c2dde25](https://github.com/kailong321200875/vue-element-plus-admin/commit/c2dde252297c94036221d5d9971781182bc2998e))
+* 表格组件预览字段拆分 ([8c5858e](https://github.com/kailong321200875/vue-element-plus-admin/commit/8c5858e2c5d42db1de37d5290ea2ca784f4d4612))
+
 ## [2.5.4](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.3...v2.5.4) (2023-12-26)
 
 
