@@ -9,6 +9,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "jsxImportSource": "vue",
     "lib": ["esnext", "dom"],
     "baseUrl": "./",
     "allowJs": true,

@@ -1,20 +1,11 @@
 <script lang="tsx">
-import { defineComponent, unref, computed, PropType, watch } from 'vue'
-import {
-  ElTooltip,
-  ElDropdown,
-  ElDropdownMenu,
-  ElDropdownItem,
-  ComponentSize
-  // ElPopover,
-  // ElTree
-} from 'element-plus'
+import { defineComponent, unref, computed, PropType, ref } from 'vue'
+import { ElDropdown, ElDropdownMenu, ElDropdownItem, ComponentSize } from 'element-plus'
 import { Icon } from '@/components/Icon'
 import { useI18n } from '@/hooks/web/useI18n'
 import { useAppStore } from '@/store/modules/app'
 import { TableColumn } from '../types'
-import { cloneDeep } from 'lodash-es'
-// import { eachTree } from '@/utils/tree'
+import ColumnSetting from './ColumnSetting.vue'
 
 const appStore = useAppStore()
 const sizeMap = computed(() => appStore.sizeMap)
@@ -23,14 +14,19 @@ const { t } = useI18n()
 
 export default defineComponent({
   name: 'TableActions',
+  components: {
+    ColumnSetting
+  },
   props: {
     columns: {
       type: Array as PropType<TableColumn[]>,
       default: () => []
     }
   },
-  emits: ['refresh', 'changSize'],
+  emits: ['refresh', 'changSize', 'confirm'],
   setup(props, { emit }) {
+    const showSetting = ref(false)
+
     const refresh = () => {
       emit('refresh')
     }
@@ -39,111 +35,71 @@ export default defineComponent({
       emit('changSize', size)
     }
 
-    const columns = computed(() => {
-      return cloneDeep(props.columns).filter((v) => {
-        // 去掉type为selection的列和expand的列
-        if (v.type !== 'selection' && v.type !== 'expand') {
-          return v
-        }
-      })
-    })
+    const confirm = (columns: TableColumn[]) => {
+      emit('confirm', columns)
+    }
 
-    watch(
-      () => columns.value,
-      (newColumns) => {
-        console.log('columns change：', newColumns)
-      },
-      {
-        deep: true
-      }
-    )
+    const showColumnSetting = () => {
+      showSetting.value = true
+    }
 
     return () => (
       <>
         <div class="text-right h-28px flex items-center justify-end">
-          <ElTooltip content={t('common.refresh')} placement="top">
-            <span onClick={refresh}>
-              <Icon
-                icon="ant-design:sync-outlined"
-                class="cursor-pointer"
-                hover-color="var(--el-color-primary)"
-              />
-            </span>
-          </ElTooltip>
+          <div title="刷新" class="w-30px h-20px flex items-center justify-end" onClick={refresh}>
+            <Icon
+              icon="ant-design:sync-outlined"
+              class="cursor-pointer"
+              hover-color="var(--el-color-primary)"
+            />
+          </div>
 
-          <ElTooltip content={t('common.size')} placement="top">
-            <ElDropdown trigger="click" onCommand={changSize}>
-              {{
-                default: () => {
-                  return (
-                    <span>
-                      <Icon
-                        icon="ant-design:column-height-outlined"
-                        class="cursor-pointer mr-8px ml-8px"
-                        hover-color="var(--el-color-primary)"
-                      />
-                    </span>
-                  )
-                },
-                dropdown: () => {
-                  return (
-                    <ElDropdownMenu>
-                      {{
-                        default: () => {
-                          return unref(sizeMap).map((v) => {
-                            return (
-                              <ElDropdownItem key={v} command={v}>
-                                {t(`size.${v}`)}
-                              </ElDropdownItem>
-                            )
-                          })
-                        }
-                      }}
-                    </ElDropdownMenu>
-                  )
-                }
-              }}
-            </ElDropdown>
-          </ElTooltip>
-
-          {/* <ElTooltip content={t('common.columnSetting')} placement="top"> */}
-          {/* <ElPopover trigger="click" placement="left">
+          <ElDropdown trigger="click" onCommand={changSize}>
             {{
               default: () => {
                 return (
-                  <div>
-                    <ElTree
-                      data={unref(columns)}
-                      show-checkbox
-                      default-checked-keys={unref(defaultCheckeds)}
-                      draggable
-                      node-key="field"
-                      allow-drop={(_draggingNode: any, _dropNode: any, type: string) => {
-                        if (type === 'inner') {
-                          return false
-                        } else {
-                          return true
-                        }
-                      }}
-                      onNode-drag-end={onNodeDragEnd}
-                      onCheck-change={onCheckChange}
+                  <div title="尺寸" class="w-30px h-20px flex items-center justify-end">
+                    <Icon
+                      icon="ant-design:column-height-outlined"
+                      class="cursor-pointer"
+                      hover-color="var(--el-color-primary)"
                     />
                   </div>
                 )
               },
-              reference: () => {
+              dropdown: () => {
                 return (
-                  <Icon
-                    icon="ant-design:setting-outlined"
-                    class="cursor-pointer"
-                    hoverColor="var(--el-color-primary)"
-                  />
+                  <ElDropdownMenu>
+                    {{
+                      default: () => {
+                        return unref(sizeMap).map((v) => {
+                          return (
+                            <ElDropdownItem key={v} command={v}>
+                              {t(`size.${v}`)}
+                            </ElDropdownItem>
+                          )
+                        })
+                      }
+                    }}
+                  </ElDropdownMenu>
                 )
               }
             }}
-          </ElPopover> */}
-          {/* </ElTooltip> */}
+          </ElDropdown>
+
+          <div
+            title="列设置"
+            class="w-30px h-20px flex items-center justify-end"
+            onClick={showColumnSetting}
+          >
+            <Icon
+              icon="ant-design:setting-outlined"
+              class="cursor-pointer"
+              hover-color="var(--el-color-primary)"
+            />
+          </div>
         </div>
+        <ColumnSetting v-model={showSetting.value} columns={props.columns} onConfirm={confirm} />
       </>
     )
   }
