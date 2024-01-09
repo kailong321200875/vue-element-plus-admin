@@ -6,7 +6,11 @@ export const SUCCESS_CODE = 0
 /**
  * 请求contentType
  */
-export const CONTENT_TYPE = 'application/json'
+export const CONTENT_TYPE:
+  | 'application/json'
+  | 'multipart/form-data'
+  | 'application/x-www-form-urlencoded'
+  | 'text/plain' = 'multipart/form-data'
 
 /**
  * 请求超时时间
@@ -27,3 +31,8 @@ export const NO_RESET_WHITE_LIST = ['Redirect', 'Login', 'NoFind', 'Root']
  * 表格默认过滤列设置字段
  */
 export const DEFAULT_FILTER_COLUMN = ['expand', 'selection']
+
+/**
+ * 是否根据headers->content-type自动转换数据格式
+ */
+export const TRANSFORM_REQUEST_DATA = true
