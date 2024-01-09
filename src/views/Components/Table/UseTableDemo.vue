@@ -3,7 +3,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { useI18n } from '@/hooks/web/useI18n'
 import { Table, TableColumn, TableSlotDefault } from '@/components/Table'
 import { getTableListApi } from '@/api/table'
-import { ref, reactive, unref } from 'vue'
+import { ref, reactive, unref, onMounted } from 'vue'
 import { ElTag } from 'element-plus'
 import { useTable } from '@/hooks/web/useTable'
 import { BaseButton } from '@/components/Button'
@@ -26,83 +26,91 @@ const { setProps, setColumn, getElTableExpose, addColumn, delColumn, refresh } =
 
 const { t } = useI18n()
 
-const columns = reactive<TableColumn[]>([
-  {
-    field: 'expand',
-    type: 'expand',
-    slots: {
-      default: (data: TableSlotDefault) => {
-        const { row } = data
-        return (
-          <div class="ml-30px">
-            <div>
-              {t('tableDemo.title')}：{row.title}
-            </div>
-            <div>
-              {t('tableDemo.author')}：{row.author}
-            </div>
-            <div>
-              {t('tableDemo.displayTime')}：{row.display_time}
-            </div>
-          </div>
-        )
-      }
-    }
-  },
-  {
-    field: 'selection',
-    type: 'selection'
-  },
-  {
-    field: 'index',
-    label: t('tableDemo.index'),
-    type: 'index'
-  },
-  {
-    field: 'title',
-    label: t('tableDemo.title')
-  },
-  {
-    field: 'author',
-    label: t('tableDemo.author')
-  },
-  {
-    field: 'display_time',
-    label: t('tableDemo.displayTime')
-  },
-  {
-    field: 'importance',
-    label: t('tableDemo.importance'),
-    formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
-      return (
-        <ElTag type={cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'}>
-          {cellValue === 1
-            ? t('tableDemo.important')
-            : cellValue === 2
-              ? t('tableDemo.good')
-              : t('tableDemo.commonly')}
-        </ElTag>
-      )
-    }
-  },
-  {
-    field: 'pageviews',
-    label: t('tableDemo.pageviews')
-  },
-  {
-    field: 'action',
-    label: t('tableDemo.action'),
-    slots: {
-      default: (data) => {
-        return (
-          <BaseButton type="primary" onClick={() => actionFn(data)}>
-            {t('tableDemo.action')}
-          </BaseButton>
-        )
-      }
-    }
-  }
-])
+const columns = reactive<TableColumn[]>([])
+
+onMounted(() => {
+  setTimeout(() => {
+    setProps({
+      columns: [
+        {
+          field: 'expand',
+          type: 'expand',
+          slots: {
+            default: (data: TableSlotDefault) => {
+              const { row } = data
+              return (
+                <div class="ml-30px">
+                  <div>
+                    {t('tableDemo.title')}：{row.title}
+                  </div>
+                  <div>
+                    {t('tableDemo.author')}：{row.author}
+                  </div>
+                  <div>
+                    {t('tableDemo.displayTime')}：{row.display_time}
+                  </div>
+                </div>
+              )
+            }
+          }
+        },
+        {
+          field: 'selection',
+          type: 'selection'
+        },
+        {
+          field: 'index',
+          label: t('tableDemo.index'),
+          type: 'index'
+        },
+        {
+          field: 'title',
+          label: t('tableDemo.title')
+        },
+        {
+          field: 'author',
+          label: t('tableDemo.author')
+        },
+        {
+          field: 'display_time',
+          label: t('tableDemo.displayTime')
+        },
+        {
+          field: 'importance',
+          label: t('tableDemo.importance'),
+          formatter: (_: Recordable, __: TableColumn, cellValue: number) => {
+            return (
+              <ElTag type={cellValue === 1 ? 'success' : cellValue === 2 ? 'warning' : 'danger'}>
+                {cellValue === 1
+                  ? t('tableDemo.important')
+                  : cellValue === 2
+                    ? t('tableDemo.good')
+                    : t('tableDemo.commonly')}
+              </ElTag>
+            )
+          }
+        },
+        {
+          field: 'pageviews',
+          label: t('tableDemo.pageviews')
+        },
+        {
+          field: 'action',
+          label: t('tableDemo.action'),
+          slots: {
+            default: (data) => {
+              return (
+                <BaseButton type="primary" onClick={() => actionFn(data)}>
+                  {t('tableDemo.action')}
+                </BaseButton>
+              )
+            }
+          }
+        }
+      ]
+    })
+  }, 2000)
+})
 
 const actionFn = (data: TableSlotDefault) => {
   console.log(data)

@@ -69,7 +69,7 @@ const initColumns = (columns: TableColumn[], isReStore = false) => {
     }
     return (item.type && !DEFAULT_FILTER_COLUMN.includes(item.type)) || !item.type
   })
-  if (!unref(oldColumns)) {
+  if (!unref(oldColumns)?.length) {
     oldColumns.value = cloneDeep(newColumns)
   }
   settingColumns.value = cloneDeep(newColumns)
@@ -96,7 +96,8 @@ watch(
     initColumns(columns)
   },
   {
-    immediate: true
+    immediate: true,
+    deep: true
   }
 )
 </script>
