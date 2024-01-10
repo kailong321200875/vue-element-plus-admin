@@ -6,11 +6,7 @@ export const SUCCESS_CODE = 0
 /**
  * 请求contentType
  */
-export const CONTENT_TYPE:
-  | 'application/json'
-  | 'multipart/form-data'
-  | 'application/x-www-form-urlencoded'
-  | 'text/plain' = 'multipart/form-data'
+export const CONTENT_TYPE: AxiosContentType = 'application/json'
 
 /**
  * 请求超时时间

@@ -1,21 +1,16 @@
 import service from './service'
-import { CONTENT_TYPE, TRANSFORM_REQUEST_DATA } from '@/constants'
+import { CONTENT_TYPE } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { objToFormData } from '@/utils'
 
 const request = (option: AxiosConfig) => {
   const { url, method, params, data, headers, responseType } = option
-  // 是否需要转换数据格式
-  const transformData =
-    TRANSFORM_REQUEST_DATA &&
-    (headers?.['Content-Type'] || CONTENT_TYPE) === 'multipart/form-data' &&
-    data
+
   const userStore = useUserStoreWithOut()
   return service.request({
     url: url,
     method,
     params,
-    data: transformData ? objToFormData(data) : data,
+    data: data,
     responseType: responseType,
     headers: {
       'Content-Type': CONTENT_TYPE,
