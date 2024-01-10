@@ -8,6 +8,7 @@ import { getMenuListApi } from '@/api/menu'
 import { ElTag } from 'element-plus'
 import AddButtonPermission from './AddButtonPermission.vue'
 import { BaseButton } from '@/components/Button'
+import { cloneDeep } from 'lodash-es'
 
 const { t } = useI18n()
 
@@ -271,8 +272,9 @@ const cacheComponent = ref('')
 
 watch(
   () => props.currentRow,
-  (currentRow) => {
-    if (!currentRow) return
+  (value) => {
+    if (!value) return
+    const currentRow = cloneDeep(value)
     cacheComponent.value = currentRow.type === 1 ? currentRow.component : ''
     if (currentRow.parentId === 0) {
       setSchema([
