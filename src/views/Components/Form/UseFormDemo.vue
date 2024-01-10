@@ -126,6 +126,8 @@ const schema = reactive<FormSchema[]>([
     field: 'field3',
     label: t('formDemo.radio'),
     component: 'RadioGroup',
+    hidden: true,
+    value: '1',
     componentProps: {
       options: [
         {
@@ -143,7 +145,8 @@ const schema = reactive<FormSchema[]>([
     field: 'field4',
     label: t('formDemo.checkbox'),
     component: 'CheckboxGroup',
-    value: [],
+    value: ['1'],
+    remove: true,
     componentProps: {
       options: [
         {
@@ -229,7 +232,8 @@ const {
   setSchema,
   getComponentExpose,
   getFormItemExpose,
-  getElFormExpose
+  getElFormExpose,
+  getFormData
 } = formMethods
 
 const changeLabelWidth = (width: number | string) => {
@@ -300,6 +304,8 @@ const setValue = async (reset: boolean) => {
         }
       ]
     })
+    const formData = await getFormData()
+    console.log(formData)
   }
 }
 
@@ -396,6 +402,11 @@ const inoutValidation = async () => {
 const formValidate = (prop: FormItemProp, isValid: boolean, message: string) => {
   console.log(prop, isValid, message)
 }
+
+setTimeout(async () => {
+  const formData = await getFormData()
+  console.log(formData)
+}, 2000)
 </script>
 
 <template>
