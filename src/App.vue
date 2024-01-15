@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { useAppStore } from '@/store/modules/app'
 import { ConfigGlobal } from '@/components/ConfigGlobal'
 import { useDesign } from '@/hooks/web/useDesign'
-import { useDark } from '@vueuse/core'
 import { ElNotification } from 'element-plus'
 
 const { getPrefixCls } = useDesign()
@@ -16,12 +15,8 @@ const currentSize = computed(() => appStore.getCurrentSize)
 
 const greyMode = computed(() => appStore.getGreyMode)
 
-const isDark = useDark({
-  valueDark: 'dark',
-  valueLight: 'light'
-})
+appStore.initTheme()
 
-isDark.value = appStore.getIsDark
 ElNotification({
   title: '提示',
   type: 'warning',

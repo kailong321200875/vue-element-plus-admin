@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElDrawer, ElDivider, ElMessage } from 'element-plus'
-import { ref, unref, computed } from 'vue'
+import { ref, unref } from 'vue'
 import { useI18n } from '@/hooks/web/useI18n'
 import { ThemeSwitch } from '@/components/ThemeSwitch'
 import { useCssVar } from '@vueuse/core'
@@ -22,8 +22,6 @@ const prefixCls = getPrefixCls('setting')
 const appStore = useAppStore()
 
 const { t } = useI18n()
-
-const layout = computed(() => appStore.getLayout)
 
 const drawer = ref(false)
 
@@ -215,23 +213,21 @@ const themeChange = () => {
       />
 
       <!-- 菜单主题 -->
-      <template v-if="layout !== 'top'">
-        <ElDivider>{{ t('setting.menuTheme') }}</ElDivider>
-        <ColorRadioPicker
-          v-model="menuTheme"
-          :schema="[
-            '#fff',
-            '#001529',
-            '#212121',
-            '#273352',
-            '#191b24',
-            '#383f45',
-            '#001628',
-            '#344058'
-          ]"
-          @change="setMenuTheme"
-        />
-      </template>
+      <ElDivider>{{ t('setting.menuTheme') }}</ElDivider>
+      <ColorRadioPicker
+        v-model="menuTheme"
+        :schema="[
+          '#fff',
+          '#001529',
+          '#212121',
+          '#273352',
+          '#191b24',
+          '#383f45',
+          '#001628',
+          '#344058'
+        ]"
+        @change="setMenuTheme"
+      />
     </div>
 
     <!-- 界面显示 -->

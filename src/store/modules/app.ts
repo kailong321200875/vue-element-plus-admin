@@ -5,6 +5,7 @@ import { colorIsDark, hexToRGB, lighten, mix } from '@/utils/color'
 import { ElMessage, ComponentSize } from 'element-plus'
 import { useCssVar } from '@vueuse/core'
 import { unref } from 'vue'
+import { useDark } from '@vueuse/core'
 
 interface AppState {
   breadcrumb: boolean
@@ -59,7 +60,7 @@ export const useAppStore = defineStore('app', {
       serverDynamicRouter: true, // 是否服务端渲染动态路由
       fixedMenu: false, // 是否固定菜单
 
-      layout: 'classic', // layout布局
+      layout: 'top', // layout布局
       isDark: false, // 是否是暗黑模式
       currentSize: 'default', // 组件尺寸
       theme: {
@@ -320,6 +321,13 @@ export const useAppStore = defineStore('app', {
       if (this.getLayout === 'top') {
         this.setMenuTheme(color)
       }
+    },
+    initTheme() {
+      const isDark = useDark({
+        valueDark: 'dark',
+        valueLight: 'light'
+      })
+      isDark.value = this.getIsDark
     }
   },
   persist: true
