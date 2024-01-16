@@ -1,8 +1,11 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
 import { setCssVar, humpToUnderline } from '@/utils'
-import { mix } from '@/utils/color'
 import { ElMessage, ComponentSize } from 'element-plus'
+import { colorIsDark, hexToRGB, lighten, mix } from '@/utils/color'
+import { unref } from 'vue'
+import { useCssVar } from '@vueuse/core'
+import { useDark } from '@vueuse/core'
 
 interface AppState {
   breadcrumb: boolean
@@ -270,6 +273,61 @@ export const useAppStore = defineStore('app', {
         })
         setCssVar(`--el-color-primary-dark-2`, mix(color, elColorPrimary, 0.2))
       }
+    },
+    setMenuTheme(color: string) {
+      const primaryColor = useCssVar('--el-color-primary', document.documentElement)
+      const isDarkColor = colorIsDark(color)
+      const theme: Recordable = {
+        // 左侧菜单边框颜色
+        leftMenuBorderColor: isDarkColor ? 'inherit' : '#eee',
+        // 左侧菜单背景颜色
+        leftMenuBgColor: color,
+        // 左侧菜单浅色背景颜色
+        leftMenuBgLightColor: isDarkColor ? lighten(color!, 6) : color,
+        // 左侧菜单选中背景颜色
+        leftMenuBgActiveColor: isDarkColor
+          ? 'var(--el-color-primary)'
+          : hexToRGB(unref(primaryColor), 0.1),
+        // 左侧菜单收起选中背景颜色
+        leftMenuCollapseBgActiveColor: isDarkColor
+          ? 'var(--el-color-primary)'
+          : hexToRGB(unref(primaryColor), 0.1),
+        // 左侧菜单字体颜色
+        leftMenuTextColor: isDarkColor ? '#bfcbd9' : '#333',
+        // 左侧菜单选中字体颜色
+        leftMenuTextActiveColor: isDarkColor ? '#fff' : 'var(--el-color-primary)',
+        // logo字体颜色
+        logoTitleTextColor: isDarkColor ? '#fff' : 'inherit',
+        // logo边框颜色
+        logoBorderColor: isDarkColor ? color : '#eee'
+      }
+      this.setTheme(theme)
+      this.setCssVarTheme()
+    },
+    setHeaderTheme(color: string) {
+      const isDarkColor = colorIsDark(color)
+      const textColor = isDarkColor ? '#fff' : 'inherit'
+      const textHoverColor = isDarkColor ? lighten(color!, 6) : '#f6f6f6'
+      const topToolBorderColor = isDarkColor ? color : '#eee'
+      setCssVar('--top-header-bg-color', color)
+      setCssVar('--top-header-text-color', textColor)
+      setCssVar('--top-header-hover-color', textHoverColor)
+      this.setTheme({
+        topHeaderBgColor: color,
+        topHeaderTextColor: textColor,
+        topHeaderHoverColor: textHoverColor,
+        topToolBorderColor
+      })
+      if (this.getLayout === 'top') {
+        this.setMenuTheme(color)
+      }
+    },
+    initTheme() {
+      const isDark = useDark({
+        valueDark: 'dark',
+        valueLight: 'light'
+      })
+      isDark.value = this.getIsDark
     }
   },
   persist: true

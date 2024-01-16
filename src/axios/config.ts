@@ -1,8 +1,9 @@
 import { AxiosResponse, InternalAxiosRequestConfig } from './types'
 import { ElMessage } from 'element-plus'
 import qs from 'qs'
-import { SUCCESS_CODE } from '@/constants'
+import { SUCCESS_CODE, TRANSFORM_REQUEST_DATA } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { objToFormData } from '@/utils'
 
 const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   if (
@@ -10,6 +11,12 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
     config.headers['Content-Type'] === 'application/x-www-form-urlencoded'
   ) {
     config.data = qs.stringify(config.data)
+  } else if (
+    TRANSFORM_REQUEST_DATA &&
+    config.method === 'post' &&
+    config.headers['Content-Type'] === 'multipart/form-data'
+  ) {
+    config.data = objToFormData(config.data)
   }
   if (config.method === 'get' && config.params) {
     let url = config.url as string

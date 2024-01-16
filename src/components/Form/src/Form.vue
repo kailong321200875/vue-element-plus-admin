@@ -230,7 +230,7 @@ export default defineComponent({
       const { schema = [], isCol } = unref(getProps)
 
       return schema
-        .filter((v) => !v.remove)
+        .filter((v) => !v.remove && !v.hidden)
         .map((item) => {
           // 如果是 Divider 组件，需要自己占用一行
           const isDivider = item.component === 'Divider'

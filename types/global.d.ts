@@ -30,6 +30,7 @@ declare global {
     | 'application/json'
     | 'application/x-www-form-urlencoded'
     | 'multipart/form-data'
+    | 'text/plain'
 
   declare type AxiosMethod = 'get' | 'post' | 'delete' | 'put'
 

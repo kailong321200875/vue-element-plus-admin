@@ -78,17 +78,14 @@ const filterSearchSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
 
   for (let i = 0; i < length; i++) {
     const schemaItem = crudSchema[i]
-    // 判断是否隐藏
-    if (!schemaItem?.search?.remove) {
-      const searchSchemaItem = {
-        component: schemaItem?.search?.component || 'Input',
-        ...schemaItem.search,
-        field: schemaItem.field,
-        label: schemaItem.label
-      }
-
-      searchSchema.push(searchSchemaItem)
+    const searchSchemaItem = {
+      component: schemaItem?.search?.component || 'Input',
+      ...schemaItem.search,
+      field: schemaItem.field,
+      label: schemaItem.label
     }
+
+    searchSchema.push(searchSchemaItem)
   }
 
   return searchSchema
@@ -124,16 +121,14 @@ const filterFormSchema = (crudSchema: CrudSchema[]): FormSchema[] => {
   for (let i = 0; i < length; i++) {
     const formItem = crudSchema[i]
     // 判断是否隐藏
-    if (!formItem?.form?.remove) {
-      const formSchemaItem = {
-        component: formItem?.form?.component || 'Input',
-        ...formItem.form,
-        field: formItem.field,
-        label: formItem.label
-      }
-
-      formSchema.push(formSchemaItem)
+    const formSchemaItem = {
+      component: formItem?.form?.component || 'Input',
+      ...formItem.form,
+      field: formItem.field,
+      label: formItem.label
     }
+
+    formSchema.push(formSchemaItem)
   }
 
   return formSchema

@@ -20,12 +20,8 @@ module.exports = {
     'function-no-unknown': null,
     'no-empty-source': null,
     'named-grid-areas-no-invalid': null,
-    'unicode-bom': 'never',
     'no-descending-specificity': null,
     'font-family-no-missing-generic-family-keyword': null,
-    'declaration-colon-space-after': 'always-single-line',
-    'declaration-colon-space-before': 'never',
-    'declaration-block-trailing-semicolon': null,
     'rule-empty-line-before': [
       'always',
       {
