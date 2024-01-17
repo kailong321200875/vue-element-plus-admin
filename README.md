@@ -86,6 +86,7 @@ pnpm run build:pro
 [CHANGELOG](./CHANGELOG.md)
 
 ## How to contribute
+
 <a href="https://github.com/kailong321200875/vue-element-plus-admin/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=kailong321200875/vue-element-plus-admin" />
 </a>
@@ -138,7 +139,13 @@ If you find this project helpful, welcome sponsorship to show your support~
 
 ## Group
 
-If you want to join the technical communication group for discussion, please add me as a friend
+If you want to join the technical communication group for discussion, please scan the code to join the group or add me as a friend
+
+### Group QR code
+
+<img src="https://github.com/kailong321200875/my-image/raw/master/WechatIMG415.jpg" />
+
+### My QR code
 
 <img src="https://github.com/kailong321200875/my-image/raw/master/me.jpg" />
 

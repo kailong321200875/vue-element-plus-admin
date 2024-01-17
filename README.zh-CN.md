@@ -86,6 +86,7 @@ pnpm run build:pro
 [更新日志](./CHANGELOG.md)
 
 ## 如何贡献
+
 <a href="https://github.com/kailong321200875/vue-element-plus-admin/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=kailong321200875/vue-element-plus-admin" />
 </a>
@@ -138,7 +139,13 @@ pnpm run build:pro
 
 ## 交流群
 
-如果你想进入技术交流群讨论，请添加我为好友
+如果你想进入技术交流群讨论，请扫码加入或者添加我为好友邀请入群
+
+### 群二维码
+
+<img src="https://gitee.com/kailong110120130/my-image/raw/master/WechatIMG415.jpg" />
+
+### 我的二维码
 
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/me.jpg" />
 
