@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.5...v2.5.6) (2024-01-18)
+
+
+### Bug Fixes
+
+* [#396](https://github.com/kailong321200875/vue-element-plus-admin/issues/396) ([9b2b4d4](https://github.com/kailong321200875/vue-element-plus-admin/commit/9b2b4d42a6d5fffd5012506b7cac3892774c8595))
+* [#399](https://github.com/kailong321200875/vue-element-plus-admin/issues/399) ([59d4ed4](https://github.com/kailong321200875/vue-element-plus-admin/commit/59d4ed4dd9d6b6f0d5881b4d466e7a621770ad75))
+* 修复Form组件设置了hidden还是会出现占位空白 ([0f531fd](https://github.com/kailong321200875/vue-element-plus-admin/commit/0f531fd1d0469ddd56327b0a9a7956a0d6076c91))
+* 修复无法登录问题 ([8ce00ab](https://github.com/kailong321200875/vue-element-plus-admin/commit/8ce00ab247de4061cb56f9c2f6d3079abd39aefd))
+* 修复菜单管理回显问题 ([d9ca9ba](https://github.com/kailong321200875/vue-element-plus-admin/commit/d9ca9ba5e8111b7cc3758a8bba14f7fac45c9446))
+* 升级依赖,修复vue警告 ([eafb507](https://github.com/kailong321200875/vue-element-plus-admin/commit/eafb5075d587feac0501a1adae90a176a72c240f))
+
+
+### Docs
+
+* 更新README ([28bd10f](https://github.com/kailong321200875/vue-element-plus-admin/commit/28bd10f26373ad6e139b412e08d1e2afacc4ab92))
+
+
+### Styling
+
+* 调整样式 ([09b96c7](https://github.com/kailong321200875/vue-element-plus-admin/commit/09b96c75425cd2d931e7df4ef3f330b78bf74f9e))
+
+
+### Performance Improvements
+
+* request请求根据ContentType自动转换数据 ([ef9aa62](https://github.com/kailong321200875/vue-element-plus-admin/commit/ef9aa625724b754afc565b8b1f2589376f4d5c50))
+* 使用flex布局，优化section区域min-height的繁琐计算 ([fbb6f9a](https://github.com/kailong321200875/vue-element-plus-admin/commit/fbb6f9ad4b6d5fac9bb95d0a9250b5a318680d99))
+
 ## [2.5.5](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.4...v2.5.5) (2024-01-06)
 
 
