@@ -71,8 +71,14 @@ export default defineComponent({
 
 .@{prefix-cls} {
   background-color: var(--app-content-bg-color);
-  :deep(.@{elNamespace}-scrollbar__view) {
-    height: 100% !important;
+  .@{prefix-cls}-content-scrollbar {
+    & > :deep(.el-scrollbar__wrap) {
+      & > .@{elNamespace}-scrollbar__view {
+        display: flex;
+        height: 100% !important;
+        flex-direction: column;
+      }
+    }
   }
 }
 </style>
