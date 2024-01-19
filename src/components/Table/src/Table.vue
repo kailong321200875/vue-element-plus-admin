@@ -74,7 +74,7 @@ export default defineComponent({
     border: propTypes.bool.def(true),
     size: {
       type: String as PropType<ComponentSize>,
-      validator: (v: ComponentSize) => ['medium', 'small', 'mini'].includes(v)
+      validator: (v: ComponentSize) => ['default', 'small', 'large'].includes(v)
     },
     fit: propTypes.bool.def(true),
     showHeader: propTypes.bool.def(true),
