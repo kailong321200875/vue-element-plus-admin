@@ -143,7 +143,7 @@ pnpm run build:pro
 
 ### 群二维码
 
-<img src="https://gitee.com/kailong110120130/my-image/raw/master/WechatIMG415.jpg" />
+<img src="https://gitee.com/kailong110120130/my-image/raw/master/WechatIMG419.jpg" />
 
 ### 我的二维码
 
