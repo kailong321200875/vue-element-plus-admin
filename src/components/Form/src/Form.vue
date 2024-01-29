@@ -424,7 +424,12 @@ export default defineComponent({
   margin-left: 0 !important;
 }
 
-.@{elNamespace}-form--inline .@{elNamespace}-input {
-  width: 245px;
+.@{elNamespace}-form--inline {
+  .@{elNamespace}-input {
+    min-width: 189.5px;
+  }
+  .@{elNamespace}-select {
+    min-width: 189.5px;
+  }
 }
 </style>
