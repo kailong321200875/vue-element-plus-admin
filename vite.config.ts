@@ -136,7 +136,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false')
     },
     server: {
-      port: 4000,
+      port: 3005,
       proxy: {
         // 选项写法
         '/api': {
