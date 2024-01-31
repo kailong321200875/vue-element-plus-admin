@@ -88,6 +88,9 @@ export default defineComponent({
         } else {
           showTitle.value = !collapse
         }
+      },
+      {
+        immediate: true
       }
     )
 
