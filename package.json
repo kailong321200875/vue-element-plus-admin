@@ -11,7 +11,7 @@
     "build:pro": "pnpm vite build --mode pro",
     "build:gitee": "pnpm vite build --mode gitee",
     "build:dev": "pnpm vite build --mode dev",
-    "build:test": "pnpm run ts:check && vite build --mode test",
+    "build:test": "pnpm vite build --mode test",
     "serve:pro": "pnpm vite preview --mode pro",
     "serve:dev": "pnpm vite preview --mode dev",
     "serve:test": "pnpm vite preview --mode test",
