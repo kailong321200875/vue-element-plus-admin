@@ -1,16 +1,26 @@
 import { defineConfig, toEscapedSelector as e, presetUno, presetIcons } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { loadEnv } from 'vite'
+
+const root = process.cwd()
 
 const createPresetIcons = () => {
+  const isBuild = !!process.argv[4]
+  let env = {} as any
+  if (!isBuild) {
+    env = loadEnv(process.argv[4], root)
+  } else {
+    env = loadEnv(process.argv[3], root)
+  }
   // @ts-ignore
-  if (import.meta.env.VITE_USE_ONLINE_ICON === 'true') {
+  if (env.VITE_USE_ONLINE_ICON === 'true') {
+    return []
+  } else {
     return [
       presetIcons({
         prefix: ''
       })
     ]
-  } else {
-    return []
   }
 }
 

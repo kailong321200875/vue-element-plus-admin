@@ -406,7 +406,15 @@ export default defineComponent({
   margin-left: 0 !important;
 }
 
-.@{elNamespace}-form--inline .@{elNamespace}-input {
-  width: 245px;
+.@{elNamespace}-form--inline {
+  :deep(.el-form-item__content) {
+    & > :first-child {
+      min-width: 229.5px;
+    }
+  }
+  .@{elNamespace}-input-number {
+    // 229.5px是兼容el-input-number的最小宽度,
+    min-width: 229.5px;
+  }
 }
 </style>
