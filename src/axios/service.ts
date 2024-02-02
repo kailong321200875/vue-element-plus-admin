@@ -18,7 +18,10 @@ axiosInstance.interceptors.request.use((res: InternalAxiosRequestConfig) => {
   const controller = new AbortController()
   const url = res.url || ''
   res.signal = controller.signal
-  abortControllerMap.set(import.meta.env.VITE_USE_MOCK === 'true' ? url.replace('/mock', '') : url, controller)
+  abortControllerMap.set(
+    import.meta.env.VITE_USE_MOCK === 'true' ? url.replace('/mock', '') : url,
+    controller
+  )
   return res
 })
 
