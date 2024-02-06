@@ -7,11 +7,6 @@ import { useAppStore } from '@/store/modules/app'
 import { TableColumn } from '../types'
 import ColumnSetting from './ColumnSetting.vue'
 
-const appStore = useAppStore()
-const sizeMap = computed(() => appStore.sizeMap)
-
-const { t } = useI18n()
-
 export default defineComponent({
   name: 'TableActions',
   components: {
@@ -25,6 +20,9 @@ export default defineComponent({
   },
   emits: ['refresh', 'changSize', 'confirm'],
   setup(props, { emit }) {
+    const appStore = useAppStore()
+    const { t } = useI18n()
+    const sizeMap = computed(() => appStore.sizeMap)
     const showSetting = ref(false)
 
     const refresh = () => {
