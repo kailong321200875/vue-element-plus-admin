@@ -210,13 +210,14 @@ const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
 // 所有右键菜单组件的元素
 const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
 
-// 右键菜单装填改变的时候
+// 右键菜单状态改变的时候
 const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
   if (visible) {
     for (const v of unref(itemRefs)) {
       const elDropdownMenuRef = v.elDropdownMenuRef
       if (tagItem.fullPath !== v.tagItem.fullPath) {
         elDropdownMenuRef?.handleClose()
+        setSelectTag(tagItem)
       }
     }
   }
