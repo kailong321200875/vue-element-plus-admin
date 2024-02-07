@@ -89,11 +89,16 @@ export default defineComponent({
           backgroundColor="var(--left-menu-bg-color)"
           textColor="var(--left-menu-text-color)"
           activeTextColor="var(--left-menu-text-active-color)"
+          popperClass={
+            unref(menuMode) === 'vertical'
+              ? `${prefixCls}-popper--vertical`
+              : `${prefixCls}-popper--horizontal`
+          }
           onSelect={menuSelect}
         >
           {{
             default: () => {
-              const { renderMenuItem } = useRenderMenuItem(unref(menuMode))
+              const { renderMenuItem } = useRenderMenuItem()
               return renderMenuItem(unref(routers))
             }
           }}
@@ -123,29 +128,9 @@ export default defineComponent({
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-menu';
 
-// .is-active--after {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 4px;
-//   height: 100%;
-//   background-color: var(--el-color-primary);
-//   content: '';
-// }
-
 .@{prefix-cls} {
   position: relative;
   transition: width var(--transition-time-02);
-
-  // &:after {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   height: 100%;
-  //   width: 1px;
-  //   background-color: var(--el-border-color);
-  //   content: '';
-  // }
 
   :deep(.@{elNamespace}-menu) {
     width: 100% !important;
@@ -155,7 +140,6 @@ export default defineComponent({
     .is-active {
       & > .@{elNamespace}-sub-menu__title {
         color: var(--left-menu-text-active-color) !important;
-        // background-color: var(--left-menu-bg-color) !important;
       }
     }
 
@@ -180,10 +164,6 @@ export default defineComponent({
 
     .@{elNamespace}-menu-item.is-active {
       position: relative;
-
-      // &:after {
-      //   .is-active--after;
-      // }
     }
 
     // 设置子菜单的背景颜色
@@ -203,16 +183,11 @@ export default defineComponent({
     & > .is-active > .@{elNamespace}-sub-menu__title {
       position: relative;
       background-color: var(--left-menu-collapse-bg-active-color) !important;
-
-      // &:after {
-      //   .is-active--after;
-      // }
     }
   }
 
   // 折叠动画的时候，就需要把文字给隐藏掉
   :deep(.horizontal-collapse-transition) {
-    // transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out !important;
     .@{prefix-cls}__title {
       display: none;
     }
@@ -254,23 +229,12 @@ export default defineComponent({
 <style lang="less">
 @prefix-cls: ~'@{namespace}-menu-popper';
 
-// .is-active--after {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   width: 4px;
-//   height: 100%;
-//   background-color: var(--el-color-primary);
-//   content: '';
-// }
-
 .@{prefix-cls}--vertical,
 .@{prefix-cls}--horizontal {
   // 设置选中时子标题的颜色
   .is-active {
     & > .el-sub-menu__title {
       color: var(--left-menu-text-active-color) !important;
-      // background-color: var(--left-menu-bg-color) !important;
     }
   }
 
@@ -291,10 +255,6 @@ export default defineComponent({
     &:hover {
       background-color: var(--left-menu-bg-active-color) !important;
     }
-
-    // &:after {
-    //   .is-active--after;
-    // }
   }
 }
 </style>
