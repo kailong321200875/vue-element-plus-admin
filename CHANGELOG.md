@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.6...v2.6.0) (2024-02-07)
+
+
+### Features
+
+* add vite-plugin-url-copy ([f5ab977](https://github.com/kailong321200875/vue-element-plus-admin/commit/f5ab9776a90e0136b243601571f4619c20da3ccd))
+
+
+### Bug Fixes
+
+* Table组件中size属性的validator设置错误 ([f30e37e](https://github.com/kailong321200875/vue-element-plus-admin/commit/f30e37ee777d4f30d4ae58c4a016a1392d41c25f))
+* Table组件注册为全局组件报错问题，存在对pinia的提前引用 ([1e209a7](https://github.com/kailong321200875/vue-element-plus-admin/commit/1e209a702a5114943a615063eefd0c00f1a6a003))
+* Table组件设置 align="center" 导致横向滚动条位置错误问题 ([22f071d](https://github.com/kailong321200875/vue-element-plus-admin/commit/22f071d9268806f7abd23ab2d08e9392e377a426))
+* 修复 element-plus 2.5版本以上，el-form-item inline模式下，select宽度问题 ([f44e48d](https://github.com/kailong321200875/vue-element-plus-admin/commit/f44e48d08d3f8dd347b829166107dd62e5e18c72))
+* 修复 prettier 报错 ([f5f08f8](https://github.com/kailong321200875/vue-element-plus-admin/commit/f5f08f8f87b063d489f55ea8f19c7c802acf15f7))
+* 修复 useCrudSchemas 详情组件数据结构文案不匹配问题 ([d94fc0a](https://github.com/kailong321200875/vue-element-plus-admin/commit/d94fc0a701bcbc9343ab3e7b630e3db8f6d61623))
+* 修复cutMenu布局刷新样式问题 ([03580b0](https://github.com/kailong321200875/vue-element-plus-admin/commit/03580b0ca0c8d088589ae1d8426b1535f654361b))
+* 修复Menu组件缩略菜单弹窗内样式不统一问题 ([d5dc4e3](https://github.com/kailong321200875/vue-element-plus-admin/commit/d5dc4e32d5978fcd271e841832c9cbf1e0c87db7))
+* 修复TagsView右键菜单逻辑错误 ([901c891](https://github.com/kailong321200875/vue-element-plus-admin/commit/901c891872ef6164e3517eb8e798d6039b7b7f4e))
+* 修复test打包VITE_USE_ONLINE_ICON无效问题 ([a3436a3](https://github.com/kailong321200875/vue-element-plus-admin/commit/a3436a32c6fd746e9e2af67c3cc5a8872aabf919))
+* 修复本地化图标空白问题 ([14ff83a](https://github.com/kailong321200875/vue-element-plus-admin/commit/14ff83affcd267fbdb405d2f46e9f929a1fbfaeb))
+* 修复请求示例中，mock开启时无法取消单个请求的问题 ([d6d70a4](https://github.com/kailong321200875/vue-element-plus-admin/commit/d6d70a443cccb2fe12161b57a1f227d1ed63384a))
+* 修改兼容方式，兼容Form 组件中contentMap中类输入框或下拉选择的所有组件，特殊兼容 InputNumber 组件 ([ab98ceb](https://github.com/kailong321200875/vue-element-plus-admin/commit/ab98ceb85f52c5f7b87c2114997c63f1b80f216f))
+* 更换判断条件 ([b5cb626](https://github.com/kailong321200875/vue-element-plus-admin/commit/b5cb626bfac4df8b1a0741b5000d5b22f6cd4555))
+
+
+### Docs
+
+* 修改群二维码 ([395ff68](https://github.com/kailong321200875/vue-element-plus-admin/commit/395ff68412ff71a9b8ce670c2399da285cfed67d))
+* 更新群二维码 ([c8ccaa8](https://github.com/kailong321200875/vue-element-plus-admin/commit/c8ccaa8d49b5bf7a2784a29af6e126657ce54cda))
+
+
+### Styling
+
+* 添加TabMenu边框 ([feb3d9a](https://github.com/kailong321200875/vue-element-plus-admin/commit/feb3d9a8d07f6444c39ca89f6eb63245c06783a0))
+
 ## [2.5.6](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.5...v2.5.6) (2024-01-18)
 
 
