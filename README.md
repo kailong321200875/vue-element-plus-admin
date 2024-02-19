@@ -143,7 +143,7 @@ If you want to join the technical communication group for discussion, please sca
 
 ### Group QR code
 
-<img src="https://github.com/kailong321200875/my-image/raw/master/WechatIMG425.jpg" />
+<img src="https://github.com/kailong321200875/my-image/raw/master/WechatIMG429.jpg" />
 
 ### My QR code
 
