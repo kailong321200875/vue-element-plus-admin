@@ -8,9 +8,9 @@ const createPresetIcons = () => {
   const isBuild = !!process.argv[4]
   let env = {} as any
   if (!isBuild) {
-    env = loadEnv(process.argv[4], root)
-  } else {
     env = loadEnv(process.argv[3], root)
+  } else {
+    env = loadEnv(process.argv[4], root)
   }
   // @ts-ignore
   if (env.VITE_USE_ONLINE_ICON === 'true') {
@@ -19,6 +19,12 @@ const createPresetIcons = () => {
     return [
       presetIcons({
         prefix: ''
+        // 由于默认加载的是所有的图标，启动会非常慢，可以在这里去加载需要的图标，确保启动速度
+        // collections: {
+        //   carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
+        //   mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
+        //   logos: () => import('@iconify-json/logos/icons.json').then(i => i.default),
+        // }
       })
     ]
   }
