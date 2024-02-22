@@ -200,7 +200,7 @@ export default defineComponent({
         </div>
         <Menu
           class={[
-            '!absolute top-0',
+            '!absolute top-0 z-3000',
             {
               '!left-[var(--tab-menu-min-width)]': unref(collapse),
               '!left-[var(--tab-menu-max-width)]': !unref(collapse),
