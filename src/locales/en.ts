@@ -184,7 +184,10 @@ export default {
     videoPlayer: 'Video player',
     // 表格视频预览
     tableVideoPreview: 'Table video preview',
-    cardTable: 'Card table'
+    cardTable: 'Card table',
+    personalCenter: 'Personal center',
+    personalSetting: 'Personal setting',
+    personal: 'Personal'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'

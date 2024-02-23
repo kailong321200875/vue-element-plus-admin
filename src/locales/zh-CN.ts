@@ -180,7 +180,10 @@ export default {
     imageCropping: '图片裁剪',
     videoPlayer: '视频播放器',
     tableVideoPreview: '表格视频预览',
-    cardTable: '卡片表格'
+    cardTable: '卡片表格',
+    personalCenter: '个人中心',
+    personalSetting: '个人设置',
+    personal: '个人'
   },
   permission: {
     hasPermission: '请设置操作权限值'

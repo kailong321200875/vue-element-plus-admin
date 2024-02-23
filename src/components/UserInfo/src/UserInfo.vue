@@ -7,6 +7,9 @@ import { ref, computed } from 'vue'
 import LockPage from './components/LockPage.vue'
 import { useLockStore } from '@/store/modules/lock'
 import { useUserStore } from '@/store/modules/user'
+import { useRouter } from 'vue-router'
+
+const { push } = useRouter()
 
 const userStore = useUserStore()
 
@@ -34,6 +37,10 @@ const lockScreen = () => {
 const toDocument = () => {
   window.open('https://element-plus-admin-doc.cn/')
 }
+
+const toPage = (path: string) => {
+  push(path)
+}
 </script>
 
 <template>
@@ -50,6 +57,16 @@ const toDocument = () => {
     </div>
     <template #dropdown>
       <ElDropdownMenu>
+        <ElDropdownItem>
+          <div @click="toPage('/personal/personal-center')">
+            {{ t('router.personalCenter') }}
+          </div>
+        </ElDropdownItem>
+        <ElDropdownItem>
+          <div @click="toPage('/personal/personal-setting')">
+            {{ t('router.personalSetting') }}
+          </div>
+        </ElDropdownItem>
         <ElDropdownItem>
           <div @click="toDocument">{{ t('common.document') }}</div>
         </ElDropdownItem>
