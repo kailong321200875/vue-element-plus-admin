@@ -9,7 +9,7 @@ const prefixCls = getPrefixCls('backtop')
 
 <template>
   <ElBacktop
-    :class="`${prefixCls}-backtop`"
+    :class="prefixCls"
     :target="`.${variables.namespace}-layout-content-scrollbar .${variables.elNamespace}-scrollbar__wrap`"
   />
 </template>
