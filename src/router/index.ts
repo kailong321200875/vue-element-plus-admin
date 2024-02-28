@@ -64,16 +64,6 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
           hidden: true,
           canTo: true
         }
-      },
-      {
-        path: 'personal-setting',
-        component: () => import('@/views/Personal/PersonalSetting/PersonalSetting.vue'),
-        name: 'PersonalSetting',
-        meta: {
-          title: t('router.personalSetting'),
-          hidden: true,
-          canTo: true
-        }
       }
     ]
   },

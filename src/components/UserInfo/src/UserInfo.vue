@@ -63,11 +63,6 @@ const toPage = (path: string) => {
           </div>
         </ElDropdownItem>
         <ElDropdownItem>
-          <div @click="toPage('/personal/personal-setting')">
-            {{ t('router.personalSetting') }}
-          </div>
-        </ElDropdownItem>
-        <ElDropdownItem>
           <div @click="toDocument">{{ t('common.document') }}</div>
         </ElDropdownItem>
         <ElDropdownItem divided>

@@ -182,7 +182,6 @@ export default {
     tableVideoPreview: '表格视频预览',
     cardTable: '卡片表格',
     personalCenter: '个人中心',
-    personalSetting: '个人设置',
     personal: '个人'
   },
   permission: {

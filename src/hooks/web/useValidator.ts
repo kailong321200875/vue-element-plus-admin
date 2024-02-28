@@ -51,10 +51,46 @@ export const useValidator = () => {
     }
   }
 
+  const phone = (message?: string): FormItemRule => {
+    return {
+      validator: (_, val, callback) => {
+        if (!val) return callback()
+        if (!/^1[3456789]\d{9}$/.test(val)) {
+          callback(new Error(message || '请输入正确的手机号码'))
+        } else {
+          callback()
+        }
+      }
+    }
+  }
+
+  const email = (message?: string): FormItemRule => {
+    return {
+      validator: (_, val, callback) => {
+        if (!val) return callback()
+        if (!/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test(val)) {
+          callback(new Error(message || '请输入正确的邮箱'))
+        } else {
+          callback()
+        }
+      }
+    }
+  }
+
+  const maxlength = (max: number): FormItemRule => {
+    return {
+      max,
+      message: '长度不能超过' + max + '个字符'
+    }
+  }
+
   return {
     required,
     lengthRange,
     notSpace,
-    notSpecialCharacters
+    notSpecialCharacters,
+    phone,
+    email,
+    maxlength
   }
 }

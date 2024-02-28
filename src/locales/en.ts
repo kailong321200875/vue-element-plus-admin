@@ -186,7 +186,6 @@ export default {
     tableVideoPreview: 'Table video preview',
     cardTable: 'Card table',
     personalCenter: 'Personal center',
-    personalSetting: 'Personal setting',
     personal: 'Personal'
   },
   permission: {
