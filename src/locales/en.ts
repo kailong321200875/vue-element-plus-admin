@@ -186,7 +186,8 @@ export default {
     tableVideoPreview: 'Table video preview',
     cardTable: 'Card table',
     personalCenter: 'Personal center',
-    personal: 'Personal'
+    personal: 'Personal',
+    avatars: 'Avatars'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -562,5 +563,9 @@ export default {
   inputPasswordDemo: {
     title: 'InputPassword',
     inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
+  },
+  avatarsDemo: {
+    title:
+      'Avatar component for avatar list, secondary packaging based on element plus Avatar component'
   }
 }

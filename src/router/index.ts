@@ -390,6 +390,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.videoPlayer')
         }
+      },
+      {
+        path: 'avatars',
+        component: () => import('@/views/Components/Avatars.vue'),
+        name: 'Avatars',
+        meta: {
+          title: t('router.avatars')
+        }
       }
     ]
   },

@@ -324,6 +324,14 @@ const adminList = [
         meta: {
           title: 'router.videoPlayer'
         }
+      },
+      {
+        path: 'avatars',
+        component: 'views/Components/Avatars',
+        name: 'Avatars',
+        meta: {
+          title: 'router.avatars'
+        }
       }
     ]
   },
@@ -686,6 +694,7 @@ const testList: string[] = [
   '/components/waterfall',
   '/components/image-cropping',
   '/components/video-player',
+  '/components/avatars',
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',

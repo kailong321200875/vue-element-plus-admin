@@ -182,7 +182,8 @@ export default {
     tableVideoPreview: '表格视频预览',
     cardTable: '卡片表格',
     personalCenter: '个人中心',
-    personal: '个人'
+    personal: '个人',
+    avatars: '头像列表'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -552,5 +553,8 @@ export default {
   inputPasswordDemo: {
     title: '密码输入框',
     inputPasswordDes: '基于 ElementPlus 的 Input 组件二次封装'
+  },
+  avatarsDemo: {
+    title: '头像列表组件，基于element-plus的Avatar组件二次封装'
   }
 }
