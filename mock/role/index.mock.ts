@@ -332,6 +332,14 @@ const adminList = [
         meta: {
           title: 'router.avatars'
         }
+      },
+      {
+        path: 'i-agree',
+        component: 'views/Components/IAgree',
+        name: 'IAgree',
+        meta: {
+          title: 'router.iAgree'
+        }
       }
     ]
   },
@@ -695,6 +703,7 @@ const testList: string[] = [
   '/components/image-cropping',
   '/components/video-player',
   '/components/avatars',
+  '/components/i-agree',
   'function',
   '/function/multiple-tabs',
   '/function/multiple-tabs-demo/:id',

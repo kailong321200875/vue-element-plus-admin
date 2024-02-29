@@ -119,7 +119,8 @@ export default {
     usernamePlaceholder: '请输入用户名',
     passwordPlaceholder: '请输入密码',
     code: '验证码',
-    codePlaceholder: '请输入验证码'
+    codePlaceholder: '请输入验证码',
+    getCode: '获取验证码'
   },
   router: {
     login: '登录',
@@ -183,7 +184,8 @@ export default {
     cardTable: '卡片表格',
     personalCenter: '个人中心',
     personal: '个人',
-    avatars: '头像列表'
+    avatars: '头像列表',
+    iAgree: '我同意'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -327,7 +329,8 @@ export default {
     lazyLoad: '懒加载',
     upload: '上传',
     userAvatar: '用户头像',
-    iconPicker: '图标选择器'
+    iconPicker: '图标选择器',
+    iAgree: '我同意'
   },
   guideDemo: {
     guide: '引导页',

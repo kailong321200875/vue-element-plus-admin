@@ -1785,6 +1785,25 @@ const schema = reactive<FormSchema[]>([
     component: 'IconPicker',
     label: t('formDemo.default'),
     value: 'tdesign:archway'
+  },
+  {
+    field: 'field89',
+    component: 'Divider',
+    label: t('formDemo.iAgree')
+  },
+  {
+    field: 'field90',
+    component: 'IAgree',
+    label: t('formDemo.default'),
+    componentProps: {
+      text: '我同意《用户协议》',
+      link: [
+        {
+          text: '《用户协议》',
+          url: 'https://element-plus.org/'
+        }
+      ]
+    }
   }
 ])
 </script>

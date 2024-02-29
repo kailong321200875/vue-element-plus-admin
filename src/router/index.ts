@@ -398,6 +398,14 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         meta: {
           title: t('router.avatars')
         }
+      },
+      {
+        path: 'i-agree',
+        component: () => import('@/views/Components/IAgree.vue'),
+        name: 'IAgree',
+        meta: {
+          title: t('router.iAgree')
+        }
       }
     ]
   },

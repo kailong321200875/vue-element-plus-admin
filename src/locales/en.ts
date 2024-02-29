@@ -121,7 +121,8 @@ export default {
     usernamePlaceholder: 'Please input username',
     passwordPlaceholder: 'Please input password',
     code: 'Verification code',
-    codePlaceholder: 'Please input verification code'
+    codePlaceholder: 'Please input verification code',
+    getCode: 'Get code'
   },
   router: {
     login: 'Login',
@@ -187,7 +188,8 @@ export default {
     cardTable: 'Card table',
     personalCenter: 'Personal center',
     personal: 'Personal',
-    avatars: 'Avatars'
+    avatars: 'Avatars',
+    iAgree: 'I agree'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -334,7 +336,8 @@ export default {
     upload: 'Upload',
     // 用户头像
     userAvatar: 'User avatar',
-    iconPicker: 'Icon picker'
+    iconPicker: 'Icon picker',
+    iAgree: 'I agree'
   },
   guideDemo: {
     guide: 'Guide',

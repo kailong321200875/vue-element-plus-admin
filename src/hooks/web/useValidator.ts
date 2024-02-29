@@ -84,6 +84,18 @@ export const useValidator = () => {
     }
   }
 
+  const check = (message?: string): FormItemRule => {
+    return {
+      validator: (_, val, callback) => {
+        if (!val) {
+          callback(new Error(message || t('common.required')))
+        } else {
+          callback()
+        }
+      }
+    }
+  }
+
   return {
     required,
     lengthRange,
@@ -91,6 +103,7 @@ export const useValidator = () => {
     notSpecialCharacters,
     phone,
     email,
-    maxlength
+    maxlength,
+    check
   }
 }
