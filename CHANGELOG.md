@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.6.0...v2.7.0) (2024-02-29)
+
+
+### Features
+
+* IAgree ([abb6906](https://github.com/kailong321200875/vue-element-plus-admin/commit/abb69064dfdb979e2843e3a1b62a2510f6ed3637))
+* 头像列表 ([3bf28a5](https://github.com/kailong321200875/vue-element-plus-admin/commit/3bf28a5d4555bf2a10754474db81d70b04ee432a))
+* 新增个人中心页 ([4146716](https://github.com/kailong321200875/vue-element-plus-admin/commit/4146716655bfbe4ae5b780e5b52a6377efd914ec))
+
+
+### Bug Fixes
+
+* 修复启动慢问题 ([61d7ef6](https://github.com/kailong321200875/vue-element-plus-admin/commit/61d7ef642a027e9e1f942bc84322233be3ca9a82))
+* 修复第四种布局样式层级问题([#424](https://github.com/kailong321200875/vue-element-plus-admin/issues/424)) ([78aeb89](https://github.com/kailong321200875/vue-element-plus-admin/commit/78aeb897fc93cfb998f94578d1fbe4480426843f))
+
+
+### Docs
+
+* 更新群二维码 ([c8c1a1b](https://github.com/kailong321200875/vue-element-plus-admin/commit/c8c1a1b6357105da73e23adff968c3f2fad7d837))
+
 ## [2.6.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.5.6...v2.6.0) (2024-02-07)
 
 
