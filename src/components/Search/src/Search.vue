@@ -225,7 +225,8 @@ const defaultExpose = {
   setSchema,
   setValues,
   delSchema,
-  addSchema
+  addSchema,
+  getFormData
 }
 
 onMounted(() => {

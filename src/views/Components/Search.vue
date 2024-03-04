@@ -10,7 +10,7 @@ import { useSearch } from '@/hooks/web/useSearch'
 const { t } = useI18n()
 
 const { searchRegister, searchMethods } = useSearch()
-const { setSchema, setProps, setValues } = searchMethods
+const { setSchema, setProps, setValues, getFormData } = searchMethods
 
 const treeSelectData = [
   {
@@ -252,7 +252,9 @@ const getDictOne = async () => {
   }
 }
 
-const handleSearch = (data: any) => {
+const handleSearch = async (data: any) => {
+  const formData = await getFormData()
+  console.log(formData)
   console.log(data)
 }
 

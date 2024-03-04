@@ -9,7 +9,7 @@ export interface SearchExpose {
   delSchema: (field: string) => void
   addSchema: (formSchema: FormSchema, index?: number) => void
   setSchema: (schemaProps: FormSetProps[]) => void
-  formModel: Recordable
+  getFormData: <T = Recordable>() => Promise<T>
 }
 
 export { Search }
