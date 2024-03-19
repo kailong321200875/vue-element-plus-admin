@@ -245,6 +245,16 @@ const move = (to: number) => {
   start()
 }
 
+const canShowIcon = (item: RouteLocationNormalizedLoaded) => {
+  if (
+    (item?.matched?.[1]?.meta?.icon && unref(tagsViewIcon)) ||
+    (item?.meta?.affix && unref(tagsViewIcon) && item?.meta?.icon)
+  ) {
+    return true
+  }
+  return false
+}
+
 onMounted(() => {
   initTags()
   addTags()
@@ -357,13 +367,8 @@ watch(
                   class="h-full flex justify-center items-center whitespace-nowrap pl-15px"
                 >
                   <Icon
-                    v-if="
-                      item?.matched &&
-                      item?.matched[1] &&
-                      item?.matched[1]?.meta?.icon &&
-                      tagsViewIcon
-                    "
-                    :icon="item?.matched[1]?.meta?.icon"
+                    v-if="canShowIcon(item)"
+                    :icon="item?.matched?.[1]?.meta?.icon || item?.meta?.icon"
                     :size="12"
                     class="mr-5px"
                   />
