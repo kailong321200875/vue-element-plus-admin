@@ -1052,11 +1052,7 @@ const schema = reactive<FormSchema[]>([
       slots: {
         default: (options: RadioOption[]) => {
           return options?.map((v) => {
-            return (
-              <ElRadio label={v.value}>
-                {v.label}({v.value})
-              </ElRadio>
-            )
+            return <ElRadio label={v.label + `(${v.value})`} value={v.value} />
           })
         }
       }
@@ -1097,11 +1093,7 @@ const schema = reactive<FormSchema[]>([
       slots: {
         default: (options: RadioOption[]) => {
           return options?.map((v) => {
-            return (
-              <ElRadioButton label={v.value}>
-                {v.label}({v.value})
-              </ElRadioButton>
-            )
+            return <ElRadioButton label={v.label + `(${v.value})`} value={v.value} />
           })
         }
       }
@@ -1157,11 +1149,7 @@ const schema = reactive<FormSchema[]>([
       slots: {
         default: (options: CheckboxOption[]) => {
           return options?.map((v) => {
-            return (
-              <ElCheckbox label={v.value}>
-                {v.label}({v.value})
-              </ElCheckbox>
-            )
+            return <ElCheckbox label={v.label + `(${v.value})`} value={v.value} />
           })
         }
       }
@@ -1214,11 +1202,7 @@ const schema = reactive<FormSchema[]>([
       slots: {
         default: (options: CheckboxOption[]) => {
           return options?.map((v) => {
-            return (
-              <ElCheckboxButton label={v.value}>
-                {v.label}({v.value})
-              </ElCheckboxButton>
-            )
+            return <ElCheckboxButton label={v.label + `(${v.value})`} value={v.value} />
           })
         }
       }
