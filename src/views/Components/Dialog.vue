@@ -7,6 +7,7 @@ import { Form, FormSchema } from '@/components/Form'
 import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
 import { useForm } from '@/hooks/web/useForm'
+import Echart from './Echart.vue'
 
 const { required } = useValidator()
 
@@ -113,7 +114,7 @@ const formSubmit = async () => {
     </BaseButton>
 
     <Dialog v-model="dialogVisible" :title="t('dialogDemo.dialog')">
-      <div v-for="v in 10000" :key="v">{{ v }}</div>
+      <Echart />
       <template #footer>
         <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
       </template>
