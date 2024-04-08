@@ -143,7 +143,6 @@ export const setItemComponentSlots = (slotsProps: Recordable = {}): Recordable =
  */
 export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   const model: Recordable = { ...formModel }
-  console.log('【model】：', model)
   schema.map((v) => {
     if (v.remove) {
       delete model[v.field]
