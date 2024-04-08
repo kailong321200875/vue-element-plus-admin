@@ -407,6 +407,11 @@ setTimeout(async () => {
   const formData = await getFormData()
   console.log(formData)
 }, 2000)
+
+const getData = async () => {
+  const formData = await getFormData()
+  console.log(formData)
+}
 </script>
 
 <template>
@@ -451,6 +456,7 @@ setTimeout(async () => {
     <BaseButton @click="inoutValidation">
       {{ `${t('formDemo.input')} ${t('formDemo.formValidation')}` }}
     </BaseButton>
+    <BaseButton @click="getData"> 获取值 </BaseButton>
   </ContentWrap>
   <ContentWrap :title="`UseForm ${t('formDemo.example')}`">
     <Form :schema="schema" @register="formRegister" @validate="formValidate" />

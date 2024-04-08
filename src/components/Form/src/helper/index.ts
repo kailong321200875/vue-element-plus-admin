@@ -143,6 +143,7 @@ export const setItemComponentSlots = (slotsProps: Recordable = {}): Recordable =
  */
 export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   const model: Recordable = { ...formModel }
+  console.log('【model】：', model)
   schema.map((v) => {
     if (v.remove) {
       delete model[v.field]
@@ -156,6 +157,13 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
         hasField !== void 0 ? get(model, v.field) : v.value !== void 0 ? v.value : undefined
       )
       // model[v.field] = hasField ? model[v.field] : v.value !== void 0 ? v.value : undefined
+    }
+  })
+  // 如果 schema 对应的 field 不存在，则删除 model 中的对应的 field
+  Object.keys(model).forEach((key) => {
+    const isExist = schema.some((item) => item.field === key)
+    if (!isExist) {
+      delete model[key]
     }
   })
   return model
