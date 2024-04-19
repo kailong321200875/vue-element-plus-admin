@@ -14,7 +14,8 @@ const defaultRequestInterceptors = (config: InternalAxiosRequestConfig) => {
   } else if (
     TRANSFORM_REQUEST_DATA &&
     config.method === 'post' &&
-    config.headers['Content-Type'] === 'multipart/form-data'
+    config.headers['Content-Type'] === 'multipart/form-data' &&
+    !(config.data instanceof FormData)
   ) {
     config.data = objToFormData(config.data)
   }
