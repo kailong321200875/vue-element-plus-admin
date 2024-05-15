@@ -55,7 +55,8 @@
     "vue-json-pretty": "^2.4.0",
     "vue-router": "^4.3.0",
     "vue-types": "^5.1.1",
-    "xgplayer": "^3.0.14"
+    "xgplayer": "^3.0.14",
+    "monaco-editor": "^0.48.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",

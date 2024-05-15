@@ -202,6 +202,14 @@ const adminList = [
             meta: {
               title: 'router.jsonEditor'
             }
+          },
+          {
+            path: 'code-editor',
+            component: 'views/Components/Editor/CodeEditor',
+            name: 'CodeEditor',
+            meta: {
+              title: 'router.codeEditor'
+            }
           }
         ]
       },
@@ -687,6 +695,7 @@ const testList: string[] = [
   '/components/editor-demo',
   '/components/editor-demo/editor',
   '/components/editor-demo/json-editor',
+  '/components/editor-demo/code-editor',
   '/components/search',
   '/components/descriptions',
   '/components/image-viewer',

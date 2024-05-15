@@ -151,6 +151,7 @@ export default {
     editor: '编辑器',
     richText: '富文本',
     jsonEditor: 'JSON编辑器',
+    codeEditor: '代码编辑器',
     dialog: '弹窗',
     imageViewer: '图片预览',
     descriptions: '描述',
@@ -464,7 +465,9 @@ export default {
     richText: '富文本',
     richTextDes: '基于 wangeditor 二次封装',
     jsonEditor: 'JSON编辑器',
-    jsonEditorDes: '基于 vue-json-pretty 二次封装'
+    jsonEditorDes: '基于 vue-json-pretty 二次封装',
+    codeEditor: '代码编辑器',
+    codeEditorDes: '基于 monaco-editor 二次封装'
   },
   dialogDemo: {
     dialog: '弹窗',
