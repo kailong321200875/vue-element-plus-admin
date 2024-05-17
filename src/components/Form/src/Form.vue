@@ -158,7 +158,8 @@ export default defineComponent({
         {
           field: item.field,
           path:
-            item.component === ComponentNameEnum.TREE_SELECT
+            item.component === ComponentNameEnum.TREE_SELECT ||
+            item.component === ComponentNameEnum.TRANSFER
               ? 'componentProps.data'
               : 'componentProps.options',
           value: options
