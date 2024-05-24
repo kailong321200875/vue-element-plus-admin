@@ -35,9 +35,6 @@ watch(
   (val: string) => {
     if (val === unref(valueHtml)) return
     valueHtml.value = val
-  },
-  {
-    immediate: true
   }
 )
 
@@ -51,6 +48,7 @@ watch(
 
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor
+  valueHtml.value = props.modelValue
 }
 
 // 编辑器配置
