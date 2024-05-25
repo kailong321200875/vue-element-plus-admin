@@ -261,6 +261,7 @@ const onFormValidate = (prop: FormItemProp, isValid: boolean, message: string) =
         :show-expand="getProps.showExpand"
         :search-loading="getProps.searchLoading"
         :reset-loading="getProps.resetLoading"
+        :visible="visible"
         @expand="setVisible"
         @reset="reset"
         @search="search"
