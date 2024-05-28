@@ -126,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-menu';
+@prefix-cls: ~'@{adminNamespace}-menu';
 
 .@{prefix-cls} {
   position: relative;
@@ -227,7 +227,7 @@ export default defineComponent({
 </style>
 
 <style lang="less">
-@prefix-cls: ~'@{namespace}-menu-popper';
+@prefix-cls: ~'@{adminNamespace}-menu-popper';
 
 .@{prefix-cls}--vertical,
 .@{prefix-cls}--horizontal {

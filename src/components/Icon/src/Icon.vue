@@ -53,7 +53,7 @@ const getIconifyStyle = computed(() => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-icon';
+@prefix-cls: ~'@{adminNamespace}-icon';
 
 .@{prefix-cls},
 .iconify {

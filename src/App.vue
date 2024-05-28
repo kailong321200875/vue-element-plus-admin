@@ -34,7 +34,7 @@ ElNotification({
 </template>
 
 <style lang="less">
-@prefix-cls: ~'@{namespace}-app';
+@prefix-cls: ~'@{adminNamespace}-app';
 
 .size {
   width: 100%;

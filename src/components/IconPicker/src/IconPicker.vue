@@ -182,7 +182,7 @@ const inputClear = () => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-icon-picker';
+@prefix-cls: ~'@{adminNamespace}-icon-picker';
 
 .@{prefix-cls} {
   :deep(.@{elNamespace}-input__wrapper) {

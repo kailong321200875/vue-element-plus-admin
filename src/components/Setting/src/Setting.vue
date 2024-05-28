@@ -249,7 +249,7 @@ const themeChange = () => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-setting';
+@prefix-cls: ~'@{adminNamespace}-setting';
 
 .@{prefix-cls} {
   border-radius: 6px 0 0 6px;
