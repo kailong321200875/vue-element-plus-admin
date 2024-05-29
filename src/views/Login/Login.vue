@@ -99,7 +99,7 @@ const themeChange = () => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-login';
+@prefix-cls: ~'@{adminNamespace}-login';
 
 .@{prefix-cls} {
   overflow: auto;

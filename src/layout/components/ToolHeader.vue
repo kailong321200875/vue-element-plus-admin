@@ -74,7 +74,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-tool-header';
+@prefix-cls: ~'@{adminNamespace}-tool-header';
 
 .@{prefix-cls} {
   transition: left var(--transition-time-02);

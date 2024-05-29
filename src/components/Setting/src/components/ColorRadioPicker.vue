@@ -55,7 +55,7 @@ watch(
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-color-radio-picker';
+@prefix-cls: ~'@{adminNamespace}-color-radio-picker';
 
 .@{prefix-cls} {
   .is-active {

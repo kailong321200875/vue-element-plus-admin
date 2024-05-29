@@ -67,7 +67,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-layout';
+@prefix-cls: ~'@{adminNamespace}-layout';
 
 .@{prefix-cls} {
   background-color: var(--app-content-bg-color);

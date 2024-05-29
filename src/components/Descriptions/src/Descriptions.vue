@@ -163,7 +163,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-descriptions';
+@prefix-cls: ~'@{adminNamespace}-descriptions';
 
 :deep(.@{elNamespace}-descriptions__header) {
   display: none !important;

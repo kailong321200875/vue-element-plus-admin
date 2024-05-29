@@ -69,7 +69,7 @@ const filterData = computed(() => props.data.slice(0, props.max))
 </template>
 
 <style scoped lang="less">
-@prefix-cls: ~'@{namespace}-avatars';
+@prefix-cls: ~'@{adminNamespace}-avatars';
 
 .@{prefix-cls} {
   .@{elNamespace}-avatar + .@{elNamespace}-avatar {

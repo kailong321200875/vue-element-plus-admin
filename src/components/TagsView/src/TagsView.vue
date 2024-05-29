@@ -478,7 +478,7 @@ watch(
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-tags-view';
+@prefix-cls: ~'@{adminNamespace}-tags-view';
 
 .@{prefix-cls} {
   :deep(.@{elNamespace}-scrollbar__view) {

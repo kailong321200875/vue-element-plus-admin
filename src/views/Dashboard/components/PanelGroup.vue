@@ -155,7 +155,7 @@ getCount()
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-panel';
+@prefix-cls: ~'@{adminNamespace}-panel';
 
 .@{prefix-cls} {
   &__item {
@@ -176,7 +176,7 @@ getCount()
     }
 
     &:hover {
-      :deep(.@{namespace}-icon) {
+      :deep(.@{adminNamespace}-icon) {
         color: #fff !important;
       }
       .@{prefix-cls}__item--icon {

@@ -60,7 +60,7 @@ const layout = computed(() => appStore.getLayout)
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-layout-radio-picker';
+@prefix-cls: ~'@{adminNamespace}-layout-radio-picker';
 
 .@{prefix-cls} {
   &__classic {

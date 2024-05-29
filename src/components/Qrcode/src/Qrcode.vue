@@ -238,7 +238,7 @@ const disabledClick = () => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-qrcode';
+@prefix-cls: ~'@{adminNamespace}-qrcode';
 
 .@{prefix-cls} {
   &--disabled {
