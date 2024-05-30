@@ -41,10 +41,12 @@ export default [
                   title: '分析页',
                   permissionList: [
                     {
+                      id: 1,
                       label: '新增',
                       value: 'add'
                     },
                     {
+                      id: 2,
                       label: '编辑',
                       value: 'edit'
                     }
@@ -66,14 +68,17 @@ export default [
                   title: '工作台',
                   permissionList: [
                     {
+                      id: 1,
                       label: '新增',
                       value: 'add'
                     },
                     {
+                      id: 2,
                       label: '编辑',
                       value: 'edit'
                     },
                     {
+                      id: 3,
                       label: '删除',
                       value: 'delete'
                     }
@@ -229,18 +234,22 @@ export default [
                   title: '综合示例-弹窗',
                   permissionList: [
                     {
+                      id: 1,
                       label: '新增',
                       value: 'add'
                     },
                     {
+                      id: 2,
                       label: '编辑',
                       value: 'edit'
                     },
                     {
+                      id: 3,
                       label: '删除',
                       value: 'delete'
                     },
                     {
+                      id: 4,
                       label: '查看',
                       value: 'view'
                     }
@@ -260,18 +269,22 @@ export default [
                   title: '综合示例-页面',
                   permissionList: [
                     {
+                      id: 1,
                       label: '新增',
-                      value: 'edit'
+                      value: 'add'
                     },
                     {
+                      id: 2,
                       label: '编辑',
                       value: 'edit'
                     },
                     {
+                      id: 3,
                       label: '删除',
                       value: 'delete'
                     },
                     {
+                      id: 4,
                       label: '查看',
                       value: 'view'
                     }

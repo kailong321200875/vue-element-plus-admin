@@ -5,7 +5,7 @@ import { PropType, reactive, watch, ref, unref } from 'vue'
 import { useValidator } from '@/hooks/web/useValidator'
 import { useI18n } from '@/hooks/web/useI18n'
 import { getMenuListApi } from '@/api/menu'
-import { ElTag } from 'element-plus'
+import { ElButton, ElInput, ElPopconfirm, ElTable, ElTableColumn, ElTag } from 'element-plus'
 import AddButtonPermission from './AddButtonPermission.vue'
 import { BaseButton } from '@/components/Button'
 import { cloneDeep } from 'lodash-es'
@@ -29,7 +29,23 @@ const handleClose = async (tag: any) => {
   })
 }
 
+const handleEdit = async (row: any) => {
+  // 深拷贝当前行数据到编辑行
+  permissionEditingRow.value = { ...row }
+}
+
+const handleSave = async () => {
+  const formData = await getFormData()
+  const index = formData?.permissionList?.findIndex((x) => x.id === permissionEditingRow.value.id)
+  if (index !== -1) {
+    formData.permissionList[index] = { ...permissionEditingRow.value }
+    permissionEditingRow.value = null // 重置编辑状态
+  }
+}
+
 const showDrawer = ref(false)
+// 存储正在编辑的行的数据
+const permissionEditingRow = ref<any>(null)
 
 const formSchema = reactive<FormSchema[]>([
   {
@@ -196,16 +212,73 @@ const formSchema = reactive<FormSchema[]>([
       slots: {
         default: (data: any) => (
           <>
-            {data?.permissionList?.map((v) => {
-              return (
-                <ElTag class="mr-1" key={v.value} closable onClose={() => handleClose(v)}>
-                  {v.label}
-                </ElTag>
-              )
-            })}
-            <BaseButton type="primary" size="small" onClick={() => (showDrawer.value = true)}>
+            <BaseButton
+              class="m-t-5px"
+              type="primary"
+              size="small"
+              onClick={() => (showDrawer.value = true)}
+            >
               添加权限
             </BaseButton>
+            <ElTable data={data?.permissionList}>
+              <ElTableColumn type="index" prop="id" />
+              <ElTableColumn
+                prop="value"
+                label="Value"
+                v-slots={{
+                  default: ({ row }: any) =>
+                    permissionEditingRow.value && permissionEditingRow.value.id === row.id ? (
+                      <ElInput v-model={permissionEditingRow.value.value} size="small" />
+                    ) : (
+                      <span>{row.value}</span>
+                    )
+                }}
+              />
+              <ElTableColumn
+                prop="label"
+                label="Label"
+                v-slots={{
+                  default: ({ row }: any) =>
+                    permissionEditingRow.value && permissionEditingRow.value.id === row.id ? (
+                      <ElInput v-model={permissionEditingRow.value.label} size="small" />
+                    ) : (
+                      <ElTag class="mr-1" key={row.value}>
+                        {row.label}
+                      </ElTag>
+                    )
+                }}
+              />
+              <ElTableColumn
+                label="Operations"
+                width="180"
+                v-slots={{
+                  default: ({ row }: any) =>
+                    permissionEditingRow.value && permissionEditingRow.value.id === row.id ? (
+                      <ElButton size="small" type="primary" onClick={handleSave}>
+                        确定
+                      </ElButton>
+                    ) : (
+                      <>
+                        <ElButton size="small" type="primary" onClick={() => handleEdit(row)}>
+                          编辑
+                        </ElButton>
+                        <ElPopconfirm
+                          title="Are you sure to delete this?"
+                          onConfirm={() => handleClose(row)}
+                        >
+                          {{
+                            reference: () => (
+                              <ElButton size="small" type="danger">
+                                删除
+                              </ElButton>
+                            )
+                          }}
+                        </ElPopconfirm>
+                      </>
+                    )
+                }}
+              />
+            </ElTable>
           </>
         )
       }
