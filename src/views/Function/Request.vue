@@ -171,4 +171,3 @@ const tokenExpired = () => {
     <BaseButton type="primary" @click="tokenExpired">token过期</BaseButton>
   </ContentWrap>
 </template>
-@/axios
