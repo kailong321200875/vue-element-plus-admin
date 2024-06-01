@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.7.0...v2.8.0) (2024-06-01)
+
+
+### Types
+
+* 修复Table类型错误 ([79b917a](https://github.com/kailong321200875/vue-element-plus-admin/commit/79b917af4957aa4b47db46e034385477828f5fca))
+
+
+### Features
+
+* Add a new component CodeEditor ([#466](https://github.com/kailong321200875/vue-element-plus-admin/issues/466)) ([00989b7](https://github.com/kailong321200875/vue-element-plus-admin/commit/00989b7ac9b92685be495c15c1f11dd2546eb6be))
+
+
+### Bug Fixes
+
+* [#427](https://github.com/kailong321200875/vue-element-plus-admin/issues/427) ([a00d76e](https://github.com/kailong321200875/vue-element-plus-admin/commit/a00d76e4149b430e19c985a78b9d89ce992dba3f))
+* [#428](https://github.com/kailong321200875/vue-element-plus-admin/issues/428) ([97a1cd4](https://github.com/kailong321200875/vue-element-plus-admin/commit/97a1cd41de82dad8855c95cec6bb106541fd53a7))
+* [#432](https://github.com/kailong321200875/vue-element-plus-admin/issues/432) ([df5b716](https://github.com/kailong321200875/vue-element-plus-admin/commit/df5b7166b48b7e0e77a1fb10ab6dd353d186547e))
+* [#438](https://github.com/kailong321200875/vue-element-plus-admin/issues/438) ([f977fdb](https://github.com/kailong321200875/vue-element-plus-admin/commit/f977fdb05d018ee07baeb6db454b9a77acb89f07))
+* [#451](https://github.com/kailong321200875/vue-element-plus-admin/issues/451) ([08665a3](https://github.com/kailong321200875/vue-element-plus-admin/commit/08665a35ac606549322039d073daf8072053eef4))
+* [#465](https://github.com/kailong321200875/vue-element-plus-admin/issues/465) ([8996e01](https://github.com/kailong321200875/vue-element-plus-admin/commit/8996e01ca35bfad8c13bef321f86bdd711202e12))
+* less 变量命名与 css 关键字冲突 [#475](https://github.com/kailong321200875/vue-element-plus-admin/issues/475) ([1c56e13](https://github.com/kailong321200875/vue-element-plus-admin/commit/1c56e13c5523a86d77464eccee26b5408db028c7))
+* 修复 lint-staged 中 prettier 以 json 格式美化代码的无效命令问题 ([7b2eae1](https://github.com/kailong321200875/vue-element-plus-admin/commit/7b2eae1d6aa813e162c3ad4a0553d2df480c765f))
+* 修复 Transfer 组件 optionApi 不生效 ([198718b](https://github.com/kailong321200875/vue-element-plus-admin/commit/198718b8749a036263d756f928b5dd38cfb47701))
+* 修复富文本编辑器初始化时, 报错 Error: Cannot find a descendant at path [0,1] in node ([a65d5fd](https://github.com/kailong321200875/vue-element-plus-admin/commit/a65d5fd20334307a56cb469361e8f9bd838510c9))
+* 修复组件-查询界面：收起和展开功能bug [#473](https://github.com/kailong321200875/vue-element-plus-admin/issues/473) ([8e58eae](https://github.com/kailong321200875/vue-element-plus-admin/commit/8e58eaeed6ea9beb749afaed75edc5a4f6d9867a))
+
+
+### Docs
+
+* 更新群二维码 ([2c89dbc](https://github.com/kailong321200875/vue-element-plus-admin/commit/2c89dbc884c38511d40c92480f65aef46511cefb))
+
+
+### Performance Improvements
+
+* 已经是 FormData 对象的不用再次转换 ([d582ad4](https://github.com/kailong321200875/vue-element-plus-admin/commit/d582ad428f4b378014d063635c4afbbad944a71a))
+
 ## [2.7.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.6.0...v2.7.0) (2024-02-29)
 
 
