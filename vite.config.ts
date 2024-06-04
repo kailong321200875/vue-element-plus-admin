@@ -135,7 +135,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           }
         }
       },
-      cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false')
+      cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false'),
+      cssTarget: ['chrome31']
     },
     server: {
       port: 4000,

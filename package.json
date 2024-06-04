@@ -44,6 +44,7 @@
     "element-plus": "2.7.4",
     "lodash-es": "^4.17.21",
     "mitt": "^3.0.1",
+    "monaco-editor": "^0.49.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
@@ -56,8 +57,7 @@
     "vue-json-pretty": "^2.4.0",
     "vue-router": "^4.3.2",
     "vue-types": "^5.1.2",
-    "xgplayer": "^3.0.18",
-    "monaco-editor": "^0.49.0"
+    "xgplayer": "^3.0.18"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
