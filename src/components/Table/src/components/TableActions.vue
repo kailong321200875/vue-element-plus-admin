@@ -46,7 +46,7 @@ export default defineComponent({
         <div class="text-right h-28px flex items-center justify-end">
           <div title="刷新" class="w-30px h-20px flex items-center justify-end" onClick={refresh}>
             <Icon
-              icon="ant-design:sync-outlined"
+              icon="vi-ant-design:sync-outlined"
               class="cursor-pointer"
               hover-color="var(--el-color-primary)"
             />
@@ -58,7 +58,7 @@ export default defineComponent({
                 return (
                   <div title="尺寸" class="w-30px h-20px flex items-center justify-end">
                     <Icon
-                      icon="ant-design:column-height-outlined"
+                      icon="vi-ant-design:column-height-outlined"
                       class="cursor-pointer"
                       hover-color="var(--el-color-primary)"
                     />
@@ -91,7 +91,7 @@ export default defineComponent({
             onClick={showColumnSetting}
           >
             <Icon
-              icon="ant-design:setting-outlined"
+              icon="vi-ant-design:setting-outlined"
               class="cursor-pointer"
               hover-color="var(--el-color-primary)"
             />

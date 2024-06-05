@@ -34,7 +34,7 @@ const onExpand = () => {
     v-if="showSearch"
     type="primary"
     :loading="searchLoading"
-    :icon="useIcon({ icon: 'ep:search' })"
+    :icon="useIcon({ icon: 'vi-ep:search' })"
     @click="onSearch"
   >
     {{ t('common.query') }}
@@ -43,14 +43,14 @@ const onExpand = () => {
     v-if="showReset"
     :loading="resetLoading"
     plain
-    :icon="useIcon({ icon: 'ep:refresh-right' })"
+    :icon="useIcon({ icon: 'vi-ep:refresh-right' })"
     @click="onReset"
   >
     {{ t('common.reset') }}
   </BaseButton>
   <BaseButton
     v-if="showExpand"
-    :icon="useIcon({ icon: visible ? 'ep:arrow-up' : 'ep:arrow-down' })"
+    :icon="useIcon({ icon: visible ? 'vi-ep:arrow-up' : 'vi-ep:arrow-down' })"
     text
     @click="onExpand"
   >

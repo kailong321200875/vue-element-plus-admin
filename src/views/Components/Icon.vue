@@ -44,10 +44,10 @@ const alarmClock = useIcon({ icon: 'ep:alarm-clock' })
   </ContentWrap>
   <ContentWrap :title="t('iconDemo.iconify')">
     <div class="flex justify-between">
-      <Icon icon="ep:aim" />
-      <Icon icon="ep:alarm-clock" />
-      <Icon icon="ep:baseball" />
-      <Icon icon="ep:chat-line-round" />
+      <Icon icon="vi-ep:aim" />
+      <Icon icon="vi-ep:alarm-clock" />
+      <Icon icon="vi-ep:baseball" />
+      <Icon icon="vi-ep:chat-line-round" />
     </div>
   </ContentWrap>
   <ContentWrap title="useIcon">

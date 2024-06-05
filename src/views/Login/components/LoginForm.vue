@@ -148,28 +148,28 @@ const schema = reactive<FormSchema[]>([
             <>
               <div class="flex justify-between w-[100%]">
                 <Icon
-                  icon="ant-design:github-filled"
+                  icon="vi-ant-design:github-filled"
                   size={iconSize}
                   class="cursor-pointer ant-icon"
                   color={iconColor}
                   hoverColor={hoverColor}
                 />
                 <Icon
-                  icon="ant-design:wechat-filled"
+                  icon="vi-ant-design:wechat-filled"
                   size={iconSize}
                   class="cursor-pointer ant-icon"
                   color={iconColor}
                   hoverColor={hoverColor}
                 />
                 <Icon
-                  icon="ant-design:alipay-circle-filled"
+                  icon="vi-ant-design:alipay-circle-filled"
                   size={iconSize}
                   color={iconColor}
                   hoverColor={hoverColor}
                   class="cursor-pointer ant-icon"
                 />
                 <Icon
-                  icon="ant-design:weibo-circle-filled"
+                  icon="vi-ant-design:weibo-circle-filled"
                   size={iconSize}
                   color={iconColor}
                   hoverColor={hoverColor}

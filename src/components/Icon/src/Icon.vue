@@ -4,6 +4,7 @@ import { ElIcon } from 'element-plus'
 import { propTypes } from '@/utils/propTypes'
 import { useDesign } from '@/hooks/web/useDesign'
 import { Icon } from '@iconify/vue'
+import { ICON_PREFIX } from '@/constants'
 
 const { getPrefixCls } = useDesign()
 
@@ -37,6 +38,10 @@ const getIconifyStyle = computed(() => {
     color
   }
 })
+
+const getIconName = computed(() => {
+  return props.icon.startsWith(ICON_PREFIX) ? props.icon.replace(ICON_PREFIX, '') : props.icon
+})
 </script>
 
 <template>
@@ -46,7 +51,7 @@ const getIconifyStyle = computed(() => {
     </svg>
 
     <template v-else>
-      <Icon v-if="isUseOnline" :icon="icon" :style="getIconifyStyle" />
+      <Icon v-if="isUseOnline" :icon="getIconName" :style="getIconifyStyle" />
       <div v-else :class="`${icon} iconify`" :style="getIconifyStyle"></div>
     </template>
   </ElIcon>

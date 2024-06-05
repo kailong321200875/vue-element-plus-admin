@@ -1,6 +1,7 @@
 import { defineConfig, toEscapedSelector as e, presetUno, presetIcons } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { loadEnv } from 'vite'
+import { ICON_PREFIX } from './src/constants'
 
 const root = process.cwd()
 
@@ -18,13 +19,8 @@ const createPresetIcons = () => {
   } else {
     return [
       presetIcons({
-        prefix: ''
-        // 由于默认加载的是所有的图标，启动会非常慢，可以在这里去加载需要的图标，确保启动速度
-        // collections: {
-        //   carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
-        //   mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
-        //   logos: () => import('@iconify-json/logos/icons.json').then(i => i.default),
-        // }
+        autoInstall: false,
+        prefix: ICON_PREFIX
       })
     ]
   }

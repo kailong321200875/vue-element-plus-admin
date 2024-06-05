@@ -49,7 +49,7 @@ watch(
       }"
       @click="colorVal = item"
     >
-      <Icon v-if="colorVal === item" color="#fff" icon="ep:check" :size="16" />
+      <Icon v-if="colorVal === item" color="#fff" icon="vi-ep:check" :size="16" />
     </span>
   </div>
 </template>

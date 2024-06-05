@@ -87,7 +87,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Dashboard',
     meta: {
       title: t('router.dashboard'),
-      icon: 'ant-design:dashboard-filled',
+      icon: 'vi-ant-design:dashboard-filled',
       alwaysShow: true
     },
     children: [
@@ -123,7 +123,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'DocumentLink',
         meta: {
           title: t('router.document'),
-          icon: 'clarity:document-solid'
+          icon: 'vi-clarity:document-solid'
         }
       }
     ]
@@ -140,7 +140,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
         name: 'GuideDemo',
         meta: {
           title: t('router.guide'),
-          icon: 'cib:telegram-plane'
+          icon: 'vi-cib:telegram-plane'
         }
       }
     ]
@@ -151,7 +151,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'ComponentsDemo',
     meta: {
       title: t('router.component'),
-      icon: 'bx:bxs-component',
+      icon: 'vi-bx:bxs-component',
       alwaysShow: true
     },
     children: [
@@ -416,7 +416,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Function',
     meta: {
       title: t('router.function'),
-      icon: 'ri:function-fill',
+      icon: 'vi-ri:function-fill',
       alwaysShow: true
     },
     children: [
@@ -465,7 +465,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Hooks',
     meta: {
       title: 'hooks',
-      icon: 'ic:outline-webhook',
+      icon: 'vi-ic:outline-webhook',
       alwaysShow: true
     },
     children: [
@@ -526,7 +526,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Level',
     meta: {
       title: t('router.level'),
-      icon: 'carbon:skill-level-advanced'
+      icon: 'vi-carbon:skill-level-advanced'
     },
     children: [
       {
@@ -585,7 +585,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Example',
     meta: {
       title: t('router.example'),
-      icon: 'ep:management',
+      icon: 'vi-ep:management',
       alwaysShow: true
     },
     children: [
@@ -653,7 +653,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Error',
     meta: {
       title: t('router.errorPage'),
-      icon: 'ci:error',
+      icon: 'vi-ci:error',
       alwaysShow: true
     },
     children: [
@@ -690,7 +690,7 @@ export const asyncRouterMap: AppRouteRecordRaw[] = [
     name: 'Authorization',
     meta: {
       title: t('router.authorization'),
-      icon: 'eos-icons:role-binding',
+      icon: 'vi-eos-icons:role-binding',
       alwaysShow: true
     },
     children: [

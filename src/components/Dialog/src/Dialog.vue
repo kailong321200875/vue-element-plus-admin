@@ -78,14 +78,16 @@ const dialogStyle = computed(() => {
           <Icon
             v-if="fullscreen"
             class="cursor-pointer is-hover !h-54px mr-10px"
-            :icon="isFullscreen ? 'radix-icons:exit-full-screen' : 'radix-icons:enter-full-screen'"
+            :icon="
+              isFullscreen ? 'vi-radix-icons:exit-full-screen' : 'vi-radix-icons:enter-full-screen'
+            "
             color="var(--el-color-info)"
             hover-color="var(--el-color-primary)"
             @click="toggleFull"
           />
           <Icon
             class="cursor-pointer is-hover !h-54px"
-            icon="ep:close"
+            icon="vi-ep:close"
             hover-color="var(--el-color-primary)"
             color="var(--el-color-info)"
             @click="close"

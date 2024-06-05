@@ -75,7 +75,7 @@ function handleShowForm(show = false) {
       @click="handleShowForm(false)"
       v-show="showDate"
     >
-      <Icon icon="ep:lock" />
+      <Icon icon="vi-ep:lock" />
       <span>{{ t('lock.unlock') }}</span>
     </div>
 

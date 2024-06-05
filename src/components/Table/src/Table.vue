@@ -406,7 +406,7 @@ export default defineComponent({
           ) : videoPreview.includes(field) ? (
             <BaseButton
               type="primary"
-              icon={<Icon icon="ep:video-play" />}
+              icon={<Icon icon="vi-ep:video-play" />}
               onClick={() => {
                 createVideoViewer({
                   url

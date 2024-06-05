@@ -22,7 +22,7 @@ defineProps({
           <template #content>
             <div class="max-w-200px">{{ message }}</div>
           </template>
-          <Icon class="ml-5px" icon="bi:question-circle-fill" :size="14" />
+          <Icon class="ml-5px" icon="vi-bi:question-circle-fill" :size="14" />
         </ElTooltip>
         <div class="flex pl-20px flex-grow">
           <slot name="header"></slot>

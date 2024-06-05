@@ -3,6 +3,7 @@ import fs from 'fs-extra'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 import pkg from '../package.json'
+import { ICON_PREFIX } from '../src/constants'
 
 interface Icon {
   name: string
@@ -52,11 +53,12 @@ async function generateIcon() {
         const data = await fs.readJSON(path.join(dir, 'json', `${info.id}.json`))
         if (data) {
           const { prefix } = data
-          const icons = Object.keys(data.icons).map((item) => `${prefix}:${item}`)
+          const prefixName = `${ICON_PREFIX}${prefix}`
+          const icons = Object.keys(data.icons).map((item) => `${prefixName}:${item}`)
 
           await fs.writeFileSync(
             path.join('src/components/IconPicker/src/data', `icons.${prefix}.ts`),
-            `export default ${JSON.stringify({ name: info.name, prefix, icons })}`
+            `export default ${JSON.stringify({ name: info.name, prefix: prefixName, icons })}`
           )
           // ↓分类处理完成，push类型名称
           prefixSet.push(prefix)

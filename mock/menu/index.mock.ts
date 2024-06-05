@@ -26,7 +26,7 @@ export default [
               title: '首页',
               meta: {
                 title: '首页',
-                icon: 'ant-design:dashboard-filled',
+                icon: 'vi-ant-design:dashboard-filled',
                 alwaysShow: true
               },
               children: [
@@ -90,7 +90,7 @@ export default [
               component: '#',
               meta: {
                 title: '文档',
-                icon: 'clarity:document-solid'
+                icon: 'vi-clarity:document-solid'
               },
               name: 'ExternalLink',
               status: Mock.Random.integer(0, 1),
@@ -125,7 +125,7 @@ export default [
               title: '菜单',
               meta: {
                 title: '菜单',
-                icon: 'carbon:skill-level-advanced'
+                icon: 'vi-carbon:skill-level-advanced'
               },
               children: [
                 {
@@ -214,7 +214,7 @@ export default [
               title: '综合示例',
               meta: {
                 title: '综合示例',
-                icon: 'ep:management',
+                icon: 'vi-ep:management',
                 alwaysShow: true
               },
               children: [

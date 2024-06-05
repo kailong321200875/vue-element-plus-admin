@@ -35,7 +35,7 @@ const keyClick = (key: string) => {
     ]"
   >
     <div v-if="title" :class="[`${prefixCls}__header`, 'flex items-center']">
-      <Icon icon="bi:exclamation-circle-fill" :size="22" color="var(--el-color-primary)" />
+      <Icon icon="vi-bi:exclamation-circle-fill" :size="22" color="var(--el-color-primary)" />
       <span :class="[`${prefixCls}__title`, 'pl-5px text-16px font-bold']">{{ title }}</span>
     </div>
     <div :class="`${prefixCls}__content`">
