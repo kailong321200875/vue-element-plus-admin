@@ -89,7 +89,7 @@ export default defineComponent({
       type: [Function, Object] as PropType<
         (row: Recordable, rowIndex: number) => Recordable | CSSProperties
       >,
-      default: () => undefined
+      default: undefined
     },
     cellClassName: {
       type: [Function, String] as PropType<
@@ -101,7 +101,7 @@ export default defineComponent({
       type: [Function, Object] as PropType<
         (row: Recordable, column: any, rowIndex: number) => Recordable | CSSProperties
       >,
-      default: () => undefined
+      default: undefined
     },
     headerRowClassName: {
       type: [Function, String] as PropType<(row: Recordable, rowIndex: number) => string | string>,
@@ -111,7 +111,7 @@ export default defineComponent({
       type: [Function, Object] as PropType<
         (row: Recordable, rowIndex: number) => Recordable | CSSProperties
       >,
-      default: () => undefined
+      default: undefined
     },
     headerCellClassName: {
       type: [Function, String] as PropType<
@@ -123,14 +123,14 @@ export default defineComponent({
       type: [Function, Object] as PropType<
         (row: Recordable, column: any, rowIndex: number) => Recordable | CSSProperties
       >,
-      default: () => undefined
+      default: undefined
     },
     rowKey: propTypes.string.def('id'),
     emptyText: propTypes.string.def('No Data'),
     defaultExpandAll: propTypes.bool.def(false),
     expandRowKeys: {
       type: Array as PropType<string[]>,
-      default: () => []
+      default: undefined
     },
     defaultSort: {
       type: Object as PropType<{ prop: string; order: string }>,
@@ -490,7 +490,6 @@ export default defineComponent({
           if (props?.slots?.header) {
             slots['header'] = (...args: any[]) => props.slots.header(...args)
           }
-
           return (
             <ElTableColumn
               showOverflowTooltip={showOverflowTooltip}

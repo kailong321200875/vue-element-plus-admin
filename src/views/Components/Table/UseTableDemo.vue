@@ -258,7 +258,9 @@ const getSelections = async () => {
       v-model:currentPage="currentPage"
       showAction
       showSummary
+      default-expand-all
       :columns="columns"
+      row-key="id"
       :data="dataList"
       :loading="loading"
       :pagination="
