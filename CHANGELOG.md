@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.8.0...v2.8.1) (2024-06-20)
+
+
+### Bug Fixes
+
+* [#458](https://github.com/kailong321200875/vue-element-plus-admin/issues/458) ([49451ae](https://github.com/kailong321200875/vue-element-plus-admin/commit/49451ae606009d1f5ab0b98f84535892d3fd7646))
+* [#481](https://github.com/kailong321200875/vue-element-plus-admin/issues/481) ([c77586c](https://github.com/kailong321200875/vue-element-plus-admin/commit/c77586c5670cdc63978b032bbda694a14e875838))
+* 修复 search组件的收起展开 和重置 Bug ([9a5c7bc](https://github.com/kailong321200875/vue-element-plus-admin/commit/9a5c7bcb5b51e76eac6bc1d3aebc287593b13ca1))
+* 修复css前缀无法应用问题([#482](https://github.com/kailong321200875/vue-element-plus-admin/issues/482)) ([4b43c87](https://github.com/kailong321200875/vue-element-plus-admin/commit/4b43c87949fe4a68b4be004a06dfff4c7f87fbd4))
+* 修复表格default-expand-all属性无效BUG ([6657bbc](https://github.com/kailong321200875/vue-element-plus-admin/commit/6657bbc9f11f22cbfb04a57f5629bc810575496e))
+* 修复表格合计报错问题 ([9c44006](https://github.com/kailong321200875/vue-element-plus-admin/commit/9c44006ec26bee446dc5c90b6a4546cdd84ba4dc))
+
+
+### Styling
+
+* 修改登录页样式 ([9f98b7b](https://github.com/kailong321200875/vue-element-plus-admin/commit/9f98b7be266825612f93135c460d7db2d6a8beb0))
+
+
+### Performance Improvements
+
+* 优化使用离线图标后运行慢问题 ([7e9c4a6](https://github.com/kailong321200875/vue-element-plus-admin/commit/7e9c4a6109b417a577d9ac9ecf02db52eb1964af))
+
 ## [2.8.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.7.0...v2.8.0) (2024-06-01)
 
 
