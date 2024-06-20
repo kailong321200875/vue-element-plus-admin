@@ -257,6 +257,7 @@ const getSelections = async () => {
       v-model:pageSize="pageSize"
       v-model:currentPage="currentPage"
       showAction
+      showSummary
       :columns="columns"
       :data="dataList"
       :loading="loading"

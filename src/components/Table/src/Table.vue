@@ -167,20 +167,20 @@ export default defineComponent({
     sumText: propTypes.string.def('Sum'),
     summaryMethod: {
       type: Function as PropType<(param: { columns: any[]; data: any[] }) => any[]>,
-      default: () => undefined
+      default: undefined
     },
     spanMethod: {
       type: Function as PropType<
         (param: { row: any; column: any; rowIndex: number; columnIndex: number }) => any[]
       >,
-      default: () => undefined
+      default: undefined
     },
     selectOnIndeterminate: propTypes.bool.def(true),
     indent: propTypes.number.def(16),
     lazy: propTypes.bool.def(false),
     load: {
       type: Function as PropType<(row: Recordable, treeNode: any, resolve: Function) => void>,
-      default: () => undefined
+      default: undefined
     },
     treeProps: {
       type: Object as PropType<{ hasChildren?: string; children?: string; label?: string }>,
