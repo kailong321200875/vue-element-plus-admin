@@ -82,5 +82,6 @@ declare global {
     readonly VITE_USE_CSS_SPLIT: string
     readonly VITE_USE_ONLINE_ICON: string
     readonly VITE_ICON_PREFIX: string
+    readonly VITE_HIDE_GLOBAL_SETTING: string
   }
 }
