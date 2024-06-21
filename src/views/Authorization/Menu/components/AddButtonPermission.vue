@@ -46,6 +46,7 @@ const confirm = async () => {
   })
   if (valid) {
     const formData = await getFormData()
+    formData.id = Date.now()
     emit('confirm', formData)
     modelValue.value = false
   }
