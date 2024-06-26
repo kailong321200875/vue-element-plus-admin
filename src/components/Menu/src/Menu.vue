@@ -98,7 +98,7 @@ export default defineComponent({
         >
           {{
             default: () => {
-              const { renderMenuItem } = useRenderMenuItem()
+              const { renderMenuItem } = useRenderMenuItem(menuMode)
               return renderMenuItem(unref(routers))
             }
           }}
@@ -256,5 +256,10 @@ export default defineComponent({
       background-color: var(--left-menu-bg-active-color) !important;
     }
   }
+}
+@submenu-prefix-cls: ~'@{adminNamespace}-submenu-popper';
+.@{submenu-prefix-cls}--vertical {
+  overflow-y: auto;
+  max-height: 100%;
 }
 </style>
