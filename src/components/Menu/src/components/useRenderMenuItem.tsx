@@ -40,7 +40,7 @@ export const useRenderMenuItem = (menuMode) =>
             return (
               <ElSubMenu
                 index={fullPath}
-                popper-append-to-body
+                teleported
                 popperClass={unref(menuMode) === 'vertical' ? `${prefixCls}-popper--vertical` : ''}
               >
                 {{

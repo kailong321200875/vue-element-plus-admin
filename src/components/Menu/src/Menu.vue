@@ -257,9 +257,22 @@ export default defineComponent({
     }
   }
 }
+
 @submenu-prefix-cls: ~'@{adminNamespace}-submenu-popper';
+
+// 设置子菜单溢出时滚动样式
 .@{submenu-prefix-cls}--vertical {
-  overflow-y: auto;
   max-height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(144 147 153 / 30%);
+    border-radius: 4px;
+  }
 }
 </style>
