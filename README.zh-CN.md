@@ -137,15 +137,9 @@ pnpm run build:pro
 
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/pay.jpg" />
 
-## 交流群
-
-如果你想进入技术交流群讨论，请扫码加入或者添加我为好友邀请入群
-
-### 群二维码
-
-<img src="https://gitee.com/kailong110120130/my-image/raw/master/WechatIMG435.jpg" />
-
 ### 我的二维码
+
+如有项目合作或项目外包，扫码加我好友，请备注来意。
 
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/me.jpg" />
 

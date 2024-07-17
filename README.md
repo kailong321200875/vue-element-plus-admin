@@ -137,15 +137,9 @@ If you find this project helpful, welcome sponsorship to show your support~
 
 <img src="https://github.com/kailong321200875/my-image/raw/master/pay.jpg" />
 
-## Group
-
-If you want to join the technical communication group for discussion, please scan the code to join the group or add me as a friend
-
-### Group QR code
-
-<img src="https://github.com/kailong321200875/my-image/raw/master/WechatIMG435.jpg" />
-
 ### My QR code
+
+If you have any project cooperation or outsourcing, please scan the code to add me as a friend and leave a note of your purpose.
 
 <img src="https://github.com/kailong321200875/my-image/raw/master/me.jpg" />
 
