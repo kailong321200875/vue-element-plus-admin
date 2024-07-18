@@ -57,7 +57,7 @@ const schema = reactive<FormSchema[]>([
       span: 24
     },
     componentProps: {
-      placeholder: 'admin or test'
+      placeholder: '请输入用户名'
     }
   },
   {
@@ -72,7 +72,7 @@ const schema = reactive<FormSchema[]>([
       style: {
         width: '100%'
       },
-      placeholder: 'admin or test'
+      placeholder: '请输入密码'
     }
   },
   {
@@ -80,6 +80,7 @@ const schema = reactive<FormSchema[]>([
     colProps: {
       span: 24
     },
+    //这里去掉忘记密码的按钮
     formItemProps: {
       slots: {
         default: () => {
@@ -87,9 +88,10 @@ const schema = reactive<FormSchema[]>([
             <>
               <div class="flex justify-between items-center w-[100%]">
                 <ElCheckbox v-model={remember.value} label={t('login.remember')} size="small" />
-                <ElLink type="primary" underline={false}>
+
+                {/* <ElLink type="primary" underline={false}>
                   {t('login.forgetPassword')}
-                </ElLink>
+                </ElLink> */}
               </div>
             </>
           )
@@ -117,44 +119,49 @@ const schema = reactive<FormSchema[]>([
                   {t('login.login')}
                 </BaseButton>
               </div>
-              <div class="w-[100%] mt-15px">
+
+              {/* 这里去掉注册的按钮 */}
+              {/* <div class="w-[100%] mt-15px">
                 <BaseButton class="w-[100%]" onClick={toRegister}>
                   {t('login.register')}
                 </BaseButton>
-              </div>
+              </div> */}
             </>
           )
         }
       }
     }
   },
-  {
-    field: 'other',
-    component: 'Divider',
-    label: t('login.otherLogin'),
-    componentProps: {
-      contentPosition: 'center'
-    }
-  },
+
+  /* 这里去掉其他登录方式的按钮 */
+  //   field: 'other',
+  //   component: 'Divider',
+  //   label: t('login.otherLogin'),
+  //   componentProps: {
+  //     contentPosition: 'center'
+  //   }
+  // },
   {
     field: 'otherIcon',
     colProps: {
       span: 24
     },
+
+    /* 这里去掉其他四个登录方式的按钮 */
     formItemProps: {
       slots: {
         default: () => {
           return (
             <>
               <div class="flex justify-between w-[100%]">
-                <Icon
+                {/* <Icon
                   icon="vi-ant-design:github-filled"
                   size={iconSize}
                   class="cursor-pointer ant-icon"
                   color={iconColor}
                   hoverColor={hoverColor}
-                />
-                <Icon
+                /> */}
+                {/* <Icon
                   icon="vi-ant-design:wechat-filled"
                   size={iconSize}
                   class="cursor-pointer ant-icon"
@@ -174,7 +181,7 @@ const schema = reactive<FormSchema[]>([
                   color={iconColor}
                   hoverColor={hoverColor}
                   class="cursor-pointer ant-icon"
-                />
+                /> */}
               </div>
             </>
           )
@@ -225,9 +232,9 @@ const signIn = async () => {
   const formRef = await getElFormExpose()
   await formRef?.validate(async (isValid) => {
     if (isValid) {
+      console.log('不能登录')
       loading.value = true
       const formData = await getFormData<UserType>()
-
       try {
         const res = await loginApi(formData)
 
@@ -288,9 +295,9 @@ const getRole = async () => {
 }
 
 // 去注册页面
-const toRegister = () => {
-  emit('to-register')
-}
+// const toRegister = () => {
+//   emit('to-register')
+// }
 </script>
 
 <template>

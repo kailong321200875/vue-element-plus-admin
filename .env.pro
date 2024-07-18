@@ -20,7 +20,7 @@ VITE_SOURCEMAP=false
 VITE_OUT_DIR=dist-pro
 
 # 标题
-VITE_APP_TITLE=ElementAdmin
+VITE_APP_TITLE=健管家后台管理系统
 
 # 是否包分析
 VITE_USE_BUNDLE_ANALYZER=true
