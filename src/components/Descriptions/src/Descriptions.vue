@@ -133,7 +133,7 @@ export default defineComponent({
                           <div class="flex-1 px-8px py-11px bg-[var(--el-bg-color)] color-[var(--el-text-color-primary)] text-size-14px">
                             {item.slots?.default
                               ? item.slots?.default(props.data)
-                              : get(props.data, item.field) ?? defaultData}
+                              : (get(props.data, item.field) ?? defaultData)}
                           </div>
                         </div>
                       ) : (
@@ -147,7 +147,7 @@ export default defineComponent({
                           <div class="flex-1 px-8px py-11px bg-[var(--el-bg-color)] color-[var(--el-text-color-primary)] text-size-14px">
                             {item.slots?.default
                               ? item.slots?.default(props.data)
-                              : get(props.data, item.field) ?? defaultData}
+                              : (get(props.data, item.field) ?? defaultData)}
                           </div>
                         </div>
                       )}

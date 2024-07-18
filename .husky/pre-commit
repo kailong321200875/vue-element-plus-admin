@@ -1,5 +1,5 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/husky.sh"
 
 [ -n "$CI" ] && exit 0
 
