@@ -161,7 +161,7 @@ export const initModel = (schema: FormSchema[], formModel: Recordable) => {
   // 如果 schema 对应的 field 不存在，则删除 model 中的对应的 field
   for (let i = 0; i < schema.length; i++) {
     const key = schema[i].field
-    if (!get(model, key)) {
+    if (!get(model, key) && get(model, key) !== 0) {
       delete model[key]
     }
   }
