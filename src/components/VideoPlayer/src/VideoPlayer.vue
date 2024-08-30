@@ -21,7 +21,7 @@ const videoEl = ref<HTMLDivElement>()
 
 const intiPlayer = () => {
   if (!unref(videoEl)) return
-  new Player({
+  playerRef.value = new Player({
     autoplay: false,
     ...props,
     el: unref(videoEl)
