@@ -471,6 +471,7 @@ export default {
   },
   dialogDemo: {
     dialog: '弹窗',
+    resizeDialog: '可自定义调节弹窗大小的弹窗',
     dialogDes: '基于 ElementPlus 的 Dialog 组件二次封装',
     open: '打开',
     close: '关闭',
