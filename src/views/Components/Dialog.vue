@@ -8,6 +8,7 @@ import { useValidator } from '@/hooks/web/useValidator'
 import { getDictOneApi } from '@/api/common'
 import { useForm } from '@/hooks/web/useForm'
 import Echart from './Echart.vue'
+import ResizeDialog from '@/components/Dialog/src/ResizeDialog.vue'
 
 const { required } = useValidator()
 
@@ -16,6 +17,10 @@ const { t } = useI18n()
 const dialogVisible = ref(false)
 
 const dialogVisible2 = ref(false)
+
+const dialogVisible3 = ref(false)
+
+const dialogVisible4 = ref(false)
 
 const { formRegister, formMethods } = useForm()
 const { getElFormExpose } = formMethods
@@ -127,5 +132,34 @@ const formSubmit = async () => {
         <BaseButton @click="dialogVisible2 = false">{{ t('dialogDemo.close') }}</BaseButton>
       </template>
     </Dialog>
+  </ContentWrap>
+
+  <ContentWrap
+    class="mt-10px"
+    :title="t('dialogDemo.resizeDialog')"
+    :message="t('dialogDemo.dialogDes')"
+  >
+    <BaseButton type="primary" @click="dialogVisible3 = !dialogVisible3">
+      {{ t('dialogDemo.open') }}
+    </BaseButton>
+
+    <BaseButton type="primary" @click="dialogVisible4 = !dialogVisible4">
+      {{ t('dialogDemo.combineWithForm') }}
+    </BaseButton>
+
+    <ResizeDialog v-model="dialogVisible3" :title="t('dialogDemo.dialog')">
+      <Echart />
+      <template #footer>
+        <BaseButton @click="dialogVisible3 = false">{{ t('dialogDemo.close') }}</BaseButton>
+      </template>
+    </ResizeDialog>
+
+    <ResizeDialog v-model="dialogVisible4" :title="t('dialogDemo.dialog')">
+      <Form :schema="schema" @register="formRegister" />
+      <template #footer>
+        <BaseButton type="primary" @click="formSubmit">{{ t('dialogDemo.submit') }}</BaseButton>
+        <BaseButton @click="dialogVisible4 = false">{{ t('dialogDemo.close') }}</BaseButton>
+      </template>
+    </ResizeDialog>
   </ContentWrap>
 </template>
