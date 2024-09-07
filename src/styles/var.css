@@ -59,3 +59,11 @@
 .dark {
   --app-content-bg-color: var(--el-bg-color);
 }
+
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

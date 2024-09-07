@@ -49,6 +49,13 @@ watch(
   }
 )
 
+watch(
+  () => props.maxHeight,
+  (val) => {
+    dialogHeight.value = isNumber(val) ? `${val}px` : val
+  }
+)
+
 const dialogStyle = computed(() => {
   return {
     height: unref(dialogHeight)

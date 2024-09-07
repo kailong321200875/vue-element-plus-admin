@@ -98,7 +98,7 @@ export default defineComponent({
         >
           {{
             default: () => {
-              const { renderMenuItem } = useRenderMenuItem()
+              const { renderMenuItem } = useRenderMenuItem(menuMode)
               return renderMenuItem(unref(routers))
             }
           }}
@@ -255,6 +255,24 @@ export default defineComponent({
     &:hover {
       background-color: var(--left-menu-bg-active-color) !important;
     }
+  }
+}
+
+@submenu-prefix-cls: ~'@{adminNamespace}-submenu-popper';
+
+// 设置子菜单溢出时滚动样式
+.@{submenu-prefix-cls}--vertical {
+  max-height: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(144 147 153 / 30%);
+    border-radius: 4px;
   }
 }
 </style>

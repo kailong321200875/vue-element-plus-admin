@@ -475,8 +475,8 @@ const schema = reactive<FormSchema[]>([
     label: `${t('formDemo.icon')}1`,
     component: 'Input',
     componentProps: {
-      suffixIcon: <Icon icon="ep:calendar" />,
-      prefixIcon: <Icon icon="ep:share" />
+      suffixIcon: <Icon icon="vi-ep:calendar" />,
+      prefixIcon: <Icon icon="vi-ep:share" />
     }
   },
   {
@@ -486,9 +486,9 @@ const schema = reactive<FormSchema[]>([
     componentProps: {
       slots: {
         suffix: () => {
-          return <Icon icon="ep:share" />
+          return <Icon icon="vi-ep:share" />
         },
-        prefix: () => <Icon icon="ep:calendar" />
+        prefix: () => <Icon icon="vi-ep:calendar" />
       }
     }
   },
@@ -498,8 +498,8 @@ const schema = reactive<FormSchema[]>([
     component: 'Input',
     componentProps: {
       slots: {
-        prepend: () => <Icon icon="ep:calendar" />,
-        append: () => <Icon icon="ep:share" />
+        prepend: () => <Icon icon="vi-ep:calendar" />,
+        append: () => <Icon icon="vi-ep:share" />
       }
     }
   },
@@ -636,7 +636,7 @@ const schema = reactive<FormSchema[]>([
             return null
           }
         },
-        prefix: () => <Icon icon="ep:calendar" />
+        prefix: () => <Icon icon="vi-ep:calendar" />
       }
     }
   },
@@ -901,11 +901,11 @@ const schema = reactive<FormSchema[]>([
     component: 'Rate',
     value: null,
     componentProps: {
-      voidIcon: <Icon icon="ep:chat-round" />,
+      voidIcon: <Icon icon="vi-ep:chat-round" />,
       icons: [
-        <Icon icon="ep:chat-round" />,
-        <Icon icon="ep:chat-line-round" />,
-        <Icon icon="ep:chat-dot-round" />
+        <Icon icon="vi-ep:chat-round" />,
+        <Icon icon="vi-ep:chat-line-round" />,
+        <Icon icon="vi-ep:chat-dot-round" />
       ]
     }
   },
@@ -1768,7 +1768,7 @@ const schema = reactive<FormSchema[]>([
     field: 'field88',
     component: 'IconPicker',
     label: t('formDemo.default'),
-    value: 'tdesign:archway'
+    value: 'vi-tdesign:archway'
   },
   {
     field: 'field89',

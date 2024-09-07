@@ -27,18 +27,15 @@ const handleClickOutside = () => {
 }
 
 const renderLayout = () => {
+  const { renderClassic, renderTopLeft, renderTop, renderCutMenu } = useRenderLayout()
   switch (unref(layout)) {
     case 'classic':
-      const { renderClassic } = useRenderLayout()
       return renderClassic()
     case 'topLeft':
-      const { renderTopLeft } = useRenderLayout()
       return renderTopLeft()
     case 'top':
-      const { renderTop } = useRenderLayout()
       return renderTop()
     case 'cutMenu':
-      const { renderCutMenu } = useRenderLayout()
       return renderCutMenu()
     default:
       break
@@ -73,14 +70,5 @@ export default defineComponent({
 
 .@{prefix-cls} {
   background-color: var(--app-content-bg-color);
-  .@{prefix-cls}-content-scrollbar {
-    & > :deep(.el-scrollbar__wrap) {
-      & > .@{elNamespace}-scrollbar__view {
-        display: flex;
-        height: 100% !important;
-        flex-direction: column;
-      }
-    }
-  }
 }
 </style>

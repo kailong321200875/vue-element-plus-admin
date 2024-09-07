@@ -50,7 +50,7 @@ const handleCheckedColumnsChange = (value: string[]) => {
 const confirm = () => {
   const newColumns = cloneDeep(unref(settingColumns))?.map((item) => {
     const fixed = unref(settingColumns)?.find((col) => col.field === item.field)?.fixed
-    item.hidden = !!!unref(checkColumns)?.includes(item.field)
+    item.hidden = !unref(checkColumns)?.includes(item.field)
     item.fixed = fixed ? fixed : undefined
     return item
   })

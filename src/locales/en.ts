@@ -480,6 +480,7 @@ export default {
   },
   dialogDemo: {
     dialog: 'Dialog',
+    resizeDialog: 'Resize dialog',
     dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
     open: 'Open',
     close: 'Close',

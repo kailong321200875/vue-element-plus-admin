@@ -90,16 +90,16 @@ const props = defineProps({
 const emits = defineEmits(['click'])
 
 const color = computed(() => {
-  const { type } = props
-  if (type === 'primary') {
+  const { type, link } = props
+  if (type === 'primary' && !link) {
     return unref(getTheme).elColorPrimary
   }
   return ''
 })
 
 const style = computed(() => {
-  const { type } = props
-  if (type === 'primary') {
+  const { type, link } = props
+  if (type === 'primary' && !link) {
     return '--el-button-text-color: #fff; --el-button-hover-text-color: #fff'
   }
   return ''

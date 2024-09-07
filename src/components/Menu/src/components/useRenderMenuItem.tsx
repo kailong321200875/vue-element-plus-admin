@@ -1,12 +1,17 @@
 import { ElSubMenu, ElMenuItem } from 'element-plus'
+import { unref } from 'vue'
 import { hasOneShowingChild } from '../helper'
 import { isUrl } from '@/utils/is'
 import { useRenderMenuTitle } from './useRenderMenuTitle'
 import { pathResolve } from '@/utils/routerHelper'
+import { useDesign } from '@/hooks/web/useDesign'
+
+const { getPrefixCls } = useDesign()
+const prefixCls = getPrefixCls('submenu')
 
 const { renderMenuTitle } = useRenderMenuTitle()
 
-export const useRenderMenuItem = () =>
+export const useRenderMenuItem = (menuMode) =>
   // allRouters: AppRouteRecordRaw[] = [],
   {
     const renderMenuItem = (routers: AppRouteRecordRaw[], parentPath = '/') => {
@@ -33,7 +38,11 @@ export const useRenderMenuItem = () =>
             )
           } else {
             return (
-              <ElSubMenu index={fullPath}>
+              <ElSubMenu
+                index={fullPath}
+                teleported
+                popperClass={unref(menuMode) === 'vertical' ? `${prefixCls}-popper--vertical` : ''}
+              >
                 {{
                   title: () => renderMenuTitle(meta),
                   default: () => renderMenuItem(v.children!, fullPath)
