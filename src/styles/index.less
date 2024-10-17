@@ -5,3 +5,70 @@
 .el-popup-parent--hidden {
   width: 100% !important;
 }
+.el-table {
+  background: transparent !important;
+  --el-table-border-color: none !important;
+  .cell {
+    line-height: 1.5 !important;
+  }
+  thead.is-group th.el-table__cell,
+  tr {
+    background: transparent !important;
+  }
+  .el-table__cell {
+    padding: 6px 0 !important;
+    border-right: none;
+    color: #9cbdd6;
+  }
+  thead {
+    color: var(--right-content-table-thead-color) !important;
+    background: linear-gradient(180deg, #365377, #111c29) !important;
+    th.el-table__cell {
+      background-color: #9ab5c2 !important;
+      background: transparent !important;
+      font-weight: 400 !important;
+      border-right: 1px solid rgba(213, 234, 255, 0.1) !important;
+    }
+    tr:first-child {
+      th.el-table__cell.is-leaf {
+        background: linear-gradient(180deg, #365377, #111c29) !important;
+      }
+    }
+  }
+  tbody {
+    .el-table__cell {
+      border-right: 1px solid rgba(213, 234, 255, 0.1);
+    }
+    tr:nth-child(even) {
+      background: linear-gradient(#2a3542, #1c242e) !important;
+      --el-table-row-hover-bg-color: #173f5b !important;
+      &.current-row > td.el-table__cell {
+        background: linear-gradient(#2a3542, #1c242e);
+      }
+      &:hover {
+        background: #173f5b !important;
+      }
+    }
+    tr:nth-child(odd) {
+      background: #1a2635 !important;
+      --el-table-row-hover-bg-color: #173f5b !important;
+      &.current-row > td.el-table__cell {
+        background: #1a2635;
+      }
+      &:hover {
+        background: #173f5b !important;
+      }
+    }
+  }
+  .el-button {
+    font-size: 12px !important;
+    height: 19px !important;
+  }
+  --el-table-fixed-left-column: inset 16px 0 10px -10px rgba(25, 33, 39, 0.7) !important;
+  --el-table-fixed-right-column: inset -16px 0 10px -10px rgba(25, 33, 39, 0.7) !important;
+}
+
+.el-button.is-link {
+  color: #f50b0b !important;
+  font-size: 14px !important;
+}
