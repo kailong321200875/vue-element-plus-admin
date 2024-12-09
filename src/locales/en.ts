@@ -190,7 +190,8 @@ export default {
     personalCenter: 'Personal center',
     personal: 'Personal',
     avatars: 'Avatars',
-    iAgree: 'I agree'
+    iAgree: 'I agree',
+    tree: 'Tree'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -392,6 +393,11 @@ export default {
     logoConfig: 'Logo config',
     logoStyle: 'Logo style',
     size: 'size config'
+  },
+  treeDemo: {
+    treeTitle: 'Tree control (right-click node to customize menu options)',
+    message:
+      'The tree component is based on the secondary packaging of the tree component of ElementPlus'
   },
   highlightDemo: {
     highlight: 'Highlight',
