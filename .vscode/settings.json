@@ -15,16 +15,5 @@
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.displayLanguage": "zh-CN",
   "i18n-ally.enabledFrameworks": ["vue", "react"],
-  "god.tsconfig": "./tsconfig.json",
-  "editor.gotoLocation.alternativeDeclarationCommand": "editor.action.revealDefinition",
-  "editor.gotoLocation.alternativeDefinitionCommand": "editor.action.revealDefinition",
-  "editor.gotoLocation.alternativeTypeDefinitionCommand": "editor.action.revealDefinition",
-  "editor.selectionHighlight": false,
-  "files.autoSave": "onFocusChange",
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.quickSuggestions": {
-    "other": "on",
-    "comments": "off",
-    "strings": "on"
-  }
+  "god.tsconfig": "./tsconfig.json"
 }
