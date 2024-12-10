@@ -25,22 +25,24 @@ export const useTable = (config: UseTableConfig) => {
   const pageSize = ref(10)
   const total = ref(0)
   const dataList = ref<any[]>([])
+  let isPageSizeChange = false 
 
   watch(
     () => currentPage.value,
     () => {
-      methods.getList()
+      if (!isPageSizeChange) methods.getList()
+      isPageSizeChange = false
     }
   )
 
   watch(
     () => pageSize.value,
     () => {
-      // 当前页不为1时，修改页数后会导致多次调用getList方法
       if (unref(currentPage) === 1) {
         methods.getList()
       } else {
         currentPage.value = 1
+        isPageSizeChange = true
         methods.getList()
       }
     }
