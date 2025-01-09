@@ -12,7 +12,7 @@ const props = withDefaults(
     language?: string
     themeSelector?: boolean
     theme?: string
-    editorOption?: Object
+    editorOption?: object
     modelValue: string
   }>(),
   {

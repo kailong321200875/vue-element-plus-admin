@@ -287,11 +287,11 @@ export const useAppStore = defineStore('app', {
         // 左侧菜单选中背景颜色
         leftMenuBgActiveColor: isDarkColor
           ? 'var(--el-color-primary)'
-          : hexToRGB(unref(primaryColor), 0.1),
+          : hexToRGB(unref(primaryColor) as string, 0.1),
         // 左侧菜单收起选中背景颜色
         leftMenuCollapseBgActiveColor: isDarkColor
           ? 'var(--el-color-primary)'
-          : hexToRGB(unref(primaryColor), 0.1),
+          : hexToRGB(unref(primaryColor) as string, 0.1),
         // 左侧菜单字体颜色
         leftMenuTextColor: isDarkColor ? '#bfcbd9' : '#333',
         // 左侧菜单选中字体颜色
