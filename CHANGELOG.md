@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.9.0...v2.10.0) (2025-01-09)
+
+
+### Features
+
+* 新增支持右键自定义菜单进行节点编辑的树形组件. [#569](https://github.com/kailong321200875/vue-element-plus-admin/issues/569) ([0735371](https://github.com/kailong321200875/vue-element-plus-admin/commit/0735371c637964bd328073c2c0150edf14d53b3a))
+* 新增支持右键自定义菜单进行节点编辑的树形组件. [#569](https://github.com/kailong321200875/vue-element-plus-admin/issues/569) ([5a00171](https://github.com/kailong321200875/vue-element-plus-admin/commit/5a00171c9abbf89288b39969a6e3aec65c308546))
+
+
+### Bug Fixes
+
+* [#580](https://github.com/kailong321200875/vue-element-plus-admin/issues/580) [#573](https://github.com/kailong321200875/vue-element-plus-admin/issues/573) [#572](https://github.com/kailong321200875/vue-element-plus-admin/issues/572) [#564](https://github.com/kailong321200875/vue-element-plus-admin/issues/564) ([0aca943](https://github.com/kailong321200875/vue-element-plus-admin/commit/0aca9430c20f58db69a2214b73d24d619910ce82))
+* fix error message about "no-prototype-builtins" after run project ([64ec120](https://github.com/kailong321200875/vue-element-plus-admin/commit/64ec1206e861ffd71f83dd5f0455b883cedfafe7))
+* initModel判断schema对应的field是否存在,兼容null与0等场景 ([f236109](https://github.com/kailong321200875/vue-element-plus-admin/commit/f236109945ca5b90108178891b744e776634da0d))
+* 当前页不为1时，修改页数后会导致多次调用getList方法问题 ([28ac2dd](https://github.com/kailong321200875/vue-element-plus-admin/commit/28ac2dd7b676d995f66e7fd0e096f8687a0c40c6))
+
 ## [2.9.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.8.1...v2.9.0) (2024-09-07)
 
 
