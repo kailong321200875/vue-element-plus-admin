@@ -1,0 +1,1 @@
+var n=(s,i,e)=>new Promise((a,c)=>{var g=t=>{try{r(e.next(t))}catch(o){c(o)}},m=t=>{try{r(e.throw(t))}catch(o){c(o)}},r=t=>t.done?a(t.value):Promise.resolve(t.value).then(g,m);r((e=e.apply(s,i)).next())});import{r as p}from"./index-XQEkcq4y.js";const f=()=>n(void 0,null,function*(){return p.get({url:"/mock/dict/one"})});export{f as g};
