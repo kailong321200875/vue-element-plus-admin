@@ -21,7 +21,7 @@ export const NO_REDIRECT_WHITE_LIST = ['/login']
 /**
  * 不重置路由白名单
  */
-export const NO_RESET_WHITE_LIST = ['Redirect', 'Login', 'NoFind', 'Root']
+export const NO_RESET_WHITE_LIST = ['Redirect', 'RedirectWrap', 'Login', 'NoFind', 'Root']
 
 /**
  * 表格默认过滤列设置字段

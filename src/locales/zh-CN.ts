@@ -186,7 +186,8 @@ export default {
     personalCenter: '个人中心',
     personal: '个人',
     avatars: '头像列表',
-    iAgree: '我同意'
+    iAgree: '我同意',
+    tree: 'Tree 树形控件'
   },
   permission: {
     hasPermission: '请设置操作权限值'
@@ -384,6 +385,10 @@ export default {
     logoConfig: 'logo配置',
     logoStyle: 'logo样式',
     size: '大小配置'
+  },
+  treeDemo: {
+    treeTitle: '树形控件（节点右键可自定义菜单选项）',
+    message: '基于 ElementPlus 的 Tree 组件二次封装'
   },
   highlightDemo: {
     highlight: '高亮',

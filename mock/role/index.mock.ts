@@ -348,6 +348,14 @@ const adminList = [
         meta: {
           title: 'router.iAgree'
         }
+      },
+      {
+        path: 'tree',
+        component: 'views/Components/Tree',
+        name: 'Tree',
+        meta: {
+          title: 'router.tree'
+        }
       }
     ]
   },

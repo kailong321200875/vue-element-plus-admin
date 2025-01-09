@@ -32,7 +32,7 @@ const setSystemTheme = (color: string) => {
   setCssVar('--el-color-primary', color)
   appStore.setTheme({ elColorPrimary: color })
   const leftMenuBgColor = useCssVar('--left-menu-bg-color', document.documentElement)
-  setMenuTheme(trim(unref(leftMenuBgColor)))
+  setMenuTheme(trim(unref(leftMenuBgColor) as string))
 }
 
 // 头部主题相关
