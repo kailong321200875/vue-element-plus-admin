@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.8.1...v2.9.0) (2024-09-07)
+
+
+### Features
+
+* The dialog supports custom-defined window size. [#527](https://github.com/kailong321200875/vue-element-plus-admin/issues/527) ([e6affad](https://github.com/kailong321200875/vue-element-plus-admin/commit/e6affad67fed5e815563396e7ce6ab816ee737ce))
+* 全局默认box-sizing: border-box;降低元素布局难度。 ([a27b14e](https://github.com/kailong321200875/vue-element-plus-admin/commit/a27b14e7ffeeeae6a212f262d20303db02b017f1))
+
+
+### Bug Fixes
+
+* VideoPlayer 的实例未赋值 [#524](https://github.com/kailong321200875/vue-element-plus-admin/issues/524) ([0e99f83](https://github.com/kailong321200875/vue-element-plus-admin/commit/0e99f8374a6c4aac19da9105c9b0c1f4950f87c7))
+* 修复husky问题 ([7b8e58e](https://github.com/kailong321200875/vue-element-plus-admin/commit/7b8e58e0ec81e99517cbca41e04930f013773380))
+* 修复isUrl判断错误bug  [#526](https://github.com/kailong321200875/vue-element-plus-admin/issues/526) ([3cd89bd](https://github.com/kailong321200875/vue-element-plus-admin/commit/3cd89bdd09ee45d97d1ea41a5ee7686ca56c4ff2))
+* 修复在表格中给按钮添加link属性后，字体颜色变成白色 [#490](https://github.com/kailong321200875/vue-element-plus-admin/issues/490) ([5d9ca8a](https://github.com/kailong321200875/vue-element-plus-admin/commit/5d9ca8ac629adeb3d9c5fbf908502e597da7a168))
+* 修复新增权限时 id 缺失前端判断错误问题 ([88a0440](https://github.com/kailong321200875/vue-element-plus-admin/commit/88a04404d429e0a7e258fc8974e328dcbc04ae7a))
+* 修复示例图标错误 ([a07f4e9](https://github.com/kailong321200875/vue-element-plus-admin/commit/a07f4e9925ba15b3a94ddbea1908e42c2184b4cb))
+* 修复非一级子菜单显示位置错误；修改滚动条样式和系统滚动条样式一致 ([e0596ef](https://github.com/kailong321200875/vue-element-plus-admin/commit/e0596ef9f1f3ed022396961bf2a82665bebaecf7))
+* 左侧菜单收起后，组件菜单的子菜单显示不全 ([574055c](https://github.com/kailong321200875/vue-element-plus-admin/commit/574055c2749b9a183af44a0aaacab45f898cfff2))
+
+
+### Docs
+
+* 修改readme ([367b350](https://github.com/kailong321200875/vue-element-plus-admin/commit/367b3508e8efaf4b2b8383f44c3fea0e1dd09e8e))
+
+
+### Performance Improvements
+
+* 移除scrollbar__view高度限定。 ([18b08e2](https://github.com/kailong321200875/vue-element-plus-admin/commit/18b08e2983c116228de5282cd6e0c84884b24238))
+
 ## [2.8.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.8.0...v2.8.1) (2024-06-20)
 
 
