@@ -154,6 +154,7 @@ export default defineComponent({
 
     const getOptions = async (fn: Function, item: FormSchema) => {
       const options = await fn()
+      if (!options || options.length == 0) return
       setSchema([
         {
           field: item.field,
