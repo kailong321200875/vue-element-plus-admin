@@ -59,8 +59,15 @@ async function goLogin() {
   }
 }
 
+const passwordInputRef = ref<ComponentRef<typeof ElInput>>()
+
 function handleShowForm(show = false) {
   showDate.value = show
+  if (!show) {
+    requestAnimationFrame(() => {
+      passwordInputRef.value?.focus()
+    })
+  }
 }
 </script>
 
@@ -102,6 +109,8 @@ function handleShowForm(show = false) {
             :placeholder="t('lock.placeholder')"
             class="enter-x"
             v-model="password"
+            @keydown.enter="unLock"
+            ref="passwordInputRef"
           />
           <span :class="`text-14px ${prefixCls}-entry__err-msg enter-x`" v-if="errMsg">
             {{ t('lock.message') }}
