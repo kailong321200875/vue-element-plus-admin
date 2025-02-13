@@ -328,6 +328,8 @@ export const useAppStore = defineStore('app', {
         valueLight: 'light'
       })
       isDark.value = this.getIsDark
+      const newTitle = import.meta.env.VITE_APP_TITLE
+      newTitle !== this.getTitle && this.setTitle(newTitle)
     }
   },
   persist: true
