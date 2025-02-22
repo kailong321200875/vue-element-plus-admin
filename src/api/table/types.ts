@@ -1,8 +1,9 @@
-export interface TableData {
-  ProjectId: string
-  ProjectStage: string
-  CarType: string
-  Creator: string
-  CreateTime: string
-  id?: number
+export type TableData = {
+  id: string
+  author: string
+  title: string
+  content: string
+  importance: number
+  display_time: string
+  pageviews: number
 }
