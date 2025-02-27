@@ -25,7 +25,7 @@ jobs:
         uses: 'pascalgn/automerge-action@v0.14.3'
         env:
           BASE_BRANCHES: 'release'
-          GITHUB_TOKEN: '${{ secrets.TOKEN }}'
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
           MERGE_LABELS: ''
           MERGE_FILTER_AUTHOR: 'kailong321200875'
 
@@ -67,7 +67,8 @@ jobs:
       - name: Deploy Github
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          # deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./dist-pro
           force_orphan: true
