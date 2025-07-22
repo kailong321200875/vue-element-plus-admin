@@ -57,7 +57,8 @@ const icons = [epIcons, antIcons, tIcons]
 const iconName = ref(icons[0].prefix)
 
 const currentIconNameIndex = computed(() => {
-  return icons.findIndex((item) => item.prefix === unref(iconName))
+  const index = icons.findIndex((item) => item.prefix === unref(iconName))
+  return index < 0 ? 0 : index
 })
 
 const tabChange = () => {
