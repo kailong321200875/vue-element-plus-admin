@@ -172,7 +172,7 @@ const inputClear = () => {
           v-model:current-page="currentPage"
           v-model:page-size="pageSize"
           :pager-count="5"
-          small
+          size="small"
           :page-sizes="[100, 200, 300, 400]"
           layout="total, prev, pager, next, jumper"
           :total="filterItemIcons(icons[currentIconNameIndex].icons).length"
