@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { PropType, defineComponent, ref, computed, unref, watch, onMounted } from 'vue'
+import { PropType, defineComponent, ref, computed, reactive, unref, watch, onMounted } from 'vue'
 import {
   ElForm,
   ElFormItem,
@@ -98,7 +98,7 @@ export default defineComponent({
     const getProps = computed(() => {
       const propsObj = { ...props }
       Object.assign(propsObj, unref(mergeProps))
-      return propsObj
+      return reactive(propsObj)
     })
 
     // 存储表单实例

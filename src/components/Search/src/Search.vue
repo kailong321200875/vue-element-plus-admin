@@ -1,6 +1,6 @@
 <script setup lang="tsx">
 import { Form, FormSchema, FormSetProps } from '@/components/Form'
-import { PropType, computed, unref, ref, watch, onMounted } from 'vue'
+import { PropType, computed, reactive, unref, ref, watch, onMounted } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { useForm } from '@/hooks/web/useForm'
 import { findIndex } from '@/utils'
@@ -111,7 +111,7 @@ const mergeProps = ref<SearchProps>({})
 const getProps = computed(() => {
   const propsObj = { ...props }
   Object.assign(propsObj, unref(mergeProps))
-  return propsObj
+  return reactive(propsObj)
 })
 
 const setProps = (props: SearchProps = {}) => {
