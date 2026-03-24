@@ -137,12 +137,6 @@ pnpm run build:pro
 
 <img src="https://gitee.com/kailong110120130/my-image/raw/master/pay.jpg" />
 
-### 我的二维码
-
-如有项目合作或项目外包，扫码加我好友，请备注来意。
-
-<img src="https://gitee.com/kailong110120130/my-image/raw/master/me.jpg" />
-
 ## 许可证
 
 [MIT](./LICENSE)
