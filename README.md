@@ -137,12 +137,6 @@ If you find this project helpful, welcome sponsorship to show your support~
 
 <img src="https://github.com/kailong321200875/my-image/raw/master/pay.jpg" />
 
-### My QR code
-
-If you have any project cooperation or outsourcing, please scan the code to add me as a friend and leave a note of your purpose.
-
-<img src="https://github.com/kailong321200875/my-image/raw/master/me.jpg" />
-
 ## License
 
 [MIT](./LICENSE)
