@@ -20,15 +20,14 @@ const langMap = computed(() => localeStore.getLocaleMap)
 
 const currentLang = computed(() => localeStore.getCurrentLocale)
 
-const setLang = (lang: LocaleType) => {
+const { changeLocale } = useLocale()
+
+const setLang = async (lang: LocaleType) => {
   if (lang === unref(currentLang).lang) return
-  // 需要重新加载页面让整个语言多初始化
-  window.location.reload()
   localeStore.setCurrentLocale({
     lang
   })
-  const { changeLocale } = useLocale()
-  changeLocale(lang)
+  await changeLocale(lang)
 }
 </script>
 
