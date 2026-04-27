@@ -252,6 +252,16 @@ watch(
   }
 )
 
+watch(
+  () => remember.value,
+  (newVal) => {
+    userStore.setRememberMe(newVal)
+    if (!newVal) {
+      userStore.setLoginInfo(undefined)
+    }
+  }
+)
+
 // 登录
 const signIn = async () => {
   const formRef = await getElFormExpose()
