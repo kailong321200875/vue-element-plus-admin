@@ -20,10 +20,14 @@ const langMap = computed(() => localeStore.getLocaleMap)
 
 const currentLang = computed(() => localeStore.getCurrentLocale)
 
-const setLang = (lang: LocaleType) => {
+const { changeLocale } = useLocale()
+
+const setLang = async (lang: LocaleType) => {
   if (lang === unref(currentLang).lang) return
-  const { changeLocale } = useLocale()
-  changeLocale(lang)
+  localeStore.setCurrentLocale({
+    lang
+  })
+  await changeLocale(lang)
 }
 </script>
 
