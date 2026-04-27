@@ -2,7 +2,7 @@
 import { reactive, ref, watch, onMounted, unref } from 'vue'
 import { Form, FormSchema } from '@/components/Form'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElCheckbox, ElLink } from 'element-plus'
+import { ElCheckbox, ElLink, ElAlert } from 'element-plus'
 import { useForm } from '@/hooks/web/useForm'
 import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
 import { useAppStore } from '@/store/modules/app'
@@ -78,6 +78,30 @@ const schema = reactive<FormSchema[]>([
         if (_e.key === 'Enter') {
           _e.stopPropagation() // 阻止事件冒泡
           signIn()
+        }
+      }
+    }
+  },
+  {
+    field: 'error',
+    colProps: {
+      span: 24
+    },
+    formItemProps: {
+      slots: {
+        default: () => {
+          if (!unref(errorMessage)) return null
+          return (
+            <ElAlert
+              title={unref(errorMessage)}
+              type="error"
+              show-icon
+              closable
+              onClose={() => {
+                errorMessage.value = ''
+              }}
+            />
+          )
         }
       }
     }
@@ -195,11 +219,12 @@ const iconSize = 30
 
 const remember = ref(userStore.getRememberMe)
 
+const errorMessage = ref('')
+
 const initLoginInfo = () => {
-  const loginInfo = userStore.getLoginInfo
-  if (loginInfo) {
-    const { username, password } = loginInfo
-    setValues({ username, password })
+  const savedUsername = userStore.getLoginInfo
+  if (savedUsername && unref(remember)) {
+    setValues({ username: savedUsername })
   }
 }
 onMounted(() => {
@@ -227,24 +252,32 @@ watch(
   }
 )
 
+watch(
+  () => remember.value,
+  (newVal) => {
+    userStore.setRememberMe(newVal)
+    if (!newVal) {
+      userStore.setLoginInfo(undefined)
+    }
+  }
+)
+
 // 登录
 const signIn = async () => {
   const formRef = await getElFormExpose()
   await formRef?.validate(async (isValid) => {
     if (isValid) {
       loading.value = true
+      errorMessage.value = ''
       const formData = await getFormData<UserType>()
 
       try {
         const res = await loginApi(formData)
 
         if (res) {
-          // 是否记住我
+          // 是否记住我 - 只保存用户名
           if (unref(remember)) {
-            userStore.setLoginInfo({
-              username: formData.username,
-              password: formData.password
-            })
+            userStore.setLoginInfo(formData.username)
           } else {
             userStore.setLoginInfo(undefined)
           }
@@ -262,6 +295,8 @@ const signIn = async () => {
             push({ path: redirect.value || permissionStore.addRouters[0].path })
           }
         }
+      } catch (error: any) {
+        errorMessage.value = error?.message || '登录失败，请检查用户名和密码'
       } finally {
         loading.value = false
       }
