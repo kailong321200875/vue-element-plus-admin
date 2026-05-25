@@ -95,6 +95,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'title',
     label: t('tableDemo.title'),
+    width: '200px',
     search: {
       component: 'Input'
     },
@@ -118,6 +119,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'display_time',
     label: t('tableDemo.displayTime'),
+    width: '200px',
     search: {
       hidden: true
     },
@@ -191,11 +193,13 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'content',
     label: t('exampleDemo.content'),
+    width: '460px',
     search: {
       hidden: true
     },
     table: {
-      show: false
+      show: false,
+      showOverflowTooltip: false
     },
     form: {
       component: 'Editor',
@@ -215,6 +219,7 @@ const crudSchemas = reactive<CrudSchema[]>([
   {
     field: 'action',
     width: '260px',
+    fixed: 'right',
     label: t('tableDemo.action'),
     search: {
       hidden: true
@@ -236,7 +241,7 @@ const crudSchemas = reactive<CrudSchema[]>([
               <BaseButton type="success" onClick={() => action(data.row, 'detail')}>
                 {t('exampleDemo.detail')}
               </BaseButton>
-              <BaseButton type="danger" onClick={() => delData(data.row)}>
+              <BaseButton type="danger" link onClick={() => delData(data.row)}>
                 {t('exampleDemo.del')}
               </BaseButton>
             </>
