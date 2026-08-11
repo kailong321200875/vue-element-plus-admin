@@ -11,7 +11,10 @@ export default tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        parser: tseslint.parser
+        parser: tseslint.parser,
+        ecmaFeatures: {
+          jsx: true
+        }
       },
       globals: {
         // Browser globals
@@ -82,6 +85,7 @@ export default tseslint.config(
     ignores: [
       '**/node_modules/**',
       '**/dist/**',
+      '**/dist-*/**',
       '**/.git/**',
       '**/public/**',
       '**/*.d.ts'

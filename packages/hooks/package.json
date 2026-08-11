@@ -34,14 +34,27 @@
     "./useScrollTo": {
       "import": "./src/useScrollTo.ts",
       "types": "./src/useScrollTo.ts"
+    },
+    "./useCrud": {
+      "import": "./src/useCrud.ts",
+      "types": "./src/useCrud.ts"
+    },
+    "./useForm": {
+      "import": "./src/useForm.ts",
+      "types": "./src/useForm.ts"
     }
   },
   "files": [
     "src"
   ],
-  "scripts": {},
+  "scripts": {
+    "test": "pnpm --workspace-root exec esno packages/hooks/test/index.ts"
+  },
   "dependencies": {
     "mitt": "^3.0.1"
+  },
+  "devDependencies": {
+    "vue": "3.5.41"
   },
   "peerDependencies": {
     "vue": ">=3.4.0"

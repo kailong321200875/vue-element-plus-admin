@@ -1,12 +1,12 @@
 import router from './router'
-import { useAppStoreWithOut } from '@/store/modules/app'
 import type { RouteRecordRaw } from 'vue-router'
-import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
 import { NO_REDIRECT_WHITE_LIST } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { getAdminRoleApi, getTestRoleApi } from '@/api/login'
+import { appConfig } from '@/config/app'
 
 const { start, done } = useNProgress()
 
@@ -16,32 +16,36 @@ router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
   const permissionStore = usePermissionStoreWithOut()
-  const appStore = useAppStoreWithOut()
   const userStore = useUserStoreWithOut()
-  if (userStore.getUserInfo) {
+  if (userStore.isAuthenticated) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      if (permissionStore.getIsAddRouters) {
+      if (permissionStore.isAddRouters) {
         next()
         return
       }
 
-      // 开发者可根据实际情况进行修改
-      const roleRouters = userStore.getRoleRouters || []
-
-      // 是否使用动态路由
-      if (appStore.getDynamicRouter) {
-        if (appStore.serverDynamicRouter) {
-          await permissionStore.generateRoutes('server', roleRouters as AppCustomRouteRecordRaw[])
+      try {
+        if (appConfig.routeMode !== 'static') {
+          const params = { roleName: userStore.userInfo!.username }
+          if (appConfig.routeMode === 'server') {
+            const { data = [] } = await getAdminRoleApi(params)
+            permissionStore.generateRoutes('server', data)
+          } else {
+            const { data = [] } = await getTestRoleApi(params)
+            permissionStore.generateRoutes('frontEnd', data)
+          }
         } else {
-          await permissionStore.generateRoutes('frontEnd', roleRouters as string[])
+          permissionStore.generateRoutes('static')
         }
-      } else {
-        await permissionStore.generateRoutes('static')
+      } catch {
+        userStore.clearSession()
+        next(`/login?redirect=${encodeURIComponent(to.fullPath)}`)
+        return
       }
 
-      permissionStore.getAddRouters.forEach((route) => {
+      permissionStore.addRouters.forEach((route) => {
         router.addRoute(route as unknown as RouteRecordRaw) // 动态添加可访问路由表
       })
       const redirectPath = from.query.redirect || to.path
@@ -59,8 +63,7 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-router.afterEach((to) => {
-  useTitle(to?.meta?.title as string)
+router.afterEach(() => {
   done() // 结束Progress
   loadDone()
 })

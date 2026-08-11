@@ -25,6 +25,13 @@ const List: {
   }
 ]
 
+const toUserInfo = ({ username, role, roleId, permissions }: (typeof List)[number]) => ({
+  username,
+  role,
+  roleId,
+  permissions: Array.isArray(permissions) ? permissions : [permissions]
+})
+
 export default [
   // 列表接口
   {
@@ -37,9 +44,9 @@ export default [
         if (username && item.username.indexOf(username) < 0) return false
         return true
       })
-      const pageList = mockList.filter(
-        (_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1)
-      )
+      const pageList = mockList
+        .filter((_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1))
+        .map(toUserInfo)
 
       return {
         code: SUCCESS_CODE,
@@ -63,7 +70,10 @@ export default [
           hasUser = true
           return {
             code: SUCCESS_CODE,
-            data: user
+            data: {
+              accessToken: `mock-token-${user.roleId}`,
+              user: toUserInfo(user)
+            }
           }
         }
       }

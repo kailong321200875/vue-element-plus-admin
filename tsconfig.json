@@ -22,16 +22,10 @@
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["apps/admin/src/*"]
+      "@/*": ["./apps/admin/src/*"]
     },
-    "types": [
-      "@intlify/unplugin-vue-i18n/types",
-      "vite/client",
-      "element-plus/global",
-      "@types/qrcode"
-    ]
+    "types": ["@intlify/unplugin-vue-i18n/types", "vite/client", "element-plus/global"]
   },
   "include": [
     "apps/admin/src/**/*.ts",

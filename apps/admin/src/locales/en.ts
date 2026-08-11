@@ -52,54 +52,11 @@ export default {
     // 列设置
     setting: 'Setting'
   },
-  lock: {
-    lockScreen: 'Lock screen',
-    lock: 'Lock',
-    lockPassword: 'Lock screen password',
-    unlock: 'Click to unlock',
-    backToLogin: 'Back to login',
-    entrySystem: 'Entry the system',
-    placeholder: 'Please enter the lock screen password',
-    message: 'Lock screen password error'
-  },
   error: {
     noPermission: `Sorry, you don't have permission to access this page.`,
     pageError: 'Sorry, the page you visited does not exist.',
     networkError: 'Sorry, the server reported an error.',
     returnToHome: 'Return to home'
-  },
-  setting: {
-    projectSetting: 'Project setting',
-    theme: 'Theme',
-    layout: 'Layout',
-    systemTheme: 'System theme',
-    menuTheme: 'Menu theme',
-    interfaceDisplay: 'Interface display',
-    breadcrumb: 'Breadcrumb',
-    breadcrumbIcon: 'Breadcrumb icon',
-    collapseMenu: 'Collapse menu',
-    hamburgerIcon: 'Hamburger icon',
-    screenfullIcon: 'Screenfull icon',
-    sizeIcon: 'Size icon',
-    localeIcon: 'Locale icon',
-    tagsView: 'Tags view',
-    logo: 'Logo',
-    greyMode: 'Grey mode',
-    fixedHeader: 'Fixed header',
-    headerTheme: 'Header theme',
-    cutMenu: 'Cut Menu',
-    copy: 'Copy',
-    clearAndReset: 'Clear cache and reset',
-    copySuccess: 'Copy success',
-    copyFailed: 'Copy failed',
-    footer: 'Footer',
-    uniqueOpened: 'Unique opened',
-    tagsViewIcon: 'Tags view icon',
-    // 开启动态路由
-    dynamicRouter: 'Enable dynamic router',
-    serverDynamicRouter: 'Server dynamic router',
-    reExperienced: 'Please exit the login experience again',
-    fixedMenu: 'Fixed menu'
   },
   size: {
     default: 'Default',
@@ -122,7 +79,10 @@ export default {
     passwordPlaceholder: 'Please input password',
     code: 'Verification code',
     codePlaceholder: 'Please input verification code',
-    getCode: 'Get code'
+    getCode: 'Get code',
+    passwordMismatch: 'The passwords do not match',
+    agreement: 'I agree to the User Agreement',
+    agreementRequired: 'Please accept the User Agreement'
   },
   router: {
     login: 'Login',
@@ -137,26 +97,6 @@ export default {
     analysis: 'Analysis',
     workplace: 'Workplace',
     guide: 'Guide',
-    component: 'Component',
-    icon: 'Icon',
-    echart: 'Echart',
-    countTo: 'Count to',
-    watermark: 'Watermark',
-    qrcode: 'Qrcode',
-    highlight: 'Highlight',
-    infotip: 'Infotip',
-    form: 'Form',
-    defaultForm: 'All examples',
-    search: 'Search',
-    table: 'Table',
-    defaultTable: 'Basic example',
-    editor: 'Editor',
-    richText: 'Rich text',
-    jsonEditor: 'JSON Editor',
-    codeEditor: 'Code Editor',
-    dialog: 'Dialog',
-    imageViewer: 'Image viewer',
-    descriptions: 'Descriptions',
     example: 'Example',
     exampleDialog: 'Example dialog',
     examplePage: 'Example page',
@@ -168,10 +108,6 @@ export default {
     user: 'User management',
     role: 'Role management',
     document: 'Document',
-    inputPassword: 'InputPassword',
-    sticky: 'Sticky',
-    treeTable: 'Tree table',
-    PicturePreview: 'Table Image Preview',
     department: 'Department management',
     menuManagement: 'Menu management',
     // 权限测试页面
@@ -179,19 +115,9 @@ export default {
     function: 'Function',
     multipleTabs: 'Multiple tabs',
     details: 'Details',
-    iconPicker: 'Icon picker',
     request: 'Request',
-    waterfall: 'Waterfall',
-    imageCropping: 'Image cropping',
-    videoPlayer: 'Video player',
-    // 表格视频预览
-    tableVideoPreview: 'Table video preview',
-    cardTable: 'Card table',
     personalCenter: 'Personal center',
-    personal: 'Personal',
-    avatars: 'Avatars',
-    iAgree: 'I agree',
-    tree: 'Tree'
+    personal: 'Personal'
   },
   permission: {
     hasPermission: 'Please set the operation permission value'
@@ -255,125 +181,11 @@ export default {
     pushCode: 'Archer push code to Github',
     follow: 'Follow'
   },
-  formDemo: {
-    input: 'Input',
-    inputNumber: 'InputNumber',
-    default: 'Default',
-    icon: 'Icon',
-    mixed: 'Mixed',
-    password: 'Password',
-    textarea: 'Textarea',
-    remoteSearch: 'Remote search',
-    slot: 'Slot',
-    position: 'Position',
-    autocomplete: 'Autocomplete',
-    select: 'Select',
-    optionSlot: 'Option Slot',
-    selectGroup: 'Select Group',
-    selectV2: 'SelectV2',
-    cascader: 'Cascader',
-    switch: 'Switch',
-    rate: 'Rate',
-    colorPicker: 'Color Picker',
-    transfer: 'Transfer',
-    render: 'Render',
-    radio: 'Radio',
-    radioGroup: 'Radio Group',
-    button: 'Button',
-    checkbox: 'Checkbox',
-    checkboxButton: 'Checkbox Button',
-    checkboxGroup: 'Checkbox Group',
-    slider: 'Slider',
-    datePicker: 'Date Picker',
-    shortcuts: 'Shortcuts',
-    today: 'Today',
-    yesterday: 'Yesterday',
-    aWeekAgo: 'A week ago',
-    week: 'Week',
-    year: 'Year',
-    month: 'Month',
-    dates: 'Dates',
-    daterange: 'Date Range',
-    monthrange: 'Month Range',
-    dateTimePicker: 'DateTimePicker',
-    dateTimerange: 'Datetime Range',
-    timePicker: 'Time Picker',
-    timeSelect: 'Time Select',
-    inputPassword: 'input Password',
-    passwordStrength: 'Password Strength',
-    defaultForm: 'All examples',
-    formDes:
-      'The secondary encapsulation of form components based on ElementPlus realizes data-driven and supports all Form parameters',
-    example: 'example',
-    operate: 'operate',
-    change: 'Change',
-    restore: 'Restore',
-    disabled: 'Disabled',
-    disablement: 'Disablement',
-    delete: 'Delete',
-    add: 'Add',
-    setValue: 'Set value',
-    resetValue: 'Reset value',
-    set: 'Set',
-    subitem: 'Subitem',
-    formValidation: 'Form validation',
-    verifyReset: 'Verify reset',
-    // 富文本编辑器
-    richText: 'Rich text',
-    jsonEditor: 'JSON Editor',
-    form: 'Form',
-    // 远程加载
-    remoteLoading: 'Remote loading',
-    // 聚焦
-    focus: 'Focus',
-    treeSelect: 'Tree Select',
-    showCheckbox: 'Show Checkbox',
-    selectAnyLevel: 'Select Any Level',
-    multiple: 'Multiple',
-    filterable: 'Filterable',
-    // 自定义节点内容
-    customContent: 'Custom content',
-    // 懒加载
-    lazyLoad: 'Lazy load',
-    upload: 'Upload',
-    // 用户头像
-    userAvatar: 'User avatar',
-    iconPicker: 'Icon picker',
-    iAgree: 'I agree'
-  },
   guideDemo: {
     guide: 'Guide',
     start: 'Start',
     message:
       'The guide page is very useful for some people who enter the project for the first time. You can briefly introduce the functions of the project. The boot page is based on driver.js'
-  },
-  iconDemo: {
-    icon: 'Icon',
-    localIcon: 'Local Icon',
-    iconify: 'Iconify component',
-    recommendedUse: 'Recommended use',
-    recommendeDes:
-      'Iconify component basically contains all icons. You can query any icon you want. And packaging will only package the icons used.',
-    accessAddress: 'Access address'
-  },
-  echartDemo: {
-    echart: 'Echart',
-    echartDes:
-      'Based on the secondary packaging components of eckarts, the width is adaptive. The corresponding chart can be displayed by passing in the options and height attributes.'
-  },
-  countToDemo: {
-    countTo: 'CountTo',
-    countToDes:
-      'The transformation is based on vue-count-to and supports all vue-count-to parameters.',
-    suffix: 'Suffix',
-    prefix: 'Prefix',
-    separator: 'Separator',
-    duration: 'Duration',
-    endVal: 'End val',
-    startVal: 'Start val',
-    start: 'Start',
-    pause: 'Pause',
-    resume: 'Resume'
   },
   watermarkDemo: {
     watermark: 'Watermark',
@@ -381,67 +193,10 @@ export default {
     clearWatermark: 'Clear watermark',
     resetWatermark: 'Reset watermark'
   },
-  qrcodeDemo: {
-    qrcode: 'Qrcode',
-    qrcodeDes: 'Secondary packaging based on qrcode',
-    basicUsage: 'Basic usage',
-    imgTag: 'Img tag',
-    style: 'Style config',
-    click: 'Click event',
-    asynchronousContent: 'Asynchronous content',
-    invalid: 'Invalid',
-    logoConfig: 'Logo config',
-    logoStyle: 'Logo style',
-    size: 'size config'
-  },
-  treeDemo: {
-    treeTitle: 'Tree control (right-click node to customize menu options)',
-    message:
-      'The tree component is based on the secondary packaging of the tree component of ElementPlus'
-  },
-  highlightDemo: {
-    highlight: 'Highlight',
-    message: 'The best time to plant a tree is ten years ago, followed by now.',
-    keys1: 'ten years ago',
-    keys2: 'now'
-  },
-  infotipDemo: {
-    infotip: 'Infotip',
-    infotipDes: 'Secondary packaging of components based on Highlight',
-    title: 'matters needing attention'
-  },
   levelDemo: {
     menu: 'Multi level menu cache'
   },
-  searchDemo: {
-    search: 'Search',
-    searchDes:
-      'Based on the secondary encapsulation of form components, the functions of query and reset are realized',
-    operate: 'operate',
-    change: 'Change',
-    grid: 'grid',
-    button: 'Button',
-    restore: 'Restore',
-    inline: 'inline',
-    bottom: 'Bottom',
-    position: 'position',
-    left: 'left',
-    center: 'center',
-    right: 'right',
-    dynamicOptions: 'Dynamic options',
-    // 删除单选框
-    deleteRadio: 'Delete radio',
-    // 还原单选框
-    restoreRadio: 'Restore radio',
-    loading: 'Loading',
-    reset: 'Reset'
-  },
-  stickyDemo: {
-    sticky: 'Sticky'
-  },
   tableDemo: {
-    table: 'Table',
-    tableDes: 'Secondary packaging of Table components based on ElementPlus',
     index: 'Index',
     title: 'Title',
     author: 'Author',
@@ -451,62 +206,10 @@ export default {
     action: 'Action',
     important: 'Important',
     good: 'Good',
-    commonly: 'Commonly',
-    operate: 'operate',
-    example: 'example',
-    show: 'Show',
-    hidden: 'Hidden',
-    pagination: 'pagination',
-    reserveIndex: 'Reserve index',
-    restoreIndex: 'Restore index',
-    showSelections: 'Show selections',
-    hiddenSelections: 'Restore selections',
-    showExpandedRows: 'Show expanded rows',
-    hiddenExpandedRows: 'Hidden expanded rows',
-    changeTitle: 'Change title',
-    header: 'Header',
-    selectAllNone: 'Select all / none',
-    delOrAddAction: 'Delete or add action',
-    showOrHiddenStripe: 'Show or hidden stripe',
-    showOrHiddenBorder: 'Show or hidden border',
-    fixedHeaderOrAuto: 'Fixed header or auto',
-    getSelections: 'Get selections',
-    preview: 'Preview',
-    showOrHiddenSortable: 'Show or hidden sortable',
-    videoPreview: 'Video preview',
-    cardTable: 'Card table'
-  },
-  richText: {
-    richText: 'Rich text',
-    richTextDes: 'Secondary packaging based on wangeditor',
-    jsonEditor: 'JSON Editor',
-    jsonEditorDes: 'Secondary packaging based on vue-json-pretty',
-    codeEditor: 'Code Editor',
-    codeEditorDes: 'Secondary packaging based on monaco-editor'
+    commonly: 'Commonly'
   },
   dialogDemo: {
-    dialog: 'Dialog',
-    resizeDialog: 'Resize dialog',
-    dialogDes: 'Secondary packaging of Dialog components based on ElementPlus',
-    open: 'Open',
-    close: 'Close',
-    combineWithForm: 'Combine with form',
-    submit: 'Submit'
-  },
-  imageViewerDemo: {
-    open: 'Open',
-    imageViewer: 'Image viewer',
-    imageViewerDes: 'Secondary packaging of ImageViewer components based on ElementPlus'
-  },
-  descriptionsDemo: {
-    descriptions: 'Descriptions',
-    descriptionsDes: 'Secondary packaging of Descriptions components based on ElementPlus',
-    username: 'Username',
-    nickName: 'NickName',
-    phone: 'Phone',
-    email: 'Email',
-    addr: 'Address',
-    form: 'Combined with Form component'
+    close: 'Close'
   },
   exampleDemo: {
     title: 'Title',
@@ -572,13 +275,5 @@ export default {
     role: 'Role',
     // 菜单分配
     menu: 'Menu allocation'
-  },
-  inputPasswordDemo: {
-    title: 'InputPassword',
-    inputPasswordDes: 'Secondary packaging of Input components based on ElementPlus'
-  },
-  avatarsDemo: {
-    title:
-      'Avatar component for avatar list, secondary packaging based on element plus Avatar component'
   }
 }

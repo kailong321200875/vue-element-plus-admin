@@ -1,56 +1,27 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import en from 'element-plus/es/locale/lang/en'
-import { useStorage } from '@/hooks/web/useStorage'
-import { LocaleDropdownType } from '@/components/LocaleDropdown'
+import { DEFAULT_LOCALE, isLocale, localeRegistry, type LocaleType } from '@/config/locale'
 
-const { getStorage, setStorage } = useStorage('localStorage')
-
-const elLocaleMap = {
-  'zh-CN': zhCn,
-  en: en
-}
 interface LocaleState {
-  currentLocale: LocaleDropdownType
-  localeMap: LocaleDropdownType[]
+  lang: LocaleType
 }
 
 export const useLocaleStore = defineStore('locales', {
-  state: (): LocaleState => {
-    return {
-      currentLocale: {
-        lang: getStorage('lang') || 'zh-CN',
-        elLocale: elLocaleMap[getStorage('lang') || 'zh-CN']
-      },
-      // 多语言
-      localeMap: [
-        {
-          lang: 'zh-CN',
-          name: '简体中文'
-        },
-        {
-          lang: 'en',
-          name: 'English'
-        }
-      ]
-    }
-  },
+  state: (): LocaleState => ({ lang: DEFAULT_LOCALE }),
   getters: {
-    getCurrentLocale(): LocaleDropdownType {
-      return this.currentLocale
-    },
-    getLocaleMap(): LocaleDropdownType[] {
-      return this.localeMap
+    currentLocale: (state: LocaleState) => {
+      const lang = isLocale(state.lang) ? state.lang : DEFAULT_LOCALE
+      return { lang, elementLocale: localeRegistry[lang].elementLocale }
     }
   },
   actions: {
-    setCurrentLocale(localeMap: LocaleDropdownType) {
-      // this.locale = Object.assign(this.locale, localeMap)
-      this.currentLocale.lang = localeMap?.lang
-      this.currentLocale.elLocale = elLocaleMap[localeMap?.lang]
-      setStorage('lang', localeMap?.lang)
+    setLocale(lang: LocaleType) {
+      this.lang = lang
     }
+  },
+  persist: {
+    key: 'vea-locale-v1',
+    pick: ['lang']
   }
 })
 

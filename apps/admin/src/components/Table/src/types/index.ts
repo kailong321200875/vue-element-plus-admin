@@ -92,7 +92,6 @@ export interface TableProps extends Omit<Partial<ElTableProps<any[]>>, 'data'> {
   // 表头对齐方式
   headerAlign?: 'left' | 'center' | 'right'
   imagePreview?: string[]
-  videoPreview?: string[]
   sortable?: boolean
   data?: Recordable
 }

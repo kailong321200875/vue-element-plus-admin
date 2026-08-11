@@ -1,10 +1,8 @@
-import router from '@/router'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { getRawRoute } from '@/utils/routerHelper'
 import { defineStore } from 'pinia'
 import { store } from '../index'
 import { findIndex } from '@/utils'
-import { useUserStoreWithOut } from './user'
 
 export interface TagsViewState {
   visitedViews: RouteLocationNormalizedLoaded[]
@@ -41,6 +39,9 @@ export const useTagsViewStore = defineStore('tagsView', {
       if (view.meta?.noTagsView) return
       this.visitedViews.push(
         Object.assign({}, view, {
+          meta: { ...view.meta },
+          query: { ...view.query },
+          params: { ...view.params },
           title: view.meta?.title || 'no-name'
         })
       )
@@ -57,7 +58,10 @@ export const useTagsViewStore = defineStore('tagsView', {
         const name = item.name as string
         cacheMap.add(name)
       }
-      if (Array.from(this.cachedViews).sort().toString() === Array.from(cacheMap).sort().toString())
+      if (
+        this.cachedViews.size === cacheMap.size &&
+        Array.from(this.cachedViews).every((name) => cacheMap.has(name))
+      )
         return
       this.cachedViews = cacheMap
     },
@@ -76,26 +80,21 @@ export const useTagsViewStore = defineStore('tagsView', {
       }
     },
     // 删除缓存
-    delCachedView() {
-      const route = router.currentRoute.value
-      const index = findIndex<string>(this.getCachedViews, (v) => v === route.name)
+    delCachedView(name?: string) {
+      const index = findIndex<string>(this.getCachedViews, (v) => v === name)
       if (index > -1) {
         this.cachedViews.delete(this.getCachedViews[index])
       }
     },
     // 删除所有缓存和tag
-    delAllViews() {
-      this.delAllVisitedViews()
+    delAllViews(keepAffix = true) {
+      this.delAllVisitedViews(keepAffix)
       this.addCachedView()
     },
     // 删除所有tag
-    delAllVisitedViews() {
-      const userStore = useUserStoreWithOut()
-
-      // const affixTags = this.visitedViews.filter((tag) => tag.meta.affix)
-      this.visitedViews = userStore.getUserInfo
-        ? this.visitedViews.filter((tag) => tag?.meta?.affix)
-        : []
+    delAllVisitedViews(keepAffix = true) {
+      this.visitedViews = keepAffix ? this.visitedViews.filter((tag) => tag?.meta?.affix) : []
+      if (!keepAffix) this.selectedTag = undefined
     },
     // 删除其它
     delOthersViews(view: RouteLocationNormalizedLoaded) {
@@ -135,9 +134,13 @@ export const useTagsViewStore = defineStore('tagsView', {
       }
     },
     updateVisitedView(view: RouteLocationNormalizedLoaded) {
-      for (let v of this.visitedViews) {
+      for (const v of this.visitedViews) {
         if (v.path === view.path) {
-          v = Object.assign(v, view)
+          Object.assign(v, view, {
+            meta: { ...view.meta },
+            query: { ...view.query },
+            params: { ...view.params }
+          })
           break
         }
       }

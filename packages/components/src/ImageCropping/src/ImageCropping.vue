@@ -1,172 +1,199 @@
 <script setup lang="ts">
-import { useDesign } from '@/hooks/web/useDesign'
-import { nextTick, unref, ref, watch, onBeforeUnmount, onMounted, computed } from 'vue'
-import Cropper from 'cropperjs'
-import 'cropperjs/dist/cropper.min.css'
-import { ElDivider, ElUpload, UploadFile, ElMessage, ElTooltip } from 'element-plus'
-import { useDebounceFn } from '@vueuse/core'
-import { BaseButton } from '@/components/Button'
+  import { useDesign } from '@/hooks/web/useDesign'
+  import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
+  import Cropper, { EVENT_CHANGE, EVENT_TRANSFORM } from 'cropperjs'
+  import { ElButton, ElDivider, ElUpload, UploadFile, ElMessage, ElTooltip } from 'element-plus'
+  import { useDebounceFn } from '@vueuse/core'
 
-const { getPrefixCls } = useDesign()
+  const { getPrefixCls } = useDesign()
 
-const prefixCls = getPrefixCls('image-cropping')
+  const prefixCls = getPrefixCls('image-cropping')
 
-const props = defineProps({
-  imageUrl: {
-    type: String,
-    default: '',
-    required: true
-  },
-  cropBoxWidth: {
-    type: Number,
-    default: 200
-  },
-  cropBoxHeight: {
-    type: Number,
-    default: 200
-  },
-  boxWidth: {
-    type: [Number, String],
-    default: 425
-  },
-  boxHeight: {
-    type: [Number, String],
-    default: 320
-  },
-  showResult: {
-    type: Boolean,
-    default: true
-  },
-  showActions: {
-    type: Boolean,
-    default: true
-  }
-})
-
-const getBase64 = useDebounceFn(() => {
-  imgBase64.value = unref(cropperRef)?.getCroppedCanvas()?.toDataURL() ?? ''
-}, 80)
-
-const resetCropBox = () => {
-  const containerData = unref(cropperRef)?.getContainerData()
-  unref(cropperRef)?.setCropBoxData({
-    width: props.cropBoxWidth,
-    height: props.cropBoxHeight,
-    left: (containerData?.width || 0) / 2 - 100,
-    top: (containerData?.height || 0) / 2 - 100
-  })
-  imgBase64.value = unref(cropperRef)?.getCroppedCanvas()?.toDataURL() ?? ''
-}
-
-const getBoxStyle = computed(() => {
-  return {
-    width: `${props.boxWidth}px`,
-    height: `${props.boxHeight}px`
-  }
-})
-
-const getCropBoxStyle = computed(() => {
-  return {
-    width: `${props.cropBoxWidth}px`,
-    height: `${props.cropBoxHeight}px`
-  }
-})
-
-// 获取对应的缩小倍数的宽高
-const getScaleSize = (scale: number) => {
-  return {
-    width: props.cropBoxWidth * scale + 'px',
-    height: props.cropBoxHeight * scale + 'px'
-  }
-}
-
-const imgBase64 = ref('')
-const imgRef = ref<HTMLImageElement>()
-const cropperRef = ref<Cropper>()
-const intiCropper = () => {
-  if (!unref(imgRef)) return
-  const imgEl = unref(imgRef)!
-  cropperRef.value = new Cropper(imgEl, {
-    aspectRatio: 1,
-    viewMode: 1,
-    dragMode: 'move',
-    // cropBoxResizable: false,
-    // cropBoxMovable: false,
-    toggleDragModeOnDblclick: false,
-    checkCrossOrigin: false,
-    ready() {
-      resetCropBox()
+  const props = defineProps({
+    imageUrl: {
+      type: String,
+      default: '',
+      required: true
     },
-    cropmove() {
-      getBase64()
+    cropBoxWidth: {
+      type: Number,
+      default: 200
     },
-    zoom() {
-      getBase64()
+    cropBoxHeight: {
+      type: Number,
+      default: 200
     },
-    crop() {
-      getBase64()
+    boxWidth: {
+      type: [Number, String],
+      default: 425
+    },
+    boxHeight: {
+      type: [Number, String],
+      default: 320
+    },
+    showResult: {
+      type: Boolean,
+      default: true
+    },
+    showActions: {
+      type: Boolean,
+      default: true
     }
   })
-}
 
-const uploadChange = (uploadFile: UploadFile) => {
-  // 判断是否是图片
-  if (uploadFile?.raw?.type.indexOf('image') === -1) {
-    ElMessage.error('请上传图片格式的文件')
-    return
+  const getBoxStyle = computed(() => {
+    return {
+      width: `${props.boxWidth}px`,
+      height: `${props.boxHeight}px`
+    }
+  })
+
+  const getCropBoxStyle = computed(() => {
+    return {
+      width: `${props.cropBoxWidth}px`,
+      height: `${props.cropBoxHeight}px`
+    }
+  })
+
+  // 获取对应的缩小倍数的宽高
+  const getScaleSize = (scale: number) => {
+    return {
+      width: props.cropBoxWidth * scale + 'px',
+      height: props.cropBoxHeight * scale + 'px'
+    }
   }
-  if (!uploadFile.raw) return
-  // 获取图片的访问地址
-  const url = URL.createObjectURL(uploadFile.raw)
-  unref(cropperRef)?.replace(url)
-}
 
-const reset = () => {
-  unref(cropperRef)?.reset()
-}
+  const imgBase64 = ref('')
+  const imgRef = ref<HTMLImageElement>()
+  const cropperRef = shallowRef<Cropper>()
+  const objectUrl = ref('')
 
-const rotate = (deg: number) => {
-  unref(cropperRef)?.rotate(deg)
-}
+  const getCroppedCanvas = () =>
+    cropperRef.value?.getCropperSelection()?.$toCanvas({
+      width: props.cropBoxWidth,
+      height: props.cropBoxHeight
+    })
 
-const scaleX = ref(1)
-const scaleY = ref(1)
-const scale = (type: 'scaleX' | 'scaleY') => {
-  if (type === 'scaleX') {
-    scaleX.value = scaleX.value === 1 ? -1 : 1
-    unref(cropperRef)?.[type](unref(scaleX))
-  } else {
-    scaleY.value = scaleY.value === 1 ? -1 : 1
-    unref(cropperRef)?.[type](unref(scaleY))
+  const getBase64 = async () => (await getCroppedCanvas())?.toDataURL() ?? ''
+
+  const renderPreview = async () => {
+    imgBase64.value = await getBase64()
   }
-}
 
-const zoom = (num: number) => {
-  unref(cropperRef)?.zoom(num)
-}
+  const refreshPreview = useDebounceFn(renderPreview, 80)
 
-onMounted(() => {
-  intiCropper()
-})
+  const resetCropBox = async () => {
+    const cropper = cropperRef.value
+    const canvas = cropper?.getCropperCanvas()
+    const selection = cropper?.getCropperSelection()
+    if (!canvas || !selection) return
 
-watch(
-  () => props.imageUrl,
-  async (url) => {
-    if (url) {
-      unref(cropperRef)?.replace(url)
+    const width = Math.min(props.cropBoxWidth, canvas.clientWidth || props.cropBoxWidth)
+    const height = Math.min(props.cropBoxHeight, canvas.clientHeight || props.cropBoxHeight)
+    const aspectRatio = props.cropBoxWidth / props.cropBoxHeight
+    selection.aspectRatio = aspectRatio
+    selection.initialAspectRatio = aspectRatio
+    selection.$change(
+      (canvas.clientWidth - width) / 2,
+      (canvas.clientHeight - height) / 2,
+      width,
+      height
+    )
+    await renderPreview()
+  }
+
+  const initCropper = async () => {
+    if (!imgRef.value || !props.imageUrl) return
+
+    cropperRef.value?.destroy()
+    const cropper = new Cropper(imgRef.value)
+    cropperRef.value = cropper
+    const image = cropper.getCropperImage()
+    const selection = cropper.getCropperSelection()
+    selection?.addEventListener(EVENT_CHANGE, refreshPreview)
+    image?.addEventListener(EVENT_TRANSFORM, refreshPreview)
+    await image?.$ready()
+    image?.$center('contain')
+    await resetCropBox()
+  }
+
+  const setImage = async (url: string) => {
+    const image = cropperRef.value?.getCropperImage()
+    if (!image) {
       await nextTick()
-      resetCropBox()
+      await initCropper()
+      return
     }
+
+    image.src = url
+    await image.$ready()
+    image.$resetTransform().$center('contain')
+    await resetCropBox()
   }
-)
 
-onBeforeUnmount(() => {
-  unref(cropperRef)?.destroy()
-})
+  const uploadChange = (uploadFile: UploadFile) => {
+    // 判断是否是图片
+    if (uploadFile?.raw?.type.indexOf('image') === -1) {
+      ElMessage.error('请上传图片格式的文件')
+      return
+    }
+    if (!uploadFile.raw) return
+    // 获取图片的访问地址
+    if (objectUrl.value) URL.revokeObjectURL(objectUrl.value)
+    objectUrl.value = URL.createObjectURL(uploadFile.raw)
+    void setImage(objectUrl.value)
+  }
 
-defineExpose({
-  cropperExpose: cropperRef
-})
+  const reset = async () => {
+    cropperRef.value?.getCropperImage()?.$resetTransform().$center('contain')
+    await resetCropBox()
+  }
+
+  const rotate = (deg: number) => {
+    cropperRef.value?.getCropperImage()?.$rotate(`${deg}deg`)
+    refreshPreview()
+  }
+
+  const scale = (type: 'scaleX' | 'scaleY') => {
+    cropperRef.value
+      ?.getCropperImage()
+      ?.$scale(type === 'scaleX' ? -1 : 1, type === 'scaleY' ? -1 : 1)
+    refreshPreview()
+  }
+
+  const zoom = (num: number) => {
+    cropperRef.value?.getCropperImage()?.$zoom(num)
+    refreshPreview()
+  }
+
+  onMounted(() => {
+    void initCropper()
+  })
+
+  watch(
+    () => props.imageUrl,
+    async (url) => {
+      if (!url) {
+        cropperRef.value?.destroy()
+        cropperRef.value = undefined
+        imgBase64.value = ''
+        return
+      }
+      await nextTick()
+      await setImage(url)
+    }
+  )
+
+  onBeforeUnmount(() => {
+    cropperRef.value?.destroy()
+    if (objectUrl.value) URL.revokeObjectURL(objectUrl.value)
+  })
+
+  defineExpose({
+    cropperExpose: cropperRef,
+    getCroppedCanvas,
+    getBase64
+  })
 </script>
 
 <template>
@@ -198,47 +225,47 @@ defineExpose({
               :show-file-list="false"
               :on-change="uploadChange"
             >
-              <BaseButton size="small" type="primary" class="mt-2px"
+              <ElButton size="small" type="primary" class="mt-2px"
                 ><Icon icon="vi-ep:upload-filled"
-              /></BaseButton>
+              /></ElButton>
             </ElUpload>
           </ElTooltip>
         </div>
         <div class="flex items-center justify-end flex-1">
           <ElTooltip content="重置" placement="bottom">
-            <BaseButton size="small" type="primary" @click="reset"
+            <ElButton size="small" type="primary" @click="reset"
               ><Icon icon="vi-ep:refresh"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="逆时针旋转" placement="bottom">
-            <BaseButton size="small" type="primary" @click="rotate(-45)"
+            <ElButton size="small" type="primary" @click="rotate(-45)"
               ><Icon icon="vi-ant-design:rotate-left-outlined"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="顺时针旋转" placement="bottom">
-            <BaseButton size="small" type="primary" @click="rotate(45)"
+            <ElButton size="small" type="primary" @click="rotate(45)"
               ><Icon icon="vi-ant-design:rotate-right-outlined"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="水平翻转" placement="bottom">
-            <BaseButton size="small" type="primary" @click="scale('scaleX')"
+            <ElButton size="small" type="primary" @click="scale('scaleX')"
               ><Icon icon="vi-vaadin:arrows-long-h"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="垂直翻转" placement="bottom">
-            <BaseButton size="small" type="primary" @click="scale('scaleY')"
+            <ElButton size="small" type="primary" @click="scale('scaleY')"
               ><Icon icon="vi-vaadin:arrows-long-v"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="放大" placement="bottom">
-            <BaseButton size="small" type="primary" @click="zoom(0.1)"
+            <ElButton size="small" type="primary" @click="zoom(0.1)"
               ><Icon icon="vi-ant-design:zoom-in-outlined"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
           <ElTooltip content="缩小" placement="bottom">
-            <BaseButton size="small" type="primary" @click="zoom(-0.1)"
+            <ElButton size="small" type="primary" @click="zoom(-0.1)"
               ><Icon icon="vi-ant-design:zoom-out-outlined"
-            /></BaseButton>
+            /></ElButton>
           </ElTooltip>
         </div>
       </div>

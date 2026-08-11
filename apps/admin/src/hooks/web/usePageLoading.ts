@@ -4,13 +4,13 @@ export const usePageLoading = () => {
   const loadStart = () => {
     const appStore = useAppStoreWithOut()
 
-    appStore.setPageLoading(true)
+    appStore.pageLoading = true
   }
 
   const loadDone = () => {
     const appStore = useAppStoreWithOut()
 
-    appStore.setPageLoading(false)
+    appStore.pageLoading = false
   }
 
   return {

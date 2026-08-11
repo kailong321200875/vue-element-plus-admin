@@ -8,6 +8,7 @@ import AppView from './AppView.vue'
 import ToolHeader from './ToolHeader.vue'
 import { ElScrollbar } from 'element-plus'
 import { useDesign } from '@/hooks/web/useDesign'
+import { appConfig } from '@/config/app'
 
 const { getPrefixCls } = useDesign()
 
@@ -15,25 +16,25 @@ const prefixCls = getPrefixCls('layout')
 
 const appStore = useAppStore()
 
-const pageLoading = computed(() => appStore.getPageLoading)
+const pageLoading = computed(() => appStore.pageLoading)
 
 // 标签页
-const tagsView = computed(() => appStore.getTagsView)
+const tagsView = computed(() => appConfig.ui.tagsView)
 
 // 菜单折叠
-const collapse = computed(() => appStore.getCollapse)
+const collapse = computed(() => appStore.collapse)
 
 // logo
-const logo = computed(() => appStore.logo)
+const logo = computed(() => appConfig.ui.logo)
 
 // 固定头部
-const fixedHeader = computed(() => appStore.getFixedHeader)
+const fixedHeader = computed(() => appConfig.ui.fixedHeader)
 
 // 是否是移动端
-const mobile = computed(() => appStore.getMobile)
+const mobile = computed(() => appStore.mobile)
 
 // 固定菜单
-const fixedMenu = computed(() => appStore.getFixedMenu)
+const fixedMenu = computed(() => appConfig.ui.fixedMenu)
 
 export const useRenderLayout = () => {
   const renderClassic = () => {
@@ -51,8 +52,8 @@ export const useRenderLayout = () => {
                 'bg-[var(--left-menu-bg-color)] relative',
                 {
                   '!pl-0': mobile.value && collapse.value,
-                  'w-[var(--left-menu-min-width)]': appStore.getCollapse,
-                  'w-[var(--left-menu-max-width)]': !appStore.getCollapse
+                  'w-[var(--left-menu-min-width)]': appStore.collapse,
+                  'w-[var(--left-menu-max-width)]': !appStore.collapse
                 }
               ]}
               style="transition: all var(--transition-time-02);"

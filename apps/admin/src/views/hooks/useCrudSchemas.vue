@@ -1,156 +1,156 @@
 <script setup lang="ts">
-import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
-import { useI18n } from '@/hooks/web/useI18n'
-import { reactive } from 'vue'
-import { JsonEditor } from '@/components/JsonEditor'
-import { ContentWrap } from '@/components/ContentWrap'
-import { ElRow, ElCol } from 'element-plus'
+  import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
+  import { useI18n } from 'vue-i18n'
+  import { reactive } from 'vue'
+  import { JsonEditor } from '@/components/JsonEditor'
+  import { ContentWrap } from '@/components/ContentWrap'
+  import { ElRow, ElCol } from 'element-plus'
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const crudSchemas = reactive<CrudSchema[]>([
-  {
-    field: 'selection',
-    search: {
-      hidden: true
+  const crudSchemas = reactive<CrudSchema[]>([
+    {
+      field: 'selection',
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      },
+      table: {
+        type: 'selection'
+      }
     },
-    form: {
-      hidden: true
+    {
+      field: 'index',
+      label: t('tableDemo.index'),
+      type: 'index',
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      }
     },
-    detail: {
-      hidden: true
-    },
-    table: {
-      type: 'selection'
-    }
-  },
-  {
-    field: 'index',
-    label: t('tableDemo.index'),
-    type: 'index',
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    },
-    detail: {
-      hidden: true
-    }
-  },
-  {
-    field: 'title',
-    label: t('tableDemo.title'),
-    search: {
-      component: 'Input'
-    },
-    form: {
-      component: 'Input',
-      colProps: {
+    {
+      field: 'title',
+      label: t('tableDemo.title'),
+      search: {
+        component: 'Input'
+      },
+      form: {
+        component: 'Input',
+        colProps: {
+          span: 24
+        }
+      },
+      detail: {
         span: 24
       }
     },
-    detail: {
-      span: 24
-    }
-  },
-  {
-    field: 'author',
-    label: t('tableDemo.author'),
-    search: {
-      hidden: true
-    }
-  },
-  {
-    field: 'display_time',
-    label: t('tableDemo.displayTime'),
-    search: {
-      hidden: true
-    },
-    form: {
-      component: 'DatePicker',
-      componentProps: {
-        type: 'datetime',
-        valueFormat: 'YYYY-MM-DD HH:mm:ss'
+    {
+      field: 'author',
+      label: t('tableDemo.author'),
+      search: {
+        hidden: true
       }
-    }
-  },
-  {
-    field: 'importance',
-    label: t('tableDemo.importance'),
-    search: {
-      hidden: true
     },
-    form: {
-      component: 'Select',
-      componentProps: {
-        style: {
-          width: '100%'
-        },
-        options: [
-          {
-            label: '重要',
-            value: 3
-          },
-          {
-            label: '良好',
-            value: 2
-          },
-          {
-            label: '一般',
-            value: 1
-          }
-        ]
+    {
+      field: 'display_time',
+      label: t('tableDemo.displayTime'),
+      search: {
+        hidden: true
+      },
+      form: {
+        component: 'DatePicker',
+        componentProps: {
+          type: 'datetime',
+          valueFormat: 'YYYY-MM-DD HH:mm:ss'
+        }
       }
-    }
-  },
-  {
-    field: 'pageviews',
-    label: t('tableDemo.pageviews'),
-    search: {
-      hidden: true
     },
-    form: {
-      component: 'InputNumber',
-      value: 0
-    }
-  },
-  {
-    field: 'content',
-    label: t('exampleDemo.content'),
-    search: {
-      hidden: true
+    {
+      field: 'importance',
+      label: t('tableDemo.importance'),
+      search: {
+        hidden: true
+      },
+      form: {
+        component: 'Select',
+        componentProps: {
+          style: {
+            width: '100%'
+          },
+          options: [
+            {
+              label: '重要',
+              value: 3
+            },
+            {
+              label: '良好',
+              value: 2
+            },
+            {
+              label: '一般',
+              value: 1
+            }
+          ]
+        }
+      }
     },
-    table: {
-      show: false
+    {
+      field: 'pageviews',
+      label: t('tableDemo.pageviews'),
+      search: {
+        hidden: true
+      },
+      form: {
+        component: 'InputNumber',
+        value: 0
+      }
     },
-    form: {
-      component: 'Editor',
-      colProps: {
+    {
+      field: 'content',
+      label: t('exampleDemo.content'),
+      search: {
+        hidden: true
+      },
+      table: {
+        show: false
+      },
+      form: {
+        component: 'Editor',
+        colProps: {
+          span: 24
+        }
+      },
+      detail: {
         span: 24
       }
     },
-    detail: {
-      span: 24
+    {
+      field: 'action',
+      width: '260px',
+      label: t('tableDemo.action'),
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      }
     }
-  },
-  {
-    field: 'action',
-    width: '260px',
-    label: t('tableDemo.action'),
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    },
-    detail: {
-      hidden: true
-    }
-  }
-])
+  ])
 
-const { allSchemas } = useCrudSchemas(crudSchemas)
+  const { allSchemas } = useCrudSchemas(crudSchemas)
 </script>
 
 <template>

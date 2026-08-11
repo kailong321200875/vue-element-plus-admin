@@ -34,12 +34,7 @@
       "@vea/components": ["../../packages/components/src"],
       "@vea/components/*": ["../../packages/components/src/*"]
     },
-    "types": [
-      "@intlify/unplugin-vue-i18n/types",
-      "vite/client",
-      "element-plus/global",
-      "@types/qrcode"
-    ]
+    "types": ["@intlify/unplugin-vue-i18n/types", "vite/client", "element-plus/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "mock/**/*.ts"]
 }

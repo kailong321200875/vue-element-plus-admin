@@ -1,313 +1,326 @@
-<script setup lang="tsx">
-import { reactive, ref, watch, onMounted, unref } from 'vue'
-import { Form, FormSchema } from '@/components/Form'
-import { useI18n } from '@/hooks/web/useI18n'
-import { ElCheckbox, ElLink } from 'element-plus'
-import { useForm } from '@/hooks/web/useForm'
-import { loginApi, getTestRoleApi, getAdminRoleApi } from '@/api/login'
-import { useAppStore } from '@/store/modules/app'
-import { usePermissionStore } from '@/store/modules/permission'
-import { useRouter } from 'vue-router'
-import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
-import { UserType } from '@/api/login/types'
-import { useValidator } from '@/hooks/web/useValidator'
-import { Icon } from '@/components/Icon'
-import { useUserStore } from '@/store/modules/user'
-import { BaseButton } from '@/components/Button'
+<script setup lang="ts">
+  import { computed, ref } from 'vue'
+  import { ElCheckbox, ElForm, ElFormItem, ElInput } from 'element-plus'
+  import { useRouter } from 'vue-router'
+  import { required, useForm } from '@vea/hooks'
+  import { loginApi } from '@/api/login'
+  import type { UserLoginType } from '@/api/login/types'
+  import { ElButton } from 'element-plus'
+  import { useI18n } from 'vue-i18n'
+  import { useUserStore } from '@/store/modules/user'
 
-const { required } = useValidator()
+  const emit = defineEmits(['to-register'])
+  const userStore = useUserStore()
+  const { currentRoute, push } = useRouter()
+  const { t } = useI18n()
 
-const emit = defineEmits(['to-register'])
-
-const appStore = useAppStore()
-
-const userStore = useUserStore()
-
-const permissionStore = usePermissionStore()
-
-const { currentRoute, addRoute, push } = useRouter()
-
-const { t } = useI18n()
-
-const rules = {
-  username: [required()],
-  password: [required()]
-}
-
-const schema = reactive<FormSchema[]>([
-  {
-    field: 'title',
-    colProps: {
-      span: 24
-    },
-    formItemProps: {
-      slots: {
-        default: () => {
-          return <h2 class="text-2xl font-bold text-center w-[100%]">{t('login.login')}</h2>
-        }
-      }
-    }
-  },
-  {
-    field: 'username',
-    label: t('login.username'),
-    // value: 'admin',
-    component: 'Input',
-    colProps: {
-      span: 24
-    },
-    componentProps: {
-      placeholder: 'admin or test'
-    }
-  },
-  {
-    field: 'password',
-    label: t('login.password'),
-    // value: 'admin',
-    component: 'InputPassword',
-    colProps: {
-      span: 24
-    },
-    componentProps: {
-      style: {
-        width: '100%'
-      },
-      placeholder: 'admin or test',
-      // 按下enter键触发登录
-      onKeydown: (_e: any) => {
-        if (_e.key === 'Enter') {
-          _e.stopPropagation() // 阻止事件冒泡
-          signIn()
-        }
-      }
-    }
-  },
-  {
-    field: 'tool',
-    colProps: {
-      span: 24
-    },
-    formItemProps: {
-      slots: {
-        default: () => {
-          return (
-            <>
-              <div class="flex justify-between items-center w-[100%]">
-                <ElCheckbox v-model={remember.value} label={t('login.remember')} size="small" />
-                <ElLink type="primary" underline={false}>
-                  {t('login.forgetPassword')}
-                </ElLink>
-              </div>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'login',
-    colProps: {
-      span: 24
-    },
-    formItemProps: {
-      slots: {
-        default: () => {
-          return (
-            <>
-              <div class="w-[100%]">
-                <BaseButton
-                  loading={loading.value}
-                  type="primary"
-                  class="w-[100%]"
-                  onClick={signIn}
-                >
-                  {t('login.login')}
-                </BaseButton>
-              </div>
-              <div class="w-[100%] mt-15px">
-                <BaseButton class="w-[100%]" onClick={toRegister}>
-                  {t('login.register')}
-                </BaseButton>
-              </div>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'other',
-    component: 'Divider',
-    label: t('login.otherLogin'),
-    componentProps: {
-      contentPosition: 'center'
-    }
-  },
-  {
-    field: 'otherIcon',
-    colProps: {
-      span: 24
-    },
-    formItemProps: {
-      slots: {
-        default: () => {
-          return (
-            <>
-              <div class="flex justify-between w-[100%]">
-                <Icon
-                  icon="vi-ant-design:github-filled"
-                  size={iconSize}
-                  class="cursor-pointer ant-icon"
-                  color={iconColor}
-                  hoverColor={hoverColor}
-                />
-                <Icon
-                  icon="vi-ant-design:wechat-filled"
-                  size={iconSize}
-                  class="cursor-pointer ant-icon"
-                  color={iconColor}
-                  hoverColor={hoverColor}
-                />
-                <Icon
-                  icon="vi-ant-design:alipay-circle-filled"
-                  size={iconSize}
-                  color={iconColor}
-                  hoverColor={hoverColor}
-                  class="cursor-pointer ant-icon"
-                />
-                <Icon
-                  icon="vi-ant-design:weibo-circle-filled"
-                  size={iconSize}
-                  color={iconColor}
-                  hoverColor={hoverColor}
-                  class="cursor-pointer ant-icon"
-                />
-              </div>
-            </>
-          )
-        }
-      }
-    }
-  }
-])
-
-const iconSize = 30
-
-const remember = ref(userStore.getRememberMe)
-
-const initLoginInfo = () => {
-  const loginInfo = userStore.getLoginInfo
-  if (loginInfo) {
-    const { username, password } = loginInfo
-    setValues({ username, password })
-  }
-}
-onMounted(() => {
-  initLoginInfo()
-})
-
-const { formRegister, formMethods } = useForm()
-const { getFormData, getElFormExpose, setValues } = formMethods
-
-const loading = ref(false)
-
-const iconColor = '#999'
-
-const hoverColor = 'var(--el-color-primary)'
-
-const redirect = ref<string>('')
-
-watch(
-  () => currentRoute.value,
-  (route: RouteLocationNormalizedLoaded) => {
-    redirect.value = route?.query?.redirect as string
-  },
-  {
-    immediate: true
-  }
-)
-
-// 登录
-const signIn = async () => {
-  const formRef = await getElFormExpose()
-  await formRef?.validate(async (isValid) => {
-    if (isValid) {
-      loading.value = true
-      const formData = await getFormData<UserType>()
-
-      try {
-        const res = await loginApi(formData)
-
-        if (res) {
-          // 是否记住我
-          if (unref(remember)) {
-            userStore.setLoginInfo({
-              username: formData.username,
-              password: formData.password
-            })
-          } else {
-            userStore.setLoginInfo(undefined)
-          }
-          userStore.setRememberMe(unref(remember))
-          userStore.setUserInfo(res.data)
-          // 是否使用动态路由
-          if (appStore.getDynamicRouter) {
-            getRole()
-          } else {
-            await permissionStore.generateRoutes('static').catch(() => {})
-            permissionStore.getAddRouters.forEach((route) => {
-              addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
-            })
-            permissionStore.setIsAddRouters(true)
-            push({ path: redirect.value || permissionStore.addRouters[0].path })
-          }
-        }
-      } finally {
-        loading.value = false
-      }
+  const { state, actions } = useForm<UserLoginType>({
+    initialValues: { username: userStore.rememberedUsername, password: '' },
+    rules: {
+      username: required(() => t('common.required')),
+      password: required(() => t('common.required'))
     }
   })
-}
+  const values = computed(() => state.values.value)
+  const errors = computed(() => state.errors.value)
+  const submitting = computed(() => state.submitting.value)
+  const remember = ref(userStore.rememberMe)
+  const redirect = computed(() => {
+    const value = currentRoute.value.query.redirect
+    return typeof value === 'string' ? value : ''
+  })
 
-// 获取角色信息
-const getRole = async () => {
-  const formData = await getFormData<UserType>()
-  const params = {
-    roleName: formData.username
+  const login = async (formData: UserLoginType) => {
+    const res = await loginApi(formData)
+    if (!res) return
+
+    userStore.rememberUsername(formData.username, remember.value)
+    userStore.setSession(res.data)
+    await push(redirect.value || '/')
   }
-  const res =
-    appStore.getDynamicRouter && appStore.getServerDynamicRouter
-      ? await getAdminRoleApi(params)
-      : await getTestRoleApi(params)
-  if (res) {
-    const routers = res.data || []
-    userStore.setRoleRouters(routers)
-    appStore.getDynamicRouter && appStore.getServerDynamicRouter
-      ? await permissionStore.generateRoutes('server', routers).catch(() => {})
-      : await permissionStore.generateRoutes('frontEnd', routers).catch(() => {})
 
-    permissionStore.getAddRouters.forEach((route) => {
-      addRoute(route as RouteRecordRaw) // 动态添加可访问路由表
-    })
-    permissionStore.setIsAddRouters(true)
-    push({ path: redirect.value || permissionStore.addRouters[0].path })
-  }
-}
-
-// 去注册页面
-const toRegister = () => {
-  emit('to-register')
-}
+  const signIn = () => actions.submit(login)
 </script>
 
 <template>
-  <Form
-    :schema="schema"
-    :rules="rules"
+  <ElForm
+    :model="values"
     label-position="top"
     hide-required-asterisk
     size="large"
-    class="dark:(border-1 border-[var(--el-border-color)] border-solid)"
-    @register="formRegister"
-  />
+    class="login-form"
+    @submit.prevent="signIn()"
+  >
+    <div class="form-intro">
+      <span class="form-kicker">{{ t('login.welcome') }}</span>
+      <h2>{{ t('login.login') }}</h2>
+      <p>{{ t('login.message') }}</p>
+    </div>
+
+    <ElFormItem class="login-field" :label="t('login.username')" :error="errors.username?.[0]">
+      <ElInput
+        v-model="values.username"
+        :placeholder="t('login.usernamePlaceholder')"
+        autocomplete="username"
+        :disabled="submitting"
+        @input="actions.clearErrors('username')"
+        @blur="actions.validateField('username')"
+      />
+    </ElFormItem>
+
+    <ElFormItem class="login-field" :label="t('login.password')" :error="errors.password?.[0]">
+      <ElInput
+        v-model="values.password"
+        type="password"
+        show-password
+        :placeholder="t('login.passwordPlaceholder')"
+        autocomplete="current-password"
+        :disabled="submitting"
+        @input="actions.clearErrors('password')"
+        @blur="actions.validateField('password')"
+      />
+    </ElFormItem>
+
+    <div class="login-options">
+      <ElCheckbox v-model="remember" :label="t('login.remember')" size="small" />
+      <span class="secure-note"><i></i>SSL</span>
+    </div>
+
+    <ElButton native-type="submit" :loading="submitting" type="primary" class="login-submit">
+      {{ t('login.login') }}
+    </ElButton>
+
+    <button type="button" class="register-link" @click="emit('to-register')">
+      <span>{{ t('login.register') }}</span>
+      <i aria-hidden="true">↗</i>
+    </button>
+  </ElForm>
 </template>
+
+<style lang="less" scoped>
+  .login-form {
+    width: 100%;
+    color: var(--login-ink);
+  }
+
+  .form-intro {
+    margin-bottom: 30px;
+
+    h2 {
+      margin: 7px 0 8px;
+      font-family: 'Avenir Next', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-size: clamp(30px, 3vw, 38px);
+      font-weight: 720;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      color: var(--login-ink);
+    }
+
+    p {
+      display: none;
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--login-muted);
+    }
+  }
+
+  .form-kicker {
+    font-family: SFMono-Regular, Consolas, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--login-blue);
+    text-transform: uppercase;
+  }
+
+  .login-field {
+    margin-bottom: 21px;
+
+    :deep(.el-form-item__label) {
+      height: auto;
+      padding: 0;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.3;
+      color: var(--login-ink);
+    }
+
+    :deep(.el-input__wrapper) {
+      min-height: 52px;
+      padding: 0 15px;
+      background: color-mix(in srgb, var(--login-panel) 72%, var(--login-card));
+      border-radius: 14px;
+      box-shadow: inset 0 0 0 1px var(--login-line);
+      transition:
+        box-shadow 180ms ease,
+        transform 180ms ease,
+        background-color 180ms ease;
+    }
+
+    :deep(.el-input__wrapper:hover) {
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--login-blue) 42%, var(--login-line));
+    }
+
+    :deep(.el-input__wrapper.is-focus) {
+      background: var(--login-card);
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 0 0 1.5px var(--login-blue),
+        0 7px 20px rgb(52 126 223 / 10%);
+    }
+
+    :deep(.el-input__inner) {
+      font-size: 14px;
+      color: var(--login-ink);
+    }
+
+    :deep(.el-input__inner::placeholder) {
+      color: color-mix(in srgb, var(--login-muted) 70%, transparent);
+    }
+
+    :deep(.el-form-item__error) {
+      padding-top: 5px;
+      font-size: 11px;
+    }
+  }
+
+  .login-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24px;
+    margin-top: -2px;
+
+    :deep(.el-checkbox__label) {
+      font-size: 12px;
+      color: var(--login-muted);
+    }
+  }
+
+  .secure-note {
+    display: flex;
+    font-family: SFMono-Regular, Consolas, monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--login-muted);
+    gap: 6px;
+    align-items: center;
+
+    i {
+      width: 6px;
+      height: 6px;
+      background: #2ecb8f;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgb(46 203 143 / 11%);
+    }
+  }
+
+  .login-submit {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 13px 28px color-mix(in srgb, var(--el-color-primary) 25%, transparent);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+
+    &:hover:not(.is-disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px color-mix(in srgb, var(--el-color-primary) 32%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--el-color-primary) 24%, transparent);
+      outline-offset: 3px;
+    }
+  }
+
+  .register-link {
+    display: flex;
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+    font: inherit;
+    font-size: 12px;
+    color: var(--login-muted);
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    transition: color 160ms ease;
+    gap: 9px;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      display: grid;
+      width: 21px;
+      height: 21px;
+      font-style: normal;
+      border: 1px solid var(--login-line);
+      border-radius: 50%;
+      transition:
+        border-color 160ms ease,
+        transform 160ms ease;
+      place-items: center;
+    }
+
+    &:hover {
+      color: var(--login-blue);
+
+      i {
+        border-color: var(--login-blue);
+        transform: translate(2px, -2px);
+      }
+    }
+
+    &:focus-visible {
+      border-radius: 8px;
+      outline: 2px solid var(--login-blue);
+      outline-offset: 3px;
+    }
+  }
+
+  @media (width <= 860px) {
+    .form-intro p {
+      display: block;
+    }
+  }
+
+  @media (width <= 520px) {
+    .form-intro {
+      margin-bottom: 25px;
+
+      h2 {
+        font-size: 30px;
+      }
+    }
+
+    .login-field {
+      margin-bottom: 18px;
+
+      :deep(.el-input__wrapper) {
+        min-height: 50px;
+      }
+    }
+
+    .login-submit {
+      margin-top: 22px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .login-submit,
+    .register-link,
+    .register-link i,
+    .login-field :deep(.el-input__wrapper) {
+      transition: none;
+    }
+  }
+</style>

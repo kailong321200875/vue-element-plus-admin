@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ElInput } from 'element-plus'
-import { ContentWrap } from '@/components/ContentWrap'
-import { useI18n } from '@/hooks/web/useI18n'
-import { ref } from 'vue'
+  import { ElInput } from 'element-plus'
+  import { ContentWrap } from '@/components/ContentWrap'
+  import { useI18n } from 'vue-i18n'
+  import { ref } from 'vue'
 
-defineOptions({
-  name: 'Menu12'
-})
+  defineOptions({
+    name: 'Menu12'
+  })
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const text = ref('')
+  const text = ref('')
 </script>
 
 <template>

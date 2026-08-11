@@ -1,105 +1,107 @@
 <script setup lang="ts">
-import {
-  ElDrawer,
-  ElCheckbox,
-  ElCheckboxGroup,
-  ElText,
-  ElRadioButton,
-  ElRadioGroup
-} from 'element-plus'
-import { TableColumn } from '../types'
-import { PropType, ref, watch, unref } from 'vue'
-import { cloneDeep } from 'lodash-es'
-import { DEFAULT_FILTER_COLUMN } from '@/constants'
-import { VueDraggable } from 'vue-draggable-plus'
+  import {
+    ElDrawer,
+    ElCheckbox,
+    ElCheckboxGroup,
+    ElText,
+    ElRadioButton,
+    ElRadioGroup
+  } from 'element-plus'
+  import { TableColumn } from '../types'
+  import { PropType, ref, watch, unref } from 'vue'
+  import { cloneDeep } from 'lodash-es'
+  import { DEFAULT_FILTER_COLUMN } from '@/constants'
+  import { VueDraggable } from 'vue-draggable-plus'
 
-const modelValue = defineModel<boolean>()
+  const modelValue = defineModel<boolean>()
 
-const props = defineProps({
-  columns: {
-    type: Array as PropType<TableColumn[]>,
-    default: () => []
-  }
-})
-
-const emit = defineEmits(['confirm'])
-
-const oldColumns = ref<TableColumn[]>()
-
-const settingColumns = ref<TableColumn[]>()
-
-// 存储不要的列
-const hiddenColumns = ref<TableColumn[]>([])
-
-const defaultCheckColumns = ref<string[]>([])
-const checkColumns = ref<string[]>([])
-
-const checkAll = ref(false)
-const isIndeterminate = ref(true)
-const handleCheckAllChange = (val: boolean) => {
-  checkColumns.value = val ? unref(defaultCheckColumns) : []
-  isIndeterminate.value = false
-}
-
-const handleCheckedColumnsChange = (value: string[]) => {
-  const checkedCount = value.length
-  checkAll.value = checkedCount === unref(defaultCheckColumns)?.length
-  isIndeterminate.value = checkedCount > 0 && checkedCount < unref(defaultCheckColumns)?.length
-}
-
-const confirm = () => {
-  const newColumns = cloneDeep(unref(settingColumns))?.map((item) => {
-    const fixed = unref(settingColumns)?.find((col) => col.field === item.field)?.fixed
-    item.hidden = !unref(checkColumns)?.includes(item.field)
-    item.fixed = fixed ? fixed : false
-    return item
-  })
-  emit('confirm', [...unref(hiddenColumns), ...(newColumns || [])])
-  modelValue.value = false
-}
-
-const restore = () => {
-  initColumns([...unref(hiddenColumns), ...(unref(oldColumns) || [])], true)
-}
-
-const initColumns = (columns: TableColumn[], isReStore = false) => {
-  const newColumns = columns?.filter((item) => {
-    if (!isReStore) {
-      item.fixed = item.fixed !== void 0 ? item.fixed : false
+  const props = defineProps({
+    columns: {
+      type: Array as PropType<TableColumn[]>,
+      default: () => []
     }
-    return (item.type && !DEFAULT_FILTER_COLUMN.includes(item.type)) || !item.type
   })
-  if (!unref(oldColumns)?.length) {
-    oldColumns.value = cloneDeep(newColumns)
-  }
-  settingColumns.value = cloneDeep(newColumns)
 
-  hiddenColumns.value = cloneDeep(
-    columns?.filter((item) => item.type && DEFAULT_FILTER_COLUMN.includes(item.type))
-  )
+  const emit = defineEmits<{
+    confirm: [columns: TableColumn[]]
+  }>()
 
-  defaultCheckColumns.value = unref(settingColumns)?.map((item) => item.field) || []
-  checkColumns.value =
-    unref(settingColumns)
-      ?.filter((item) => !item.hidden)
-      ?.map((item) => item.field) || []
+  const oldColumns = ref<TableColumn[]>()
 
-  if (unref(checkColumns)?.length === unref(defaultCheckColumns)?.length) {
-    checkAll.value = true
+  const settingColumns = ref<TableColumn[]>()
+
+  // 存储不要的列
+  const hiddenColumns = ref<TableColumn[]>([])
+
+  const defaultCheckColumns = ref<string[]>([])
+  const checkColumns = ref<string[]>([])
+
+  const checkAll = ref(false)
+  const isIndeterminate = ref(true)
+  const handleCheckAllChange = (val: boolean) => {
+    checkColumns.value = val ? unref(defaultCheckColumns) : []
     isIndeterminate.value = false
   }
-}
 
-watch(
-  () => props.columns,
-  (columns) => {
-    initColumns(columns)
-  },
-  {
-    immediate: true,
-    deep: true
+  const handleCheckedColumnsChange = (value: string[]) => {
+    const checkedCount = value.length
+    checkAll.value = checkedCount === unref(defaultCheckColumns)?.length
+    isIndeterminate.value = checkedCount > 0 && checkedCount < unref(defaultCheckColumns)?.length
   }
-)
+
+  const confirm = () => {
+    const newColumns = cloneDeep(unref(settingColumns))?.map((item) => {
+      const fixed = unref(settingColumns)?.find((col) => col.field === item.field)?.fixed
+      item.hidden = !unref(checkColumns)?.includes(item.field)
+      item.fixed = fixed ? fixed : false
+      return item
+    })
+    emit('confirm', [...unref(hiddenColumns), ...(newColumns || [])])
+    modelValue.value = false
+  }
+
+  const restore = () => {
+    initColumns([...unref(hiddenColumns), ...(unref(oldColumns) || [])], true)
+  }
+
+  const initColumns = (columns: TableColumn[], isReStore = false) => {
+    const newColumns = columns?.filter((item) => {
+      if (!isReStore) {
+        item.fixed = item.fixed !== void 0 ? item.fixed : false
+      }
+      return (item.type && !DEFAULT_FILTER_COLUMN.includes(item.type)) || !item.type
+    })
+    if (!unref(oldColumns)?.length) {
+      oldColumns.value = cloneDeep(newColumns)
+    }
+    settingColumns.value = cloneDeep(newColumns)
+
+    hiddenColumns.value = cloneDeep(
+      columns?.filter((item) => item.type && DEFAULT_FILTER_COLUMN.includes(item.type))
+    )
+
+    defaultCheckColumns.value = unref(settingColumns)?.map((item) => item.field) || []
+    checkColumns.value =
+      unref(settingColumns)
+        ?.filter((item) => !item.hidden)
+        ?.map((item) => item.field) || []
+
+    if (unref(checkColumns)?.length === unref(defaultCheckColumns)?.length) {
+      checkAll.value = true
+      isIndeterminate.value = false
+    }
+  }
+
+  watch(
+    () => props.columns,
+    (columns) => {
+      initColumns(columns)
+    },
+    {
+      immediate: true,
+      deep: true
+    }
+  )
 </script>
 
 <template>
@@ -158,8 +160,8 @@ watch(
     </div>
     <template #footer>
       <div>
-        <BaseButton @click="restore">还原</BaseButton>
-        <BaseButton type="primary" @click="confirm">确定</BaseButton>
+        <ElButton @click="restore">还原</ElButton>
+        <ElButton type="primary" @click="confirm">确定</ElButton>
       </div>
     </template>
   </ElDrawer>

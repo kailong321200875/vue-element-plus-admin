@@ -1,52 +1,52 @@
 <script setup lang="ts">
-import Write from './components/Write.vue'
-import { ContentDetailWrap } from '@/components/ContentDetailWrap'
-import { ref, unref } from 'vue'
-import { useI18n } from '@/hooks/web/useI18n'
-import { useRouter, useRoute } from 'vue-router'
-import { saveTableApi, getTableDetApi } from '@/api/table'
-import { TableData } from '@/api/table/types'
-import { useEventBus } from '@/hooks/event/useEventBus'
+  import Write from './components/Write.vue'
+  import { ContentDetailWrap } from '@/components/ContentDetailWrap'
+  import { ref, unref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { useRouter, useRoute } from 'vue-router'
+  import { saveTableApi, getTableDetApi } from '@/api/table'
+  import { TableData } from '@/api/table/types'
+  import { useEventBus } from '@/hooks/event/useEventBus'
 
-const { emit } = useEventBus()
+  const { emit } = useEventBus()
 
-const { push, go } = useRouter()
+  const { push, go } = useRouter()
 
-const { query } = useRoute()
+  const { query } = useRoute()
 
-const { t } = useI18n()
+  const { t } = useI18n()
 
-const currentRow = ref<Nullable<TableData>>(null)
+  const currentRow = ref<Nullable<TableData>>(null)
 
-const getTableDet = async () => {
-  const res = await getTableDetApi(query.id as string)
-  if (res) {
-    currentRow.value = res.data
-  }
-}
-
-getTableDet()
-
-const writeRef = ref<ComponentRef<typeof Write>>()
-
-const loading = ref(false)
-
-const save = async () => {
-  const write = unref(writeRef)
-  const formData = await write?.submit()
-  if (formData) {
-    loading.value = true
-    const res = await saveTableApi(formData)
-      .catch(() => {})
-      .finally(() => {
-        loading.value = false
-      })
+  const getTableDet = async () => {
+    const res = await getTableDetApi(query.id as string)
     if (res) {
-      emit('getList', 'editor')
-      push('/example/example-page')
+      currentRow.value = res.data
     }
   }
-}
+
+  getTableDet()
+
+  const writeRef = ref<ComponentRef<typeof Write>>()
+
+  const loading = ref(false)
+
+  const save = async () => {
+    const write = unref(writeRef)
+    const formData = await write?.submit()
+    if (formData) {
+      loading.value = true
+      const res = await saveTableApi(formData)
+        .catch(() => {})
+        .finally(() => {
+          loading.value = false
+        })
+      if (res) {
+        emit('getList', 'editor')
+        push('/example/example-page')
+      }
+    }
+  }
 </script>
 
 <template>
@@ -54,12 +54,12 @@ const save = async () => {
     <Write ref="writeRef" :current-row="currentRow" />
 
     <template #header>
-      <BaseButton @click="go(-1)">
+      <ElButton @click="go(-1)">
         {{ t('common.back') }}
-      </BaseButton>
-      <BaseButton type="primary" :loading="loading" @click="save">
+      </ElButton>
+      <ElButton type="primary" :loading="loading" @click="save">
         {{ t('exampleDemo.save') }}
-      </BaseButton>
+      </ElButton>
     </template>
   </ContentDetailWrap>
 </template>

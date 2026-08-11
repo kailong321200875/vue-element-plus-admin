@@ -10,6 +10,8 @@
 
   --left-menu-bg-light-color: #0f2438;
 
+  --left-menu-border-color: inherit;
+
   --left-menu-bg-active-color: var(--el-color-primary);
 
   --left-menu-text-color: #bfcbd9;
@@ -23,14 +25,18 @@
   --logo-height: 50px;
 
   --logo-title-text-color: #fff;
+
+  --logo-border-color: inherit;
   /* logo end */
 
   /* header start */
-  --top-header-bg-color: '#fff';
+  --top-header-bg-color: #fff;
 
-  --top-header-text-color: 'inherit';
+  --top-header-text-color: inherit;
 
   --top-header-hover-color: #f6f6f6;
+
+  --top-tool-border-color: #eee;
 
   --top-tool-height: var(--logo-height);
 
@@ -58,6 +64,10 @@
 
 .dark {
   --app-content-bg-color: var(--el-bg-color);
+  --top-header-bg-color: var(--el-bg-color);
+  --top-header-text-color: var(--el-text-color-primary);
+  --top-header-hover-color: var(--el-fill-color-light);
+  --top-tool-border-color: var(--el-border-color);
 }
 
 *,

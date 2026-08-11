@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import { useTagsViewStore } from '@/store/modules/tagsView'
-import { useAppStore } from '@/store/modules/app'
-import { Footer } from '@/components/Footer'
-import { computed } from 'vue'
+  import { useTagsViewStore } from '@/store/modules/tagsView'
+  import { Footer } from '@/components/Footer'
+  import { computed } from 'vue'
+  import { appConfig } from '@/config/app'
 
-const appStore = useAppStore()
+  const tagsViewStore = useTagsViewStore()
 
-const footer = computed(() => appStore.getFooter)
-
-const tagsViewStore = useTagsViewStore()
-
-const getCaches = computed((): string[] => {
-  return tagsViewStore.getCachedViews
-})
+  const getCaches = computed((): string[] => {
+    return tagsViewStore.getCachedViews
+  })
 </script>
 
 <template>
@@ -21,7 +17,7 @@ const getCaches = computed((): string[] => {
       'box-border p-[var(--app-content-padding)] w-full bg-[var(--app-content-bg-color)] dark:bg-[var(--el-bg-color)]',
       {
         '!min-h-[calc(100vh-var(--top-tool-height)-var(--tags-view-height)-var(--app-footer-height))] pb-0':
-          footer
+          appConfig.ui.footer
       }
     ]"
   >
@@ -33,5 +29,5 @@ const getCaches = computed((): string[] => {
       </template>
     </router-view>
   </section>
-  <Footer v-if="footer" />
+  <Footer v-if="appConfig.ui.footer" />
 </template>

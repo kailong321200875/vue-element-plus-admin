@@ -1,312 +1,294 @@
 <script setup lang="tsx">
-import { ContentWrap } from '@/components/ContentWrap'
-import { Search } from '@/components/Search'
-import { Dialog } from '@/components/Dialog'
-import { useI18n } from '@/hooks/web/useI18n'
-import { ElTag } from 'element-plus'
-import { Table } from '@/components/Table'
-import {
-  getDepartmentApi,
-  getDepartmentTableApi,
-  saveDepartmentApi,
-  deleteDepartmentApi
-} from '@/api/department'
-import type { DepartmentItem } from '@/api/department/types'
-import { useTable } from '@/hooks/web/useTable'
-import { ref, unref, reactive } from 'vue'
-import Write from './components/Write.vue'
-import Detail from './components/Detail.vue'
-import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
-import { BaseButton } from '@/components/Button'
+  import { ContentWrap } from '@/components/ContentWrap'
+  import { Search } from '@/components/Search'
+  import { Dialog } from '@/components/Dialog'
+  import { useI18n } from 'vue-i18n'
+  import { ElTag } from 'element-plus'
+  import { Table } from '@/components/Table'
+  import {
+    getDepartmentApi,
+    getDepartmentTableApi,
+    saveDepartmentApi,
+    deleteDepartmentApi
+  } from '@/api/department'
+  import type { DepartmentItem } from '@/api/department/types'
+  import { useTable } from '@/hooks/web/useTable'
+  import { ref, unref, reactive } from 'vue'
+  import Write from './components/Write.vue'
+  import Detail from './components/Detail.vue'
+  import { CrudSchema, useCrudSchemas } from '@/hooks/web/useCrudSchemas'
+  import { ElButton } from 'element-plus'
 
-const ids = ref<string[]>([])
-
-const { tableRegister, tableState, tableMethods } = useTable({
-  fetchDataApi: async () => {
-    const { currentPage, pageSize } = tableState
-    const res = await getDepartmentTableApi({
-      pageIndex: unref(currentPage),
-      pageSize: unref(pageSize),
-      ...unref(searchParams)
-    })
-    return {
-      list: res.data.list,
-      total: res.data.total
-    }
-  },
-  fetchDelApi: async () => {
-    const res = await deleteDepartmentApi(unref(ids))
-    return !!res
-  }
-})
-const { loading, dataList, total, currentPage, pageSize } = tableState
-const { getList, getElTableExpose, delList } = tableMethods
-
-const searchParams = ref({})
-const setSearchParams = (params: any) => {
-  searchParams.value = params
-  getList()
-}
-
-const { t } = useI18n()
-
-const crudSchemas = reactive<CrudSchema[]>([
-  {
-    field: 'selection',
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    },
-    detail: {
-      hidden: true
-    },
-    table: {
-      type: 'selection'
-    }
-  },
-  {
-    field: 'index',
-    label: t('tableDemo.index'),
-    type: 'index',
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    },
-    detail: {
-      hidden: true
-    }
-  },
-  {
-    field: 'id',
-    label: t('userDemo.departmentName'),
-    table: {
-      slots: {
-        default: (data: any) => {
-          return <>{data.row.departmentName}</>
-        }
+  const { tableRegister, tableState, tableMethods } = useTable<DepartmentItem>({
+    fetchDataApi: async (params) => {
+      const res = await getDepartmentTableApi(params)
+      return {
+        list: res.data.list,
+        total: res.data.total
       }
     },
-    form: {
-      component: 'TreeSelect',
-      componentProps: {
-        nodeKey: 'id',
-        props: {
-          label: 'departmentName'
-        }
-      },
-      optionApi: async () => {
-        const res = await getDepartmentApi()
-        return res.data.list
-      }
-    },
-    detail: {
-      slots: {
-        default: (data: any) => {
-          return <>{data.departmentName}</>
-        }
-      }
-    }
-  },
-  {
-    field: 'status',
-    label: t('userDemo.status'),
-    search: {
-      hidden: true
-    },
-    table: {
-      slots: {
-        default: (data: any) => {
-          const status = data.row.status
-          return (
-            <>
-              <ElTag type={status === 0 ? 'danger' : 'success'}>
-                {status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
-              </ElTag>
-            </>
-          )
-        }
-      }
-    },
-    form: {
-      component: 'Select',
-      componentProps: {
-        options: [
-          {
-            value: 0,
-            label: t('userDemo.disable')
-          },
-          {
-            value: 1,
-            label: t('userDemo.enable')
-          }
-        ]
-      }
-    },
-    detail: {
-      slots: {
-        default: (data: any) => {
-          return (
-            <>
-              <ElTag type={data.status === 0 ? 'danger' : 'success'}>
-                {data.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
-              </ElTag>
-            </>
-          )
-        }
-      }
-    }
-  },
-  {
-    field: 'createTime',
-    label: t('tableDemo.displayTime'),
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    }
-  },
-  {
-    field: 'remark',
-    label: t('userDemo.remark'),
-    search: {
-      hidden: true
-    },
-    form: {
-      component: 'Input',
-      componentProps: {
-        type: 'textarea',
-        rows: 5
-      },
-      colProps: {
-        span: 24
-      }
-    },
-    detail: {
-      slots: {
-        default: (data: any) => {
-          return <>{data.remark}</>
-        }
-      }
-    }
-  },
-  {
-    field: 'action',
-    width: '260px',
-    label: t('tableDemo.action'),
-    search: {
-      hidden: true
-    },
-    form: {
-      hidden: true
-    },
-    detail: {
-      hidden: true
-    },
-    table: {
-      slots: {
-        default: (data: any) => {
-          return (
-            <>
-              <BaseButton type="primary" onClick={() => action(data.row, 'edit')}>
-                {t('exampleDemo.edit')}
-              </BaseButton>
-              <BaseButton type="success" onClick={() => action(data.row, 'detail')}>
-                {t('exampleDemo.detail')}
-              </BaseButton>
-              <BaseButton type="danger" onClick={() => delData(data.row)}>
-                {t('exampleDemo.del')}
-              </BaseButton>
-            </>
-          )
-        }
-      }
-    }
-  }
-])
-
-// @ts-ignore
-const { allSchemas } = useCrudSchemas(crudSchemas)
-
-const dialogVisible = ref(false)
-const dialogTitle = ref('')
-
-const currentRow = ref<DepartmentItem | null>(null)
-const actionType = ref('')
-
-const AddAction = () => {
-  dialogTitle.value = t('exampleDemo.add')
-  currentRow.value = null
-  dialogVisible.value = true
-  actionType.value = ''
-}
-
-const delLoading = ref(false)
-
-const delData = async (row: DepartmentItem | null) => {
-  const elTableExpose = await getElTableExpose()
-  ids.value = row
-    ? [row.id]
-    : elTableExpose?.getSelectionRows().map((v: DepartmentItem) => v.id) || []
-  delLoading.value = true
-  await delList(unref(ids).length).finally(() => {
-    delLoading.value = false
+    fetchDelApi: (ids) => deleteDepartmentApi(ids)
   })
-}
+  const { getElTableExpose, delList, search, refresh } = tableMethods
 
-const action = (row: DepartmentItem, type: string) => {
-  dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
-  actionType.value = type
-  currentRow.value = row
-  dialogVisible.value = true
-}
+  const { t } = useI18n()
 
-const writeRef = ref<ComponentRef<typeof Write>>()
+  const crudSchemas = reactive<CrudSchema[]>([
+    {
+      field: 'selection',
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      },
+      table: {
+        type: 'selection'
+      }
+    },
+    {
+      field: 'index',
+      label: t('tableDemo.index'),
+      type: 'index',
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      }
+    },
+    {
+      field: 'id',
+      label: t('userDemo.departmentName'),
+      table: {
+        slots: {
+          default: (data: any) => {
+            return <>{data.row.departmentName}</>
+          }
+        }
+      },
+      form: {
+        component: 'TreeSelect',
+        componentProps: {
+          nodeKey: 'id',
+          props: {
+            label: 'departmentName'
+          }
+        },
+        optionApi: async () => {
+          const res = await getDepartmentApi()
+          return res.data.list
+        }
+      },
+      detail: {
+        slots: {
+          default: (data: any) => {
+            return <>{data.departmentName}</>
+          }
+        }
+      }
+    },
+    {
+      field: 'status',
+      label: t('userDemo.status'),
+      search: {
+        hidden: true
+      },
+      table: {
+        slots: {
+          default: (data: any) => {
+            const status = data.row.status
+            return (
+              <>
+                <ElTag type={status === 0 ? 'danger' : 'success'}>
+                  {status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+                </ElTag>
+              </>
+            )
+          }
+        }
+      },
+      form: {
+        component: 'Select',
+        componentProps: {
+          options: [
+            {
+              value: 0,
+              label: t('userDemo.disable')
+            },
+            {
+              value: 1,
+              label: t('userDemo.enable')
+            }
+          ]
+        }
+      },
+      detail: {
+        slots: {
+          default: (data: any) => {
+            return (
+              <>
+                <ElTag type={data.status === 0 ? 'danger' : 'success'}>
+                  {data.status === 1 ? t('userDemo.enable') : t('userDemo.disable')}
+                </ElTag>
+              </>
+            )
+          }
+        }
+      }
+    },
+    {
+      field: 'createTime',
+      label: t('tableDemo.displayTime'),
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      }
+    },
+    {
+      field: 'remark',
+      label: t('userDemo.remark'),
+      search: {
+        hidden: true
+      },
+      form: {
+        component: 'Input',
+        componentProps: {
+          type: 'textarea',
+          rows: 5
+        },
+        colProps: {
+          span: 24
+        }
+      },
+      detail: {
+        slots: {
+          default: (data: any) => {
+            return <>{data.remark}</>
+          }
+        }
+      }
+    },
+    {
+      field: 'action',
+      width: '260px',
+      label: t('tableDemo.action'),
+      search: {
+        hidden: true
+      },
+      form: {
+        hidden: true
+      },
+      detail: {
+        hidden: true
+      },
+      table: {
+        slots: {
+          default: (data: any) => {
+            return (
+              <>
+                <ElButton type="primary" onClick={() => action(data.row, 'edit')}>
+                  {t('exampleDemo.edit')}
+                </ElButton>
+                <ElButton type="success" onClick={() => action(data.row, 'detail')}>
+                  {t('exampleDemo.detail')}
+                </ElButton>
+                <ElButton type="danger" onClick={() => delData(data.row)}>
+                  {t('exampleDemo.del')}
+                </ElButton>
+              </>
+            )
+          }
+        }
+      }
+    }
+  ])
 
-const saveLoading = ref(false)
+  // @ts-ignore
+  const { allSchemas } = useCrudSchemas(crudSchemas)
 
-const save = async () => {
-  const write = unref(writeRef)
-  const formData = await write?.submit()
-  if (formData) {
-    saveLoading.value = true
-    const res = await saveDepartmentApi(formData)
-      .catch(() => {})
-      .finally(() => {
-        saveLoading.value = false
-      })
-    if (res) {
-      dialogVisible.value = false
-      currentPage.value = 1
-      getList()
+  const dialogVisible = ref(false)
+  const dialogTitle = ref('')
+
+  const currentRow = ref<DepartmentItem | null>(null)
+  const actionType = ref('')
+
+  const AddAction = () => {
+    dialogTitle.value = t('exampleDemo.add')
+    currentRow.value = null
+    dialogVisible.value = true
+    actionType.value = ''
+  }
+
+  const delLoading = ref(false)
+
+  const delData = async (row: DepartmentItem | null) => {
+    const elTableExpose = await getElTableExpose()
+    const ids = row
+      ? [row.id]
+      : elTableExpose?.getSelectionRows().map((v: DepartmentItem) => v.id) || []
+    delLoading.value = true
+    await delList(ids).finally(() => {
+      delLoading.value = false
+    })
+  }
+
+  const action = (row: DepartmentItem, type: string) => {
+    dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
+    actionType.value = type
+    currentRow.value = row
+    dialogVisible.value = true
+  }
+
+  const writeRef = ref<ComponentRef<typeof Write>>()
+
+  const saveLoading = ref(false)
+
+  const save = async () => {
+    const write = unref(writeRef)
+    const formData = await write?.submit()
+    if (formData) {
+      saveLoading.value = true
+      const res = await saveDepartmentApi(formData)
+        .catch(() => {})
+        .finally(() => {
+          saveLoading.value = false
+        })
+      if (res) {
+        dialogVisible.value = false
+        refresh(true)
+      }
     }
   }
-}
 </script>
 
 <template>
   <ContentWrap>
-    <Search :schema="allSchemas.searchSchema" @search="setSearchParams" @reset="setSearchParams" />
+    <Search :schema="allSchemas.searchSchema" @search="search" @reset="search" />
 
     <div class="mb-10px">
-      <BaseButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</BaseButton>
-      <BaseButton :loading="delLoading" type="danger" @click="delData(null)">
+      <ElButton type="primary" @click="AddAction">{{ t('exampleDemo.add') }}</ElButton>
+      <ElButton :loading="delLoading" type="danger" @click="delData(null)">
         {{ t('exampleDemo.del') }}
-      </BaseButton>
+      </ElButton>
     </div>
 
     <Table
-      v-model:pageSize="pageSize"
-      v-model:currentPage="currentPage"
+      v-model:pageSize="tableState.pageSize"
+      v-model:currentPage="tableState.currentPage"
       :columns="allSchemas.tableColumns"
-      :data="dataList"
-      :loading="loading"
+      :data="tableState.dataList"
+      :loading="tableState.loading"
       :pagination="{
-        total: total
+        total: tableState.total
       }"
       @register="tableRegister"
     />
@@ -327,15 +309,10 @@ const save = async () => {
     />
 
     <template #footer>
-      <BaseButton
-        v-if="actionType !== 'detail'"
-        type="primary"
-        :loading="saveLoading"
-        @click="save"
-      >
+      <ElButton v-if="actionType !== 'detail'" type="primary" :loading="saveLoading" @click="save">
         {{ t('exampleDemo.save') }}
-      </BaseButton>
-      <BaseButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</BaseButton>
+      </ElButton>
+      <ElButton @click="dialogVisible = false">{{ t('dialogDemo.close') }}</ElButton>
     </template>
   </Dialog>
 </template>

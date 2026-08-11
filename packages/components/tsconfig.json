@@ -28,14 +28,8 @@
       "@vea/styles": ["../styles/src"],
       "@vea/styles/*": ["../styles/src/*"]
     },
-    "types": [
-      "element-plus/global",
-      "@types/qrcode"
-    ]
+    "types": ["element-plus/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts"],
-  "references": [
-    { "path": "../utils" },
-    { "path": "../hooks" }
-  ]
+  "references": [{ "path": "../utils" }, { "path": "../hooks" }]
 }

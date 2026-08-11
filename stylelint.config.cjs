@@ -233,7 +233,21 @@ module.exports = {
       files: ['*.less', '**/*.less'],
       customSyntax: 'postcss-less',
       rules: {
-        'declaration-property-value-no-unknown': null
+        'declaration-property-value-no-unknown': null,
+        'import-notation': 'string',
+        'selector-class-pattern': null,
+        'selector-pseudo-class-no-unknown': [
+          true,
+          {
+            ignorePseudoClasses: ['deep', 'export', 'global']
+          }
+        ],
+        'property-no-unknown': [
+          true,
+          {
+            ignoreProperties: ['namespace', 'elNamespace']
+          }
+        ]
       }
     }
   ]

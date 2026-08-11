@@ -5,7 +5,12 @@ export interface UserLoginType {
 
 export interface UserType {
   username: string
-  password: string
   role: string
   roleId: string
+  permissions: string[]
+}
+
+export interface LoginResult {
+  accessToken: string
+  user: UserType
 }

@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { useAppStore } from '@/store/modules/app'
-import { computed } from 'vue'
-import { useDesign } from '@/hooks/web/useDesign'
+  import { useDesign } from '@/hooks/web/useDesign'
+  import { appConfig } from '@/config/app'
 
-const { getPrefixCls } = useDesign()
+  const { getPrefixCls } = useDesign()
 
-const prefixCls = getPrefixCls('footer')
+  const prefixCls = getPrefixCls('footer')
 
-const appStore = useAppStore()
-
-const title = computed(() => appStore.getTitle)
+  const title = appConfig.title
 </script>
 
 <template>

@@ -1,100 +1,56 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import { UserLoginType, UserType } from '@/api/login/types'
-import { ElMessageBox } from 'element-plus'
-import { useI18n } from '@/hooks/web/useI18n'
-import { loginOutApi } from '@/api/login'
+import type { LoginResult, UserType } from '@/api/login/types'
+import { usePermissionStore } from './permission'
 import { useTagsViewStore } from './tagsView'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 
 interface UserState {
   userInfo?: UserType
-  tokenKey: string
   token: string
-  roleRouters?: string[] | AppCustomRouteRecordRaw[]
   rememberMe: boolean
-  loginInfo?: UserLoginType
+  rememberedUsername: string
 }
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => {
     return {
       userInfo: undefined,
-      tokenKey: 'Authorization',
       token: '',
-      roleRouters: undefined,
-      // 记住我
       rememberMe: true,
-      loginInfo: undefined
+      rememberedUsername: ''
     }
   },
   getters: {
-    getTokenKey(): string {
-      return this.tokenKey
-    },
-    getToken(): string {
-      return this.token
-    },
-    getUserInfo(): UserType | undefined {
-      return this.userInfo
-    },
-    getRoleRouters(): string[] | AppCustomRouteRecordRaw[] | undefined {
-      return this.roleRouters
-    },
-    getRememberMe(): boolean {
-      return this.rememberMe
-    },
-    getLoginInfo(): UserLoginType | undefined {
-      return this.loginInfo
+    isAuthenticated(): boolean {
+      return Boolean(this.token && this.userInfo)
     }
   },
   actions: {
-    setTokenKey(tokenKey: string) {
-      this.tokenKey = tokenKey
+    setSession({ accessToken, user }: LoginResult) {
+      this.token = accessToken
+      this.userInfo = user
     },
-    setToken(token: string) {
-      this.token = token
+    rememberUsername(username: string, remember: boolean) {
+      this.rememberMe = remember
+      this.rememberedUsername = remember ? username : ''
     },
-    setUserInfo(userInfo?: UserType) {
-      this.userInfo = userInfo
+    clearSession() {
+      this.token = ''
+      this.userInfo = undefined
+      usePermissionStore().reset()
+      useTagsViewStore().delAllViews(false)
+      resetRouter()
     },
-    setRoleRouters(roleRouters: string[] | AppCustomRouteRecordRaw[]) {
-      this.roleRouters = roleRouters
-    },
-    logoutConfirm() {
-      const { t } = useI18n()
-      ElMessageBox.confirm(t('common.loginOutMessage'), t('common.reminder'), {
-        confirmButtonText: t('common.ok'),
-        cancelButtonText: t('common.cancel'),
-        type: 'warning'
-      })
-        .then(async () => {
-          const res = await loginOutApi().catch(() => {})
-          if (res) {
-            this.reset()
-          }
-        })
-        .catch(() => {})
-    },
-    reset() {
-      const tagsViewStore = useTagsViewStore()
-      tagsViewStore.delAllViews()
-      this.setToken('')
-      this.setUserInfo(undefined)
-      this.setRoleRouters([])
-      router.replace('/login')
-    },
-    logout() {
-      this.reset()
-    },
-    setRememberMe(rememberMe: boolean) {
-      this.rememberMe = rememberMe
-    },
-    setLoginInfo(loginInfo: UserLoginType | undefined) {
-      this.loginInfo = loginInfo
+    async logout() {
+      this.clearSession()
+      await router.replace('/login')
     }
   },
-  persist: true
+  persist: {
+    key: 'vea-session-v1',
+    pick: ['token', 'userInfo', 'rememberMe', 'rememberedUsername']
+  }
 })
 
 export const useUserStoreWithOut = () => {

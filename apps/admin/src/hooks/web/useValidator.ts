@@ -1,7 +1,5 @@
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from 'vue-i18n'
 import { FormItemRule } from 'element-plus'
-
-const { t } = useI18n()
 
 interface LengthRange {
   min: number
@@ -10,6 +8,8 @@ interface LengthRange {
 }
 
 export const useValidator = () => {
+  const { t } = useI18n()
+
   const required = (message?: string): FormItemRule => {
     return {
       required: true,

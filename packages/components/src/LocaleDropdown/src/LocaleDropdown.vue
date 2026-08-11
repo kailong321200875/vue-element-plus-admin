@@ -1,52 +1,65 @@
 <script setup lang="ts">
-import { computed, unref } from 'vue'
-import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-import { useLocaleStore } from '@/store/modules/locale'
-import { useLocale } from '@/hooks/web/useLocale'
-import { propTypes } from '@/utils/propTypes'
-import { useDesign } from '@/hooks/web/useDesign'
+  import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
+  import { Icon } from '@iconify/vue'
+  import type { LocaleOption } from './types'
 
-const { getPrefixCls } = useDesign()
+  defineOptions({ inheritAttrs: false })
 
-const prefixCls = getPrefixCls('locale-dropdown')
+  withDefaults(
+    defineProps<{
+      options: readonly LocaleOption[]
+      color?: string
+      ariaLabel?: string
+    }>(),
+    {
+      color: '',
+      ariaLabel: '切换语言 / Switch language'
+    }
+  )
 
-defineProps({
-  color: propTypes.string.def('')
-})
+  const locale = defineModel<string>({ required: true })
 
-const localeStore = useLocaleStore()
-
-const langMap = computed(() => localeStore.getLocaleMap)
-
-const currentLang = computed(() => localeStore.getCurrentLocale)
-
-const setLang = (lang: LocaleType) => {
-  if (lang === unref(currentLang).lang) return
-  // 需要重新加载页面让整个语言多初始化
-  window.location.reload()
-  localeStore.setCurrentLocale({
-    lang
-  })
-  const { changeLocale } = useLocale()
-  changeLocale(lang)
-}
+  const setLocale = (value: string | number | object) => {
+    if (typeof value === 'string' && value !== locale.value) {
+      locale.value = value
+    }
+  }
 </script>
 
 <template>
-  <ElDropdown :class="prefixCls" trigger="click" @command="setLang">
-    <Icon
-      :size="18"
-      icon="vi-ion:language-sharp"
-      class="cursor-pointer !p-0"
-      :class="$attrs.class"
-      :color="color"
-    />
+  <ElDropdown trigger="click" @command="setLocale">
+    <button
+      v-bind="$attrs"
+      type="button"
+      class="locale-trigger"
+      :style="{ color }"
+      :aria-label="ariaLabel"
+    >
+      <Icon width="18" height="18" icon="ion:language-sharp" />
+    </button>
     <template #dropdown>
       <ElDropdownMenu>
-        <ElDropdownItem v-for="item in langMap" :key="item.lang" :command="item.lang">
-          {{ item.name }}
+        <ElDropdownItem
+          v-for="item in options"
+          :key="item.value"
+          :command="item.value"
+          :disabled="item.value === locale"
+        >
+          {{ item.label }}
         </ElDropdownItem>
       </ElDropdownMenu>
     </template>
   </ElDropdown>
 </template>
+
+<style scoped>
+  .locale-trigger {
+    display: inline-grid;
+    padding: 0;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    place-items: center;
+  }
+</style>

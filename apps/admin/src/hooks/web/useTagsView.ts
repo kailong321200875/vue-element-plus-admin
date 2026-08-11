@@ -37,8 +37,9 @@ export const useTagsView = () => {
   }
 
   const refreshPage = async (view?: RouteLocationNormalizedLoaded, callback?: Fn) => {
-    tagsViewStore.delCachedView()
-    const { path, query } = view || unref(currentRoute)
+    const target = view || unref(currentRoute)
+    tagsViewStore.delCachedView(target.name as string | undefined)
+    const { path, query } = target
     await nextTick()
     replace({
       path: '/redirect' + path,

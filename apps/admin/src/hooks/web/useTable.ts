@@ -1,63 +1,60 @@
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from 'vue-i18n'
 import { Table, TableExpose, TableProps, TableSetProps, TableColumn } from '@/components/Table'
 import { ElTable, ElMessageBox, ElMessage } from 'element-plus'
-import { ref, watch, unref, nextTick, onMounted } from 'vue'
+import { reactive, ref, unref, nextTick } from 'vue'
+import {
+  useCrud,
+  type CrudKey,
+  type CrudListParams,
+  type CrudListResult,
+  type CrudQuery
+} from '@vea/hooks'
 
-const { t } = useI18n()
-
-interface UseTableConfig {
-  /**
-   * 是否初始化的时候请求一次
-   */
+export interface UseTableConfig<Row, Query extends CrudQuery = CrudQuery> {
   immediate?: boolean
-  fetchDataApi: () => Promise<{
-    list: any[]
-    total?: number
-  }>
-  fetchDelApi?: () => Promise<boolean>
+  initialQuery?: Query
+  initialPageSize?: number
+  fetchDataApi: (params: CrudListParams<Query>) => Promise<CrudListResult<Row>>
+  fetchDelApi?: (ids: CrudKey[]) => Promise<unknown>
 }
 
-export const useTable = (config: UseTableConfig) => {
-  const { immediate = true } = config
+export const useTable = <Row = any, Query extends CrudQuery = CrudQuery>(
+  config: UseTableConfig<Row, Query>
+) => {
+  const { t } = useI18n()
 
-  const loading = ref(false)
-  const currentPage = ref(1)
-  const pageSize = ref(10)
-  const total = ref(0)
-  const dataList = ref<any[]>([])
-  let isPageSizeChange = false
-
-  watch(
-    () => currentPage.value,
-    () => {
-      if (!isPageSizeChange) methods.getList()
-      isPageSizeChange = false
-    }
-  )
-
-  watch(
-    () => pageSize.value,
-    () => {
-      if (unref(currentPage) === 1) {
-        methods.getList()
-      } else {
-        currentPage.value = 1
-        isPageSizeChange = true
-        methods.getList()
-      }
-    }
-  )
-
-  onMounted(() => {
-    if (immediate) {
-      methods.getList()
-    }
+  const { state, actions } = useCrud<Row, Row, Query>({
+    service: {
+      list: (params) => config.fetchDataApi(params),
+      remove: config.fetchDelApi ? (ids) => config.fetchDelApi!(ids) : undefined
+    },
+    immediate: config.immediate,
+    initialQuery: config.initialQuery,
+    initialPageSize: config.initialPageSize
   })
 
-  // Table实例
-  const tableRef = ref<typeof Table & TableExpose>()
+  const crudState = reactive({
+    currentPage: state.page,
+    pageSize: state.pageSize,
+    total: state.total,
+    dataList: state.items,
+    query: state.query,
+    loading: state.listLoading,
+    mutating: state.mutationLoading,
+    error: state.listError
+  })
 
-  // ElTable实例
+  const crudMethods = {
+    getList: actions.fetchList,
+    refresh: (resetPage = false) => actions.refresh({ resetPage }),
+    search: actions.search,
+    resetSearch: actions.resetSearch,
+    create: actions.create,
+    update: actions.update,
+    remove: actions.remove
+  }
+
+  const tableRef = ref<typeof Table & TableExpose>()
   const elTableRef = ref<ComponentRef<typeof ElTable>>()
 
   const register = (ref: typeof Table & TableExpose, elRef: ComponentRef<typeof ElTable>) => {
@@ -75,121 +72,59 @@ export const useTable = (config: UseTableConfig) => {
   }
 
   const methods = {
-    /**
-     * 获取表单数据
-     */
-    getList: async () => {
-      loading.value = true
-      try {
-        const res = await config?.fetchDataApi()
-        console.log('fetchDataApi res', res)
-        if (res) {
-          dataList.value = res.list
-          total.value = res.total || 0
-        }
-      } catch (err) {
-        console.log('fetchDataApi error')
-      } finally {
-        loading.value = false
-      }
-    },
+    ...crudMethods,
 
-    /**
-     * @description 设置table组件的props
-     * @param props table组件的props
-     */
     setProps: async (props: TableProps = {}) => {
       const table = await getTable()
       table?.setProps(props)
     },
 
-    /**
-     * @description 设置column
-     * @param columnProps 需要设置的列
-     */
     setColumn: async (columnProps: TableSetProps[]) => {
       const table = await getTable()
       table?.setColumn(columnProps)
     },
 
-    /**
-     * @description 新增column
-     * @param tableColumn 需要新增数据
-     * @param index 在哪里新增
-     */
     addColumn: async (tableColumn: TableColumn, index?: number) => {
       const table = await getTable()
       table?.addColumn(tableColumn, index)
     },
 
-    /**
-     * @description 删除column
-     * @param field 删除哪个数据
-     */
     delColumn: async (field: string) => {
       const table = await getTable()
       table?.delColumn(field)
     },
 
-    /**
-     * @description 获取ElTable组件的实例
-     * @returns ElTable instance
-     */
     getElTableExpose: async () => {
       await getTable()
       return unref(elTableRef)
     },
 
-    refresh: () => {
-      methods.getList()
-    },
-
-    // sortableChange: (e: any) => {
-    //   console.log('sortableChange', e)
-    //   const { oldIndex, newIndex } = e
-    //   dataList.value.splice(newIndex, 0, dataList.value.splice(oldIndex, 1)[0])
-    //   // to do something
-    // }
-    // 删除数据
-    delList: async (idsLength: number) => {
-      const { fetchDelApi } = config
-      if (!fetchDelApi) {
+    delList: async (ids: CrudKey[]) => {
+      if (!config.fetchDelApi) {
         console.warn('fetchDelApi is undefined')
-        return
+        return false
       }
-      ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
-        confirmButtonText: t('common.delOk'),
-        cancelButtonText: t('common.delCancel'),
-        type: 'warning'
-      }).then(async () => {
-        const res = await fetchDelApi()
-        if (res) {
-          ElMessage.success(t('common.delSuccess'))
+      if (ids.length === 0) return false
 
-          // 计算出临界点
-          const current =
-            unref(total) % unref(pageSize) === idsLength || unref(pageSize) === 1
-              ? unref(currentPage) > 1
-                ? unref(currentPage) - 1
-                : unref(currentPage)
-              : unref(currentPage)
+      try {
+        await ElMessageBox.confirm(t('common.delMessage'), t('common.delWarning'), {
+          confirmButtonText: t('common.delOk'),
+          cancelButtonText: t('common.delCancel'),
+          type: 'warning'
+        })
+      } catch {
+        return false
+      }
 
-          currentPage.value = current
-          methods.getList()
-        }
-      })
+      await crudMethods.remove(ids)
+      ElMessage.success(t('common.delSuccess'))
+      return true
     }
   }
 
   return {
     tableRegister: register,
     tableMethods: methods,
-    tableState: {
-      currentPage,
-      pageSize,
-      total,
-      dataList,
-      loading
-    }
+    tableState: crudState
   }
 }

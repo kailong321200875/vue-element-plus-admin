@@ -1,5 +1,5 @@
 import { useTimeAgo as useTimeAgoCore, UseTimeAgoMessages } from '@vueuse/core'
-import { computed, unref } from 'vue'
+import { computed } from 'vue'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
 
 const TIME_AGO_MESSAGE_MAP: {
@@ -20,7 +20,7 @@ const TIME_AGO_MESSAGE_MAP: {
     second: (n) => `${n} 秒`
   },
   en: {
-    justNow: '刚刚',
+    justNow: 'just now',
     invalid: 'Invalid Date',
     past: (n) => (n.match(/\d/) ? `${n} ago` : n),
     future: (n) => (n.match(/\d/) ? `in ${n}` : n),
@@ -39,12 +39,8 @@ const TIME_AGO_MESSAGE_MAP: {
 
 export const useTimeAgo = (time: Date | number | string) => {
   const localeStore = useLocaleStoreWithOut()
+  const zhCNTimeAgo = useTimeAgoCore(time, { messages: TIME_AGO_MESSAGE_MAP['zh-CN'] })
+  const enTimeAgo = useTimeAgoCore(time, { messages: TIME_AGO_MESSAGE_MAP.en })
 
-  const currentLocale = computed(() => localeStore.getCurrentLocale)
-
-  const timeAgo = useTimeAgoCore(time, {
-    messages: TIME_AGO_MESSAGE_MAP[unref(currentLocale).lang]
-  })
-
-  return timeAgo
+  return computed(() => (localeStore.lang === 'en' ? enTimeAgo.value : zhCNTimeAgo.value))
 }

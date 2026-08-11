@@ -1,25 +1,19 @@
-import { watch, ref } from 'vue'
-import { isString } from '@/utils/is'
-import { useAppStoreWithOut } from '@/store/modules/app'
-import { useI18n } from '@/hooks/web/useI18n'
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import { useLocaleStore } from '@/store/modules/locale'
+import { appConfig } from '@/config/app'
 
-export const useTitle = (newTitle?: string) => {
+export const useTitle = () => {
+  const route = useRoute()
+  const localeStore = useLocaleStore()
   const { t } = useI18n()
-  const appStore = useAppStoreWithOut()
-
-  const title = ref(
-    newTitle ? `${appStore.getTitle} - ${t(newTitle as string)}` : appStore.getTitle
-  )
 
   watch(
-    title,
-    (n, o) => {
-      if (isString(n) && n !== o && document) {
-        document.title = n
-      }
+    [() => route.meta.title, () => localeStore.lang],
+    ([title]) => {
+      document.title = title ? `${appConfig.title} - ${t(title as string)}` : appConfig.title
     },
     { immediate: true }
   )
-
-  return title
 }

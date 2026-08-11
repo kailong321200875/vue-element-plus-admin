@@ -22,39 +22,22 @@ export const usePermissionStore = defineStore('permission', {
     isAddRouters: false,
     menuTabRouters: []
   }),
-  getters: {
-    getRouters(): AppRouteRecordRaw[] {
-      return this.routers
-    },
-    getAddRouters(): AppRouteRecordRaw[] {
-      return flatMultiLevelRoutes(cloneDeep(this.addRouters))
-    },
-    getIsAddRouters(): boolean {
-      return this.isAddRouters
-    },
-    getMenuTabRouters(): AppRouteRecordRaw[] {
-      return this.menuTabRouters
-    }
-  },
   actions: {
     generateRoutes(
       type: 'server' | 'frontEnd' | 'static',
       routers?: AppCustomRouteRecordRaw[] | string[]
-    ): Promise<unknown> {
-      return new Promise<void>((resolve) => {
-        let routerMap: AppRouteRecordRaw[] = []
-        if (type === 'server') {
-          // 模拟后端过滤菜单
-          routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
-        } else if (type === 'frontEnd') {
-          // 模拟前端过滤菜单
-          routerMap = generateRoutesByFrontEnd(cloneDeep(asyncRouterMap), routers as string[])
-        } else {
-          // 直接读取静态路由表
-          routerMap = cloneDeep(asyncRouterMap)
-        }
-        // 动态路由，404一定要放到最后面
-        this.addRouters = routerMap.concat([
+    ): AppRouteRecordRaw[] {
+      let routerMap: AppRouteRecordRaw[] = []
+      if (type === 'server') {
+        routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
+      } else if (type === 'frontEnd') {
+        routerMap = generateRoutesByFrontEnd(cloneDeep(asyncRouterMap), routers as string[])
+      } else {
+        routerMap = cloneDeep(asyncRouterMap)
+      }
+
+      this.addRouters = flatMultiLevelRoutes(
+        cloneDeep(routerMap).concat([
           {
             path: '/:path(.*)*',
             redirect: '/404',
@@ -65,32 +48,23 @@ export const usePermissionStore = defineStore('permission', {
             }
           }
         ])
-        // 渲染菜单的所有路由
-        this.routers = cloneDeep(constantRouterMap).concat(routerMap)
-        resolve()
-      })
+      )
+      this.routers = cloneDeep(constantRouterMap).concat(routerMap)
+      return this.addRouters
     },
     setIsAddRouters(state: boolean): void {
       this.isAddRouters = state
     },
     setMenuTabRouters(routers: AppRouteRecordRaw[]): void {
       this.menuTabRouters = routers
-    }
-  },
-  persist: [
-    {
-      pick: ['routers'],
-      storage: localStorage
     },
-    {
-      pick: ['addRouters'],
-      storage: localStorage
-    },
-    {
-      pick: ['menuTabRouters'],
-      storage: localStorage
+    reset(): void {
+      this.routers = []
+      this.addRouters = []
+      this.isAddRouters = false
+      this.menuTabRouters = []
     }
-  ]
+  }
 })
 
 export const usePermissionStoreWithOut = () => {

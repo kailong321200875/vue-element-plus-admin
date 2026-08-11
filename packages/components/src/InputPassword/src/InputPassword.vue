@@ -1,54 +1,53 @@
 <script setup lang="ts">
-import { ref, unref, computed, watch } from 'vue'
-import { ElInput } from 'element-plus'
-import { propTypes } from '@/utils/propTypes'
-import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
-import { zxcvbn } from '@zxcvbn-ts/core'
-import type { ZxcvbnResult } from '@zxcvbn-ts/core'
-import { useDesign } from '@/hooks/web/useDesign'
+  import { ref, unref, computed, watch } from 'vue'
+  import { ElInput } from 'element-plus'
+  import { propTypes } from '@/utils/propTypes'
+  import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
+  import { ZxcvbnFactory } from '@zxcvbn-ts/core'
+  import { useDesign } from '@/hooks/web/useDesign'
 
-const { getPrefixCls } = useDesign()
+  const { getPrefixCls } = useDesign()
 
-const prefixCls = getPrefixCls('input-password')
+  const prefixCls = getPrefixCls('input-password')
+  const passwordChecker = new ZxcvbnFactory()
 
-const props = defineProps({
-  // 是否显示密码强度
-  strength: propTypes.bool.def(false),
-  modelValue: propTypes.string.def('')
-})
+  const props = defineProps({
+    // 是否显示密码强度
+    strength: propTypes.bool.def(false),
+    modelValue: propTypes.string.def('')
+  })
 
-watch(
-  () => props.modelValue,
-  (val: string) => {
-    if (val === unref(valueRef)) return
-    valueRef.value = val
-  }
-)
+  watch(
+    () => props.modelValue,
+    (val: string) => {
+      if (val === unref(valueRef)) return
+      valueRef.value = val
+    }
+  )
 
-const { configGlobal } = useConfigGlobal()
+  const { configGlobal } = useConfigGlobal()
 
-const emit = defineEmits(['update:modelValue'])
+  const emit = defineEmits(['update:modelValue'])
 
-// 设置input的type属性
-const textType = ref<'password' | 'text'>('password')
+  // 设置input的type属性
+  const textType = ref<'password' | 'text'>('password')
 
-// 输入框的值
-const valueRef = ref(props.modelValue)
+  // 输入框的值
+  const valueRef = ref(props.modelValue)
 
-// 监听
-watch(
-  () => valueRef.value,
-  (val: string) => {
-    emit('update:modelValue', val)
-  }
-)
+  // 监听
+  watch(
+    () => valueRef.value,
+    (val: string) => {
+      emit('update:modelValue', val)
+    }
+  )
 
-// 获取密码强度
-const getPasswordStrength = computed(() => {
-  const value = unref(valueRef)
-  const zxcvbnRef = zxcvbn(unref(valueRef)) as ZxcvbnResult
-  return value ? zxcvbnRef.score : -1
-})
+  // 获取密码强度
+  const getPasswordStrength = computed(() => {
+    const value = unref(valueRef)
+    return value ? passwordChecker.check(value).score : -1
+  })
 </script>
 
 <template>
@@ -65,78 +64,78 @@ const getPasswordStrength = computed(() => {
 </template>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{adminNamespace}-input-password';
+  @prefix-cls: ~'@{adminNamespace}-input-password';
 
-.@{prefix-cls} {
-  :deep(.@{elNamespace}-input__clear) {
-    margin-left: 5px;
-  }
-
-  &__bar {
-    background-color: var(--el-text-color-disabled);
-    border-radius: var(--el-border-radius-base);
-
-    &::before,
-    &::after {
-      position: absolute;
-      z-index: 10;
-      display: block;
-      width: 20%;
-      height: inherit;
-      background-color: transparent;
-      border-color: var(--el-color-white);
-      border-style: solid;
-      border-width: 0 5px;
-      content: '';
+  .@{prefix-cls} {
+    :deep(.@{elNamespace}-input__clear) {
+      margin-left: 5px;
     }
 
-    &::before {
-      left: 20%;
-    }
+    &__bar {
+      background-color: var(--el-text-color-disabled);
+      border-radius: var(--el-border-radius-base);
 
-    &::after {
-      right: 20%;
-    }
-
-    &--fill {
-      position: absolute;
-      width: 0;
-      height: inherit;
-      background-color: transparent;
-      border-radius: inherit;
-      transition:
-        width 0.5s ease-in-out,
-        background 0.25s;
-
-      &[data-score='0'] {
+      &::before,
+      &::after {
+        position: absolute;
+        z-index: 10;
+        display: block;
         width: 20%;
-        background-color: var(--el-color-danger);
+        height: inherit;
+        background-color: transparent;
+        border-color: var(--el-color-white);
+        border-style: solid;
+        border-width: 0 5px;
+        content: '';
       }
 
-      &[data-score='1'] {
-        width: 40%;
-        background-color: var(--el-color-danger);
+      &::before {
+        left: 20%;
       }
 
-      &[data-score='2'] {
-        width: 60%;
-        background-color: var(--el-color-warning);
+      &::after {
+        right: 20%;
       }
 
-      &[data-score='3'] {
-        width: 80%;
-        background-color: var(--el-color-success);
-      }
+      &--fill {
+        position: absolute;
+        width: 0;
+        height: inherit;
+        background-color: transparent;
+        border-radius: inherit;
+        transition:
+          width 0.5s ease-in-out,
+          background 0.25s;
 
-      &[data-score='4'] {
-        width: 100%;
-        background-color: var(--el-color-success);
+        &[data-score='0'] {
+          width: 20%;
+          background-color: var(--el-color-danger);
+        }
+
+        &[data-score='1'] {
+          width: 40%;
+          background-color: var(--el-color-danger);
+        }
+
+        &[data-score='2'] {
+          width: 60%;
+          background-color: var(--el-color-warning);
+        }
+
+        &[data-score='3'] {
+          width: 80%;
+          background-color: var(--el-color-success);
+        }
+
+        &[data-score='4'] {
+          width: 100%;
+          background-color: var(--el-color-success);
+        }
       }
     }
-  }
 
-  &--mini > &__bar {
-    border-radius: var(--el-border-radius-small);
+    &--mini > &__bar {
+      border-radius: var(--el-border-radius-small);
+    }
   }
-}
 </style>

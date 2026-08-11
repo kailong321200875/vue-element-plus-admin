@@ -1,14 +1,14 @@
 <script setup lang="tsx">
-import { ContentWrap } from '@/components/ContentWrap'
-import { ref, unref } from 'vue'
-import { ElDivider, ElRow, ElCol } from 'element-plus'
-import { hasPermi } from '@/components/Permission'
+  import { ContentWrap } from '@/components/ContentWrap'
+  import { ref, unref } from 'vue'
+  import { ElDivider, ElRow, ElCol } from 'element-plus'
+  import { hasPermi } from '@/components/Permission'
 
-const permission = ref('add')
+  const permission = ref('add')
 
-setTimeout(() => {
-  permission.value = 'view'
-}, 3000)
+  setTimeout(() => {
+    permission.value = 'view'
+  }, 3000)
 </script>
 
 <template>
@@ -18,19 +18,19 @@ setTimeout(() => {
       <ElCol :span="8">
         新增权限：
         <Permission permission="add">
-          <BaseButton type="primary"> Add </BaseButton>
+          <ElButton type="primary"> Add </ElButton>
         </Permission>
       </ElCol>
       <ElCol :span="8">
         删除权限：
         <Permission permission="delete">
-          <BaseButton type="danger"> Delete </BaseButton>
+          <ElButton type="danger"> Delete </ElButton>
         </Permission>
       </ElCol>
       <ElCol :span="8">
         3秒后切换查看权限：
         <Permission :permission="permission">
-          <BaseButton type="primary"> View </BaseButton>
+          <ElButton type="primary"> View </ElButton>
         </Permission>
       </ElCol>
     </ElRow>
@@ -39,15 +39,15 @@ setTimeout(() => {
     <ElRow :gutter="20">
       <ElCol :span="8">
         新增权限：
-        <BaseButton v-hasPermi="'add'" type="primary"> Add </BaseButton>
+        <ElButton v-hasPermi="'add'" type="primary"> Add </ElButton>
       </ElCol>
       <ElCol :span="8">
         删除权限：
-        <BaseButton v-hasPermi="'delete'" type="danger"> Delete </BaseButton>
+        <ElButton v-hasPermi="'delete'" type="danger"> Delete </ElButton>
       </ElCol>
       <ElCol :span="8">
         3秒后切换查看权限（无法动态修改）：
-        <BaseButton v-hasPermi="permission" type="primary"> View </BaseButton>
+        <ElButton v-hasPermi="permission" type="primary"> View </ElButton>
       </ElCol>
     </ElRow>
 
@@ -55,15 +55,15 @@ setTimeout(() => {
     <ElRow :gutter="20">
       <ElCol :span="8">
         新增权限：
-        <BaseButton v-if="hasPermi('add')" type="primary"> Add </BaseButton>
+        <ElButton v-if="hasPermi('add')" type="primary"> Add </ElButton>
       </ElCol>
       <ElCol :span="8">
         删除权限：
-        <BaseButton v-if="hasPermi('delete')" type="danger"> Delete </BaseButton>
+        <ElButton v-if="hasPermi('delete')" type="danger"> Delete </ElButton>
       </ElCol>
       <ElCol :span="8">
         3秒后切换查看权限：
-        <BaseButton v-if="hasPermi(unref(permission))" type="primary"> View </BaseButton>
+        <ElButton v-if="hasPermi(unref(permission))" type="primary"> View </ElButton>
       </ElCol>
     </ElRow>
   </ContentWrap>

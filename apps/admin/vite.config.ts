@@ -66,7 +66,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
-        include: [resolve(__dirname, 'src/locales/**')]
+        include: [resolve(import.meta.dirname, 'src/locales/**')]
       }),
       createSvgIconsPlugin({
         iconDirs: [pathResolve('src/assets/svgs')],
@@ -78,13 +78,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         ? viteMockServe({
             ignore: /^\_/,
             mockPath: 'mock',
-            localEnabled: !isBuild,
-            prodEnabled: isBuild,
-            injectCode: `
-          import { setupProdMockServer } from '../mock/_createProductionServer'
-
-          setupProdMockServer()
-          `
+            enable: !isBuild
           })
         : undefined,
       ViteEjsPlugin({
@@ -125,11 +119,19 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       rollupOptions: {
         plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined,
         output: {
-          manualChunks: {
-            'vue-chunks': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
-            'element-plus': ['element-plus'],
-            'wang-editor': ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
-            echarts: ['echarts', 'echarts-wordcloud']
+          manualChunks(id) {
+            const chunkGroups = {
+              'vue-chunks': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+              'element-plus': ['element-plus'],
+              'wang-editor': ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
+              echarts: ['echarts']
+            }
+
+            for (const [chunkName, dependencies] of Object.entries(chunkGroups)) {
+              if (dependencies.some((dependency) => id.includes(`/node_modules/${dependency}/`))) {
+                return chunkName
+              }
+            }
           }
         }
       },
@@ -157,13 +159,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'vue-types',
         'element-plus/es/locale/lang/zh-cn',
         'element-plus/es/locale/lang/en',
-        '@iconify/iconify',
         '@vueuse/core',
         'axios',
         'qs',
         'echarts',
-        'echarts-wordcloud',
-        'qrcode',
         '@wangeditor/editor',
         '@wangeditor/editor-for-vue',
         'vue-json-pretty',

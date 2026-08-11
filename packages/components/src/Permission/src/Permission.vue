@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import { propTypes } from '@/utils/propTypes'
-import { computed, unref } from 'vue'
-import { useRouter } from 'vue-router'
+  import { propTypes } from '@/utils/propTypes'
+  import { computed, unref } from 'vue'
+  import { useRouter } from 'vue-router'
 
-const { currentRoute } = useRouter()
+  const { currentRoute } = useRouter()
 
-const props = defineProps({
-  permission: propTypes.string.def()
-})
+  const props = defineProps({
+    permission: propTypes.string.def()
+  })
 
-const currentPermission = computed(() => {
-  return unref(currentRoute)?.meta?.permission || []
-})
+  const currentPermission = computed(() => {
+    return (unref(currentRoute)?.meta?.permission || []) as string[]
+  })
 
-const hasPermission = computed(() => {
-  const permission = unref(props.permission)
-  if (!permission) {
-    return true
-  }
-  return unref(currentPermission).includes(permission)
-})
+  const hasPermission = computed(() => {
+    const permission = unref(props.permission)
+    if (!permission) {
+      return true
+    }
+    return unref(currentPermission).includes(permission)
+  })
 </script>
 
 <template>

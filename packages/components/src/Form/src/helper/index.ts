@@ -1,10 +1,9 @@
-import { useI18n } from '@/hooks/web/useI18n'
 import { PlaceholderModel, FormSchema, ComponentNameEnum, ColProps } from '../types'
 import { isFunction } from '@/utils/is'
 import { firstUpperCase, humpToDash } from '@/utils'
 import { set, get } from 'lodash-es'
 
-const { t } = useI18n()
+type Translate = (key: string) => string
 
 /**
  *
@@ -12,7 +11,7 @@ const { t } = useI18n()
  * @returns 返回提示信息对象
  * @description 用于自动设置placeholder
  */
-export const setTextPlaceholder = (schema: FormSchema): PlaceholderModel => {
+export const setTextPlaceholder = (schema: FormSchema, t: Translate): PlaceholderModel => {
   const textMap = [
     ComponentNameEnum.INPUT,
     ComponentNameEnum.AUTOCOMPLETE,

@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'vue'
-import { RawAxiosRequestHeaders } from 'axios'
+import type { RequestConfig } from '@vea/request'
 declare global {
   declare interface Fn<T = any> {
     (...arg: T[]): T
@@ -17,8 +17,6 @@ declare global {
 
   declare type ComponentRef<T> = InstanceType<T>
 
-  declare type LocaleType = 'zh-CN' | 'en'
-
   declare type TimeoutHandle = ReturnType<typeof setTimeout>
   declare type IntervalHandle = ReturnType<typeof setInterval>
 
@@ -27,23 +25,9 @@ declare global {
   declare type LayoutType = 'classic' | 'topLeft' | 'top' | 'cutMenu'
 
   declare type AxiosContentType =
-    | 'application/json'
-    | 'application/x-www-form-urlencoded'
-    | 'multipart/form-data'
-    | 'text/plain'
+    'application/json' | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'
 
-  declare type AxiosMethod = 'get' | 'post' | 'delete' | 'put'
-
-  declare type AxiosResponseType = 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream'
-
-  declare interface AxiosConfig {
-    params?: any
-    data?: any
-    url?: string
-    method?: AxiosMethod
-    headers?: RawAxiosRequestHeaders
-    responseType?: AxiosResponseType
-  }
+  declare type AxiosConfig = RequestConfig
 
   declare interface IResponse<T = any> {
     code: number
