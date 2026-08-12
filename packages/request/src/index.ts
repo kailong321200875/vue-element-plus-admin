@@ -13,10 +13,10 @@ export interface RequestConfig<Data = unknown> extends AxiosRequestConfig<Data> 
 
 export interface CreateRequestOptions {
   axiosConfig?: CreateAxiosDefaults
-  beforeRequest?: (config: RequestConfig) => MaybePromise<RequestConfig>
+  beforeRequest?: <Data>(config: RequestConfig<Data>) => MaybePromise<RequestConfig<Data>>
   transformResponse?: (response: AxiosResponse) => MaybePromise<unknown>
   onError?: (error: unknown) => MaybePromise<void>
-  getRequestKey?: (config: RequestConfig) => string
+  getRequestKey?: <Data>(config: RequestConfig<Data>) => string
 }
 
 export interface RequestClient {
@@ -54,7 +54,7 @@ export const createRequest = (options: CreateRequestOptions = {}): RequestClient
   const request = async <Response = unknown, Data = unknown>(
     config: RequestConfig<Data>
   ): Promise<Response> => {
-    let prepared: RequestConfig = config
+    let prepared: RequestConfig<Data> = config
     try {
       prepared = options.beforeRequest ? await options.beforeRequest(config) : config
     } catch (error) {

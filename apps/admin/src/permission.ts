@@ -1,19 +1,18 @@
 import router from './router'
 import type { RouteRecordRaw } from 'vue-router'
-import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
-import { usePageLoading } from '@/hooks/web/usePageLoading'
 import { NO_REDIRECT_WHITE_LIST } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { useAppStoreWithOut } from '@/store/modules/app'
 import { getRouteListApi } from '@/api/login'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
-const { start, done } = useNProgress()
-
-const { loadStart, loadDone } = usePageLoading()
+NProgress.configure({ showSpinner: false })
 
 router.beforeEach(async (to, from, next) => {
-  start()
-  loadStart()
+  NProgress.start()
+  useAppStoreWithOut().pageLoading = true
   const permissionStore = usePermissionStoreWithOut()
   const userStore = useUserStoreWithOut()
   if (userStore.isAuthenticated) {
@@ -53,6 +52,6 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach(() => {
-  done() // 结束Progress
-  loadDone()
+  NProgress.done()
+  useAppStoreWithOut().pageLoading = false
 })

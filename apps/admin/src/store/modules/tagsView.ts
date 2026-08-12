@@ -1,7 +1,6 @@
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { getRawRoute } from '@/utils/routerHelper'
 import { defineStore } from 'pinia'
-import { store } from '../index'
 import { findIndex } from '@/utils'
 
 export interface TagsViewState {
@@ -148,19 +147,7 @@ export const useTagsViewStore = defineStore('tagsView', {
     // 设置当前选中的tag
     setSelectedTag(tag: RouteLocationNormalizedLoaded) {
       this.selectedTag = tag
-    },
-    setTitle(title: string, path?: string) {
-      for (const v of this.visitedViews) {
-        if (v.path === (path ?? this.selectedTag?.path)) {
-          v.meta.title = title
-          break
-        }
-      }
     }
   },
   persist: false
 })
-
-export const useTagsViewStoreWithOut = () => {
-  return useTagsViewStore(store)
-}

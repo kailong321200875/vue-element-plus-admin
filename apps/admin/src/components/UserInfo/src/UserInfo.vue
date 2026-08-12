@@ -3,9 +3,6 @@
   import { useI18n } from 'vue-i18n'
   import { useUserStore } from '@/store/modules/user'
   import { logoutApi } from '@/api/login'
-  import { useRouter } from 'vue-router'
-
-  const { push } = useRouter()
 
   const userStore = useUserStore()
 
@@ -34,10 +31,6 @@
   const toDocument = () => {
     window.open('https://element-plus-admin-doc.cn/')
   }
-
-  const toPage = (path: string) => {
-    push(path)
-  }
 </script>
 
 <template>
@@ -54,11 +47,6 @@
     </div>
     <template #dropdown>
       <ElDropdownMenu>
-        <ElDropdownItem>
-          <div @click="toPage('/personal/personal-center')">
-            {{ t('router.personalCenter') }}
-          </div>
-        </ElDropdownItem>
         <ElDropdownItem>
           <div @click="toDocument">{{ t('common.document') }}</div>
         </ElDropdownItem>

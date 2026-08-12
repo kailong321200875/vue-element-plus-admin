@@ -1,6 +1,5 @@
 import { i18n } from '@/plugins/vueI18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
-import { setHtmlPageLang } from '@/plugins/vueI18n/helper'
 import type { LocaleCode } from '@/config/locale'
 
 export const useLocale = () => {
@@ -9,7 +8,7 @@ export const useLocale = () => {
   const changeLocale = (locale: LocaleCode) => {
     i18n.global.locale.value = locale
     localeStore.setLocale(locale)
-    setHtmlPageLang(locale)
+    document.documentElement.lang = locale
   }
 
   return {

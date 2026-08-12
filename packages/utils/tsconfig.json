@@ -17,11 +17,7 @@
     "declaration": true,
     "declarationMap": true,
     "composite": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@vea/utils/*": ["./src/*"]
-    }
+    "outDir": "./dist"
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts"]
 }

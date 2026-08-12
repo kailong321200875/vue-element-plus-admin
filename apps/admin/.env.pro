@@ -1,6 +1,3 @@
-# 环境
-VITE_NODE_ENV=production
-
 # 接口前缀
 VITE_API_BASE_PATH=
 
@@ -36,6 +33,3 @@ VITE_USE_CSS_SPLIT=true
 
 # 是否使用在线图标
 VITE_USE_ONLINE_ICON=false
-
-# 是否隐藏全局设置按钮
-VITE_HIDE_GLOBAL_SETTING=false

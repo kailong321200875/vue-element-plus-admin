@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import pageError from '@/assets/svgs/404.svg'
+  import { ElButton } from 'element-plus'
   import { useI18n } from 'vue-i18n'
 
   const { t } = useI18n()

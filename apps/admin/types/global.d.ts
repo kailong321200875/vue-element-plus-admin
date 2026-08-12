@@ -26,7 +26,6 @@ declare global {
     'application/json' | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'
 
   declare interface ImportMetaEnv {
-    readonly VITE_NODE_ENV: string
     readonly VITE_APP_TITLE: string
     readonly VITE_API_BASE_PATH: string
     readonly VITE_BASE_PATH: string
@@ -39,8 +38,6 @@ declare global {
     readonly VITE_USE_MOCK: string
     readonly VITE_USE_CSS_SPLIT: string
     readonly VITE_USE_ONLINE_ICON: string
-    readonly VITE_ICON_PREFIX: string
-    readonly VITE_HIDE_GLOBAL_SETTING: string
   }
 }
 

@@ -11,17 +11,13 @@
   import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
   import { useTemplateRefsList } from '@vueuse/core'
   import { ElScrollbar } from 'element-plus'
-  import { useScrollTo } from '@/hooks/event/useScrollTo'
-  import { useTagsView } from '@/hooks/web/useTagsView'
   import { cloneDeep } from 'lodash-es'
 
   const prefixCls = 'v-tags-view'
 
   const { t } = useI18n()
 
-  const { currentRoute, push } = useRouter()
-
-  const { closeAll, closeLeft, closeRight, closeOther, closeCurrent, refreshPage } = useTagsView()
+  const { currentRoute, push, replace } = useRouter()
 
   const permissionStore = usePermissionStore()
 
@@ -65,11 +61,9 @@
 
   // 关闭选中的tag
   const closeSelectedTag = (view: RouteLocationNormalizedLoaded) => {
-    closeCurrent(view, () => {
-      if (isActive(view)) {
-        toLastView()
-      }
-    })
+    if (view.meta?.affix) return
+    tagsViewStore.delView(view)
+    if (isActive(view)) toLastView()
   }
 
   // 去最后一个
@@ -93,29 +87,31 @@
 
   // 关闭全部
   const closeAllTags = () => {
-    closeAll(() => {
-      toLastView()
-    })
+    tagsViewStore.delAllViews()
+    toLastView()
   }
 
   // 关闭其它
   const closeOthersTags = () => {
-    closeOther()
+    if (selectedTag.value) tagsViewStore.delOthersViews(selectedTag.value)
   }
 
   // 重新加载
   const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
-    refreshPage(view)
+    const target = view || currentRoute.value
+    tagsViewStore.delCachedView(target.name as string | undefined)
+    await nextTick()
+    await replace({ path: `/redirect${target.path}`, query: target.query })
   }
 
   // 关闭左侧
   const closeLeftTags = () => {
-    closeLeft()
+    if (selectedTag.value) tagsViewStore.delLeftViews(selectedTag.value)
   }
 
   // 关闭右侧
   const closeRightTags = () => {
-    closeRight()
+    if (selectedTag.value) tagsViewStore.delRightViews(selectedTag.value)
   }
 
   // 滚动到选中的tag
@@ -150,24 +146,12 @@
       (firstTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
     ) {
       // 直接滚动到0的位置
-      const { start } = useScrollTo({
-        el: wrap$!,
-        position: 'scrollLeft',
-        to: 0,
-        duration: 500
-      })
-      start()
+      scrollTo(0)
     } else if (
       (lastTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
     ) {
       // 滚动到最后的位置
-      const { start } = useScrollTo({
-        el: wrap$!,
-        position: 'scrollLeft',
-        to: wrap$!.scrollWidth - wrap$!.offsetWidth,
-        duration: 500
-      })
-      start()
+      scrollTo(wrap$!.scrollWidth - wrap$!.offsetWidth)
     } else {
       // find preTag and nextTag
       const currentIndex: number = tagList.findIndex(
@@ -186,21 +170,9 @@
       const beforePrevTagOffsetLeft = prevTag.offsetLeft - 4
 
       if (afterNextTagOffsetLeft > unref(scrollLeftNumber) + wrap$!.offsetWidth) {
-        const { start } = useScrollTo({
-          el: wrap$!,
-          position: 'scrollLeft',
-          to: afterNextTagOffsetLeft - wrap$!.offsetWidth,
-          duration: 500
-        })
-        start()
+        scrollTo(afterNextTagOffsetLeft - wrap$!.offsetWidth)
       } else if (beforePrevTagOffsetLeft < unref(scrollLeftNumber)) {
-        const { start } = useScrollTo({
-          el: wrap$!,
-          position: 'scrollLeft',
-          to: beforePrevTagOffsetLeft,
-          duration: 500
-        })
-        start()
+        scrollTo(beforePrevTagOffsetLeft)
       }
     }
   }
@@ -229,6 +201,10 @@
   // elscroll 实例
   const scrollbarRef = ref<ComponentRef<typeof ElScrollbar>>()
 
+  const scrollTo = (left: number) => {
+    unref(scrollbarRef)?.wrapRef?.scrollTo({ left, behavior: 'smooth' })
+  }
+
   // 保存滚动位置
   const scrollLeftNumber = ref(0)
 
@@ -238,14 +214,7 @@
 
   // 移动到某个位置
   const move = (to: number) => {
-    const wrap$ = unref(scrollbarRef)?.wrapRef
-    const { start } = useScrollTo({
-      el: wrap$!,
-      position: 'scrollLeft',
-      to: unref(scrollLeftNumber) + to,
-      duration: 500
-    })
-    start()
+    scrollTo(unref(scrollLeftNumber) + to)
   }
 
   const canShowIcon = (item: RouteLocationNormalizedLoaded) => {

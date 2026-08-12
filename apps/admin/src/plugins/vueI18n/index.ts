@@ -1,7 +1,6 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
-import { setHtmlPageLang } from './helper'
 import { DEFAULT_LOCALE, localeMessages, type LocaleCode } from '@/config/locale'
 
 const createAppI18n = (locale: LocaleCode) =>
@@ -24,7 +23,7 @@ export const setupI18n = (app: App<Element>) => {
     localeStore.setLocale(locale)
   }
 
-  setHtmlPageLang(locale)
+  document.documentElement.lang = locale
 
   i18n = createAppI18n(locale)
   app.use(i18n)

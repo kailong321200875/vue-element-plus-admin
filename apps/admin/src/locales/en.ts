@@ -1,9 +1,5 @@
 export default {
   common: {
-    inputText: 'Please input',
-    selectText: 'Please select',
-    startTimeText: 'Start time',
-    endTimeText: 'End time',
     required: 'This is required',
     loginOut: 'Log out',
     document: 'Document',
@@ -16,10 +12,7 @@ export default {
     closeTheLeftTab: 'Close left',
     closeTheRightTab: 'Close right',
     closeOther: 'Close other',
-    closeAll: 'Close all',
-    lengthRange: 'The length should be between {min} and {max}',
-    notSpace: 'Spaces are not allowed',
-    notSpecialCharacters: 'Special characters are not allowed'
+    closeAll: 'Close all'
   },
   error: {
     pageError: 'Sorry, the page you visited does not exist.',
@@ -57,9 +50,7 @@ export default {
     menu11: 'Menu1-1',
     menu111: 'Menu1-1-1',
     menu12: 'Menu1-2',
-    menu2: 'Menu2',
-    personal: 'Personal',
-    personalCenter: 'Personal center'
+    menu2: 'Menu2'
   },
   analysis: {
     newUser: 'New user',

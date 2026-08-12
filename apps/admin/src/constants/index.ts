@@ -24,11 +24,6 @@ export const NO_REDIRECT_WHITE_LIST = ['/login']
 export const NO_RESET_WHITE_LIST = ['Redirect', 'RedirectWrap', 'Login', 'NoFind', 'Root']
 
 /**
- * 表格默认过滤列设置字段
- */
-export const DEFAULT_FILTER_COLUMN = ['expand', 'selection']
-
-/**
  * 全局图标前缀
  */
 export const ICON_PREFIX = 'vi-'

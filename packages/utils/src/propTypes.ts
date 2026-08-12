@@ -18,7 +18,7 @@ const newPropTypes = createTypes({
 }) as PropTypes
 
 class propTypes extends newPropTypes {
-  static get style() {
+  static get style(): VueTypeValidableDef<CSSProperties> {
     return toValidableType('style', {
       type: [String, Object]
     })

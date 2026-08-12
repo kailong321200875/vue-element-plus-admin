@@ -31,10 +31,6 @@
       "import": "./src/useEventBus.ts",
       "types": "./src/useEventBus.ts"
     },
-    "./useScrollTo": {
-      "import": "./src/useScrollTo.ts",
-      "types": "./src/useScrollTo.ts"
-    },
     "./useCrud": {
       "import": "./src/useCrud.ts",
       "types": "./src/useCrud.ts"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { provide, computed, watch } from 'vue'
+  import { computed, watch } from 'vue'
   import { propTypes } from '@/utils/propTypes'
   import { ComponentSize, ElConfigProvider } from 'element-plus'
   import { useLocaleStore } from '@/store/modules/locale'
@@ -9,11 +9,9 @@
 
   const appStore = useAppStore()
 
-  const props = defineProps({
+  defineProps({
     size: propTypes.oneOf<ComponentSize>(['default', 'small', 'large']).def('default')
   })
-
-  provide('configGlobal', props)
 
   const { width } = useWindowSize()
 

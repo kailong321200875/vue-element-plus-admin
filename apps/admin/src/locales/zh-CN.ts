@@ -1,9 +1,5 @@
 export default {
   common: {
-    inputText: '请输入',
-    selectText: '请选择',
-    startTimeText: '开始时间',
-    endTimeText: '结束时间',
     required: '该项为必填项',
     loginOut: '退出系统',
     document: '项目文档',
@@ -16,10 +12,7 @@ export default {
     closeTheLeftTab: '关闭左侧标签页',
     closeTheRightTab: '关闭右侧标签页',
     closeOther: '关闭其它标签页',
-    closeAll: '关闭全部标签页',
-    lengthRange: '长度在 {min} 到 {max} 个字符',
-    notSpace: '不能包含空格',
-    notSpecialCharacters: '不能包含特殊字符'
+    closeAll: '关闭全部标签页'
   },
   error: {
     pageError: '抱歉，您访问的页面不存在。',
@@ -57,9 +50,7 @@ export default {
     menu11: '菜单1-1',
     menu111: '菜单1-1-1',
     menu12: '菜单1-2',
-    menu2: '菜单2',
-    personal: '个人',
-    personalCenter: '个人中心'
+    menu2: '菜单2'
   },
   analysis: {
     newUser: '新增用户',
