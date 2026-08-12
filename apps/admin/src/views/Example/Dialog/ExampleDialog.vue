@@ -5,9 +5,9 @@
   import { useI18n } from 'vue-i18n'
   import { ElTag } from 'element-plus'
   import { Table } from '@/components/Table'
-  import { getTableListApi, saveTableApi, delTableListApi } from '@/api/table'
+  import { getTableListApi, saveTableItemApi, deleteTableItemsApi } from '@/api/table'
   import { useTable } from '@/hooks/web/useTable'
-  import { TableData } from '@/api/table/types'
+  import type { TableItem } from '@/api/table/types'
   import { ref, unref, reactive } from 'vue'
   import Write from './components/Write.vue'
   import Detail from './components/Detail.vue'
@@ -29,7 +29,7 @@
       }
     },
     fetchDelApi: async () => {
-      const res = await delTableListApi(unref(ids))
+      const res = await deleteTableItemsApi(unref(ids))
       return !!res
     }
   })
@@ -234,7 +234,7 @@
   const dialogVisible = ref(false)
   const dialogTitle = ref('')
 
-  const currentRow = ref<TableData | null>(null)
+  const currentRow = ref<TableItem | null>(null)
   const actionType = ref('')
 
   const AddAction = () => {
@@ -246,16 +246,16 @@
 
   const delLoading = ref(false)
 
-  const delData = async (row: TableData | null) => {
+  const delData = async (row: TableItem | null) => {
     const elTableExpose = await getElTableExpose()
-    ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableData) => v.id) || []
+    ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableItem) => v.id) || []
     delLoading.value = true
     await delList(unref(ids)).finally(() => {
       delLoading.value = false
     })
   }
 
-  const action = (row: TableData, type: string) => {
+  const action = (row: TableItem, type: string) => {
     dialogTitle.value = t(type === 'edit' ? 'exampleDemo.edit' : 'exampleDemo.detail')
     actionType.value = type
     currentRow.value = row
@@ -271,7 +271,7 @@
     const formData = await write?.submit()
     if (formData) {
       saveLoading.value = true
-      const res = await saveTableApi(formData)
+      const res = await saveTableItemApi(formData)
         .catch(() => {})
         .finally(() => {
           saveLoading.value = false

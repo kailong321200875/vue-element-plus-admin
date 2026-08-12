@@ -2,7 +2,7 @@
   import { ContentWrap } from '@/components/ContentWrap'
   import { useI18n } from 'vue-i18n'
   import { ElDivider } from 'element-plus'
-  import { request1, request2, request3, request4, request5, expired } from '@/api/request'
+  import { getRequestApi, simulateTokenExpiryApi } from '@/api/request'
   import { ref } from 'vue'
   import request from '@/axios'
 
@@ -16,7 +16,7 @@
     }
     try {
       pending.value.add('/request/1')
-      const res = await request1()
+      const res = await getRequestApi(1)
       console.log('【res】：', res)
     } catch (error) {
       console.log('【error】：', error)
@@ -31,7 +31,7 @@
     }
     try {
       pending.value.add('/request/2')
-      const res = await request2()
+      const res = await getRequestApi(2)
       console.log('【res】：', res)
     } catch (error) {
       console.log('【error】：', error)
@@ -46,7 +46,7 @@
     }
     try {
       pending.value.add('/request/3')
-      const res = await request3()
+      const res = await getRequestApi(3)
       console.log('【res】：', res)
     } catch (error) {
       console.log('【error】：', error)
@@ -61,7 +61,7 @@
     }
     try {
       pending.value.add('/request/4')
-      const res = await request4()
+      const res = await getRequestApi(4)
       console.log('【res】：', res)
     } catch (error) {
       console.log('【error】：', error)
@@ -76,7 +76,7 @@
     }
     try {
       pending.value.add('/request/5')
-      const res = await request5()
+      const res = await getRequestApi(5)
       console.log('【res】：', res)
     } catch (error) {
       console.log('【error】：', error)
@@ -153,7 +153,7 @@
   }
 
   const tokenExpired = () => {
-    expired()
+    simulateTokenExpiryApi()
   }
 </script>
 

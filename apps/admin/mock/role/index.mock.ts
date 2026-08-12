@@ -391,49 +391,6 @@ const adminList = [
   }
 ]
 
-const testList: string[] = [
-  '/dashboard',
-  '/dashboard/analysis',
-  '/dashboard/workplace',
-  'external-link',
-  'https://element-plus-admin-doc.cn/',
-  '/guide',
-  '/guide/index',
-  'function',
-  '/function/multiple-tabs',
-  '/function/multiple-tabs-demo/:id',
-  '/function/request',
-  '/function/test',
-  '/hooks',
-  '/hooks/useWatermark',
-  '/hooks/useTagsView',
-  '/hooks/useValidator',
-  '/hooks/useCrudSchemas',
-  '/hooks/useClipboard',
-  '/hooks/useNetwork',
-  '/level',
-  '/level/menu1',
-  '/level/menu1/menu1-1',
-  '/level/menu1/menu1-1/menu1-1-1',
-  '/level/menu1/menu1-2',
-  '/level/menu2',
-  '/example',
-  '/example/example-dialog',
-  '/example/example-page',
-  '/example/example-add',
-  '/example/example-edit',
-  '/example/example-detail',
-  '/authorization',
-  '/authorization/department',
-  '/authorization/user',
-  '/authorization/role',
-  '/authorization/menu',
-  '/error',
-  '/error/404-demo',
-  '/error/403-demo',
-  '/error/500-demo'
-]
-
 const List: any[] = []
 
 const roleNames = ['超级管理员', '管理员', '普通用户', '游客']
@@ -881,18 +838,6 @@ export default [
           list: List,
           total: 4
         }
-      }
-    }
-  },
-  // 列表接口
-  {
-    url: '/mock/role/list2',
-    method: 'get',
-    timeout,
-    response: () => {
-      return {
-        code: SUCCESS_CODE,
-        data: testList
       }
     }
   },

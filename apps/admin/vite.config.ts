@@ -22,13 +22,11 @@ function pathResolve(dir: string) {
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  let env = {} as any
   const isBuild = command === 'build'
-  if (!isBuild) {
-    env = loadEnv(process.argv[3] === '--mode' ? process.argv[4] : process.argv[3], root)
-  } else {
-    env = loadEnv(mode, root)
-  }
+  const env = loadEnv(
+    isBuild ? mode : process.argv[3] === '--mode' ? process.argv[4] : process.argv[3],
+    root
+  )
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
@@ -76,7 +74,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       PurgeIcons(),
       env.VITE_USE_MOCK === 'true'
         ? viteMockServe({
-            ignore: /^\_/,
+            ignore: /^_/,
             mockPath: 'mock',
             enable: !isBuild
           })
@@ -90,7 +88,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: '@import "./src/styles/variables.module.less";',
+          additionalData: '@import "@vea/styles/variables.module.less";',
           javascriptEnabled: true
         }
       }
@@ -103,7 +101,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
         },
         {
-          find: /\@\//,
+          find: /@\//,
           replacement: `${pathResolve('src')}/`
         }
       ]

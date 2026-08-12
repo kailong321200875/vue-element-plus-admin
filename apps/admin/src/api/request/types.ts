@@ -1,3 +1,3 @@
-export interface RequestResponse {
+export interface RequestResult {
   data: string
 }

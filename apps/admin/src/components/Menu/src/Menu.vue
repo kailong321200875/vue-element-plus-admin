@@ -32,7 +32,7 @@
 
       const menuMode = computed((): 'vertical' | 'horizontal' => {
         // 竖
-        const vertical: LayoutType[] = ['classic', 'topLeft', 'cutMenu']
+        const vertical: LayoutMode[] = ['classic', 'topLeft', 'cutMenu']
 
         if (vertical.includes(unref(layout))) {
           return 'vertical'

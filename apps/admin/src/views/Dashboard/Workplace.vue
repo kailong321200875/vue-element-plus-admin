@@ -10,13 +10,18 @@
   import { createRadarOption } from './echarts-data'
   import { Highlight } from '@/components/Highlight'
   import {
-    getCountApi,
-    getProjectApi,
-    getDynamicApi,
-    getTeamApi,
-    getRadarApi
+    getWorkplaceSummaryApi,
+    getProjectListApi,
+    getActivityListApi,
+    getTeamListApi,
+    getRadarDataApi
   } from '@/api/dashboard/workplace'
-  import type { WorkplaceTotal, Project, Dynamic, Team } from '@/api/dashboard/workplace/types'
+  import type {
+    WorkplaceSummary,
+    ProjectItem,
+    ActivityItem,
+    TeamItem
+  } from '@/api/dashboard/workplace/types'
   import { set } from 'lodash-es'
 
   const loading = ref(true)
@@ -24,44 +29,44 @@
   const { t, locale } = useI18n()
 
   // 获取统计数
-  let totalSate = reactive<WorkplaceTotal>({
+  let totalSate = reactive<WorkplaceSummary>({
     project: 0,
     access: 0,
     todo: 0
   })
 
   const getCount = async () => {
-    const res = await getCountApi().catch(() => {})
+    const res = await getWorkplaceSummaryApi().catch(() => {})
     if (res) {
       totalSate = Object.assign(totalSate, res.data)
     }
   }
 
-  let projects = reactive<Project[]>([])
+  let projects = reactive<ProjectItem[]>([])
 
   // 获取项目数
   const getProject = async () => {
-    const res = await getProjectApi().catch(() => {})
+    const res = await getProjectListApi().catch(() => {})
     if (res) {
       projects = Object.assign(projects, res.data)
     }
   }
 
   // 获取动态
-  let dynamics = reactive<Dynamic[]>([])
+  let dynamics = reactive<ActivityItem[]>([])
 
   const getDynamic = async () => {
-    const res = await getDynamicApi().catch(() => {})
+    const res = await getActivityListApi().catch(() => {})
     if (res) {
       dynamics = Object.assign(dynamics, res.data)
     }
   }
 
   // 获取团队
-  let team = reactive<Team[]>([])
+  let team = reactive<TeamItem[]>([])
 
   const getTeam = async () => {
-    const res = await getTeamApi().catch(() => {})
+    const res = await getTeamListApi().catch(() => {})
     if (res) {
       team = Object.assign(team, res.data)
     }
@@ -71,7 +76,7 @@
   const radarOptionData = reactive<EChartsOption>(createRadarOption(t)) as EChartsOption
 
   const getRadar = async () => {
-    const res = await getRadarApi().catch(() => {})
+    const res = await getRadarDataApi().catch(() => {})
     if (res) {
       set(
         radarOptionData,

@@ -3,7 +3,7 @@
   import { useI18n } from 'vue-i18n'
   import { useDesign } from '@/hooks/web/useDesign'
   import { useUserStore } from '@/store/modules/user'
-  import { loginOutApi } from '@/api/login'
+  import { logoutApi } from '@/api/login'
   import { useRouter } from 'vue-router'
 
   const { push } = useRouter()
@@ -28,7 +28,7 @@
     }
 
     try {
-      await loginOutApi()
+      await logoutApi()
     } finally {
       await userStore.logout()
     }

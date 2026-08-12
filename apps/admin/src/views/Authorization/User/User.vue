@@ -5,10 +5,10 @@
   import { ref, unref, nextTick, watch, reactive } from 'vue'
   import { ElTree, ElInput, ElDivider } from 'element-plus'
   import {
-    getDepartmentApi,
-    getUserByIdApi,
-    saveUserApi,
-    deleteUserByIdApi
+    getDepartmentTreeApi,
+    getDepartmentUserListApi,
+    saveDepartmentUserApi,
+    deleteDepartmentUsersApi
   } from '@/api/department'
   import type { DepartmentItem, DepartmentUserItem } from '@/api/department/types'
   import { useTable } from '@/hooks/web/useTable'
@@ -24,7 +24,7 @@
 
   const { tableRegister, tableState, tableMethods } = useTable({
     fetchDataApi: async () => {
-      const res = await getUserByIdApi({
+      const res = await getDepartmentUserListApi({
         id: unref(currentNodeKey),
         pageIndex: tableState.currentPage,
         pageSize: tableState.pageSize,
@@ -36,7 +36,7 @@
       }
     },
     fetchDelApi: async () => {
-      const res = await deleteUserByIdApi(unref(ids))
+      const res = await deleteDepartmentUsersApi(unref(ids))
       return !!res
     }
   })
@@ -105,7 +105,7 @@
           }
         },
         optionApi: async () => {
-          const res = await getDepartmentApi()
+          const res = await getDepartmentTreeApi()
           return res.data.list
         }
       },
@@ -206,7 +206,7 @@
   const currentNodeKey = ref('')
   const departmentList = ref<DepartmentItem[]>([])
   const fetchDepartment = async () => {
-    const res = await getDepartmentApi()
+    const res = await getDepartmentTreeApi()
     departmentList.value = res.data.list
     currentNodeKey.value =
       (res.data.list[0] && res.data.list[0]?.children && res.data.list[0].children[0].id) || ''
@@ -280,7 +280,7 @@
     if (formData) {
       saveLoading.value = true
       try {
-        const res = await saveUserApi(formData)
+        const res = await saveDepartmentUserApi(formData)
         if (res) {
           tableState.currentPage = 1
           getList()

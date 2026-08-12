@@ -4,8 +4,8 @@
   import { ref, unref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useRouter, useRoute } from 'vue-router'
-  import { saveTableApi, getTableDetApi } from '@/api/table'
-  import { TableData } from '@/api/table/types'
+  import { saveTableItemApi, getTableDetailApi } from '@/api/table'
+  import type { TableItem } from '@/api/table/types'
   import { useEventBus } from '@/hooks/event/useEventBus'
 
   const { emit } = useEventBus()
@@ -16,16 +16,16 @@
 
   const { t } = useI18n()
 
-  const currentRow = ref<Nullable<TableData>>(null)
+  const currentRow = ref<Nullable<TableItem>>(null)
 
-  const getTableDet = async () => {
-    const res = await getTableDetApi(query.id as string)
+  const getTableDetail = async () => {
+    const res = await getTableDetailApi(query.id as string)
     if (res) {
       currentRow.value = res.data
     }
   }
 
-  getTableDet()
+  getTableDetail()
 
   const writeRef = ref<ComponentRef<typeof Write>>()
 
@@ -36,7 +36,7 @@
     const formData = await write?.submit()
     if (formData) {
       loading.value = true
-      const res = await saveTableApi(formData)
+      const res = await saveTableItemApi(formData)
         .catch(() => {})
         .finally(() => {
           loading.value = false

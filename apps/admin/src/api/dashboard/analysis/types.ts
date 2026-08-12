@@ -1,21 +1,21 @@
-export type AnalysisTotalTypes = {
+export interface AnalysisTotal {
   users: number
   messages: number
   moneys: number
   shoppings: number
 }
 
-export type UserAccessSource = {
+export interface UserAccessSource {
   value: number
   name: string
 }
 
-export type WeeklyUserActivity = {
+export interface WeeklyUserActivity {
   value: number
   name: string
 }
 
-export type MonthlySales = {
+export interface MonthlySales {
   name: string
   estimate: number
   actual: number

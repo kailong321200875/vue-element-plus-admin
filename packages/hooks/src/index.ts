@@ -15,7 +15,7 @@ export type {
   CrudListParams,
   CrudListResult,
   CrudMutationOptions,
-  CrudMutationType,
+  CrudMutation,
   CrudPagination,
   CrudQuery,
   CrudRefreshOptions,

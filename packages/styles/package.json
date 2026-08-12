@@ -4,8 +4,12 @@
   "description": "Vue Element Plus Admin 公用样式",
   "type": "module",
   "main": "./src/index.less",
+  "types": "./src/index.d.ts",
   "exports": {
-    ".": "./src/index.less",
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.less"
+    },
     "./var.css": "./src/var.css",
     "./variables.module.less": "./src/variables.module.less"
   },

@@ -4,11 +4,11 @@ export interface DepartmentItem {
   children?: DepartmentItem[]
 }
 
-export interface DepartmentListResponse {
+export interface DepartmentTreeResult {
   list: DepartmentItem[]
 }
 
-export interface DepartmentUserParams {
+export interface DepartmentUserListParams {
   pageSize: number
   pageIndex: number
   id: string
@@ -26,7 +26,12 @@ export interface DepartmentUserItem {
   department: DepartmentItem
 }
 
-export interface DepartmentUserResponse {
+export interface DepartmentUserListResult {
   list: DepartmentUserItem[]
+  total: number
+}
+
+export interface DepartmentListResult {
+  list: DepartmentItem[]
   total: number
 }

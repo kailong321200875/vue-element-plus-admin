@@ -1,6 +1,6 @@
 <script setup lang="tsx">
   import { PropType, reactive } from 'vue'
-  import type { TableData } from '@/api/table/types'
+  import type { TableItem } from '@/api/table/types'
   import { Descriptions, DescriptionsSchema } from '@/components/Descriptions'
   import { useI18n } from 'vue-i18n'
   import { ElTag } from 'element-plus'
@@ -9,7 +9,7 @@
 
   defineProps({
     currentRow: {
-      type: Object as PropType<Nullable<TableData>>,
+      type: Object as PropType<Nullable<TableItem>>,
       default: () => null
     }
   })

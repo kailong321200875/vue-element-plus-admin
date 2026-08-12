@@ -11,7 +11,7 @@ import {
 
 export type CrudKey = string | number
 export type CrudQuery = Record<string, unknown>
-export type CrudMutationType = 'create' | 'update' | 'remove'
+export type CrudMutation = 'create' | 'update' | 'remove'
 export type CrudRequestScope = 'list' | 'detail' | 'mutation' | 'all'
 
 export interface CrudPagination {
@@ -106,7 +106,7 @@ export const useCrud = <
   const listLoading = ref(false)
   const detailLoading = ref(false)
   const mutationLoading = ref(false)
-  const mutationType = ref<CrudMutationType | null>(null)
+  const mutationType = ref<CrudMutation | null>(null)
 
   const listError = ref<unknown>(null)
   const detailError = ref<unknown>(null)
@@ -207,7 +207,7 @@ export const useCrud = <
   }
 
   const runMutation = async <Result>(
-    type: CrudMutationType,
+    type: CrudMutation,
     action: ((context: CrudRequestContext) => Promise<Result>) | undefined,
     mutationOptions: CrudMutationOptions,
     afterSuccess = () => refresh({ resetPage: mutationOptions.resetPage })

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import { DEFAULT_LOCALE, isLocale, localeRegistry, type LocaleType } from '@/config/locale'
+import { DEFAULT_LOCALE, isLocale, localeRegistry, type LocaleCode } from '@/config/locale'
 
 interface LocaleState {
-  lang: LocaleType
+  lang: LocaleCode
 }
 
 export const useLocaleStore = defineStore('locales', {
@@ -15,7 +15,7 @@ export const useLocaleStore = defineStore('locales', {
     }
   },
   actions: {
-    setLocale(lang: LocaleType) {
+    setLocale(lang: LocaleCode) {
       this.lang = lang
     }
   },

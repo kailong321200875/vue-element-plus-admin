@@ -10,9 +10,9 @@
     "build:pro": "vite build --mode pro",
     "build:dev": "vite build --mode dev",
     "build:test": "vite build --mode test",
-    "preview": "vite preview",
+    "preview": "vite preview --mode pro",
     "ts:check": "vue-tsc --noEmit --skipLibCheck",
-    "clean": "rimraf dist node_modules/.cache"
+    "clean": "rimraf dist dist-pro dist-dev dist-test node_modules/.cache"
   },
   "dependencies": {
     "@iconify/vue": "^5.0.1",

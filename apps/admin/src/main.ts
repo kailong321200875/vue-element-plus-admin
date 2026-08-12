@@ -19,7 +19,7 @@ import { setupGlobCom } from '@/components'
 import { setupElementPlus } from '@/plugins/elementPlus'
 
 // 引入全局样式
-import '@/styles/index.less'
+import '@vea/styles'
 
 // 引入动画
 import '@/plugins/animate.css'

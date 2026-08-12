@@ -1,4 +1,4 @@
-import variables from '@/styles/variables.module.less'
+import variables from '@vea/styles/variables.module.less'
 
 export const useDesign = () => {
   const lessVariables = variables

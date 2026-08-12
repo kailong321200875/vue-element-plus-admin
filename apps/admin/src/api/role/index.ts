@@ -1,5 +1,6 @@
 import request from '@/axios'
+import type { RoleListResult } from './types'
 
 export const getRoleListApi = () => {
-  return request.get({ url: '/mock/role/table' })
+  return request.get<RoleListResult>({ url: '/mock/role/table' })
 }

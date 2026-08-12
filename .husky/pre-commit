@@ -1,2 +1,2 @@
-npm run ts:check
-npm run lint:lint-staged
+pnpm typecheck:admin
+pnpm lint:lint-staged

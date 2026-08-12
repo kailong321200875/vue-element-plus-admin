@@ -5,7 +5,7 @@ import type { ComponentSize } from 'element-plus'
 interface AppState {
   collapse: boolean
   pageLoading: boolean
-  layout: LayoutType
+  layout: LayoutMode
   isDark: boolean
   currentSize: ComponentSize
   mobile: boolean
@@ -23,7 +23,7 @@ export const useAppStore = defineStore('app', {
     }
   },
   actions: {
-    setLayout(layout: LayoutType) {
+    setLayout(layout: LayoutMode) {
       this.layout = this.mobile ? 'classic' : layout
     }
   },

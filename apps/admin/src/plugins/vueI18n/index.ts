@@ -2,9 +2,9 @@ import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { useLocaleStoreWithOut } from '@/store/modules/locale'
 import { setHtmlPageLang } from './helper'
-import { DEFAULT_LOCALE, localeMessages, type LocaleType } from '@/config/locale'
+import { DEFAULT_LOCALE, localeMessages, type LocaleCode } from '@/config/locale'
 
-const createAppI18n = (locale: LocaleType) =>
+const createAppI18n = (locale: LocaleCode) =>
   createI18n({
     legacy: false,
     locale,

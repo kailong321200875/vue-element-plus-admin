@@ -5,8 +5,7 @@ import { usePermissionStoreWithOut } from '@/store/modules/permission'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
 import { NO_REDIRECT_WHITE_LIST } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { getAdminRoleApi, getTestRoleApi } from '@/api/login'
-import { appConfig } from '@/config/app'
+import { getRouteListApi } from '@/api/login'
 
 const { start, done } = useNProgress()
 
@@ -27,18 +26,8 @@ router.beforeEach(async (to, from, next) => {
       }
 
       try {
-        if (appConfig.routeMode !== 'static') {
-          const params = { roleName: userStore.userInfo!.username }
-          if (appConfig.routeMode === 'server') {
-            const { data = [] } = await getAdminRoleApi(params)
-            permissionStore.generateRoutes('server', data)
-          } else {
-            const { data = [] } = await getTestRoleApi(params)
-            permissionStore.generateRoutes('frontEnd', data)
-          }
-        } else {
-          permissionStore.generateRoutes('static')
-        }
+        const { data = [] } = await getRouteListApi()
+        permissionStore.generateRoutes(data)
       } catch {
         userStore.clearSession()
         next(`/login?redirect=${encodeURIComponent(to.fullPath)}`)

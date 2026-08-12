@@ -10,10 +10,6 @@
     ".": {
       "import": "./src/index.ts",
       "types": "./src/index.ts"
-    },
-    "./resolver": {
-      "import": "./src/resolver.ts",
-      "types": "./src/resolver.ts"
     }
   },
   "files": [
@@ -21,31 +17,15 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@iconify/vue": "^5.0.1",
-    "@vea/hooks": "workspace:*",
-    "@vea/styles": "workspace:*",
-    "@vea/utils": "workspace:*",
-    "@vueuse/core": "^14.4.0",
-    "@wangeditor/editor": "^5.1.23",
-    "@wangeditor/editor-for-vue": "^5.1.12",
-    "cropperjs": "^2.1.1",
-    "echarts": "^6.1.0",
-    "lodash-es": "^4.18.1",
-    "vue-draggable-plus": "^0.6.1",
-    "vue-json-pretty": "^2.6.0"
+    "@iconify/vue": "^5.0.1"
   },
   "peerDependencies": {
     "element-plus": ">=2.8.0",
-    "vue": ">=3.4.0",
-    "vue-i18n": ">=11.0.0",
-    "vue-router": ">=4.4.0"
+    "vue": ">=3.4.0"
   },
   "devDependencies": {
-    "@types/lodash-es": "^4.17.12",
     "element-plus": "2.14.4",
-    "vue": "3.5.41",
-    "vue-i18n": "11.4.8",
-    "vue-router": "^5.2.0"
+    "vue": "3.5.41"
   },
   "license": "MIT"
 }

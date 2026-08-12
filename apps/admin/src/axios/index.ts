@@ -3,7 +3,11 @@ import { createRequest, isCancel, type AxiosResponse, type RequestConfig } from 
 import { CONTENT_TYPE, REQUEST_TIMEOUT, SUCCESS_CODE } from '@/constants'
 import { useUserStoreWithOut } from '@/store/modules/user'
 
-type BusinessResponse = IResponse<unknown> & { message?: string }
+export interface ApiResponse<Data = unknown> {
+  code: number
+  data: Data
+  message?: string
+}
 
 const normalizeRequestKey = (url = '') => url.replace(/^\/mock(?=\/)/, '')
 
@@ -26,7 +30,7 @@ const client = createRequest({
   transformResponse(response: AxiosResponse) {
     if (response.config.responseType === 'blob') return response
 
-    const result = response.data as BusinessResponse
+    const result = response.data as ApiResponse
     if (result.code === SUCCESS_CODE) return result
 
     if (result.code === 401) void useUserStoreWithOut().logout()
@@ -42,13 +46,11 @@ const client = createRequest({
   getRequestKey: (config) => normalizeRequestKey(config.url)
 })
 
-const asConfig = (option: AxiosConfig) => option as RequestConfig
-
 export default {
-  get: <T = any>(option: AxiosConfig) => client.get<IResponse<T>>(asConfig(option)),
-  post: <T = any>(option: AxiosConfig) => client.post<IResponse<T>>(asConfig(option)),
-  delete: <T = any>(option: AxiosConfig) => client.delete<IResponse<T>>(asConfig(option)),
-  put: <T = any>(option: AxiosConfig) => client.put<IResponse<T>>(asConfig(option)),
+  get: <Data = unknown>(config: RequestConfig) => client.get<ApiResponse<Data>>(config),
+  post: <Data = unknown>(config: RequestConfig) => client.post<ApiResponse<Data>>(config),
+  delete: <Data = unknown>(config: RequestConfig) => client.delete<ApiResponse<Data>>(config),
+  put: <Data = unknown>(config: RequestConfig) => client.put<ApiResponse<Data>>(config),
   cancelRequest: (url: string | string[]) => {
     const keys = (Array.isArray(url) ? url : [url]).map(normalizeRequestKey)
     client.cancelRequest(keys)

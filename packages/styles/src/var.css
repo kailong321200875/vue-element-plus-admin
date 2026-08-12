@@ -1,6 +1,4 @@
 :root {
-  --login-bg-color: #293146;
-
   /* left menu start */
   --left-menu-max-width: 200px;
 
@@ -9,8 +7,6 @@
   --left-menu-bg-color: #001529;
 
   --left-menu-bg-light-color: #0f2438;
-
-  --left-menu-border-color: inherit;
 
   --left-menu-bg-active-color: var(--el-color-primary);
 
@@ -26,7 +22,6 @@
 
   --logo-title-text-color: #fff;
 
-  --logo-border-color: inherit;
   /* logo end */
 
   /* header start */
@@ -35,8 +30,6 @@
   --top-header-text-color: inherit;
 
   --top-header-hover-color: #f6f6f6;
-
-  --top-tool-border-color: #eee;
 
   --top-tool-height: var(--logo-height);
 
@@ -67,13 +60,4 @@
   --top-header-bg-color: var(--el-bg-color);
   --top-header-text-color: var(--el-text-color-primary);
   --top-header-hover-color: var(--el-fill-color-light);
-  --top-tool-border-color: var(--el-border-color);
-}
-
-*,
-:after,
-:before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }

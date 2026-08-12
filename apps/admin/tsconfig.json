@@ -22,7 +22,6 @@
     "noUnusedParameters": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@vea/utils": ["../../packages/utils/src"],

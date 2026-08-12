@@ -4,8 +4,8 @@
   import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useRouter, useRoute } from 'vue-router'
-  import { getTableDetApi } from '@/api/table'
-  import { TableData } from '@/api/table/types'
+  import { getTableDetailApi } from '@/api/table'
+  import type { TableItem } from '@/api/table/types'
 
   const { push, go } = useRouter()
 
@@ -13,16 +13,16 @@
 
   const { t } = useI18n()
 
-  const currentRow = ref<Nullable<TableData>>(null)
+  const currentRow = ref<Nullable<TableItem>>(null)
 
-  const getTableDet = async () => {
-    const res = await getTableDetApi(query.id as string)
+  const getTableDetail = async () => {
+    const res = await getTableDetailApi(query.id as string)
     if (res) {
       currentRow.value = res.data
     }
   }
 
-  getTableDet()
+  getTableDetail()
 </script>
 
 <template>

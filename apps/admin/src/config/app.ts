@@ -1,8 +1,5 @@
-export type RouteMode = 'server' | 'frontEnd' | 'static'
-
 export const appConfig = {
   title: import.meta.env.VITE_APP_TITLE,
-  routeMode: 'server' as RouteMode,
   ui: {
     breadcrumb: true,
     breadcrumbIcon: true,

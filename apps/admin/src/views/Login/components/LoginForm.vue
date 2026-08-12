@@ -4,7 +4,7 @@
   import { useRouter } from 'vue-router'
   import { required, useForm } from '@vea/hooks'
   import { loginApi } from '@/api/login'
-  import type { UserLoginType } from '@/api/login/types'
+  import type { LoginParams } from '@/api/login/types'
   import { ElButton } from 'element-plus'
   import { useI18n } from 'vue-i18n'
   import { useUserStore } from '@/store/modules/user'
@@ -14,7 +14,7 @@
   const { currentRoute, push } = useRouter()
   const { t } = useI18n()
 
-  const { state, actions } = useForm<UserLoginType>({
+  const { state, actions } = useForm<LoginParams>({
     initialValues: { username: userStore.rememberedUsername, password: '' },
     rules: {
       username: required(() => t('common.required')),
@@ -30,7 +30,7 @@
     return typeof value === 'string' ? value : ''
   })
 
-  const login = async (formData: UserLoginType) => {
+  const login = async (formData: LoginParams) => {
     const res = await loginApi(formData)
     if (!res) return
 

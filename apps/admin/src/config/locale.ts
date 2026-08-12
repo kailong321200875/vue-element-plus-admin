@@ -16,20 +16,20 @@ export const localeRegistry = {
   }
 } as const
 
-export type LocaleType = keyof typeof localeRegistry
+export type LocaleCode = keyof typeof localeRegistry
 
-export const DEFAULT_LOCALE: LocaleType = 'zh-CN'
+export const DEFAULT_LOCALE: LocaleCode = 'zh-CN'
 
-export const isLocale = (value: unknown): value is LocaleType =>
+export const isLocale = (value: unknown): value is LocaleCode =>
   typeof value === 'string' && value in localeRegistry
 
-export const localeOptions = (Object.keys(localeRegistry) as LocaleType[]).map((value) => ({
+export const localeOptions = (Object.keys(localeRegistry) as LocaleCode[]).map((value) => ({
   value,
   label: localeRegistry[value].label
 }))
 
 export const localeMessages = Object.fromEntries(
-  (Object.keys(localeRegistry) as LocaleType[]).map((locale) => [
+  (Object.keys(localeRegistry) as LocaleCode[]).map((locale) => [
     locale,
     localeRegistry[locale].messages
   ])

@@ -6,10 +6,10 @@
   import { ElTag } from 'element-plus'
   import { Table } from '@/components/Table'
   import {
-    getDepartmentApi,
-    getDepartmentTableApi,
+    getDepartmentTreeApi,
+    getDepartmentListApi,
     saveDepartmentApi,
-    deleteDepartmentApi
+    deleteDepartmentsApi
   } from '@/api/department'
   import type { DepartmentItem } from '@/api/department/types'
   import { useTable } from '@/hooks/web/useTable'
@@ -21,13 +21,13 @@
 
   const { tableRegister, tableState, tableMethods } = useTable<DepartmentItem>({
     fetchDataApi: async (params) => {
-      const res = await getDepartmentTableApi(params)
+      const res = await getDepartmentListApi(params)
       return {
         list: res.data.list,
         total: res.data.total
       }
     },
-    fetchDelApi: (ids) => deleteDepartmentApi(ids)
+    fetchDelApi: (ids) => deleteDepartmentsApi(ids)
   })
   const { getElTableExpose, delList, search, refresh } = tableMethods
 
@@ -82,7 +82,7 @@
           }
         },
         optionApi: async () => {
-          const res = await getDepartmentApi()
+          const res = await getDepartmentTreeApi()
           return res.data.list
         }
       },

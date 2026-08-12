@@ -4,8 +4,8 @@
   import { useDesign } from '@/hooks/web/useDesign'
   import { useI18n } from 'vue-i18n'
   import { ref, reactive } from 'vue'
-  import { getCountApi } from '@/api/dashboard/analysis'
-  import type { AnalysisTotalTypes } from '@/api/dashboard/analysis/types'
+  import { getAnalysisTotalApi } from '@/api/dashboard/analysis'
+  import type { AnalysisTotal } from '@/api/dashboard/analysis/types'
 
   const { t } = useI18n()
 
@@ -15,7 +15,7 @@
 
   const loading = ref(true)
 
-  let totalState = reactive<AnalysisTotalTypes>({
+  let totalState = reactive<AnalysisTotal>({
     users: 0,
     messages: 0,
     moneys: 0,
@@ -23,7 +23,7 @@
   })
 
   const getCount = async () => {
-    const res = await getCountApi()
+    const res = await getAnalysisTotalApi()
       .catch(() => {})
       .finally(() => {
         loading.value = false

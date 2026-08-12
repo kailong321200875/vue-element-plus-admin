@@ -14,22 +14,7 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
-    "declaration": true,
-    "declarationMap": true,
-    "composite": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@vea/components/*": ["./src/*"],
-      "@vea/utils": ["../utils/src"],
-      "@vea/utils/*": ["../utils/src/*"],
-      "@vea/hooks": ["../hooks/src"],
-      "@vea/hooks/*": ["../hooks/src/*"],
-      "@vea/styles": ["../styles/src"],
-      "@vea/styles/*": ["../styles/src/*"]
-    },
     "types": ["element-plus/global"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/**/*.d.ts"],
-  "references": [{ "path": "../utils" }, { "path": "../hooks" }]
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts"]
 }

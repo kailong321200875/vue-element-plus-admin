@@ -6,6 +6,7 @@
   import { useI18n } from 'vue-i18n'
   import { ElTree, ElCheckboxGroup, ElCheckbox } from 'element-plus'
   import { getMenuListApi } from '@/api/menu'
+  import type { MenuItem } from '@/api/menu/types'
   import { filter, eachTree } from '@/utils/tree'
   import { findIndex } from '@/utils'
 
@@ -107,7 +108,7 @@
   const { formRegister, formMethods } = useForm()
   const { setValues, getFormData, getElFormExpose } = formMethods
 
-  const treeData = ref([])
+  const treeData = ref<MenuItem[]>([])
   const getMenuList = async () => {
     const res = await getMenuListApi()
     if (res) {

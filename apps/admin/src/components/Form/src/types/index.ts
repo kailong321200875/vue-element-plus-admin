@@ -214,7 +214,7 @@ export interface CascaderComponentProps {
   beforeFilter?: (value: string) => boolean
   popperClass?: string
   teleported?: boolean
-  tagType?: ElementPlusInfoType
+  tagType?: ElementPlusStatus
   validateEvent?: boolean
   on?: {
     change?: (value: CascaderValue) => void

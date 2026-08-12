@@ -1,12 +1,7 @@
 import { defineStore } from 'pinia'
-import { asyncRouterMap, constantRouterMap } from '@/router'
-import {
-  generateRoutesByFrontEnd,
-  generateRoutesByServer,
-  flatMultiLevelRoutes
-} from '@/utils/routerHelper'
+import { constantRouterMap } from '@/router'
+import { generateRoutesByServer, flatMultiLevelRoutes } from '@/utils/routerHelper'
 import { store } from '../index'
-import { cloneDeep } from 'lodash-es'
 
 export interface PermissionState {
   routers: AppRouteRecordRaw[]
@@ -23,21 +18,10 @@ export const usePermissionStore = defineStore('permission', {
     menuTabRouters: []
   }),
   actions: {
-    generateRoutes(
-      type: 'server' | 'frontEnd' | 'static',
-      routers?: AppCustomRouteRecordRaw[] | string[]
-    ): AppRouteRecordRaw[] {
-      let routerMap: AppRouteRecordRaw[] = []
-      if (type === 'server') {
-        routerMap = generateRoutesByServer(routers as AppCustomRouteRecordRaw[])
-      } else if (type === 'frontEnd') {
-        routerMap = generateRoutesByFrontEnd(cloneDeep(asyncRouterMap), routers as string[])
-      } else {
-        routerMap = cloneDeep(asyncRouterMap)
-      }
-
+    generateRoutes(routers: AppCustomRouteRecordRaw[]): AppRouteRecordRaw[] {
+      const routerMap = generateRoutesByServer(routers)
       this.addRouters = flatMultiLevelRoutes(
-        cloneDeep(routerMap).concat([
+        routerMap.concat([
           {
             path: '/:path(.*)*',
             redirect: '/404',
@@ -49,7 +33,7 @@ export const usePermissionStore = defineStore('permission', {
           }
         ])
       )
-      this.routers = cloneDeep(constantRouterMap).concat(routerMap)
+      this.routers = constantRouterMap.concat(routerMap)
       return this.addRouters
     },
     setIsAddRouters(state: boolean): void {

@@ -4,9 +4,9 @@
   import { useI18n } from 'vue-i18n'
   import { ElTag } from 'element-plus'
   import { Table } from '@/components/Table'
-  import { getTableListApi, delTableListApi } from '@/api/table'
+  import { getTableListApi, deleteTableItemsApi } from '@/api/table'
   import { useTable } from '@/hooks/web/useTable'
-  import { TableData } from '@/api/table/types'
+  import type { TableItem } from '@/api/table/types'
   import { reactive, ref, unref } from 'vue'
   import { useRouter } from 'vue-router'
   import { useEventBus } from '@/hooks/event/useEventBus'
@@ -40,7 +40,7 @@
       }
     },
     fetchDelApi: async () => {
-      const res = await delTableListApi(unref(ids))
+      const res = await deleteTableItemsApi(unref(ids))
       return !!res
     }
   })
@@ -254,16 +254,16 @@
 
   const delLoading = ref(false)
 
-  const delData = async (row: TableData | null) => {
+  const delData = async (row: TableItem | null) => {
     const elTableExpose = await getElTableExpose()
-    ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableData) => v.id) || []
+    ids.value = row ? [row.id] : elTableExpose?.getSelectionRows().map((v: TableItem) => v.id) || []
     delLoading.value = true
     await delList(unref(ids)).finally(() => {
       delLoading.value = false
     })
   }
 
-  const action = (row: TableData, type: string) => {
+  const action = (row: TableItem, type: string) => {
     push(`/example/example-${type}?id=${row.id}`)
   }
 </script>

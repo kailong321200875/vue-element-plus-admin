@@ -4,7 +4,7 @@
   import { ref, unref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { useRouter } from 'vue-router'
-  import { saveTableApi } from '@/api/table'
+  import { saveTableItemApi } from '@/api/table'
   import { useEventBus } from '@/hooks/event/useEventBus'
 
   const { emit } = useEventBus()
@@ -22,7 +22,7 @@
     const formData = await write?.submit()
     if (formData) {
       loading.value = true
-      const res = await saveTableApi(formData)
+      const res = await saveTableItemApi(formData)
         .catch(() => {})
         .finally(() => {
           loading.value = false

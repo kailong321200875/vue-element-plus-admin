@@ -1,9 +1,9 @@
-export interface UserLoginType {
+export interface LoginParams {
   username: string
   password: string
 }
 
-export interface UserType {
+export interface UserInfo {
   username: string
   role: string
   roleId: string
@@ -12,5 +12,16 @@ export interface UserType {
 
 export interface LoginResult {
   accessToken: string
-  user: UserType
+  user: UserInfo
+}
+
+export interface UserListParams {
+  pageIndex: number
+  pageSize: number
+  username?: string
+}
+
+export interface UserListResult {
+  list: UserInfo[]
+  total: number
 }

@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import type { LoginResult, UserType } from '@/api/login/types'
+import type { LoginResult, UserInfo } from '@/api/login/types'
 import { usePermissionStore } from './permission'
 import { useTagsViewStore } from './tagsView'
 import router, { resetRouter } from '@/router'
 
 interface UserState {
-  userInfo?: UserType
+  userInfo?: UserInfo
   token: string
   rememberMe: boolean
   rememberedUsername: string
