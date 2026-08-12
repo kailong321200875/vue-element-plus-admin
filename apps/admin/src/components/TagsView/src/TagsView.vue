@@ -9,16 +9,13 @@
   import { useI18n } from 'vue-i18n'
   import { filterAffixTags } from './helper'
   import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { useTemplateRefsList } from '@vueuse/core'
   import { ElScrollbar } from 'element-plus'
   import { useScrollTo } from '@/hooks/event/useScrollTo'
   import { useTagsView } from '@/hooks/web/useTagsView'
   import { cloneDeep } from 'lodash-es'
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('tags-view')
+  const prefixCls = 'v-tags-view'
 
   const { t } = useI18n()
 
@@ -149,7 +146,9 @@
       firstTag = tagList[0]
       lastTag = tagList[tagList.length - 1]
     }
-    if ((firstTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    if (
+      (firstTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
+    ) {
       // 直接滚动到0的位置
       const { start } = useScrollTo({
         el: wrap$!,
@@ -158,7 +157,9 @@
         duration: 500
       })
       start()
-    } else if ((lastTag?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath) {
+    } else if (
+      (lastTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
+    ) {
       // 滚动到最后的位置
       const { start } = useScrollTo({
         el: wrap$!,
@@ -170,7 +171,8 @@
     } else {
       // find preTag and nextTag
       const currentIndex: number = tagList.findIndex(
-        (item) => (item?.to as RouteLocationNormalizedLoaded).fullPath === currentTag.fullPath
+        (item) =>
+          (item?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
       )
       const tgsRefs = document.getElementsByClassName(`${prefixCls}__item`)
 
@@ -479,10 +481,10 @@
 </template>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-tags-view';
+  @prefix-cls: v-tags-view;
 
   .@{prefix-cls} {
-    :deep(.@{elNamespace}-scrollbar__view) {
+    :deep(.el-scrollbar__view) {
       height: 100%;
     }
 

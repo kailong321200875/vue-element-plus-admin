@@ -5,7 +5,7 @@
 import { isServer } from './is'
 
 const ieVersion = isServer ? 0 : Number((document as any).documentMode)
-const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
+const SPECIAL_CHARS_REGEXP = /([:\-_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
 
 export interface ViewportOffsetResult {
@@ -195,7 +195,7 @@ export const getStyle =
             case 'opacity':
               try {
                 return element.filters.item('alpha').opacity / 100
-              } catch (e) {
+              } catch {
                 return 1.0
               }
             default:
@@ -203,7 +203,7 @@ export const getStyle =
                 ? element.currentStyle[styleName]
                 : null
           }
-        } catch (e) {
+        } catch {
           return element.style[styleName]
         }
       }
@@ -217,7 +217,7 @@ export const getStyle =
         try {
           const computed = (document as any).defaultView.getComputedStyle(element, '')
           return element.style[styleName] || computed ? computed[styleName] : null
-        } catch (e) {
+        } catch {
           return element.style[styleName]
         }
       }

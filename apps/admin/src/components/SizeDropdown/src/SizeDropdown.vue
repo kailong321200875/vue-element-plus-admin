@@ -3,12 +3,9 @@
   import { useAppStore } from '@/store/modules/app'
   import { useI18n } from 'vue-i18n'
   import { propTypes } from '@/utils/propTypes'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { componentSizes } from '@/config/app'
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('size-dropdown')
+  const prefixCls = 'v-size-dropdown'
 
   defineProps({
     color: propTypes.string.def('')

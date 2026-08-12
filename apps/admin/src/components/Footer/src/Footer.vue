@@ -1,10 +1,7 @@
 <script setup lang="ts">
-  import { useDesign } from '@/hooks/web/useDesign'
   import { appConfig } from '@/config/app'
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('footer')
+  const prefixCls = 'v-footer'
 
   const title = appConfig.title
 </script>

@@ -5,58 +5,23 @@ const timeout = 1000
 const List: {
   username: string
   password: string
-  role: string
-  roleId: string
-  permissions: string | string[]
+  id: string
 }[] = [
   {
     username: 'admin',
     password: 'admin',
-    role: 'admin',
-    roleId: '1',
-    permissions: ['*.*.*']
+    id: '1'
   },
   {
     username: 'test',
     password: 'test',
-    role: 'test',
-    roleId: '2',
-    permissions: ['example:dialog:create', 'example:dialog:delete']
+    id: '2'
   }
 ]
 
-const toUserInfo = ({ username, role, roleId, permissions }: (typeof List)[number]) => ({
-  username,
-  role,
-  roleId,
-  permissions: Array.isArray(permissions) ? permissions : [permissions]
-})
+const toUserInfo = ({ username }: (typeof List)[number]) => ({ username })
 
 export default [
-  // 列表接口
-  {
-    url: '/mock/user/list',
-    method: 'get',
-    response: ({ query }) => {
-      const { username, pageIndex, pageSize } = query
-
-      const mockList = List.filter((item) => {
-        if (username && item.username.indexOf(username) < 0) return false
-        return true
-      })
-      const pageList = mockList
-        .filter((_, index) => index < pageSize * pageIndex && index >= pageSize * (pageIndex - 1))
-        .map(toUserInfo)
-
-      return {
-        code: SUCCESS_CODE,
-        data: {
-          total: mockList.length,
-          list: pageList
-        }
-      }
-    }
-  },
   // 登录接口
   {
     url: '/mock/user/login',
@@ -71,7 +36,7 @@ export default [
           return {
             code: SUCCESS_CODE,
             data: {
-              accessToken: `mock-token-${user.roleId}`,
+              accessToken: `mock-token-${user.id}`,
               user: toUserInfo(user)
             }
           }

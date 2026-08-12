@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { ElRow, ElCol, ElCard, ElSkeleton } from 'element-plus'
   import { CountTo } from '@/components/CountTo'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { useI18n } from 'vue-i18n'
   import { ref, reactive } from 'vue'
   import { getAnalysisTotalApi } from '@/api/dashboard/analysis'
@@ -9,9 +8,7 @@
 
   const { t } = useI18n()
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('panel')
+  const prefixCls = 'v-panel'
 
   const loading = ref(true)
 
@@ -155,7 +152,7 @@
 </template>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-panel';
+  @prefix-cls: v-panel;
 
   .@{prefix-cls} {
     &__item {
@@ -176,7 +173,7 @@
       }
 
       &:hover {
-        :deep(.@{adminNamespace}-icon) {
+        :deep(.v-icon) {
           color: #fff !important;
         }
         .@{prefix-cls}__item--icon {

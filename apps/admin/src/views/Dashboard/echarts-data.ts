@@ -150,35 +150,3 @@ export const createBarOptions = (t: Translate): EChartsOption => ({
     }
   ]
 })
-
-export const createRadarOption = (t: Translate): EChartsOption => ({
-  legend: {
-    data: [t('workplace.personal'), t('workplace.team')]
-  },
-  radar: {
-    // shape: 'circle',
-    indicator: [
-      { name: t('workplace.quote'), max: 65 },
-      { name: t('workplace.contribution'), max: 160 },
-      { name: t('workplace.hot'), max: 300 },
-      { name: t('workplace.yield'), max: 130 },
-      { name: t('workplace.follow'), max: 100 }
-    ]
-  },
-  series: [
-    {
-      name: `xxx${t('workplace.index')}`,
-      type: 'radar',
-      data: [
-        {
-          value: [42, 30, 20, 35, 80],
-          name: t('workplace.personal')
-        },
-        {
-          value: [50, 140, 290, 100, 90],
-          name: t('workplace.team')
-        }
-      ]
-    }
-  ]
-})

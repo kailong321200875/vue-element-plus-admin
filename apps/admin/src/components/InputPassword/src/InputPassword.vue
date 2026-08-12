@@ -4,11 +4,7 @@
   import { propTypes } from '@/utils/propTypes'
   import { useConfigGlobal } from '@/hooks/web/useConfigGlobal'
   import { ZxcvbnFactory } from '@zxcvbn-ts/core'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('input-password')
+  const prefixCls = 'v-input-password'
   const passwordChecker = new ZxcvbnFactory()
 
   const props = defineProps({
@@ -64,10 +60,10 @@
 </template>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-input-password';
+  @prefix-cls: v-input-password;
 
   .@{prefix-cls} {
-    :deep(.@{elNamespace}-input__clear) {
+    :deep(.el-input__clear) {
       margin-left: 5px;
     }
 

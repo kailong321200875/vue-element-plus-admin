@@ -1,13 +1,10 @@
 <script setup lang="ts">
-  import { useDesign } from '@/hooks/web/useDesign'
   import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
   import Cropper, { EVENT_CHANGE, EVENT_TRANSFORM } from 'cropperjs'
   import { ElButton, ElDivider, ElUpload, UploadFile, ElMessage, ElTooltip } from 'element-plus'
   import { useDebounceFn } from '@vueuse/core'
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('image-cropping')
+  const prefixCls = 'v-image-cropping'
 
   const props = defineProps({
     imageUrl: {

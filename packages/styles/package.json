@@ -10,8 +10,7 @@
       "types": "./src/index.d.ts",
       "default": "./src/index.less"
     },
-    "./var.css": "./src/var.css",
-    "./variables.module.less": "./src/variables.module.less"
+    "./var.css": "./src/var.css"
   },
   "files": [
     "src"

@@ -4,10 +4,7 @@ import { hasOneShowingChild } from '../helper'
 import { isUrl } from '@/utils/is'
 import { useRenderMenuTitle } from './useRenderMenuTitle'
 import { pathResolve } from '@/utils/routerHelper'
-import { useDesign } from '@/hooks/web/useDesign'
-
-const { getPrefixCls } = useDesign()
-const prefixCls = getPrefixCls('submenu')
+const prefixCls = 'v-submenu'
 
 export const useRenderMenuItem = (menuMode) => {
   const { renderMenuTitle } = useRenderMenuTitle()

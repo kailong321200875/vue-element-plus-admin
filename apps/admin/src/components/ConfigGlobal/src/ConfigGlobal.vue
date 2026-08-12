@@ -6,9 +6,6 @@
   import { useWindowSize } from '@vueuse/core'
   import { useAppStore } from '@/store/modules/app'
   import { setCssVar } from '@/utils'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { variables } = useDesign()
 
   const appStore = useAppStore()
 
@@ -53,7 +50,7 @@
 
 <template>
   <ElConfigProvider
-    :namespace="variables.elNamespace"
+    namespace="el"
     :locale="currentLocale.elementLocale"
     :message="{ max: 1 }"
     :size="size"

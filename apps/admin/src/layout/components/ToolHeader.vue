@@ -7,12 +7,9 @@
   import { Screenfull } from '@/components/Screenfull'
   import { Breadcrumb } from '@/components/Breadcrumb'
   import { useAppStore } from '@/store/modules/app'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { appConfig } from '@/config/app'
 
-  const { getPrefixCls, variables } = useDesign()
-
-  const prefixCls = getPrefixCls('tool-header')
+  const prefixCls = 'v-tool-header'
 
   const appStore = useAppStore()
 
@@ -24,7 +21,7 @@
     setup() {
       return () => (
         <div
-          id={`${variables.namespace}-tool-header`}
+          id="v-tool-header"
           class={[
             prefixCls,
             'h-[var(--top-tool-height)] relative px-[var(--top-tool-p-x)] flex items-center justify-between'
@@ -63,7 +60,7 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-tool-header';
+  @prefix-cls: v-tool-header;
 
   .@{prefix-cls} {
     transition: left var(--transition-time-02);

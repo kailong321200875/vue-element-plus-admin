@@ -9,11 +9,7 @@
   import { useI18n } from 'vue-i18n'
   import { Icon } from '@/components/Icon'
   import { appConfig } from '@/config/app'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('breadcrumb')
+  const prefixCls = 'v-breadcrumb'
 
   // 面包屑图标
   const breadcrumbIcon = computed(() => appConfig.ui.breadcrumbIcon)
@@ -88,7 +84,7 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{elNamespace}-breadcrumb';
+  @prefix-cls: el-breadcrumb;
 
   .@{prefix-cls} {
     :deep(&__item) {

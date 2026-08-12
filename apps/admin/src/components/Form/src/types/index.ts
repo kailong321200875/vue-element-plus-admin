@@ -20,8 +20,6 @@ import {
   SelectProps,
   UploadProps
 } from 'element-plus'
-import { IEditorConfig } from '@wangeditor/editor'
-import { JsonEditorProps } from '@/components/JsonEditor'
 import { CSSProperties } from 'vue'
 
 export interface PlaceholderModel {
@@ -52,10 +50,8 @@ export enum ComponentNameEnum {
   TIME_SELECT = 'TimeSelect',
   SELECT_V2 = 'SelectV2',
   INPUT_PASSWORD = 'InputPassword',
-  EDITOR = 'Editor',
   TREE_SELECT = 'TreeSelect',
-  UPLOAD = 'Upload',
-  JSON_EDITOR = 'JsonEditor'
+  UPLOAD = 'Upload'
 }
 
 type CamelCaseComponentName = keyof typeof ComponentNameEnum extends infer K
@@ -479,11 +475,6 @@ export interface TimeSelectComponentProps {
   style?: CSSProperties
 }
 
-export interface EditorComponentProps {
-  editorConfig?: IEditorConfig
-  style?: CSSProperties
-}
-
 export interface ColProps {
   span?: number
   xs?: number
@@ -624,7 +615,6 @@ export interface FormSchema {
     | InputPasswordComponentProps
     | TreeSelectComponentProps
     | UploadComponentProps
-    | JsonEditorProps
     | any
 
   /**

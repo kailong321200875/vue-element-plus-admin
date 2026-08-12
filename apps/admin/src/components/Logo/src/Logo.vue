@@ -1,12 +1,9 @@
 <script setup lang="ts">
   import { ref, watch, computed, onMounted, unref } from 'vue'
   import { useAppStore } from '@/store/modules/app'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { appConfig } from '@/config/app'
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('logo')
+  const prefixCls = 'v-logo'
 
   const appStore = useAppStore()
 

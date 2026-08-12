@@ -2,12 +2,9 @@
   import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
   import { PropType, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useDesign } from '@/hooks/web/useDesign'
   import type { RouteLocationNormalizedLoaded } from 'vue-router'
   import { ContextMenuSchema } from './types'
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('context-menu')
+  const prefixCls = 'v-context-menu'
 
   const { t } = useI18n()
 

@@ -2,11 +2,7 @@
   import { computed, unref } from 'vue'
   import { useAppStore } from '@/store/modules/app'
   import { propTypes } from '@/utils/propTypes'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('collapse')
+  const prefixCls = 'v-collapse'
 
   defineProps({
     color: propTypes.string.def('')

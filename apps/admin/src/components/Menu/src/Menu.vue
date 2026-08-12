@@ -7,11 +7,7 @@
   import { useRenderMenuItem } from './components/useRenderMenuItem'
   import { useRouter } from 'vue-router'
   import { isUrl } from '@/utils/is'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('menu')
+  const prefixCls = 'v-menu'
 
   export default defineComponent({
     name: 'VeMenu',
@@ -126,26 +122,26 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-menu';
+  @prefix-cls: v-menu;
 
   .@{prefix-cls} {
     position: relative;
     transition: width var(--transition-time-02);
 
-    :deep(.@{elNamespace}-menu) {
+    :deep(.el-menu) {
       width: 100% !important;
       border-right: none;
 
       // 设置选中时子标题的颜色
       .is-active {
-        & > .@{elNamespace}-sub-menu__title {
+        & > .el-sub-menu__title {
           color: var(--left-menu-text-active-color) !important;
         }
       }
 
       // 设置子菜单悬停的高亮和背景色
-      .@{elNamespace}-sub-menu__title,
-      .@{elNamespace}-menu-item {
+      .el-sub-menu__title,
+      .el-menu-item {
         &:hover {
           color: var(--left-menu-text-active-color) !important;
           background-color: var(--left-menu-bg-color) !important;
@@ -153,7 +149,7 @@
       }
 
       // 设置选中时的高亮背景和高亮颜色
-      .@{elNamespace}-menu-item.is-active {
+      .el-menu-item.is-active {
         color: var(--left-menu-text-active-color) !important;
         background-color: var(--left-menu-bg-active-color) !important;
 
@@ -162,25 +158,25 @@
         }
       }
 
-      .@{elNamespace}-menu-item.is-active {
+      .el-menu-item.is-active {
         position: relative;
       }
 
       // 设置子菜单的背景颜色
-      .@{elNamespace}-menu {
-        .@{elNamespace}-sub-menu__title,
-        .@{elNamespace}-menu-item:not(.is-active) {
+      .el-menu {
+        .el-sub-menu__title,
+        .el-menu-item:not(.is-active) {
           background-color: var(--left-menu-bg-light-color) !important;
         }
       }
     }
 
     // 折叠时的最小宽度
-    :deep(.@{elNamespace}-menu--collapse) {
+    :deep(.el-menu--collapse) {
       width: var(--left-menu-min-width);
 
       & > .is-active,
-      & > .is-active > .@{elNamespace}-sub-menu__title {
+      & > .is-active > .el-sub-menu__title {
         position: relative;
         background-color: var(--left-menu-collapse-bg-active-color) !important;
       }
@@ -197,17 +193,17 @@
     &__horizontal {
       height: calc(~'var(--top-tool-height)') !important;
 
-      :deep(.@{elNamespace}-menu--horizontal) {
+      :deep(.el-menu--horizontal) {
         height: calc(~'var(--top-tool-height)');
         border-bottom: none;
         // 重新设置底部高亮颜色
-        & > .@{elNamespace}-sub-menu.is-active {
-          .@{elNamespace}-sub-menu__title {
+        & > .el-sub-menu.is-active {
+          .el-sub-menu__title {
             border-bottom-color: var(--el-color-primary) !important;
           }
         }
 
-        .@{elNamespace}-menu-item.is-active {
+        .el-menu-item.is-active {
           position: relative;
 
           &::after {
@@ -227,7 +223,7 @@
 </style>
 
 <style lang="less">
-  @prefix-cls: ~'@{adminNamespace}-menu-popper';
+  @prefix-cls: v-menu-popper;
 
   .@{prefix-cls}--vertical,
   .@{prefix-cls}--horizontal {
@@ -258,7 +254,7 @@
     }
   }
 
-  @submenu-prefix-cls: ~'@{adminNamespace}-submenu-popper';
+  @submenu-prefix-cls: v-submenu-popper;
 
   // 设置子菜单溢出时滚动样式
   .@{submenu-prefix-cls}--vertical {

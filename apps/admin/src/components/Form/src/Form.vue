@@ -23,7 +23,6 @@
   import { useRenderSelect } from './components/useRenderSelect'
   import { useRenderRadio } from './components/useRenderRadio'
   import { useRenderCheckbox } from './components/useRenderCheckbox'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { findIndex } from '@/utils'
   import { get, set } from 'lodash-es'
   import { FormProps } from './types'
@@ -40,9 +39,7 @@
   const { renderRadioOptions } = useRenderRadio()
   const { renderCheckboxOptions } = useRenderCheckbox()
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('form')
+  const prefixCls = 'v-form'
 
   export default defineComponent({
     name: 'VeForm',
@@ -429,18 +426,19 @@
 </script>
 
 <style lang="less" scoped>
-  .@{elNamespace}-form.@{adminNamespace}-form .@{elNamespace}-row {
+  .el-form.v-form .el-row {
     margin-right: 0 !important;
     margin-left: 0 !important;
   }
 
-  .@{elNamespace}-form--inline {
+  .el-form--inline {
     :deep(.el-form-item__content) {
       & > :first-child {
         min-width: 229.5px;
       }
     }
-    .@{elNamespace}-input-number {
+
+    .el-input-number {
       // 229.5px是兼容el-input-number的最小宽度,
       min-width: 229.5px;
     }

@@ -15,11 +15,7 @@
   } from 'vue'
   import { useAppStore } from '@/store/modules/app'
   import { isString } from '@/utils/is'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls, variables } = useDesign()
-
-  const prefixCls = getPrefixCls('echart')
+  const prefixCls = 'v-echart'
 
   const appStore = useAppStore()
 
@@ -100,7 +96,7 @@
 
     window.addEventListener('resize', resizeHandler)
 
-    contentEl.value = document.getElementsByClassName(`${variables.namespace}-layout-content`)[0]
+    contentEl.value = document.getElementsByClassName('v-layout-content')[0]
     unref(contentEl) &&
       (unref(contentEl) as Element).addEventListener('transitionend', contentResizeHandler)
   })

@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "vue"],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "eslint/no-undef": "off",
+    "eslint/no-useless-escape": "warn",
+    "typescript/ban-ts-comment": "off",
+    "typescript/no-explicit-any": "off",
+    "typescript/no-unused-expressions": "off",
+    "typescript/no-unused-vars": "warn"
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/dist-*/**",
+    "**/.git/**",
+    "**/public/**",
+    "**/*.d.ts"
+  ]
+}

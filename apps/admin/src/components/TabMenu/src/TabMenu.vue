@@ -11,12 +11,9 @@
   import { pathResolve } from '@/utils/routerHelper'
   import { cloneDeep } from 'lodash-es'
   import { filterMenusPath, initTabMap, tabPathMap } from './helper'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { isUrl } from '@/utils/is'
 
-  const { getPrefixCls, variables } = useDesign()
-
-  const prefixCls = getPrefixCls('tab-menu')
+  const prefixCls = 'v-tab-menu'
 
   export default defineComponent({
     name: 'TabMenu',
@@ -147,7 +144,7 @@
 
       return () => (
         <div
-          id={`${variables.namespace}-menu`}
+          id="v-menu"
           v-click-outside={clickOut}
           class={[
             prefixCls,
@@ -224,7 +221,7 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-tab-menu';
+  @prefix-cls: v-tab-menu;
 
   .@{prefix-cls} {
     transition: all var(--transition-time-02);

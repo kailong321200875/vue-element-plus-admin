@@ -4,7 +4,6 @@ import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import progress from 'vite-plugin-progress'
-import EslintPlugin from 'vite-plugin-eslint'
 import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import { viteMockServe } from 'vite-plugin-mock'
 import PurgeIcons from 'vite-plugin-purge-icons'
@@ -55,12 +54,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             ]
           })
         : undefined,
-      EslintPlugin({
-        cache: false,
-        failOnWarning: false,
-        failOnError: false,
-        include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx']
-      }),
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
@@ -85,14 +78,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       UnoCSS()
     ],
 
-    css: {
-      preprocessorOptions: {
-        less: {
-          additionalData: '@import "@vea/styles/variables.module.less";',
-          javascriptEnabled: true
-        }
-      }
-    },
     resolve: {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
       alias: [
@@ -121,7 +106,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             const chunkGroups = {
               'vue-chunks': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
               'element-plus': ['element-plus'],
-              'wang-editor': ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
               echarts: ['echarts']
             }
 
@@ -159,13 +143,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         'element-plus/es/locale/lang/en',
         '@vueuse/core',
         'axios',
-        'qs',
         'echarts',
-        '@wangeditor/editor',
-        '@wangeditor/editor-for-vue',
-        'vue-json-pretty',
         '@zxcvbn-ts/core',
-        'dayjs',
         'cropperjs'
       ]
     }

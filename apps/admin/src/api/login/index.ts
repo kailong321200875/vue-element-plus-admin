@@ -1,5 +1,5 @@
 import request from '@/axios'
-import type { LoginParams, LoginResult, UserListParams, UserListResult } from './types'
+import type { LoginParams, LoginResult } from './types'
 
 export const loginApi = (data: LoginParams) => {
   return request.post<LoginResult>({ url: '/mock/user/login', data })
@@ -7,10 +7,6 @@ export const loginApi = (data: LoginParams) => {
 
 export const logoutApi = () => {
   return request.get({ url: '/mock/user/loginOut' })
-}
-
-export const getUserListApi = (params: UserListParams) => {
-  return request.get<UserListResult>({ url: '/mock/user/list', params })
 }
 
 export const getRouteListApi = () => {

@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { ElDropdown, ElDropdownMenu, ElDropdownItem, ElMessageBox } from 'element-plus'
   import { useI18n } from 'vue-i18n'
-  import { useDesign } from '@/hooks/web/useDesign'
   import { useUserStore } from '@/store/modules/user'
   import { logoutApi } from '@/api/login'
   import { useRouter } from 'vue-router'
@@ -10,9 +9,7 @@
 
   const userStore = useUserStore()
 
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('user-info')
+  const prefixCls = 'v-user-info'
 
   const { t } = useI18n()
 

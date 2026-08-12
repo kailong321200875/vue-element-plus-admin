@@ -3,11 +3,7 @@
   import { useAppStore } from '@/store/modules/app'
   import { Backtop } from '@/components/Backtop'
   import { useRenderLayout } from './components/useRenderLayout'
-  import { useDesign } from '@/hooks/web/useDesign'
-
-  const { getPrefixCls } = useDesign()
-
-  const prefixCls = getPrefixCls('layout')
+  const prefixCls = 'v-layout'
 
   const appStore = useAppStore()
 
@@ -61,7 +57,7 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{adminNamespace}-layout';
+  @prefix-cls: v-layout;
 
   .@{prefix-cls} {
     background-color: var(--app-content-bg-color);

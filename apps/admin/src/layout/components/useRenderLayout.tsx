@@ -7,12 +7,9 @@ import { Logo } from '@/components/Logo'
 import AppView from './AppView.vue'
 import ToolHeader from './ToolHeader.vue'
 import { ElScrollbar } from 'element-plus'
-import { useDesign } from '@/hooks/web/useDesign'
 import { appConfig } from '@/config/app'
 
-const { getPrefixCls } = useDesign()
-
-const prefixCls = getPrefixCls('layout')
+const prefixCls = 'v-layout'
 
 const appStore = useAppStore()
 

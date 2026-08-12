@@ -2,7 +2,7 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "prettier.enable": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.oxc": "always"
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
