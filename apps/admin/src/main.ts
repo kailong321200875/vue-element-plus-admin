@@ -2,8 +2,6 @@ import 'vue/jsx'
 
 import 'virtual:uno.css'
 
-import 'virtual:svg-icons-register'
-
 // 初始化多语言
 import { setupI18n } from '@/plugins/vueI18n'
 

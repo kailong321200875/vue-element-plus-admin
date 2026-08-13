@@ -8,7 +8,6 @@ import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import { viteMockServe } from 'vite-plugin-mock'
 import ServerUrlCopy from 'vite-plugin-url-copy'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -57,11 +56,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         runtimeOnly: true,
         compositionOnly: true,
         include: [resolve(import.meta.dirname, 'src/locales/**')]
-      }),
-      createSvgIconsPlugin({
-        iconDirs: [pathResolve('src/assets/svgs')],
-        symbolId: 'icon-[dir]-[name]',
-        svgoOptions: true
       }),
       env.VITE_USE_MOCK === 'true'
         ? viteMockServe({

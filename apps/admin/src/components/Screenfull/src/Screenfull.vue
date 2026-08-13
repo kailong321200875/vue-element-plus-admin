@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Icon } from '@/components/Icon'
+  import { Icon } from '@vea/components'
   import { useFullscreen } from '@vueuse/core'
   import { propTypes } from '@/utils/propTypes'
   const prefixCls = 'v-screenfull'
@@ -19,7 +19,7 @@
   <div :class="prefixCls" @click="toggleFullscreen">
     <Icon
       :size="18"
-      :icon="isFullscreen ? 'vi-zmdi:fullscreen-exit' : 'vi-zmdi:fullscreen'"
+      :icon="isFullscreen ? 'mdi:fullscreen-exit' : 'mdi:fullscreen'"
       :color="color"
     />
   </div>

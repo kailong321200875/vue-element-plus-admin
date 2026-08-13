@@ -1,17 +1,30 @@
 <script lang="tsx">
-  import { computed, defineComponent, unref, PropType } from 'vue'
+  import { computed, defineComponent, unref, type PropType } from 'vue'
   import { ElMenu, ElScrollbar } from 'element-plus'
-  import { useAppStore } from '@/store/modules/app'
-  import { appConfig } from '@/config/app'
-  import { usePermissionStore } from '@/store/modules/permission'
-  import { useRenderMenuItem } from './components/useRenderMenuItem'
   import { useRouter } from 'vue-router'
+  import { useAppStore } from '@/store/modules/app'
+  import { usePermissionStore } from '@/store/modules/permission'
+  import { appConfig } from '@/config/app'
   import { isUrl } from '@/utils/is'
+  import { useRenderMenuItem } from './components/useRenderMenuItem'
+
   const prefixCls = 'v-menu'
 
   export default defineComponent({
     name: 'VeMenu',
     props: {
+      mode: {
+        type: String as PropType<'vertical' | 'horizontal'>,
+        default: 'vertical'
+      },
+      routers: {
+        type: Array as PropType<AppRouteRecordRaw[]>,
+        default: undefined
+      },
+      collapsed: {
+        type: Boolean,
+        default: undefined
+      },
       menuSelect: {
         type: Function as PropType<(index: string) => void>,
         default: undefined
@@ -19,48 +32,22 @@
     },
     setup(props) {
       const appStore = useAppStore()
-
-      const layout = computed(() => appStore.layout)
-
+      const permissionStore = usePermissionStore()
       const { push, currentRoute } = useRouter()
 
-      const permissionStore = usePermissionStore()
-
-      const menuMode = computed((): 'vertical' | 'horizontal' => {
-        // 竖
-        const vertical: LayoutMode[] = ['classic', 'topLeft', 'cutMenu']
-
-        if (vertical.includes(unref(layout))) {
-          return 'vertical'
-        } else {
-          return 'horizontal'
-        }
-      })
-
-      const { renderMenuItem } = useRenderMenuItem(menuMode)
-
-      const routers = computed(() =>
-        unref(layout) === 'cutMenu' ? permissionStore.menuTabRouters : permissionStore.routers
+      const menuMode = computed(() => props.mode)
+      const menuRouters = computed(() => props.routers ?? permissionStore.routers)
+      const isCollapsed = computed(
+        () => props.mode === 'vertical' && (props.collapsed ?? appStore.collapse)
       )
-
-      const collapse = computed(() => appStore.collapse)
-
-      const uniqueOpened = computed(() => appConfig.ui.uniqueOpened)
-
       const activeMenu = computed(() => {
         const { meta, path } = unref(currentRoute)
-        // if set path, the sidebar will highlight the path you set
-        if (meta.activeMenu) {
-          return meta.activeMenu as string
-        }
-        return path
+        return (meta.activeMenu as string) || path
       })
+      const { renderMenuItem } = useRenderMenuItem(menuMode)
 
-      const menuSelect = (index: string) => {
-        if (props.menuSelect) {
-          props.menuSelect(index)
-        }
-        // 自定义事件
+      const handleSelect = (index: string) => {
+        props.menuSelect?.(index)
         if (isUrl(index)) {
           window.open(index)
         } else {
@@ -68,54 +55,36 @@
         }
       }
 
-      const renderMenuWrap = () => {
-        if (unref(layout) === 'top') {
-          return renderMenu()
-        } else {
-          return <ElScrollbar>{renderMenu()}</ElScrollbar>
-        }
-      }
-
-      const renderMenu = () => {
-        return (
-          <ElMenu
-            defaultActive={unref(activeMenu)}
-            mode={unref(menuMode)}
-            collapse={
-              unref(layout) === 'top' || unref(layout) === 'cutMenu' ? false : unref(collapse)
-            }
-            uniqueOpened={unref(layout) === 'top' ? false : unref(uniqueOpened)}
-            backgroundColor="var(--left-menu-bg-color)"
-            textColor="var(--left-menu-text-color)"
-            activeTextColor="var(--left-menu-text-active-color)"
-            popperClass={
-              unref(menuMode) === 'vertical'
-                ? `${prefixCls}-popper--vertical`
-                : `${prefixCls}-popper--horizontal`
-            }
-            onSelect={menuSelect}
-          >
-            {{
-              default: () => renderMenuItem(unref(routers))
-            }}
-          </ElMenu>
-        )
-      }
+      const renderMenu = () => (
+        <ElMenu
+          defaultActive={unref(activeMenu)}
+          mode={props.mode}
+          collapse={unref(isCollapsed)}
+          uniqueOpened={props.mode === 'vertical' && appConfig.ui.uniqueOpened}
+          backgroundColor="var(--left-menu-bg-color)"
+          textColor="var(--left-menu-text-color)"
+          activeTextColor="var(--left-menu-text-active-color)"
+          popperClass={`${prefixCls}-popper--${props.mode}`}
+          onSelect={handleSelect}
+        >
+          {{ default: () => renderMenuItem(unref(menuRouters)) }}
+        </ElMenu>
+      )
 
       return () => (
-        <div
-          id={prefixCls}
+        <nav
           class={[
-            `${prefixCls} ${prefixCls}__${unref(menuMode)}`,
-            'h-[100%] overflow-hidden flex-col bg-[var(--left-menu-bg-color)]',
+            prefixCls,
+            `${prefixCls}--${props.mode}`,
+            'h-full overflow-hidden bg-[var(--left-menu-bg-color)]',
             {
-              'w-[var(--left-menu-min-width)]': unref(collapse) && unref(layout) !== 'cutMenu',
-              'w-[var(--left-menu-max-width)]': !unref(collapse) && unref(layout) !== 'cutMenu'
+              'w-[var(--left-menu-min-width)]': unref(isCollapsed),
+              'w-[var(--left-menu-max-width)]': !unref(isCollapsed) && props.mode === 'vertical'
             }
           ]}
         >
-          {renderMenuWrap()}
-        </div>
+          {props.mode === 'horizontal' ? renderMenu() : <ElScrollbar>{renderMenu()}</ElScrollbar>}
+        </nav>
       )
     }
   })
@@ -125,97 +94,61 @@
   @prefix-cls: v-menu;
 
   .@{prefix-cls} {
-    position: relative;
+    flex: none;
     transition: width var(--transition-time-02);
 
     :deep(.el-menu) {
-      width: 100% !important;
-      border-right: none;
+      width: 100%;
+      border: none;
 
-      // 设置选中时子标题的颜色
-      .is-active {
-        & > .el-sub-menu__title {
-          color: var(--left-menu-text-active-color) !important;
-        }
+      .is-active > .el-sub-menu__title {
+        color: var(--left-menu-text-active-color) !important;
       }
 
-      // 设置子菜单悬停的高亮和背景色
       .el-sub-menu__title,
       .el-menu-item {
         &:hover {
           color: var(--left-menu-text-active-color) !important;
-          background-color: var(--left-menu-bg-color) !important;
-        }
-      }
-
-      // 设置选中时的高亮背景和高亮颜色
-      .el-menu-item.is-active {
-        color: var(--left-menu-text-active-color) !important;
-        background-color: var(--left-menu-bg-active-color) !important;
-
-        &:hover {
           background-color: var(--left-menu-bg-active-color) !important;
         }
       }
 
       .el-menu-item.is-active {
-        position: relative;
+        color: var(--left-menu-text-active-color) !important;
+        background-color: var(--left-menu-bg-active-color) !important;
       }
 
-      // 设置子菜单的背景颜色
-      .el-menu {
-        .el-sub-menu__title,
-        .el-menu-item:not(.is-active) {
-          background-color: var(--left-menu-bg-light-color) !important;
-        }
+      .el-menu .el-sub-menu__title,
+      .el-menu .el-menu-item:not(.is-active) {
+        background-color: var(--left-menu-bg-light-color) !important;
       }
     }
 
-    // 折叠时的最小宽度
     :deep(.el-menu--collapse) {
       width: var(--left-menu-min-width);
-
-      & > .is-active,
-      & > .is-active > .el-sub-menu__title {
-        position: relative;
-        background-color: var(--left-menu-collapse-bg-active-color) !important;
-      }
     }
 
-    // 折叠动画的时候，就需要把文字给隐藏掉
-    :deep(.horizontal-collapse-transition) {
-      .@{prefix-cls}__title {
-        display: none;
-      }
-    }
-
-    // 水平菜单
-    &__horizontal {
-      height: calc(~'var(--top-tool-height)') !important;
+    &--horizontal {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
 
       :deep(.el-menu--horizontal) {
-        height: calc(~'var(--top-tool-height)');
-        border-bottom: none;
-        // 重新设置底部高亮颜色
-        & > .el-sub-menu.is-active {
-          .el-sub-menu__title {
-            border-bottom-color: var(--el-color-primary) !important;
-          }
+        height: var(--top-tool-height);
+        background: transparent;
+
+        > .el-menu-item,
+        > .el-sub-menu .el-sub-menu__title {
+          height: var(--top-tool-height);
+          color: var(--top-header-text-color) !important;
+          border-bottom: 2px solid transparent;
         }
 
-        .el-menu-item.is-active {
-          position: relative;
-
-          &::after {
-            display: none !important;
-          }
-        }
-
-        .@{prefix-cls}__title {
-          /* stylelint-disable-next-line */
-          max-height: calc(~'var(--top-tool-height) - 2px') !important;
-          /* stylelint-disable-next-line */
-          line-height: calc(~'var(--top-tool-height) - 2px');
+        > .el-menu-item.is-active,
+        > .el-sub-menu.is-active .el-sub-menu__title {
+          color: var(--el-color-primary) !important;
+          background: color-mix(in srgb, var(--el-color-primary) 9%, transparent) !important;
+          border-bottom-color: var(--el-color-primary);
         }
       }
     }
@@ -223,52 +156,31 @@
 </style>
 
 <style lang="less">
-  @prefix-cls: v-menu-popper;
-
-  .@{prefix-cls}--vertical,
-  .@{prefix-cls}--horizontal {
-    // 设置选中时子标题的颜色
-    .is-active {
-      & > .el-sub-menu__title {
-        color: var(--left-menu-text-active-color) !important;
-      }
+  .v-menu-popper--vertical,
+  .v-menu-popper--horizontal,
+  .v-submenu-popper--vertical {
+    .el-menu {
+      background-color: var(--left-menu-bg-color) !important;
     }
 
-    // 设置子菜单悬停的高亮和背景色
     .el-sub-menu__title,
     .el-menu-item {
+      color: var(--left-menu-text-color) !important;
+
       &:hover {
         color: var(--left-menu-text-active-color) !important;
-        background-color: var(--left-menu-bg-color) !important;
-      }
-    }
-
-    // 设置选中时的高亮背景
-    .el-menu-item.is-active {
-      position: relative;
-      background-color: var(--left-menu-bg-active-color) !important;
-
-      &:hover {
         background-color: var(--left-menu-bg-active-color) !important;
       }
     }
+
+    .el-menu-item.is-active {
+      color: var(--left-menu-text-active-color) !important;
+      background-color: var(--left-menu-bg-active-color) !important;
+    }
   }
 
-  @submenu-prefix-cls: v-submenu-popper;
-
-  // 设置子菜单溢出时滚动样式
-  .@{submenu-prefix-cls}--vertical {
+  .v-submenu-popper--vertical {
     max-height: 100%;
     overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-      background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgb(144 147 153 / 30%);
-      border-radius: 4px;
-    }
   }
 </style>

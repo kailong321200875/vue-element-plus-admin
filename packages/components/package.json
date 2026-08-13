@@ -17,6 +17,7 @@
   ],
   "scripts": {},
   "dependencies": {
+    "@iconify-icons/mdi": "^1.2.48",
     "@iconify/vue": "^5.0.1"
   },
   "peerDependencies": {

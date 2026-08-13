@@ -23,11 +23,9 @@
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.json",
     "prepare": "husky install",
-    "p": "plop",
-    "icon": "esno ./scripts/icon.ts"
+    "p": "plop"
   },
   "dependencies": {
-    "@iconify/vue": "^5.0.1",
     "@vueuse/core": "^14.4.0",
     "axios": "^1.19.0",
     "dayjs": "^1.11.21",
@@ -46,7 +44,6 @@
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
-    "@iconify/json": "^2.2.514",
     "@intlify/unplugin-vue-i18n": "^11.2.4",
     "@types/fs-extra": "^11.0.4",
     "@types/inquirer": "^9.0.10",
@@ -90,7 +87,6 @@
     "vite-plugin-mock": "3.0.2",
     "vite-plugin-progress": "^0.0.7",
     "vite-plugin-style-import": "2.0.0",
-    "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-url-copy": "^1.1.4",
     "vue-tsc": "^3.3.9"
   },

@@ -42,7 +42,7 @@
                 <div
                   :class="`${prefixCls}__item--icon ${prefixCls}__item--peoples p-16px inline-block rounded-6px`"
                 >
-                  <Icon icon="svg-icon:peoples" :size="40" />
+                  <Icon icon="mdi:account-group" :size="40" />
                 </div>
               </div>
               <div class="flex flex-col justify-between">
@@ -71,7 +71,7 @@
                 <div
                   :class="`${prefixCls}__item--icon ${prefixCls}__item--message p-16px inline-block rounded-6px`"
                 >
-                  <Icon icon="svg-icon:message" :size="40" />
+                  <Icon icon="mdi:message-text" :size="40" />
                 </div>
               </div>
               <div class="flex flex-col justify-between">
@@ -100,7 +100,7 @@
                 <div
                   :class="`${prefixCls}__item--icon ${prefixCls}__item--money p-16px inline-block rounded-6px`"
                 >
-                  <Icon icon="svg-icon:money" :size="40" />
+                  <Icon icon="mdi:currency-cny" :size="40" />
                 </div>
               </div>
               <div class="flex flex-col justify-between">
@@ -129,7 +129,7 @@
                 <div
                   :class="`${prefixCls}__item--icon ${prefixCls}__item--shopping p-16px inline-block rounded-6px`"
                 >
-                  <Icon icon="svg-icon:shopping" :size="40" />
+                  <Icon icon="mdi:cart" :size="40" />
                 </div>
               </div>
               <div class="flex flex-col justify-between">

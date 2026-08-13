@@ -15,7 +15,6 @@
     "clean": "rimraf dist dist-pro dist-dev dist-test node_modules/.cache"
   },
   "dependencies": {
-    "@iconify/vue": "^5.0.1",
     "@vea/components": "workspace:*",
     "@vea/hooks": "workspace:*",
     "@vea/request": "workspace:*",
@@ -34,7 +33,6 @@
     "vue-types": "^7.0.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.514",
     "@intlify/unplugin-vue-i18n": "^11.2.4",
     "@types/lodash-es": "^4.17.12",
     "@types/mockjs": "^1.0.10",
@@ -58,7 +56,6 @@
     "vite-plugin-mock": "3.0.2",
     "vite-plugin-progress": "^0.0.7",
     "vite-plugin-style-import": "2.0.0",
-    "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-url-copy": "^1.1.4",
     "vue-tsc": "^3.3.9"
   }

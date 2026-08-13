@@ -22,8 +22,3 @@ export const NO_REDIRECT_WHITE_LIST = ['/login']
  * 不重置路由白名单
  */
 export const NO_RESET_WHITE_LIST = ['Redirect', 'RedirectWrap', 'Login', 'NoFind', 'Root']
-
-/**
- * 全局图标前缀
- */
-export const ICON_PREFIX = 'vi-'

@@ -20,7 +20,7 @@ declare global {
 
   declare type ElementPlusStatus = 'success' | 'info' | 'warning' | 'danger'
 
-  declare type LayoutMode = 'classic' | 'topLeft' | 'top' | 'cutMenu'
+  declare type LayoutMode = 'sidebar' | 'top' | 'mixed' | 'dual'
 
   declare type AxiosContentType =
     'application/json' | 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'
@@ -37,7 +37,6 @@ declare global {
     readonly VITE_USE_ALL_ELEMENT_PLUS_STYLE: string
     readonly VITE_USE_MOCK: string
     readonly VITE_USE_CSS_SPLIT: string
-    readonly VITE_USE_ONLINE_ICON: string
   }
 }
 

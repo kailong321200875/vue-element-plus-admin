@@ -30,6 +30,3 @@ VITE_USE_MOCK=true
 
 # 是否切割css
 VITE_USE_CSS_SPLIT=true
-
-# 是否使用在线图标
-VITE_USE_ONLINE_ICON=false

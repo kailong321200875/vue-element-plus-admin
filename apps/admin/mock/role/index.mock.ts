@@ -8,7 +8,7 @@ const routes: AppCustomRouteRecordRaw[] = [
     name: 'Dashboard',
     meta: {
       title: 'router.dashboard',
-      icon: 'vi-ant-design:dashboard-filled'
+      icon: 'mdi:view-dashboard'
     },
     children: [
       {
@@ -30,7 +30,7 @@ const routes: AppCustomRouteRecordRaw[] = [
     name: 'Level',
     meta: {
       title: 'router.level',
-      icon: 'vi-carbon:skill-level-advanced'
+      icon: 'mdi:file-tree'
     },
     children: [
       {

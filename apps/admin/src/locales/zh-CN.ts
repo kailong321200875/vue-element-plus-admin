@@ -23,6 +23,17 @@ export default {
     large: '大',
     small: '小'
   },
+  layout: {
+    title: '页面布局',
+    hint: '选择后立即生效',
+    switch: '切换页面布局',
+    sidebar: '经典侧边栏',
+    top: '顶部导航',
+    mixed: '混合导航',
+    dual: '双列侧边栏',
+    expandNavigation: '展开导航菜单',
+    collapseNavigation: '收起导航菜单'
+  },
   login: {
     welcome: '欢迎使用本系统',
     message: '开箱即用的中后台管理系统',

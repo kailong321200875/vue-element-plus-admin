@@ -23,6 +23,17 @@ export default {
     large: 'Large',
     small: 'Small'
   },
+  layout: {
+    title: 'Page layout',
+    hint: 'Applies immediately',
+    switch: 'Switch page layout',
+    sidebar: 'Sidebar',
+    top: 'Top navigation',
+    mixed: 'Mixed navigation',
+    dual: 'Dual sidebar',
+    expandNavigation: 'Expand navigation',
+    collapseNavigation: 'Collapse navigation'
+  },
   login: {
     welcome: 'Welcome to the system',
     message: 'Backstage management system',

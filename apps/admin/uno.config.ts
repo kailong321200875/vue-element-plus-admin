@@ -1,29 +1,5 @@
-import { defineConfig, toEscapedSelector as e, presetUno, presetIcons } from 'unocss'
+import { defineConfig, toEscapedSelector as e, presetUno } from 'unocss'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
-import { loadEnv } from 'vite'
-import { ICON_PREFIX } from './src/constants'
-
-const root = process.cwd()
-
-const createPresetIcons = () => {
-  const isBuild = !!process.argv[4]
-  let env = {} as any
-  if (!isBuild) {
-    env = loadEnv(process.argv[3], root)
-  } else {
-    env = loadEnv(process.argv[4], root)
-  }
-  if (env.VITE_USE_ONLINE_ICON === 'true') {
-    return []
-  } else {
-    return [
-      presetIcons({
-        autoInstall: false,
-        prefix: ICON_PREFIX
-      })
-    ]
-  }
-}
 
 export default defineConfig({
   rules: [
@@ -133,7 +109,7 @@ ${selector}:after {
       }
     ]
   ],
-  presets: [presetUno({ dark: 'class', attributify: false }), ...createPresetIcons()],
+  presets: [presetUno({ dark: 'class', attributify: false })],
   transformers: [transformerVariantGroup()],
   content: {
     pipeline: {

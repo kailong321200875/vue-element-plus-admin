@@ -15,7 +15,7 @@
   const { t } = useI18n()
 
   const { state, actions } = useForm<LoginParams>({
-    initialValues: { username: userStore.rememberedUsername, password: '' },
+    initialValues: { username: userStore.rememberedUsername || 'admin', password: 'admin' },
     rules: {
       username: required(() => t('common.required')),
       password: required(() => t('common.required'))

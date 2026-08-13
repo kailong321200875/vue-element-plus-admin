@@ -7,7 +7,7 @@
   import { filter, treeToList } from '@/utils/tree'
   import type { RouteLocationNormalizedLoaded } from 'vue-router'
   import { useI18n } from 'vue-i18n'
-  import { Icon } from '@/components/Icon'
+  import { Icon } from '@vea/components'
   import { appConfig } from '@/config/app'
   const prefixCls = 'v-breadcrumb'
 

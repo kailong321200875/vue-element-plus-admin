@@ -4,7 +4,6 @@
   import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
   import { usePermissionStore } from '@/store/modules/permission'
   import { useTagsViewStore } from '@/store/modules/tagsView'
-  import { useAppStore } from '@/store/modules/app'
   import { appConfig } from '@/config/app'
   import { useI18n } from 'vue-i18n'
   import { filterAffixTags } from './helper'
@@ -33,11 +32,7 @@
 
   const setSelectTag = tagsViewStore.setSelectedTag
 
-  const appStore = useAppStore()
-
   const tagsViewIcon = computed(() => appConfig.ui.tagsViewIcon)
-
-  const isDark = computed(() => appStore.isDark)
 
   // 初始化tag
   const initTags = () => {
@@ -252,11 +247,7 @@
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="move(-200)"
     >
-      <Icon
-        icon="vi-ep:d-arrow-left"
-        color="var(--el-text-color-placeholder)"
-        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
-      />
+      <Icon icon="mdi:chevron-double-left" color="var(--el-text-color-placeholder)" />
     </span>
     <div class="overflow-hidden flex-1">
       <ElScrollbar ref="scrollbarRef" class="h-full" @scroll="scroll">
@@ -265,7 +256,7 @@
             :ref="itemRefs.set"
             :schema="[
               {
-                icon: 'vi-ant-design:sync-outlined',
+                icon: 'mdi:sync',
                 label: t('common.reload'),
                 disabled: selectedTag?.fullPath !== item.fullPath,
                 command: () => {
@@ -273,7 +264,7 @@
                 }
               },
               {
-                icon: 'vi-ant-design:close-outlined',
+                icon: 'mdi:close',
                 label: t('common.closeTab'),
                 disabled: !!visitedViews?.length && selectedTag?.meta.affix,
                 command: () => {
@@ -282,7 +273,7 @@
               },
               {
                 divided: true,
-                icon: 'vi-ant-design:vertical-right-outlined',
+                icon: 'mdi:page-last',
                 label: t('common.closeTheLeftTab'),
                 disabled:
                   !!visitedViews?.length &&
@@ -293,7 +284,7 @@
                 }
               },
               {
-                icon: 'vi-ant-design:vertical-left-outlined',
+                icon: 'mdi:page-first',
                 label: t('common.closeTheRightTab'),
                 disabled:
                   !!visitedViews?.length &&
@@ -305,7 +296,7 @@
               },
               {
                 divided: true,
-                icon: 'vi-ant-design:tag-outlined',
+                icon: 'mdi:tag-outline',
                 label: t('common.closeOther'),
                 disabled: selectedTag?.fullPath !== item.fullPath,
                 command: () => {
@@ -313,7 +304,7 @@
                 }
               },
               {
-                icon: 'vi-ant-design:line-outlined',
+                icon: 'mdi:minus',
                 label: t('common.closeAll'),
                 command: () => {
                   closeAllTags()
@@ -348,7 +339,7 @@
                   <Icon
                     :class="`${prefixCls}__item--close`"
                     color="#333"
-                    icon="vi-ant-design:close-outlined"
+                    icon="mdi:close"
                     :size="12"
                     @click.prevent.stop="closeSelectedTag(item)"
                   />
@@ -364,35 +355,27 @@
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="move(200)"
     >
-      <Icon
-        icon="vi-ep:d-arrow-right"
-        color="var(--el-text-color-placeholder)"
-        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
-      />
+      <Icon icon="mdi:chevron-double-right" color="var(--el-text-color-placeholder)" />
     </span>
     <span
       :class="`${prefixCls}__tool`"
       class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
       @click="refreshSelectedTag(selectedTag)"
     >
-      <Icon
-        icon="vi-ant-design:reload-outlined"
-        color="var(--el-text-color-placeholder)"
-        :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
-      />
+      <Icon icon="mdi:reload" color="var(--el-text-color-placeholder)" />
     </span>
     <ContextMenu
       trigger="click"
       :schema="[
         {
-          icon: 'vi-ant-design:sync-outlined',
+          icon: 'mdi:sync',
           label: t('common.reload'),
           command: () => {
             refreshSelectedTag(selectedTag)
           }
         },
         {
-          icon: 'vi-ant-design:close-outlined',
+          icon: 'mdi:close',
           label: t('common.closeTab'),
           disabled: !!visitedViews?.length && selectedTag?.meta.affix,
           command: () => {
@@ -401,7 +384,7 @@
         },
         {
           divided: true,
-          icon: 'vi-ant-design:vertical-right-outlined',
+          icon: 'mdi:page-last',
           label: t('common.closeTheLeftTab'),
           disabled: !!visitedViews?.length && selectedTag?.fullPath === visitedViews[0].fullPath,
           command: () => {
@@ -409,7 +392,7 @@
           }
         },
         {
-          icon: 'vi-ant-design:vertical-left-outlined',
+          icon: 'mdi:page-first',
           label: t('common.closeTheRightTab'),
           disabled:
             !!visitedViews?.length &&
@@ -420,14 +403,14 @@
         },
         {
           divided: true,
-          icon: 'vi-ant-design:tag-outlined',
+          icon: 'mdi:tag-outline',
           label: t('common.closeOther'),
           command: () => {
             closeOthersTags()
           }
         },
         {
-          icon: 'vi-ant-design:line-outlined',
+          icon: 'mdi:minus',
           label: t('common.closeAll'),
           command: () => {
             closeAllTags()
@@ -439,11 +422,7 @@
         :class="`${prefixCls}__tool`"
         class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer block"
       >
-        <Icon
-          icon="vi-ant-design:setting-outlined"
-          color="var(--el-text-color-placeholder)"
-          :hover-color="isDark ? '#fff' : 'var(--el-color-black)'"
-        />
+        <Icon icon="mdi:cog-outline" color="var(--el-text-color-placeholder)" />
       </span>
     </ContextMenu>
   </div>
@@ -459,6 +438,12 @@
 
     &__tool {
       position: relative;
+
+      &:hover {
+        :deep(.v-icon) {
+          color: var(--el-color-black);
+        }
+      }
 
       &::before {
         position: absolute;
@@ -530,6 +515,12 @@
   .dark {
     .@{prefix-cls} {
       &__tool {
+        &:hover {
+          :deep(.v-icon) {
+            color: var(--el-color-white);
+          }
+        }
+
         &--first {
           &::after {
             display: none;

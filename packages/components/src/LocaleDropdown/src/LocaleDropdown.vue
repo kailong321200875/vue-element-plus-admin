@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-  import { Icon } from '@iconify/vue'
+  import { Icon } from '../../Icon'
   import type { LocaleOption } from './types'
 
   defineOptions({ inheritAttrs: false })
@@ -35,7 +35,7 @@
       :style="{ color }"
       :aria-label="ariaLabel"
     >
-      <Icon width="18" height="18" icon="ion:language-sharp" />
+      <Icon :size="18" icon="mdi:translate" />
     </button>
     <template #dropdown>
       <ElDropdownMenu>

@@ -1,24 +1,26 @@
 :root {
   /* left menu start */
-  --left-menu-max-width: 200px;
+  --left-menu-max-width: 224px;
 
-  --left-menu-min-width: 64px;
+  --left-menu-min-width: 72px;
 
-  --left-menu-bg-color: #001529;
+  --left-menu-bg-color: #111827;
 
-  --left-menu-bg-light-color: #0f2438;
+  --left-menu-bg-light-color: #182237;
 
-  --left-menu-bg-active-color: var(--el-color-primary);
+  --left-menu-bg-active-color: #334155;
 
-  --left-menu-text-color: #bfcbd9;
+  --left-menu-text-color: #aeb9ca;
 
   --left-menu-text-active-color: #fff;
 
-  --left-menu-collapse-bg-active-color: var(--el-color-primary);
+  --left-menu-collapse-bg-active-color: #334155;
+
+  --layout-rail-width: 72px;
   /* left menu end */
 
   /* logo start */
-  --logo-height: 50px;
+  --logo-height: 56px;
 
   --logo-title-text-color: #fff;
 
@@ -35,20 +37,12 @@
 
   --top-tool-p-x: 0;
 
-  --tags-view-height: 35px;
+  --tags-view-height: 36px;
   /* header start */
-
-  /* tab menu start */
-  --tab-menu-max-width: 80px;
-
-  --tab-menu-min-width: 30px;
-
-  --tab-menu-collapse-height: 36px;
-  /* tab menu end */
 
   --app-content-padding: 20px;
 
-  --app-content-bg-color: #f5f7f9;
+  --app-content-bg-color: #f4f6fa;
 
   --app-footer-height: 50px;
 

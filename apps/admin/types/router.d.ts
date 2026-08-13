@@ -15,7 +15,7 @@ import { defineComponent } from 'vue'
 
     title: 'title'            设置该路由在侧边栏和面包屑中展示的名字
 
-    icon: 'svg-name'          设置该路由的图标
+    icon: 'mdi:home' 设置该路由的本地图标
 
     noCache: true             如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
 

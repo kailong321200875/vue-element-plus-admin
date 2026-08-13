@@ -1,5 +1,5 @@
 import type { RouteMeta } from 'vue-router'
-import { Icon } from '@/components/Icon'
+import { Icon } from '@vea/components'
 import { useI18n } from 'vue-i18n'
 
 export const useRenderMenuTitle = () => {

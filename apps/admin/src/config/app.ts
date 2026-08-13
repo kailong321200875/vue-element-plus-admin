@@ -10,10 +10,8 @@ export const appConfig = {
     tagsView: true,
     tagsViewIcon: true,
     logo: true,
-    fixedHeader: true,
     footer: true,
-    uniqueOpened: false,
-    fixedMenu: false
+    uniqueOpened: false
   }
 } as const
 
