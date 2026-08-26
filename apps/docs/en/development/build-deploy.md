@@ -122,25 +122,93 @@ When `VITE_USE_MOCK=true`, the production build includes browser-side mocks. The
 
 Real applications should set `VITE_USE_MOCK=false` and connect to their API through `VITE_API_BASE_PATH` and the deployment gateway. Environment variables are embedded at build time, so rebuild after changing them.
 
-## CI notes
+## Recommended deployment architecture
 
-The repository's current `.github/workflows` files are still legacy configurations with the following inconsistencies:
+v3 uses one release workflow and two independent Cloudflare Pages projects:
 
-- They use Node 18, which does not satisfy the current engine.
-- They invoke the removed root script `build:pro`.
-- They publish the root `dist-pro`, while the actual output is under `apps/admin/dist-pro`.
+```text
+Feature PR -> GitHub CI -> release
+                         └─ Release Please PR
+                            └─ GitHub Release
+                               ├─ Admin Deploy Hook -> element-plus-admin.cn
+                               └─ Docs Deploy Hook  -> docs.element-plus-admin.cn
+```
 
-Do not reuse them as-is. A corrected pipeline should use the current Node engine and pnpm 9, and run at least:
+GitHub Actions handles installation, linting, type checking, package tests, and both application builds on feature pull requests. After business code enters `release`, Release Please only creates or updates its Release PR. Production builds are triggered through two Deploy Hooks only after that Release PR is merged and the GitHub Release is created. Changelog preparation and publication remain separate stages, while the production sites build only once.
+
+The root `.node-version` pins Node.js `22.19.0`, while `package.json` pins pnpm `9.15.3`. Cloudflare Pages Build System v3 does not infer the package-manager version from `package.json`, so set this environment variable on both projects:
+
+```text
+PNPM_VERSION=9.15.3
+```
+
+## Create the Cloudflare Pages projects
+
+In Cloudflare **Workers & Pages**, choose **Create application > Pages > Import an existing Git repository**. Import the same GitHub repository twice with these settings:
+
+| Setting              | Admin                            | Docs                             |
+| -------------------- | -------------------------------- | -------------------------------- |
+| Project name         | `element-plus-admin`             | `element-plus-admin-docs`        |
+| Production branch    | `release`                        | `release`                        |
+| Framework preset     | `None`                           | `None`                           |
+| Root directory       | Leave empty; use repository root | Leave empty; use repository root |
+| Build command        | `pnpm build:admin`               | `pnpm build:docs`                |
+| Output directory     | `apps/admin/dist-pro`            | `apps/docs/.vitepress/dist`      |
+| Environment variable | `PNPM_VERSION=9.15.3`            | `PNPM_VERSION=9.15.3`            |
+
+Do not set Root directory to `apps/admin` or `apps/docs`. Both applications depend on the root lockfile and workspace configuration, and Admin also consumes `packages/*`.
+
+After the first successful builds, bind these domains under each project's **Custom domains** page:
+
+- Admin: `element-plus-admin.cn`
+- Docs: `docs.element-plus-admin.cn`
+
+The apex domain `element-plus-admin.cn` must be managed as a Cloudflare Zone and use Cloudflare nameservers. Pages creates the `docs` DNS record automatically when the zone is in the same account. With an external DNS provider, associate the subdomain in Pages first and then add the prompted CNAME pointing to `<project>.pages.dev`.
+
+## Configure production Deploy Hooks
+
+For both Pages projects, open **Settings > Builds > Branch control**:
+
+- Turn off **Enable automatic production branch deployments**.
+- Set **Preview branch** to `None`.
+
+Then create a Deploy Hook named `github-release` for the `release` branch under **Settings > Builds > Deploy Hooks** in each project. Save the two URLs as GitHub Actions Secrets:
+
+- `CLOUDFLARE_ADMIN_DEPLOY_HOOK`
+- `CLOUDFLARE_DOCS_DEPLOY_HOOK`
+
+A Deploy Hook URL is itself a credential. It does not require a separate Cloudflare API token and must not be committed or printed in logs.
+
+In the GitHub repository, enable **Allow GitHub Actions to create and approve pull requests** under **Settings > Actions > General > Workflow permissions**. Release Please cannot create its Release PR without this setting.
+
+## GitHub Actions verification
+
+`.github/workflows/ci.yml` runs automatically only for pull requests targeting `release`, and it also supports manual runs:
 
 ```bash
 pnpm install --frozen-lockfile
-pnpm typecheck:admin
 pnpm lint
+pnpm typecheck:admin
+pnpm --filter @vea/hooks test
+pnpm --filter @vea/request test
 pnpm build:admin
 pnpm build:docs
 ```
 
-Upload the Admin and documentation output directories separately.
+Release Please uses the repository's built-in `GITHUB_TOKEN`, so creating or updating its Release PR does not recursively start CI. The generated PR contains only version, manifest, and Changelog changes. If `release` requires `Verify workspace`, configure a ruleset bypass for the GitHub Actions bot or run CI manually on the Release PR branch.
+
+## Changelog and releases
+
+`.github/workflows/release.yml` uses Release Please v4 and reads its settings from:
+
+- `release-please-config.json` for release strategy, tags, and Changelog sections.
+- `.release-please-manifest.json` for the current released version.
+
+The current baseline is `2.10.0`. Because the v3 history contains a breaking change, the next Release PR will target `3.0.0`. The Admin and Docs Deploy Hooks run in parallel only when merging the Release PR produces `release_created=true`.
+
+## Releases and rollback
+
+Merging a business pull request into `release` does not publish either site. Admin and Docs are published together only after the generated Release PR is merged. Every Cloudflare Pages deployment is an isolated version, so a failed release can be rolled back to the previous successful deployment from the project's Deployments page.
 
 ## Release checklist
 

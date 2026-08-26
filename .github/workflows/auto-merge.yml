@@ -17,7 +17,7 @@ on:
   status: {}
 
 jobs:
-  # 合并发布版本的 pr 到 master
+  # 合并符合条件的 PR 到 release 分支
   auto-merge:
     runs-on: ubuntu-latest
     steps:
@@ -28,47 +28,3 @@ jobs:
           GITHUB_TOKEN: '${{ secrets.TOKEN }}'
           MERGE_LABELS: ''
           MERGE_FILTER_AUTHOR: 'kailong321200875'
-
-  push-to-gh-pages:
-    needs: [auto-merge]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup Pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: use Node.js 18
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: '18.x'
-
-      - name: Set SSH Environment
-        env:
-          DOCS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$ACTIONS_DEPLOY_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com > ~/.ssh/known_hosts
-          chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
-          git config --local user.email "321200875@qq.com"
-          git config --local user.name "kailong321200875"
-
-      # 发布到 github
-      - name: Build Github
-        run: |
-          pnpm install --no-frozen-lockfile
-          pnpm run build:pro
-
-      - name: Deploy Github
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{secrets.ACTIONS_DEPLOY_KEY}}
-          publish_branch: gh-pages
-          publish_dir: ./dist-pro
-          force_orphan: true
-          cname: element-plus-admin.cn

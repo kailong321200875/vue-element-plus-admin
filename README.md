@@ -7,7 +7,7 @@
 
   <p>A lean, extensible Vue 3 admin starter for real-world applications.</p>
 
-[![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
+[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
 </div>
 
 **English** | [中文](./README.zh-CN.md)
@@ -82,7 +82,7 @@ username: admin
 password: admin
 ```
 
-The built-in Mock API is development-only. Production builds do not register a Mock Server and require real login, dynamic-route and dashboard endpoints.
+The built-in Mock API runs through the development mock server locally. When `VITE_USE_MOCK=true`, production builds include the browser-side mock adapter as well, so the static demo remains fully usable without a backend.
 
 ## Commands
 
@@ -108,6 +108,9 @@ pnpm --filter @vea/request test
 
 ## Documentation
 
+- Online demo: [element-plus-admin.cn](https://element-plus-admin.cn/)
+- v3 documentation: [docs.element-plus-admin.cn](https://docs.element-plus-admin.cn/)
+
 Start the v3 documentation locally:
 
 ```bash
@@ -124,7 +127,7 @@ It runs at `http://localhost:4002/` by default.
 - [Forms](./apps/docs/capabilities/form.md)
 - [Build and deployment](./apps/docs/development/build-deploy.md)
 
-The former site at [element-plus-admin-doc.cn](https://element-plus-admin-doc.cn/) documents the legacy architecture. Use the local v3 documentation and current branch code for new projects.
+The former site at [element-plus-admin-doc.cn](https://element-plus-admin-doc.cn/) documents the legacy architecture. New projects should use the v3 documentation and current branch code.
 
 ## Dynamic route contract
 

@@ -29,7 +29,7 @@
   }
 
   const toDocument = () => {
-    window.open('https://element-plus-admin-doc.cn/')
+    window.open('https://docs.element-plus-admin.cn/')
   }
 </script>
 

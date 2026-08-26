@@ -1,19 +1,55 @@
+name: Release
+
 on:
   push:
     branches:
       - release
 
-name: Release
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  release-please:
+  release_please:
+    name: Prepare or publish release
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - name: Run Release Please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target-branch: release
+
+  deploy-admin:
+    name: Deploy Admin
+    needs: release_please
+    if: needs.release_please.outputs.release_created == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v3
-        id: release
-        with:
-          token: ${{ secrets.TOKEN }}
-          default-branch: release
-          release-type: node
-          package-name: standard-version
-          changelog-types: '[{"type": "types", "section":"Types", "hidden": false},{"type": "revert", "section":"Reverts", "hidden": false},{"type": "feat", "section": "Features", "hidden": false},{"type": "fix", "section": "Bug Fixes", "hidden": false},{"type": "improvement", "section": "Feature Improvements", "hidden": false},{"type": "docs", "section":"Docs", "hidden": false},{"type": "style", "section":"Styling", "hidden": false},{"type": "refactor", "section":"Code Refactoring", "hidden": false},{"type": "perf", "section":"Performance Improvements", "hidden": false},{"type": "test", "section":"Tests", "hidden": false},{"type": "build", "section":"Build System", "hidden": false},{"type": "ci", "section":"CI", "hidden":false}]'
+      - name: Trigger Cloudflare Pages build
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_ADMIN_DEPLOY_HOOK }}
+        run: |
+          : "${DEPLOY_HOOK_URL:?CLOUDFLARE_ADMIN_DEPLOY_HOOK is not configured}"
+          curl --fail-with-body --retry 3 --silent --show-error --request POST "$DEPLOY_HOOK_URL"
+
+  deploy-docs:
+    name: Deploy documentation
+    needs: release_please
+    if: needs.release_please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages build
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_DOCS_DEPLOY_HOOK }}
+        run: |
+          : "${DEPLOY_HOOK_URL:?CLOUDFLARE_DOCS_DEPLOY_HOOK is not configured}"
+          curl --fail-with-body --retry 3 --silent --show-error --request POST "$DEPLOY_HOOK_URL"

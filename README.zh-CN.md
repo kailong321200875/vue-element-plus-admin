@@ -7,7 +7,7 @@
 
   <p>面向真实业务的轻量、可扩展 Vue 3 后台管理模板。</p>
 
-[![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
+[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
 </div>
 
 [English](./README.md) | **中文**
@@ -82,7 +82,7 @@ Admin 默认运行在 `http://localhost:4000/`。
 密码：admin
 ```
 
-内置 Mock 只在开发服务器生效。生产构建不会注册 Mock Server，需要提供真实的登录、动态路由和首页接口。
+本地开发通过 Mock Server 提供内置接口；当 `VITE_USE_MOCK=true` 时，生产构建也会包含浏览器端 Mock 适配器，因此静态演示站无需后端即可完整使用。
 
 ## 常用命令
 
@@ -108,6 +108,9 @@ pnpm --filter @vea/request test
 
 ## 文档
 
+- 在线演示：[element-plus-admin.cn](https://element-plus-admin.cn/)
+- v3 文档：[docs.element-plus-admin.cn](https://docs.element-plus-admin.cn/)
+
 在本地启动 v3 文档：
 
 ```bash
@@ -124,7 +127,7 @@ pnpm dev:docs
 - [表单](./apps/docs/capabilities/form.md)
 - [构建与部署](./apps/docs/development/build-deploy.md)
 
-[element-plus-admin-doc.cn](https://element-plus-admin-doc.cn/) 对应旧版架构。新项目请以本地 v3 文档和当前分支代码为准。
+[element-plus-admin-doc.cn](https://element-plus-admin-doc.cn/) 对应旧版架构。新项目请以 v3 文档和当前分支代码为准。
 
 ## 动态路由约定
 
