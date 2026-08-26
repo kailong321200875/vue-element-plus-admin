@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
 import { store } from '../index'
-import type { ComponentSize } from 'element-plus'
+
+export type LayoutMode = 'sidebar' | 'top' | 'mixed' | 'dual'
 
 interface AppState {
   collapse: boolean
   pageLoading: boolean
   layout: LayoutMode
   isDark: boolean
-  currentSize: ComponentSize
   mobile: boolean
 }
 
@@ -18,8 +18,7 @@ export const useAppStore = defineStore('app', {
       pageLoading: false, // 路由跳转loading
       collapse: false, // 折叠菜单
       layout: 'sidebar', // layout布局
-      isDark: false, // 是否是暗黑模式
-      currentSize: 'default' // 组件尺寸
+      isDark: false // 是否是暗黑模式
     }
   },
   actions: {
@@ -29,7 +28,7 @@ export const useAppStore = defineStore('app', {
   },
   persist: {
     key: 'vea-app-v2',
-    pick: ['collapse', 'layout', 'isDark', 'currentSize']
+    pick: ['collapse', 'layout', 'isDark']
   }
 })
 

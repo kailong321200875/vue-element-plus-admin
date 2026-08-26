@@ -12,16 +12,14 @@ export default {
     closeTheLeftTab: '关闭左侧标签页',
     closeTheRightTab: '关闭右侧标签页',
     closeOther: '关闭其它标签页',
-    closeAll: '关闭全部标签页'
+    closeAll: '关闭全部标签页',
+    scrollTagsLeft: '向左滚动标签页',
+    scrollTagsRight: '向右滚动标签页',
+    moreTabActions: '更多标签页操作'
   },
   error: {
     pageError: '抱歉，您访问的页面不存在。',
     returnToHome: '返回首页'
-  },
-  size: {
-    default: '默认',
-    large: '大',
-    small: '小'
   },
   layout: {
     title: '页面布局',

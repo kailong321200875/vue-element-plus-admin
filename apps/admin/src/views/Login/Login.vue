@@ -4,7 +4,6 @@
   import { ThemeSwitch } from '@vea/components'
   import { LocaleDropdown } from '@/components/LocaleDropdown'
   import { useI18n } from 'vue-i18n'
-  import { underlineToHump } from '@/utils'
   import { useAppStore } from '@/store/modules/app'
   import { appConfig } from '@/config/app'
 
@@ -23,7 +22,7 @@
         <span class="brand-mark">
           <img src="@/assets/imgs/logo.png" alt="" />
         </span>
-        <span class="brand-name">{{ underlineToHump(appConfig.title) }}</span>
+        <span class="brand-name">{{ appConfig.title }}</span>
       </div>
 
       <div class="login-tools">

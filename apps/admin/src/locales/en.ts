@@ -12,16 +12,14 @@ export default {
     closeTheLeftTab: 'Close left',
     closeTheRightTab: 'Close right',
     closeOther: 'Close other',
-    closeAll: 'Close all'
+    closeAll: 'Close all',
+    scrollTagsLeft: 'Scroll tabs left',
+    scrollTagsRight: 'Scroll tabs right',
+    moreTabActions: 'More tab actions'
   },
   error: {
     pageError: 'Sorry, the page you visited does not exist.',
     returnToHome: 'Return to home'
-  },
-  size: {
-    default: 'Default',
-    large: 'Large',
-    small: 'Small'
   },
   layout: {
     title: 'Page layout',

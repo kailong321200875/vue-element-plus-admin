@@ -11,26 +11,6 @@
       "import": "./src/index.ts",
       "types": "./src/index.ts"
     },
-    "./useWatermark": {
-      "import": "./src/useWatermark.ts",
-      "types": "./src/useWatermark.ts"
-    },
-    "./useClipboard": {
-      "import": "./src/useClipboard.ts",
-      "types": "./src/useClipboard.ts"
-    },
-    "./useNetwork": {
-      "import": "./src/useNetwork.ts",
-      "types": "./src/useNetwork.ts"
-    },
-    "./useStorage": {
-      "import": "./src/useStorage.ts",
-      "types": "./src/useStorage.ts"
-    },
-    "./useEventBus": {
-      "import": "./src/useEventBus.ts",
-      "types": "./src/useEventBus.ts"
-    },
     "./useCrud": {
       "import": "./src/useCrud.ts",
       "types": "./src/useCrud.ts"
@@ -46,11 +26,9 @@
   "scripts": {
     "test": "pnpm --workspace-root exec esno packages/hooks/test/index.ts"
   },
-  "dependencies": {
-    "mitt": "^3.0.1"
-  },
   "devDependencies": {
-    "vue": "3.5.41"
+    "typescript": "catalog:",
+    "vue": "catalog:"
   },
   "peerDependencies": {
     "vue": ">=3.4.0"

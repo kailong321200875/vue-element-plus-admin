@@ -1,4 +1,4 @@
-import request from '@/axios'
+import request from '@/request'
 import type { AnalysisTotal, UserAccessSource, WeeklyUserActivity, MonthlySales } from './types'
 
 export const getAnalysisTotalApi = () => {

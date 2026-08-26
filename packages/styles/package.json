@@ -15,5 +15,11 @@
   "files": [
     "src"
   ],
+  "peerDependencies": {
+    "element-plus": ">=2.8.0"
+  },
+  "devDependencies": {
+    "element-plus": "catalog:"
+  },
   "license": "MIT"
 }

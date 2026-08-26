@@ -24,8 +24,6 @@
     "noImplicitAny": false,
     "paths": {
       "@/*": ["./src/*"],
-      "@vea/utils": ["../../packages/utils/src"],
-      "@vea/utils/*": ["../../packages/utils/src/*"],
       "@vea/hooks": ["../../packages/hooks/src"],
       "@vea/hooks/*": ["../../packages/hooks/src/*"],
       "@vea/styles": ["../../packages/styles/src"],
@@ -33,7 +31,7 @@
       "@vea/components": ["../../packages/components/src"],
       "@vea/components/*": ["../../packages/components/src/*"]
     },
-    "types": ["@intlify/unplugin-vue-i18n/types", "vite/client", "element-plus/global"]
+    "types": ["@intlify/unplugin-vue-i18n/types", "vite/client"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "mock/**/*.ts"]
 }

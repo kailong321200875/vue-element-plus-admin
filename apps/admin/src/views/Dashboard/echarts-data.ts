@@ -1,31 +1,22 @@
-import { EChartsOption } from 'echarts'
+import type { EChartsOption } from 'echarts'
+import type {
+  MonthlySales,
+  UserAccessSource,
+  WeeklyUserActivity
+} from '@/api/dashboard/analysis/types'
 
 type Translate = (key: string) => string
 
-export const createLineOptions = (t: Translate): EChartsOption => ({
+export const createLineOptions = (t: Translate, data: MonthlySales[]): EChartsOption => ({
   title: {
     text: t('analysis.monthlySales'),
     left: 'center'
   },
   xAxis: {
-    data: [
-      t('analysis.january'),
-      t('analysis.february'),
-      t('analysis.march'),
-      t('analysis.april'),
-      t('analysis.may'),
-      t('analysis.june'),
-      t('analysis.july'),
-      t('analysis.august'),
-      t('analysis.september'),
-      t('analysis.october'),
-      t('analysis.november'),
-      t('analysis.december')
-    ],
+    type: 'category',
+    data: data.map((item) => t(item.name)),
     boundaryGap: false,
-    axisTick: {
-      show: false
-    }
+    axisTick: { show: false }
   },
   grid: {
     left: 20,
@@ -36,15 +27,12 @@ export const createLineOptions = (t: Translate): EChartsOption => ({
   },
   tooltip: {
     trigger: 'axis',
-    axisPointer: {
-      type: 'cross'
-    },
+    axisPointer: { type: 'cross' },
     padding: [5, 10]
   },
   yAxis: {
-    axisTick: {
-      show: false
-    }
+    type: 'value',
+    axisTick: { show: false }
   },
   legend: {
     data: [t('analysis.estimate'), t('analysis.actual')],
@@ -53,71 +41,60 @@ export const createLineOptions = (t: Translate): EChartsOption => ({
   series: [
     {
       name: t('analysis.estimate'),
-      smooth: true,
       type: 'line',
-      data: [100, 120, 161, 134, 105, 160, 165, 114, 163, 185, 118, 123],
+      smooth: true,
+      data: data.map((item) => item.estimate),
       animationDuration: 2800,
       animationEasing: 'cubicInOut'
     },
     {
       name: t('analysis.actual'),
-      smooth: true,
       type: 'line',
-      itemStyle: {},
-      data: [120, 82, 91, 154, 162, 140, 145, 250, 134, 56, 99, 123],
+      smooth: true,
+      data: data.map((item) => item.actual),
       animationDuration: 2800,
       animationEasing: 'quadraticOut'
     }
   ]
 })
 
-export const createPieOptions = (t: Translate): EChartsOption => ({
-  title: {
-    text: t('analysis.userAccessSource'),
-    left: 'center'
-  },
-  tooltip: {
-    trigger: 'item',
-    formatter: '{a} <br/>{b} : {c} ({d}%)'
-  },
-  legend: {
-    orient: 'vertical',
-    left: 'left',
-    data: [
-      t('analysis.directAccess'),
-      t('analysis.mailMarketing'),
-      t('analysis.allianceAdvertising'),
-      t('analysis.videoAdvertising'),
-      t('analysis.searchEngines')
-    ]
-  },
-  series: [
-    {
-      name: t('analysis.userAccessSource'),
-      type: 'pie',
-      radius: '55%',
-      center: ['50%', '60%'],
-      data: [
-        { value: 335, name: t('analysis.directAccess') },
-        { value: 310, name: t('analysis.mailMarketing') },
-        { value: 234, name: t('analysis.allianceAdvertising') },
-        { value: 135, name: t('analysis.videoAdvertising') },
-        { value: 1548, name: t('analysis.searchEngines') }
-      ]
-    }
-  ]
-})
+export const createPieOptions = (t: Translate, data: UserAccessSource[]): EChartsOption => {
+  const seriesData = data.map((item) => ({ name: t(item.name), value: item.value }))
 
-export const createBarOptions = (t: Translate): EChartsOption => ({
+  return {
+    title: {
+      text: t('analysis.userAccessSource'),
+      left: 'center'
+    },
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+      orient: 'vertical',
+      left: 'left',
+      data: seriesData.map((item) => item.name)
+    },
+    series: [
+      {
+        name: t('analysis.userAccessSource'),
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '60%'],
+        data: seriesData
+      }
+    ]
+  }
+}
+
+export const createBarOptions = (t: Translate, data: WeeklyUserActivity[]): EChartsOption => ({
   title: {
     text: t('analysis.weeklyUserActivity'),
     left: 'center'
   },
   tooltip: {
     trigger: 'axis',
-    axisPointer: {
-      type: 'shadow'
-    }
+    axisPointer: { type: 'shadow' }
   },
   grid: {
     left: 50,
@@ -126,27 +103,15 @@ export const createBarOptions = (t: Translate): EChartsOption => ({
   },
   xAxis: {
     type: 'category',
-    data: [
-      t('analysis.monday'),
-      t('analysis.tuesday'),
-      t('analysis.wednesday'),
-      t('analysis.thursday'),
-      t('analysis.friday'),
-      t('analysis.saturday'),
-      t('analysis.sunday')
-    ],
-    axisTick: {
-      alignWithLabel: true
-    }
+    data: data.map((item) => t(item.name)),
+    axisTick: { alignWithLabel: true }
   },
-  yAxis: {
-    type: 'value'
-  },
+  yAxis: { type: 'value' },
   series: [
     {
       name: t('analysis.activeQuantity'),
-      data: [13253, 34235, 26321, 12340, 24643, 1322, 1324],
-      type: 'bar'
+      type: 'bar',
+      data: data.map((item) => item.value)
     }
   ]
 })

@@ -1,429 +1,242 @@
 <script setup lang="ts">
-  import { onMounted, watch, computed, unref, ref, nextTick } from 'vue'
+  import { computed, nextTick, ref, watch } from 'vue'
+  import { ElScrollbar, type ScrollbarInstance } from 'element-plus'
+  import type { RouteLocationNormalizedLoaded } from 'vue-router'
   import { useRouter } from 'vue-router'
-  import type { RouteLocationNormalizedLoaded, RouterLinkProps } from 'vue-router'
+  import { useI18n } from 'vue-i18n'
+  import { appConfig } from '@/config/app'
+  import { ContextMenu } from '@/components/ContextMenu'
+  import type { ContextMenuSchema } from '@/components/ContextMenu'
   import { usePermissionStore } from '@/store/modules/permission'
   import { useTagsViewStore } from '@/store/modules/tagsView'
-  import { appConfig } from '@/config/app'
-  import { useI18n } from 'vue-i18n'
   import { filterAffixTags } from './helper'
-  import { ContextMenu, ContextMenuExpose } from '@/components/ContextMenu'
-  import { useTemplateRefsList } from '@vueuse/core'
-  import { ElScrollbar } from 'element-plus'
-  import { cloneDeep } from 'lodash-es'
 
   const prefixCls = 'v-tags-view'
-
   const { t } = useI18n()
-
   const { currentRoute, push, replace } = useRouter()
-
   const permissionStore = usePermissionStore()
-
-  const routers = computed(() => permissionStore.routers)
-
   const tagsViewStore = useTagsViewStore()
 
-  const visitedViews = computed(() => tagsViewStore.getVisitedViews)
+  const tagsViewRef = ref<HTMLElement>()
+  const scrollbarRef = ref<ScrollbarInstance>()
+  const routers = computed(() => permissionStore.routers)
+  const visitedViews = computed(() => tagsViewStore.visitedViews)
+  const activeTag = computed(() =>
+    visitedViews.value.find((view) => view.path === currentRoute.value.path)
+  )
+  const defaultPath = computed(
+    () => permissionStore.addRouters.find((route) => !route.meta?.hidden)?.path ?? '/'
+  )
 
-  const affixTagArr = ref<RouteLocationNormalizedLoaded[]>([])
+  const isActive = (view: RouteLocationNormalizedLoaded) => view.path === currentRoute.value.path
 
-  const selectedTag = computed(() => tagsViewStore.getSelectedTag)
-
-  const setSelectTag = tagsViewStore.setSelectedTag
-
-  const tagsViewIcon = computed(() => appConfig.ui.tagsViewIcon)
-
-  // 初始化tag
-  const initTags = () => {
-    affixTagArr.value = filterAffixTags(unref(routers))
-    for (const tag of unref(affixTagArr)) {
-      // Must have tag name
-      if (tag.name) {
-        tagsViewStore.addVisitedView(cloneDeep(tag))
-      }
-    }
+  const getTagIcon = (view: RouteLocationNormalizedLoaded) => {
+    if (!appConfig.ui.tagsViewIcon) return
+    return (
+      [...(view.matched ?? [])].reverse().find((route) => route.meta?.icon)?.meta.icon ??
+      view.meta?.icon
+    )
   }
 
-  // 新增tag
-  const addTags = () => {
-    const { name } = unref(currentRoute)
-    if (name) {
-      setSelectTag(unref(currentRoute))
-      tagsViewStore.addView(unref(currentRoute))
-    }
+  const moveActiveIntoView = async () => {
+    await nextTick()
+    tagsViewRef.value
+      ?.querySelector<HTMLElement>(`.${prefixCls}__item.is-active`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
   }
 
-  // 关闭选中的tag
-  const closeSelectedTag = (view: RouteLocationNormalizedLoaded) => {
+  const scrollTags = (left: number) => {
+    scrollbarRef.value?.wrapRef?.scrollBy({ left, behavior: 'smooth' })
+  }
+
+  const navigateTo = (view?: RouteLocationNormalizedLoaded) =>
+    push(view?.fullPath || defaultPath.value)
+
+  const closeTag = async (view: RouteLocationNormalizedLoaded) => {
     if (view.meta?.affix) return
-    tagsViewStore.delView(view)
-    if (isActive(view)) toLastView()
+
+    const index = visitedViews.value.findIndex((item) => item.path === view.path)
+    const wasActive = isActive(view)
+    tagsViewStore.removeView(view)
+    if (!wasActive) return
+
+    await navigateTo(visitedViews.value[index] ?? visitedViews.value[index - 1])
   }
 
-  // 去最后一个
-  const toLastView = () => {
-    const visitedViews = tagsViewStore.getVisitedViews
-    const latestView = visitedViews.slice(-1)[0]
-    if (latestView) {
-      push(latestView)
-    } else {
-      if (
-        unref(currentRoute).path === permissionStore.addRouters[0].path ||
-        unref(currentRoute).path === permissionStore.addRouters[0].redirect
-      ) {
-        addTags()
-        return
-      }
-      // You can set another route
-      push(permissionStore.addRouters[0].path)
+  const closeAllTags = async () => {
+    tagsViewStore.removeAllViews()
+    await navigateTo(visitedViews.value.at(-1))
+  }
+
+  const keepCurrentRouteVisible = async (fallback: RouteLocationNormalizedLoaded) => {
+    if (!visitedViews.value.some((view) => isActive(view))) {
+      await navigateTo(fallback)
     }
   }
 
-  // 关闭全部
-  const closeAllTags = () => {
-    tagsViewStore.delAllViews()
-    toLastView()
+  const closeOtherTags = async (view: RouteLocationNormalizedLoaded) => {
+    tagsViewStore.removeOtherViews(view)
+    await keepCurrentRouteVisible(view)
   }
 
-  // 关闭其它
-  const closeOthersTags = () => {
-    if (selectedTag.value) tagsViewStore.delOthersViews(selectedTag.value)
+  const closeLeftTags = async (view: RouteLocationNormalizedLoaded) => {
+    tagsViewStore.removeLeftViews(view)
+    await keepCurrentRouteVisible(view)
   }
 
-  // 重新加载
-  const refreshSelectedTag = async (view?: RouteLocationNormalizedLoaded) => {
-    const target = view || currentRoute.value
-    tagsViewStore.delCachedView(target.name as string | undefined)
+  const closeRightTags = async (view: RouteLocationNormalizedLoaded) => {
+    tagsViewStore.removeRightViews(view)
+    await keepCurrentRouteVisible(view)
+  }
+
+  const refreshTag = async (view?: RouteLocationNormalizedLoaded) => {
+    if (!view) return
+
+    tagsViewStore.removeCachedView(view.name)
     await nextTick()
-    await replace({ path: `/redirect${target.path}`, query: target.query })
+    await replace({ path: `/redirect${view.path}`, query: view.query, hash: view.hash })
   }
 
-  // 关闭左侧
-  const closeLeftTags = () => {
-    if (selectedTag.value) tagsViewStore.delLeftViews(selectedTag.value)
-  }
+  const hasClosableView = (views: RouteLocationNormalizedLoaded[]) =>
+    views.some((view) => !view.meta?.affix)
 
-  // 关闭右侧
-  const closeRightTags = () => {
-    if (selectedTag.value) tagsViewStore.delRightViews(selectedTag.value)
-  }
+  const createContextMenu = (view: RouteLocationNormalizedLoaded): ContextMenuSchema[] => {
+    const index = visitedViews.value.findIndex((item) => item.path === view.path)
+    const otherViews = visitedViews.value.filter((item) => item.path !== view.path)
 
-  // 滚动到选中的tag
-  const moveToCurrentTag = async () => {
-    await nextTick()
-    for (const v of unref(visitedViews)) {
-      if (v.fullPath === unref(currentRoute).path) {
-        moveToTarget(v)
-        if (v.fullPath !== unref(currentRoute).fullPath) {
-          tagsViewStore.updateVisitedView(unref(currentRoute))
-        }
-
-        break
+    return [
+      {
+        icon: 'mdi:sync',
+        label: 'common.reload',
+        disabled: !view.name,
+        command: () => refreshTag(view)
+      },
+      {
+        icon: 'mdi:close',
+        label: 'common.closeTab',
+        disabled: Boolean(view.meta?.affix),
+        command: () => closeTag(view)
+      },
+      {
+        divided: true,
+        icon: 'mdi:page-last',
+        label: 'common.closeTheLeftTab',
+        disabled: index <= 0 || !hasClosableView(visitedViews.value.slice(0, index)),
+        command: () => closeLeftTags(view)
+      },
+      {
+        icon: 'mdi:page-first',
+        label: 'common.closeTheRightTab',
+        disabled: index < 0 || !hasClosableView(visitedViews.value.slice(index + 1)),
+        command: () => closeRightTags(view)
+      },
+      {
+        divided: true,
+        icon: 'mdi:tag-outline',
+        label: 'common.closeOther',
+        disabled: !hasClosableView(otherViews),
+        command: () => closeOtherTags(view)
+      },
+      {
+        icon: 'mdi:minus',
+        label: 'common.closeAll',
+        disabled: !hasClosableView(visitedViews.value),
+        command: closeAllTags
       }
-    }
+    ]
   }
-
-  const tagLinksRefs = useTemplateRefsList<RouterLinkProps>()
-
-  const moveToTarget = (currentTag: RouteLocationNormalizedLoaded) => {
-    const wrap$ = unref(scrollbarRef)?.wrapRef
-    let firstTag: Nullable<RouterLinkProps> = null
-    let lastTag: Nullable<RouterLinkProps> = null
-
-    const tagList = unref(tagLinksRefs)
-    // find first tag and last tag
-    if (tagList.length > 0) {
-      firstTag = tagList[0]
-      lastTag = tagList[tagList.length - 1]
-    }
-    if (
-      (firstTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
-    ) {
-      // 直接滚动到0的位置
-      scrollTo(0)
-    } else if (
-      (lastTag?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
-    ) {
-      // 滚动到最后的位置
-      scrollTo(wrap$!.scrollWidth - wrap$!.offsetWidth)
-    } else {
-      // find preTag and nextTag
-      const currentIndex: number = tagList.findIndex(
-        (item) =>
-          (item?.to as RouteLocationNormalizedLoaded | undefined)?.fullPath === currentTag.fullPath
-      )
-      const tgsRefs = document.getElementsByClassName(`${prefixCls}__item`)
-
-      const prevTag = tgsRefs[currentIndex - 1] as HTMLElement
-      const nextTag = tgsRefs[currentIndex + 1] as HTMLElement
-
-      // the tag's offsetLeft after of nextTag
-      const afterNextTagOffsetLeft = nextTag.offsetLeft + nextTag.offsetWidth + 4
-
-      // the tag's offsetLeft before of prevTag
-      const beforePrevTagOffsetLeft = prevTag.offsetLeft - 4
-
-      if (afterNextTagOffsetLeft > unref(scrollLeftNumber) + wrap$!.offsetWidth) {
-        scrollTo(afterNextTagOffsetLeft - wrap$!.offsetWidth)
-      } else if (beforePrevTagOffsetLeft < unref(scrollLeftNumber)) {
-        scrollTo(beforePrevTagOffsetLeft)
-      }
-    }
-  }
-
-  // 是否是当前tag
-  const isActive = (route: RouteLocationNormalizedLoaded): boolean => {
-    return route.path === unref(currentRoute).path
-  }
-
-  // 所有右键菜单组件的元素
-  const itemRefs = useTemplateRefsList<ComponentRef<typeof ContextMenu & ContextMenuExpose>>()
-
-  // 右键菜单状态改变的时候
-  const visibleChange = (visible: boolean, tagItem: RouteLocationNormalizedLoaded) => {
-    if (visible) {
-      for (const v of unref(itemRefs)) {
-        const elDropdownMenuRef = v.elDropdownMenuRef
-        if (tagItem.fullPath !== v.tagItem.fullPath) {
-          elDropdownMenuRef?.handleClose()
-          setSelectTag(tagItem)
-        }
-      }
-    }
-  }
-
-  // elscroll 实例
-  const scrollbarRef = ref<ComponentRef<typeof ElScrollbar>>()
-
-  const scrollTo = (left: number) => {
-    unref(scrollbarRef)?.wrapRef?.scrollTo({ left, behavior: 'smooth' })
-  }
-
-  // 保存滚动位置
-  const scrollLeftNumber = ref(0)
-
-  const scroll = ({ scrollLeft }) => {
-    scrollLeftNumber.value = scrollLeft as number
-  }
-
-  // 移动到某个位置
-  const move = (to: number) => {
-    scrollTo(unref(scrollLeftNumber) + to)
-  }
-
-  const canShowIcon = (item: RouteLocationNormalizedLoaded) => {
-    if (
-      (item?.matched?.[1]?.meta?.icon && unref(tagsViewIcon)) ||
-      (item?.meta?.affix && unref(tagsViewIcon) && item?.meta?.icon)
-    ) {
-      return true
-    }
-    return false
-  }
-
-  onMounted(() => {
-    initTags()
-    addTags()
-  })
 
   watch(
-    () => currentRoute.value,
-    () => {
-      addTags()
-      moveToCurrentTag()
-    }
+    routers,
+    (routes) => {
+      filterAffixTags(routes).forEach((view) => tagsViewStore.addView(view))
+    },
+    { immediate: true }
+  )
+
+  watch(
+    () => currentRoute.value.fullPath,
+    async () => {
+      tagsViewStore.addView(currentRoute.value)
+      await moveActiveIntoView()
+    },
+    { immediate: true, flush: 'post' }
   )
 </script>
 
 <template>
-  <div
-    :id="prefixCls"
-    :class="prefixCls"
-    class="flex w-full relative bg-[#fff] dark:bg-[var(--el-bg-color)]"
-  >
-    <span
-      :class="`${prefixCls}__tool ${prefixCls}__tool--first`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
-      @click="move(-200)"
+  <div ref="tagsViewRef" :id="prefixCls" :class="prefixCls">
+    <button
+      :class="[`${prefixCls}__tool`, `${prefixCls}__tool--first`]"
+      type="button"
+      :title="t('common.scrollTagsLeft')"
+      :aria-label="t('common.scrollTagsLeft')"
+      @click="scrollTags(-200)"
     >
-      <Icon icon="mdi:chevron-double-left" color="var(--el-text-color-placeholder)" />
-    </span>
-    <div class="overflow-hidden flex-1">
-      <ElScrollbar ref="scrollbarRef" class="h-full" @scroll="scroll">
-        <div class="flex h-full">
+      <Icon icon="mdi:chevron-double-left" />
+    </button>
+
+    <div :class="`${prefixCls}__viewport`">
+      <ElScrollbar ref="scrollbarRef" :class="`${prefixCls}__scrollbar`">
+        <div :class="`${prefixCls}__list`">
           <ContextMenu
-            :ref="itemRefs.set"
-            :schema="[
-              {
-                icon: 'mdi:sync',
-                label: t('common.reload'),
-                disabled: selectedTag?.fullPath !== item.fullPath,
-                command: () => {
-                  refreshSelectedTag(item)
-                }
-              },
-              {
-                icon: 'mdi:close',
-                label: t('common.closeTab'),
-                disabled: !!visitedViews?.length && selectedTag?.meta.affix,
-                command: () => {
-                  closeSelectedTag(item)
-                }
-              },
-              {
-                divided: true,
-                icon: 'mdi:page-last',
-                label: t('common.closeTheLeftTab'),
-                disabled:
-                  !!visitedViews?.length &&
-                  (item.fullPath === visitedViews[0].fullPath ||
-                    selectedTag?.fullPath !== item.fullPath),
-                command: () => {
-                  closeLeftTags()
-                }
-              },
-              {
-                icon: 'mdi:page-first',
-                label: t('common.closeTheRightTab'),
-                disabled:
-                  !!visitedViews?.length &&
-                  (item.fullPath === visitedViews[visitedViews.length - 1].fullPath ||
-                    selectedTag?.fullPath !== item.fullPath),
-                command: () => {
-                  closeRightTags()
-                }
-              },
-              {
-                divided: true,
-                icon: 'mdi:tag-outline',
-                label: t('common.closeOther'),
-                disabled: selectedTag?.fullPath !== item.fullPath,
-                command: () => {
-                  closeOthersTags()
-                }
-              },
-              {
-                icon: 'mdi:minus',
-                label: t('common.closeAll'),
-                command: () => {
-                  closeAllTags()
-                }
-              }
-            ]"
             v-for="item in visitedViews"
-            :key="item.fullPath"
-            :tag-item="item"
+            :key="item.path"
+            :schema="createContextMenu(item)"
             :class="[
               `${prefixCls}__item`,
-              item?.meta?.affix ? `${prefixCls}__item--affix` : '',
-              {
-                'is-active': isActive(item)
-              }
+              { [`${prefixCls}__item--affix`]: item.meta?.affix, 'is-active': isActive(item) }
             ]"
-            @visible-change="visibleChange"
           >
-            <div>
-              <router-link :ref="tagLinksRefs.set" :to="{ ...item }" custom v-slot="{ navigate }">
-                <div
-                  @click="navigate"
-                  class="h-full flex justify-center items-center whitespace-nowrap pl-15px"
-                >
-                  <Icon
-                    v-if="canShowIcon(item)"
-                    :icon="item?.matched?.[1]?.meta?.icon || item?.meta?.icon"
-                    :size="12"
-                    class="mr-5px"
-                  />
-                  {{ t(item?.meta?.title as string) }}
-                  <Icon
-                    :class="`${prefixCls}__item--close`"
-                    color="#333"
-                    icon="mdi:close"
-                    :size="12"
-                    @click.prevent.stop="closeSelectedTag(item)"
-                  />
-                </div>
-              </router-link>
+            <div :class="`${prefixCls}__item-body`">
+              <RouterLink :to="item.fullPath" :class="`${prefixCls}__link`">
+                <Icon v-if="getTagIcon(item)" :icon="getTagIcon(item)" :size="13" />
+                <span>{{ t(item.meta?.title as string) }}</span>
+              </RouterLink>
+              <button
+                v-if="!item.meta?.affix"
+                :class="`${prefixCls}__close`"
+                type="button"
+                :aria-label="`${t('common.closeTab')}: ${t(item.meta?.title as string)}`"
+                @click.stop="closeTag(item)"
+              >
+                <Icon icon="mdi:close" :size="13" />
+              </button>
             </div>
           </ContextMenu>
         </div>
       </ElScrollbar>
     </div>
-    <span
+
+    <button
       :class="`${prefixCls}__tool`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
-      @click="move(200)"
+      type="button"
+      :title="t('common.scrollTagsRight')"
+      :aria-label="t('common.scrollTagsRight')"
+      @click="scrollTags(200)"
     >
-      <Icon icon="mdi:chevron-double-right" color="var(--el-text-color-placeholder)" />
-    </span>
-    <span
+      <Icon icon="mdi:chevron-double-right" />
+    </button>
+    <button
       :class="`${prefixCls}__tool`"
-      class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer"
-      @click="refreshSelectedTag(selectedTag)"
+      type="button"
+      :title="t('common.reload')"
+      :aria-label="t('common.reload')"
+      :disabled="!activeTag"
+      @click="refreshTag(activeTag)"
     >
-      <Icon icon="mdi:reload" color="var(--el-text-color-placeholder)" />
-    </span>
-    <ContextMenu
-      trigger="click"
-      :schema="[
-        {
-          icon: 'mdi:sync',
-          label: t('common.reload'),
-          command: () => {
-            refreshSelectedTag(selectedTag)
-          }
-        },
-        {
-          icon: 'mdi:close',
-          label: t('common.closeTab'),
-          disabled: !!visitedViews?.length && selectedTag?.meta.affix,
-          command: () => {
-            closeSelectedTag(selectedTag!)
-          }
-        },
-        {
-          divided: true,
-          icon: 'mdi:page-last',
-          label: t('common.closeTheLeftTab'),
-          disabled: !!visitedViews?.length && selectedTag?.fullPath === visitedViews[0].fullPath,
-          command: () => {
-            closeLeftTags()
-          }
-        },
-        {
-          icon: 'mdi:page-first',
-          label: t('common.closeTheRightTab'),
-          disabled:
-            !!visitedViews?.length &&
-            selectedTag?.fullPath === visitedViews[visitedViews.length - 1].fullPath,
-          command: () => {
-            closeRightTags()
-          }
-        },
-        {
-          divided: true,
-          icon: 'mdi:tag-outline',
-          label: t('common.closeOther'),
-          command: () => {
-            closeOthersTags()
-          }
-        },
-        {
-          icon: 'mdi:minus',
-          label: t('common.closeAll'),
-          command: () => {
-            closeAllTags()
-          }
-        }
-      ]"
-    >
-      <span
+      <Icon icon="mdi:reload" />
+    </button>
+    <ContextMenu trigger="click" :schema="activeTag ? createContextMenu(activeTag) : []">
+      <button
         :class="`${prefixCls}__tool`"
-        class="w-[var(--tags-view-height)] h-[var(--tags-view-height)] flex items-center justify-center cursor-pointer block"
+        type="button"
+        :title="t('common.moreTabActions')"
+        :aria-label="t('common.moreTabActions')"
+        :disabled="!activeTag"
       >
-        <Icon icon="mdi:cog-outline" color="var(--el-text-color-placeholder)" />
-      </span>
+        <Icon icon="mdi:dots-horizontal" />
+      </button>
     </ContextMenu>
   </div>
 </template>
@@ -432,122 +245,148 @@
   @prefix-cls: v-tags-view;
 
   .@{prefix-cls} {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: var(--tags-view-height);
+    background: var(--top-header-bg-color);
+
     :deep(.el-scrollbar__view) {
       height: 100%;
     }
 
-    &__tool {
-      position: relative;
+    &__viewport {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
 
-      &:hover {
-        :deep(.v-icon) {
-          color: var(--el-color-black);
-        }
+    &__scrollbar,
+    &__list {
+      height: 100%;
+    }
+
+    &__list {
+      display: flex;
+      gap: 4px;
+      padding: 3px 4px;
+      box-sizing: border-box;
+    }
+
+    &__tool {
+      display: grid;
+      flex: none;
+      width: var(--tags-view-height);
+      height: var(--tags-view-height);
+      padding: 0;
+      color: var(--el-text-color-placeholder);
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      border-left: 1px solid var(--layout-border-color);
+      transition:
+        color 160ms ease,
+        background-color 160ms ease;
+      place-items: center;
+
+      &:hover:not(:disabled),
+      &:focus-visible {
+        color: var(--el-color-primary);
+        background: var(--top-header-hover-color);
+        outline: none;
       }
 
-      &::before {
-        position: absolute;
-        top: 1px;
-        left: 0;
-        width: 100%;
-        height: calc(~'100% - 1px');
-        border-left: 1px solid var(--el-border-color);
-        content: '';
+      &:disabled {
+        cursor: default;
+        opacity: 0.45;
       }
 
       &--first {
-        &::before {
-          position: absolute;
-          top: 1px;
-          left: 0;
-          width: 100%;
-          height: calc(~'100% - 1px');
-          border-right: 1px solid var(--el-border-color);
-          border-left: none;
-          content: '';
-        }
+        border-right: 1px solid var(--layout-border-color);
+        border-left: 0;
       }
     }
 
     &__item {
-      position: relative;
-      top: 3px;
-      height: calc(~'100% - 6px');
-      padding-right: 25px;
-      margin-left: 4px;
-      font-size: 12px;
+      flex: none;
+      height: 100%;
+      overflow: hidden;
+      color: var(--el-text-color-regular);
       cursor: pointer;
-      border: 1px solid #d9d9d9;
-      border-radius: 2px;
+      background: var(--top-header-bg-color);
+      border: 1px solid var(--layout-border-color);
+      border-radius: 8px;
+      transition:
+        color 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease;
 
-      &--close {
-        position: absolute;
-        top: 50%;
-        right: 5px;
-        display: none;
-        transform: translate(0, -50%);
-      }
-      &:not(.@{prefix-cls}__item--affix):hover {
-        .@{prefix-cls}__item--close {
-          display: block;
-        }
-      }
-    }
-
-    &__item:not(.is-active) {
-      &:hover {
+      &:hover,
+      &:focus-within {
         color: var(--el-color-primary);
       }
-    }
 
-    &__item.is-active {
-      color: var(--el-color-white);
-      background-color: var(--el-color-primary);
-      border: 1px solid var(--el-color-primary);
-      .@{prefix-cls}__item--close {
-        :deep(svg) {
-          color: var(--el-color-white) !important;
-        }
+      &.is-active {
+        font-weight: 600;
+        color: var(--el-color-primary);
+        background: var(--el-color-primary-light-9);
+        border-color: var(--el-color-primary-light-7);
       }
     }
-  }
 
-  .dark {
-    .@{prefix-cls} {
-      &__tool {
-        &:hover {
-          :deep(.v-icon) {
-            color: var(--el-color-white);
-          }
-        }
+    &__item-body,
+    &__link {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
 
-        &--first {
-          &::after {
-            display: none;
-          }
-        }
+    &__link {
+      gap: 5px;
+      padding: 0 12px;
+      font-size: 12px;
+      color: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:focus-visible {
+        outline: 2px solid var(--el-color-primary-light-7);
+        outline-offset: -2px;
       }
+    }
 
-      &__item {
-        border: 1px solid var(--el-border-color);
-      }
+    &__item:not(&__item--affix) &__link {
+      padding-right: 4px;
+    }
 
-      &__item:not(.is-active) {
-        &:hover {
-          color: var(--el-color-primary);
-        }
-      }
+    &__close {
+      display: grid;
+      width: 24px;
+      height: 100%;
+      padding: 0;
+      color: inherit;
+      pointer-events: none;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      opacity: 0;
+      transition:
+        color 160ms ease,
+        opacity 160ms ease;
+      place-items: center;
 
-      &__item.is-active {
-        color: var(--el-color-white);
-        background-color: var(--el-color-primary);
-        border: 1px solid var(--el-color-primary);
-        .@{prefix-cls}__item--close {
-          :deep(svg) {
-            color: var(--el-color-white) !important;
-          }
-        }
+      &:hover,
+      &:focus-visible {
+        color: var(--el-color-danger);
+        outline: none;
       }
+    }
+
+    &__item:hover &__close,
+    &__item.is-active &__close,
+    &__close:focus-visible {
+      pointer-events: auto;
+      opacity: 1;
     }
   }
 </style>

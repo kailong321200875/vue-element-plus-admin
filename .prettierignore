@@ -1,9 +1,6 @@
-/node_modules/**
-/dist/
-/dist*
-/public/*
-/docs/*
-/src/types/env.d.ts
-/docs/**/*
-/plop/**/*
-CHANGELOG
+**/node_modules/**
+**/dist/**
+**/dist-*/**
+**/.vitepress/cache/**
+**/public/**
+/CHANGELOG.md

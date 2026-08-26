@@ -69,24 +69,24 @@
         gap: 7px;
         height: 36px;
         padding: 0 14px;
+        font-size: 13px;
+        font-weight: 500;
         white-space: nowrap;
-        border-radius: 8px;
+        border-radius: 10px;
 
-        &:hover,
-        &.is-active {
+        &:hover {
           color: var(--el-color-primary);
-          background: color-mix(in srgb, var(--el-color-primary) 9%, transparent);
+          background: var(--top-header-hover-color);
         }
 
-        &.is-active::after {
-          position: absolute;
-          right: 14px;
-          bottom: -10px;
-          left: 14px;
-          height: 2px;
-          background: var(--el-color-primary);
-          border-radius: 2px;
-          content: '';
+        &.is-active {
+          font-weight: 600;
+          color: var(--el-color-primary);
+          background: var(--el-color-primary-light-9);
+        }
+
+        &:focus-visible {
+          box-shadow: inset 0 0 0 2px var(--el-color-primary-light-7);
         }
       }
     }
@@ -115,10 +115,26 @@
           white-space: nowrap;
         }
 
-        &:hover,
+        &:hover {
+          color: var(--left-menu-text-active-color);
+          background: var(--top-header-hover-color);
+        }
+
         &.is-active {
+          font-weight: 600;
           color: var(--left-menu-text-active-color);
           background: var(--left-menu-bg-active-color);
+        }
+
+        &.is-active::before {
+          position: absolute;
+          top: 12px;
+          bottom: 12px;
+          left: -8px;
+          width: 3px;
+          background: var(--el-color-primary);
+          border-radius: 0 3px 3px 0;
+          content: '';
         }
       }
     }

@@ -6,15 +6,13 @@
 
   const tagsViewStore = useTagsViewStore()
 
-  const getCaches = computed((): string[] => {
-    return tagsViewStore.getCachedViews
-  })
+  const cachedViews = computed(() => tagsViewStore.cachedViews)
 </script>
 
 <template>
   <section
     :class="[
-      'box-border p-[var(--app-content-padding)] w-full bg-[var(--app-content-bg-color)] dark:bg-[var(--el-bg-color)]',
+      'box-border p-[var(--app-content-padding)] w-full bg-[var(--app-content-bg-color)]',
       {
         '!min-h-[calc(100vh-var(--top-tool-height)-var(--tags-view-height)-var(--app-footer-height))] pb-0':
           appConfig.ui.footer
@@ -23,7 +21,7 @@
   >
     <router-view>
       <template #default="{ Component, route }">
-        <keep-alive :include="getCaches">
+        <keep-alive :include="cachedViews">
           <component :is="Component" :key="route.fullPath" />
         </keep-alive>
       </template>

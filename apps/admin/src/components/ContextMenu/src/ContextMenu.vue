@@ -1,16 +1,13 @@
 <script setup lang="ts">
   import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-  import { PropType, ref } from 'vue'
+  import type { PropType } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import type { RouteLocationNormalizedLoaded } from 'vue-router'
-  import { ContextMenuSchema } from './types'
+  import type { ContextMenuSchema } from './types'
   const prefixCls = 'v-context-menu'
 
   const { t } = useI18n()
 
-  const emit = defineEmits(['visibleChange'])
-
-  const props = defineProps({
+  defineProps({
     schema: {
       type: Array as PropType<ContextMenuSchema[]>,
       default: () => []
@@ -18,37 +15,18 @@
     trigger: {
       type: String as PropType<'click' | 'hover' | 'contextmenu'>,
       default: 'contextmenu'
-    },
-    tagItem: {
-      type: Object as PropType<RouteLocationNormalizedLoaded>,
-      default: () => ({})
     }
   })
 
-  const command = (item: ContextMenuSchema) => {
-    item.command && item.command(item)
-  }
-
-  const visibleChange = (visible: boolean) => {
-    emit('visibleChange', visible, props.tagItem)
-  }
-
-  const elDropdownMenuRef = ref<ComponentRef<typeof ElDropdown>>()
-
-  defineExpose({
-    elDropdownMenuRef,
-    tagItem: props.tagItem
-  })
+  const command = (item: ContextMenuSchema) => item.command?.()
 </script>
 
 <template>
   <ElDropdown
-    ref="elDropdownMenuRef"
     :class="prefixCls"
     :trigger="trigger"
     placement="bottom-start"
     @command="command"
-    @visible-change="visibleChange"
     popper-class="v-context-menu-popper"
   >
     <slot></slot>
@@ -56,7 +34,7 @@
       <ElDropdownMenu>
         <ElDropdownItem
           v-for="(item, index) in schema"
-          :key="`dropdown${index}`"
+          :key="`${item.label}-${index}`"
           :divided="item.divided"
           :disabled="item.disabled"
           :command="item"

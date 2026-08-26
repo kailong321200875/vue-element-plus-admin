@@ -1,76 +1,48 @@
 <script lang="tsx">
   import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus'
-  import { ref, watch, computed, unref, defineComponent } from 'vue'
-  import { useRouter } from 'vue-router'
-  import { usePermissionStore } from '@/store/modules/permission'
-  import { filterBreadcrumb } from './helper'
-  import { filter, treeToList } from '@/utils/tree'
-  import type { RouteLocationNormalizedLoaded } from 'vue-router'
+  import { computed, defineComponent } from 'vue'
+  import { useRoute } from 'vue-router'
   import { useI18n } from 'vue-i18n'
   import { Icon } from '@vea/components'
   import { appConfig } from '@/config/app'
   const prefixCls = 'v-breadcrumb'
 
-  // 面包屑图标
-  const breadcrumbIcon = computed(() => appConfig.ui.breadcrumbIcon)
-
   export default defineComponent({
     name: 'Breadcrumb',
     setup() {
-      const { currentRoute } = useRouter()
-
+      const route = useRoute()
       const { t } = useI18n()
-
-      const levelList = ref<AppRouteRecordRaw[]>([])
-
-      const permissionStore = usePermissionStore()
-
-      const menuRouters = computed(() => {
-        const routers = permissionStore.routers
-        return filterBreadcrumb(routers)
+      const breadcrumbList = computed(() => {
+        const visibleRecords = route.matched.filter(
+          (record) => !record.meta.hidden && record.meta.breadcrumb !== false
+        )
+        return visibleRecords.filter(
+          (record, index) =>
+            index === visibleRecords.length - 1 ||
+            record.meta.title !== visibleRecords[index + 1]?.meta.title
+        )
       })
 
-      const getBreadcrumb = () => {
-        const currentPath = currentRoute.value.matched.slice(-1)[0].path
-        levelList.value = filter<AppRouteRecordRaw>(
-          unref(menuRouters),
-          (node: AppRouteRecordRaw) => {
-            return node.path === currentPath
-          }
-        )
-      }
-
       const renderBreadcrumb = () => {
-        const breadcrumbList = treeToList<AppRouteRecordRaw[]>(unref(levelList))
-        return breadcrumbList.map((v) => {
-          const disabled = !v.redirect || v.redirect === 'noredirect'
-          const meta = v.meta
+        return breadcrumbList.value.map((record, index) => {
+          const meta = record.meta
+          const canNavigate = index < breadcrumbList.value.length - 1 && Boolean(record.redirect)
           return (
-            <ElBreadcrumbItem to={{ path: disabled ? '' : v.path }} key={v.name}>
-              {meta?.icon && breadcrumbIcon.value ? (
+            <ElBreadcrumbItem
+              to={canNavigate ? { path: record.path } : undefined}
+              key={String(record.name ?? record.path)}
+            >
+              {meta.icon && appConfig.ui.breadcrumbIcon ? (
                 <>
-                  <Icon icon={meta.icon} class="mr-[5px]"></Icon> {t(v?.meta?.title || '')}
+                  <Icon icon={meta.icon} class="mr-[5px]"></Icon> {t(meta.title || '')}
                 </>
               ) : (
-                t(v?.meta?.title || '')
+                t(meta.title || '')
               )}
             </ElBreadcrumbItem>
           )
         })
       }
-
-      watch(
-        () => currentRoute.value,
-        (route: RouteLocationNormalizedLoaded) => {
-          if (route.path.startsWith('/redirect/')) {
-            return
-          }
-          getBreadcrumb()
-        },
-        {
-          immediate: true
-        }
-      )
 
       return () => (
         <ElBreadcrumb separator="/" class={`${prefixCls} flex items-center h-full ml-[10px]`}>

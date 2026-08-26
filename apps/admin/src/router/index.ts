@@ -50,6 +50,16 @@ export const constantRouterMap: AppRouteRecordRaw[] = [
       title: '404',
       noTagsView: true
     }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: () => import('@/views/Error/404.vue'),
+    name: 'Fallback',
+    meta: {
+      hidden: true,
+      breadcrumb: false,
+      noTagsView: true
+    }
   }
 ]
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { useAppStore } from '@/store/modules/app'
+  import { useAppStore, type LayoutMode } from '@/store/modules/app'
 
   const appStore = useAppStore()
   const open = ref(false)
@@ -110,13 +110,13 @@
       display: grid;
       padding: 14px;
       pointer-events: none;
-      background: var(--el-bg-color-overlay);
-      border: 1px solid var(--el-border-color-light);
-      border-radius: 14px;
+      background: var(--top-header-bg-color);
+      border: 1px solid var(--layout-border-color);
+      border-radius: 16px;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-6px);
-      box-shadow: var(--el-box-shadow-light);
+      box-shadow: var(--layout-shadow);
       transition:
         opacity 160ms ease,
         transform 160ms ease,
@@ -161,7 +161,7 @@
       color: var(--el-text-color-regular);
       text-align: left;
       cursor: pointer;
-      background: var(--el-fill-color-lighter);
+      background: var(--left-menu-bg-light-color);
       border: 1px solid transparent;
       border-radius: 10px;
 
@@ -174,7 +174,7 @@
       }
 
       &.is-active {
-        background: color-mix(in srgb, var(--el-color-primary) 8%, var(--el-bg-color-overlay));
+        background: var(--el-color-primary-light-9);
       }
     }
 
@@ -184,9 +184,9 @@
       width: 52px;
       height: 38px;
       overflow: hidden;
-      background: var(--el-bg-color);
-      border: 1px solid var(--el-border-color);
-      border-radius: 5px;
+      background: var(--app-content-bg-color);
+      border: 1px solid var(--layout-border-color);
+      border-radius: 6px;
 
       i {
         position: absolute;
@@ -198,8 +198,8 @@
         right: 0;
         left: 0;
         height: 7px;
-        background: #fff;
-        border-bottom: 1px solid var(--el-border-color-lighter);
+        background: var(--top-header-bg-color);
+        border-bottom: 1px solid var(--layout-border-color);
       }
 
       &-primary,
@@ -207,7 +207,8 @@
         top: 0;
         bottom: 0;
         left: 0;
-        background: #172033;
+        background: var(--left-menu-bg-color);
+        border-right: 1px solid var(--layout-border-color);
       }
 
       &-content {
@@ -251,7 +252,7 @@
         .layout-switcher__preview-secondary {
           top: 9px;
           width: 12px;
-          background: #26324a;
+          background: var(--left-menu-bg-light-color);
         }
 
         .layout-switcher__preview-header {
@@ -263,13 +264,13 @@
       &.is-dual {
         .layout-switcher__preview-primary {
           width: 8px;
-          background: #172033;
+          background: var(--left-menu-bg-color);
         }
 
         .layout-switcher__preview-secondary {
           left: 8px;
           width: 11px;
-          background: #26324a;
+          background: var(--left-menu-bg-light-color);
         }
 
         .layout-switcher__preview-header {

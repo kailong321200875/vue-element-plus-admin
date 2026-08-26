@@ -1,4 +1,4 @@
-import request from '@/axios'
+import request from '@/request'
 import type { LoginParams, LoginResult } from './types'
 
 export const loginApi = (data: LoginParams) => {

@@ -3,14 +3,10 @@ import { loadEnv } from 'vite'
 import type { UserConfig, ConfigEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
-import progress from 'vite-plugin-progress'
-import { ViteEjsPlugin } from 'vite-plugin-ejs'
 import { viteMockServe } from 'vite-plugin-mock'
-import ServerUrlCopy from 'vite-plugin-url-copy'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { createStyleImportPlugin, ElementPlusResolve } from 'vite-plugin-style-import'
 import UnoCSS from 'unocss/vite'
-import { visualizer } from 'rollup-plugin-visualizer'
+import ElementPlus from 'unplugin-element-plus/vite'
 
 const root = process.cwd()
 
@@ -20,38 +16,13 @@ function pathResolve(dir: string) {
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const isBuild = command === 'build'
-  const env = loadEnv(
-    isBuild ? mode : process.argv[3] === '--mode' ? process.argv[4] : process.argv[3],
-    root
-  )
+  const env = loadEnv(mode, root)
   return {
     base: env.VITE_BASE_PATH,
     plugins: [
-      Vue({
-        script: {
-          defineModel: true
-        }
-      }),
+      Vue(),
       VueJsx(),
-      ServerUrlCopy(),
-      progress(),
-      env.VITE_USE_ALL_ELEMENT_PLUS_STYLE === 'false'
-        ? createStyleImportPlugin({
-            resolves: [ElementPlusResolve()],
-            libs: [
-              {
-                libraryName: 'element-plus',
-                esModule: true,
-                resolveStyle: (name) => {
-                  if (name === 'click-outside') {
-                    return ''
-                  }
-                  return `element-plus/es/components/${name.replace(/^el-/, '')}/style/css`
-                }
-              }
-            ]
-          })
-        : undefined,
+      ElementPlus(),
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
@@ -64,51 +35,21 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
             enable: !isBuild
           })
         : undefined,
-      ViteEjsPlugin({
-        title: env.VITE_APP_TITLE
-      }),
       UnoCSS()
     ],
 
     resolve: {
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
       alias: [
-        {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
-        },
         {
           find: /@\//,
           replacement: `${pathResolve('src')}/`
         }
       ]
     },
-    esbuild: {
-      pure: env.VITE_DROP_CONSOLE === 'true' ? ['console.log'] : undefined,
-      drop: env.VITE_DROP_DEBUGGER === 'true' ? ['debugger'] : undefined
-    },
     build: {
       target: 'es2015',
       outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true',
-      rollupOptions: {
-        plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined,
-        output: {
-          manualChunks(id) {
-            const chunkGroups = {
-              'vue-chunks': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
-              'element-plus': ['element-plus'],
-              echarts: ['echarts']
-            }
-
-            for (const [chunkName, dependencies] of Object.entries(chunkGroups)) {
-              if (dependencies.some((dependency) => id.includes(`/node_modules/${dependency}/`))) {
-                return chunkName
-              }
-            }
-          }
-        }
-      },
       cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false'),
       cssTarget: ['chrome31']
     },
@@ -125,18 +66,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         overlay: false
       },
       host: '0.0.0.0'
-    },
-    optimizeDeps: {
-      include: [
-        'vue',
-        'vue-router',
-        'vue-types',
-        'element-plus/es/locale/lang/zh-cn',
-        'element-plus/es/locale/lang/en',
-        '@vueuse/core',
-        'axios',
-        'echarts'
-      ]
     }
   }
 }

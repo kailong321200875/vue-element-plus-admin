@@ -36,14 +36,11 @@
       ]"
       to="/"
     >
-      <img
-        src="@/assets/imgs/logo.png"
-        class="w-[calc(var(--logo-height)-10px)] h-[calc(var(--logo-height)-10px)]"
-      />
+      <img src="@/assets/imgs/logo.png" class="w-38px h-38px flex-none" />
       <div
         v-if="showTitle"
         :class="[
-          'ml-10px text-16px font-700',
+          'ml-10px text-15px font-600 tracking-[-0.01em]',
           {
             'text-[var(--logo-title-text-color)]': layout === 'sidebar' || layout === 'dual',
             'text-[var(--top-header-text-color)]': layout === 'top' || layout === 'mixed'

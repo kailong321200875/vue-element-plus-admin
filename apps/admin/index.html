@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title>%VITE_APP_TITLE%</title>
   </head>
   <body>
     <div id="app">
@@ -24,7 +24,6 @@
           top: 50%;
           left: 50%;
           display: flex;
-          -webkit-transform: translate3d(-50%, -50%, 0);
           transform: translate3d(-50%, -50%, 0);
           justify-content: center;
           align-items: center;
@@ -40,7 +39,7 @@
 
         .app-loading .app-loading-logo {
           width: 100px;
-          margin: 0 auto 15px auto;
+          margin: 0 auto 15px;
         }
 
         .app-loading .app-loading-item {
@@ -76,50 +75,42 @@
           animation: loader-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
         }
 
-        @-webkit-keyframes loader-outter {
+        @keyframes loader-outter {
           0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
           }
 
           100% {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
           }
         }
 
         @keyframes loader-outter {
           0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
           }
 
           100% {
-            -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
           }
         }
 
-        @-webkit-keyframes loader-inner {
+        @keyframes loader-inner {
           0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
           }
 
           100% {
-            -webkit-transform: rotate(-360deg);
             transform: rotate(-360deg);
           }
         }
 
         @keyframes loader-inner {
           0% {
-            -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
           }
 
           100% {
-            -webkit-transform: rotate(-360deg);
             transform: rotate(-360deg);
           }
         }
@@ -128,7 +119,7 @@
         <div class="app-loading-wrap">
           <div class="app-loading-title">
             <img src="/logo.png" class="app-loading-logo" alt="Logo" />
-            <div class="app-loading-title"><%= title %></div>
+            <div class="app-loading-title">%VITE_APP_TITLE%</div>
           </div>
           <div class="app-loading-item">
             <div class="app-loading-outter"></div>

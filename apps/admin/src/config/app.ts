@@ -5,14 +5,10 @@ export const appConfig = {
     breadcrumbIcon: true,
     hamburger: true,
     screenfull: true,
-    componentSize: true,
+    theme: true,
     locale: true,
-    tagsView: true,
     tagsViewIcon: true,
-    logo: true,
     footer: true,
     uniqueOpened: false
   }
 } as const
-
-export const componentSizes = ['default', 'large', 'small'] as const

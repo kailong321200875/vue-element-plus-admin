@@ -8,6 +8,7 @@
   import { ElButton } from 'element-plus'
   import { useI18n } from 'vue-i18n'
   import { useUserStore } from '@/store/modules/user'
+  import { ensureDynamicRoutes } from '@/permission'
 
   const emit = defineEmits(['to-register'])
   const userStore = useUserStore()
@@ -36,7 +37,13 @@
 
     userStore.rememberUsername(formData.username, remember.value)
     userStore.setSession(res.data)
-    await push(redirect.value || '/')
+    try {
+      await ensureDynamicRoutes()
+      await push(redirect.value || '/')
+    } catch (error) {
+      userStore.clearSession()
+      throw error
+    }
   }
 
   const signIn = () => actions.submit(login)

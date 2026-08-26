@@ -17,7 +17,6 @@
   ],
   "scripts": {},
   "dependencies": {
-    "@iconify-icons/mdi": "^1.2.48",
     "@iconify/vue": "^5.0.1"
   },
   "peerDependencies": {
@@ -25,8 +24,9 @@
     "vue": ">=3.4.0"
   },
   "devDependencies": {
-    "element-plus": "2.14.4",
-    "vue": "3.5.41"
+    "element-plus": "catalog:",
+    "typescript": "catalog:",
+    "vue": "catalog:"
   },
   "license": "MIT"
 }

@@ -1,27 +1,36 @@
 <script setup lang="ts">
-  import { reactive, computed, watch, onMounted, unref, toRef, PropType } from 'vue'
-  import { isNumber } from '@/utils/is'
-  import { propTypes } from '@/utils/propTypes'
+  import { computed, onBeforeUnmount, onMounted, reactive, toRef, watch } from 'vue'
   const prefixCls = 'v-count-to'
 
-  const props = defineProps({
-    startVal: propTypes.number.def(0),
-    endVal: propTypes.number.def(2021),
-    duration: propTypes.number.def(3000),
-    autoplay: propTypes.bool.def(true),
-    decimals: propTypes.number.validate((value: number) => value >= 0).def(0),
-    decimal: propTypes.string.def('.'),
-    separator: propTypes.string.def(','),
-    prefix: propTypes.string.def(''),
-    suffix: propTypes.string.def(''),
-    useEasing: propTypes.bool.def(true),
-    easingFn: {
-      type: Function as PropType<(t: number, b: number, c: number, d: number) => number>,
-      default(t: number, b: number, c: number, d: number) {
-        return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
-      }
+  const props = withDefaults(
+    defineProps<{
+      startVal?: number
+      endVal?: number
+      duration?: number
+      autoplay?: boolean
+      decimals?: number
+      decimal?: string
+      separator?: string
+      prefix?: string
+      suffix?: string
+      useEasing?: boolean
+      easingFn?: (t: number, b: number, c: number, d: number) => number
+    }>(),
+    {
+      startVal: 0,
+      endVal: 2021,
+      duration: 3000,
+      autoplay: true,
+      decimals: 0,
+      decimal: '.',
+      separator: ',',
+      prefix: '',
+      suffix: '',
+      useEasing: true,
+      easingFn: (t: number, b: number, c: number, d: number) =>
+        (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
     }
-  })
+  )
 
   const emit = defineEmits(['mounted', 'callback'])
 
@@ -33,7 +42,7 @@
     let x1 = x[0]
     const x2 = x.length > 1 ? decimal + x[1] : ''
     const rgx = /(\d+)(\d{3})/
-    if (separator && !isNumber(separator)) {
+    if (separator) {
       while (rgx.test(x1)) {
         x1 = x1.replace(rgx, '$1' + separator + '$2')
       }
@@ -102,7 +111,7 @@
   }
 
   const pause = () => {
-    cancelAnimationFrame(state.rAF)
+    if (state.rAF) cancelAnimationFrame(state.rAF)
   }
 
   const resume = () => {
@@ -125,7 +134,7 @@
     const progress = timestamp - state.startTime
     state.remaining = (state.localDuration as number) - progress
     if (useEasing) {
-      if (unref(getCountDown)) {
+      if (getCountDown.value) {
         state.printVal =
           state.localStartVal -
           easingFn(progress, 0, state.localStartVal - endVal, state.localDuration as number)
@@ -138,7 +147,7 @@
         )
       }
     } else {
-      if (unref(getCountDown)) {
+      if (getCountDown.value) {
         state.printVal =
           state.localStartVal -
           (state.localStartVal - endVal) * (progress / (state.localDuration as number))
@@ -148,7 +157,7 @@
           (endVal - state.localStartVal) * (progress / (state.localDuration as number))
       }
     }
-    if (unref(getCountDown)) {
+    if (getCountDown.value) {
       state.printVal = state.printVal < endVal ? endVal : state.printVal
     } else {
       state.printVal = state.printVal > endVal ? endVal : state.printVal
@@ -167,6 +176,8 @@
     start,
     pause
   })
+
+  onBeforeUnmount(pause)
 </script>
 
 <template>

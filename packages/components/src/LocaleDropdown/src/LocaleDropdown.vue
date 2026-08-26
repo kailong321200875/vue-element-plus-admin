@@ -27,7 +27,7 @@
 </script>
 
 <template>
-  <ElDropdown trigger="click" @command="setLocale">
+  <ElDropdown class="locale-dropdown" trigger="click" @command="setLocale">
     <button
       v-bind="$attrs"
       type="button"

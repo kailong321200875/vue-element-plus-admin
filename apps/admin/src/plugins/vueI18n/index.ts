@@ -13,8 +13,6 @@ const createAppI18n = (locale: LocaleCode) =>
     fallbackWarn: false
   })
 
-export let i18n: ReturnType<typeof createAppI18n>
-
 export const setupI18n = (app: App<Element>) => {
   const localeStore = useLocaleStoreWithOut()
   const locale = localeStore.currentLocale.lang
@@ -25,6 +23,6 @@ export const setupI18n = (app: App<Element>) => {
 
   document.documentElement.lang = locale
 
-  i18n = createAppI18n(locale)
+  const i18n = createAppI18n(locale)
   app.use(i18n)
 }

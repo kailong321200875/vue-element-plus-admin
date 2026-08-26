@@ -1,15 +1,12 @@
 <script setup lang="ts">
   import { LocaleDropdown as BaseLocaleDropdown } from '@vea/components'
   import { useLocaleStore } from '@/store/modules/locale'
-  import { useLocale } from '@/hooks/web/useLocale'
+  import { useLocale } from '@/hooks/useLocale'
   import { isLocale, localeOptions } from '@/config/locale'
-  import { propTypes } from '@/utils/propTypes'
 
   defineOptions({ inheritAttrs: false })
 
-  defineProps({
-    color: propTypes.string.def('')
-  })
+  withDefaults(defineProps<{ color?: string }>(), { color: '' })
 
   const localeStore = useLocaleStore()
 

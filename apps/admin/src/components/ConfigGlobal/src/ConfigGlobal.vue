@@ -1,16 +1,11 @@
 <script setup lang="ts">
   import { computed, watch } from 'vue'
-  import { propTypes } from '@/utils/propTypes'
-  import { ComponentSize, ElConfigProvider } from 'element-plus'
+  import { ElConfigProvider } from 'element-plus'
   import { useLocaleStore } from '@/store/modules/locale'
   import { useWindowSize } from '@vueuse/core'
   import { useAppStore } from '@/store/modules/app'
 
   const appStore = useAppStore()
-
-  defineProps({
-    size: propTypes.oneOf<ComponentSize>(['default', 'small', 'large']).def('default')
-  })
 
   const { width } = useWindowSize()
 
@@ -41,12 +36,7 @@
 </script>
 
 <template>
-  <ElConfigProvider
-    namespace="el"
-    :locale="currentLocale.elementLocale"
-    :message="{ max: 1 }"
-    :size="size"
-  >
+  <ElConfigProvider namespace="el" :locale="currentLocale.elementLocale" :message="{ max: 1 }">
     <slot></slot>
   </ElConfigProvider>
 </template>

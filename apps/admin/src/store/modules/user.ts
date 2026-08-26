@@ -39,7 +39,7 @@ export const useUserStore = defineStore('user', {
       this.token = ''
       this.userInfo = undefined
       usePermissionStore().reset()
-      useTagsViewStore().delAllViews(false)
+      useTagsViewStore().removeAllViews(false)
       resetRouter()
     },
     async logout() {

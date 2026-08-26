@@ -1,20 +1,14 @@
 <script setup lang="ts">
-  import { computed } from 'vue'
-  import { useAppStore } from '@/store/modules/app'
   import { ConfigGlobal } from '@/components/ConfigGlobal'
-  import { useTheme } from '@/hooks/web/useTheme'
-  import { useTitle } from '@/hooks/web/useTitle'
-
-  const appStore = useAppStore()
-
-  const currentSize = computed(() => appStore.currentSize)
+  import { useTheme } from '@/hooks/useTheme'
+  import { useTitle } from '@/hooks/useTitle'
 
   useTheme()
   useTitle()
 </script>
 
 <template>
-  <ConfigGlobal :size="currentSize">
+  <ConfigGlobal>
     <RouterView />
   </ConfigGlobal>
 </template>

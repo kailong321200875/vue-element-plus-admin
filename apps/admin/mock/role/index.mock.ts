@@ -17,6 +17,7 @@ const routes: AppCustomRouteRecordRaw[] = [
         name: 'Analysis',
         meta: {
           title: 'router.dashboard',
+          icon: 'mdi:view-dashboard',
           noCache: true,
           affix: true
         }
@@ -39,7 +40,8 @@ const routes: AppCustomRouteRecordRaw[] = [
         component: '##',
         redirect: '/level/menu1/menu1-1/menu1-1-1',
         meta: {
-          title: 'router.menu1'
+          title: 'router.menu1',
+          icon: 'mdi:folder-outline'
         },
         children: [
           {
@@ -49,6 +51,7 @@ const routes: AppCustomRouteRecordRaw[] = [
             redirect: '/level/menu1/menu1-1/menu1-1-1',
             meta: {
               title: 'router.menu11',
+              icon: 'mdi:folder-open-outline',
               alwaysShow: true
             },
             children: [
@@ -57,7 +60,8 @@ const routes: AppCustomRouteRecordRaw[] = [
                 name: 'Menu111',
                 component: 'views/Level/Menu111',
                 meta: {
-                  title: 'router.menu111'
+                  title: 'router.menu111',
+                  icon: 'mdi:file-document-outline'
                 }
               }
             ]
@@ -67,7 +71,8 @@ const routes: AppCustomRouteRecordRaw[] = [
             name: 'Menu12',
             component: 'views/Level/Menu12',
             meta: {
-              title: 'router.menu12'
+              title: 'router.menu12',
+              icon: 'mdi:file-document-outline'
             }
           }
         ]
@@ -77,7 +82,8 @@ const routes: AppCustomRouteRecordRaw[] = [
         name: 'Menu2',
         component: 'views/Level/Menu2',
         meta: {
-          title: 'router.menu2'
+          title: 'router.menu2',
+          icon: 'mdi:file-document-outline'
         }
       }
     ]

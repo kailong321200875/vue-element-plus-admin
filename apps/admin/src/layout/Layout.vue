@@ -4,8 +4,7 @@
   import { useRouter } from 'vue-router'
   import { useAppStore } from '@/store/modules/app'
   import { usePermissionStore } from '@/store/modules/permission'
-  import { pathResolve } from '@/utils/routerHelper'
-  import { isUrl } from '@/utils/is'
+  import { isUrl, pathResolve } from '@/utils/routerHelper'
   import { Menu } from '@/components/Menu'
   import { TagsView } from '@/components/TagsView'
   import { Logo } from '@/components/Logo'
@@ -159,9 +158,10 @@
       flex: none;
       align-items: center;
       height: var(--top-tool-height);
-      background: var(--top-header-bg-color);
-      border-bottom: 1px solid var(--el-border-color-lighter);
-      box-shadow: 0 1px 12px rgb(15 23 42 / 4%);
+      background: color-mix(in srgb, var(--top-header-bg-color) 94%, transparent);
+      border-bottom: 1px solid var(--layout-border-color);
+      box-shadow: var(--layout-shadow);
+      backdrop-filter: blur(16px);
 
       :deep(.v-logo) {
         min-width: var(--left-menu-max-width);
@@ -171,7 +171,7 @@
     &__top-tools {
       flex: none;
       padding-left: 6px;
-      border-left: 1px solid var(--el-border-color-lighter);
+      border-left: 1px solid var(--layout-border-color);
     }
 
     &__body {
@@ -190,7 +190,7 @@
       min-height: 0;
       overflow: hidden;
       background: var(--left-menu-bg-color);
-      border-right: 1px solid rgb(255 255 255 / 6%);
+      border-right: 1px solid var(--layout-border-color);
       transition:
         width var(--transition-time-02),
         transform var(--transition-time-02);
@@ -208,6 +208,10 @@
       width: var(--left-menu-max-width);
       background: var(--left-menu-bg-light-color);
 
+      :deep(.v-menu) {
+        background: transparent !important;
+      }
+
       &.is-collapsed {
         width: var(--left-menu-min-width);
       }
@@ -220,11 +224,23 @@
       font-size: 13px;
       font-weight: 700;
       line-height: 46px;
-      color: var(--left-menu-text-active-color);
+      color: var(--logo-title-text-color);
       text-overflow: ellipsis;
       white-space: nowrap;
-      border-bottom: 1px solid rgb(255 255 255 / 6%);
+      border-bottom: 1px solid var(--layout-border-color);
       flex: none;
+
+      &::before {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        margin-right: 9px;
+        vertical-align: 1px;
+        background: var(--el-color-primary);
+        border-radius: 50%;
+        content: '';
+        box-shadow: 0 0 0 4px var(--el-color-primary-light-9);
+      }
     }
 
     &__rail {
@@ -249,12 +265,14 @@
     &__tags {
       z-index: 10;
       flex: none;
-      background: var(--top-header-bg-color);
-      border-bottom: 1px solid var(--el-border-color-lighter);
+      background: color-mix(in srgb, var(--top-header-bg-color) 96%, transparent);
+      border-bottom: 1px solid var(--layout-border-color);
+      backdrop-filter: blur(16px);
     }
 
     &__toolbar {
-      box-shadow: 0 1px 12px rgb(15 23 42 / 4%);
+      z-index: 20;
+      box-shadow: var(--layout-shadow);
     }
 
     &-content-scrollbar {
