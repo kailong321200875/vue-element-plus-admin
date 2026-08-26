@@ -51,7 +51,24 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true',
       cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false'),
-      cssTarget: ['chrome31']
+      cssTarget: ['chrome31'],
+      rolldownOptions: {
+        output: {
+          codeSplitting: {
+            includeDependenciesRecursively: false,
+            groups: [
+              {
+                name: 'zrender',
+                test: /node_modules[\\/]zrender[\\/]/
+              },
+              {
+                name: 'echarts',
+                test: /node_modules[\\/]echarts[\\/]/
+              }
+            ]
+          }
+        }
+      }
     },
     server: {
       port: 4000,
