@@ -14,8 +14,7 @@ function pathResolve(dir: string) {
   return resolve(root, '.', dir)
 }
 
-export default ({ command, mode }: ConfigEnv): UserConfig => {
-  const isBuild = command === 'build'
+export default ({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, root)
   return {
     base: env.VITE_BASE_PATH,
@@ -31,8 +30,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       env.VITE_USE_MOCK === 'true'
         ? viteMockServe({
             ignore: /^_/,
-            mockPath: 'mock',
-            enable: !isBuild
+            mockPath: 'mock'
           })
         : undefined,
       UnoCSS()
@@ -55,15 +53,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       rolldownOptions: {
         output: {
           codeSplitting: {
-            includeDependenciesRecursively: false,
             groups: [
               {
                 name: 'zrender',
                 test: /node_modules[\\/]zrender[\\/]/
-              },
-              {
-                name: 'echarts',
-                test: /node_modules[\\/]echarts[\\/]/
               }
             ]
           }

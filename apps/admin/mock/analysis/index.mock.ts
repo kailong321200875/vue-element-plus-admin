@@ -1,5 +1,5 @@
 import { SUCCESS_CODE } from '@/constants'
-import { MockMethod } from 'vite-plugin-mock'
+import type { MockMethod } from 'vite-plugin-mock'
 
 const timeout = 1000
 

@@ -118,7 +118,9 @@ The template does not maintain a fixed `manualChunks` map. This prevents depende
 
 ## Mock and production
 
-Production builds do not register the Mock Server. Before deployment, you must provide real login, dynamic route, and dashboard APIs; otherwise the application cannot finish starting.
+When `VITE_USE_MOCK=true`, the production build includes browser-side mocks. The static site can therefore demonstrate login, dynamic routes, and the dashboard without a backend.
+
+Real applications should set `VITE_USE_MOCK=false` and connect to their API through `VITE_API_BASE_PATH` and the deployment gateway. Environment variables are embedded at build time, so rebuild after changing them.
 
 ## CI notes
 

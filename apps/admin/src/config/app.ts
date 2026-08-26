@@ -4,7 +4,6 @@ export const appConfig = {
     breadcrumb: true,
     breadcrumbIcon: true,
     hamburger: true,
-    screenfull: true,
     theme: true,
     locale: true,
     tagsViewIcon: true,

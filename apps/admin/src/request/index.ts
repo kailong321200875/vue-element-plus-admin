@@ -10,10 +10,12 @@ export interface ApiResponse<Data = unknown> {
 }
 
 const normalizeRequestKey = (url = '') => url.replace(/^\/mock(?=\/)/, '')
+const useBrowserMock = import.meta.env.PROD && import.meta.env.VITE_USE_MOCK === 'true'
 
 const client = createRequest({
   axiosConfig: {
     baseURL: import.meta.env.VITE_API_BASE_PATH,
+    adapter: useBrowserMock ? 'fetch' : undefined,
     timeout: REQUEST_TIMEOUT
   },
   beforeRequest(config) {

@@ -26,8 +26,17 @@ import App from './App.vue'
 
 import { setupPermission } from './permission'
 
+const setupMock = async () => {
+  if (import.meta.env.PROD && import.meta.env.VITE_USE_MOCK === 'true') {
+    const { setupProdMockServer } = await import('../mock/_browser')
+    await setupProdMockServer()
+  }
+}
+
 // 创建实例
 const setupAll = async () => {
+  await setupMock()
+
   const app = createApp(App)
 
   setupStore(app)

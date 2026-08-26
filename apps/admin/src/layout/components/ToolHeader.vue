@@ -4,7 +4,6 @@
   import { Collapse } from '@/components/Collapse'
   import { LocaleDropdown } from '@/components/LocaleDropdown'
   import { UserInfo } from '@/components/UserInfo'
-  import { Screenfull } from '@/components/Screenfull'
   import { Breadcrumb } from '@/components/Breadcrumb'
   import { appConfig } from '@/config/app'
   import { useAppStore } from '@/store/modules/app'
@@ -56,9 +55,6 @@
                 {...{ 'onUpdate:modelValue': updateTheme }}
                 class="header-action"
               ></ThemeSwitch>
-            ) : undefined}
-            {appConfig.ui.screenfull ? (
-              <Screenfull class="header-action" color="var(--top-header-text-color)"></Screenfull>
             ) : undefined}
             {appConfig.ui.locale ? (
               <LocaleDropdown

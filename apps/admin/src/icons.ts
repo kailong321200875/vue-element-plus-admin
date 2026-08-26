@@ -10,8 +10,6 @@ import fileDocumentOutline from '@iconify-icons/mdi/file-document-outline'
 import fileTree from '@iconify-icons/mdi/file-tree'
 import folderOpenOutline from '@iconify-icons/mdi/folder-open-outline'
 import folderOutline from '@iconify-icons/mdi/folder-outline'
-import fullscreen from '@iconify-icons/mdi/fullscreen'
-import fullscreenExit from '@iconify-icons/mdi/fullscreen-exit'
 import helpCircle from '@iconify-icons/mdi/help-circle'
 import menu from '@iconify-icons/mdi/menu'
 import menuOpen from '@iconify-icons/mdi/menu-open'
@@ -40,8 +38,6 @@ export const icons = {
   'mdi:file-tree': fileTree,
   'mdi:folder-open-outline': folderOpenOutline,
   'mdi:folder-outline': folderOutline,
-  'mdi:fullscreen': fullscreen,
-  'mdi:fullscreen-exit': fullscreenExit,
   'mdi:help-circle': helpCircle,
   'mdi:menu': menu,
   'mdi:menu-open': menuOpen,
