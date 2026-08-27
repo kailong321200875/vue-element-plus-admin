@@ -1,0 +1,51 @@
+{
+  "name": "@vea/admin",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vue Element Plus Admin 管理后台应用",
+  "scripts": {
+    "dev": "vite --mode base",
+    "build": "vite build --mode pro",
+    "build:pro": "vite build --mode pro",
+    "build:dev": "vite build --mode dev",
+    "build:test": "vite build --mode test",
+    "preview": "vite preview --mode pro",
+    "ts:check": "vue-tsc --noEmit --skipLibCheck",
+    "clean": "rimraf dist dist-pro dist-dev dist-test node_modules/.cache"
+  },
+  "dependencies": {
+    "@iconify-icons/mdi": "^1.2.48",
+    "@vea/components": "workspace:*",
+    "@vea/hooks": "workspace:*",
+    "@vea/request": "workspace:*",
+    "@vea/styles": "workspace:*",
+    "@vueuse/core": "^14.4.0",
+    "echarts": "^6.1.0",
+    "element-plus": "catalog:",
+    "nprogress": "^0.2.0",
+    "pinia": "^4.0.2",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "vue": "catalog:",
+    "vue-i18n": "11.4.8",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "^11.2.4",
+    "@types/node": "^26.2.0",
+    "@types/nprogress": "^0.2.3",
+    "@unocss/transformer-variant-group": "^66.7.5",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vitejs/plugin-vue-jsx": "^5.1.6",
+    "esbuild": "^0.28.2",
+    "less": "^4.8.1",
+    "mockjs": "^1.1.0",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "unocss": "^66.7.5",
+    "unplugin-element-plus": "0.10.0",
+    "vite": "8.2.1",
+    "vite-plugin-mock": "3.0.2",
+    "vue-tsc": "^3.3.9"
+  }
+}

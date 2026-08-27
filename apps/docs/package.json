@@ -1,0 +1,16 @@
+{
+  "name": "@vea/docs",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ElementAdmin v3 文档站",
+  "scripts": {
+    "dev": "vitepress dev . --port 4002",
+    "build": "vitepress build .",
+    "preview": "vitepress preview . --port 4174"
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitepress": "^1.6.4"
+  }
+}

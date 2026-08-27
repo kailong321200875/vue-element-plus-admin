@@ -1,0 +1,32 @@
+{
+  "name": "@vea/components",
+  "version": "1.0.0",
+  "description": "Vue Element Plus Admin 公用组件库",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {},
+  "dependencies": {
+    "@iconify/vue": "^5.0.1"
+  },
+  "peerDependencies": {
+    "element-plus": ">=2.8.0",
+    "vue": ">=3.4.0"
+  },
+  "devDependencies": {
+    "element-plus": "catalog:",
+    "typescript": "catalog:",
+    "vue": "catalog:"
+  },
+  "license": "MIT"
+}

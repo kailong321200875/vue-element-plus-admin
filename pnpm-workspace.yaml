@@ -1,0 +1,9 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+catalog:
+  element-plus: '2.14.4'
+  rimraf: '^6.1.3'
+  typescript: 'npm:@typescript/typescript6@^6.0.2'
+  vue: '3.5.41'

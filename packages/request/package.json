@@ -1,0 +1,28 @@
+{
+  "name": "@vea/request",
+  "version": "1.0.0",
+  "description": "UI-independent Axios request client",
+  "type": "module",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "pnpm --workspace-root exec esno packages/request/test/request.test.ts"
+  },
+  "dependencies": {
+    "axios": "^1.19.0"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  },
+  "license": "MIT"
+}

@@ -1,9 +1,25 @@
-node_modules
-.DS_Store
-dist
-dist-ssr
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+dist-*/
+coverage/
+*.tsbuildinfo
+
+# Tool caches
+**/.vitepress/cache/
+
+# Logs
+*.log
+*-debug.log*
+*-error.log*
+
+# Local overrides
 *.local
-/dist*
-pnpm-debug
-stats.html
-.idea
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
