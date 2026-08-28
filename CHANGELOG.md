@@ -2,6 +2,71 @@
 
 All notable changes to this project are documented in this file and managed by Release Please from Conventional Commits.
 
+## [3.0.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.10.0...v3.0.0) (2026-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* v3 重构了动态路由、布局、请求、组件、图标、国际化和文档体系，不兼容 v2 的项目结构与使用方式。
+
+### Features
+
+* 添加表格组件及模拟数据接口，支持分页和动态列渲染 ([e98c66c](https://github.com/kailong321200875/vue-element-plus-admin/commit/e98c66cc09e0144f30815b88be64604e41cfba54))
+* 添加表格组件及模拟数据接口，支持分页和动态列渲染 ([6db1542](https://github.com/kailong321200875/vue-element-plus-admin/commit/6db15425cc641ba1fe693e4a635ab3575e727817))
+* **登录表单:** 添加记住密码功能的状态监听 ([b63f3f8](https://github.com/kailong321200875/vue-element-plus-admin/commit/b63f3f878e74bfb283eb699272e135e101d9797d))
+* 重构 v3 管理后台模板 ([e66532c](https://github.com/kailong321200875/vue-element-plus-admin/commit/e66532cf9648f7b628c56896d5fc6b22c7be4d46))
+
+
+### Bug Fixes
+
+* **admin:** 完善生产预览与顶部工具栏 ([b0c7c3f](https://github.com/kailong321200875/vue-element-plus-admin/commit/b0c7c3f6c928167c9e8689d6fa6366dc0c3a7119))
+* ElementPlusError: [el-pagination] [API] small is about to be deprecated in version 3.0.0, please use size instead. ([9f51e06](https://github.com/kailong321200875/vue-element-plus-admin/commit/9f51e06afa73b1bb0b649ca4ab53e137fb4caa3f))
+* IconPicker.vue ([9eb87ad](https://github.com/kailong321200875/vue-element-plus-admin/commit/9eb87ad13c19db946d0aef83a6bca96a9a6a75ba))
+* IconPicker.vue ([9f51e06](https://github.com/kailong321200875/vue-element-plus-admin/commit/9f51e06afa73b1bb0b649ca4ab53e137fb4caa3f))
+* index = -1 ([d84f4fc](https://github.com/kailong321200875/vue-element-plus-admin/commit/d84f4fc7bed9873e31a845c31744eab975dc9d61))
+* 修复Enter登录重复触发,阻止事件冒泡 ([97e7660](https://github.com/kailong321200875/vue-element-plus-admin/commit/97e7660e2107cd1d087d50fdbb534db72266f02b))
+* 修复env更新title后,store不更新 ([319cdd1](https://github.com/kailong321200875/vue-element-plus-admin/commit/319cdd182065021b6f994e6af77accd0ca099326))
+* 修复store里title不更新,Enter登录重复触发 ([3a47623](https://github.com/kailong321200875/vue-element-plus-admin/commit/3a476232ae7e0677a1be2cdd701541d6f77b7c7c))
+* 修复主题switch状态不统一的问题 ([6ba8aa8](https://github.com/kailong321200875/vue-element-plus-admin/commit/6ba8aa8acc849c0137b465149bd88d7556fc9312))
+* 修复主题switch状态不统一的问题 ([f015fc2](https://github.com/kailong321200875/vue-element-plus-admin/commit/f015fc2ff0642703ae92021643a22760bce12231))
+* 修复表格列设置弹窗出现警告问题 ([9f525a5](https://github.com/kailong321200875/vue-element-plus-admin/commit/9f525a52775c34be58be5eaafd131c6ba929972f))
+* 修复表格列设置弹窗出现警告问题 ([d240b73](https://github.com/kailong321200875/vue-element-plus-admin/commit/d240b739b966403657ddbb2cac9d80bdc18c5324))
+* 修改暗黑模式下echarts图例和标题的颜色等样式 ([ac06b7a](https://github.com/kailong321200875/vue-element-plus-admin/commit/ac06b7ae70aa92ed1769ea8ba536b4de0a225781))
+* 修改暗黑模式下echarts图例和标题的颜色等样式 ([2dbee0c](https://github.com/kailong321200875/vue-element-plus-admin/commit/2dbee0c6ed10267a5221e29b5c6dd9c5ba295f16))
+* **国际化:** 优化语言切换逻辑并修复标题更新问题 ([d4cb480](https://github.com/kailong321200875/vue-element-plus-admin/commit/d4cb48036336cb4f50cc0dd6c578d8341b958327))
+* 当options为空时无限循环 ([9bd7ae1](https://github.com/kailong321200875/vue-element-plus-admin/commit/9bd7ae109701d6c30309c22f832792d1a2ae96f5))
+* 当options为空时无限循环 ([9b13416](https://github.com/kailong321200875/vue-element-plus-admin/commit/9b134161a94867f45d1a3d6ab87485ff65562514))
+
+
+### Performance Improvements
+
+* 优化构建体积 ([2890140](https://github.com/kailong321200875/vue-element-plus-admin/commit/28901407ff1d73f89bd6c3a28928f7a0705de725))
+* 登录组件添加enter键触发提交,锁屏组件自动聚焦输入框 ([2a9388d](https://github.com/kailong321200875/vue-element-plus-admin/commit/2a9388ddf48bb7351f3727aa5145c1d55a1930b7))
+* 登录组件添加enter键触发提交,锁屏组件自动聚焦输入框 ([f10cf79](https://github.com/kailong321200875/vue-element-plus-admin/commit/f10cf798e5c4ebc2a3c311fe5924d1a9cb21d94a))
+
+
+### Code Refactoring
+
+* restructure project to pnpm monorepo ([e9d35bd](https://github.com/kailong321200875/vue-element-plus-admin/commit/e9d35bd03e479ea0aa1c17e8ccbabb5f7b2ea563))
+* **国际化:** 优化国际化相关功能实现 ([2e56560](https://github.com/kailong321200875/vue-element-plus-admin/commit/2e565605521283454fec326ab3060ed1e912837a))
+* **登录:** 简化登录信息存储并添加错误提示 ([794d293](https://github.com/kailong321200875/vue-element-plus-admin/commit/794d293bdd67d4c65f083eb88f261e4c9e893024))
+
+## [2.10.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.9.0...v2.10.0) (2025-01-09)
+
+
+### Features
+
+* 新增支持右键自定义菜单进行节点编辑的树形组件. [#569](https://github.com/kailong321200875/vue-element-plus-admin/issues/569) ([0735371](https://github.com/kailong321200875/vue-element-plus-admin/commit/0735371c637964bd328073c2c0150edf14d53b3a))
+* 新增支持右键自定义菜单进行节点编辑的树形组件. [#569](https://github.com/kailong321200875/vue-element-plus-admin/issues/569) ([5a00171](https://github.com/kailong321200875/vue-element-plus-admin/commit/5a00171c9abbf89288b39969a6e3aec65c308546))
+
+
+### Bug Fixes
+
+* [#580](https://github.com/kailong321200875/vue-element-plus-admin/issues/580) [#573](https://github.com/kailong321200875/vue-element-plus-admin/issues/573) [#572](https://github.com/kailong321200875/vue-element-plus-admin/issues/572) [#564](https://github.com/kailong321200875/vue-element-plus-admin/issues/564) ([0aca943](https://github.com/kailong321200875/vue-element-plus-admin/commit/0aca9430c20f58db69a2214b73d24d619910ce82))
+* fix error message about "no-prototype-builtins" after run project ([64ec120](https://github.com/kailong321200875/vue-element-plus-admin/commit/64ec1206e861ffd71f83dd5f0455b883cedfafe7))
+* initModel判断schema对应的field是否存在,兼容null与0等场景 ([f236109](https://github.com/kailong321200875/vue-element-plus-admin/commit/f236109945ca5b90108178891b744e776634da0d))
+* 当前页不为1时，修改页数后会导致多次调用getList方法问题 ([28ac2dd](https://github.com/kailong321200875/vue-element-plus-admin/commit/28ac2dd7b676d995f66e7fd0e096f8687a0c40c6))
+
 ## [2.10.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.9.0...v2.10.0) (2025-01-09)
 
 
