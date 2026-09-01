@@ -1,11 +1,11 @@
 import { ElSubMenu, ElMenuItem } from 'element-plus'
-import { unref } from 'vue'
+import { unref, type ComputedRef } from 'vue'
 import { hasOneShowingChild } from '../helper'
 import { useRenderMenuTitle } from './useRenderMenuTitle'
 import { isUrl, pathResolve } from '@/utils/routerHelper'
 const prefixCls = 'v-submenu'
 
-export const useRenderMenuItem = (menuMode) => {
+export const useRenderMenuItem = (menuMode: ComputedRef<'vertical' | 'horizontal'>) => {
   const { renderMenuTitle } = useRenderMenuTitle()
 
   // allRouters: AppRouteRecordRaw[] = [],

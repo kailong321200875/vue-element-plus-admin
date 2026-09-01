@@ -8,7 +8,9 @@
 pnpm lint               # 全仓 Oxlint
 pnpm lint:fix           # Oxlint 自动修复
 pnpm lint:style         # Stylelint 自动修复
-pnpm typecheck:admin    # Admin 类型检查
+pnpm format:check       # 全仓格式检查
+pnpm style:check        # 全仓样式检查
+pnpm typecheck          # Admin 与公共 packages 类型检查
 ```
 
 包级测试：
@@ -68,7 +70,8 @@ refactor: simplify request client
 
 ## TypeScript 命名
 
-- Vue 组件文件使用 PascalCase，例如 `LocaleDropdown.vue`。
+- Admin 组件目录使用 PascalCase，例如 `LocaleDropdown/`；目录入口固定为 `index.vue`，相关的 `types.ts`、`helper.ts` 和内部子组件与入口放在一起。
+- `packages/components` 使用相同的组件目录规则，但保留包级 `src/index.ts` 作为唯一公共出口；组件目录内部不增加仅用于转发的 `index.ts`。
 - Hook 使用 `useXxx`，例如 `useCrud`。
 - API 函数使用动词 + 领域 + `Api`，例如 `getRouteListApi`。
 - 类型使用 PascalCase，不加 `I` 前缀，例如 `LoginParams`、`ApiResponse`。

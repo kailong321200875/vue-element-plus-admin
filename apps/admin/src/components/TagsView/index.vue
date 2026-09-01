@@ -1,14 +1,13 @@
 <script setup lang="ts">
   import { computed, nextTick, ref, watch } from 'vue'
   import { ElScrollbar, type ScrollbarInstance } from 'element-plus'
-  import type { RouteLocationNormalizedLoaded } from 'vue-router'
   import { useRouter } from 'vue-router'
   import { useI18n } from 'vue-i18n'
   import { appConfig } from '@/config/app'
-  import { ContextMenu } from '@/components/ContextMenu'
-  import type { ContextMenuSchema } from '@/components/ContextMenu'
+  import ContextMenu from '@/components/ContextMenu/index.vue'
+  import type { ContextMenuSchema } from '@/components/ContextMenu/types'
   import { usePermissionStore } from '@/store/modules/permission'
-  import { useTagsViewStore } from '@/store/modules/tagsView'
+  import { createTagView, useTagsViewStore, type TagView } from '@/store/modules/tagsView'
   import { filterAffixTags } from './helper'
 
   const prefixCls = 'v-tags-view'
@@ -28,15 +27,7 @@
     () => permissionStore.addRouters.find((route) => !route.meta?.hidden)?.path ?? '/'
   )
 
-  const isActive = (view: RouteLocationNormalizedLoaded) => view.path === currentRoute.value.path
-
-  const getTagIcon = (view: RouteLocationNormalizedLoaded) => {
-    if (!appConfig.ui.tagsViewIcon) return
-    return (
-      [...(view.matched ?? [])].reverse().find((route) => route.meta?.icon)?.meta.icon ??
-      view.meta?.icon
-    )
-  }
+  const isActive = (view: TagView) => view.path === currentRoute.value.path
 
   const moveActiveIntoView = async () => {
     await nextTick()
@@ -49,11 +40,10 @@
     scrollbarRef.value?.wrapRef?.scrollBy({ left, behavior: 'smooth' })
   }
 
-  const navigateTo = (view?: RouteLocationNormalizedLoaded) =>
-    push(view?.fullPath || defaultPath.value)
+  const navigateTo = (view?: TagView) => push(view?.fullPath || defaultPath.value)
 
-  const closeTag = async (view: RouteLocationNormalizedLoaded) => {
-    if (view.meta?.affix) return
+  const closeTag = async (view: TagView) => {
+    if (view.affix) return
 
     const index = visitedViews.value.findIndex((item) => item.path === view.path)
     const wasActive = isActive(view)
@@ -68,28 +58,28 @@
     await navigateTo(visitedViews.value.at(-1))
   }
 
-  const keepCurrentRouteVisible = async (fallback: RouteLocationNormalizedLoaded) => {
+  const keepCurrentRouteVisible = async (fallback: TagView) => {
     if (!visitedViews.value.some((view) => isActive(view))) {
       await navigateTo(fallback)
     }
   }
 
-  const closeOtherTags = async (view: RouteLocationNormalizedLoaded) => {
+  const closeOtherTags = async (view: TagView) => {
     tagsViewStore.removeOtherViews(view)
     await keepCurrentRouteVisible(view)
   }
 
-  const closeLeftTags = async (view: RouteLocationNormalizedLoaded) => {
+  const closeLeftTags = async (view: TagView) => {
     tagsViewStore.removeLeftViews(view)
     await keepCurrentRouteVisible(view)
   }
 
-  const closeRightTags = async (view: RouteLocationNormalizedLoaded) => {
+  const closeRightTags = async (view: TagView) => {
     tagsViewStore.removeRightViews(view)
     await keepCurrentRouteVisible(view)
   }
 
-  const refreshTag = async (view?: RouteLocationNormalizedLoaded) => {
+  const refreshTag = async (view?: TagView) => {
     if (!view) return
 
     tagsViewStore.removeCachedView(view.name)
@@ -97,10 +87,9 @@
     await replace({ path: `/redirect${view.path}`, query: view.query, hash: view.hash })
   }
 
-  const hasClosableView = (views: RouteLocationNormalizedLoaded[]) =>
-    views.some((view) => !view.meta?.affix)
+  const hasClosableView = (views: TagView[]) => views.some((view) => !view.affix)
 
-  const createContextMenu = (view: RouteLocationNormalizedLoaded): ContextMenuSchema[] => {
+  const createContextMenu = (view: TagView): ContextMenuSchema[] => {
     const index = visitedViews.value.findIndex((item) => item.path === view.path)
     const otherViews = visitedViews.value.filter((item) => item.path !== view.path)
 
@@ -114,7 +103,7 @@
       {
         icon: 'mdi:close',
         label: 'common.closeTab',
-        disabled: Boolean(view.meta?.affix),
+        disabled: view.affix,
         command: () => closeTag(view)
       },
       {
@@ -157,7 +146,8 @@
   watch(
     () => currentRoute.value.fullPath,
     async () => {
-      tagsViewStore.addView(currentRoute.value)
+      const view = createTagView(currentRoute.value)
+      if (view) tagsViewStore.addView(view)
       await moveActiveIntoView()
     },
     { immediate: true, flush: 'post' }
@@ -185,19 +175,19 @@
             :schema="createContextMenu(item)"
             :class="[
               `${prefixCls}__item`,
-              { [`${prefixCls}__item--affix`]: item.meta?.affix, 'is-active': isActive(item) }
+              { [`${prefixCls}__item--affix`]: item.affix, 'is-active': isActive(item) }
             ]"
           >
             <div :class="`${prefixCls}__item-body`">
               <RouterLink :to="item.fullPath" :class="`${prefixCls}__link`">
-                <Icon v-if="getTagIcon(item)" :icon="getTagIcon(item)" :size="13" />
-                <span>{{ t(item.meta?.title as string) }}</span>
+                <Icon v-if="appConfig.ui.tagsViewIcon && item.icon" :icon="item.icon" :size="13" />
+                <span>{{ t(item.title || '') }}</span>
               </RouterLink>
               <button
-                v-if="!item.meta?.affix"
+                v-if="!item.affix"
                 :class="`${prefixCls}__close`"
                 type="button"
-                :aria-label="`${t('common.closeTab')}: ${t(item.meta?.title as string)}`"
+                :aria-label="`${t('common.closeTab')}: ${t(item.title || '')}`"
                 @click.stop="closeTag(item)"
               >
                 <Icon icon="mdi:close" :size="13" />

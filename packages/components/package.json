@@ -15,7 +15,9 @@
   "files": [
     "src"
   ],
-  "scripts": {},
+  "scripts": {
+    "typecheck": "vue-tsc --noEmit --skipLibCheck -p tsconfig.json"
+  },
   "dependencies": {
     "@iconify/vue": "^5.0.1"
   },
@@ -26,7 +28,8 @@
   "devDependencies": {
     "element-plus": "catalog:",
     "typescript": "catalog:",
-    "vue": "catalog:"
+    "vue": "catalog:",
+    "vue-tsc": "^3.3.9"
   },
   "license": "MIT"
 }

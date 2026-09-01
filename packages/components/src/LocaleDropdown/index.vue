@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
-  import { Icon } from '../../Icon'
+  import Icon from '../Icon/index.vue'
   import type { LocaleOption } from './types'
 
   defineOptions({ inheritAttrs: false })

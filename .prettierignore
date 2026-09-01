@@ -4,3 +4,4 @@
 **/.vitepress/cache/**
 **/public/**
 /CHANGELOG.md
+/pnpm-lock.yaml

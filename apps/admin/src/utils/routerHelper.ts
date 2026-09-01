@@ -1,24 +1,9 @@
-import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router'
-
 const modules = import.meta.glob('../views/**/*.{vue,tsx}')
 
 /* Layout */
 export const Layout = () => import('@/layout/Layout.vue')
 
 export const isUrl = (path: string) => /^(?:https?:|mailto:|tel:)/.test(path)
-
-export const getRawRoute = (route: RouteLocationNormalized): RouteLocationNormalized => {
-  if (!route) return route
-  const { matched, ...opt } = route
-  return {
-    ...opt,
-    matched: (matched ?? []).map((item) => ({
-      meta: item.meta,
-      name: item.name,
-      path: item.path
-    })) as RouteRecordNormalized[]
-  }
-}
 
 // 将接口返回的组件路径转换为可注册的路由组件
 export const generateRoutesByServer = (routes: AppCustomRouteRecordRaw[]): AppRouteRecordRaw[] => {

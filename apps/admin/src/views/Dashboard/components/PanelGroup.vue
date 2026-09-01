@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ElRow, ElCol, ElCard, ElSkeleton } from 'element-plus'
-  import { CountTo } from '@/components/CountTo'
+  import CountTo from '@/components/CountTo/index.vue'
   import { useI18n } from 'vue-i18n'
   import { ref, reactive } from 'vue'
   import { getAnalysisTotalApi } from '@/api/dashboard/analysis'

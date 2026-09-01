@@ -40,7 +40,7 @@ echarts.use([
 ```vue
 <script setup lang="ts">
   import type { EChartsOption } from 'echarts'
-  import { Echart } from '@/components/Echart'
+  import Echart from '@/components/Echart/index.vue'
 
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
@@ -59,7 +59,7 @@ echarts.use([
 
 ## 封装解决的问题
 
-`Echart.vue` 统一处理：
+`Echart/index.vue` 统一处理：
 
 - 挂载时创建实例，卸载时 dispose。
 - option 对象引用变化时重新 setOption。

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ConfigGlobal } from '@/components/ConfigGlobal'
+  import ConfigGlobal from '@/components/ConfigGlobal/index.vue'
   import { useTheme } from '@/hooks/useTheme'
   import { useTitle } from '@/hooks/useTitle'
 

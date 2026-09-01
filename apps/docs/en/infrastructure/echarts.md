@@ -40,7 +40,7 @@ This makes the application bundle easier to control than importing the complete 
 ```vue
 <script setup lang="ts">
   import type { EChartsOption } from 'echarts'
-  import { Echart } from '@/components/Echart'
+  import Echart from '@/components/Echart/index.vue'
 
   const option: EChartsOption = {
     tooltip: { trigger: 'axis' },
@@ -59,7 +59,7 @@ The component accepts only `option` and `height`. Transforming business data and
 
 ## What the wrapper handles
 
-`Echart.vue` centralizes the following behavior:
+`Echart/index.vue` centralizes the following behavior:
 
 - Creates the instance when mounted and disposes it when unmounted.
 - Calls `setOption` again when the option object reference changes.

@@ -13,6 +13,7 @@
     "build:admin:test": "pnpm --filter @vea/admin build:test",
     "preview:admin": "pnpm --filter @vea/admin preview",
     "typecheck:admin": "pnpm --filter @vea/admin ts:check",
+    "typecheck": "pnpm typecheck:admin && pnpm --filter @vea/components typecheck && pnpm --filter @vea/hooks typecheck && pnpm --filter @vea/request typecheck",
     "clean:admin": "pnpm --filter @vea/admin clean",
     "dev:docs": "pnpm --filter @vea/docs dev",
     "build:docs": "pnpm --filter @vea/docs build",
@@ -22,7 +23,9 @@
     "clean:cache": "rimraf node_modules/.cache",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
+    "format:check": "prettier --check --ignore-unknown .",
     "lint:format": "prettier --write --ignore-unknown --log-level warn .",
+    "style:check": "stylelint \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:style": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.json",
     "prepare": "husky install"

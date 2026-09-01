@@ -118,7 +118,7 @@ export default defineConfig({
           ]
         },
         editLink: {
-          pattern: `${repository}/edit/v3/apps/docs/:path`,
+          pattern: `${repository}/edit/master/apps/docs/:path`,
           text: 'Edit this page on GitHub'
         },
         outline: {
@@ -289,7 +289,7 @@ export default defineConfig({
     },
     socialLinks: [{ icon: 'github', link: repository }],
     editLink: {
-      pattern: `${repository}/edit/v3/apps/docs/:path`,
+      pattern: `${repository}/edit/master/apps/docs/:path`,
       text: '在 GitHub 上编辑此页'
     },
     outline: {

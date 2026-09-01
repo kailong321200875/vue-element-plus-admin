@@ -16,6 +16,7 @@
     "src"
   ],
   "scripts": {
+    "typecheck": "tsc6 --noEmit -p tsconfig.json",
     "test": "pnpm --workspace-root exec esno packages/request/test/request.test.ts"
   },
   "dependencies": {

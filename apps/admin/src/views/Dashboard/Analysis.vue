@@ -3,7 +3,7 @@
   import { ElRow, ElCol, ElCard, ElSkeleton } from 'element-plus'
   import { computed, ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import { Echart } from '@/components/Echart'
+  import Echart from '@/components/Echart/index.vue'
   import { createPieOptions, createBarOptions, createLineOptions } from './echarts-data'
   import {
     getUserAccessSourceApi,

@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - release
+      - master
   workflow_dispatch:
 
 concurrency:
@@ -40,8 +40,14 @@ jobs:
       - name: Lint workspace
         run: pnpm lint
 
-      - name: Type-check Admin
-        run: pnpm typecheck:admin
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Check styles
+        run: pnpm style:check
+
+      - name: Type-check workspace
+        run: pnpm typecheck
 
       - name: Test shared packages
         run: |

@@ -1,4 +1,5 @@
 import { SUCCESS_CODE } from '@/constants'
+import type { MockMethod, Recordable } from 'vite-plugin-mock'
 
 const timeout = 1000
 
@@ -27,7 +28,7 @@ export default [
     url: '/mock/user/login',
     method: 'post',
     timeout,
-    response: ({ body }) => {
+    response: ({ body }: { body: Recordable }) => {
       const data = body
       let hasUser = false
       for (const user of List) {
@@ -62,4 +63,4 @@ export default [
       }
     }
   }
-]
+] satisfies MockMethod[]

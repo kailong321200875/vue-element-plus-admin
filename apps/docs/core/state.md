@@ -72,7 +72,7 @@ Permission Store 保存：
 
 ## TagsView 状态
 
-`visitedViews` 和 `cachedViews` 始终通过 Store action 同步更新。组件不应直接 `push` 或 `splice` 这两个数组，否则 KeepAlive 名单可能与标签不一致。
+`visitedViews` 和 `cachedViews` 始终通过 Store action 同步更新。`visitedViews` 保存的是独立的轻量 `TagView`，而不是 Vue Router 路由对象。组件不应直接 `push` 或 `splice` 这两个数组，否则 KeepAlive 名单可能与标签不一致。
 
 ## Locale 状态
 

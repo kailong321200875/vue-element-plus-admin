@@ -72,7 +72,7 @@ After a page reload, dynamic routes are requested again from the persisted User 
 
 ## TagsView state
 
-`visitedViews` and `cachedViews` are always updated together through Store actions. Components must not call `push` or `splice` on either array directly, because the KeepAlive include list could then diverge from the tabs.
+`visitedViews` and `cachedViews` are always updated together through Store actions. `visitedViews` contains independent lightweight `TagView` values rather than Vue Router route objects. Components must not call `push` or `splice` on either array directly, because the KeepAlive include list could then diverge from the tabs.
 
 ## Locale state
 

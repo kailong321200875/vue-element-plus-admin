@@ -16,7 +16,7 @@ corepack prepare pnpm@9.15.3 --activate
 ## 获取与安装
 
 ```bash
-git clone --branch v3 --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
+git clone --branch master --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
 cd vue-element-plus-admin
 pnpm install
 ```
@@ -50,18 +50,20 @@ pnpm dev:docs
 
 ## 常用命令
 
-| 命令                    | 说明                            |
-| ----------------------- | ------------------------------- |
-| `pnpm dev:admin`        | 启动 Admin 开发环境             |
-| `pnpm build:admin`      | 构建生产版本                    |
-| `pnpm build:admin:dev`  | 按开发环境变量构建              |
-| `pnpm build:admin:test` | 按测试环境变量构建              |
-| `pnpm preview:admin`    | 预览 Admin 生产构建             |
-| `pnpm typecheck:admin`  | 执行 Vue 与 TypeScript 类型检查 |
-| `pnpm dev:docs`         | 启动文档站                      |
-| `pnpm build:docs`       | 构建文档站                      |
-| `pnpm preview:docs`     | 预览文档构建                    |
-| `pnpm lint`             | 使用 Oxlint 检查整个工作区      |
+| 命令                    | 说明                       |
+| ----------------------- | -------------------------- |
+| `pnpm dev:admin`        | 启动 Admin 开发环境        |
+| `pnpm build:admin`      | 构建生产版本               |
+| `pnpm build:admin:dev`  | 按开发环境变量构建         |
+| `pnpm build:admin:test` | 按测试环境变量构建         |
+| `pnpm preview:admin`    | 预览 Admin 生产构建        |
+| `pnpm typecheck`        | 检查 Admin 与公共包的类型  |
+| `pnpm dev:docs`         | 启动文档站                 |
+| `pnpm build:docs`       | 构建文档站                 |
+| `pnpm preview:docs`     | 预览文档构建               |
+| `pnpm lint`             | 使用 Oxlint 检查整个工作区 |
+| `pnpm format:check`     | 检查整个工作区的代码格式   |
+| `pnpm style:check`      | 检查整个工作区的样式       |
 
 ## 第一次验证
 

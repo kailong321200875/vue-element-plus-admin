@@ -7,7 +7,7 @@
 
   <p>A lean, extensible Vue 3 admin starter for real-world applications.</p>
 
-[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
+[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/master) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
 </div>
 
 **English** | [中文](./README.zh-CN.md)
@@ -69,7 +69,7 @@ The packages currently export workspace source code and are compiled by each Vit
 ## Quick start
 
 ```bash
-git clone --branch v3 --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
+git clone --branch master --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
 cd vue-element-plus-admin
 pnpm install
 pnpm dev:admin
@@ -93,11 +93,13 @@ The built-in Mock API runs through the development mock server locally. When `VI
 | `pnpm build:admin:dev`  | Build Admin with development variables |
 | `pnpm build:admin:test` | Build Admin with test variables        |
 | `pnpm preview:admin`    | Preview the Admin production build     |
-| `pnpm typecheck:admin`  | Run Vue and TypeScript type checking   |
+| `pnpm typecheck`        | Type-check Admin and shared packages   |
 | `pnpm dev:docs`         | Start the documentation app            |
 | `pnpm build:docs`       | Build the documentation app            |
 | `pnpm preview:docs`     | Preview the documentation build        |
 | `pnpm lint`             | Run Oxlint across the workspace        |
+| `pnpm format:check`     | Check formatting across the workspace  |
+| `pnpm style:check`      | Check styles across the workspace      |
 
 Package tests:
 

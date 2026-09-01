@@ -7,7 +7,7 @@
 
   <p>面向真实业务的轻量、可扩展 Vue 3 后台管理模板。</p>
 
-[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=release)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/v3) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
+[![CI](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kailong321200875/vue-element-plus-admin/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/kailong321200875/vue-element-plus-admin.svg)](./LICENSE) [![last commit](https://img.shields.io/github/last-commit/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/commits/master) [![stars](https://img.shields.io/github/stars/kailong321200875/vue-element-plus-admin.svg)](https://github.com/kailong321200875/vue-element-plus-admin/stargazers)
 </div>
 
 [English](./README.md) | **中文**
@@ -69,7 +69,7 @@ packages/
 ## 快速开始
 
 ```bash
-git clone --branch v3 --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
+git clone --branch master --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
 cd vue-element-plus-admin
 pnpm install
 pnpm dev:admin
@@ -86,18 +86,20 @@ Admin 默认运行在 `http://localhost:4000/`。
 
 ## 常用命令
 
-| 命令                    | 说明                            |
-| ----------------------- | ------------------------------- |
-| `pnpm dev:admin`        | 启动 Admin 开发服务器           |
-| `pnpm build:admin`      | 使用生产模式构建 Admin          |
-| `pnpm build:admin:dev`  | 使用开发环境变量构建 Admin      |
-| `pnpm build:admin:test` | 使用测试环境变量构建 Admin      |
-| `pnpm preview:admin`    | 预览 Admin 生产构建             |
-| `pnpm typecheck:admin`  | 执行 Vue 与 TypeScript 类型检查 |
-| `pnpm dev:docs`         | 启动文档站                      |
-| `pnpm build:docs`       | 构建文档站                      |
-| `pnpm preview:docs`     | 预览文档构建                    |
-| `pnpm lint`             | 使用 Oxlint 检查整个工作区      |
+| 命令                    | 说明                       |
+| ----------------------- | -------------------------- |
+| `pnpm dev:admin`        | 启动 Admin 开发服务器      |
+| `pnpm build:admin`      | 使用生产模式构建 Admin     |
+| `pnpm build:admin:dev`  | 使用开发环境变量构建 Admin |
+| `pnpm build:admin:test` | 使用测试环境变量构建 Admin |
+| `pnpm preview:admin`    | 预览 Admin 生产构建        |
+| `pnpm typecheck`        | 检查 Admin 与公共包的类型  |
+| `pnpm dev:docs`         | 启动文档站                 |
+| `pnpm build:docs`       | 构建文档站                 |
+| `pnpm preview:docs`     | 预览文档构建               |
+| `pnpm lint`             | 使用 Oxlint 检查整个工作区 |
+| `pnpm format:check`     | 检查整个工作区的代码格式   |
+| `pnpm style:check`      | 检查整个工作区的样式       |
 
 包级测试：
 

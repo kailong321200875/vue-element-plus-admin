@@ -5,10 +5,10 @@
   import { useAppStore } from '@/store/modules/app'
   import { usePermissionStore } from '@/store/modules/permission'
   import { isUrl, pathResolve } from '@/utils/routerHelper'
-  import { Menu } from '@/components/Menu'
-  import { TagsView } from '@/components/TagsView'
-  import { Logo } from '@/components/Logo'
-  import { Backtop } from '@/components/Backtop'
+  import Menu from '@/components/Menu/index.vue'
+  import TagsView from '@/components/TagsView/index.vue'
+  import Logo from '@/components/Logo/index.vue'
+  import Backtop from '@/components/Backtop/index.vue'
   import AppView from './components/AppView.vue'
   import ToolHeader from './components/ToolHeader.vue'
   import PrimaryNav from './components/PrimaryNav.vue'
@@ -49,7 +49,7 @@
       : []
   )
 
-  const firstRoutePath = (route: AppRouteRecordRaw, parentPath = '/') => {
+  const firstRoutePath = (route: AppRouteRecordRaw, parentPath = '/'): string => {
     if (typeof route.redirect === 'string') return route.redirect
     const path = isUrl(route.path) ? route.path : pathResolve(parentPath, route.path)
     const child = route.children?.find((item) => !item.meta?.hidden)

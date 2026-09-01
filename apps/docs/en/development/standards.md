@@ -8,7 +8,9 @@ The project uses Oxlint for JavaScript, TypeScript, and Vue static analysis, Pre
 pnpm lint               # Run Oxlint across the repository
 pnpm lint:fix           # Apply Oxlint fixes
 pnpm lint:style         # Apply Stylelint fixes
-pnpm typecheck:admin    # Type-check Admin
+pnpm format:check       # Check workspace formatting
+pnpm style:check        # Check workspace styles
+pnpm typecheck          # Type-check Admin and shared packages
 ```
 
 Package-level tests:
@@ -68,7 +70,8 @@ Common allowed types currently include `feat`, `fix`, `docs`, `style`, `refactor
 
 ## TypeScript naming
 
-- Use PascalCase for Vue component files, such as `LocaleDropdown.vue`.
+- Use PascalCase for Admin component directories, such as `LocaleDropdown/`. Keep `index.vue` as the directory entry and colocate related `types.ts`, `helper.ts`, and internal components.
+- `packages/components` follows the same component-directory convention, while its package-level `src/index.ts` remains the single public entry. Do not add forwarding-only `index.ts` files inside component directories.
 - Prefix Hooks with `useXxx`, such as `useCrud`.
 - Name API functions with a verb, domain, and `Api`, such as `getRouteListApi`.
 - Use PascalCase for types without an `I` prefix, such as `LoginParams` and `ApiResponse`.

@@ -16,7 +16,7 @@ corepack prepare pnpm@9.15.3 --activate
 ## Clone and install
 
 ```bash
-git clone --branch v3 --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
+git clone --branch master --single-branch https://github.com/kailong321200875/vue-element-plus-admin.git
 cd vue-element-plus-admin
 pnpm install
 ```
@@ -57,11 +57,13 @@ The default URL is `http://localhost:4002/`. The documentation and Admin are ind
 | `pnpm build:admin:dev`  | Build with development environment variables |
 | `pnpm build:admin:test` | Build with test environment variables        |
 | `pnpm preview:admin`    | Preview the Admin production build           |
-| `pnpm typecheck:admin`  | Run Vue and TypeScript type checking         |
+| `pnpm typecheck`        | Type-check Admin and shared packages         |
 | `pnpm dev:docs`         | Start the documentation site                 |
 | `pnpm build:docs`       | Build the documentation site                 |
 | `pnpm preview:docs`     | Preview the documentation build              |
 | `pnpm lint`             | Check the entire workspace with Oxlint       |
+| `pnpm format:check`     | Check formatting across the workspace        |
+| `pnpm style:check`      | Check styles across the workspace            |
 
 ## First-run checklist
 

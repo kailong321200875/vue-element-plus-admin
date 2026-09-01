@@ -3,21 +3,22 @@ name: Release
 on:
   push:
     branches:
-      - release
+      - master
 
 concurrency:
   group: release-${{ github.ref }}
   cancel-in-progress: false
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+permissions: {}
 
 jobs:
   release_please:
     name: Prepare or publish release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
     steps:
@@ -26,30 +27,66 @@ jobs:
         uses: googleapis/release-please-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          target-branch: release
+          target-branch: master
 
-  deploy-admin:
-    name: Deploy Admin
+  deploy:
+    name: Build and deploy release
     needs: release_please
     if: needs.release_please.outputs.release_created == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
     steps:
-      - name: Trigger Cloudflare Pages build
-        env:
-          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_ADMIN_DEPLOY_HOOK }}
-        run: |
-          : "${DEPLOY_HOOK_URL:?CLOUDFLARE_ADMIN_DEPLOY_HOOK is not configured}"
-          curl --fail-with-body --retry 3 --silent --show-error --request POST "$DEPLOY_HOOK_URL"
+      - name: Checkout release commit
+        uses: actions/checkout@v6
 
-  deploy-docs:
-    name: Deploy documentation
-    needs: release_please
-    if: needs.release_please.outputs.release_created == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Cloudflare Pages build
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install dependencies
         env:
-          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_DOCS_DEPLOY_HOOK }}
+          HUSKY: 0
+        run: pnpm install --frozen-lockfile
+
+      - name: Build release artifacts
         run: |
-          : "${DEPLOY_HOOK_URL:?CLOUDFLARE_DOCS_DEPLOY_HOOK is not configured}"
-          curl --fail-with-body --retry 3 --silent --show-error --request POST "$DEPLOY_HOOK_URL"
+          pnpm build:admin
+          pnpm build:docs
+
+      - name: Deploy Admin to Cloudflare Pages
+        id: deploy-admin
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/admin/dist-pro --project-name=element-plus-admin --branch=master --commit-hash=${{ github.sha }}
+
+      - name: Verify Admin deployment
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy-admin.outputs.deployment-url }}
+        run: |
+          : "${DEPLOYMENT_URL:?Admin deployment URL is missing}"
+          curl --fail-with-body --retry 5 --retry-all-errors --connect-timeout 10 --max-time 30 --silent --show-error "$DEPLOYMENT_URL"
+
+      - name: Deploy documentation to Cloudflare Pages
+        id: deploy-docs
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/docs/.vitepress/dist --project-name=element-plus-admin-docs --branch=master --commit-hash=${{ github.sha }}
+
+      - name: Verify documentation deployment
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy-docs.outputs.deployment-url }}
+        run: |
+          : "${DEPLOYMENT_URL:?Documentation deployment URL is missing}"
+          curl --fail-with-body --retry 5 --retry-all-errors --connect-timeout 10 --max-time 30 --silent --show-error "$DEPLOYMENT_URL"

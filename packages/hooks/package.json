@@ -24,6 +24,7 @@
     "src"
   ],
   "scripts": {
+    "typecheck": "tsc6 --noEmit -p tsconfig.json",
     "test": "pnpm --workspace-root exec esno packages/hooks/test/index.ts"
   },
   "devDependencies": {

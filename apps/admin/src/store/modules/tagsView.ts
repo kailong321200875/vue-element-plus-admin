@@ -1,20 +1,39 @@
 import { defineStore } from 'pinia'
-import type { RouteLocationNormalizedLoaded, RouteRecordName } from 'vue-router'
-import { getRawRoute } from '@/utils/routerHelper'
+import type { LocationQuery, RouteLocationNormalizedLoaded } from 'vue-router'
+
+export interface TagView {
+  path: string
+  fullPath: string
+  name?: string
+  title?: string
+  icon?: string
+  query: LocationQuery
+  hash: string
+  affix: boolean
+  noCache: boolean
+}
 
 export interface TagsViewState {
-  visitedViews: RouteLocationNormalizedLoaded[]
+  visitedViews: TagView[]
   cachedViews: string[]
 }
 
-const cloneView = (view: RouteLocationNormalizedLoaded): RouteLocationNormalizedLoaded => {
-  const rawView = getRawRoute(view)
+export const createTagView = (route: RouteLocationNormalizedLoaded): TagView | undefined => {
+  if (route.meta.noTagsView) return
+
+  const icon = [...route.matched].reverse().find((record) => record.meta.icon)?.meta.icon
+
   return {
-    ...rawView,
-    meta: { ...rawView.meta },
-    query: { ...rawView.query },
-    params: { ...rawView.params }
-  } as RouteLocationNormalizedLoaded
+    path: route.path,
+    fullPath: route.fullPath,
+    name: typeof route.name === 'string' ? route.name : undefined,
+    title: route.meta.title,
+    icon: icon ?? route.meta.icon,
+    query: { ...route.query },
+    hash: route.hash,
+    affix: Boolean(route.meta.affix),
+    noCache: Boolean(route.meta.noCache)
+  }
 }
 
 export const useTagsViewStore = defineStore('tagsView', {
@@ -26,58 +45,51 @@ export const useTagsViewStore = defineStore('tagsView', {
     syncCachedViews() {
       this.cachedViews = [
         ...new Set(
-          this.visitedViews.flatMap((view) =>
-            !view.meta?.noCache && typeof view.name === 'string' ? [view.name] : []
-          )
+          this.visitedViews.flatMap((view) => (!view.noCache && view.name ? [view.name] : []))
         )
       ]
     },
-    addView(view: RouteLocationNormalizedLoaded) {
-      if (view.meta?.noTagsView) return
-
-      const nextView = cloneView(view)
+    addView(view: TagView) {
       const index = this.visitedViews.findIndex((item) => item.path === view.path)
       if (index === -1) {
-        this.visitedViews.push(nextView)
+        this.visitedViews.push(view)
       } else {
-        this.visitedViews[index] = nextView
+        this.visitedViews[index] = view
       }
       this.syncCachedViews()
     },
-    removeView(view: RouteLocationNormalizedLoaded) {
+    removeView(view: TagView) {
       this.visitedViews = this.visitedViews.filter((item) => item.path !== view.path)
       this.syncCachedViews()
     },
-    removeCachedView(name?: RouteRecordName) {
-      if (typeof name === 'string') {
+    removeCachedView(name?: string) {
+      if (name) {
         this.cachedViews = this.cachedViews.filter((item) => item !== name)
       }
     },
     removeAllViews(keepAffix = true) {
-      this.visitedViews = keepAffix ? this.visitedViews.filter((view) => view.meta?.affix) : []
+      this.visitedViews = keepAffix ? this.visitedViews.filter((view) => view.affix) : []
       this.syncCachedViews()
     },
-    removeOtherViews(view: RouteLocationNormalizedLoaded) {
-      this.visitedViews = this.visitedViews.filter(
-        (item) => item.meta?.affix || item.path === view.path
-      )
+    removeOtherViews(view: TagView) {
+      this.visitedViews = this.visitedViews.filter((item) => item.affix || item.path === view.path)
       this.syncCachedViews()
     },
-    removeLeftViews(view: RouteLocationNormalizedLoaded) {
+    removeLeftViews(view: TagView) {
       const index = this.visitedViews.findIndex((item) => item.path === view.path)
       if (index < 0) return
 
       this.visitedViews = this.visitedViews.filter(
-        (item, itemIndex) => item.meta?.affix || itemIndex >= index
+        (item, itemIndex) => item.affix || itemIndex >= index
       )
       this.syncCachedViews()
     },
-    removeRightViews(view: RouteLocationNormalizedLoaded) {
+    removeRightViews(view: TagView) {
       const index = this.visitedViews.findIndex((item) => item.path === view.path)
       if (index < 0) return
 
       this.visitedViews = this.visitedViews.filter(
-        (item, itemIndex) => item.meta?.affix || itemIndex <= index
+        (item, itemIndex) => item.affix || itemIndex <= index
       )
       this.syncCachedViews()
     }

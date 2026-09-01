@@ -25,8 +25,10 @@ pnpm preview:admin     # 本地预览 pro 构建
 构建前建议至少执行：
 
 ```bash
-pnpm typecheck:admin
 pnpm lint
+pnpm format:check
+pnpm style:check
+pnpm typecheck
 ```
 
 ## 构建文档
@@ -127,14 +129,16 @@ VITE_API_BASE_PATH=/api
 v3 采用“一个版本发布流程、两个 Cloudflare Pages 项目”的方式部署：
 
 ```text
-功能 PR -> GitHub CI -> release
-                       └─ Release Please PR
-                          └─ GitHub Release
-                             ├─ Admin Deploy Hook -> element-plus-admin.cn
-                             └─ Docs Deploy Hook  -> docs.element-plus-admin.cn
+功能 PR -> GitHub CI -> master
+                        └─ Release Please 持续更新 Release PR（不部署）
+                           └─ 手动合并 Release PR
+                              └─ GitHub Release
+                                 └─ GitHub Actions 构建当前提交
+                                    ├─ Wrangler 上传 Admin -> element-plus-admin.cn
+                                    └─ Wrangler 上传 Docs  -> docs.element-plus-admin.cn
 ```
 
-GitHub Actions 在业务 PR 阶段执行安装、Lint、类型检查、包测试和双应用构建校验。业务代码合入 `release` 后，Release Please 只创建或更新 Release PR；Release PR 合并并创建 GitHub Release 后，才通过两个 Deploy Hook 触发生产构建。这样生成 Changelog 和正式发布仍是两个清晰阶段，但生产站点只构建一次。
+GitHub Actions 在业务 PR 阶段执行安装、代码与样式规范、格式、类型检查、包测试和双应用构建校验。业务代码合入 `master` 后，Release Please 只创建或更新同一份 Release PR，不创建 Tag，也不部署站点。后续提交会继续累积到这份 PR，并根据 Conventional Commit 自动更新候选版本和 Changelog。只有手动合并 Release PR、创建 GitHub Release 后，GitHub Actions 才会在该发布提交上构建两个应用，通过 Wrangler 直接上传产物并检查部署地址。因此 `master` 可以持续接收小改动，而发布时机仍由 Release PR 控制。
 
 仓库根目录的 `.node-version` 固定 Node.js `22.19.0`，`package.json` 固定 pnpm `9.15.3`。Cloudflare Pages Build System v3 不会从 `package.json` 自动读取包管理器版本，因此两个项目都要显式设置环境变量：
 
@@ -149,7 +153,7 @@ PNPM_VERSION=9.15.3
 | 配置项           | Admin                 | Docs                        |
 | ---------------- | --------------------- | --------------------------- |
 | 项目名           | `element-plus-admin`  | `element-plus-admin-docs`   |
-| 生产分支         | `release`             | `release`                   |
+| 生产分支         | `master`              | `master`                    |
 | Framework preset | `None`                | `None`                      |
 | Root directory   | 留空，使用仓库根目录  | 留空，使用仓库根目录        |
 | Build command    | `pnpm build:admin`    | `pnpm build:docs`           |
@@ -165,37 +169,39 @@ PNPM_VERSION=9.15.3
 
 根域名 `element-plus-admin.cn` 要作为 Cloudflare Zone 管理并使用 Cloudflare nameserver。`docs` 子域在同一 Zone 中会由 Pages 自动创建 DNS 记录；如果 DNS 由其他服务商管理，则先在 Pages 中关联子域，再按提示添加指向 `<project>.pages.dev` 的 CNAME。
 
-## 配置生产 Deploy Hook
+## 配置生产直传
 
 两个 Pages 项目都进入 **Settings > Builds > Branch control**：
 
 - 关闭 **Enable automatic production branch deployments**。
 - 将 **Preview branch** 设置为 `None`。
 
-然后分别在 **Settings > Builds > Deploy Hooks** 创建名为 `github-release`、分支为 `release` 的 Hook，并把两个 URL 保存为 GitHub Actions Secrets：
+在 Cloudflare 的 **Account API Tokens** 中创建 Custom Token，并授予 **Account > Cloudflare Pages > Edit** 权限。然后在 GitHub 仓库 **Settings > Secrets and variables > Actions** 中保存：
 
-- `CLOUDFLARE_ADMIN_DEPLOY_HOOK`
-- `CLOUDFLARE_DOCS_DEPLOY_HOOK`
+- `CLOUDFLARE_API_TOKEN`：上一步生成的 Token。
+- `CLOUDFLARE_ACCOUNT_ID`：Cloudflare Account ID。
 
-Deploy Hook URL 本身就是凭据，不需要额外的 Cloudflare API Token，不应写入仓库或日志。
+发布工作流会在 GitHub Runner 中安装依赖并同时完成两个构建，随后使用 `cloudflare/wrangler-action` 上传 `apps/admin/dist-pro` 和 `apps/docs/.vitepress/dist`。部署命令显式携带 `master`、当前提交 SHA 和 Pages 项目名，因此 Cloudflare 收到的产物与 GitHub Release 对应。Wrangler 返回部署地址后，工作流还会执行 HTTP 可用性检查；上传或检查失败都会让发布任务失败。
 
 在 GitHub 仓库 **Settings > Actions > General > Workflow permissions** 中启用 **Allow GitHub Actions to create and approve pull requests**，否则 Release Please 无法创建 Release PR。
 
 ## GitHub Actions 校验
 
-`.github/workflows/ci.yml` 只在目标为 `release` 的 Pull Request 中自动执行，也支持手动运行：
+`.github/workflows/ci.yml` 在目标为 `master` 的 Pull Request 中自动执行，也支持手动运行：
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm lint
-pnpm typecheck:admin
+pnpm format:check
+pnpm style:check
+pnpm typecheck
 pnpm --filter @vea/hooks test
 pnpm --filter @vea/request test
 pnpm build:admin
 pnpm build:docs
 ```
 
-Release Please 使用仓库自带的 `GITHUB_TOKEN`，机器人创建或更新 Release PR 时不会递归触发 CI。Release PR 只包含版本号、Manifest 和 Changelog；如果 `release` 强制要求 `Verify workspace`，需要为 GitHub Actions 机器人配置规则例外，或在 Release PR 分支手动运行 CI。
+Release Please 使用仓库自带的 `GITHUB_TOKEN`，机器人创建或更新 Release PR 时不会递归触发 CI。Release PR 只包含版本号、Manifest 和 Changelog；如果 `master` 强制要求 `Verify workspace`，需要为 GitHub Actions 机器人配置规则例外，或在 Release PR 分支手动运行 CI。
 
 ## Changelog 与版本发布
 
@@ -204,11 +210,11 @@ Release Please 使用仓库自带的 `GITHUB_TOKEN`，机器人创建或更新 R
 - `release-please-config.json`：发布类型、Tag 和 Changelog 分组。
 - `.release-please-manifest.json`：当前已发布版本。
 
-当前基线为 `2.10.0`。v3 历史中包含 breaking change，因此下一份 Release PR 会升级为 `3.0.0`。只有 Release PR 合并后 `release_created=true`，Admin 和 Docs 的 Deploy Hook 才会并行触发。
+当前发布基线记录在 `.release-please-manifest.json`。Release Please 会持续解析上一个版本之后合入 `master` 的提交：`fix` 升级补丁版本、`feat` 升级次版本、带 `!` 或 `BREAKING CHANGE` 的提交升级主版本。只有 Release PR 合并后 `release_created=true`，构建和 Wrangler 部署才会执行。
 
 ## 发布与回滚
 
-业务 PR 合入 `release` 不会直接发布站点；合并自动生成的 Release PR 后才会同时发布 Admin 和 Docs。Cloudflare Pages 的每次部署都是独立版本，出现问题时可在项目的 Deployments 页面回滚到上一个成功版本。
+业务 PR 合入 `master` 不会直接发布站点；合并自动生成的 Release PR 后才会同时发布 Admin 和 Docs。Cloudflare Pages 的每次部署都是独立版本，出现问题时可在项目的 Deployments 页面回滚到上一个成功版本。
 
 ## 发布检查清单
 

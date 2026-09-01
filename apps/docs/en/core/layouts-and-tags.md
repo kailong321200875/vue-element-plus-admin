@@ -42,12 +42,12 @@ When the viewport is narrower than `768px`:
 
 The TagsView Store maintains two sets of data:
 
-| Field          | Description                                                    |
-| -------------- | -------------------------------------------------------------- |
-| `visitedViews` | Open tabs, including route paths, query parameters, and `meta` |
-| `cachedViews`  | Names of route components that KeepAlive should cache          |
+| Field          | Description                                                   |
+| -------------- | ------------------------------------------------------------- |
+| `visitedViews` | Lightweight open tabs with only navigation and rendering data |
+| `cachedViews`  | Names of route components that KeepAlive should cache         |
 
-When a route is visited, TagsView adds or updates a tab by `path`. Changes to query parameters update the existing tab instead of creating duplicate tabs for the same path.
+When a route is visited, TagsView first converts the Vue Router route into an independent `TagView` value, then adds or updates it by `path`. Query changes update the existing tab instead of creating a duplicate. The Store never retains complete route objects, which keeps it decoupled from Vue Router's internal types and versions.
 
 ## Route `meta` and tabs
 
@@ -117,4 +117,4 @@ After every addition or removal, the Store rebuilds the cache include list throu
 
 ## Should TagsView be persisted?
 
-It is not persisted currently. Dynamic routes are requested again after a refresh, and tab data also contains route information that may be non-serializable or no longer valid. If a product truly needs to restore tabs, save only a list of `fullPath` values, then validate and restore each one after dynamic route registration has completed.
+It is not persisted currently. Dynamic routes are requested again after a refresh, and the permissions or routes behind historical tabs may no longer be valid. If a product truly needs to restore tabs, save only a list of `fullPath` values, then validate and restore each one after dynamic route registration has completed.

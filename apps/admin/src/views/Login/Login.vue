@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import { LoginForm, RegisterForm } from './components'
   import { ThemeSwitch } from '@vea/components'
-  import { LocaleDropdown } from '@/components/LocaleDropdown'
+  import LocaleDropdown from '@/components/LocaleDropdown/index.vue'
   import { useI18n } from 'vue-i18n'
   import { useAppStore } from '@/store/modules/app'
   import { appConfig } from '@/config/app'

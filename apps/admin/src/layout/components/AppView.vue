@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { useTagsViewStore } from '@/store/modules/tagsView'
-  import { Footer } from '@/components/Footer'
+  import Footer from '@/components/Footer/index.vue'
   import { computed } from 'vue'
   import { appConfig } from '@/config/app'
 
