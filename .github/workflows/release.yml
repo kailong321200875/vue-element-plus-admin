@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 concurrency:
   group: release-${{ github.ref }}
@@ -14,6 +15,7 @@ permissions: {}
 jobs:
   release_please:
     name: Prepare or publish release
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,11 +34,12 @@ jobs:
   deploy:
     name: Build and deploy release
     needs: release_please
-    if: needs.release_please.outputs.release_created == 'true'
+    if: always() && (github.event_name == 'workflow_dispatch' || needs.release_please.outputs.release_created == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: read
+      deployments: write
     steps:
       - name: Checkout release commit
         uses: actions/checkout@v6
@@ -67,6 +70,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          packageManager: pnpm
+          wranglerVersion: 4.127.1
           command: pages deploy apps/admin/dist-pro --project-name=element-plus-admin --branch=master --commit-hash=${{ github.sha }}
 
       - name: Verify Admin deployment
@@ -82,6 +88,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          packageManager: pnpm
+          wranglerVersion: 4.127.1
           command: pages deploy apps/docs/.vitepress/dist --project-name=element-plus-admin-docs --branch=master --commit-hash=${{ github.sha }}
 
       - name: Verify documentation deployment
