@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file and managed by Release Please from Conventional Commits.
 
+## [3.1.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v3.0.0...v3.1.0) (2026-09-01)
+
+
+### Features
+
+* improve template architecture and delivery workflow ([8a68d60](https://github.com/kailong321200875/vue-element-plus-admin/commit/8a68d60bb63373c974352e837c733e24703f61f4))
+
 ## [3.0.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v2.10.0...v3.0.0) (2026-08-27)
 
 
