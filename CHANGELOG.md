@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file and managed by Release Please from Conventional Commits.
 
+## [3.1.1](https://github.com/kailong321200875/vue-element-plus-admin/compare/v3.1.0...v3.1.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* **ci:** stabilize Cloudflare Pages deployment ([9047610](https://github.com/kailong321200875/vue-element-plus-admin/commit/9047610a7ba478174a528916bff1ca44dcadc119))
+
 ## [3.1.0](https://github.com/kailong321200875/vue-element-plus-admin/compare/v3.0.0...v3.1.0) (2026-09-01)
 
 
